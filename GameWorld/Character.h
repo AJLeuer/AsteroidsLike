@@ -20,6 +20,8 @@ class Character : public GameObject {
 
 protected:
 	
+	string name ;
+	
 	/**
 	 * The character's current status
 	 */
@@ -36,8 +38,30 @@ protected:
 	unsigned int baseDamage ;
 
 public:
+	Character() ;
+	Character(string name, Status status, unsigned health, unsigned baseDamage) ;
+	
+	/**
+	 * Returns a pointer to this Character's health, allowing it to be changed.
+	 */
+	unsigned int* getHealth() ;
+	void setHealth(unsigned int val) ;
+	
+	/**
+	 * Returns a read-only value representing Character's health.
+	 */
+	const unsigned int checkHealth() ;
+	
+	
+	unsigned int getDamage() ;
+	void setDamage(unsigned int val) ;
 	
 	void attack(Character & enemy) ;
+	
+	/**
+	 * Draws a representation of this Character
+	 */
+	ostream draw() ;
   
 	
 } ;

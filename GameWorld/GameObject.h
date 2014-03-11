@@ -36,6 +36,11 @@ public:
 	
 	void operator()(GameObject & sentObject) ;
 	
+	/**
+	 * Draws a representation of this GameObject
+	 */
+	virtual ostream draw() ;
+	
 } ;
 
 #endif /* defined(__GameWorld__GameObject__) */
