@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3418CF009E002EFA00 /* GameWorld.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66E97F3318CF009E002EFA00 /* GameWorld.1 */; };
+		66E97F3C18CF012F002EFA00 /* BaseInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */; };
+		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
+		66E97F4218CF032B002EFA00 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4018CF032B002EFA00 /* World.cpp */; };
+		66E97F4518CF03AE002EFA00 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4318CF03AE002EFA00 /* Message.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +32,15 @@
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66E97F3318CF009E002EFA00 /* GameWorld.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GameWorld.1; sourceTree = "<group>"; };
+		66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseInterface.cpp; sourceTree = "<group>"; };
+		66E97F3B18CF012F002EFA00 /* BaseInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInterface.h; sourceTree = "<group>"; };
+		66E97F3D18CF02B8002EFA00 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		66E97F3E18CF02B8002EFA00 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		66E97F4018CF032B002EFA00 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		66E97F4118CF032B002EFA00 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		66E97F4318CF03AE002EFA00 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Message.cpp; sourceTree = "<group>"; };
+		66E97F4418CF03AE002EFA00 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		66E97F4618CF03E4002EFA00 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +73,17 @@
 		66E97F3018CF009E002EFA00 /* GameWorld */ = {
 			isa = PBXGroup;
 			children = (
-				66E97F3118CF009E002EFA00 /* main.cpp */,
 				66E97F3318CF009E002EFA00 /* GameWorld.1 */,
+				66E97F3B18CF012F002EFA00 /* BaseInterface.h */,
+				66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */,
+				66E97F3E18CF02B8002EFA00 /* GameObject.h */,
+				66E97F3D18CF02B8002EFA00 /* GameObject.cpp */,
+				66E97F4118CF032B002EFA00 /* World.h */,
+				66E97F4018CF032B002EFA00 /* World.cpp */,
+				66E97F4418CF03AE002EFA00 /* Message.h */,
+				66E97F4318CF03AE002EFA00 /* Message.cpp */,
+				66E97F4618CF03E4002EFA00 /* Location.h */,
+				66E97F3118CF009E002EFA00 /* main.cpp */,
 			);
 			path = GameWorld;
 			sourceTree = "<group>";
@@ -117,7 +139,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E97F3C18CF012F002EFA00 /* BaseInterface.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
+				66E97F4218CF032B002EFA00 /* World.cpp in Sources */,
+				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
+				66E97F4518CF03AE002EFA00 /* Message.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

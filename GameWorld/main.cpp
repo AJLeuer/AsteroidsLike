@@ -8,6 +8,10 @@
 
 #include <iostream>
 
+#include "World.h"
+#include "GameObject.h"
+#include "Location.h"
+
 int main(int argc, const char * argv[])
 {
 
