@@ -10,6 +10,7 @@
 #define __GameWorld__Character__
 
 #include <iostream>
+#include <sstream>
 
 #include "GameData.h"
 #include "GameObject.h"
@@ -39,7 +40,7 @@ protected:
 
 public:
 	Character() ;
-	Character(string name, CurrentActivity currentActivity, unsigned health, unsigned baseDamage) ;
+	Character(string name, bool alive, CurrentActivity currentActivity, Health health, Damage damage) ;
 	
 	/**
 	 * @return This character's current activity
@@ -74,7 +75,7 @@ public:
 	/**
 	 * Draws a representation of this Character
 	 */
-	ostream draw() ;
+	stringstream * draw() ;
   
 	
 } ;

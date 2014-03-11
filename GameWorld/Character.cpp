@@ -9,15 +9,15 @@
 #include "Character.h"
 
 Character::Character() :
-	name("noName"), status(Status(-1)),
-	health(0), baseDamage(0)
+	name("noName"), alive(false),
+	activity(), health(), damage()
 {
 	
 }
 
-Character::Character(string name, Status status, unsigned health, unsigned baseDamage) :
-	name(name), status(status),
-	health(health), baseDamage(baseDamage)
+Character::Character(string name, bool alive, CurrentActivity activity, Health health, Damage damage) :
+	name(name), alive(alive),
+	activity(activity), health(health), damage(damage)
 {
 	
 }
@@ -40,12 +40,23 @@ Health * Character::modHealth(unsigned long val) {
 
 const Damage Character::getDamage() {
 	const Damage d = this->damage ;
+	return d ;
 }
 
+Damage * Character::modDamage() {
+	return &(this->damage) ;
+}
 
-Damage * Character::modDamage() ;
+void attack(Character & enemy) {
+	//todo implement
+}
 
-
+stringstream * draw() {
+	stringstream * ss = new stringstream() ;
+	*ss << "♿️" ;
+	return ss ;
+	
+}
 
 
 

@@ -10,9 +10,11 @@
 #define __GameWorld__GameObject__
 
 #include <iostream>
+#include <sstream>
 
 #include "BaseInterface.h"
 #include "Message.h"
+
 
 /*
  * The base class from which all other classes in the world (thought not the world
@@ -39,7 +41,7 @@ public:
 	/**
 	 * Draws a representation of this GameObject
 	 */
-	virtual ostream draw() ;
+	virtual stringstream * draw() ;
 	
 } ;
 
