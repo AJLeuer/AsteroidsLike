@@ -11,10 +11,12 @@
 
 #include <iostream>
 
+#include "Message.h"
+
 using namespace std ;
 
 /**
- * The virtual base class that will serve as a parent class
+ * The virtual base class that will serve as an interface
  * to every object in the game world. It defines all methods by
  * which any class can talk to another.
  */
@@ -23,12 +25,21 @@ class BaseInterface {
  
 	
 public:
-	
+		
 	/**
-	 * Any class with a reference to this can call notify on it
+	 * Any class with a reference to this object can call notify on it
 	 * to pass a message.
 	 */
 	virtual void notify() = 0 ;
+	
+	
+	/**
+	 * An implementing class can define a default function by overloading its () operator
+	 */
+	virtual void operator()() ;
+	
+	
+	
 	
 	
 };

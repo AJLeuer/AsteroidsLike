@@ -11,13 +11,30 @@
 
 #include <iostream>
 
-class GameObject {
+#include "BaseInterface.h"
+#include "Message.h"
+
+/*
+ * The base class from which all other classes in the world (thought not the world
+ * itself) will inherit
+ */
+class GameObject : public BaseInterface {
 	
-private:
-  
+protected:
+	
+	
 
 public:
-  
+	void notify() ;
+	
+	/**
+	 * A GameObject or any other class can implement this function to pass messages to another.
+	 */
+	virtual void passMessage(Message *, GameObject & recipient) ;
+	
+	virtual void operator()() ;
+	
+	void operator()(GameObject & sentObject) ;
 	
 } ;
 
