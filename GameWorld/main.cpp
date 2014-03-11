@@ -10,6 +10,7 @@
 
 #include "World.h"
 #include "GameObject.h"
+#include "GameData.h"
 #include "Location.h"
 
 int main(int argc, const char * argv[])

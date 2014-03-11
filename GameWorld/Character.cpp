@@ -22,19 +22,33 @@ Character::Character(string name, Status status, unsigned health, unsigned baseD
 	
 }
 
-unsigned * Character::getHealth() {
-	unsigned * h = &(this->health) ;
+CurrentActivity * Character::currentActivity() {
+	CurrentActivity * act = &(this->activity) ;
+	return act ;
+}
+
+const Health Character::checkHealth() {
+	const Health h = this->health ;
 	return h ;
 }
 
-const unsigned Character::checkHealth() {
-	const unsigned h = this->health ;
-	return h ;
+
+Health * Character::modHealth(unsigned long val) {
+	return &(this->health) ;
 }
 
-void Character::setHealth() {
-	this->health;
+
+const Damage Character::getDamage() {
+	const Damage d = this->damage ;
 }
 
-unsigned Character::getDamage()
-void Character::setDamage()
+
+Damage * Character::modDamage() ;
+
+
+
+
+
+
+
+

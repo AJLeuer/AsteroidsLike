@@ -27,12 +27,17 @@ enum Alert {
 	//add more here
 } ;
 
-enum Status {
+enum CurrentActivity {
 	/*typically for player and NPCs*/
 	normal = 0,
 	inCombat = 1,
 	inDialogue = 2,
 	idle = 3,
+} ;
+
+enum DoA {
+	dead = 0,
+	alive = 1
 } ;
 
 enum Attitude {
@@ -48,20 +53,21 @@ enum Misc {
 	//anything else?
 } ;
 
+
 struct Message {
 	Alert alert ;
-	Status status ;
+	CurrentActivity currentActivity ;
 	Misc misc ;
 	
 	string messageText ;
 	string messageData ;
 	double numericalData ;
 	
-	Message() : alert(Alert(-1)), status(Status(-1)),
+	Message() : alert(Alert(-1)), currentActivity(CurrentActivity(-1)),
 		misc(Misc(-1)), messageText(NULL),
 		messageData(NULL), numericalData(NULL) {}
 	
-	Message(Alert a, Status s, Misc c, string mT, string mD, double nD) : alert(a), status(s),
+	Message(Alert a, CurrentActivity s, Misc c, string mT, string mD, double nD) : alert(a), currentActivity(s),
 		misc(c), messageText(mT),
 		messageData(mD), numericalData(nD) {}
 	

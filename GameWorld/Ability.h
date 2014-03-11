@@ -22,7 +22,7 @@ protected:
   
 
 public:
-	virtual operator()() ;
+	virtual void operator()() ;
   
 };
 

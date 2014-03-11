@@ -11,6 +11,7 @@
 
 #include <iostream>
 
+#include "GameData.h"
 #include "GameObject.h"
 #include "Message.h"
 
@@ -22,39 +23,51 @@ protected:
 	
 	string name ;
 	
+	bool alive ;
+	
 	/**
-	 * The character's current status
+	 * The character's CurrentActivity
 	 */
-	Status status ;
+	CurrentActivity activity ;
 	
 	/**
 	 * The character's current health
 	 */
-	unsigned int health ;
+	Health health ;
 	
-	/**
-	 * The base amount of damage done by this character
-	 */
-	unsigned int baseDamage ;
+	Damage damage ;
 
 public:
 	Character() ;
-	Character(string name, Status status, unsigned health, unsigned baseDamage) ;
+	Character(string name, CurrentActivity currentActivity, unsigned health, unsigned baseDamage) ;
 	
 	/**
-	 * Returns a pointer to this Character's health, allowing it to be changed.
+	 * @return This character's current activity
 	 */
-	unsigned int* getHealth() ;
-	void setHealth(unsigned int val) ;
+	CurrentActivity * currentActivity() ;
 	
 	/**
-	 * Returns a read-only value representing Character's health.
+	 * @return a value representing Character's health
 	 */
-	const unsigned int checkHealth() ;
+	const Health checkHealth() ;
 	
+	/**
+	 * @return a pointer to this characters health,
+	 * allowing it to be changed
+	 */
+	Health * modHealth(unsigned long val) ;
 	
-	unsigned int getDamage() ;
-	void setDamage(unsigned int val) ;
+	/**
+	 * @return a read-only value representing Character's damage
+	 */
+	const Damage getDamage() ;
+
+	/**
+	 * @return A pointer to the amount of damage done by this character,
+	 * which may be changed
+	 */
+	Damage * modDamage() ;
+	
 	
 	void attack(Character & enemy) ;
 	
