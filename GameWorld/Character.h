@@ -11,6 +11,7 @@
 
 #include <iostream>
 
+#include "GameObject.h"
 #include "Message.h"
 
 using namespace std ;
@@ -36,7 +37,7 @@ protected:
 
 public:
 	
-	void attack(Character & enemy)
+	void attack(Character & enemy) ;
   
 	
 } ;

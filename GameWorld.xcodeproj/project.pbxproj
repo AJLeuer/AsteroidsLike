@@ -15,6 +15,7 @@
 		66E97F4518CF03AE002EFA00 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4318CF03AE002EFA00 /* Message.cpp */; };
 		66E97F4918CF109A002EFA00 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4718CF109A002EFA00 /* Character.cpp */; };
 		66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4D18CF149F002EFA00 /* NPC.cpp */; };
+		66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F5018CF17F6002EFA00 /* GameEvent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		66E97F4818CF109A002EFA00 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		66E97F4D18CF149F002EFA00 /* NPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPC.cpp; sourceTree = "<group>"; };
 		66E97F4E18CF149F002EFA00 /* NPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPC.h; sourceTree = "<group>"; };
+		66E97F5018CF17F6002EFA00 /* GameEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEvent.cpp; sourceTree = "<group>"; };
+		66E97F5118CF17F6002EFA00 /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEvent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				66E97F4718CF109A002EFA00 /* Character.cpp */,
 				66E97F4E18CF149F002EFA00 /* NPC.h */,
 				66E97F4D18CF149F002EFA00 /* NPC.cpp */,
+				66E97F5118CF17F6002EFA00 /* GameEvent.h */,
+				66E97F5018CF17F6002EFA00 /* GameEvent.cpp */,
 				66E97F3118CF009E002EFA00 /* main.cpp */,
 			);
 			path = GameWorld;
@@ -151,6 +156,7 @@
 			files = (
 				66E97F3C18CF012F002EFA00 /* BaseInterface.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
+				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
 				66E97F4218CF032B002EFA00 /* World.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
