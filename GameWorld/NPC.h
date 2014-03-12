@@ -11,4 +11,10 @@
 
 #include <iostream>
 
+class NPC : public Character {
+  
+  //todo: everything
+  
+} ;
+
 #endif /* defined(__GameWorld__NPC__) */
