@@ -23,12 +23,11 @@ Character::Character(const Character & other) :
 {
 }
 
-Character::Character(string name, bool alive, CharacterState state, Health health, Damage damage) :
-	GameObject(),
+Character::Character(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage) :
+	GameObject(symbol),
 	name(name), alive(alive),
 	state(state), health(health), damage(damage)
 {
-	;
 }
 
 Character::Character(int randSeed) :
@@ -56,9 +55,20 @@ Character & Character::operator=(const Character &rhs) {
 	return *this ;
 }
 
+void Character::operator()() {
+	//todo
+}
+
+void Character::operator()(GameObject & other) {
+	//todo
+}
 
 void Character::notify() {
 	//todo implement
+}
+
+void Character::passMessage(Message *message, GameObject &recipient) {
+	//todo
 }
 
 CharacterState * Character::getState() {
@@ -86,16 +96,13 @@ void Character::modDamage(const Damage & other) {
 	this->damage = other ;
 }
 
+/* todo: uncomment this*/ /*
 void attack(Character & enemy) {
-	//todo implement
+	cout << "" << endl ;
+	//todo
 }
+*/
 
-stringstream * draw() {
-	stringstream * ss = new stringstream() ;
-	*ss << "♿️" ;
-	return ss ;
-	
-}
 
 
 

@@ -13,19 +13,23 @@
 #include <sstream>
 
 #include "GameInterface.h"
-#include "Message.h"
 
 
 /*
  * The base class from which all other classes in the world (thought not the world
  * itself) will inherit. This class will handle the assignment of a unique ID to each GameObject.
  */
-class GameObject : public BaseInterface {
+class GameObject : public GameInterface {
 	
+	
+private:
+	
+	static unsigned IDs ;
 	
 protected:
-	static unsigned IDs ;
+	
 	unsigned ID ;
+	string icon ;
 	
 	
 public:
@@ -34,13 +38,20 @@ public:
 	 */
 	GameObject() ;
 	
-	
 	/**
 	 * Copy constructor for GameObject. The new instance has its own unique ID.
 	 *
 	 * @param other The GameObject to be copied
 	 */
 	GameObject(const GameObject & other) ;
+	
+	/**
+	 * Creates an object with the given UTF-8 symbol (preferably just
+	 * one character) as its icon
+	 *
+	 * @param symbol The icon to be used by this GameObject
+	 */
+	GameObject(string symbol) ;
 	
 	
 	/**
@@ -71,7 +82,7 @@ public:
 	 *
 	 * @param sentObject A reference to another GameObject
 	 */
-	virtual void operator()(GameObject & sentObject) ;
+	virtual void operator()(GameObject & other) ;
 	
 	
 	/**
@@ -88,13 +99,13 @@ public:
 	 * @param message The Message sent by this
 	 * @param recipient The object receiving the Message
 	 */
-	virtual void passMessage(Message * message, GameObject & recipient)  = 0 ;
+	virtual void passMessage(Message * message, GameObject & recipient) ;
 	
 	
 	/**
 	 * Draws a representation of this GameObject
 	 */
-	virtual stringstream * draw() ;
+	string draw() ;
 	
 } ;
 

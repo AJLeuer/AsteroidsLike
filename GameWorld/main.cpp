@@ -9,15 +9,13 @@
 #include <iostream>
 
 #include "World.h"
-#include "GameObject.h"
-#include "GameData.h"
-#include "Location.h"
+
+
+using namespace std ;
 
 int main(int argc, const char * argv[])
 {
 
-	// insert code here...
-	std::cout << "Hello, World!\n";
     return 0;
 }
 

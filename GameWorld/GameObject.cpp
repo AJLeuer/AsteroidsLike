@@ -20,8 +20,15 @@ GameObject::GameObject(const GameObject & other) :
 	ID(IDs)
 {
 	IDs++ ;
-	//copy member vars
+	this->icon = other.icon ;
 }
+
+GameObject::GameObject(string symbol) :
+	ID(IDs), icon(symbol)
+{
+	IDs++ ;
+}
+
 
 GameObject::~GameObject() {
 	//nothing yet
@@ -32,7 +39,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
 		this->ID = IDs ;
 		IDs++ ;
-		//not much actual copying...
+		this->icon = rhs.icon ;
 	}
 	return *this ;
 }
@@ -54,7 +61,6 @@ void GameObject::passMessage(Message * message, GameObject &recipient) {
 }
 
 
-stringstream * GameObject::draw() {
-	//todo
-	return new stringstream() ;
+string GameObject::draw() {
+	return this->icon ;
 }

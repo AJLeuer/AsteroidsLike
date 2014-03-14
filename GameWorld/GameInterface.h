@@ -13,14 +13,13 @@
 
 #include "Message.h"
 
-using namespace std ;
 
 /**
  * The virtual base class that will serve as an interface
  * to every object in the game world. It defines all methods by
  * which any class can talk to another.
  */
-class BaseInterface {
+class GameInterface {
 
  
 	

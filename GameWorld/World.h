@@ -12,8 +12,16 @@
 #include <iostream>
 
 #include "AddlEnums.h"
+#include "GameInterface.h"
+#include "GameEvent.h"
+#include "Ability.h"
+#include "GameObject.h"
+#include "Character.h"
+#include "NPC.h"
 
-//using namespace std ;
+
+
+using namespace std ;
 
 /**
  * The class representing the world, and the class that manages all the objects within it. 
@@ -27,6 +35,8 @@
 class World {
 	
 private:
+	friend class GameInterface ;
+	
 	/**
 	 * gameLog is a pointer which references the basic ostream* which will
 	 * record, print, draw, or render everything that happens in our game. As it is defined now, it
@@ -37,8 +47,12 @@ private:
 	
 	
   
-
+	World() ;
+	
+	
 public:
+	
+	void init() ;
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting

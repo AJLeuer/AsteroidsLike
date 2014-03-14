@@ -7,3 +7,53 @@
 //
 
 #include "GameEvent.h"
+
+unsigned GameEvent::IDs = 0 ;
+
+
+GameEvent::GameEvent() :
+	ID(IDs)
+{
+	IDs++ ;
+}
+
+
+GameEvent::GameEvent(const GameEvent & other) :
+	GameEvent()
+{
+	this->icon = other.icon ;
+}
+
+
+GameEvent::GameEvent(string symbol) :
+	GameEvent()
+{
+	this->icon = symbol ;
+}
+
+
+GameEvent::~GameEvent() {
+	//todo
+}
+
+
+GameEvent & GameEvent::operator=(const GameEvent & rhs) {
+	if (this != &rhs) {
+		this->ID = IDs ;
+		IDs++ ;
+		this->icon = rhs.icon ;
+	}
+	return *this ;
+}
+
+void GameEvent::operator()() {
+	//todo
+}
+
+void GameEvent::notify() {
+	//todo
+}
+
+string GameEvent::draw() {
+	return this->icon ;
+}

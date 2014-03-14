@@ -11,20 +11,21 @@
 
 #include <iostream>
 
-#include "GameObject.h"
+#include "GameEvent.h"
 
 /**
  * A generic base class that will usually serve as the return type
  * for any complex action that a character can perform, such as using magic attacks
  * or healing
  */
-class Activity : public GameObject {
+class Ability : public GameEvent {
 	
 
 protected:
   
 
 public:
+	virtual void notify() ;
 	virtual void operator()() ;
   
 };

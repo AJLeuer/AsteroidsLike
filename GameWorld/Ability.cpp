@@ -7,3 +7,11 @@
 //
 
 #include "Ability.h"
+
+void Ability::notify() {
+	//todo
+}
+
+void Ability::operator()() {
+	//todo
+}

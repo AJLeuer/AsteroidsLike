@@ -11,10 +11,12 @@
 
 #include <iostream>
 
-#include "Message.h"
+
 #include "Character.h"
 
+
 class NPC : public Character {
+	
   
 protected:
 	
@@ -23,7 +25,95 @@ protected:
 	
 	
 public:
-	//more todo
+	/**
+	 * Constructs a default NPC.
+	 */
+	NPC() ;
+	
+	
+	/**
+	 * Copy constructor for NPC
+	 *
+	 * @param The NPC to be copied
+	 */
+	NPC(const NPC & other) ;
+	
+	
+	/**
+	 * Constructs an NPC based on the arguments given
+	 *
+	 * @param symbol The icon to be used by this NPC
+	 * @param name The name of this NPC
+	 * @param alive Whether this NPC is dead or alive
+	 * @param state The CharacterState of this NPC
+	 * @param health The Health of this NPC
+	 * @param damage The Damage capability of this NPC
+	 * @param reaction The reaction of this NPC to the player
+	 */
+	NPC(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage, Reaction reaction) ;
+	
+	
+	/**
+	 * Constructs a randomized NPC. The client has to option to simply leave the argument randSeed as
+	 * 0, in which case the constructor will generate its own random number.
+	 *
+	 * @param randSeed A seed to initialize the random number generator
+	 */
+	NPC(int randSeed) ;
+	
+	
+	/**
+	 * Destructor for NPC
+	 */
+	~NPC() ;
+	
+	
+	/**
+	 * Assignment operator overload
+	 *
+	 * @param rhs The right hand side argument (which will be copied)
+	 */
+	NPC & operator=(const NPC & rhs) ;
+	
+	
+	/**
+	 * Overloads operator() for NPC. Possibly will be used to
+	 * call notify(). TBD.
+	 */
+	void operator()() ;
+	
+	
+	/**
+	 * Overloads the overload of operator(). The actual implementation
+	 * and uses for this are still undecided.
+	 *
+	 * @param otherNPC A reference to another NPC
+	 */
+	void operator()(Character & other) ;
+	
+	
+	/**
+	 * Another class with a reference to this NPC can call this to have the NPC perform some
+	 * function, as yet undecided. TBI.
+	 */
+	void notify() ;
+	
+	
+	/**
+	 * A NPC can use this function to pass messages to another.
+	 *
+	 * @param message The Message sent by this
+	 * @param recipient The object receiving the Message
+	 */
+	void passMessage(Message * message, Character & recipient) ;
+	
+	/**
+	 * Attacks a hostile NPC
+	 *
+	 * @param enemy The enemy to attack
+	 */
+	 void attack(Character & enemy) ;
+	
   
 } ;
 
