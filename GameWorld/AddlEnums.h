@@ -12,6 +12,7 @@
 #include <iostream>
 
 enum class GameOutputState {
+	
 	/**
 	 * Game is output to std::cout (std output) in realtime
 	 */
@@ -21,6 +22,7 @@ enum class GameOutputState {
 	 * Game is recorded to an output stream
 	 */
 	outputStream = 1
+	
 };
 
 #endif /* defined(__GameWorld__AddlEnums__) */

@@ -11,9 +11,19 @@
 
 #include <iostream>
 
+#include "Message.h"
+#include "Character.h"
+
 class NPC : public Character {
   
-  //todo: everything
+protected:
+	
+    Reaction reaction ;
+	//todo
+	
+	
+public:
+	//more todo
   
 } ;
 

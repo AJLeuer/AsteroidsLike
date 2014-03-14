@@ -54,7 +54,6 @@ public:
 	
 	
 	
-	
 };
 
 #endif /* defined(__GameWorld__World__) */

@@ -27,9 +27,9 @@ protected:
 	bool alive ;
 	
 	/**
-	 * The Character's CurrentActivity
+	 * The Character's CharacterState
 	 */
-	CurrentActivity activity ;
+	CharacterState state ;
 	
 	/**
 	 * The Character's current Health (a data structure inheriting from GameData)
@@ -57,11 +57,11 @@ public:
 	 *
 	 * @param name The name of this Character
 	 * @param alive Whether this Character is dead or alive
-	 * @param currentActivity The CurrentActivity of this Character
+	 * @param state The CharacterState of this Character
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(string name, bool alive, CurrentActivity currentActivity, Health health, Damage damage) ;
+	Character(string name, bool alive, CharacterState state, Health health, Damage damage) ;
 	
 	/**
 	 * Constructs a randomized Character. The client has to option to simply leave the argument randSeed as
@@ -72,9 +72,16 @@ public:
 	Character(int randSeed) ;
 	
 	/**
-	 * Assignment operator overload
+	 * Destructor for Character
 	 */
-	Character operator=(const Character & rhs) ;
+	~Character() ;
+	
+	/**
+	 * Assignment operator overload
+	 *
+	 * @param rhs The right hand side argument (which will be copied)
+	 */
+	Character & operator=(const Character & rhs) ;
 	
 	
 	/**
@@ -85,25 +92,29 @@ public:
 	
 	
 	/**
-	 * @return This character's current activity
+	 * @return This character's current state
 	 */
-	const CurrentActivity * currentActivity() ;
+	CharacterState * getState() ;
+	
 	
 	/**
 	 * @return a value representing Character's health
 	 */
 	const Health * checkHealth() ;
 	
+	
 	/**
 	 * Sets this Character's health
 	 */
 	void modHealth(const Health &) ;
+	
 	
 	/**
 	 * @return a read-only value representing Character's damage
 	 */
 	const Damage * getDamage() ;
 
+	
 	/**
 	 * Sets this Character's damage
 	 */
@@ -111,6 +122,7 @@ public:
 	
 	
 	virtual void attack(Character & enemy) ;
+	
 	
 	/**
 	 * Draws a representation of this Character

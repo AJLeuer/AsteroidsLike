@@ -14,11 +14,12 @@
 #include "GameObject.h"
 
 /**
- * A generic super class that will usually serve as the return type
+ * A generic base class that will usually serve as the return type
  * for any complex action that a character can perform, such as using magic attacks
  * or healing
  */
-class Ability : public GameObject {
+class Activity : public GameObject {
+	
 
 protected:
   

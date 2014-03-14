@@ -25,12 +25,16 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::~GameObject() {
 	//nothing yet
+	//todo
 }
 
-GameObject & GameObject::operator=(const GameObject &) {
+GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
-		<#statements#>
+		this->ID = IDs ;
+		IDs++ ;
+		//not much actual copying...
 	}
+	return *this ;
 }
 
 void GameObject::operator()() {
@@ -45,12 +49,9 @@ void GameObject::notify() {
 	//todo
 }
 
-void GameObject::passMessage(Message *, GameObject &recipient) {
+void GameObject::passMessage(Message * message, GameObject &recipient) {
 	//todo
 }
-
-
-
 
 
 stringstream * GameObject::draw() {

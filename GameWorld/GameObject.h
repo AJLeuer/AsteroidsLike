@@ -22,9 +22,11 @@
  */
 class GameObject : public BaseInterface {
 	
+	
 protected:
 	static unsigned IDs ;
 	unsigned ID ;
+	
 	
 public:
 	/**
@@ -32,24 +34,29 @@ public:
 	 */
 	GameObject() ;
 	
+	
 	/**
-	 * Copy constructor for GameObject
+	 * Copy constructor for GameObject. The new instance has its own unique ID.
 	 *
 	 * @param other The GameObject to be copied
 	 */
 	GameObject(const GameObject & other) ;
+	
 	
 	/**
 	 * Destructor for GameObject
 	 */
 	virtual ~GameObject() ;
 	
+	
 	/**
-	 * Assignment operator overload for GameObject
+	 * Assignment operator overload for GameObject. The object copied
+	 * to will have its own unique ID.
 	 *
 	 * @param rhs The right hand side argument (which will be copied)
 	 */
 	virtual GameObject & operator=(const GameObject & rhs) ;
+	
 	
 	/**
 	 * Overloads operator() for GameObject. Possibly will be used to
@@ -57,11 +64,15 @@ public:
 	 */
 	virtual void operator()() ;
 	
+	
 	/**
-	 * Overloads the overload of operator().
-	 
+	 * Overloads the overload of operator(). For the most part the details of
+	 * this function will be handled by inheriting classes.
+	 *
+	 * @param sentObject A reference to another GameObject
 	 */
 	virtual void operator()(GameObject & sentObject) ;
+	
 	
 	/**
 	 * Every sub-type of GameObject should implement this to perform some
@@ -70,10 +81,15 @@ public:
 	 */
 	virtual void notify() ;
 	
+	
 	/**
 	 * A GameObject or any other class can implement this function to pass messages to another.
+	 *
+	 * @param message The Message sent by this
+	 * @param recipient The object receiving the Message
 	 */
-	virtual void passMessage(Message *, GameObject & recipient)  = 0 ;
+	virtual void passMessage(Message * message, GameObject & recipient)  = 0 ;
+	
 	
 	/**
 	 * Draws a representation of this GameObject

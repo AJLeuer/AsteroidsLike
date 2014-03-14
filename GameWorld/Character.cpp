@@ -11,22 +11,22 @@
 Character::Character() :
 	GameObject(),
 	name("noName"), alive(false),
-	activity(), health(), damage()
+	state(), health(), damage()
 {
 }
 
 Character::Character(const Character & other) :
 	GameObject(other),
 	name(other.name), alive(other.alive),
-	activity(other.activity), health(other.health),
+	state(other.state), health(other.health),
 	damage(other.damage)
 {
 }
 
-Character::Character(string name, bool alive, CurrentActivity activity, Health health, Damage damage) :
+Character::Character(string name, bool alive, CharacterState state, Health health, Damage damage) :
 	GameObject(),
 	name(name), alive(alive),
-	activity(activity), health(health), damage(damage)
+	state(state), health(health), damage(damage)
 {
 	;
 }
@@ -40,13 +40,30 @@ Character::Character(int randSeed) :
 	//todo
 }
 
-Character::Character
+Character::~Character() {
+	//todo
+}
+
+Character & Character::operator=(const Character &rhs) {
+	if (this != &rhs) {
+		this->GameObject::operator=(rhs) ;
+		this->name = rhs.name ;
+		this->alive = rhs.alive ;
+		this->state = rhs.state ;
+		this->health = rhs.health ;
+		this->damage = rhs.damage ;
+	}
+	return *this ;
+}
 
 
+void Character::notify() {
+	//todo implement
+}
 
-const CurrentActivity * Character::currentActivity() {
-	CurrentActivity * act = &(this->activity) ;
-	return act ;
+CharacterState * Character::getState() {
+	CharacterState * st = &(this->state) ;
+	return st ;
 }
 
 const Health * Character::checkHealth() {
