@@ -13,8 +13,8 @@
 #include <sstream>
 
 #include "GameData.h"
-#include "GameObject.h"
 #include "Message.h"
+#include "GameObject.h"
 
 using namespace std ;
 
@@ -27,55 +27,95 @@ protected:
 	bool alive ;
 	
 	/**
-	 * The character's CurrentActivity
+	 * The Character's CurrentActivity
 	 */
 	CurrentActivity activity ;
 	
 	/**
-	 * The character's current health
+	 * The Character's current Health (a data structure inheriting from GameData)
 	 */
 	Health health ;
 	
+	/**
+	 * The Character's current Damage (a data structure inheriting from GameData)
+	 */
 	Damage damage ;
 
 public:
+	/**
+	 * Constructs a default Character
+	 */
 	Character() ;
+	
+	/**
+	 * Copy constructor for Character
+	 */
+	Character(const Character &) ;
+	
+	/**
+	 * Constructs a Character based on the arguments given
+	 *
+	 * @param name The name of this Character
+	 * @param alive Whether this Character is dead or alive
+	 * @param currentActivity The CurrentActivity of this Character
+	 * @param health The Health of this Character
+	 * @param damage The Damage capability of this Character
+	 */
 	Character(string name, bool alive, CurrentActivity currentActivity, Health health, Damage damage) ;
+	
+	/**
+	 * Constructs a randomized Character. The client has to option to simply leave the argument randSeed as
+	 * 0, in which case the constructor will generate its own random number.
+	 *
+	 * @param randSeed A seed to initialize the random number generator
+	 */
+	Character(int randSeed) ;
+	
+	/**
+	 * Assignment operator overload
+	 */
+	Character operator=(const Character & rhs) ;
+	
+	
+	/**
+	 * Another class with a reference to this Character can call this to have the Character perform some
+	 * function, as yet undecided. TBI.
+	 */
+	virtual void notify() ;
+	
 	
 	/**
 	 * @return This character's current activity
 	 */
-	CurrentActivity * currentActivity() ;
+	const CurrentActivity * currentActivity() ;
 	
 	/**
 	 * @return a value representing Character's health
 	 */
-	const Health checkHealth() ;
+	const Health * checkHealth() ;
 	
 	/**
-	 * @return a pointer to this characters health,
-	 * allowing it to be changed
+	 * Sets this Character's health
 	 */
-	Health * modHealth(unsigned long val) ;
+	void modHealth(const Health &) ;
 	
 	/**
 	 * @return a read-only value representing Character's damage
 	 */
-	const Damage getDamage() ;
+	const Damage * getDamage() ;
 
 	/**
-	 * @return A pointer to the amount of damage done by this character,
-	 * which may be changed
+	 * Sets this Character's damage
 	 */
-	Damage * modDamage() ;
+	void modDamage(const Damage &) ;
 	
 	
-	void attack(Character & enemy) ;
+	virtual void attack(Character & enemy) ;
 	
 	/**
 	 * Draws a representation of this Character
 	 */
-	stringstream * draw() ;
+	virtual stringstream * draw() ;
   
 	
 } ;

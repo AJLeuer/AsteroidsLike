@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3418CF009E002EFA00 /* GameWorld.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66E97F3318CF009E002EFA00 /* GameWorld.1 */; };
-		66E97F3C18CF012F002EFA00 /* BaseInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
 		66E97F4218CF032B002EFA00 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4018CF032B002EFA00 /* World.cpp */; };
 		66E97F4518CF03AE002EFA00 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4318CF03AE002EFA00 /* Message.cpp */; };
@@ -33,11 +32,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		662C608E18D3073B00BD3DED /* AddlEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlEnums.h; sourceTree = "<group>"; };
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66E97F3318CF009E002EFA00 /* GameWorld.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GameWorld.1; sourceTree = "<group>"; };
-		66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseInterface.cpp; sourceTree = "<group>"; };
-		66E97F3B18CF012F002EFA00 /* BaseInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInterface.h; sourceTree = "<group>"; };
+		66E97F3B18CF012F002EFA00 /* GameInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInterface.h; sourceTree = "<group>"; };
 		66E97F3D18CF02B8002EFA00 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		66E97F3E18CF02B8002EFA00 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		66E97F4018CF032B002EFA00 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
@@ -87,25 +86,25 @@
 			isa = PBXGroup;
 			children = (
 				66E97F3318CF009E002EFA00 /* GameWorld.1 */,
+				662C608E18D3073B00BD3DED /* AddlEnums.h */,
+				66E97F4618CF03E4002EFA00 /* Location.h */,
 				66E97F5618CF2A3D002EFA00 /* GameData.h */,
+				66E97F5118CF17F6002EFA00 /* GameEvent.h */,
 				66E97F5018CF17F6002EFA00 /* GameEvent.cpp */,
 				66E97F4418CF03AE002EFA00 /* Message.h */,
-				66E97F5118CF17F6002EFA00 /* GameEvent.h */,
 				66E97F4318CF03AE002EFA00 /* Message.cpp */,
-				66E97F3B18CF012F002EFA00 /* BaseInterface.h */,
-				66E97F3A18CF012F002EFA00 /* BaseInterface.cpp */,
+				66E97F3B18CF012F002EFA00 /* GameInterface.h */,
 				66E97F3E18CF02B8002EFA00 /* GameObject.h */,
 				66E97F3D18CF02B8002EFA00 /* GameObject.cpp */,
 				66E97F4118CF032B002EFA00 /* World.h */,
 				66E97F4018CF032B002EFA00 /* World.cpp */,
-				66E97F4618CF03E4002EFA00 /* Location.h */,
 				66E97F4818CF109A002EFA00 /* Character.h */,
 				66E97F4718CF109A002EFA00 /* Character.cpp */,
 				66E97F4E18CF149F002EFA00 /* NPC.h */,
 				66E97F4D18CF149F002EFA00 /* NPC.cpp */,
-				66E97F3118CF009E002EFA00 /* main.cpp */,
 				66E97F5418CF1892002EFA00 /* Ability.h */,
 				66E97F5318CF1892002EFA00 /* Ability.cpp */,
+				66E97F3118CF009E002EFA00 /* main.cpp */,
 			);
 			path = GameWorld;
 			sourceTree = "<group>";
@@ -161,7 +160,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66E97F3C18CF012F002EFA00 /* BaseInterface.cpp in Sources */,
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
 				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
@@ -279,6 +277,7 @@
 				66E97F3918CF009E002EFA00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

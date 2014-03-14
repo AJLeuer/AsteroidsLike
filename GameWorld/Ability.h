@@ -11,12 +11,14 @@
 
 #include <iostream>
 
+#include "GameObject.h"
+
 /**
  * A generic super class that will usually serve as the return type
  * for any complex action that a character can perform, such as using magic attacks
  * or healing
  */
-class Ability {
+class Ability : public GameObject {
 
 protected:
   

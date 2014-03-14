@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__BaseInterface__
-#define __GameWorld__BaseInterface__
+#ifndef __GameWorld__GameInterface__
+#define __GameWorld__GameInterface__
 
 #include <iostream>
 
@@ -36,12 +36,9 @@ public:
 	/**
 	 * An implementing class can define a default function by overloading its () operator
 	 */
-	virtual void operator()() ;
-	
-	
-	
+	virtual void operator()() = 0 ;
 	
 	
 };
 
-#endif /* defined(__GameWorld__BaseInterface__) */
+#endif /* defined(__GameWorld__GameInterface__) */

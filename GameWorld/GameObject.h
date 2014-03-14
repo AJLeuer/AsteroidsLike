@@ -12,31 +12,68 @@
 #include <iostream>
 #include <sstream>
 
-#include "BaseInterface.h"
+#include "GameInterface.h"
 #include "Message.h"
 
 
 /*
  * The base class from which all other classes in the world (thought not the world
- * itself) will inherit
+ * itself) will inherit. This class will handle the assignment of a unique ID to each GameObject.
  */
 class GameObject : public BaseInterface {
 	
 protected:
+	static unsigned IDs ;
+	unsigned ID ;
 	
-	
-
 public:
-	void notify() ;
+	/**
+	 * Creates a new GameObject
+	 */
+	GameObject() ;
+	
+	/**
+	 * Copy constructor for GameObject
+	 *
+	 * @param other The GameObject to be copied
+	 */
+	GameObject(const GameObject & other) ;
+	
+	/**
+	 * Destructor for GameObject
+	 */
+	virtual ~GameObject() ;
+	
+	/**
+	 * Assignment operator overload for GameObject
+	 *
+	 * @param rhs The right hand side argument (which will be copied)
+	 */
+	virtual GameObject & operator=(const GameObject & rhs) ;
+	
+	/**
+	 * Overloads operator() for GameObject. Possibly will be used to
+	 * call notify(). TBD.
+	 */
+	virtual void operator()() ;
+	
+	/**
+	 * Overloads the overload of operator().
+	 
+	 */
+	virtual void operator()(GameObject & sentObject) ;
+	
+	/**
+	 * Every sub-type of GameObject should implement this to perform some
+	 * function of their choosing. Will typically be called by other classes with a 
+	 * reference to this GameObject.
+	 */
+	virtual void notify() ;
 	
 	/**
 	 * A GameObject or any other class can implement this function to pass messages to another.
 	 */
-	virtual void passMessage(Message *, GameObject & recipient) ;
-	
-	virtual void operator()() ;
-	
-	void operator()(GameObject & sentObject) ;
+	virtual void passMessage(Message *, GameObject & recipient)  = 0 ;
 	
 	/**
 	 * Draws a representation of this GameObject

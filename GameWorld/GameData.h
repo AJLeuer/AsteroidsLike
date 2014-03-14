@@ -9,36 +9,88 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-struct Damage {
+
+/**
+ * A parent type that will define the basic functions and members for Damage and Health (and other similar data types
+ * if we need them)
+ */
+struct GameData {
 	
-public:
-	
+protected:
 	unsigned long baseValue ;
 	unsigned long modifier ;
 	
+public:
+	GameData() :
+		baseValue(0),
+		modifier(0) {}
+	
+	GameData(long b, long m) :
+		baseValue(b),
+		modifier(m) {}
+	
+	GameData(const GameData & other) :
+		baseValue(other.baseValue),
+		modifier(other.modifier) {}
+	
+	GameData & operator=(const GameData & rhs) {
+		if (this != &rhs) {
+			this->baseValue = rhs.baseValue ;
+			this->modifier = rhs.modifier ;
+		}
+		return *this ;
+	}
+	
 	/**
-	 * @return The total amount of damage
+	 * @return The total amount of this GameData value (e.g. Health or Damage
 	 */
-	unsigned long calculate() {
+	unsigned long value() {
 		return baseValue + modifier ;
 	}
+	
+	/**
+	 * See value()
+	 *
+	 * @return The total amount of this GameData value (e.g. Health or Damage
+	 */
+	unsigned long operator()() {
+		return value() ;
+	}
+} ;
+
+/**
+ * A data structure that will hold damage values
+ */
+struct Damage : public GameData {
+	
+public:
+	
+	Damage() :
+		GameData() {}
+	
+	Damage(long b, long m) :
+		GameData(b, m) {}
+	
+	Damage(const Damage & other) :
+		GameData(other) {}
 	
 } ;
 
-struct Health {
-	
+/**
+ * A data structure that will hold health values
+ */
+struct Health : public GameData {
+
 public:
 	
-	unsigned long baseValue ;
-	unsigned long modifier ;
+	Health() :
+		GameData() {}
 	
-	/**
-	 * @return The total amount of health
-	 */
-	unsigned long calculate() {
-		return baseValue + modifier ;
-	}
+	Health(long b, long m) :
+		GameData(b, m) {}
 	
+	Health(const Health & other) :
+		GameData(other) {}
 } ;
 
 #endif
