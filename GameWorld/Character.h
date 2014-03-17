@@ -64,7 +64,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage) ;
+	Character(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage) ;
 	
 	
 	/**

@@ -14,6 +14,7 @@ GameObject::GameObject() :
 	ID(IDs)
 {
 	IDs++ ;
+    loc = nullptr ;
 }
 
 GameObject::GameObject(const GameObject & other) :
@@ -21,18 +22,25 @@ GameObject::GameObject(const GameObject & other) :
 {
 	IDs++ ;
 	this->icon = other.icon ;
+    this->loc = new Location(*(other.loc)) ;
 }
 
-GameObject::GameObject(string symbol) :
-	ID(IDs), icon(symbol)
+GameObject::GameObject(string symbol, Location * loc) :
+	ID(IDs), icon(symbol), loc(loc)
 {
 	IDs++ ;
 }
 
+GameObject::GameObject(int randSeed)
+{
+    if (randSeed == 0) {
+		randSeed = rand() ;
+	}
+	//todo
+}
 
 GameObject::~GameObject() {
-	//nothing yet
-	//todo
+	delete loc ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
@@ -40,6 +48,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->ID = IDs ;
 		IDs++ ;
 		this->icon = rhs.icon ;
+        this->loc = new Location(*(rhs.loc)) ;
 	}
 	return *this ;
 }

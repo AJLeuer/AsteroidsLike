@@ -23,15 +23,15 @@ Character::Character(const Character & other) :
 {
 }
 
-Character::Character(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage) :
-	GameObject(symbol),
+Character::Character(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage) :
+	GameObject(symbol, loc),
 	name(name), alive(alive),
 	state(state), health(health), damage(damage)
 {
 }
 
 Character::Character(int randSeed) :
-	GameObject()
+	GameObject(randSeed)
 {
 	if (randSeed == 0) {
 		randSeed = rand() ;
@@ -40,7 +40,7 @@ Character::Character(int randSeed) :
 }
 
 Character::~Character() {
-	//todo
+    GameObject::~GameObject() ;
 }
 
 Character & Character::operator=(const Character &rhs) {

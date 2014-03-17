@@ -10,14 +10,56 @@
 #define GameWorld_Location_h
 
 
+/**
+ * A relatively simple data structure representing a location vector.
+ *
+ * Note: Classes with a location data member will typically want to have a pointer,
+ * instead of holding the Location locally. This is because many objects in the GameWorld
+ * may not actually have a physcical location in space, in which case they can just hold a 
+ * null pointer.
+ */
 struct Location {
 	
 	double x ;
-	double y;
+	double y ;
+    double z ;
 	
-	
-	Location() : x(0), y(0) {}
-	Location(double x, double y) : x{x}, y{y} {}
+	/**
+     * Creates a location with all coordinates initialized to 0
+     */
+	Location() : x(0), y(0), z(0) {}
+    
+    /**
+     * Copy constructor for Location
+     */
+    Location(const Location & other) : x{other.x}, y{other.y}, z{other.z} {}
+    
+    /**
+     * Creates a location with coordinates initialized to the
+     * given arguments
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     */
+	Location(double x, double y, double z) : x{x}, y{y}, z{0} {}
+    
+    /**
+     * Destructor for Location
+     */
+    ~Location() {}
+    
+    /**
+     * Assigment operator overload
+     */
+    Location & operator=(const Location & rhs) {
+        if (this != &rhs) {
+            this->x = rhs.x ;
+            this->y = rhs.y ;
+            this->z = rhs.z ;
+        }
+        return *this ;
+    }
 	
 };
 

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "Location.h"
 #include "GameInterface.h"
 
 
@@ -30,6 +31,7 @@ protected:
 	
 	unsigned ID ;
 	string icon ;
+    Location * loc ;
 	
 	
 public:
@@ -50,8 +52,17 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param symbol The icon to be used by this GameObject
+     * @param loc This GameObject's location
 	 */
-	GameObject(string symbol) ;
+	GameObject(string symbol, Location * loc) ;
+    
+    /**
+	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
+	 * 0, in which case the constructor will generate its own random number.
+	 *
+	 * @param randSeed A seed to initialize the random number generator
+	 */
+	GameObject(int randSeed) ;
 	
 	
 	/**
