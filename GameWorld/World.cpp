@@ -7,3 +7,12 @@
 //
 
 #include "World.h"
+
+NPC * World::testNPC = nullptr ;
+
+World::World() {}
+
+void World::init() {
+	testNPC = new NPC("👩", "Kathy", true, CharacterState::idle, Health(100, 0), Damage(20, 0), Reaction::neutral) ;
+	cout << testNPC->draw() << endl ;
+}

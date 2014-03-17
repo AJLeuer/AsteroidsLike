@@ -35,7 +35,9 @@ using namespace std ;
 class World {
 	
 private:
+	
 	friend class GameInterface ;
+	
 	
 	/**
 	 * gameLog is a pointer which references the basic ostream* which will
@@ -43,16 +45,16 @@ private:
 	 * may in some cases point to std::cout, in other cases it may record to a stringstream. If
 	 * other means of outputting that game state are created we may change the type of gameLog later.
 	 */
-	std::ostream * gameLog ;
+	static std::ostream * gameLog ;
 	
-	
+	static NPC * testNPC ;
   
 	World() ;
 	
 	
 public:
 	
-	void init() ;
+	static void init() ;
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting
