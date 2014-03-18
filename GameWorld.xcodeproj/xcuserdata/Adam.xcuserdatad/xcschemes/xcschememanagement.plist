@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>GameWorldExampleTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6637CB8318D8329D001E3F35</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>66E97F2D18CF009E002EFA00</key>
 		<dict>
 			<key>primary</key>

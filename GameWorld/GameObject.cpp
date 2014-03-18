@@ -11,36 +11,45 @@
 unsigned GameObject::IDs = 0 ;
 
 GameObject::GameObject() :
-	ID(IDs)
+	ID(IDs),
+	icon("NULL"),
+	loc(nullptr)
 {
 	IDs++ ;
-    loc = nullptr ;
 }
 
 GameObject::GameObject(const GameObject & other) :
-	ID(IDs)
+	ID(IDs),
+	icon(other.icon),
+	loc(new Location(*(other.loc)))
 {
 	IDs++ ;
-	this->icon = other.icon ;
-    this->loc = new Location(*(other.loc)) ;
 }
 
 GameObject::GameObject(string symbol, Location * loc) :
-	ID(IDs), icon(symbol), loc(loc)
+	ID(IDs),
+	icon(symbol),
+	loc(loc)
 {
 	IDs++ ;
 }
 
-GameObject::GameObject(int randSeed)
+GameObject::GameObject(int randSeed) :
+	ID(IDs),
+	icon(string()),
+	loc(new Location((rand() % 1000), (rand() % 1000), (rand() % 1000)))
 {
+	IDs++ ;
     if (randSeed == 0) {
 		randSeed = rand() ;
 	}
-	//todo
+	icon.insert(0, 1, (char)(randSeed % 0xFFFFFF)) ;
+	//we mainly needed randSeed to tell us we're using this constructor, we'll only
+	//actually use it once (see two lines above) - we want each value initialized randomly on its own
 }
 
 GameObject::~GameObject() {
-	delete loc ;
+	//delete loc ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
@@ -69,6 +78,21 @@ void GameObject::passMessage(Message * message, GameObject &recipient) {
 	//todo
 }
 
+void GameObject::textDescription(ostream * writeTO) {
+	*writeTO << "GameObject ID#: " << this->ID << endl ;
+	*writeTO << "Icon: " << this->icon << endl ;
+	if (loc != nullptr) {
+		*writeTO << loc->toString() << endl ;
+	}
+}
+
+void GameObject::setIcon(string icon) {
+	this->icon = icon ;
+}
+
+string GameObject::getIcon() {
+	return draw() ;
+}
 
 string GameObject::draw() {
 	return this->icon ;

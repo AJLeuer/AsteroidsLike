@@ -50,7 +50,7 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage, Reaction reaction) ;
+	NPC(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage, Reaction reaction) ;
 	
 	
 	/**
@@ -108,12 +108,24 @@ public:
 	void passMessage(Message * message, Character & recipient) ;
 	
 	/**
+	 * Writes a formatted text description of this NPC into the desired output stream
+	 */
+	virtual void textDescription(ostream * writeTO) ;
+	
+	/**
 	 * Attacks a hostile NPC
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	 void attack(Character & enemy) ;
+	void attack(Character & enemy) ;
 	
+	
+	/**
+	 * Returns this NPC's reaction (attitude) toward the player
+	 */
+	Reaction getReaction() { return  this->reaction ; }
+	
+
   
 } ;
 

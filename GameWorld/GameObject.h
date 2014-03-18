@@ -112,9 +112,25 @@ public:
 	 */
 	virtual void passMessage(Message * message, GameObject & recipient) ;
 	
+	/**
+	 * Writes a formatted text description of this GameObject into the desired output stream
+	 */
+	virtual void textDescription(ostream * writeTO) ;
 	
 	/**
-	 * Draws a representation of this GameObject
+	 * Sets this GameObject's icon to the icon argument
+	 *
+	 * @param icon This GameObject's new icon
+	 */
+	void setIcon(string icon) ;
+	
+	/** 
+	 * See GameObject::draw()
+	 */
+	string getIcon() ;
+	
+	/**
+	 * Returns a representation of this GameObject
 	 */
 	string draw() ;
 	

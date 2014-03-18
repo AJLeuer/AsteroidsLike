@@ -9,6 +9,8 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
+#include <iostream>
+#include <ostream>
 
 /**
  * A parent type that will define the basic functions and members for Damage and Health (and other similar data types
@@ -19,13 +21,17 @@ struct GameData {
 protected:
 	
 	unsigned long baseValue ;
-	unsigned long modifier ;
+	unsigned int modifier ;
 	
 public:
 	
 	GameData() :
 		baseValue(0),
-		modifier(0) {}
+		modifier(1) {}
+	
+	GameData(long b) :
+		baseValue(b),
+		modifier(1) {}
 	
 	
 	GameData(long b, long m) :
@@ -51,7 +57,7 @@ public:
 	 * @return The value of this GameData object (e.g. Health or Damage)
 	 */
 	unsigned long value() {
-		return baseValue + modifier ;
+		return baseValue * modifier ;
 	}
 	
 	/**
@@ -77,6 +83,9 @@ public:
 	Damage() :
 		GameData() {}
 	
+	Damage(long b) :
+		GameData(b) {}
+	
 	Damage(long b, long m) :
 		GameData(b, m) {}
 	
@@ -97,6 +106,9 @@ public:
 	Health() :
 		GameData() {}
 	
+	Health(long b) :
+		GameData(b) {}
+	
 	Health(long b, long m) :
 		GameData(b, m) {}
 	
@@ -110,7 +122,7 @@ public:
 /* Below are a few enums we can use in various ways through the game.
    Note for all enums here: the value -1 essentially can be considered as essentially 
    as an equivalent to NULL */
-enum Alert {
+enum class Alert {
 	
 	danger = 0,
 	nearbyEnemy = 1,
@@ -123,7 +135,7 @@ enum Alert {
 	
 } ;
 
-enum CharacterState {
+enum class CharacterState {
 	
 	/*typically for player and NPCs*/
 	normal = 0,
@@ -133,14 +145,14 @@ enum CharacterState {
 	
 } ;
 
-enum DoA {
+enum class DoA {
 	
 	dead = 0,
 	alive = 1
 	
 } ;
 
-enum Reaction {
+enum class Reaction {
 	
 	/*typically npc*/
 	loyal = 0,
@@ -149,8 +161,31 @@ enum Reaction {
 	unfriendly = 3,
 	hostile = 4
 	//add more here
-	
 } ;
+
+inline
+std::ostream & operator<<(std::ostream & os, const Reaction & react) {
+	switch (react) {
+		case Reaction::loyal:
+			os << "Loyal" ;
+			break ;
+		case Reaction::friendly:
+			os << "Friendly" ;
+			break ;
+		case Reaction::neutral:
+			os << "Neutral" ;
+			break ;
+		case Reaction::unfriendly:
+			os << "Unfriendly" ;
+			break ;
+		case Reaction::hostile:
+			os << "Hostile" ;
+			break ;
+	}
+	return os;
+}
+
+
 
 
 enum Misc {

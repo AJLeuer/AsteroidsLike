@@ -21,8 +21,8 @@ NPC::NPC(const NPC & other) :
 {
 }
 
-NPC::NPC(string symbol, string name, bool alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
-	Character(symbol, name, alive, state, health, damage),
+NPC::NPC(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
+	Character(symbol, loc, name, alive, state, health, damage),
 	reaction(reaction)
 {
 }
@@ -30,6 +30,7 @@ NPC::NPC(string symbol, string name, bool alive, CharacterState state, Health he
 NPC::NPC(int randSeed) :
 	Character(randSeed)
 {
+	this->reaction = Reaction(rand() % 5) ;
 	//todo finish
 }
 
@@ -63,9 +64,12 @@ void NPC::passMessage(Message * message, Character & recipient) {
 	//todo
 }
 
+void NPC::textDescription(ostream * writeTO) {
+	this->Character::textDescription(writeTO) ;
+	*writeTO << "Reaction to player: " << this->reaction << endl ;
+}
 
 void NPC::attack(Character & enemy) {
-	cout << "" << endl ;
 	//todo
 }
 

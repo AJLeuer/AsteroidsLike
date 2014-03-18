@@ -8,11 +8,28 @@
 
 #include "World.h"
 
-NPC * World::testNPC = nullptr ;
+vector<NPC> * World::testNPCs = nullptr ;
 
 World::World() {}
 
 void World::init() {
-	testNPC = new NPC("👩", "Kathy", true, CharacterState::idle, Health(100, 0), Damage(20, 0), Reaction::neutral) ;
-	cout << testNPC->draw() << endl ;
+	//testing code
+	testNPCs = new vector<NPC>() ;
+	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
+		testNPCs->push_back(NPC(rand())) ;
+	}
+	//end testing
+}
+
+void World::playGameInRealTime() {
+	//todo
+}
+
+void World::playGameRecorded(std::ostream *writeTO) {
+	//testing code
+	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
+		testNPCs->at(i).textDescription(writeTO) ;
+		*writeTO << endl << endl ;
+	}
+	//end testing
 }

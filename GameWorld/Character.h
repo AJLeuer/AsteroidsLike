@@ -122,11 +122,16 @@ public:
 	virtual void passMessage(Message * message, GameObject & recipient) ;
 	
 	/**
+	 * Writes a formatted text description of this Character into the desired output stream
+	 */
+	virtual void textDescription(ostream * writeTO) ;
+	
+	/**
 	 * Attacks a hostile Character
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	/* todo: uncomment this*/ //virtual void attack(Character & enemy) ;
+	virtual void attack(Character & enemy) ;
 	
 	
 	/**
@@ -138,7 +143,7 @@ public:
 	/**
 	 * @return a value representing Character's health
 	 */
-	const Health * checkHealth() ;
+	Health * checkHealth() ;
 	
 	
 	/**
@@ -150,7 +155,7 @@ public:
 	/**
 	 * @return a read-only value representing Character's damage
 	 */
-	const Damage * getDamage() ;
+	Damage * getDamage() ;
 
 	
 	/**

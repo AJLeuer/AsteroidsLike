@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+#include <ncurses.h>
+
 #include <iostream>
 
 #include "World.h"
@@ -13,9 +15,11 @@
 
 using namespace std ;
 
-int main(int argc, const char * argv[])
+int main(void)
 {
-	World::init() ;
-    return 0;
+	
+	cout << "HW!" << endl ;
+	
+	return 0;
 }
 

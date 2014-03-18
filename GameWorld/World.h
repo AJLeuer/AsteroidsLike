@@ -10,6 +10,8 @@
 #define __GameWorld__World__
 
 #include <iostream>
+#include <ostream>
+#include <vector>
 
 #include "AddlEnums.h"
 #include "GameInterface.h"
@@ -47,10 +49,13 @@ private:
 	 */
 	static std::ostream * gameLog ;
 	
-	static NPC * testNPC ;
-  
-	World() ;
 	
+	//testing code
+	static vector<NPC> * testNPCs ;
+	//end testing
+	
+	
+	World() ;
 	
 public:
 	
@@ -65,7 +70,7 @@ public:
 	/**
 	 * Plays the game and saves all events to an output stream.
 	 */
-	static std::ostream* playGameRecorded() ;
+	static void playGameRecorded(std::ostream * writeTO) ;
 	
 	
 	

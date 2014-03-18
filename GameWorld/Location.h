@@ -9,6 +9,10 @@
 #ifndef GameWorld_Location_h
 #define GameWorld_Location_h
 
+#include <iostream>
+#include <sstream>
+
+using namespace std ;
 
 /**
  * A relatively simple data structure representing a location vector.
@@ -42,7 +46,7 @@ struct Location {
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Location(double x, double y, double z) : x{x}, y{y}, z{0} {}
+	Location(double x, double y, double z) : x{x}, y{y}, z{z} {}
     
     /**
      * Destructor for Location
@@ -61,6 +65,11 @@ struct Location {
         return *this ;
     }
 	
+	std::string toString() {
+		stringstream ss ;
+		ss << "Current location: x = " << x << ", y = " << y << ", z = " << z ;
+		return ss.str() ;
+	}
 };
 
 

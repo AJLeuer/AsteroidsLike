@@ -31,12 +31,13 @@ Character::Character(string symbol, Location * loc, string name, bool alive, Cha
 }
 
 Character::Character(int randSeed) :
-	GameObject(randSeed)
+	GameObject(randSeed),
+	alive(rand() % 2),
+	state((CharacterState) (rand() % 4)),
+	health(rand() % 500),
+	damage(rand() % 50)
 {
-	if (randSeed == 0) {
-		randSeed = rand() ;
-	}
-	//todo
+	name = (char)(rand() % 255) + (char)(rand() % 255) + (char)(rand() % 255) + (char)(rand() % 255)+ (char)(rand() % 255) ;
 }
 
 Character::~Character() {
@@ -71,13 +72,29 @@ void Character::passMessage(Message *message, GameObject &recipient) {
 	//todo
 }
 
+void Character::textDescription(ostream * writeTO) {
+	*writeTO << "Character name: " << this->name << endl ;
+	string curStatus = "" ;
+	if (alive) curStatus = "Alive" ;
+	else /*if (alive==false)*/ curStatus = "Deceased" ;
+	*writeTO << "Current status: " << curStatus << endl  ;
+	*writeTO << "State: " << this->getState() << endl ;
+	*writeTO << "Current health: " << this->checkHealth()->value() << endl ;
+	*writeTO << "Damage capability: " << this->getDamage()->value() << endl ;
+	this->GameObject::textDescription(writeTO) ;
+}
+
+void Character::attack(Character & enemy) {
+	//todo
+}
+
 CharacterState * Character::getState() {
 	CharacterState * st = &(this->state) ;
 	return st ;
 }
 
-const Health * Character::checkHealth() {
-	const Health * h = &(this->health) ;
+Health * Character::checkHealth() {
+	Health * h = &(this->health) ;
 	return h ;
 }
 
@@ -87,8 +104,8 @@ void Character::modHealth(const Health & other) {
 }
 
 
-const Damage * Character::getDamage() {
-	const Damage * d = &(this->damage) ;
+Damage * Character::getDamage() {
+	Damage * d = &(this->damage) ;
 	return d ;
 }
 
@@ -96,12 +113,7 @@ void Character::modDamage(const Damage & other) {
 	this->damage = other ;
 }
 
-/* todo: uncomment this*/ /*
-void attack(Character & enemy) {
-	cout << "" << endl ;
-	//todo
-}
-*/
+
 
 
 
