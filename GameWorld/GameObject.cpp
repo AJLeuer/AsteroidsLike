@@ -10,6 +10,12 @@
 
 unsigned GameObject::IDs = 0 ;
 
+vector<string> GameObject::icons = {"🎾", "🔱", "💩", "🍹", "🎅", "👿", "👮", "👹", "🚶", "👩", "💂", "💊"} ;
+
+//World will set these
+Location * GameObject::GLOBAL_MAX_LOCATION = nullptr ;
+Location * GameObject::GLOBAL_MIN_LOCATION = nullptr ;
+
 GameObject::GameObject() :
 	ID(IDs),
 	icon("NULL"),
@@ -43,7 +49,7 @@ GameObject::GameObject(int randSeed) :
     if (randSeed == 0) {
 		randSeed = rand() ;
 	}
-	icon.insert(0, 1, (char)(randSeed % 0xFFFFFF)) ;
+	icon = icons.at(randSeed % icons.size()) ;
 	//we mainly needed randSeed to tell us we're using this constructor, we'll only
 	//actually use it once (see two lines above) - we want each value initialized randomly on its own
 }
@@ -84,6 +90,16 @@ void GameObject::textDescription(ostream * writeTO) {
 	if (loc != nullptr) {
 		*writeTO << loc->toString() << endl ;
 	}
+}
+
+void GameObject::move(int xoffset, int yoffset) {
+	this->loc->x += xoffset ;
+	this->loc->y += yoffset ;
+}
+
+void GameObject::move(const Location moveTo) {
+	
+	*(this->loc) = moveTo ;
 }
 
 void GameObject::setIcon(string icon) {

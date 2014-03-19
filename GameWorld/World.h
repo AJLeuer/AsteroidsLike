@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "AddlEnums.h"
+#include "Location.h"
 #include "GameInterface.h"
 #include "GameEvent.h"
 #include "Ability.h"
@@ -30,16 +31,18 @@ using namespace std ;
  * It is generally responsible for managing everything that happens within the scope of a game. 
  * It holds all the GameObjects, mediates their interactions when neccessary (more or less, in many 
  * cases they interact directly), handles output of the game state (whether that means realtime or recorded.
- * rendered or printed. etc. - it was designed to be flexible and extensible), and handles initializtion and 
+ * rendered or printed. etc. - it was designed to be flexible and extensible), and handles initialization and
  * clean up. It is essentially all static should be treated as a singleton object: don't try to create instances
  * of it. Rather call init() once at the beginning, and end the game program with clear() or end().
  */
 class World {
 	
 private:
+	World() ;
+	
+public:
 	
 	friend class GameInterface ;
-	
 	
 	/**
 	 * gameLog is a pointer which references the basic ostream* which will
@@ -49,15 +52,9 @@ private:
 	 */
 	static std::ostream * gameLog ;
 	
+	static bool running ; //has World started yet?
 	
-	//testing code
-	static vector<NPC> * testNPCs ;
-	//end testing
-	
-	
-	World() ;
-	
-public:
+	static vector<GameObject*> allObjects ;
 	
 	static void init() ;
 	
@@ -71,7 +68,6 @@ public:
 	 * Plays the game and saves all events to an output stream.
 	 */
 	static void playGameRecorded(std::ostream * writeTO) ;
-	
 	
 	
 	

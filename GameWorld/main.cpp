@@ -7,10 +7,12 @@
 //
 
 #include <ncurses.h>
+#include <unistd.h>
 
 #include <iostream>
 
 #include "World.h"
+#include "../Adapter/Adapter.h"
 
 
 using namespace std ;
@@ -18,7 +20,13 @@ using namespace std ;
 int main(void)
 {
 	
-	cout << "HW!" << endl ;
+	World::init() ;
+	Adapter::init() ;
+	
+	usleep(500000000) ;
+	
+	World::running = false ;
+	Adapter::close() ;
 	
 	return 0;
 }

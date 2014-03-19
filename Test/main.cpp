@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "../GameWorld/World.h"
+#include "../Adapter/Adapter.h"
 
 using namespace std ;
 
@@ -20,12 +21,7 @@ int main(void)
 	
 	srand(time(NULL)) ;
 
-	setlocale(LC_ALL, ""); //allows printing more types of characters (?)
-	
-	initscr();
-	
-	cbreak() ; noecho() ; //character-at-a-time  input  without echoing
-	curs_set(0) ; //sets cursor to invisible
+
 
 	for (unsigned i = 0 ; i < 100 ; i++) {
 		int r = rand() % 4 ;

@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 #include "Location.h"
 #include "GameInterface.h"
@@ -26,15 +27,20 @@ class GameObject : public GameInterface {
 private:
 	
 	static unsigned IDs ;
+	static vector<string> icons ;
 	
 protected:
-	
+
 	unsigned ID ;
 	string icon ;
     Location * loc ;
 	
 	
 public:
+	
+	static Location * GLOBAL_MAX_LOCATION ;
+	static Location * GLOBAL_MIN_LOCATION ;
+	
 	/**
 	 * Creates a new GameObject
 	 */
@@ -118,11 +124,28 @@ public:
 	virtual void textDescription(ostream * writeTO) ;
 	
 	/**
+	 * Moves this GameObject by changing its Location x and y coordinates by the given offsets
+	 *
+	 * @param xoffset The change in this GameObject's Location.x
+	 * @param yoffset The change in this GameObject's Location.y
+	 */
+	void move(int xoffset, int yoffset) ;
+	
+	/**
+	 * Moves this GameObject to the Location moveTo
+	 *
+	 * @param moveTO The Location where this GameObject is to move
+	 */
+	void move(const Location moveTo) ;
+	
+	/**
 	 * Sets this GameObject's icon to the icon argument
 	 *
 	 * @param icon This GameObject's new icon
 	 */
 	void setIcon(string icon) ;
+	
+	Location * getLocation() {return this->loc ; }
 	
 	/** 
 	 * See GameObject::draw()

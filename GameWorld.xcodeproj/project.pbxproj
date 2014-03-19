@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6637CB7F18D83214001E3F35 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6637CB7E18D83214001E3F35 /* main.cpp */; };
 		6637CB8E18D832B4001E3F35 /* libcurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6637CB8D18D832B4001E3F35 /* libcurses.dylib */; };
 		6637CB8F18D832D6001E3F35 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6637CB7E18D83214001E3F35 /* main.cpp */; };
+		6681A1C818D92DD900F5A2E2 /* Adapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1C518D917EB00F5A2E2 /* Adapter.cpp */; };
+		6681A1CE18D94A6C00F5A2E2 /* AdapterUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */; };
+		6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */; };
+		6681A1D118D95FF000F5A2E2 /* Adapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1C518D917EB00F5A2E2 /* Adapter.cpp */; };
 		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3418CF009E002EFA00 /* GameWorld.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66E97F3318CF009E002EFA00 /* GameWorld.1 */; };
@@ -51,6 +54,8 @@
 		6637CB8D18D832B4001E3F35 /* libcurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurses.dylib; path = usr/lib/libcurses.dylib; sourceTree = SDKROOT; };
 		6681A1C518D917EB00F5A2E2 /* Adapter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Adapter.cpp; sourceTree = "<group>"; };
 		6681A1C618D917EB00F5A2E2 /* Adapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Adapter.h; sourceTree = "<group>"; };
+		6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
+		6681A1CD18D94A6C00F5A2E2 /* AdapterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterUtil.h; sourceTree = "<group>"; };
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -105,8 +110,10 @@
 		6681A1C718D9180A00F5A2E2 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				6681A1C518D917EB00F5A2E2 /* Adapter.cpp */,
+				6681A1CD18D94A6C00F5A2E2 /* AdapterUtil.h */,
+				6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */,
 				6681A1C618D917EB00F5A2E2 /* Adapter.h */,
+				6681A1C518D917EB00F5A2E2 /* Adapter.cpp */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -228,7 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6681A1C818D92DD900F5A2E2 /* Adapter.cpp in Sources */,
 				6637CB8F18D832D6001E3F35 /* main.cpp in Sources */,
+				6681A1CE18D94A6C00F5A2E2 /* AdapterUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,15 +245,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6681A1D118D95FF000F5A2E2 /* Adapter.cpp in Sources */,
+				6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */,
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
-				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
-				6637CB7F18D83214001E3F35 /* main.cpp in Sources */,
 				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
 				66E97F4218CF032B002EFA00 /* World.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F4518CF03AE002EFA00 /* Message.cpp in Sources */,
+				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,10 +318,16 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PROFILING_CODE = YES;
+				KEEP_PRIVATE_EXTERNS = YES;
+				LD_GENERATE_MAP_FILE = YES;
 				LLVM_LTO = YES;
+				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -335,7 +351,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -345,9 +361,15 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PROFILING_CODE = YES;
+				KEEP_PRIVATE_EXTERNS = YES;
+				LD_GENERATE_MAP_FILE = YES;
 				LLVM_LTO = YES;
+				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

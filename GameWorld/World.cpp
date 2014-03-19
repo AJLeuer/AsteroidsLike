@@ -8,17 +8,23 @@
 
 #include "World.h"
 
-vector<NPC> * World::testNPCs = nullptr ;
+bool World::running = false ;
+
+vector<GameObject*> World::allObjects  = vector<GameObject*>() ;
 
 World::World() {}
 
 void World::init() {
-	//testing code
-	testNPCs = new vector<NPC>() ;
+	running = true ;
+	
+	GameObject::GLOBAL_MAX_LOCATION = new struct Location(500, 500, 500) ;
+	GameObject::GLOBAL_MIN_LOCATION = new struct Location(-500, -500, -500) ;
+	
+	 //testing code
 	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
-		testNPCs->push_back(NPC(rand())) ;
+		allObjects.push_back(new NPC(rand())) ;
 	}
-	//end testing
+	
 }
 
 void World::playGameInRealTime() {
@@ -28,7 +34,7 @@ void World::playGameInRealTime() {
 void World::playGameRecorded(std::ostream *writeTO) {
 	//testing code
 	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
-		testNPCs->at(i).textDescription(writeTO) ;
+		allObjects.at(i)->textDescription(writeTO) ;
 		*writeTO << endl << endl ;
 	}
 	//end testing
