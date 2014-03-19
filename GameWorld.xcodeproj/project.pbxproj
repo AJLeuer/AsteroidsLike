@@ -49,6 +49,8 @@
 		6637CB7E18D83214001E3F35 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6637CB8418D8329D001E3F35 /* GameWorldExampleTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorldExampleTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6637CB8D18D832B4001E3F35 /* libcurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurses.dylib; path = usr/lib/libcurses.dylib; sourceTree = SDKROOT; };
+		6681A1C518D917EB00F5A2E2 /* Adapter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Adapter.cpp; sourceTree = "<group>"; };
+		6681A1C618D917EB00F5A2E2 /* Adapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Adapter.h; sourceTree = "<group>"; };
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -100,11 +102,21 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		6681A1C718D9180A00F5A2E2 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				6681A1C518D917EB00F5A2E2 /* Adapter.cpp */,
+				6681A1C618D917EB00F5A2E2 /* Adapter.h */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
 				6637CB8D18D832B4001E3F35 /* libcurses.dylib */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
+				6681A1C718D9180A00F5A2E2 /* Adapter */,
 				6637CB7D18D83171001E3F35 /* Test */,
 				66E97F3018CF009E002EFA00 /* GameWorld */,
 				66E97F2F18CF009E002EFA00 /* Products */,
@@ -278,6 +290,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -299,6 +312,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -319,6 +333,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -333,6 +348,7 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

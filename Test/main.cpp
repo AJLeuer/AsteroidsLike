@@ -18,10 +18,8 @@ using namespace std ;
 int main(void)
 {
 	
-	
-	char first[24];
-	char last[32];
-	
+	srand(time(NULL)) ;
+
 	setlocale(LC_ALL, ""); //allows printing more types of characters (?)
 	
 	initscr();
@@ -29,20 +27,49 @@ int main(void)
 	cbreak() ; noecho() ; //character-at-a-time  input  without echoing
 	curs_set(0) ; //sets cursor to invisible
 
+	for (unsigned i = 0 ; i < 100 ; i++) {
+		int r = rand() % 4 ;
+		
+		switch (r) {
+			case 0:
+			{
+				mvwaddstr(stdscr, rand()%35, rand()%150, /*(const chtype *)*/ "Wow");
+				wrefresh(stdscr) ;
+				usleep(500000) ; //sleep for 250000 microseconds (i.e 0.25 sec)
+				wclear(stdscr) ;
+				wrefresh(stdscr) ; //need to call again(?)
+				break ;
+			}
+			case 1:
+			{
+				mvwaddstr(stdscr, rand()%35, rand()%150, "Very programming");
+				wrefresh(stdscr) ;
+				usleep(500000) ;
+				wclear(stdscr) ;
+				wrefresh(curscr);
+				break;
+			}
+			case 2:
+			{
+				mvwaddstr(stdscr, rand()%35, rand()%150, "🔰");
+				wrefresh(stdscr) ;
+				usleep(500000) ;
+				wclear(stdscr) ;
+				wrefresh(curscr);
+				break;
+			}
+			default:
+			{
+				mvwaddstr(stdscr, rand()%35, rand()%150, "So skill");
+				wrefresh(stdscr) ;
+				usleep(500000) ;
+				wclear(stdscr) ;
+				wrefresh(curscr);
+				break;
+			}
+		}
+	}
 	
-	mvwaddstr(stdscr, 10, 10, /*(const chtype *)*/ "Wow");
-	usleep(useconds_t)
-	refresh();
-	
-	//wgetstr(stdscr, first); - gets a string
-	
-	mvwaddstr(stdscr, 30, 30, "Very programming");
-	refresh();
-	
-	
-	printw("Pleased to meet you, %s %s!",first,last);
-	refresh();
-	getch();
 	
 	endwin();
 	return 0;
