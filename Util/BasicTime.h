@@ -13,6 +13,8 @@
 #include <boost/chrono/chrono.hpp>
 #include <boost/chrono/chrono_io.hpp>
 
+using namespace std ;
+
 //use clock() to get time since program start
 class BasicTime {
 	

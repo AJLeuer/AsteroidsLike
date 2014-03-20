@@ -14,7 +14,7 @@
 #include <vector>
 #include <cmath>
 
-#include "Util.h"
+#include "../Util/Util.h"
 #include "Location.h"
 #include "GameInterface.h"
 

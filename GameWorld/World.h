@@ -13,6 +13,8 @@
 #include <ostream>
 #include <vector>
 
+#include "../Util/BasicTime.h"
+
 #include "AddlEnums.h"
 #include "Location.h"
 #include "GameInterface.h"
