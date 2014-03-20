@@ -52,6 +52,15 @@ public:
 		return *this ;
 	}
 	
+	/**
+	 * Override the << output stream operator
+	 */
+	inline
+	friend ostream & operator<<(std::ostream & os, GameData & gmd) {
+		os << gmd.value() ;
+		return os ;
+	}
+	
 	
 	/**
 	 * @return The value of this GameData object (e.g. Health or Damage)
@@ -130,7 +139,7 @@ enum class Alert {
 	lowEnergy = 3, /*i.e. for abilities*/
 	lowResource = 4,
 	nearbyMoney = 5,
-	nearbyBoost = 6,
+	nearbyBoost = 6
 	//add more here
 	
 } ;
@@ -141,7 +150,7 @@ enum class CharacterState {
 	normal = 0,
 	inCombat = 1,
 	inDialogue = 2,
-	idle = 3,
+	idle = 3
 	
 } ;
 

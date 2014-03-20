@@ -24,7 +24,7 @@ int main(void)
 {
 	srand((unsigned)time(NULL)) ;
 	
-	/*
+	
 	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
 	
 	World::init() ;
@@ -35,15 +35,11 @@ int main(void)
 	
 	World::close() ;
 	chosenOutputAdapter->close() ;
-	 */
+	 
+	 
 	
-	NPC npc = NPC(rand()); //rnd
-	cout << npc.toString()->c_str() << endl ;
 	
-	npc.setName("hi") ;
-	
-	cout << npc.toString()->c_str() << endl ;
-	
+		
 	return 0;
 }
 

@@ -65,7 +65,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "LINES"
-            value = ""
+            value = "30"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -75,7 +75,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "COLUMNS"
-            value = ""
+            value = "120"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

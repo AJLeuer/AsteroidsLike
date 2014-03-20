@@ -14,9 +14,11 @@ vector<string> GameObject::icons = {"🎾", "🔱", "💩", "🍹", "🎅", "�
 
 char GameObject::nameLetters[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
 
-//World will set these
-Location * GameObject::GLOBAL_MAX_LOCATION = nullptr ;
-Location * GameObject::GLOBAL_MIN_LOCATION = nullptr ;
+
+const double GameObject::GLOBAL_MAX_X = 500 ;
+const double GameObject::GLOBAL_MIN_X = -500 ;
+const double GameObject::GLOBAL_MAX_Y = 500;
+const double GameObject::GLOBAL_MIN_Y = -500;
 
 GameObject::GameObject() :
 	ID(IDs),
@@ -36,17 +38,27 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::GameObject(string symbol, Location * loc) :
 	ID(IDs),
-	icon(symbol),
-	loc(loc)
+	icon(symbol)
 {
 	IDs++ ;
+	if (loc->x > GLOBAL_MAX_X || loc->x < GLOBAL_MIN_X) {
+		cout << "Location x coord is not within the specified limits" << endl ;
+		throw new exception() ;
+	}
+	else if (loc->y > GLOBAL_MAX_Y || loc->y < GLOBAL_MIN_Y) {
+		cout << "Location y coord is not within the specified limits" << endl ;
+		throw new exception() ;
+	}
+	else {
+		this->loc = loc ;
+	}
 }
 
 GameObject::GameObject(int randSeed) :
 	ID(IDs),
-	icon(string()),
-	loc(new Location((rand() % 1000), (rand() % 1000), (rand() % 1000)))
+	icon(string())
 {
+	
 	IDs++ ;
     if (randSeed == 0) {
 		randSeed = rand() ;
@@ -54,11 +66,20 @@ GameObject::GameObject(int randSeed) :
 	icon = icons.at(randSeed % icons.size()) ;
 	//we mainly needed randSeed to tell us we're using this constructor, we'll only
 	//actually use it once (see two lines above) - we want each value initialized randomly on its own
+	long xposCandidate = (rand() % lrint(GLOBAL_MAX_X)) ;
+	long xnegCandidate = (rand() % lrint((GLOBAL_MIN_X * -1))) * -1 ;
+	
+	long x = chooseAtRand(xposCandidate, xnegCandidate) ;
+	
+	long yposCandidate = (rand() % lrint(GLOBAL_MAX_Y)) ;
+	long ynegCandidate = (rand() % lrint((GLOBAL_MIN_Y * -1))) * -1 ;
+	
+	long y = chooseAtRand(yposCandidate, ynegCandidate) ;
+	
+	loc = new Location(x, y, 0) ;
 }
 
-GameObject::~GameObject() {
-	//delete loc ;
-}
+GameObject::~GameObject() {}
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
@@ -90,7 +111,7 @@ void GameObject::textDescription(ostream * writeTO) {
 	*writeTO << "GameObject ID#: " << this->ID << endl ;
 	*writeTO << "Icon: " << this->icon << endl ;
 	if (loc != nullptr) {
-		*writeTO << loc->toString() << endl ;
+		*writeTO << "Current location: " << loc->toString() << endl ;
 	}
 }
 

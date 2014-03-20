@@ -21,7 +21,7 @@ protected:
 	
 	string name ;
 	
-	bool alive ;
+	DoA alive ;
 	
 	/**
 	 * The Character's CharacterState
@@ -64,7 +64,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage) ;
+	Character(string symbol, Location * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) ;
 	
 	
 	/**
@@ -140,13 +140,22 @@ public:
 	
 	/**
 	 * Setter for name
+	 *
+	 * @param s The Character's new name
 	 */
-	void setName(string s) { this->name = s ; }
+	void setName(string & s) { this->name = s ; }
 	
 	/**
 	 * @return This character's current state
 	 */
 	CharacterState * getState() ;
+	
+	/**
+	 * Set's this Character's state
+	 *
+	 * @param state The Character's new state
+	 */
+	void setState(CharacterState & state) { this->state = state ; }
 	
 	
 	/**

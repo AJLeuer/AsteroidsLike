@@ -18,9 +18,6 @@ void World::init() {
 	running = true ;
 	allObjects  = new vector<GameObject*>() ;
 	
-	GameObject::GLOBAL_MAX_LOCATION = new struct Location(500, 500, 500) ;
-	GameObject::GLOBAL_MIN_LOCATION = new struct Location(-500, -500, -500) ;
-	
 	 //testing code
 	for (vector<GameObject*>::size_type i = 0 ; i < 15 ; i++) {
 		allObjects->push_back(new NPC(rand())) ;

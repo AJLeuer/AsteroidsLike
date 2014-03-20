@@ -10,7 +10,7 @@
 
 Character::Character() :
 	GameObject(),
-	name("noName"), alive(false),
+	name("noName"), alive(DoA(0)),
 	state(), health(), damage()
 {
 }
@@ -23,7 +23,7 @@ Character::Character(const Character & other) :
 {
 }
 
-Character::Character(string symbol, Location * loc, string name, bool alive, CharacterState state, Health health, Damage damage) :
+Character::Character(string symbol, Location * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) :
 	GameObject(symbol, loc),
 	name(name), alive(alive),
 	state(state), health(health), damage(damage)
@@ -32,12 +32,12 @@ Character::Character(string symbol, Location * loc, string name, bool alive, Cha
 
 Character::Character(int randSeed) :
 	GameObject(randSeed),
-	alive(rand() % 2),
+	alive((DoA)(rand() % 2)),
 	state((CharacterState) (rand() % 4)),
 	health(rand() % 500),
 	damage(rand() % 50)
 {
-	name = GameObject::generateName(rand() % 12) ;
+	name = GameObject::generateName((rand() % 12) + 5) ;
 }
 
 Character::~Character() {
@@ -73,14 +73,10 @@ void Character::passMessage(Message *message, GameObject &recipient) {
 }
 
 void Character::textDescription(ostream * writeTO) {
-	*writeTO << "Character name: " << this->name << endl ;
-	string curStatus = "" ;
-	if (alive) curStatus = "Alive" ;
-	else /*if (alive==false)*/ curStatus = "Deceased" ;
-	*writeTO << "Current status: " << curStatus << endl  ;
-	*writeTO << "State: " << this->getState() << endl ;
-	*writeTO << "Current health: " << this->checkHealth()->value() << endl ;
-	*writeTO << "Damage capability: " << this->getDamage()->value() << endl ;
+	*writeTO << "Character name: " << this->name << endl ;;
+	*writeTO << "Current status: " << this->state << endl  ;
+	*writeTO << "Current health: " << this->health << endl ;
+	*writeTO << "Damage capability: " << this->damage << endl ;
 	this->GameObject::textDescription(writeTO) ;
 }
 

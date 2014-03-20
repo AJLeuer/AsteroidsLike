@@ -12,7 +12,9 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 
+#include "Util.h"
 #include "Location.h"
 #include "GameInterface.h"
 
@@ -40,8 +42,10 @@ protected:
 	
 public:
 	
-	static Location * GLOBAL_MAX_LOCATION ;
-	static Location * GLOBAL_MIN_LOCATION ;
+	static const double GLOBAL_MAX_X ;
+	static const double GLOBAL_MIN_X ;
+	static const double GLOBAL_MAX_Y ;
+	static const double GLOBAL_MIN_Y ;
 	
 	/**
 	 * Creates a new GameObject
@@ -140,6 +144,9 @@ public:
 	 */
 	void move(const Location moveTo) ;
 	
+	/**
+	 * @return This GameObject's Location
+	 */
 	Location * getLocation() {return this->loc ; }
 	
 	/**

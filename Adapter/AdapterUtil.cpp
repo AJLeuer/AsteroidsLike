@@ -21,9 +21,17 @@ unsigned AdapterUtil::termHeight() {
 }
 
 Location AdapterUtil::transLocation(const Location &inGameWorld) {
-	int worldXSize = GameObject::GLOBAL_MAX_LOCATION->x - GameObject::GLOBAL_MIN_LOCATION->x ;
-	int worldYSize = GameObject::GLOBAL_MAX_LOCATION->y - GameObject::GLOBAL_MAX_LOCATION->y ;
-	int x = (termWidth() * inGameWorld.x)/worldXSize ;
-	int y = (termHeight() * inGameWorld.y)/worldYSize ;
+	double worldXSize = GameObject::GLOBAL_MAX_X - GameObject::GLOBAL_MIN_X ;
+	double worldYSize = GameObject::GLOBAL_MAX_Y - GameObject::GLOBAL_MIN_Y ;
+	
+	double tempX = inGameWorld.x + (worldXSize - GameObject::GLOBAL_MAX_X) ;
+	double tempY = inGameWorld.y + (worldYSize - GameObject::GLOBAL_MAX_Y) ;
+	
+	unsigned tw = termWidth() ;
+	unsigned th = termHeight() ;
+	
+	int x = (tw * tempX)/worldXSize ;
+	int y = (th * tempY)/worldYSize ;
+	
 	return Location(x, y, 0) ;
 }

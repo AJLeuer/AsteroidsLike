@@ -67,7 +67,7 @@ struct Location {
 	
 	std::string toString() {
 		stringstream ss ;
-		ss << "Current location: x = " << x << ", y = " << y << ", z = " << z ;
+		ss << "x = " << x << ", y = " << y << ", z = " << z ;
 		return ss.str() ;
 	}
 };
