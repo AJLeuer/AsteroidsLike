@@ -10,12 +10,17 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <thread>
+
+#include "../Util/BasicTime.h"
+
+#include "../Adapter/Adapter.h"
+#include "../Adapter/TestAdapter.h"
 
 #include "World.h"
 #include "GameObject.h"
 #include "NPC.h"
-#include "../Adapter/Adapter.h"
-#include "../Adapter/TestAdapter.h"
+
 
 
 using namespace std ;
@@ -24,9 +29,14 @@ int main(void)
 {
 	srand((unsigned)time(NULL)) ;
 	
+	BasicTime timer ;
+	
+	timer.startTimer() ;
+	
 	
 	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
 	
+	std::thread first(chosenOutputAdapter) ;
 	World::init() ;
 	chosenOutputAdapter->init() ;
 	
@@ -38,7 +48,7 @@ int main(void)
 	 
 	 
 	
-	
+	auto timeElapsed = timer.stopTimer() ;
 		
 	return 0;
 }

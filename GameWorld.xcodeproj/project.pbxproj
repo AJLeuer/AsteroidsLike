@@ -7,16 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8118DB0FF100DF0A26 /* libboost_system.dylib */; };
+		66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */; };
 		6651BAAC18DA73EC00F5DCE7 /* AdapterInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6651BAAA18DA73EC00F5DCE7 /* AdapterInterface.cpp */; };
 		6651BAAF18DA9A4400F5DCE7 /* TestAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6651BAAD18DA9A4400F5DCE7 /* TestAdapter.cpp */; };
-		6678791418DAE90400618712 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6678791318DAE90400618712 /* libboost_chrono.dylib */; };
-		6678791618DAE91500618712 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6678791518DAE91500618712 /* libboost_system.dylib */; };
-		6678791918DAE9DF00618712 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6678791718DAE9DF00618712 /* libboost_chrono.a */; };
-		6678791A18DAE9DF00618712 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6678791818DAE9DF00618712 /* libboost_system.a */; };
-		6678791B18DAE9F000618712 /* libboost_chrono.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6678791718DAE9DF00618712 /* libboost_chrono.a */; };
-		6678791C18DAE9F000618712 /* libboost_system.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6678791818DAE9DF00618712 /* libboost_system.a */; };
-		6678791D18DAE9F000618712 /* libboost_system.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6678791518DAE91500618712 /* libboost_system.dylib */; };
-		6678791E18DAE9F000618712 /* libboost_chrono.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6678791318DAE90400618712 /* libboost_chrono.dylib */; };
 		6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */; };
 		6681A1D118D95FF000F5A2E2 /* Adapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1C518D917EB00F5A2E2 /* Adapter.cpp */; };
 		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -36,12 +30,8 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = usr/share/man/man1;
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 10;
 			files = (
-				6678791B18DAE9F000618712 /* libboost_chrono.a in CopyFiles */,
-				6678791C18DAE9F000618712 /* libboost_system.a in CopyFiles */,
-				6678791D18DAE9F000618712 /* libboost_system.dylib in CopyFiles */,
-				6678791E18DAE9F000618712 /* libboost_chrono.dylib in CopyFiles */,
 				66E97F3418CF009E002EFA00 /* GameWorld.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,18 +40,14 @@
 
 /* Begin PBXFileReference section */
 		662C608E18D3073B00BD3DED /* AddlEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlEnums.h; sourceTree = "<group>"; };
-		6651BAA318DA687E00F5DCE7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		6651BAA518DA687E00F5DCE7 /* GameWorldOutputExample.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GameWorldOutputExample.1; sourceTree = "<group>"; };
+		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
 		6651BAAA18DA73EC00F5DCE7 /* AdapterInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterInterface.cpp; sourceTree = "<group>"; };
 		6651BAAB18DA73EC00F5DCE7 /* AdapterInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterInterface.h; sourceTree = "<group>"; };
 		6651BAAD18DA9A4400F5DCE7 /* TestAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAdapter.cpp; sourceTree = "<group>"; };
 		6651BAAE18DA9A4400F5DCE7 /* TestAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAdapter.h; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		6678790118DAE25E00618712 /* BasicTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicTime.h; sourceTree = "<group>"; };
-		6678791318DAE90400618712 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = "../../Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib/libboost_chrono.dylib"; sourceTree = "<group>"; };
-		6678791518DAE91500618712 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = "../../Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib/libboost_system.dylib"; sourceTree = "<group>"; };
-		6678791718DAE9DF00618712 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_chrono.a; path = "../../Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib/libboost_chrono.a"; sourceTree = "<group>"; };
-		6678791818DAE9DF00618712 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = "../../Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib/libboost_system.a"; sourceTree = "<group>"; };
 		6681A1C518D917EB00F5A2E2 /* Adapter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Adapter.cpp; sourceTree = "<group>"; };
 		6681A1C618D917EB00F5A2E2 /* Adapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Adapter.h; sourceTree = "<group>"; };
 		6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
@@ -94,10 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6678791918DAE9DF00618712 /* libboost_chrono.a in Frameworks */,
-				6678791A18DAE9DF00618712 /* libboost_system.a in Frameworks */,
-				6678791618DAE91500618712 /* libboost_system.dylib in Frameworks */,
-				6678791418DAE90400618712 /* libboost_chrono.dylib in Frameworks */,
+				66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */,
+				66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */,
 				66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,15 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6651BAA218DA687E00F5DCE7 /* GameWorldOutputExample */ = {
-			isa = PBXGroup;
-			children = (
-				6651BAA318DA687E00F5DCE7 /* main.cpp */,
-				6651BAA518DA687E00F5DCE7 /* GameWorldOutputExample.1 */,
-			);
-			path = GameWorldOutputExample;
-			sourceTree = "<group>";
-		};
 		6678790018DAE21200618712 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,15 +116,12 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
-				6678791718DAE9DF00618712 /* libboost_chrono.a */,
-				6678791818DAE9DF00618712 /* libboost_system.a */,
-				6678791518DAE91500618712 /* libboost_system.dylib */,
-				6678791318DAE90400618712 /* libboost_chrono.dylib */,
+				66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */,
+				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				6678790018DAE21200618712 /* Util */,
 				6681A1C718D9180A00F5A2E2 /* Adapter */,
 				66E97F3018CF009E002EFA00 /* GameWorld */,
-				6651BAA218DA687E00F5DCE7 /* GameWorldOutputExample */,
 				66E97F2F18CF009E002EFA00 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -302,10 +274,17 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/lib,
+					/Volumes/OS,
+					X,
+					"HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
+				);
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
@@ -356,9 +335,16 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/lib,
+					/Volumes/OS,
+					X,
+					"HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
+				);
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;

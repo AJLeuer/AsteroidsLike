@@ -21,13 +21,11 @@ void TestAdapter::show() {
 	while (World::isRunning()) {
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
 			(*WorldObjects)->at(i)->textDescription(&cout) ;
-			cout << endl ;
 			Location trans = AdapterUtil::transLocation(*((*WorldObjects)->at(i)->getLocation())) ;
 			cout << "Tranlated location: " ;
 			cout << trans.toString() << endl ;
 			cout << (*WorldObjects)->at(i)->getIcon().c_str() << endl << endl ;
 		}
-		usleep(250000) ;
 	}
 }
 
