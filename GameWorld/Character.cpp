@@ -37,7 +37,7 @@ Character::Character(int randSeed) :
 	health(rand() % 500),
 	damage(rand() % 50)
 {
-	name = (char)(rand() % 255) + (char)(rand() % 255) + (char)(rand() % 255) + (char)(rand() % 255)+ (char)(rand() % 255) ;
+	name = GameObject::generateName(rand() % 12) ;
 }
 
 Character::~Character() {

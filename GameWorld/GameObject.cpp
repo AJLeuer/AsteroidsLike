@@ -12,6 +12,8 @@ unsigned GameObject::IDs = 0 ;
 
 vector<string> GameObject::icons = {"🎾", "🔱", "💩", "🍹", "🎅", "👿", "👮", "👹", "🚶", "👩", "💂", "💊"} ;
 
+char GameObject::nameLetters[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
+
 //World will set these
 Location * GameObject::GLOBAL_MAX_LOCATION = nullptr ;
 Location * GameObject::GLOBAL_MIN_LOCATION = nullptr ;
@@ -102,14 +104,38 @@ void GameObject::move(const Location moveTo) {
 	*(this->loc) = moveTo ;
 }
 
-void GameObject::setIcon(string icon) {
+void GameObject::setIcon(const string & icon) {
 	this->icon = icon ;
 }
 
 string GameObject::getIcon() {
-	return draw() ;
-}
-
-string GameObject::draw() {
 	return this->icon ;
 }
+
+ostream & operator<<(std::ostream & os, GameObject & gameObj) {
+	gameObj.textDescription(&os) ;
+	return os ;
+}
+
+const string * GameObject::textDescription() {
+	stringstream * ss = new stringstream() ;
+	this->textDescription(ss) ;
+	const string * s =  new string(ss->str()) ;
+	delete ss ;
+	return s ;
+}
+
+const string * GameObject::toString() {
+	return this->textDescription() ;
+}
+
+const string GameObject::generateName(unsigned int length) {
+	string s = "" ;
+	s += std::toupper(GameObject::nameLetters[(rand() % 27)]) ;
+	for (unsigned i = 0 ; i < length ; i++) {
+		s += nameLetters[(rand() % 27)] ;
+	}
+	return s ;
+}
+
+

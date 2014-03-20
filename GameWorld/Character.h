@@ -133,6 +133,15 @@ public:
 	 */
 	virtual void attack(Character & enemy) ;
 	
+	/**
+	 * Getter for name
+	 */
+	string getName() { return this->name ; }
+	
+	/**
+	 * Setter for name
+	 */
+	void setName(string s) { this->name = s ; }
 	
 	/**
 	 * @return This character's current state

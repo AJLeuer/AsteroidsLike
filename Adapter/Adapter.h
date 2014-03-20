@@ -15,40 +15,45 @@
 #include <iostream>
 
 #include "AdapterUtil.h"
+#include "AdapterInterface.h"
 
 #include "Location.h"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/World.h"
 
+using namespace std ;
 
 
 /**
- * Much like World, Adapter is a singleton with all static class variables and functions. It has access to World's data
+ * Much like World, Adapter is a singleton, unlike World though its class variables and functions run in an instance
+ * For the client however, the only difference in calling World's functions and calling Adapter's is that they will 
+ * need to create a single object before calling Adapter's methods. However the naming conventions and usage should be
+ * very similar to that found in the World class. It will have access to World's data
  * members, but while World is in charge of manipulating objects in the GameWorld and mediating their interactions,
  * Adapter only uses World's data to update the view
  */
-class Adapter {
+class Adapter : public AdapterInterface {
 	
 private:
-	friend class World ;
-	static WINDOW *  gameWindow ;
 	
-	/**
-	 * A pointer to all GameObjects in World
-	 */
-	static vector<GameObject*> * WorldObjects ;
-	
-	/**
-	 * This class won't be instantiated, should be treated as
-	 * a singleton (call init)
-	 */
-	Adapter() ;
-	
+	Adapter() {}
+
 public:
-	static void init() ;
-	/*static void* resizeHandler() ; */  //maybe finish this later
-	static void start() ;
-	static void close() ;
+	
+	/**
+	 * This class may be instantiated only once, and should be treated as
+	 * a singleton (call init). The int parameter only exists to differentiate this constructor
+	 * from the default constructor (which can only be used by the system). The argument does not
+	 * matter and is not used in any way. Trying to create more than one instance of Adapter or any other
+	 * class inheriting from AdapterInterface will result in an exception being thrown.
+	 */
+	Adapter(int) ;
+	
+	void init() ;
+
+	void show() ;
+	
+	void close() ;
 	
 };
 

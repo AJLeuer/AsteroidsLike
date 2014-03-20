@@ -16,6 +16,7 @@
 #include "Location.h"
 #include "GameInterface.h"
 
+using namespace::std ;
 
 /*
  * The base class from which all other classes in the world (thought not the world
@@ -28,6 +29,7 @@ private:
 	
 	static unsigned IDs ;
 	static vector<string> icons ;
+	static char nameLetters[] ;
 	
 protected:
 
@@ -122,7 +124,7 @@ public:
 	 * Writes a formatted text description of this GameObject into the desired output stream
 	 */
 	virtual void textDescription(ostream * writeTO) ;
-	
+
 	/**
 	 * Moves this GameObject by changing its Location x and y coordinates by the given offsets
 	 *
@@ -138,25 +140,38 @@ public:
 	 */
 	void move(const Location moveTo) ;
 	
+	Location * getLocation() {return this->loc ; }
+	
 	/**
 	 * Sets this GameObject's icon to the icon argument
 	 *
 	 * @param icon This GameObject's new icon
 	 */
-	void setIcon(string icon) ;
-	
-	Location * getLocation() {return this->loc ; }
+	void setIcon(const string & icon) ;
 	
 	/** 
-	 * See GameObject::draw()
+	 * Returns this GameObject's icon
 	 */
 	string getIcon() ;
 	
 	/**
-	 * Returns a representation of this GameObject
+	 * Override the << output stream operator
 	 */
-	string draw() ;
+	friend ostream & operator<<(std::ostream & os, GameObject & gameObj) ;
 	
+	/**
+	 * Returns a string describing the properties of this GameObject
+	 */
+	const string * textDescription() ;
+	
+	/*
+	 * See textDescription()
+	 */
+	const string * toString() ;
+	
+	static const string generateName(unsigned length) ;
 } ;
+
+
 
 #endif /* defined(__GameWorld__GameObject__) */

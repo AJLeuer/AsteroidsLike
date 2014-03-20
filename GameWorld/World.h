@@ -38,9 +38,7 @@ using namespace std ;
 class World {
 	
 private:
-	World() ;
 	
-public:
 	
 	friend class GameInterface ;
 	
@@ -50,11 +48,20 @@ public:
 	 * may in some cases point to std::cout, in other cases it may record to a stringstream. If
 	 * other means of outputting that game state are created we may change the type of gameLog later.
 	 */
-	static std::ostream * gameLog ;
+	static ostream * gameLog ;
 	
 	static bool running ; //has World started yet?
 	
-	static vector<GameObject*> allObjects ;
+	static vector<GameObject*> * allObjects ;
+	
+	World() ;
+	
+public:
+	static ostream ** getGameLog() { return &gameLog ; }
+	
+	static vector<GameObject*> ** getGameObjects() { return &allObjects ; } 
+	
+	static bool isRunning() { return running ; }
 	
 	static void init() ;
 	
@@ -67,7 +74,9 @@ public:
 	/**
 	 * Plays the game and saves all events to an output stream.
 	 */
-	static void playGameRecorded(std::ostream * writeTO) ;
+	static void playGameRecorded(std::ostream * writeTo) ;
+	
+	static void close() ;
 	
 	
 	

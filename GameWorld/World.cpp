@@ -10,19 +10,20 @@
 
 bool World::running = false ;
 
-vector<GameObject*> World::allObjects  = vector<GameObject*>() ;
+vector<GameObject*> * World::allObjects  = nullptr ;
 
 World::World() {}
 
 void World::init() {
 	running = true ;
+	allObjects  = new vector<GameObject*>() ;
 	
 	GameObject::GLOBAL_MAX_LOCATION = new struct Location(500, 500, 500) ;
 	GameObject::GLOBAL_MIN_LOCATION = new struct Location(-500, -500, -500) ;
 	
 	 //testing code
-	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
-		allObjects.push_back(new NPC(rand())) ;
+	for (vector<GameObject*>::size_type i = 0 ; i < 15 ; i++) {
+		allObjects->push_back(new NPC(rand())) ;
 	}
 	
 }
@@ -31,11 +32,18 @@ void World::playGameInRealTime() {
 	//todo
 }
 
-void World::playGameRecorded(std::ostream *writeTO) {
+void World::playGameRecorded(std::ostream * writeTo) {
 	//testing code
-	for (vector<NPC>::size_type i = 0 ; i < 15 ; i++) {
-		allObjects.at(i)->textDescription(writeTO) ;
-		*writeTO << endl << endl ;
+	for (vector<GameObject*>::size_type i = 0 ; i < 15 ; i++) {
+		allObjects->at(i)->textDescription(writeTo) ;
+		*writeTo << endl << endl ;
 	}
-	//end testing
+}
+
+void World::close() {
+	running = false ;
+	for (vector<GameObject*>::size_type i = 0 ; i < allObjects->size() ; i++) {
+		delete allObjects->at(i) ;
+	}
+	delete allObjects ;
 }

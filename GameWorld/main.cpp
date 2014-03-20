@@ -12,21 +12,37 @@
 #include <iostream>
 
 #include "World.h"
+#include "GameObject.h"
+#include "NPC.h"
 #include "../Adapter/Adapter.h"
+#include "../Adapter/TestAdapter.h"
 
 
 using namespace std ;
 
 int main(void)
 {
+	srand((unsigned)time(NULL)) ;
+	
+	/*
+	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
 	
 	World::init() ;
-	Adapter::init() ;
+	chosenOutputAdapter->init() ;
 	
-	usleep(500000000) ;
+	chosenOutputAdapter->show() ;
 	
-	World::running = false ;
-	Adapter::close() ;
+	
+	World::close() ;
+	chosenOutputAdapter->close() ;
+	 */
+	
+	NPC npc = NPC(rand()); //rnd
+	cout << npc.toString()->c_str() << endl ;
+	
+	npc.setName("hi") ;
+	
+	cout << npc.toString()->c_str() << endl ;
 	
 	return 0;
 }

@@ -163,6 +163,74 @@ enum class Reaction {
 	//add more here
 } ;
 
+enum Misc {
+	//anything else?
+} ;
+
+inline
+std::ostream & operator<<(std::ostream & os, const Alert & alt) {
+	switch (alt) {
+		case Alert::danger:
+			os << "Danger" ;
+			break;
+		case Alert::nearbyEnemy:
+			os << "Enemy nearby" ;
+			break ;
+		case Alert::lowHealth:
+			os << "Health low" ;
+			break ;
+		case Alert::lowEnergy:
+			os << "Energy low" ;
+			break ;
+		case Alert::lowResource:
+			os << "Resource low" ;
+			break ;
+		case Alert::nearbyMoney:
+			os << "Money nearby" ;
+			break ;
+		case Alert::nearbyBoost:
+			os << "Nearby boost" ;
+			break ;
+	}
+	return os ;
+}
+
+inline
+std::ostream & operator<<(std::ostream & os, const CharacterState & cs) {
+	switch (cs) {
+		case CharacterState::idle:
+			os << "Idle" ;
+			break;
+		case CharacterState::inCombat:
+			os << "In combat" ;
+			break ;
+		case CharacterState::inDialogue:
+			os << "In dialogue" ;
+			break ;
+		case CharacterState::normal:
+			os << "Normal" ;
+			break ;
+		default:
+			break;
+	}
+	return os ;
+}
+
+inline
+std::ostream & operator<<(std::ostream & os, const DoA & doa) {
+	switch (doa) {
+		case DoA::alive:
+			os << "Alive" ;
+			break;
+		case DoA::dead:
+			os << "Dead" ;
+			break ;
+		default:
+			break;
+	}
+	return os ;
+}
+
 inline
 std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 	switch (react) {
@@ -188,8 +256,6 @@ std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 
 
 
-enum Misc {
-	//anything else?
-} ;
+
 
 #endif
