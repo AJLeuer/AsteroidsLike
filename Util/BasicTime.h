@@ -35,6 +35,16 @@ public:
 		start = chrono::system_clock::now() ;
 	}
 	
+	const long checkTimeElapsed() {
+		//returns in microseconds (= 1000 milliseconds) - may need to convert
+		if (!timerStarted) {
+			cout << "stopTimer() can only be called after startTimer() has been called once" << endl ;
+			throw new exception() ;
+		}
+		auto duration = chrono::system_clock::now() - start ;
+		return duration.count() ;
+	}
+	
 	const long stopTimer() {
 		//returns in microseconds (= 1000 milliseconds) - may need to convert
 		if (!timerStarted) {
@@ -42,6 +52,7 @@ public:
 			throw new exception() ;
 		}
 		auto duration = chrono::system_clock::now() - start ;
+		timerStarted = false ;
 		return duration.count() ;
 	}
 };

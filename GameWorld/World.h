@@ -12,6 +12,7 @@
 #include <iostream>
 #include <ostream>
 #include <vector>
+#include <thread>
 
 #include "../Util/BasicTime.h"
 
@@ -54,14 +55,20 @@ private:
 	
 	static bool running ; //has World started yet?
 	
-	static vector<GameObject*> * allObjects ;
+	static vector<GameObject*> * gameObjects ;
 	
 	World() ;
 	
 public:
+	
+	static const double GLOBAL_MAX_X ;
+	//static const double GLOBAL_MIN_X ;
+	static const double GLOBAL_MAX_Y ;
+	//static const double GLOBAL_MIN_Y ;
+	
 	static ostream ** getGameLog() { return &gameLog ; }
 	
-	static vector<GameObject*> ** getGameObjects() { return &allObjects ; } 
+	static vector<GameObject*> ** getGameObjects() { return &gameObjects ; }
 	
 	static bool isRunning() { return running ; }
 	

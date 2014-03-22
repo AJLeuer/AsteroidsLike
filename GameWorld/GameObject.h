@@ -12,8 +12,10 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <thread>
 #include <cmath>
 
+#include "../Util/BasicTime.h"
 #include "../Util/Util.h"
 #include "Location.h"
 #include "GameInterface.h"
@@ -33,19 +35,34 @@ private:
 	static vector<string> icons ;
 	static char nameLetters[] ;
 	
+	//mainly used by internal threaded functions:
+	double wanderXYOffset = 0 ;
+	long wanderTime = 0 ;
+	
+	/**
+	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
+	 */
+	void wanderThreaded() ;
+	
+	
 protected:
 
 	unsigned ID ;
 	string icon ;
     Location * loc ;
 	
+	/**
+	 * For more processor intensive or repetitive operations, a GameObject will be put into its own thread
+	 */
+	std::thread * gObjThread ;
+	
 	
 public:
 	
 	static const double GLOBAL_MAX_X ;
-	static const double GLOBAL_MIN_X ;
+	//static const double GLOBAL_MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
 	static const double GLOBAL_MAX_Y ;
-	static const double GLOBAL_MIN_Y ;
+	//static const double GLOBAL_MIN_Y ;
 	
 	/**
 	 * Creates a new GameObject
@@ -135,14 +152,22 @@ public:
 	 * @param xoffset The change in this GameObject's Location.x
 	 * @param yoffset The change in this GameObject's Location.y
 	 */
-	void move(int xoffset, int yoffset) ;
+	void move(double xoffset, double yoffset) ;
 	
 	/**
 	 * Moves this GameObject to the Location moveTo
 	 *
 	 * @param moveTO The Location where this GameObject is to move
 	 */
-	void move(const Location moveTo) ;
+	void move(const Location & moveTo) ;
+	
+	/**
+	 * Moves this GameObject randomly around the World (calls move() with an RNG)
+	 *
+	 * @param xyOffset The max distance between each move()
+	 * @param time How long (in microseconds) this GameObject should wander
+	 */
+	void wander(double xyOffset, long time) ;
 	
 	/**
 	 * @return This GameObject's Location
@@ -177,6 +202,7 @@ public:
 	const string * toString() ;
 	
 	static const string generateName(unsigned length) ;
+	
 } ;
 
 

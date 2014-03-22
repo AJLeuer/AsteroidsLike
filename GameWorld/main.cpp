@@ -29,10 +29,10 @@ int foo() {
 	return 1 ;
 }
 
-int main(void)
-{
+int main(void) {
+
 	srand((unsigned)time(NULL)) ;
-	
+	/*
 	BasicTime timer ;
 	
 	timer.startTimer() ;
@@ -61,6 +61,25 @@ int main(void)
 	 
 	
 	auto timeElapsed = timer.stopTimer() ;
+	 */
+	
+	NPC * npc0 = new NPC(rand()) ;
+	NPC * npc1 = new NPC(rand()) ;
+	
+	BasicTime timer ;
+	timer.startTimer() ;
+	
+	npc0->wander(10, 1e+7) ;
+	npc1->wander(10, 1e+7) ;
+	
+	while (timer.checkTimeElapsed() < 1.1e+7) {
+		cout << npc0 << endl ;
+		cout << npc1 << endl ;
+		usleep(1e+6) ;
+	}
+	
+	delete npc0 ;
+	delete npc1 ;
 		
 	return 0;
 }

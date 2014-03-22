@@ -17,7 +17,7 @@ vector<GameObject*> ** AdapterInterface::WorldObjects = nullptr ;
 AdapterInterface::AdapterInterface(AdapterInterface * current) {
 	if ((extentMembers + 1) > 1) {
 		cout << "Warning: there are currently " << extentMembers <<
-			" instances of AdapterInterface or classes deriving from AdapterInterface in existence" << endl ;
+			" instances of AdapterInterface or instances of classes deriving from AdapterInterface in existence" << endl ;
 	}
 	extentMembers++ ;
 	AdapterInterface::current = current ;
