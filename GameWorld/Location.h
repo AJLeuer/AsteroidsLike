@@ -65,6 +65,20 @@ struct Location {
         return *this ;
     }
 	
+	/**
+	 * Increments or decrements the x, y and z values according to 
+	 * the arguments passed in. Use negative values to decrement.
+	 *
+	 * @param delta_x The change in x value
+	 * @param delta_y The change in y value
+	 * @param delta_z The change in z value
+	 */
+	void change(double delta_x, double delta_y, double delta_z) {
+		this->x += delta_x ;
+		this->y += delta_y ;
+		this->z += delta_z ;
+	}
+	
 	std::string toString() {
 		stringstream ss ;
 		ss << "x = " << x << ", y = " << y << ", z = " << z ;

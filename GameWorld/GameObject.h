@@ -32,10 +32,14 @@ class GameObject : public GameInterface {
 private:
 	
 	static unsigned IDs ;
-	static vector<string> icons ;
-	static char nameLetters[] ;
+	static vector<string> * icons ;
+	static char * nameLetters ;
 	
-	//the following are used by internal threaded functions:
+	/*this holds references to all the new threads spawned by instances of GameObject
+	 allowing us to join and delete them as needed*/
+	static vector<thread *>* allThreads ;
+	
+	//the following are also used by internal threaded functions:
 	double wanderXYOffset = 0 ;
 	long wanderTime = 0 ;
 	
@@ -52,7 +56,9 @@ protected:
     Location * loc ;
 	
 	/**
-	 * For more processor intensive or repetitive operations, a GameObject will be put into its own thread
+	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
+	 * gObjThread is provided for that purpose. When the function is handed off to the thread, that member's gObjThread pointer should
+	 * be pushed back onto GameObject::allThreads.
 	 */
 	std::thread * gObjThread ;
 	
@@ -164,7 +170,7 @@ public:
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG)
 	 *
-	 * @param xyOffset The max distance between each move()
+	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
 	void wander(double xyOffset, long time) ;
@@ -196,12 +202,23 @@ public:
 	 */
 	const string * textDescription() ;
 	
-	/*
+	/**
 	 * See textDescription()
 	 */
 	const string * toString() ;
 	
+	/**
+	 * Generates a random string that can be used as a name
+	 *
+	 * @param length The length of the string to be generated
+	 */
 	static const string generateName(unsigned length) ;
+	
+	/**
+	 * Waits for all threads spawned by GameObject instances to finish, joins
+	 * the threads, then deletes the threads
+	 */
+	static void joinThreads() ;
 	
 } ;
 

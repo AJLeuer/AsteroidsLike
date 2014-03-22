@@ -10,10 +10,11 @@
 
 unsigned GameObject::IDs = 0 ;
 
-vector<string> GameObject::icons = {"🎾", "🔱", "💩", "🍹", "🎅", "👿", "👮", "👹", "🚶", "👩", "💂", "💊"} ;
+vector<string> * GameObject::icons = new vector<string>{"🎾", "🔱", "💩", "🍹", "🎅", "👿", "👮", "👹", "🚶", "👩", "💂", "💊"} ;
 
-char GameObject::nameLetters[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
+char * GameObject::nameLetters = new char[26] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
 
+vector<thread *> * GameObject::allThreads  = new vector<thread *>() ;
 
 const double GameObject::GLOBAL_MAX_X = 500 ;
 const double GameObject::GLOBAL_MAX_Y = 500;
@@ -62,7 +63,7 @@ GameObject::GameObject(int randSeed) :
     if (randSeed == 0) {
 		randSeed = rand() ;
 	}
-	icon = icons.at(randSeed % icons.size()) ;
+	icon = icons->at(randSeed % icons->size()) ;
 	//we mainly needed randSeed to tell us we're using this constructor, we'll only
 	//actually use it once (see two lines above) - we want each value initialized randomly on its own
 	long x = (rand() % lrint(GLOBAL_MAX_X)) ;
@@ -110,21 +111,19 @@ void GameObject::textDescription(ostream * writeTO) {
 }
 
 void GameObject::move(double xoffset, double yoffset) {
-	this->loc->x += xoffset ;
-	this->loc->y += yoffset ;
+	this->loc->change(xoffset, yoffset, 0) ;
 }
 
 void GameObject::move(const Location & moveTo) {
-	
-	*(this->loc) = moveTo ;
+	delete loc ;
+	this->loc = new Location(moveTo) ;
 }
 
 void GameObject::wander(double xyOffset, long time) {
 	this->wanderTime = time ;
 	this->wanderXYOffset = xyOffset ;
 	GameObject::gObjThread = new std::thread(&GameObject::wanderThreaded, this) ;
-	gObjThread->join() ;
-	delete gObjThread ;
+	GameObject::allThreads->push_back(this->gObjThread) ;
 }
 
 void GameObject::wanderThreaded() {
@@ -140,6 +139,7 @@ void GameObject::wanderThreaded() {
 		if ((loc->y + randY) > GameObject::GLOBAL_MAX_Y) {
 			randY = (randY * -1) ;
 		}
+		move(randX, randY) ;
 	}
 }
 
@@ -176,6 +176,13 @@ const string GameObject::generateName(unsigned int length) {
 		s += nameLetters[(rand() % 27)] ;
 	}
 	return s ;
+}
+
+void GameObject::joinThreads() {
+	for (vector<thread *>::size_type i = 0 ; i < allThreads->size() ; i++) {
+		(*allThreads)[i]->join() ;
+		delete (*allThreads)[i] ;
+	}
 }
 
 

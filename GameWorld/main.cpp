@@ -73,8 +73,8 @@ int main(void) {
 	npc1->wander(10, 1e+7) ;
 	
 	while (timer.checkTimeElapsed() < 1.1e+7) {
-		cout << npc0 << endl ;
-		cout << npc1 << endl ;
+		cout << *npc0 << endl ;
+		cout << *npc1 << endl ;
 		usleep(1e+6) ;
 	}
 	
