@@ -21,6 +21,12 @@ NPC::NPC(const NPC & other) :
 {
 }
 
+NPC::NPC(NPC && other) :
+	Character(other),
+	reaction(std::move(other.reaction))
+{
+}
+
 NPC::NPC(string symbol, Location * loc, string name, DoA alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
 	Character(symbol, loc, name, alive, state, health, damage),
 	reaction(reaction)
@@ -43,6 +49,14 @@ NPC & NPC::operator=(const NPC & rhs) {
 	if (this != &rhs) {
 		this->Character::operator=(rhs) ;
 		this->reaction = rhs.reaction ;
+	}
+	return *this ;
+}
+
+NPC & NPC::operator=(NPC && rhs) {
+	if (this != &rhs) {
+		this->Character::operator=(rhs) ;
+		this->reaction = std::move(rhs.reaction) ;
 	}
 	return *this ;
 }

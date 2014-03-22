@@ -23,6 +23,15 @@ Character::Character(const Character & other) :
 {
 }
 
+Character::Character(Character && other) :
+	GameObject(other),
+	name(std::move(other.name)), alive(std::move(other.alive)),
+	state(std::move(other.state)), health(std::move(other.health)),
+	damage(std::move(other.damage))
+{
+}
+
+
 Character::Character(string symbol, Location * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) :
 	GameObject(symbol, loc),
 	name(name), alive(alive),
@@ -41,7 +50,6 @@ Character::Character(int randSeed) :
 }
 
 Character::~Character() {
-    GameObject::~GameObject() ;
 }
 
 Character & Character::operator=(const Character &rhs) {
@@ -52,6 +60,18 @@ Character & Character::operator=(const Character &rhs) {
 		this->state = rhs.state ;
 		this->health = rhs.health ;
 		this->damage = rhs.damage ;
+	}
+	return *this ;
+}
+
+Character & Character::operator=(Character && rhs) {
+	if (this != &rhs) {
+		this->GameObject::operator=(rhs) ;
+		this->name = std::move(rhs.name) ;
+		this->alive = std::move(rhs.alive) ;
+		this->state = std::move(rhs.state) ;
+		this->health = std::move(rhs.health) ;
+		this->damage = std::move(rhs.damage) ;
 	}
 	return *this ;
 }

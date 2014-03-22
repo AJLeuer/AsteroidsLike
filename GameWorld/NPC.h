@@ -38,6 +38,13 @@ public:
 	 */
 	NPC(const NPC & other) ;
 	
+	/**
+	 * Move constructor for NPC
+	 *
+	 * @param The NPC to be moved
+	 */
+	NPC(NPC && other) ;
+	
 	
 	/**
 	 * Constructs an NPC based on the arguments given
@@ -69,11 +76,18 @@ public:
 	
 	
 	/**
-	 * Assignment operator overload
+	 * Assignment operator overload (copy)
 	 *
 	 * @param rhs The right hand side argument (which will be copied)
 	 */
 	NPC & operator=(const NPC & rhs) ;
+	
+	/**
+	 * Assignment operator overload (move)
+	 *
+	 * @param rhs The right hand side argument (which will be moved)
+	 */
+	NPC & operator=(NPC && rhs) ;
 	
 	
 	/**

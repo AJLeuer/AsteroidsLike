@@ -29,11 +29,27 @@ GameObject::GameObject() :
 }
 
 GameObject::GameObject(const GameObject & other) :
+	wanderXYOffset(other.wanderXYOffset),
+	wanderTime(other.wanderTime),
+	gObjThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
 	loc(new Location(*(other.loc)))
 {
 	IDs++ ;
+}
+
+GameObject::GameObject(GameObject && other) :
+	wanderXYOffset(other.wanderXYOffset),
+	wanderTime(other.wanderTime),
+	gObjThread(other.gObjThread),
+	ID(other.ID),
+	icon(other.icon),
+	loc(other.loc)
+{
+	other.gObjThread = nullptr ;
+	other.loc = nullptr ;
+	cout << "Called GameObject move ctor" << endl ;
 }
 
 GameObject::GameObject(string symbol, Location * loc) :
@@ -74,10 +90,17 @@ GameObject::GameObject(int randSeed) :
 	loc = new Location(x, y, 0) ;
 }
 
-GameObject::~GameObject() { cout << "called" << endl ; }
+GameObject::~GameObject() {
+	//delete gObjThread ;
+	delete loc ;
+	cout << "called dtor" << endl ;
+}
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
+		this->wanderXYOffset = rhs.wanderXYOffset ;
+		this->wanderTime = rhs.wanderTime ;
+		this->gObjThread = nullptr ;
 		this->ID = IDs ;
 		IDs++ ;
 		this->icon = rhs.icon ;
@@ -85,6 +108,21 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	}
 	return *this ;
 }
+
+GameObject & GameObject::operator=(GameObject && rhs) {
+	if (this != &rhs) {
+		this->wanderXYOffset = rhs.wanderXYOffset ;
+		this->wanderTime = rhs.wanderTime ;
+		this->gObjThread = rhs.gObjThread ;
+		this->ID = rhs.ID ;
+		this->icon = rhs.icon ;
+        this->loc = rhs.loc ;
+		rhs.gObjThread = nullptr ;
+		rhs.loc = nullptr ;
+	}
+	return *this ;
+}
+
 
 void GameObject::operator()() {
 	//todo
@@ -122,7 +160,7 @@ void GameObject::move(const Location & moveTo) {
 void GameObject::wander(double xyOffset, long time) {
 	this->wanderTime = time ;
 	this->wanderXYOffset = xyOffset ;
-	GameObject::gObjThread = new std::thread(&GameObject::wanderThreaded, this) ;
+	GameObject::gObjThread = new std::thread(&GameObject::wanderThreaded, *this) ;
 	GameObject::allThreads->push_back(this->gObjThread) ;
 }
 

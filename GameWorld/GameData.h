@@ -43,8 +43,20 @@ public:
 		baseValue(other.baseValue),
 		modifier(other.modifier) {}
 	
+	GameData(GameData && other) :
+		baseValue(other.baseValue),
+		modifier(other.modifier) {}
+	
 	
 	GameData & operator=(const GameData & rhs) {
+		if (this != &rhs) {
+			this->baseValue = rhs.baseValue ;
+			this->modifier = rhs.modifier ;
+		}
+		return *this ;
+	}
+	
+	GameData & operator=(GameData && rhs) {
 		if (this != &rhs) {
 			this->baseValue = rhs.baseValue ;
 			this->modifier = rhs.modifier ;
@@ -101,6 +113,23 @@ public:
 	Damage(const Damage & other) :
 		GameData(other) {}
 	
+	Damage(Damage && other) :
+		GameData(other) {}
+	
+	Damage & operator=(const Damage & rhs) {
+		if (this != &rhs) {
+			this->GameData::operator=(rhs) ;
+		}
+		return *this ;
+	}
+	
+	Damage & operator=(Damage && rhs) {
+		if (this != &rhs) {
+			this->GameData::operator=(rhs) ;
+		}
+		return *this ;
+	}
+	
 } ;
 
 
@@ -123,6 +152,23 @@ public:
 	
 	Health(const Health & other) :
 		GameData(other) {}
+	
+	Health(Health && other) :
+		GameData(other) {}
+	
+	Health & operator=(const Health & rhs) {
+		if (this != &rhs) {
+			this->GameData::operator=(rhs) ;
+		}
+		return *this ;
+	}
+	
+	Health & operator=(Health && rhs) {
+		if (this != &rhs) {
+			this->GameData::operator=(rhs) ;
+		}
+		return *this ;
+	}
 	
 } ;
 

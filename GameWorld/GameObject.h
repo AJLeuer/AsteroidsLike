@@ -83,6 +83,13 @@ public:
 	GameObject(const GameObject & other) ;
 	
 	/**
+	 * Move constructor for GameObject. The new instance the same ID.
+	 *
+	 * @param other The GameObject to be moved
+	 */
+	GameObject(GameObject && other) ;
+	
+	/**
 	 * Creates an object with the given UTF-8 symbol (preferably just
 	 * one character) as its icon
 	 *
@@ -107,12 +114,20 @@ public:
 	
 	
 	/**
-	 * Assignment operator overload for GameObject. The object copied
+	 * Assignment operator overload (copy) for GameObject. The object copied
 	 * to will have its own unique ID.
 	 *
 	 * @param rhs The right hand side argument (which will be copied)
 	 */
 	virtual GameObject & operator=(const GameObject & rhs) ;
+	
+	/**
+	 * Assignment operator overload (move) for GameObject. The object copied
+	 * to will have the same ID.
+	 *
+	 * @param rhs The right hand side argument (which will be moved)
+	 */
+	virtual GameObject & operator=(GameObject && rhs) ;
 	
 	
 	/**

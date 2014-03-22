@@ -53,6 +53,13 @@ public:
 	 */
 	Character(const Character & other) ;
 	
+	/**
+	 * Move constructor for Character
+	 *
+	 * @param The Character to be moved
+	 */
+	Character(Character && other) ;
+	
 	
 	/**
 	 * Constructs a Character based on the arguments given
@@ -83,11 +90,18 @@ public:
 	
 	
 	/**
-	 * Assignment operator overload
+	 * Assignment operator overload (copy)
 	 *
 	 * @param rhs The right hand side argument (which will be copied)
 	 */
 	virtual Character & operator=(const Character & rhs) ;
+	
+	/**
+	 * Assignment operator overload (move)
+	 *
+	 * @param rhs The right hand side argument (which will be moved)
+	 */
+	virtual Character & operator=(Character && rhs) ;
 	
 	
 	/**

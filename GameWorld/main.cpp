@@ -69,8 +69,8 @@ int main(void) {
 	BasicTime timer ;
 	timer.startTimer() ;
 	
-	npc0->wander(10, 1e+7) ;
-	npc1->wander(10, 1e+7) ;
+	npc0->wander(10, 1e+6) ;
+	npc1->wander(10, 1e+6) ;
 	
 	while (timer.checkTimeElapsed() < 1.1e+7) {
 		cout << *npc0 << endl ;
@@ -80,7 +80,11 @@ int main(void) {
 	
 	delete npc0 ;
 	delete npc1 ;
-		
+	
+	
+	
+	
+	
 	return 0;
 }
 
