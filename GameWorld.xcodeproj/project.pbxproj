@@ -107,8 +107,8 @@
 				6651BAAA18DA73EC00F5DCE7 /* AdapterInterface.cpp */,
 				6681A1C618D917EB00F5A2E2 /* Adapter.h */,
 				6681A1C518D917EB00F5A2E2 /* Adapter.cpp */,
-				6651BAAD18DA9A4400F5DCE7 /* TestAdapter.cpp */,
 				6651BAAE18DA9A4400F5DCE7 /* TestAdapter.h */,
+				6651BAAD18DA9A4400F5DCE7 /* TestAdapter.cpp */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -273,12 +273,10 @@
 				);
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
+					"/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
 					/usr/lib,
-					/Volumes/OS,
-					X,
-					"HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
 				);
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;
@@ -334,12 +332,10 @@
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
+					"/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
 					/usr/lib,
-					/Volumes/OS,
-					X,
-					"HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
 				);
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;

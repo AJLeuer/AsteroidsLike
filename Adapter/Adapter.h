@@ -36,22 +36,50 @@ class Adapter : public AdapterInterface {
 	
 private:
 	
-	Adapter() {}
+
 
 public:
 	
 	/**
-	 * This class may be instantiated only once, and should be treated as
-	 * a singleton (call init). The int parameter only exists to differentiate this constructor
-	 * from the default constructor (which can only be used by the system). The argument does not
-	 * matter and is not used in any way. Trying to create more than one instance of Adapter or any other
+	 * This class should be instantiated only once, and not with this constructor. Call Adapter(int).
+	 * Trying to create more than one instance of Adapter or any other
 	 * class inheriting from AdapterInterface will result in an exception being thrown.
 	 */
-	Adapter(int) ;
+	Adapter() : AdapterInterface() {} ;
+	
+	Adapter(int n) : AdapterInterface(this) {} ;
+	
+	/**
+	 * Copy constructor.
+	 */
+	Adapter(Adapter &) : AdapterInterface() {}
+	
+	/**
+	 * Move constructor. Will change AdapterInterface's pointer to new object
+	 */
+	Adapter(Adapter &&) : AdapterInterface(this) {}
+	
+	/**
+	 * Assignment operator overload (copy)
+	 */
+	Adapter & operator=(const Adapter &){ return *this ;}
+	
+	/**
+	 * Assignment operator overload (move)
+	 */
+	Adapter & operator=(Adapter &&){ AdapterInterface(this) ; return *this ;}
+	
+	~Adapter() {} //should automatically call ~AdapterInterface()
+	
 	
 	void init() ;
 
-	void show() ;
+	void show() const ;
+	
+	/**
+	 * See show()
+	 */
+	void operator()() const ;
 	
 	void close() ;
 	

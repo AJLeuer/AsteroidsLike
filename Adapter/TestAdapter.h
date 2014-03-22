@@ -27,15 +27,34 @@ class TestAdapter : public AdapterInterface {
 	
 private:
 	
-	TestAdapter() {}
+
 	
 public:
+	TestAdapter() : AdapterInterface() {}
 	
-	TestAdapter(int) ;
+	TestAdapter(int) : AdapterInterface(this) {}
+	
+	TestAdapter(TestAdapter &) : AdapterInterface() {}
+	
+	TestAdapter(TestAdapter &&) : AdapterInterface(this) {}
+	
+	/**
+	 * Assignment operator overload (copy)
+	 */
+	TestAdapter & operator=(const TestAdapter &) { return *this ; }
+	
+	/**
+	 * Assignment operator overload (move)
+	 */
+	TestAdapter & operator=(TestAdapter &&) { AdapterInterface(this) ; return *this ; }
+	
+	~TestAdapter() {} //should automatically call ~AdapterInterface()
 	
 	void init() ;
 	
-	void show() ;
+	void show() const ;
+	
+	void operator()() const ;
 	
 	void close() ;
 	

@@ -8,16 +8,13 @@
 
 #include "TestAdapter.h"
 
-TestAdapter::TestAdapter(int n) :
-	AdapterInterface(this, n) {}
-
 void TestAdapter::init() {
 	this->AdapterInterface::init() ;
 	
 	//local initializations:
 }
 
-void TestAdapter::show() {
+void TestAdapter::show() const {
 	while (World::isRunning()) {
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
 			(*WorldObjects)->at(i)->textDescription(&cout) ;
@@ -27,6 +24,10 @@ void TestAdapter::show() {
 			cout << (*WorldObjects)->at(i)->getIcon().c_str() << endl << endl ;
 		}
 	}
+}
+
+void TestAdapter::operator()() const {
+	this->show() ;
 }
 
 void TestAdapter::close() {

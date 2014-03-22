@@ -25,6 +25,10 @@
 
 using namespace std ;
 
+int foo() {
+	return 1 ;
+}
+
 int main(void)
 {
 	srand((unsigned)time(NULL)) ;
@@ -34,16 +38,24 @@ int main(void)
 	timer.startTimer() ;
 	
 	
+	
+	World::init() ;
+	
+	
+	
 	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
 	
-	std::thread first(chosenOutputAdapter) ;
-	World::init() ;
+	
 	chosenOutputAdapter->init() ;
+	(*chosenOutputAdapter)() ;
 	
-	chosenOutputAdapter->show() ;
+	//std::thread thread1(chosenOutputAdapter); //should call show()
 	
+	//thread1.join() ;
+
 	
 	World::close() ;
+	
 	chosenOutputAdapter->close() ;
 	 
 	 

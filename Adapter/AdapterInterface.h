@@ -34,13 +34,13 @@ protected:
 	/**
 	 * The total number of objects of AdapterInterface or of
 	 * derived classes created by the client (but not including those
-	 * created by the system). Creating more than one at a time will throw an
-	 * exception
+	 * created by the system). Creating more than one at a time may throw an
+	 * exception (TBD)
 	 */
 	static unsigned extentMembers ;
 	
 	/**
-	 * The current AdapterInterface object
+	 * The current AdapterInterface object. 
 	 */
 	static AdapterInterface * current ;
 	
@@ -49,11 +49,17 @@ protected:
 	 */
 	static vector<GameObject*> ** WorldObjects ;
 	
+	
+	
+	
+public:
+	
+	AdapterInterface() {} ;
+	
 	/**
-	 * This class won't be instantiated by any client directly, only by calling one of its
-	 * derived classes
+	 * Called by a derived class to instantiate. Main constructor.
 	 */
-	AdapterInterface() {}
+	AdapterInterface(AdapterInterface * current) ;
 	
 	/**
 	 * Copy constructor
@@ -61,22 +67,34 @@ protected:
 	AdapterInterface(AdapterInterface &) {}
 	
 	/**
-	 * Called by a derived class to instantiate
+	 * Move constructor
 	 */
-	AdapterInterface(AdapterInterface * current, int) ;
+	AdapterInterface(AdapterInterface &&) {}
 	
-public:
-	
+
 	virtual ~AdapterInterface() ;
 	
 	/**
-	 * Assignment operator overload
+	 * Assignment operator overload (copy)
 	 */
 	AdapterInterface & operator=(const AdapterInterface &) {return *this;}
 	
+	/**
+	 * Assignment operator overload (move)
+	 */
+	AdapterInterface & operator=(AdapterInterface &&) {return *this;}
+	
 	virtual void init() ;
-	virtual void show() ;
+	
+	virtual void show() const ;
+	
+	/**
+	 * See show()
+	 */
+	virtual void operator()() const ;
+	
 	virtual void close() ;
+	
 	
 };
 

@@ -14,10 +14,10 @@ AdapterInterface * AdapterInterface::current = nullptr ;
 
 vector<GameObject*> ** AdapterInterface::WorldObjects = nullptr ;
 
-AdapterInterface::AdapterInterface(AdapterInterface * current, int n) {
+AdapterInterface::AdapterInterface(AdapterInterface * current) {
 	if ((extentMembers + 1) > 1) {
-		cout << "No more than one instance of any class derived from AdapterInterface can exist at one time" << endl ;
-		throw new exception() ;
+		cout << "Warning: there are currently " << extentMembers <<
+			" instances of AdapterInterface or classes deriving from AdapterInterface in existence" << endl ;
 	}
 	extentMembers++ ;
 	AdapterInterface::current = current ;
@@ -36,7 +36,9 @@ void AdapterInterface::init() {
 	}
 }
 
-void AdapterInterface::show() { /*TODO add */ }
+void AdapterInterface::show() const {}
+
+void AdapterInterface::operator()() const {}
 
 void AdapterInterface::close() { WorldObjects = nullptr ; }
 

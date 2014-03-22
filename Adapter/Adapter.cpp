@@ -8,9 +8,6 @@
 
 #include "Adapter.h"
 
-Adapter::Adapter(int n) :
-	AdapterInterface(this, n) {}
-
 void Adapter::init() {
 	this->AdapterInterface::init() ;
 	
@@ -25,7 +22,7 @@ void Adapter::init() {
 	curs_set(0) ; //sets cursor to invisible
 }
 
-void Adapter::show() {
+void Adapter::show() const {
 	while (World::isRunning()) {
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
 			Location trans = AdapterUtil::transLocation(*((*WorldObjects)->at(i)->getLocation())) ;
@@ -33,6 +30,10 @@ void Adapter::show() {
 		}
 		wrefresh(stdscr) ;
 	}
+}
+
+void Adapter::operator()() const {
+	this->show() ;
 }
 
 void Adapter::close() {
