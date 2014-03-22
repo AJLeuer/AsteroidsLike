@@ -29,12 +29,12 @@ public:
 		baseValue(0),
 		modifier(1) {}
 	
-	GameData(long b) :
+	GameData(unsigned long b) :
 		baseValue(b),
 		modifier(1) {}
 	
 	
-	GameData(long b, long m) :
+	GameData(unsigned long b, unsigned m) :
 		baseValue(b),
 		modifier(m) {}
 	
@@ -95,7 +95,7 @@ public:
 	Damage(long b) :
 		GameData(b) {}
 	
-	Damage(long b, long m) :
+	Damage(unsigned long b, unsigned m) :
 		GameData(b, m) {}
 	
 	Damage(const Damage & other) :
@@ -118,7 +118,7 @@ public:
 	Health(long b) :
 		GameData(b) {}
 	
-	Health(long b, long m) :
+	Health(unsigned long b, unsigned m) :
 		GameData(b, m) {}
 	
 	Health(const Health & other) :
@@ -133,6 +133,7 @@ public:
    as an equivalent to NULL */
 enum class Alert {
 	
+	noalert = -1,
 	danger = 0,
 	nearbyEnemy = 1,
 	lowHealth = 2,
@@ -145,7 +146,7 @@ enum class Alert {
 } ;
 
 enum class CharacterState {
-	
+	nocs = -1,
 	/*typically for player and NPCs*/
 	normal = 0,
 	inCombat = 1,
@@ -155,7 +156,7 @@ enum class CharacterState {
 } ;
 
 enum class DoA {
-	
+	nodoa = -1,
 	dead = 0,
 	alive = 1
 	
@@ -163,6 +164,7 @@ enum class DoA {
 
 enum class Reaction {
 	
+	noreact = -1,
 	/*typically npc*/
 	loyal = 0,
 	friendly = 1,
@@ -172,13 +174,13 @@ enum class Reaction {
 	//add more here
 } ;
 
-enum Misc {
-	//anything else?
-} ;
 
 inline
 std::ostream & operator<<(std::ostream & os, const Alert & alt) {
 	switch (alt) {
+		case Alert::noalert:
+			os << "No alert";
+			break ;
 		case Alert::danger:
 			os << "Danger" ;
 			break;
@@ -207,6 +209,9 @@ std::ostream & operator<<(std::ostream & os, const Alert & alt) {
 inline
 std::ostream & operator<<(std::ostream & os, const CharacterState & cs) {
 	switch (cs) {
+		case CharacterState::nocs:
+			os << "No character state";
+			break ;
 		case CharacterState::idle:
 			os << "Idle" ;
 			break;
@@ -228,6 +233,9 @@ std::ostream & operator<<(std::ostream & os, const CharacterState & cs) {
 inline
 std::ostream & operator<<(std::ostream & os, const DoA & doa) {
 	switch (doa) {
+		case DoA::nodoa:
+			os << "No DoA value" ;
+			break ;
 		case DoA::alive:
 			os << "Alive" ;
 			break;
@@ -243,6 +251,9 @@ std::ostream & operator<<(std::ostream & os, const DoA & doa) {
 inline
 std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 	switch (react) {
+		case Reaction::noreact:
+			os << "No reaction" ;
+			break ;
 		case Reaction::loyal:
 			os << "Loyal" ;
 			break ;

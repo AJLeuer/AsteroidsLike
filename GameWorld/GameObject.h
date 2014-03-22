@@ -35,7 +35,7 @@ private:
 	static vector<string> icons ;
 	static char nameLetters[] ;
 	
-	//mainly used by internal threaded functions:
+	//the following are used by internal threaded functions:
 	double wanderXYOffset = 0 ;
 	long wanderTime = 0 ;
 	

@@ -21,8 +21,8 @@ const double GameObject::GLOBAL_MAX_Y = 500;
 
 GameObject::GameObject() :
 	ID(IDs),
-	icon("NULL"),
-	loc(nullptr)
+	icon("no icon"),
+	loc(new Location())
 {
 	IDs++ ;
 }

@@ -21,23 +21,21 @@ struct Message {
 	
 	
 	Alert alert ;
-	CharacterState senderState ;  //or maybe a different character's state...
-	Misc misc ;
+	CharacterState state ;  //maybe the sending character's state...
 	
 
 	string messageText ;
-	string messageData ;
 	double numericalData ;
 	
 	
-	Message() : alert(Alert(-1)), senderState(CharacterState(-1)),
-		misc(Misc(-1)), messageText(NULL),
-		messageData(NULL), numericalData(NULL) {}
+	Message() : alert(Alert(-1)), state(CharacterState(-1)),
+		messageText(""),
+		numericalData(0) {}
 	
 	
-	Message(Alert a, CharacterState s, Misc c, string mT, string mD, double nD) : alert(a), senderState(s),
-		misc(c), messageText(mT),
-		messageData(mD), numericalData(nD) {}
+	Message(Alert a, CharacterState s, string mT, double nD) : alert(a), state(s),
+		messageText(mT),
+		numericalData(nD) {}
 	
 	
 } ;
