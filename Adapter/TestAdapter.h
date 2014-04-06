@@ -13,10 +13,12 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <thread>
 
 #include "AdapterUtil.h"
 #include "AdapterInterface.h"
 
+#include "Util.h"
 #include "Location.h"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/World.h"
@@ -27,6 +29,7 @@ class TestAdapter : public AdapterInterface {
 	
 private:
 	
+	void show_threaded() ;
 
 	
 public:
@@ -52,9 +55,9 @@ public:
 	
 	void init() ;
 	
-	void show() const ;
+	void show() ;
 	
-	void operator()() const ;
+	void operator()() ;
 	
 	void close() ;
 	

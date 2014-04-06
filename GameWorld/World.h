@@ -16,6 +16,7 @@
 
 #include "../Util/BasicTime.h"
 
+#include "Util.h"
 #include "AddlEnums.h"
 #include "Location.h"
 #include "GameInterface.h"
@@ -61,6 +62,8 @@ private:
 	
 public:
 	
+	static mutex runningMtx ;
+	
 	static const double GLOBAL_MAX_X ;
 	//static const double GLOBAL_MIN_X ;
 	static const double GLOBAL_MAX_Y ;
@@ -73,6 +76,8 @@ public:
 	static bool isRunning() { return running ; }
 	
 	static void init() ;
+	
+	static void foo() ;
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting

@@ -14,10 +14,13 @@ vector<string> * GameObject::icons = new vector<string>{"🎾", "🔱", "💩", 
 
 char * GameObject::nameLetters = new char[26] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
 
-vector<thread *> * GameObject::allThreads  = new vector<thread *>() ;
+list<thread *> * GameObject::allThreads  = new list<thread *>() ;
+list<thread *>::iterator GameObject::lastAddedThread = allThreads->begin() ;
 
 const double GameObject::GLOBAL_MAX_X = 500 ;
+const double GameObject::GLOBAL_MIN_X = 0 ;
 const double GameObject::GLOBAL_MAX_Y = 500;
+const double GameObject::GLOBAL_MIN_Y = 0 ;
 
 
 GameObject::GameObject() :
@@ -29,8 +32,6 @@ GameObject::GameObject() :
 }
 
 GameObject::GameObject(const GameObject & other) :
-	wanderXYOffset(other.wanderXYOffset),
-	wanderTime(other.wanderTime),
 	gObjThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
@@ -40,8 +41,6 @@ GameObject::GameObject(const GameObject & other) :
 }
 
 GameObject::GameObject(GameObject && other) :
-	wanderXYOffset(other.wanderXYOffset),
-	wanderTime(other.wanderTime),
 	gObjThread(other.gObjThread),
 	ID(other.ID),
 	icon(other.icon),
@@ -57,11 +56,11 @@ GameObject::GameObject(string symbol, Location * loc) :
 	icon(symbol)
 {
 	IDs++ ;
-	if (loc->x > GLOBAL_MAX_X) {
+	if (loc->getX() > GLOBAL_MAX_X) {
 		cout << "Location x coord is not within the specified limits" << endl ;
 		throw new exception() ;
 	}
-	else if (loc->y > GLOBAL_MAX_Y) {
+	else if (loc->getY() > GLOBAL_MAX_Y) {
 		cout << "Location y coord is not within the specified limits" << endl ;
 		throw new exception() ;
 	}
@@ -93,13 +92,11 @@ GameObject::GameObject(int randSeed) :
 GameObject::~GameObject() {
 	//delete gObjThread ;
 	delete loc ;
-	cout << "called dtor" << endl ;
+	cout << "called GameObj dtor" << endl ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
-		this->wanderXYOffset = rhs.wanderXYOffset ;
-		this->wanderTime = rhs.wanderTime ;
 		this->gObjThread = nullptr ;
 		this->ID = IDs ;
 		IDs++ ;
@@ -111,8 +108,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
 GameObject & GameObject::operator=(GameObject && rhs) {
 	if (this != &rhs) {
-		this->wanderXYOffset = rhs.wanderXYOffset ;
-		this->wanderTime = rhs.wanderTime ;
 		this->gObjThread = rhs.gObjThread ;
 		this->ID = rhs.ID ;
 		this->icon = rhs.icon ;
@@ -140,7 +135,23 @@ void GameObject::passMessage(Message * message, GameObject &recipient) {
 	//todo
 }
 
-void GameObject::textDescription(ostream * writeTO) {
+list<thread *>::iterator GameObject::startThreading(std::thread * gObjThr, bool wait) {
+	GameObject::allThreads->insert(lastAddedThread, this->gObjThread) ;
+	auto i = lastAddedThread ;
+	lastAddedThread++ ;
+	if (wait) {
+		gObjThread->join() ;
+	}
+	return i ;
+}
+
+void GameObject::endThreading(list<thread *>::iterator pos) {
+	GameObject::allThreads->erase(pos) ;
+	delete this->gObjThread ;
+	this->gObjThread = nullptr ;
+}
+
+void GameObject::textDescription(ostream * writeTO) const {
 	*writeTO << "GameObject ID#: " << this->ID << endl ;
 	*writeTO << "Icon: " << this->icon << endl ;
 	if (loc != nullptr) {
@@ -149,7 +160,7 @@ void GameObject::textDescription(ostream * writeTO) {
 }
 
 void GameObject::move(double xoffset, double yoffset) {
-	this->loc->change(xoffset, yoffset, 0) ;
+	this->loc->modify(xoffset, yoffset, 0) ;
 }
 
 void GameObject::move(const Location & moveTo) {
@@ -158,27 +169,28 @@ void GameObject::move(const Location & moveTo) {
 }
 
 void GameObject::wander(double xyOffset, long time) {
-	this->wanderTime = time ;
-	this->wanderXYOffset = xyOffset ;
-	GameObject::gObjThread = new std::thread(&GameObject::wanderThreaded, *this) ;
-	GameObject::allThreads->push_back(this->gObjThread) ;
+	auto i = startThreading(this->gObjThread, false) ;
+	gObjThread = new std::thread(&GameObject::wander_threaded, std::move(this), xyOffset, time, i) ;
 }
 
-void GameObject::wanderThreaded() {
+void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::iterator pos) {
 	BasicTime timer ;
 	timer.startTimer() ;
-	while (timer.checkTimeElapsed() < wanderTime) {
-		double randX = randSignFlip((rand() % (static_cast<int>(wanderXYOffset)))) ;
-		if ((loc->x + randX) > GameObject::GLOBAL_MAX_X) {
+	while (timer.checkTimeElapsed() < time) {
+		double randX = randSignFlip((rand() % ((int)(xyOffset)))) ;
+		if (((loc->getX() + randX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + randX) < GameObject::GLOBAL_MIN_X)) {
 			randX = (randX * -1) ;
 		}
 		//repeat for y coord
-		double randY = randSignFlip((rand() % (static_cast<int>(wanderXYOffset)))) ;
-		if ((loc->y + randY) > GameObject::GLOBAL_MAX_Y) {
+		double randY = randSignFlip((rand() % ((int)(xyOffset)))) ;
+		if (((loc->getY() + randY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + randY) < GameObject::GLOBAL_MIN_Y)) {
 			randY = (randY * -1) ;
 		}
+		*Debug::debugFile << "randX: " << randX << " rand Y: " << randY << endl ;
 		move(randX, randY) ;
+		usleep(5000) ;
 	}
+	endThreading(pos) ;
 }
 
 
@@ -186,7 +198,7 @@ void GameObject::setIcon(const string & icon) {
 	this->icon = icon ;
 }
 
-string GameObject::getIcon() {
+string & GameObject::getIcon() {
 	return this->icon ;
 }
 
@@ -195,16 +207,12 @@ ostream & operator<<(std::ostream & os, GameObject & gameObj) {
 	return os ;
 }
 
-const string * GameObject::textDescription() {
+string GameObject::toString() const {
 	stringstream * ss = new stringstream() ;
 	this->textDescription(ss) ;
-	const string * s =  new string(ss->str()) ;
+	string s = string(ss->str()) ;
 	delete ss ;
-	return s ;
-}
-
-const string * GameObject::toString() {
-	return this->textDescription() ;
+	return std::move(s) ;
 }
 
 const string GameObject::generateName(unsigned int length) {
@@ -217,9 +225,9 @@ const string GameObject::generateName(unsigned int length) {
 }
 
 void GameObject::joinThreads() {
-	for (vector<thread *>::size_type i = 0 ; i < allThreads->size() ; i++) {
-		(*allThreads)[i]->join() ;
-		delete (*allThreads)[i] ;
+	for (list<thread *>::iterator i = allThreads->begin() ; i != allThreads->end() ; i++) {
+		(*i)->join() ;
+		delete *i ;
 	}
 }
 

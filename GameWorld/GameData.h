@@ -73,11 +73,20 @@ public:
 		return os ;
 	}
 	
+	/**
+	 * Override the << output stream operator
+	 */
+	inline
+	friend ostream & operator<<(std::ostream & os, const GameData & gmd) {
+		os << gmd.value() ;
+		return os ;
+	}
+	
 	
 	/**
 	 * @return The value of this GameData object (e.g. Health or Damage)
 	 */
-	unsigned long value() {
+	unsigned long value() const {
 		return baseValue * modifier ;
 	}
 	

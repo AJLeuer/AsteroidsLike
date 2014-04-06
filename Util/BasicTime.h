@@ -35,6 +35,9 @@ public:
 		start = chrono::system_clock::now() ;
 	}
 	
+	/**
+	 * @return The time elapsed in microseconds
+	 */
 	const long checkTimeElapsed() {
 		//returns in microseconds (= 1000 milliseconds) - may need to convert
 		if (!timerStarted) {
@@ -42,7 +45,8 @@ public:
 			throw new exception() ;
 		}
 		auto duration = chrono::system_clock::now() - start ;
-		return duration.count() ;
+		auto d = duration.count() ;
+		return d ;
 	}
 	
 	const long stopTimer() {

@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <thread>
 
 #include "AdapterUtil.h"
 
@@ -50,7 +51,9 @@ protected:
 	static vector<GameObject*> ** WorldObjects ;
 	
 	
+	virtual void show_threaded() ;
 	
+	std::thread * aiThread = nullptr ;
 	
 public:
 	
@@ -86,12 +89,14 @@ public:
 	
 	virtual void init() ;
 	
-	virtual void show() const ;
+	
+	virtual void show() ;
+	
 	
 	/**
 	 * See show()
 	 */
-	virtual void operator()() const ;
+	virtual void operator()() ;
 	
 	virtual void close() ;
 	

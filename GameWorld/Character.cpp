@@ -92,7 +92,7 @@ void Character::passMessage(Message *message, GameObject &recipient) {
 	//todo
 }
 
-void Character::textDescription(ostream * writeTO) {
+void Character::textDescription(ostream * writeTO) const {
 	*writeTO << "Character name: " << this->name << endl ;;
 	*writeTO << "Current status: " << this->state << endl  ;
 	*writeTO << "Current health: " << this->health << endl ;

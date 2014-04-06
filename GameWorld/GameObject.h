@@ -12,9 +12,11 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <list>
 #include <thread>
 #include <cmath>
 
+#include "Debug.h"
 #include "../Util/BasicTime.h"
 #include "../Util/Util.h"
 #include "Location.h"
@@ -36,20 +38,44 @@ private:
 	static char * nameLetters ;
 	
 	/*this holds references to all the new threads spawned by instances of GameObject
-	 allowing us to join and delete them as needed*/
-	static vector<thread *>* allThreads ;
+	 allowing us to join and delete them as needed. Using a list allows us to insert and erase
+	 elements without invalidating other iterators*/
+	static list<thread *>* allThreads ;
 	
-	//the following are also used by internal threaded functions:
-	double wanderXYOffset = 0 ;
-	long wanderTime = 0 ;
+	//the last thread added to allThreads
+	static list<thread *>::iterator lastAddedThread ;
+	
+	/*Flag which sets to false when this GameObject is running a threaded
+	 function, and true once the GameObject has completed its threaded task */
+	bool threadFinished = false ;
+	
+	
+	/**
+	 * Handles thread starting duties. Should always be called by the function that calls
+	 * the threaded function.
+	 *
+	 * @param gObjThr The thread to manage
+	 * @param wait Whether to wait for the thread to finish (by calling join()) or continue execution
+	 */
+	list<thread *>::iterator startThreading(std::thread * gObjThr, bool wait) ;
+	
+	/**
+	 * Handles thread starting duties. Should always be called by the threaded once it has completed
+	 *
+	 * @param pos The position of this thread in the allThreads list
+	 */
+	void endThreading(list<thread *>::iterator pos) ;
 	
 	/**
 	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
+	 *
+	 * @param pos The position of this thread in the allThreads list
 	 */
-	void wanderThreaded() ;
+	void wander_threaded(double xyOffset, long time, list<thread *>::iterator pos) ;
 	
 	
 protected:
+	
 
 	unsigned ID ;
 	string icon ;
@@ -66,9 +92,9 @@ protected:
 public:
 	
 	static const double GLOBAL_MAX_X ;
-	//static const double GLOBAL_MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
+	static const double GLOBAL_MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
 	static const double GLOBAL_MAX_Y ;
-	//static const double GLOBAL_MIN_Y ;
+	static const double GLOBAL_MIN_Y ;
 	
 	/**
 	 * Creates a new GameObject
@@ -165,7 +191,7 @@ public:
 	/**
 	 * Writes a formatted text description of this GameObject into the desired output stream
 	 */
-	virtual void textDescription(ostream * writeTO) ;
+	virtual void textDescription(ostream * writeTO) const ;
 
 	/**
 	 * Moves this GameObject by changing its Location x and y coordinates by the given offsets
@@ -205,7 +231,7 @@ public:
 	/** 
 	 * Returns this GameObject's icon
 	 */
-	string getIcon() ;
+	string & getIcon() ;
 	
 	/**
 	 * Override the << output stream operator
@@ -213,14 +239,9 @@ public:
 	friend ostream & operator<<(std::ostream & os, GameObject & gameObj) ;
 	
 	/**
-	 * Returns a string describing the properties of this GameObject
+	 * Similar to textDescription(), but returns a new string instead of writing to one passed to it
 	 */
-	const string * textDescription() ;
-	
-	/**
-	 * See textDescription()
-	 */
-	const string * toString() ;
+	string toString() const ;
 	
 	/**
 	 * Generates a random string that can be used as a name

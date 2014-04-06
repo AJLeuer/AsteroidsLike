@@ -124,7 +124,7 @@ public:
 	/**
 	 * Writes a formatted text description of this NPC into the desired output stream
 	 */
-	virtual void textDescription(ostream * writeTO) ;
+	virtual void textDescription(ostream * writeTO) const ;
 	
 	/**
 	 * Attacks a hostile NPC

@@ -22,17 +22,33 @@ void Adapter::init() {
 	curs_set(0) ; //sets cursor to invisible
 }
 
-void Adapter::show() const {
+void Adapter::show() {
+	aiThread = new std::thread(&Adapter::show_threaded, std::move(this)) ;
+}
+
+void Adapter::show_threaded() {
 	while (World::isRunning()) {
+		bool proceed = false ;
+		GameObject temp  = 0 ;
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
-			Location trans = AdapterUtil::transLocation(*((*WorldObjects)->at(i)->getLocation())) ;
-			mvwaddstr(stdscr, trans.y, trans.x, "H"/*(*WorldObjects)->at(i)->draw().c_str()*/) ;
+			if (World::isRunning()) {
+				World::runningMtx.lock() ;
+				temp = GameObject(*(*WorldObjects)->at(i)) ;
+				World::runningMtx.unlock() ;
+				proceed = World::isRunning() ;
+			}
+			if (proceed) {
+				*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
+				Location trans = AdapterUtil::transLocation(*(temp.getLocation())) ;
+				*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
+				mvwaddstr(stdscr, trans.getY(), trans.getX(), temp.getIcon().c_str()) ;
+			}
 		}
 		wrefresh(stdscr) ;
 	}
 }
 
-void Adapter::operator()() const {
+void Adapter::operator()() {
 	this->show() ;
 }
 

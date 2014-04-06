@@ -36,9 +36,11 @@ void AdapterInterface::init() {
 	}
 }
 
-void AdapterInterface::show() const {}
+void AdapterInterface::show() {}
 
-void AdapterInterface::operator()() const {}
+void AdapterInterface::show_threaded() {}
+
+void AdapterInterface::operator()() {}
 
 void AdapterInterface::close() { WorldObjects = nullptr ; }
 

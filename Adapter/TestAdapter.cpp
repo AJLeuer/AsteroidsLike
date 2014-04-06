@@ -14,19 +14,34 @@ void TestAdapter::init() {
 	//local initializations:
 }
 
-void TestAdapter::show() const {
+void TestAdapter::show() {
+	 aiThread = new std::thread(&TestAdapter::show_threaded, std::move(this)) ;
+}
+
+void TestAdapter::show_threaded() {
 	while (World::isRunning()) {
+		bool proceed = false ;
+		GameObject temp ;
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
-			(*WorldObjects)->at(i)->textDescription(&cout) ;
-			Location trans = AdapterUtil::transLocation(*((*WorldObjects)->at(i)->getLocation())) ;
-			cout << "Tranlated location: " ;
-			cout << trans.toString() << endl ;
-			cout << (*WorldObjects)->at(i)->getIcon().c_str() << endl << endl ;
+			if (World::isRunning()) {
+				World::runningMtx.lock() ;
+				temp = GameObject(*(*WorldObjects)->at(i)) ;
+				World::runningMtx.unlock() ;
+				proceed	= World::isRunning() ;
+			}
+			if (proceed) {
+				cout << "Current GameObject: " ;
+				temp.textDescription(&cout) ;
+				Location trans = AdapterUtil::transLocation(*(temp.getLocation())) ;
+				cout << "Tranlated location: " ;
+				cout << trans.toString() << endl ;
+				cout << temp.getIcon().c_str() << endl << endl ;
+			}
 		}
 	}
 }
 
-void TestAdapter::operator()() const {
+void TestAdapter::operator()() {
 	this->show() ;
 }
 
