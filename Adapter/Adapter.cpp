@@ -27,26 +27,28 @@ void Adapter::show() {
 }
 
 void Adapter::show_threaded() {
-	while (World::isRunning()) {
+	while (WorldController::isRunning()) {
 		GameObject * temp  = nullptr ;
-		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
-			if (World::isRunning()) {
-				World::runningMtx.lock() ;
-				if (*WorldObjects != nullptr) { //we want to know if the pointer pointed to by WorldObjects (i.e. World::gameObjects) is null
-					temp = (*WorldObjects)->at(i) ;
-					World::runningMtx.unlock() ;
-					*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
-					Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
-					*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
-					mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
-					temp = nullptr ;
-					wnoutrefresh(stdscr) ;
-				}
-				World::runningMtx.unlock() ;
+		for (auto i = 0 ; i < WorldController::gameObjects->size() ; i++) {
+			WorldController::runningMtx.lock() ;
+			if (WorldController::gameObjects == nullptr) { //we want to know if the pointer pointed to by WorldControllerObjects (i.e. WorldController::gameObjects) is null
+				return ;
 			}
+			else {
+				temp = WorldController::gameObjects->at(i) ;
+				WorldController::runningMtx.unlock() ;
+				*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
+				Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
+				*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
+				mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
+				temp = nullptr ;
+				wnoutrefresh(stdscr) ;
+			}
+			WorldController::runningMtx.unlock() ;
 		}
-		wclear(stdscr);
 		doupdate() ;
+		usleep(90000) ;
+		wclear(stdscr) ;
 	}
 }
 

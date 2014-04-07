@@ -19,7 +19,7 @@
 
 #include "Location.h"
 #include "../GameWorld/GameObject.h"
-#include "../GameWorld/World.h"
+#include "../GameWorld/WorldController.h"
 
 using namespace std ;
 
@@ -44,11 +44,6 @@ protected:
 	 * The current AdapterInterface object. 
 	 */
 	static AdapterInterface * current ;
-	
-	/**
-	 * A pointer to all GameObjects in World
-	 */
-	static vector<GameObject*> ** WorldObjects ;
 	
 	
 	virtual void show_threaded() ;

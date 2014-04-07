@@ -136,6 +136,7 @@ void GameObject::passMessage(Message * message, GameObject &recipient) {
 }
 
 list<thread *>::iterator GameObject::startThreading(std::thread * gObjThr, bool wait) {
+	
 	GameObject::allThreads->insert(lastAddedThread, this->gObjThread) ;
 	auto i = lastAddedThread ;
 	lastAddedThread++ ;
@@ -155,11 +156,13 @@ void GameObject::endThreading(list<thread *>::iterator pos, bool wait) {
 }
 
 void GameObject::joinThreads() {
+	
 	for (list<thread *>::iterator i = allThreads->begin() ; i != allThreads->end() ; i++) {
 		(*i)->join() ;
 		delete *i ;
 		*i = nullptr ;
 	}
+	
 }
 
 void GameObject::joinThread() {
@@ -186,15 +189,15 @@ void GameObject::move(const Location & moveTo) {
 }
 
 void GameObject::wander(double xyOffset, long time) {
-	auto i = startThreading(this->gObjThread, false) ;
 	void (GameObject::*wanderThrPtr)(double, long, list<thread *>::iterator) = &GameObject::wander_threaded ;
-	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time, i) ;
+	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time, lastAddedThread) ;
+	startThreading(this->gObjThread, false) ;
 }
 
 void GameObject::wander(double xyOffset, bool * run) {
-	auto i = startThreading(this->gObjThread, false) ;
 	void (GameObject::*wanderThrPtr)(double, bool *, list<thread *>::iterator) = &GameObject::wander_threaded ;
-	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run, i) ;
+	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run, lastAddedThread) ;
+	startThreading(this->gObjThread, false) ;
 }
 
 
@@ -202,36 +205,34 @@ void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::ite
 	BasicTime timer ;
 	timer.startTimer() ;
 	while (timer.checkTimeElapsed() < time) {
-		double randX = randSignFlip((rand() % ((int)(xyOffset)))) ;
-		if (((loc->getX() + randX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + randX) < GameObject::GLOBAL_MIN_X)) {
-			randX = (randX * -1) ;
+		double nX = randSignFlip(xyOffset) ;
+		if (((loc->getX() + nX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + nX) < GameObject::GLOBAL_MIN_X)) {
+			nX = (nX * -1) ;
 		}
 		//repeat for y coord
-		double randY = randSignFlip((rand() % ((int)(xyOffset)))) ;
-		if (((loc->getY() + randY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + randY) < GameObject::GLOBAL_MIN_Y)) {
-			randY = (randY * -1) ;
+		double nY = randSignFlip(xyOffset) ;
+		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
+			nY = (nY * -1) ;
 		}
-		*Debug::debugFile << "randX: " << randX << " rand Y: " << randY << endl ;
-		move(randX, randY) ;
+		*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
+		move(nX, nY) ;
 		usleep(5000) ;
 	}
 }
 
 void GameObject::wander_threaded(double xyOffset, bool * run, list<thread *>::iterator pos) {
-	BasicTime timer ;
-	timer.startTimer() ;
 	while (*run) {
-		double randX = randSignFlip((rand() % ((int)(xyOffset)))) ;
-		if (((loc->getX() + randX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + randX) < GameObject::GLOBAL_MIN_X)) {
-			randX = (randX * -1) ;
+		double nX = randSignFlip(xyOffset) ;
+		if (((loc->getX() + nX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + nX) < GameObject::GLOBAL_MIN_X)) {
+			nX = (nX * -1) ;
 		}
 		//repeat for y coord
-		double randY = randSignFlip((rand() % ((int)(xyOffset)))) ;
-		if (((loc->getY() + randY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + randY) < GameObject::GLOBAL_MIN_Y)) {
-			randY = (randY * -1) ;
+		double nY = randSignFlip(xyOffset) ;
+		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
+			nY = (nY * -1) ;
 		}
-		*Debug::debugFile << "randX: " << randX << " rand Y: " << randY << endl ;
-		move(randX, randY) ;
+		*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
+		move(nX, nY) ;
 		usleep(5000) ;
 	}
 }

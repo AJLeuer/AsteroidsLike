@@ -21,7 +21,7 @@
 #include "Util.h"
 #include "Location.h"
 #include "../GameWorld/GameObject.h"
-#include "../GameWorld/World.h"
+#include "../GameWorld/WorldController.h"
 
 using namespace std ;
 

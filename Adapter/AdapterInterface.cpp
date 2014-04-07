@@ -12,8 +12,6 @@ unsigned AdapterInterface::extentMembers = 0 ;
 
 AdapterInterface * AdapterInterface::current = nullptr ;
 
-vector<GameObject*> ** AdapterInterface::WorldObjects = nullptr ;
-
 AdapterInterface::AdapterInterface(AdapterInterface * current) {
 	if ((extentMembers + 1) > 1) {
 		cout << "Warning: there are currently " << extentMembers <<
@@ -31,8 +29,8 @@ AdapterInterface::~AdapterInterface() {
 }
 
 void AdapterInterface::init() {
-	if (World::isRunning()) {
-		WorldObjects = World::getGameObjects() ;
+	if (WorldController::isRunning()) {
+		//do something?
 	}
 }
 
@@ -42,5 +40,5 @@ void AdapterInterface::show_threaded() {}
 
 void AdapterInterface::operator()() {}
 
-void AdapterInterface::close() { WorldObjects = nullptr ; }
+void AdapterInterface::close() {}
 

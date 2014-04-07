@@ -25,8 +25,8 @@
 using namespace::std ;
 
 /*
- * The base class from which all other classes in the world (thought not the world
- * itself) will inherit. This class will handle the assignment of a unique ID to each GameObject.
+ * The base class from which all other classes in the world
+ *  will inherit. This class will handle the assignment of a unique ID to each GameObject.
  */
 class GameObject : public GameInterface {
 	

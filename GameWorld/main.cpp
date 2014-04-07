@@ -18,7 +18,7 @@
 #include "../Adapter/Adapter.h"
 #include "../Adapter/TestAdapter.h"
 
-#include "World.h"
+#include "WorldController.h"
 #include "GameObject.h"
 #include "NPC.h"
 
@@ -40,9 +40,9 @@ int main(void) {
 	timer.startTimer() ;
 
 	
-	World::init() ;
+	WorldController::init() ;
 	
-	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
+	AdapterInterface * chosenOutputAdapter = new Adapter(1) ;
 	
 	
 	chosenOutputAdapter->init() ;
@@ -51,13 +51,13 @@ int main(void) {
 	
 	bool run = true ;
 	
-	World::foo(10e+6, &run) ;
+	WorldController::foo(1, 30e+6, &run) ;
 	
-	usleep(10e+6) ;
+	usleep(30e+6) ;
 	
 	run = false ;
 	
-	World::close() ;
+	WorldController::close() ;
 	
 	chosenOutputAdapter->close() ;
 	

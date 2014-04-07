@@ -21,18 +21,18 @@
 #include "Util.h"
 #include "Location.h"
 #include "../GameWorld/GameObject.h"
-#include "../GameWorld/World.h"
+#include "../GameWorld/WorldController.h"
 
 using namespace std ;
 
 
 /**
- * Much like World, Adapter is a singleton, unlike World though its class variables and functions run in an instance
- * For the client however, the only difference in calling World's functions and calling Adapter's is that they will 
+ * Much like WorldController, Adapter is a singleton, unlike WorldController though its class variables and functions run in an instance
+ * For the client however, the only difference in calling WorldController's functions and calling Adapter's is that they will 
  * need to create a single object before calling Adapter's methods. However the naming conventions and usage should be
- * very similar to that found in the World class. It will have access to World's data
- * members, but while World is in charge of manipulating objects in the GameWorld and mediating their interactions,
- * Adapter only uses World's data to update the view
+ * very similar to that found in the WorldController class. It will have access to WorldController's data
+ * members, but while WorldController is in charge of manipulating objects in the GameWorld and mediating their interactions,
+ * Adapter only uses WorldController's data to update the view
  */
 class Adapter : public AdapterInterface {
 	
