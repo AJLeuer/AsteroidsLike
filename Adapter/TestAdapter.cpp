@@ -20,22 +20,21 @@ void TestAdapter::show() {
 
 void TestAdapter::show_threaded() {
 	while (World::isRunning()) {
-		bool proceed = false ;
-		GameObject temp ;
+		GameObject * temp  = nullptr ;
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
 			if (World::isRunning()) {
 				World::runningMtx.lock() ;
-				temp = GameObject(*(*WorldObjects)->at(i)) ;
+				if (*WorldObjects != nullptr) {
+					temp = (*WorldObjects)->at(i) ;
+					cout << "Current GameObject: " ;
+					cout << *temp ;
+					Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
+					cout << "Tranlated location: " ;
+					cout << trans.toString() << endl ;
+					cout << temp->getIcon().c_str() << endl << endl ;
+					temp = nullptr ;
+				}
 				World::runningMtx.unlock() ;
-				proceed	= World::isRunning() ;
-			}
-			if (proceed) {
-				cout << "Current GameObject: " ;
-				temp.textDescription(&cout) ;
-				Location trans = AdapterUtil::transLocation(*(temp.getLocation())) ;
-				cout << "Tranlated location: " ;
-				cout << trans.toString() << endl ;
-				cout << temp.getIcon().c_str() << endl << endl ;
 			}
 		}
 	}

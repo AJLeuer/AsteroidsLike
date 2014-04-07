@@ -60,18 +60,29 @@ private:
 	list<thread *>::iterator startThreading(std::thread * gObjThr, bool wait) ;
 	
 	/**
-	 * Handles thread starting duties. Should always be called by the threaded once it has completed
+	 * Handles thread duties. In some case will be called by the threaded function once it has completed,
+	 * though in many cases another class may finish the thread first by calling the public member function
+	 * joinThread() or the static joinThreads(), which ends all GameObject threads
 	 *
 	 * @param pos The position of this thread in the allThreads list
 	 */
-	void endThreading(list<thread *>::iterator pos) ;
+	void endThreading(list<thread *>::iterator pos, bool wait) ;
 	
 	/**
-	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
+	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread.
+	 * This overload runs the given period of time (in microseconds).
 	 *
 	 * @param pos The position of this thread in the allThreads list
 	 */
 	void wander_threaded(double xyOffset, long time, list<thread *>::iterator pos) ;
+	
+	/**
+	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
+	 * This overload takes a pointer to a bool and runs until it is false.
+	 *
+	 * @param pos The position of this thread in the allThreads list
+	 */
+	void wander_threaded(double xyOffset, bool * run, list<thread *>::iterator pos) ;
 	
 	
 protected:
@@ -209,12 +220,20 @@ public:
 	void move(const Location & moveTo) ;
 	
 	/**
-	 * Moves this GameObject randomly around the World (calls move() with an RNG)
+	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
 	 *
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
 	void wander(double xyOffset, long time) ;
+	
+	/**
+	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
+	 *
+	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
+	 * @param run Flag to continue or end execution
+	 */
+	void wander(double xyOffset, bool * run) ;
 	
 	/**
 	 * @return This GameObject's Location
@@ -255,6 +274,11 @@ public:
 	 * the threads, then deletes the threads
 	 */
 	static void joinThreads() ;
+	
+	/**
+	 * Waits for this GameObjects thread (gObjThread) to finish execution, then joins the threads
+	 */
+	void joinThread() ;
 	
 } ;
 

@@ -48,7 +48,7 @@ GameObject::GameObject(GameObject && other) :
 {
 	other.gObjThread = nullptr ;
 	other.loc = nullptr ;
-	cout << "Called GameObject move ctor" << endl ;
+	//cout << "Called GameObject move ctor" << endl ;
 }
 
 GameObject::GameObject(string symbol, Location * loc) :
@@ -92,7 +92,7 @@ GameObject::GameObject(int randSeed) :
 GameObject::~GameObject() {
 	//delete gObjThread ;
 	delete loc ;
-	cout << "called GameObj dtor" << endl ;
+	//cout << "called GameObj dtor" << endl ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
@@ -145,10 +145,27 @@ list<thread *>::iterator GameObject::startThreading(std::thread * gObjThr, bool 
 	return i ;
 }
 
-void GameObject::endThreading(list<thread *>::iterator pos) {
-	GameObject::allThreads->erase(pos) ;
+void GameObject::endThreading(list<thread *>::iterator pos, bool wait) {
+	//GameObject::allThreads->erase(pos) ;
+	if (wait) {
+		gObjThread->join() ;
+	}
 	delete this->gObjThread ;
 	this->gObjThread = nullptr ;
+}
+
+void GameObject::joinThreads() {
+	for (list<thread *>::iterator i = allThreads->begin() ; i != allThreads->end() ; i++) {
+		(*i)->join() ;
+		delete *i ;
+		*i = nullptr ;
+	}
+}
+
+void GameObject::joinThread() {
+	this->gObjThread->join() ;
+	delete gObjThread ;
+	gObjThread = nullptr ;
 }
 
 void GameObject::textDescription(ostream * writeTO) const {
@@ -170,8 +187,16 @@ void GameObject::move(const Location & moveTo) {
 
 void GameObject::wander(double xyOffset, long time) {
 	auto i = startThreading(this->gObjThread, false) ;
-	gObjThread = new std::thread(&GameObject::wander_threaded, std::move(this), xyOffset, time, i) ;
+	void (GameObject::*wanderThrPtr)(double, long, list<thread *>::iterator) = &GameObject::wander_threaded ;
+	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time, i) ;
 }
+
+void GameObject::wander(double xyOffset, bool * run) {
+	auto i = startThreading(this->gObjThread, false) ;
+	void (GameObject::*wanderThrPtr)(double, bool *, list<thread *>::iterator) = &GameObject::wander_threaded ;
+	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run, i) ;
+}
+
 
 void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::iterator pos) {
 	BasicTime timer ;
@@ -190,7 +215,25 @@ void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::ite
 		move(randX, randY) ;
 		usleep(5000) ;
 	}
-	endThreading(pos) ;
+}
+
+void GameObject::wander_threaded(double xyOffset, bool * run, list<thread *>::iterator pos) {
+	BasicTime timer ;
+	timer.startTimer() ;
+	while (*run) {
+		double randX = randSignFlip((rand() % ((int)(xyOffset)))) ;
+		if (((loc->getX() + randX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + randX) < GameObject::GLOBAL_MIN_X)) {
+			randX = (randX * -1) ;
+		}
+		//repeat for y coord
+		double randY = randSignFlip((rand() % ((int)(xyOffset)))) ;
+		if (((loc->getY() + randY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + randY) < GameObject::GLOBAL_MIN_Y)) {
+			randY = (randY * -1) ;
+		}
+		*Debug::debugFile << "randX: " << randX << " rand Y: " << randY << endl ;
+		move(randX, randY) ;
+		usleep(5000) ;
+	}
 }
 
 
@@ -224,11 +267,6 @@ const string GameObject::generateName(unsigned int length) {
 	return s ;
 }
 
-void GameObject::joinThreads() {
-	for (list<thread *>::iterator i = allThreads->begin() ; i != allThreads->end() ; i++) {
-		(*i)->join() ;
-		delete *i ;
-	}
-}
+
 
 

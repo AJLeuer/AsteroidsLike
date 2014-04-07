@@ -34,9 +34,10 @@ void World::init() {
 	
 }
 
-void World::foo() {
+//testing code
+void World::foo(unsigned long time, bool * b) {
 	for (vector<GameObject*>::size_type i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->wander(15, 1e+10) ;
+		gameObjects->at(i)->wander(15, b) ;
 	}
 }
 
@@ -53,11 +54,13 @@ void World::playGameRecorded(std::ostream * writeTo) {
 }
 
 void World::close() {
-	runningMtx.lock() ; //we don't want our Adapter thinking its safe to look at our GameObjects right now
+	runningMtx.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	running = false ;
+	GameObject::joinThreads() ;
 	for (vector<GameObject*>::size_type i = 0 ; i < gameObjects->size() ; i++) {
 		delete gameObjects->at(i) ;
 	}
 	delete gameObjects ;
+	gameObjects = nullptr ;
 	runningMtx.unlock() ;
 }

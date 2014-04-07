@@ -49,9 +49,13 @@ int main(void) {
 
 	chosenOutputAdapter->show() ;
 	
-	World::foo() ;
+	bool run = true ;
 	
-	usleep(1e+7) ;
+	World::foo(10e+6, &run) ;
+	
+	usleep(10e+6) ;
+	
+	run = false ;
 	
 	World::close() ;
 	

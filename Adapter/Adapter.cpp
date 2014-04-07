@@ -28,23 +28,25 @@ void Adapter::show() {
 
 void Adapter::show_threaded() {
 	while (World::isRunning()) {
-		bool proceed = false ;
-		GameObject temp  = 0 ;
+		GameObject * temp  = nullptr ;
 		for (auto i = 0 ; i < (*WorldObjects)->size() ; i++) {
 			if (World::isRunning()) {
 				World::runningMtx.lock() ;
-				temp = GameObject(*(*WorldObjects)->at(i)) ;
+				if (*WorldObjects != nullptr) { //we want to know if the pointer pointed to by WorldObjects (i.e. World::gameObjects) is null
+					temp = (*WorldObjects)->at(i) ;
+					World::runningMtx.unlock() ;
+					*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
+					Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
+					*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
+					mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
+					temp = nullptr ;
+					wnoutrefresh(stdscr) ;
+				}
 				World::runningMtx.unlock() ;
-				proceed = World::isRunning() ;
-			}
-			if (proceed) {
-				*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
-				Location trans = AdapterUtil::transLocation(*(temp.getLocation())) ;
-				*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
-				mvwaddstr(stdscr, trans.getY(), trans.getX(), temp.getIcon().c_str()) ;
 			}
 		}
-		wrefresh(stdscr) ;
+		wclear(stdscr);
+		doupdate() ;
 	}
 }
 

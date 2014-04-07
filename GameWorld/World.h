@@ -77,7 +77,7 @@ public:
 	
 	static void init() ;
 	
-	static void foo() ;
+	static void foo(unsigned long, bool * b) ;
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting
