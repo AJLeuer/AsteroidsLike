@@ -241,91 +241,132 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator nav, const N
 			
 				
 		case ne : {
-			if (((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) &&
-				((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())))
+			bool continue_e = ((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) ;
+			bool continue_n = ((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())) ;
+			
+			if (continue_e || continue_n)
+			//if (((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) && //old code
+			//((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())))
 			{
-				Location<N> n_loc((nav.current)) ;
-				n_loc.y++ ;
-				Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
-				findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
+				if (continue_n) {
+					Location<N> n_loc((nav.current)) ;
+					n_loc.y++ ;
+					Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
+					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
+				}
 				
-				Location<N> e_loc((nav.current)) ;
-				e_loc.x++ ;
-				Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
-				findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
+				if (continue_e) {
+					Location<N> e_loc((nav.current)) ;
+					e_loc.x++ ;
+					Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
+					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
+				}
 				
-				nav.current.x++ ;
-				nav.current.y++ ;
-				//nav.dir = ne ;
-				findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				if (continue_e && continue_n) {
+					nav.current.x++ ;
+					nav.current.y++ ;
+					//nav.dir = ne ;
+					findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				}
 			}
 		}
 			break ;
 			
 				
 		case se : {
-			if (((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) &&
-				((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
+			bool continue_e = ((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) ;
+			bool continue_s = ((nav.y_travelled() < y_lim) && (nav.current.y > 0)) ;
+			
+			if (continue_e || continue_s)
+				//(((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) &&
+			   //((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
 			{
-				Location<N> s_loc((nav.current)) ;
-				s_loc.y-- ;
-				Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
-				findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
+				if (continue_s) {
+					Location<N> s_loc((nav.current)) ;
+					s_loc.y-- ;
+					Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
+					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
+				}
 				
-				Location<N> e_loc((nav.current)) ;
-				e_loc.x++ ;
-				Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
-				findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
-				
-				nav.current.x++ ;
-				nav.current.y-- ;
-				//nav.dir = ne ;
-				findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				if (continue_e) {
+					Location<N> e_loc((nav.current)) ;
+					e_loc.x++ ;
+					Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
+					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
+				}
+			
+				if (continue_e && continue_s) {
+					nav.current.x++ ;
+					nav.current.y-- ;
+					//nav.dir = ne ;
+					findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				}
 			}
 		}
 			break ;
 			
 				
 		case sw : {
-			if (((nav.x_travelled() < x_lim) && (nav.current.x > 0)) &&
-				((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
+			bool continue_w = ((nav.x_travelled() < x_lim) && (nav.current.x > 0)) ;
+			bool continue_s = ((nav.y_travelled() < y_lim) && (nav.current.y > 0)) ;
+			
+			if (continue_w || continue_s)
+				//(((nav.x_travelled() < x_lim) && (nav.current.x > 0)) &&
+				//((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
 			{
-				Location<N> s_loc((nav.current)) ;
-				s_loc.y-- ;
-				Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
-				findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
+				if (continue_s) {
+					Location<N> s_loc((nav.current)) ;
+					s_loc.y-- ;
+					Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
+					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
+				}
 				
-				Location<N> w_loc((nav.current)) ;
-				w_loc.x-- ;
-				Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
-				findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
+				if (continue_w) {
+					Location<N> w_loc((nav.current)) ;
+					w_loc.x-- ;
+					Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
+					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
+				}
 				
-				nav.current.x-- ;
-				nav.current.y-- ;
-				//nav.dir = sw ;
-				findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				if (continue_s && continue_w) {
+					nav.current.x-- ;
+					nav.current.y-- ;
+					//nav.dir = sw ;
+					findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				}
 			}
 		}
 			break ;
 			
 				
 		case nw : {
-			if (((nav.x_travelled() < x_lim) && (nav.current.x > 0)) &&
-				((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())))
+			bool continue_w = ((nav.x_travelled() < x_lim) && (nav.current.x > 0)) ;
+			bool continue_n = ((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())) ;
+			
+	
+			if (continue_w || continue_w)
+				//(((nav.x_travelled() < x_lim) && (nav.current.x > 0)) &&
+			   //((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())))
 			{
-				Location<N> n_loc((nav.current)) ;
-				n_loc.y++ ;
-				Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
-				findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
+				if (continue_n) {
+					Location<N> n_loc((nav.current)) ;
+					n_loc.y++ ;
+					Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
+					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
+				}
 				
-				Location<N> w_loc((nav.current)) ;
-				w_loc.x-- ;
-				Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
-				findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
+				if (continue_w) {
+					Location<N> w_loc((nav.current)) ;
+					w_loc.x-- ;
+					Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
+					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
+				}
 				
-				nav.current.x-- ;
-				nav.current.y++ ;
-				findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				if (continue_w && continue_n) {
+					nav.current.x-- ;
+					nav.current.y++ ;
+					findAllNearby_helper(store, nav, x_lim, y_lim) ;
+				}
 			}
 		}
 			break ;
