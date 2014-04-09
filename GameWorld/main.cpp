@@ -23,7 +23,6 @@
 #include "NPC.h"
 
 
-
 using namespace std ;
 
 int foo() {
@@ -34,7 +33,7 @@ int main(void) {
 
 	srand((unsigned)time(NULL)) ;
 	
-	
+	/*
 	BasicTime timer ;
 	
 	timer.startTimer() ;
@@ -60,7 +59,14 @@ int main(void) {
 	WorldController::close() ;
 	
 	chosenOutputAdapter->close() ;
+	*/
 	
+	bool b = true ;
+	WorldController::init() ;
+	WorldController::foo(5, 9e+110, &b) ;
+	 
+	
+
 	return 0;
 }
 

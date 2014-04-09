@@ -17,25 +17,29 @@ char * GameObject::nameLetters = new char[26] {'a', 'b', 'c', 'd', 'e', 'f', 'g'
 list<thread *> * GameObject::allThreads  = new list<thread *>() ;
 list<thread *>::iterator GameObject::lastAddedThread = allThreads->begin() ;
 
-const double GameObject::GLOBAL_MAX_X = 500 ;
+vector<GameObject*> * GameObject::allGameObjects = nullptr ;
+GameMap<GameObject> * GameObject::map = nullptr ;
+
+const double GameObject::GLOBAL_MAX_X = 600 ;
 const double GameObject::GLOBAL_MIN_X = 0 ;
-const double GameObject::GLOBAL_MAX_Y = 500;
+const double GameObject::GLOBAL_MAX_Y = 400;
 const double GameObject::GLOBAL_MIN_Y = 0 ;
 
 
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Location())
+	loc(new Location<long>())
 {
 	IDs++ ;
+	map->place((*this->loc), this) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
 	gObjThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Location(*(other.loc)))
+	loc(new Location<long>(*(other.loc)))
 {
 	IDs++ ;
 }
@@ -45,28 +49,30 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
 	icon(other.icon),
 	loc(other.loc)
-{
+{	
 	other.gObjThread = nullptr ;
 	other.loc = nullptr ;
-	//cout << "Called GameObject move ctor" << endl ;
+	map->erase(*(other.getLocation())) ;
+	map->place(*(this->loc), this) ;
 }
 
-GameObject::GameObject(string symbol, Location * loc) :
+GameObject::GameObject(string symbol, Location<long> * loc) :
 	ID(IDs),
 	icon(symbol)
 {
 	IDs++ ;
 	if (loc->getX() > GLOBAL_MAX_X) {
-		cout << "Location x coord is not within the specified limits" << endl ;
+		cout << "Location<long> x coord is not within the specified limits" << endl ;
 		throw new exception() ;
 	}
 	else if (loc->getY() > GLOBAL_MAX_Y) {
-		cout << "Location y coord is not within the specified limits" << endl ;
+		cout << "Location<long> y coord is not within the specified limits" << endl ;
 		throw new exception() ;
 	}
 	else {
 		this->loc = loc ;
 	}
+	map->place((*this->loc), this) ;
 }
 
 GameObject::GameObject(int randSeed) :
@@ -75,23 +81,22 @@ GameObject::GameObject(int randSeed) :
 {
 	
 	IDs++ ;
-    if (randSeed == 0) {
-		randSeed = rand() ;
-	}
-	icon = icons->at(randSeed % icons->size()) ;
-	//we mainly needed randSeed to tell us we're using this constructor, we'll only
-	//actually use it once (see two lines above) - we want each value initialized randomly on its own
+	
+	randSeed = rand() ; //we'll get our own
+	
 	long x = (rand() % lrint(GLOBAL_MAX_X)) ;
-	
 	long y = (rand() % lrint(GLOBAL_MAX_Y)) ;
-
+	loc = new Location<long>(x, y, 0) ;
+	map->place((*this->loc), this) ;
 	
-	loc = new Location(x, y, 0) ;
+	icon = icons->at(randSeed % icons->size()) ;
+
 }
 
 GameObject::~GameObject() {
 	//delete gObjThread ;
 	delete loc ;
+	
 	//cout << "called GameObj dtor" << endl ;
 }
 
@@ -101,7 +106,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->ID = IDs ;
 		IDs++ ;
 		this->icon = rhs.icon ;
-        this->loc = new Location(*(rhs.loc)) ;
+        this->loc = new Location<long>(*(rhs.loc)) ;
 	}
 	return *this ;
 }
@@ -124,14 +129,23 @@ void GameObject::operator()() {
 }
 
 void GameObject::operator()(GameObject &sentObject) {
-	//todo
+
+}
+
+bool GameObject::operator==(GameObject &other) {
+	if (this->ID == other.ID) {
+		return true ;
+	}
+	else {
+		return false ;
+	}
 }
 
 void GameObject::notify() {
 	//todo
 }
 
-void GameObject::passMessage(Message * message, GameObject &recipient) {
+void GameObject::passMessage(Message * message, GameObject & recipient) {
 	//todo
 }
 
@@ -175,7 +189,7 @@ void GameObject::textDescription(ostream * writeTO) const {
 	*writeTO << "GameObject ID#: " << this->ID << endl ;
 	*writeTO << "Icon: " << this->icon << endl ;
 	if (loc != nullptr) {
-		*writeTO << "Current location: " << loc->toString() << endl ;
+		*writeTO << "Current Location: " << loc->toString() << endl ;
 	}
 }
 
@@ -183,9 +197,9 @@ void GameObject::move(double xoffset, double yoffset) {
 	this->loc->modify(xoffset, yoffset, 0) ;
 }
 
-void GameObject::move(const Location & moveTo) {
+void GameObject::move(const Location<long> & moveTo) {
 	delete loc ;
-	this->loc = new Location(moveTo) ;
+	this->loc = new Location<long>(moveTo) ;
 }
 
 void GameObject::wander(double xyOffset, long time) {

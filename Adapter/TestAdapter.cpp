@@ -30,7 +30,7 @@ void TestAdapter::show_threaded() {
 				temp = WorldController::gameObjects->at(i) ;
 				cout << "Current GameObject: " ;
 				cout << *temp ;
-				Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
+				Location<long> trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
 				cout << "Tranlated location: " ;
 				cout << trans.toString() << endl ;
 				cout << temp->getIcon().c_str() << endl << endl ;

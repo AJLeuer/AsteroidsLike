@@ -20,6 +20,7 @@
 #include "../Util/BasicTime.h"
 #include "../Util/Util.h"
 #include "Location.h"
+#include "GameMap.hpp"
 #include "GameInterface.h"
 
 using namespace::std ;
@@ -90,7 +91,7 @@ protected:
 
 	unsigned ID ;
 	string icon ;
-    Location * loc ;
+    Location<long> * loc ;
 	
 	/**
 	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
@@ -101,6 +102,18 @@ protected:
 	
 	
 public:
+	
+	/**
+	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
+	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
+	 */
+	static vector<GameObject*> * allGameObjects ;
+	
+	/**
+	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
+	 * corresponds to the x and y coordinate of its location. Is synced with WorldController's map.
+	 */
+	static GameMap<GameObject> * map ;
 	
 	static const double GLOBAL_MAX_X ;
 	static const double GLOBAL_MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
@@ -131,9 +144,9 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param symbol The icon to be used by this GameObject
-     * @param loc This GameObject's location
+     * @param loc This GameObject's Location<long>
 	 */
-	GameObject(string symbol, Location * loc) ;
+	GameObject(string symbol, Location<long> * loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -182,6 +195,14 @@ public:
 	 */
 	virtual void operator()(GameObject & other) ;
 	
+	/**
+	 * Overloads the overload of operator(). For the most part the details of
+	 * this function will be handled by inheriting classes.
+	 *
+	 * @param sentObject A reference to another GameObject
+	 */
+	bool operator==(GameObject & other) ;
+	
 	
 	/**
 	 * Every sub-type of GameObject should implement this to perform some
@@ -205,19 +226,19 @@ public:
 	virtual void textDescription(ostream * writeTO) const ;
 
 	/**
-	 * Moves this GameObject by changing its Location x and y coordinates by the given offsets
+	 * Moves this GameObject by changing its Location<long> x and y coordinates by the given offsets
 	 *
-	 * @param xoffset The change in this GameObject's Location.x
-	 * @param yoffset The change in this GameObject's Location.y
+	 * @param xoffset The change in this GameObject's Location<long>.x
+	 * @param yoffset The change in this GameObject's Location<long>.y
 	 */
 	void move(double xoffset, double yoffset) ;
 	
 	/**
-	 * Moves this GameObject to the Location moveTo
+	 * Moves this GameObject to the Location<long> moveTo
 	 *
-	 * @param moveTO The Location where this GameObject is to move
+	 * @param moveTO The Location<long> where this GameObject is to move
 	 */
-	void move(const Location & moveTo) ;
+	void move(const Location<long> & moveTo) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
@@ -236,9 +257,9 @@ public:
 	void wander(double xyOffset, bool * run) ;
 	
 	/**
-	 * @return This GameObject's Location
+	 * @return This GameObject's Location<long>
 	 */
-	Location * getLocation() {return this->loc ; }
+	Location<long> * getLocation() {return this->loc ; }
 	
 	/**
 	 * Sets this GameObject's icon to the icon argument

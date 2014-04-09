@@ -38,7 +38,7 @@ void Adapter::show_threaded() {
 				temp = WorldController::gameObjects->at(i) ;
 				WorldController::runningMtx.unlock() ;
 				*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
-				Location trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
+				Location<long> trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
 				*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
 				mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
 				temp = nullptr ;

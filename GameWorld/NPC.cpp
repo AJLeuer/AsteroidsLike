@@ -27,7 +27,7 @@ NPC::NPC(NPC && other) :
 {
 }
 
-NPC::NPC(string symbol, Location * loc, string name, DoA alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
+NPC::NPC(string symbol, Location<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
 	Character(symbol, loc, name, alive, state, health, damage),
 	reaction(reaction)
 {

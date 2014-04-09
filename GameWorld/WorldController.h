@@ -15,10 +15,10 @@
 #include <thread>
 
 #include "../Util/BasicTime.h"
-
 #include "Util.h"
 #include "AddlEnums.h"
-#include "Location.h"
+#include "../Util/Location.h"
+#include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"
 #include "Ability.h"
@@ -64,6 +64,12 @@ public:
 	 * A container holding most objects in the game world
 	 */
 	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
+	
+	/**
+	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
+	 * corresponds to the x and y coordinate of its location. Is synced with GameObjects's map.
+	 */
+	static GameMap<GameObject> * map ;
 	
 	static mutex runningMtx ;
 	
