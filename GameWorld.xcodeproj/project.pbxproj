@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6645060B18F1A67B00B912C0 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6645060918F1A67B00B912C0 /* Debug.cpp */; };
+		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
 		66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8118DB0FF100DF0A26 /* libboost_system.dylib */; };
 		66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */; };
 		6651BAAC18DA73EC00F5DCE7 /* AdapterInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6651BAAA18DA73EC00F5DCE7 /* AdapterInterface.cpp */; };
@@ -42,8 +42,8 @@
 
 /* Begin PBXFileReference section */
 		662C608E18D3073B00BD3DED /* AddlEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlEnums.h; sourceTree = "<group>"; };
-		6645060918F1A67B00B912C0 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
-		6645060A18F1A67B00B912C0 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		662FA07718F609B2009E87BE /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
 		6651BAAA18DA73EC00F5DCE7 /* AdapterInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterInterface.cpp; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		6678790018DAE21200618712 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				662FA07718F609B2009E87BE /* Debug.h */,
+				662FA07818F609B2009E87BE /* Debug.cpp */,
 				667878FF18DACE9000618712 /* Util.h */,
 				665DBB5C18F53F7D006F2026 /* Util.cpp */,
 				665DBB5718F4F44F006F2026 /* Location.h */,
@@ -151,8 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				66E97F3318CF009E002EFA00 /* GameWorld.1 */,
-				6645060A18F1A67B00B912C0 /* Debug.h */,
-				6645060918F1A67B00B912C0 /* Debug.cpp */,
 				662C608E18D3073B00BD3DED /* AddlEnums.h */,
 				66934EA018F3699100BE3714 /* GameMap.hpp */,
 				66E97F5618CF2A3D002EFA00 /* GameData.h */,
@@ -227,7 +227,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6681A1D118D95FF000F5A2E2 /* Adapter.cpp in Sources */,
-				6645060B18F1A67B00B912C0 /* Debug.cpp in Sources */,
 				6651BAAF18DA9A4400F5DCE7 /* TestAdapter.cpp in Sources */,
 				6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */,
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
@@ -236,6 +235,7 @@
 				6651BAAC18DA73EC00F5DCE7 /* AdapterInterface.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
+				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
 				665DBB5A18F4F4F2006F2026 /* Navigator.cpp in Sources */,
