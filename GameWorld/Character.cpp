@@ -41,12 +41,12 @@ Character::Character(string symbol, Location<long> * loc, string name, DoA alive
 
 Character::Character(int randSeed) :
 	GameObject(randSeed),
-	alive((DoA)(rand() % 2)),
-	state((CharacterState) (rand() % 4)),
-	health(rand() % 500),
-	damage(rand() % 50)
+	alive((DoA)(fastRand<unsigned long>::nextValue() % 2)),
+	state((CharacterState) (fastRand<unsigned long>::nextValue() % 4)),
+	health(fastRand<unsigned long>::nextValue() % 500),
+	damage(fastRand<unsigned long>::nextValue() % 50)
 {
-	name = GameObject::generateName((rand() % 12) + 5) ;
+	name = GameObject::generateName((fastRand<unsigned long>::nextValue() % 12) + 5) ;
 }
 
 Character::~Character() {

@@ -12,9 +12,21 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <random>
 #include <cmath>
 
 using namespace std ;
+
+template<typename T>
+class fastRand {
+	
+private:
+	static std::uniform_int_distribution<T> dist ;
+	static std::random_device rnd ;
+	
+public:
+	static T nextValue() ;
+} ;
 
 template<typename T>
 T randSignFlip(T n) ;
@@ -36,7 +48,7 @@ T * findSmallest_helper(unsigned long currSmallest, vector<T*> cont) ;
 
 template<typename T>
 T randSignFlip(T n) {
-	bool pos = rand() % 2 ;
+	bool pos = fastRand<unsigned long>::nextValue() % 2 ;
 	if (pos) {
 		return n ;
 	}
@@ -55,7 +67,7 @@ T setUnsigned(T n) {
 
 template <typename T>
 T chooseAtRand(T n1, T n2) {
-	bool first = rand() % 2 ;
+	bool first = fastRand<unsigned long>::nextValue() % 2 ;
 	if (first) {
 		return n1 ;
 	}
@@ -95,5 +107,22 @@ T * findSmallest_helper(unsigned long currSmallest, vector<T*> cont) {
 	}
 	return cont.at(currSmallest) ;
 }
+
+
+
+template<typename T>
+uniform_int_distribution<T> fastRand<T>::dist = uniform_int_distribution<T>(0, ULLONG_MAX) ;
+
+template<typename T>
+random_device fastRand<T>::rnd("/dev/urandom") ;
+
+template<typename T>
+T fastRand<T>::nextValue() {
+	T n = rnd.operator()() ;
+	return n ;
+}
+
+
+
 
 #endif

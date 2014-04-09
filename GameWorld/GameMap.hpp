@@ -88,7 +88,18 @@ public:
 	template<typename N>
 	vector<T*> * findNearby(const Location<N> & start, const N x_lim, const N y_lim) ;
 	
-	void drawSimpleGraphic(ostream & writeTo, char & icon) ;
+	/*
+	 * Draws a grid representing every object on the map. Draws the specified icon at every
+	 * index an object is found, though if the object implements getIcon() returning a std::string, and
+	 * the parameter icon is left as the default (i.e. ' '), drawSimpleGraphic will call getIcon
+	 * and print that at each index. It is recommended that icon consist of only a single char (though
+	 * stored inside a string) in order to maintain proportions.
+	 *
+	 * @param whiteSpace The character to be printed in spaces where there are no objects
+	 * @param writeTo The outputstream (std::ostream) that will receive output
+	 * @param icon The string representing whatever is stored on this GameMap
+	 */
+	void drawSimpleGraphic(char whiteSpace = ' ', ostream & writeTo = cout, string icon = " ") ;
 } ;
 
 template<class T>
@@ -365,7 +376,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator nav, const N
 				Location<N> sw_loc = Location<N>(nav.start) ;
 				sw_loc.x-- ;
 				sw_loc.y-- ;
-				Navigator sw_nav(se, nav.start, sw_loc) ;
+				Navigator sw_nav(sw, nav.start, sw_loc) ;
 				findAllNearby_helper(store, sw_nav, x_lim, y_lim) ;
 			}
 			if ((nav.current.x > 0) && ((nav.current.y < getYBound()))) {
@@ -394,11 +405,11 @@ bool GameMap<T>::boundsCheck(Location<N> & current) {
 }
 
 template<class T>
-void GameMap<T>::drawSimpleGraphic(ostream & writeTo, char & icon) {
+void GameMap<T>::drawSimpleGraphic(char whiteSpace, ostream & writeTo, string icon) {
 	for (auto i = 0 ; i < map->at(0)->size() ; i++) {
 		for (auto j = 0 ; j < map->size() ; j++) {
 			if (map->at(j)->at(i) != nullptr) {
-				writeTo << icon ;
+				writeTo << this->map->at(j)->at(i)->getIcon() ;
 			}
 			else {
 				writeTo << ' ' ;

@@ -25,7 +25,7 @@
 
 using namespace::std ;
 
-/*
+/**
  * The base class from which all other classes in the world
  *  will inherit. This class will handle the assignment of a unique ID to each GameObject.
  */
@@ -231,7 +231,7 @@ public:
 	 * @param xoffset The change in this GameObject's Location<long>.x
 	 * @param yoffset The change in this GameObject's Location<long>.y
 	 */
-	void move(double xoffset, double yoffset) ;
+	void move(long xoffset, long yoffset) ;
 	
 	/**
 	 * Moves this GameObject to the Location<long> moveTo

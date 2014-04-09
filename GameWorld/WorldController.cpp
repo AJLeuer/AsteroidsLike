@@ -38,27 +38,51 @@ void WorldController::init() {
 	
 	 //testing code
 	for (vector<GameObject*>::size_type i = 0 ; i < 75 ; i++) {
-		gameObjects->push_back(new NPC(rand())) ;
+		//gameObjects->push_back(new NPC(1)) ;
 	}
 	
 }
 
 //testing code
 void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
+	/*
 	for (vector<GameObject*>::size_type i = 0 ; i < gameObjects->size() ; i++) {
-		//gameObjects->at(i)->wander(xyOffs, b) ;
+		gameObjects->at(i)->wander(xyOffs, b) ;
 	}
-	GameObject * go_temp = (gameObjects->at(rand() % gameObjects->size())) ;
-	Location<long> loc_temp = *(go_temp->getLocation()) ;
-	Location<long> loc = Location<long>(2, 3, 0) ;
-	Location<long> loc2 = Location<long>(2, 3, 0) ;
-	GameObject::map->move(loc, loc2) ;
-	const Location<long> locs = Location<long>(75, 75, 0) ;
+	*/
+	//temp code
+	GameObject searcher(0) ;
+	searcher.move(Location<long>(65, 29, 0)) ;
+	
+	GameObject test1(0) ;
+	test1.move(Location<long>(69, 27, 0)) ;
+	
+	GameObject test2(0) ;
+	test2.move(Location<long>(55, 1, 0)) ;
+	
+	GameObject test3(0) ;
+	test3.move(Location<long>(55, 1, 0)) ;
+	
+	GameObject test4(0) ;
+	test4.move(Location<long>(75, 21, 0)) ;
+	
+	GameObject notFound(0) ;
+	notFound.move(Location<long>(62, 23, 0)) ;
+	
+	GameObject out_of_search_range(0) ; //shoudln't be found
+	out_of_search_range.move(Location<long>(79, 10, 0)) ;
+	
+	
+	
+	GameObject::map->drawSimpleGraphic(' ', *Debug::debugFile, " ") ;
+	
+	
 	vector<GameObject*> * found ;
-	found = GameObject::map->findNearby<long>(locs, 50, 50) ;
+	found = GameObject::map->findNearby<long>(*searcher.getLocation(), 15, 15) ;
 	
 	
-	cout << *(found->at(10)) ;
+	
+	bool bo = true ;//temp debug
 }
 
 void WorldController::playGameInRealTime() {

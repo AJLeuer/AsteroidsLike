@@ -20,9 +20,9 @@ list<thread *>::iterator GameObject::lastAddedThread = allThreads->begin() ;
 vector<GameObject*> * GameObject::allGameObjects = nullptr ;
 GameMap<GameObject> * GameObject::map = nullptr ;
 
-const double GameObject::GLOBAL_MAX_X = 600 ;
+const double GameObject::GLOBAL_MAX_X = 150 ;
 const double GameObject::GLOBAL_MIN_X = 0 ;
-const double GameObject::GLOBAL_MAX_Y = 400;
+const double GameObject::GLOBAL_MAX_Y = 30 ;
 const double GameObject::GLOBAL_MIN_Y = 0 ;
 
 
@@ -82,10 +82,10 @@ GameObject::GameObject(int randSeed) :
 	
 	IDs++ ;
 	
-	randSeed = rand() ; //we'll get our own
+	randSeed = fastRand<unsigned long>::nextValue() ; //we'll get our own
 	
-	long x = (rand() % lrint(GLOBAL_MAX_X)) ;
-	long y = (rand() % lrint(GLOBAL_MAX_Y)) ;
+	long x = (fastRand<unsigned long>::nextValue() % lrint(GLOBAL_MAX_X)) ;
+	long y = (fastRand<unsigned long>::nextValue() % lrint(GLOBAL_MAX_Y)) ;
 	loc = new Location<long>(x, y, 0) ;
 	map->place((*this->loc), this) ;
 	
@@ -117,6 +117,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->ID = rhs.ID ;
 		this->icon = rhs.icon ;
         this->loc = rhs.loc ;
+		map->erase(*(rhs.getLocation())) ;
+		map->place(*(this->loc), this) ;
 		rhs.gObjThread = nullptr ;
 		rhs.loc = nullptr ;
 	}
@@ -193,13 +195,42 @@ void GameObject::textDescription(ostream * writeTO) const {
 	}
 }
 
-void GameObject::move(double xoffset, double yoffset) {
+void GameObject::move(long xoffset, long yoffset) {
+	if ((loc->x + xoffset) >= GLOBAL_MAX_X) {
+		xoffset -= ((loc->x + xoffset) - GLOBAL_MAX_X + 1) ;
+	}
+	else if ((loc->x + xoffset) < 0) {
+		xoffset -= (loc->x + xoffset) ;
+	}
+	if ((loc->y + yoffset) >= GLOBAL_MAX_Y) {
+		yoffset -= ((loc->y + yoffset) - GLOBAL_MAX_Y + 1) ;
+	}
+	else if ((loc->y + yoffset) < 0) {
+		yoffset -= (loc->y + yoffset) ;
+	}
+	map->erase(*(this->getLocation())) ;
 	this->loc->modify(xoffset, yoffset, 0) ;
+	map->place(*(this->loc), this) ;
 }
 
 void GameObject::move(const Location<long> & moveTo) {
+	Location<long> mt = Location<long>(moveTo) ;
+	if (mt.x >= GLOBAL_MAX_X) {
+		mt.x = GLOBAL_MAX_X - 1 ;
+	}
+	else if (mt.x < 0) {
+		mt.x = 0 ;
+	}
+	if (mt.y >= GLOBAL_MAX_Y) {
+		mt.y = GLOBAL_MAX_Y - 1 ;
+	}
+	else if (mt.y < 0) {
+		mt.y = 0 ;
+	}
+	map->erase(*(this->getLocation())) ;
 	delete loc ;
-	this->loc = new Location<long>(moveTo) ;
+	this->loc = new Location<long>(mt) ;
+	map->place(*(this->loc), this) ;
 }
 
 void GameObject::wander(double xyOffset, long time) {
@@ -228,7 +259,7 @@ void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::ite
 		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
 			nY = (nY * -1) ;
 		}
-		*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
+		//*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
 		move(nX, nY) ;
 		usleep(5000) ;
 	}
@@ -245,7 +276,7 @@ void GameObject::wander_threaded(double xyOffset, bool * run, list<thread *>::it
 		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
 			nY = (nY * -1) ;
 		}
-		*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
+		//*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
 		move(nX, nY) ;
 		usleep(5000) ;
 	}
@@ -275,9 +306,9 @@ string GameObject::toString() const {
 
 const string GameObject::generateName(unsigned int length) {
 	string s = "" ;
-	s += std::toupper(GameObject::nameLetters[(rand() % 27)]) ;
+	s += std::toupper(GameObject::nameLetters[(fastRand<unsigned long>::nextValue() % 27)]) ;
 	for (unsigned i = 0 ; i < length ; i++) {
-		s += nameLetters[(rand() % 27)] ;
+		s += nameLetters[(fastRand<unsigned long>::nextValue() % 27)] ;
 	}
 	return s ;
 }

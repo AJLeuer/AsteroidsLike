@@ -14,7 +14,10 @@
 
 #include "GameObject.h"
 
-
+/**
+ * A class which serves as the basic template for just about any person in the game world, whether player 
+ * or npc.
+ */
 class Character : public GameObject {
 
 protected:

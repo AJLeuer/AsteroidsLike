@@ -13,6 +13,7 @@
 #include <iostream>
 #include <thread>
 
+#include "../Util/Util.h"
 #include "../Util/BasicTime.h"
 
 #include "../Adapter/Adapter.h"
@@ -61,9 +62,11 @@ int main(void) {
 	chosenOutputAdapter->close() ;
 	*/
 	
-	bool b = true ;
+	bool bl = true ;
+	
+	
 	WorldController::init() ;
-	WorldController::foo(5, 9e+110, &b) ;
+	WorldController::foo(5, 9e+110, & bl) ;
 	 
 	
 
