@@ -69,7 +69,7 @@ int main(void) {
 	WorldController::foo(5, 9e+110, & bl) ;
 	 
 	
-
+	cout << Debug::debugCounter << endl ;
 	return 0;
 }
 

@@ -10,7 +10,7 @@
 
 Navigator::Navigator(int i) {}
 
-Navigator::Navigator(Direction d, const Location<long> & s, Location<long> c) :
+Navigator::Navigator(Direction d, const Location<long> * s, Location<long> c) :
 	dir{d}, start{s}, current{c} {}
 
 Navigator::Navigator(const Navigator & other) :

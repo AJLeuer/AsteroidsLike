@@ -11,3 +11,5 @@
 using namespace std ;
 
 ofstream * Debug::debugFile { new ofstream("debug.txt") } ;
+
+unsigned Debug::debugCounter = 0 ;

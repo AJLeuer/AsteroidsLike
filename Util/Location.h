@@ -87,6 +87,33 @@ public:
         return *this ;
     }
 	
+	bool operator==(const Location & rhs) {
+		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+	
+	bool operator==(Location & rhs) {
+		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+	
+	bool operator!=(const Location & rhs) {
+		return !(this->operator==(rhs)) ;
+	}
+	
+	bool operator!=(Location & rhs) {
+		return !(this->operator==(rhs)) ;
+	}
+	
+	
 	Location operator+(const Location & rhs) {
 		N x = this->x + rhs.x ;
 		N y = this->y + rhs.y ;
@@ -102,6 +129,7 @@ public:
 		Location temp(x, y, z) ;
 		return temp ;
 	}
+	
 	
 	N getX() const { return this->x ; }
 	

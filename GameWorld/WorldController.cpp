@@ -52,7 +52,7 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	*/
 	//temp code
 	GameObject searcher(0) ;
-	searcher.move(Location<long>(65, 29, 0)) ;
+	searcher.move(Location<long>(35, 15, 0)) ;
 	
 	GameObject test1(0) ;
 	test1.move(Location<long>(69, 27, 0)) ;
@@ -74,12 +74,11 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	
 	
 	
-	GameObject::map->drawSimpleGraphic(' ', *Debug::debugFile, " ") ;
+	//GameObject::map->drawSimpleGraphic(*Debug::debugFile, ' ') ;  <-- uncomment this to enable logging
 	
 	
 	vector<GameObject*> * found ;
-	found = GameObject::map->findNearby<long>(*searcher.getLocation(), 15, 15) ;
-	
+	found = GameObject::map->findNearby<long>(searcher.getLocation(), 15, 15) ;
 	
 	
 	bool bo = true ;//temp debug

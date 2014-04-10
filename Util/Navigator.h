@@ -20,29 +20,28 @@ public:
 	
 	Direction dir ;
 	
-	Location<long> start ;
+	const Location<long> * start ;
 	Location<long> current ;
 	
 	long x_travelled() {
-		Location<long> temp = current - start ;
+		Location<long> temp = current - (*start) ;
 		long x_trav = setUnsigned(temp.x) ;
 		return x_trav ;
 	}
 	
 	long y_travelled() {
-		Location<long> temp = current - start ;
+		Location<long> temp = current - (*start) ;
 		long y_trav = setUnsigned(temp.y) ;
 		return y_trav ;
 	}
 	
 	Navigator(int) ;
 	
-	Navigator(Direction d, const Location<long> & s, Location<long> c) ;
+	Navigator(Direction d, const Location<long> * s, Location<long> c) ;
 	
 	Navigator(const Navigator & other) ;
 	
 	Navigator & operator=(const Navigator & other) ;
-	
 	
 } ;
 

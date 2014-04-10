@@ -14,10 +14,11 @@
 #include <vector>
 #include <thread>
 
-#include "../Util/BasicTime.h"
-#include "Util.h"
-#include "AddlEnums.h"
+#include "../Util/Debug.h"
+#include "../Util/Util.h"
 #include "../Util/Location.h"
+#include "../Util/BasicTime.h"
+#include "AddlEnums.h"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"
