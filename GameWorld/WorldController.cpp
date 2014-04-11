@@ -52,34 +52,29 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	*/
 	//temp code
 	GameObject searcher(0) ;
-	searcher.move(Location<long>(35, 15, 0)) ;
+	searcher.move(Location<long>(5, 5, 0)) ;
 	
 	GameObject test1(0) ;
-	test1.move(Location<long>(69, 27, 0)) ;
+	test1.move(Location<long>(5, 10, 0)) ;
 	
 	GameObject test2(0) ;
-	test2.move(Location<long>(55, 1, 0)) ;
+	test2.move(Location<long>(10, 5, 0)) ;
 	
 	GameObject test3(0) ;
-	test3.move(Location<long>(55, 1, 0)) ;
+	test3.move(Location<long>(7, 7, 0)) ;
 	
 	GameObject test4(0) ;
-	test4.move(Location<long>(75, 21, 0)) ;
+	test4.move(Location<long>(75, 75, 0)) ;
 	
 	GameObject notFound(0) ;
-	notFound.move(Location<long>(62, 23, 0)) ;
+	notFound.move(Location<long>(62, 65, 0)) ;
 	
-	GameObject out_of_search_range(0) ; //shoudln't be found
-	out_of_search_range.move(Location<long>(79, 10, 0)) ;
-	
-	
-	
-	//GameObject::map->drawSimpleGraphic(*Debug::debugFile, ' ') ;  <-- uncomment this to enable logging
-	
+
 	
 	vector<GameObject*> * found ;
-	found = GameObject::map->findNearby<long>(searcher.getLocation(), 15, 15) ;
+	found = GameObject::map->findNearby<long>(searcher.getLocation(), 5, 5) ;
 	
+	Debug::draw2DRepresentation(*(Debug::debugFile), GameObject::map->getMapVect(), ' ') ;
 	
 	bool bo = true ;//temp debug
 }

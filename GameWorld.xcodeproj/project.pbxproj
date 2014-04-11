@@ -106,8 +106,8 @@
 				665DBB5C18F53F7D006F2026 /* Util.cpp */,
 				665DBB5718F4F44F006F2026 /* Location.h */,
 				6678790118DAE25E00618712 /* BasicTime.h */,
-				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
+				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
 			);
 			path = Util;
 			sourceTree = "<group>";

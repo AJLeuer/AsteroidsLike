@@ -49,10 +49,11 @@ void Debug::draw2DRepresentation(ostream & writeTo, Container * container, char 
 	for (auto i = 0 ; i < container->at(0)->size() ; i++) {
 		for (auto j = 0 ; j < container->size() ; j++) {
 			if (container->at(j)->at(i) != nullptr) {
-				writeTo << *(container->at(j)->at(i))/*->getIcon()*/ ; //remove *(     )
+				auto c = container->at(j)->at(i)->getIcon() ;
+				writeTo << c ; /*->getIcon()*/  //remove *(     )
 			}
 			else {
-				writeTo << ' ' ;
+				writeTo << whitespace ;
 			}
 		}
 		writeTo << endl ;

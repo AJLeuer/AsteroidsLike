@@ -41,7 +41,13 @@ public:
 	
 	Navigator(const Navigator & other) ;
 	
+	Navigator(Navigator && other) ;
+	
+	~Navigator() ;
+	
 	Navigator & operator=(const Navigator & other) ;
+	
+	Navigator & operator=(Navigator && rhs) ;
 	
 } ;
 

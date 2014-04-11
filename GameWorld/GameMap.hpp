@@ -28,7 +28,7 @@ private:
 	vector< vector<T*>*> * intern_map ;
 	
 	template<typename N>
-	void findAllNearby_helper(vector<T*> * store, Navigator nav, const N x_lim, const N y_lim) ;
+	void findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
 	
 	template<typename N>
 	bool boundsCheck(Location<N> & current) ;
@@ -194,41 +194,15 @@ vector<T*> * GameMap<T>::findNearby(const Location<N> * start, N x_lim, N y_lim)
 
 template<class T>
 template<typename N>
-void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator nav, const N x_lim, const N y_lim) {
+void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
 	
-	
-	/* debug */
-	if (Debug::debugCounter == 0) {
-		string c = "#" ;
-		gmDebug->place(nav.current, &c) ;
-	}
-	/* end debug */
+	//Debug::debugCounter++ ;
 	
 	if ((at(nav.current) != nullptr) && (nav.current != *(nav.start))) {
 		searchSuccess = true ;
 		store->push_back(at(nav.current)) ;
-	
-		/* debug */
-		if (Debug::debugCounter != 0) {
-			string c = "!" ;
-			gmDebug->place(nav.current, &c) ;
-			Debug::debugCounter++ ;
-		}
-		/* end debug */
 	}
-	
-	/* debug */
-	else { // if nullptr here...
-		string c = "*" ;
-		gmDebug->place(nav.current, &c) ;
-		Debug::debugCounter++ ;
-	}
-	if (Debug::debugCounter >= 900) {
-		
-		Debug::draw2DRepresentation(*Debug::debugFile, gmDebug->getMapVect(), ' ') ;
-	}
-	/* end debug */
-	
+	cout << Debug::debugCounter++ << endl ;
 	switch (nav.dir) {
 		case north : {
 			if ((nav.y_travelled() < y_lim) && (nav.current.y < getYBound())) {

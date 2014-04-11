@@ -59,6 +59,11 @@ public:
      * Copy constructor for Location
      */
     Location(const Location & other) : x{other.x}, y{other.y}, z{other.z} {}
+	
+	/**
+     * Move constructor for Location
+     */
+    Location(Location && other) : x{other.x}, y{other.y}, z{other.z} {}
     
     /**
      * Creates a location with coordinates initialized to the
@@ -76,9 +81,21 @@ public:
     ~Location() {}
     
     /**
-     * Assigment operator overload
+     * Assigment operator overload (copy)
      */
     Location & operator=(const Location & rhs) {
+        if (this != &rhs) {
+            this->x = rhs.x ;
+            this->y = rhs.y ;
+            this->z = rhs.z ;
+        }
+        return *this ;
+    }
+	
+	/**
+     * Assigment operator overload (move)
+     */
+    Location & operator=(Location && rhs) {
         if (this != &rhs) {
             this->x = rhs.x ;
             this->y = rhs.y ;
