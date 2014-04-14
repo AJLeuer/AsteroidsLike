@@ -36,10 +36,21 @@ void WorldController::init() {
 	//we also assigned all the GLOBAL_MAX constants in both GameObject and
 	//WorldController so that they sync together (see above)
 	
-	 //testing code
+	/* uncomment this! *//*
 	for (vector<GameObject*>::size_type i = 0 ; i < 75 ; i++) {
-		//gameObjects->push_back(new NPC(1)) ;
+		gameObjects->push_back(new NPC(1)) ; //<-uncomment
 	}
+	*//* uncomment this! */
+	
+	/* debug code */
+	GameObject * searchTest0 = new GameObject("s0", new Location<long>(100, 19, 0)) ;
+	GameObject * searchTest1 = new GameObject("s1", new Location<long>(97, 14, 0)) ; //was found x2 the first time
+	GameObject * notFound = new GameObject("nf", new Location<long>(94, 18, 0)) ;
+	
+	gameObjects->push_back(searchTest0) ;
+	gameObjects->push_back(searchTest1) ;
+	gameObjects->push_back(notFound) ;
+	/* end debug */
 	
 }
 
@@ -50,32 +61,16 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 		gameObjects->at(i)->wander(xyOffs, b) ;
 	}
 	*/
-	//temp code
-	GameObject searcher(0) ;
-	searcher.move(Location<long>(5, 5, 0)) ;
-	
-	GameObject test1(0) ;
-	test1.move(Location<long>(5, 10, 0)) ;
-	
-	GameObject test2(0) ;
-	test2.move(Location<long>(10, 5, 0)) ;
-	
-	GameObject test3(0) ;
-	test3.move(Location<long>(7, 7, 0)) ;
-	
-	GameObject test4(0) ;
-	test4.move(Location<long>(75, 75, 0)) ;
-	
-	GameObject notFound(0) ;
-	notFound.move(Location<long>(62, 65, 0)) ;
-	
-
 	
 	vector<GameObject*> * found ;
-	found = GameObject::map->findNearby<long>(searcher.getLocation(), 5, 5) ;
+	
+	const Location<long> * loc = new Location<long>(95, 15, 0) ;
+	
+	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
+	
 	
 	Debug::draw2DRepresentation(*(Debug::debugFile), GameObject::map->getMapVect(), ' ') ;
-	
+
 	bool bo = true ;//temp debug
 }
 

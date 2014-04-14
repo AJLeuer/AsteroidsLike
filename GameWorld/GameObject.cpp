@@ -228,7 +228,7 @@ void GameObject::move(const Location<long> & moveTo) {
 		mt.y = 0 ;
 	}
 	map->erase(*(this->getLocation())) ;
-	delete loc ;
+	delete this->loc ;
 	this->loc = new Location<long>(mt) ;
 	map->place(*(this->loc), this) ;
 }
