@@ -10,16 +10,19 @@
 #define __GameWorld__Debug__
 
 #include <iostream>
+#include <ostream>
 #include <fstream>
 
-#include "Location.h"
+#include "Location.hpp"
 
 using namespace std ;
 
 class Debug {
 	
 public:
-	static ofstream * debugFile ;
+	static ostream * debugOutput ;
+	
+	static void init(bool stdoutput) ;
 	
 	/*
 	 * Draws a grid representing every object in the container. Draws an icon at every

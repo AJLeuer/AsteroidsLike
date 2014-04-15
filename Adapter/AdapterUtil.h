@@ -11,7 +11,8 @@
 
 #include <iostream>
 
-#include "../Util/Location.h"
+#include "../Util/Location.hpp"
+#include "../GameWorld/GameData.h"
 #include "../GameWorld/GameObject.h"
 
 
@@ -31,8 +32,8 @@ public:
 	 */
 	template<typename T>
 	static Location<T> transLocation(const Location<T> & inGameWorld) {
-		T worldXSize = GameObject::GLOBAL_MAX_X /*- GameObject::GLOBAL_MIN_X*/ ;
-		T worldYSize = GameObject::GLOBAL_MAX_Y /*- GameObject::GLOBAL_MIN_Y*/ ;
+		auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_MIN_X*/ ;
+		auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_MIN_Y*/ ;
 		
 		T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_MAX_X)*/ ;
 		T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_MAX_Y)*/ ;
@@ -40,8 +41,8 @@ public:
 		unsigned tw = termWidth() ;
 		unsigned th = termHeight() ;
 		
-		int x = (tw * tempX)/worldXSize ;
-		int y = (th * tempY)/worldYSize ;
+		T x = (tw * tempX)/worldXSize ;
+		T y = (th * tempY)/worldYSize ;
 		
 		return Location<T>(x, y, 0) ;
 	}

@@ -62,14 +62,19 @@ int main(void) {
 	chosenOutputAdapter->close() ;
 	*/
 	
-	bool bl = true ;
+	Character pawn = Character(1) ;
 	
+	Character c2(std::move(pawn)) ;
 	
-	WorldController::init() ;
-	WorldController::foo(5, 9e+110, & bl) ;
+	Character c3 = Character(c2) ;
+	
+	Character c4 = Character(std::move(c3)) ;
+	
+	Character c5 = std::move(c4) ;
+	
 	 
 	
-	cout << Debug::debugCounter << endl ;
+	*(Debug::debugOutput) << Debug::debugCounter << endl ;
 	return 0;
 }
 

@@ -67,7 +67,7 @@ void NPC::operator()() {
 }
 
 void NPC::operator()(Character & other) {
-	cout << "" << endl ;//todo
+	*(Debug::debugOutput) << "" << endl ;//todo
 }
 
 void NPC::notify() {

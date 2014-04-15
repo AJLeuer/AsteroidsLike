@@ -14,7 +14,7 @@ AdapterInterface * AdapterInterface::current = nullptr ;
 
 AdapterInterface::AdapterInterface(AdapterInterface * current) {
 	if ((extentMembers + 1) > 1) {
-		cout << "Warning: there are currently " << extentMembers <<
+		*(Debug::debugOutput) << "Warning: there are currently " << extentMembers <<
 			" instances of AdapterInterface or instances of classes deriving from AdapterInterface in existence" << endl ;
 	}
 	extentMembers++ ;

@@ -16,9 +16,8 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.h"
-#include "../Util/Location.h"
+#include "../Util/Location.hpp"
 #include "../Util/BasicTime.h"
-#include "AddlEnums.h"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"
@@ -64,7 +63,7 @@ public:
 	/**
 	 * A container holding most objects in the game world
 	 */
-	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
+	static list<GameObject*> * gameObjects ; //Adapters need to access this too
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -74,12 +73,12 @@ public:
 	
 	static mutex runningMtx ;
 	
-	static const double GLOBAL_MAX_X ;
-	static const double GLOBAL_MIN_X ;
-	static const double GLOBAL_MAX_Y ;
-	static const double GLOBAL_MIN_Y ;
+	static const long MAX_X ;
+	static const long MIN_X ;
+	static const long MAX_Y ;
+	static const long MIN_Y ;
 	
-	static ostream ** getGameLog() { return &gameLog ; }
+	static ostream ** getGameLog() { return & gameLog ; }
 	
 	static bool isRunning() { return running ; }
 	

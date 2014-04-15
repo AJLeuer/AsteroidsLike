@@ -13,6 +13,8 @@
 #include <boost/chrono/chrono.hpp>
 #include <boost/chrono/chrono_io.hpp>
 
+#include "Debug.h"
+
 using namespace std ;
 
 //use clock() to get time since program start
@@ -28,7 +30,7 @@ public:
 	
 	void startTimer() {
 		if (timerStarted) {
-			cout << "stopTimer() must be called before startTimer() can be called again for this BasicTime object" << endl ;
+			*(Debug::debugOutput) << "stopTimer() must be called before startTimer() can be called again for this BasicTime object" << endl ;
 			throw new exception() ;
 		}
 		timerStarted = true ;
@@ -41,7 +43,7 @@ public:
 	const long checkTimeElapsed() {
 		//returns in microseconds (= 1000 milliseconds) - may need to convert
 		if (!timerStarted) {
-			cout << "stopTimer() can only be called after startTimer() has been called once" << endl ;
+			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once" << endl ;
 			throw new exception() ;
 		}
 		auto duration = chrono::system_clock::now() - start ;
@@ -52,7 +54,7 @@ public:
 	const long stopTimer() {
 		//returns in microseconds (= 1000 milliseconds) - may need to convert
 		if (!timerStarted) {
-			cout << "stopTimer() can only be called after startTimer() has been called once" << endl ;
+			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once" << endl ;
 			throw new exception() ;
 		}
 		auto duration = chrono::system_clock::now() - start ;

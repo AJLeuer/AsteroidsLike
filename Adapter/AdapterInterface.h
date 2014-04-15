@@ -17,7 +17,7 @@
 
 #include "AdapterUtil.h"
 
-#include "Location.h"
+#include "Location.hpp"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/WorldController.h"
 

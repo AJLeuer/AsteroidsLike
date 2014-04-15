@@ -29,17 +29,17 @@ void Adapter::show() {
 void Adapter::show_threaded() {
 	while (WorldController::isRunning()) {
 		GameObject * temp  = nullptr ;
-		for (auto i = 0 ; i < WorldController::gameObjects->size() ; i++) {
+		for (auto i = WorldController::gameObjects->begin() ; i != WorldController::gameObjects->end() ; i++) {
 			WorldController::runningMtx.lock() ;
 			if (WorldController::gameObjects == nullptr) { //we want to know if the pointer pointed to by WorldControllerObjects (i.e. WorldController::gameObjects) is null
 				return ;
 			}
 			else {
-				temp = WorldController::gameObjects->at(i) ;
+				temp = (*i) ;
 				WorldController::runningMtx.unlock() ;
-				*Debug::debugFile << "Current GameObject: " << endl << temp << endl ;
+				*Debug::debugOutput << "Current GameObject: " << endl << temp << endl ;
 				Location<long> trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
-				*Debug::debugFile << "This GameObject's translated location: " << trans.toString() << endl ;
+				*Debug::debugOutput << "This GameObject's translated location: " << trans.toString() << endl ;
 				mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
 				temp = nullptr ;
 				wnoutrefresh(stdscr) ;

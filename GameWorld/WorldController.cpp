@@ -12,45 +12,28 @@
 
 bool WorldController::running = false ;
 
-vector<GameObject*> * WorldController::gameObjects  = nullptr ;
+list<GameObject*> * WorldController::gameObjects  = nullptr ;
 GameMap<GameObject> * WorldController::map = nullptr ;
 
 std::mutex WorldController::runningMtx ;
 
-const double WorldController::GLOBAL_MAX_X = GameObject::GLOBAL_MAX_X ;
-const double WorldController::GLOBAL_MIN_X = GameObject::GLOBAL_MIN_X ;
-const double WorldController::GLOBAL_MAX_Y = GameObject::GLOBAL_MAX_Y ;
-const double WorldController::GLOBAL_MIN_Y = GameObject::GLOBAL_MIN_Y ;
+const long WorldController::MAX_X = GameObject::MAX_X ;
+const long WorldController::MIN_X = GameObject::MIN_X ;
+const long WorldController::MAX_Y = GameObject::MAX_Y ;
+const long WorldController::MIN_Y = GameObject::MIN_Y ;
 
 WorldController::WorldController() {}
 
 void WorldController::init() {
 	running = true ;
 	
-	gameObjects  = new vector<GameObject*>() ;
-	map = new GameMap<GameObject>(GLOBAL_MAX_X, GLOBAL_MAX_Y) ;
 	
-	GameObject::allGameObjects = WorldController::gameObjects ;
-	GameObject::map = WorldController::map ;
+	WorldController::gameObjects = GameObject::allGameObjects ;
+	WorldController::map = GameObject::map ;
 	
-	//we also assigned all the GLOBAL_MAX constants in both GameObject and
+	//we also assigned all the MAX constants in both GameObject and
 	//WorldController so that they sync together (see above)
 	
-	/* uncomment this! *//*
-	for (vector<GameObject*>::size_type i = 0 ; i < 75 ; i++) {
-		gameObjects->push_back(new NPC(1)) ; //<-uncomment
-	}
-	*//* uncomment this! */
-	
-	/* debug code */
-	GameObject * searchTest0 = new GameObject("s0", new Location<long>(100, 19, 0)) ;
-	GameObject * searchTest1 = new GameObject("s1", new Location<long>(97, 14, 0)) ; //was found x2 the first time
-	GameObject * notFound = new GameObject("nf", new Location<long>(94, 18, 0)) ;
-	
-	gameObjects->push_back(searchTest0) ;
-	gameObjects->push_back(searchTest1) ;
-	gameObjects->push_back(notFound) ;
-	/* end debug */
 	
 }
 
@@ -69,9 +52,8 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
 	
 	
-	Debug::draw2DRepresentation(*(Debug::debugFile), GameObject::map->getMapVect(), ' ') ;
+	Debug::draw2DRepresentation(*(Debug::debugOutput), GameObject::map->getMapVect(), ' ') ;
 
-	bool bo = true ;//temp debug
 }
 
 void WorldController::playGameInRealTime() {
@@ -80,8 +62,8 @@ void WorldController::playGameInRealTime() {
 
 void WorldController::playGameRecorded(std::ostream * writeTo) {
 	//testing code
-	for (vector<GameObject*>::size_type i = 0 ; i < 15 ; i++) {
-		gameObjects->at(i)->textDescription(writeTo) ;
+	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
+		(*i)->textDescription(writeTo) ;
 		*writeTo << endl << endl ;
 	}
 }
@@ -92,8 +74,9 @@ void WorldController::close() {
 	running = false ;
 	GameObject::joinThreads() ;
 	GameObject::map->eraseAll() ;
-	for (vector<GameObject*>::size_type i = 0 ; i < gameObjects->size() ; i++) {
-		delete gameObjects->at(i) ;
+	delete GameObject::map ;
+	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
+		delete (*i) ;
 	}
 	delete gameObjects ;
 	gameObjects = nullptr ;

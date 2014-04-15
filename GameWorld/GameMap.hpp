@@ -16,7 +16,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.h"
-#include "../Util/Location.h"
+#include "../Util/Location.hpp"
 #include "../Util/Navigator.h"
 
 
@@ -53,7 +53,10 @@ public:
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	void place(const Location<N> & where, T * mapObj) ;
+	bool place(const Location<N> & where, T * mapObj) ;
+	
+	template<typename N>
+	bool placeAtNearestFree(const Location<N> & where, T * mapObj) ;
 	
 	template<typename N>
 	void erase(Location<N> & currentLoc) ;
@@ -87,7 +90,7 @@ public:
 	 * Returns a nullptr if none found
 	 * 
 	 * @param start The Location<N> of the object that wants to search for nearby objects
-	 * @param maxDistX The maximum distance to search Nitudinally
+	 * @param maxDistX The maximum distance to search longtitudinally
 	 * @param maxDistY The maximum distance to search latitudinally
 	 */
 	template<typename N>
@@ -123,8 +126,58 @@ GameMap<T>::~GameMap() {
 
 template<class T>
 template<typename N>
-void GameMap<T>::place(const Location<N> & where, T * mapObj) {
-	intern_map->at(where.getX())->at(where.getY()) = mapObj ;
+bool GameMap<T>::place(const Location<N> & where, T * mapObj) {
+	
+	if (at(where) == nullptr) {
+		intern_map->at(where.getX())->at(where.getY()) = mapObj ;
+		return true ;
+	}
+	else {
+		
+		*(Debug::debugOutput) << "Warning: Call to GameMap::place() unsucessful. That Location was already taken." << endl ;
+		*(Debug::debugOutput) << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
+		bool b = placeAtNearestFree(where, mapObj) ;
+		return b ;
+	}
+}
+
+template<class T>
+template<typename N>
+bool GameMap<T>::placeAtNearestFree(const Location<N> & where, T * mapObj) {
+	if (at(where) == nullptr) {
+		place(where, mapObj) ;
+	}
+	else {
+		bool b = false ;
+		Location<N> n = Location<N>(where.x, where.y + 1, where.z) ;
+		Location<N> s = Location<N>(where.x, where.y - 1, where.z) ;
+		Location<N> e = Location<N>(where.x + 1, where.y, where.z) ;
+		Location<N> w = Location<N>(where.x - 1, where.y, where.z) ;
+		vector<Location<N>> locs = { Location<N>(n), Location<N>(s), Location<N>(e), Location<N>(w) } ;
+		for (auto i = (fastRand<typename vector<Location<N>>::size_type>::nextValue() % locs.size()) ; !(locs.empty()) ; i = (fastRand<typename vector<Location<N>>::size_type>::nextValue() % locs.size())) {
+			b = place(locs.at(i), mapObj) ;
+			if (b) {
+				return true ;
+			}
+		}
+		
+		unsigned sw = (fastRand<unsigned>::nextValue() % 4) ;
+		switch (sw) {
+			case 0:
+				return placeAtNearestFree(n, mapObj) ;
+
+			case 1:
+				return placeAtNearestFree(s, mapObj) ;
+				
+			case 2:
+				return placeAtNearestFree(e, mapObj) ;
+				
+			case 3:
+				return placeAtNearestFree(w, mapObj) ;
+		}
+	}
+	*Debug::debugOutput << "Exception raised in call to placeAtNearestFree()" << endl ;
+	throw new exception() ;
 }
 
 template<class T>
@@ -167,7 +220,7 @@ Location<N> GameMap<T>::currentLoc(T *obj) {
 			}
 		}
 	}
-	cout << "GameMap::currentLoc calling exception" << endl ;
+	*(Debug::debugOutput) << "GameMap::currentLoc calling exception" << endl ;
 	throw exception() ;
 }
 
@@ -202,7 +255,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 		searchSuccess = true ;
 		store->push_back(at(nav.current)) ;
 	}
-	cout << Debug::debugCounter++ << endl ;
+	*(Debug::debugOutput) << Debug::debugCounter++ << endl ;
 	switch (nav.dir) {
 		case north : {
 			if ((nav.y_travelled() <= y_lim) && (nav.current.y < getYBound())) {

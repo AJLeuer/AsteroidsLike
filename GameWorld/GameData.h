@@ -12,6 +12,8 @@
 #include <iostream>
 #include <ostream>
 
+using namespace std ;
+
 /**
  * A parent type that will define the basic functions and members for Damage and Health (and other similar data types
  * if we need them)
@@ -329,7 +331,10 @@ std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 }
 
 
-
+extern const long GLOBAL_MAX_X ;
+extern const long GLOBAL_MIN_X ; 
+extern const long GLOBAL_MAX_Y ;
+extern const long GLOBAL_MIN_Y ;
 
 
 

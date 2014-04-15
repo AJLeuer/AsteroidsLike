@@ -14,113 +14,174 @@ vector<string> * GameObject::icons = new vector<string>{"🎾", "🔱", "💩", 
 
 char * GameObject::nameLetters = new char[26] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'} ;
 
+bool GameObject::map_is_init = false ;
+
 list<thread *> * GameObject::allThreads  = new list<thread *>() ;
 list<thread *>::iterator GameObject::lastAddedThread = allThreads->begin() ;
 
-vector<GameObject*> * GameObject::allGameObjects = nullptr ;
-GameMap<GameObject> * GameObject::map = nullptr ;
+list<GameObject *> * GameObject::allGameObjects = new list<GameObject*>() ;
+list<GameObject *>::iterator GameObject::next_goIterator = allGameObjects->begin() ;
 
-const double GameObject::GLOBAL_MAX_X = 150 ;
-const double GameObject::GLOBAL_MIN_X = 0 ;
-const double GameObject::GLOBAL_MAX_Y = 30 ;
-const double GameObject::GLOBAL_MIN_Y = 0 ;
+GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+
+const long GameObject::MAX_X = GLOBAL_MAX_X ;
+const long GameObject::MIN_X = GLOBAL_MIN_X ;
+const long GameObject::MAX_Y = GLOBAL_MAX_Y ;
+const long GameObject::MIN_Y = GLOBAL_MIN_Y ;
 
 
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Location<long>())
+	loc(new Location<long>()),
+	goIterator(next_goIterator)
 {
 	IDs++ ;
+	next_goIterator++ ;
+	
+	if (!map_is_init) {
+		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map_is_init = true ;
+	}
+	
+	allGameObjects->insert(this->goIterator, this) ;
 	map->place((*this->loc), this) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
-	gObjThread(nullptr),
+	goThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Location<long>(*(other.loc)))
+	loc(new Location<long>(*(other.loc))),
+	goIterator(next_goIterator)
 {
 	IDs++ ;
+	next_goIterator++ ;
+	
+	if (!map_is_init) {
+		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map_is_init = true ;
+	}
+	
+	allGameObjects->insert(this->goIterator, this) ;
+	map->place((*this->loc), this) ;
 }
 
 GameObject::GameObject(GameObject && other) :
-	gObjThread(other.gObjThread),
+	goThread(other.goThread),
 	ID(other.ID),
-	icon(other.icon),
-	loc(other.loc)
-{	
-	other.gObjThread = nullptr ;
-	other.loc = nullptr ;
+	icon(std::move(other.icon)),
+	loc(other.loc),
+	goIterator(next_goIterator)
+{
+	next_goIterator++ ;
+	
+	if (!map_is_init) {
+		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map_is_init = true ;
+	}
+	
+	allGameObjects->erase(other.goIterator) ;
 	map->erase(*(other.getLocation())) ;
+	
+	other.goThread = nullptr ;
+	other.loc = nullptr ;
+	
+	allGameObjects->insert(this->goIterator, this) ;
 	map->place(*(this->loc), this) ;
 }
 
 GameObject::GameObject(string symbol, Location<long> * loc) :
+	goThread(nullptr),
 	ID(IDs),
-	icon(symbol)
+	icon(symbol),
+	loc(loc),
+	goIterator(next_goIterator)
 {
 	IDs++ ;
-	if (loc->getX() > GLOBAL_MAX_X) {
-		cout << "Location<long> x coord is not within the specified limits" << endl ;
-		throw new exception() ;
+	next_goIterator++ ;
+	
+	if (!map_is_init) {
+		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map_is_init = true ;
 	}
-	else if (loc->getY() > GLOBAL_MAX_Y) {
-		cout << "Location<long> y coord is not within the specified limits" << endl ;
-		throw new exception() ;
-	}
-	else {
-		this->loc = loc ;
-	}
+	
+	allGameObjects->insert(this->goIterator, this) ;
 	map->place((*this->loc), this) ;
 }
 
 GameObject::GameObject(int randSeed) :
+	goThread(nullptr),
 	ID(IDs),
-	icon(string())
+	icon(""),
+	loc(nullptr),
+	goIterator(next_goIterator)
 {
-	
 	IDs++ ;
+	next_goIterator++ ;
 	
-	randSeed = fastRand<unsigned long>::nextValue() ; //we'll get our own
+	if (!map_is_init) {
+		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map_is_init = true ;
+	}
 	
-	long x = (fastRand<unsigned long>::nextValue() % lrint(GLOBAL_MAX_X)) ;
-	long y = (fastRand<unsigned long>::nextValue() % lrint(GLOBAL_MAX_Y)) ;
-	loc = new Location<long>(x, y, 0) ;
-	map->place((*this->loc), this) ;
+	randSeed = fastRand<int>::nextValue() ; //we'll get our own
 	
 	icon = icons->at(randSeed % icons->size()) ;
-
+	
+	long x = (fastRand<unsigned long>::nextValue() % lrint(MAX_X)) ;
+	long y = (fastRand<unsigned long>::nextValue() % lrint(MAX_Y)) ;
+	
+	loc = new Location<long>(x, y, 0) ;
+	
+	allGameObjects->insert(this->goIterator, this) ;
+	map->place((*this->loc), this) ;
 }
 
 GameObject::~GameObject() {
-	//delete gObjThread ;
-	delete loc ;
+	allGameObjects->erase(goIterator) ;
+	map->erase(*(getLocation())) ;
 	
-	//cout << "called GameObj dtor" << endl ;
+	
+	//delete goThread ;
+	delete loc ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
-		this->gObjThread = nullptr ;
+		this->goThread = nullptr ;
 		this->ID = IDs ;
-		IDs++ ;
 		this->icon = rhs.icon ;
         this->loc = new Location<long>(*(rhs.loc)) ;
+		this->goIterator = next_goIterator ;
+		
+		IDs++ ;
+		next_goIterator++ ;
+		
+		allGameObjects->insert(this->goIterator, this) ;
+		map->place((*this->loc), this) ;
 	}
 	return *this ;
 }
 
 GameObject & GameObject::operator=(GameObject && rhs) {
 	if (this != &rhs) {
-		this->gObjThread = rhs.gObjThread ;
+		this->goThread = rhs.goThread ;
 		this->ID = rhs.ID ;
-		this->icon = rhs.icon ;
+		this->icon = std::move(rhs.icon) ;
         this->loc = rhs.loc ;
+		this->goIterator = next_goIterator ;
+		
+		next_goIterator++ ;
+		
+		allGameObjects->erase(rhs.goIterator) ;
 		map->erase(*(rhs.getLocation())) ;
-		map->place(*(this->loc), this) ;
-		rhs.gObjThread = nullptr ;
+		
+		rhs.goThread = nullptr ;
 		rhs.loc = nullptr ;
+		
+		allGameObjects->insert(this->goIterator, this) ;
+		map->place(*(this->loc), this) ;
 	}
 	return *this ;
 }
@@ -151,13 +212,13 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 	//todo
 }
 
-list<thread *>::iterator GameObject::startThreading(std::thread * gObjThr, bool wait) {
+list<thread *>::iterator GameObject::startThreading(std::thread * goThr, bool wait) {
 	
-	GameObject::allThreads->insert(lastAddedThread, this->gObjThread) ;
+	GameObject::allThreads->insert(lastAddedThread, this->goThread) ;
 	auto i = lastAddedThread ;
 	lastAddedThread++ ;
 	if (wait) {
-		gObjThread->join() ;
+		goThread->join() ;
 	}
 	return i ;
 }
@@ -165,10 +226,10 @@ list<thread *>::iterator GameObject::startThreading(std::thread * gObjThr, bool 
 void GameObject::endThreading(list<thread *>::iterator pos, bool wait) {
 	//GameObject::allThreads->erase(pos) ;
 	if (wait) {
-		gObjThread->join() ;
+		goThread->join() ;
 	}
-	delete this->gObjThread ;
-	this->gObjThread = nullptr ;
+	delete this->goThread ;
+	this->goThread = nullptr ;
 }
 
 void GameObject::joinThreads() {
@@ -182,9 +243,9 @@ void GameObject::joinThreads() {
 }
 
 void GameObject::joinThread() {
-	this->gObjThread->join() ;
-	delete gObjThread ;
-	gObjThread = nullptr ;
+	this->goThread->join() ;
+	delete goThread ;
+	goThread = nullptr ;
 }
 
 void GameObject::textDescription(ostream * writeTO) const {
@@ -196,14 +257,14 @@ void GameObject::textDescription(ostream * writeTO) const {
 }
 
 void GameObject::move(long xoffset, long yoffset) {
-	if ((loc->x + xoffset) >= GLOBAL_MAX_X) {
-		xoffset -= ((loc->x + xoffset) - GLOBAL_MAX_X + 1) ;
+	if ((loc->x + xoffset) >= MAX_X) {
+		xoffset -= ((loc->x + xoffset) - MAX_X + 1) ;
 	}
 	else if ((loc->x + xoffset) < 0) {
 		xoffset -= (loc->x + xoffset) ;
 	}
-	if ((loc->y + yoffset) >= GLOBAL_MAX_Y) {
-		yoffset -= ((loc->y + yoffset) - GLOBAL_MAX_Y + 1) ;
+	if ((loc->y + yoffset) >= MAX_Y) {
+		yoffset -= ((loc->y + yoffset) - MAX_Y + 1) ;
 	}
 	else if ((loc->y + yoffset) < 0) {
 		yoffset -= (loc->y + yoffset) ;
@@ -215,14 +276,14 @@ void GameObject::move(long xoffset, long yoffset) {
 
 void GameObject::move(const Location<long> & moveTo) {
 	Location<long> mt = Location<long>(moveTo) ;
-	if (mt.x >= GLOBAL_MAX_X) {
-		mt.x = GLOBAL_MAX_X - 1 ;
+	if (mt.x >= MAX_X) {
+		mt.x = MAX_X - 1 ;
 	}
 	else if (mt.x < 0) {
 		mt.x = 0 ;
 	}
-	if (mt.y >= GLOBAL_MAX_Y) {
-		mt.y = GLOBAL_MAX_Y - 1 ;
+	if (mt.y >= MAX_Y) {
+		mt.y = MAX_Y - 1 ;
 	}
 	else if (mt.y < 0) {
 		mt.y = 0 ;
@@ -235,14 +296,14 @@ void GameObject::move(const Location<long> & moveTo) {
 
 void GameObject::wander(double xyOffset, long time) {
 	void (GameObject::*wanderThrPtr)(double, long, list<thread *>::iterator) = &GameObject::wander_threaded ;
-	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time, lastAddedThread) ;
-	startThreading(this->gObjThread, false) ;
+	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time, lastAddedThread) ;
+	startThreading(this->goThread, false) ;
 }
 
 void GameObject::wander(double xyOffset, bool * run) {
 	void (GameObject::*wanderThrPtr)(double, bool *, list<thread *>::iterator) = &GameObject::wander_threaded ;
-	gObjThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run, lastAddedThread) ;
-	startThreading(this->gObjThread, false) ;
+	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run, lastAddedThread) ;
+	startThreading(this->goThread, false) ;
 }
 
 
@@ -251,12 +312,12 @@ void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::ite
 	timer.startTimer() ;
 	while (timer.checkTimeElapsed() < time) {
 		double nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + nX) < GameObject::GLOBAL_MIN_X)) {
+		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
 			nX = (nX * -1) ;
 		}
 		//repeat for y coord
 		double nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
+		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
 			nY = (nY * -1) ;
 		}
 		//*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;
@@ -268,12 +329,12 @@ void GameObject::wander_threaded(double xyOffset, long time, list<thread *>::ite
 void GameObject::wander_threaded(double xyOffset, bool * run, list<thread *>::iterator pos) {
 	while (*run) {
 		double nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GameObject::GLOBAL_MAX_X) || ((loc->getX() + nX) < GameObject::GLOBAL_MIN_X)) {
+		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
 			nX = (nX * -1) ;
 		}
 		//repeat for y coord
 		double nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GameObject::GLOBAL_MAX_Y) || ((loc->getY() + nY) < GameObject::GLOBAL_MIN_Y)) {
+		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
 			nY = (nY * -1) ;
 		}
 		//*Debug::debugFile << "nX: " << nX << " rand Y: " << nY << endl ;

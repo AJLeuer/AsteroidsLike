@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+
 #ifndef GameWorld_Location_h
 #define GameWorld_Location_h
 
@@ -14,6 +15,10 @@
 
 #include "Debug.h"
 #include "Util.h"
+
+#include "../GameWorld/GameData.h"
+
+
 
 
 
@@ -46,6 +51,13 @@ struct Location {
 
 public:
 	
+	static const N * MAX_X ;
+	static const N * MIN_X ;
+	static const N * MAX_Y ;
+	static const N * MIN_Y ;
+	//static const N * MAX_Z ;
+	//static const N * MIN_Z ;
+	
 	N x ;
 	N y ;
     N z ;
@@ -58,12 +70,12 @@ public:
     /**
      * Copy constructor for Location
      */
-    Location(const Location & other) : x{other.x}, y{other.y}, z{other.z} {}
+    Location(const Location & other) : Location(other.x, other.y, other.z)  {}
 	
 	/**
      * Move constructor for Location
      */
-    Location(Location && other) : x{other.x}, y{other.y}, z{other.z} {}
+    Location(Location && other) : Location(other.x, other.y, other.z) {}
     
     /**
      * Creates a location with coordinates initialized to the
@@ -73,7 +85,34 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Location(N x, N y, N z) : x{x}, y{y}, z{z} {}
+	Location(N x, N y, N z) : x{x}, y{y}, z{z} {
+		if (this->x >= (*Location<N>::MAX_X)) {
+			this->x = *MAX_X - 1 ;
+		}
+		if (this->x < (*Location<N>::MIN_X)) {
+			this->x = *MIN_X + 1 ;
+		}
+		if (this->y >= (*Location<N>::MAX_Y)) {
+			this->y = *MAX_Y - 1 ;
+		}
+		if (this->y < (*Location<N>::MIN_Y)) {
+			this->y = *MIN_Y + 1 ;
+		}
+	}
+	
+	Location(N nx, N ny, N nz, bool noBoundsCheck) {
+		if (!noBoundsCheck) {
+			Location<N> l (nx, ny, nz) ;
+			this->x = l.x ;
+			this->y = l.y ;
+			this->z = l.z ;
+		}
+		else {
+			this->x = nx ;
+			this->y = ny ;
+			this->z = nz ;
+		}
+	}
     
     /**
      * Destructor for Location
@@ -84,24 +123,27 @@ public:
      * Assigment operator overload (copy)
      */
     Location & operator=(const Location & rhs) {
+		Location<N> r = Location(rhs) ;
         if (this != &rhs) {
-            this->x = rhs.x ;
-            this->y = rhs.y ;
-            this->z = rhs.z ;
+            this->x = r.x ;
+            this->y = r.y ;
+            this->z = r.z ;
         }
-        return *this ;
+        Location l(*this) ;
+		return l ;
     }
 	
 	/**
      * Assigment operator overload (move)
      */
     Location & operator=(Location && rhs) {
+		rhs = Location(rhs) ;
         if (this != &rhs) {
             this->x = rhs.x ;
             this->y = rhs.y ;
             this->z = rhs.z ;
         }
-        return *this ;
+		return(*this) ;
     }
 	
 	bool operator==(const Location & rhs) {
@@ -174,6 +216,10 @@ public:
 		this->x += delta_x ;
 		this->y += delta_y ;
 		this->z += delta_z ;
+		Location l = Location<N>(this->x, this->y, this->z) ;
+		this->x = l.x ;
+		this->y = l.y ;
+		this->z = l.z ;
 		
 	}
 	
@@ -192,6 +238,24 @@ public:
 		return ss.str() ;
 	}
 };
+
+template <typename N>
+const N * Location<N>::MAX_X = &GLOBAL_MAX_X ;
+
+template <typename N>
+const N * Location<N>::MIN_X = &GLOBAL_MIN_X ;
+
+template <typename N>
+const N * Location<N>::MAX_Y = &GLOBAL_MAX_Y ;
+
+template <typename N>
+const N * Location<N>::MIN_Y = &GLOBAL_MIN_Y ;
+
+//template <typename N>
+//const N * Location<N>::MAX_Z = nullptr ;
+
+//template <typename N>
+//const N * Location<N>::MIN_Z = nullptr ;
 
 
 #endif

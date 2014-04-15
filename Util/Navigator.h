@@ -12,7 +12,7 @@
 #include <iostream>
 
 #include "Util.h"
-#include "Location.h"
+#include "Location.hpp"
 
 class Navigator {
 	

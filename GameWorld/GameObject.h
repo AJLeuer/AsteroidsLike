@@ -19,7 +19,7 @@
 #include "Debug.h"
 #include "../Util/BasicTime.h"
 #include "../Util/Util.h"
-#include "Location.h"
+#include "Location.hpp"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 
@@ -37,6 +37,7 @@ private:
 	static unsigned IDs ;
 	static vector<string> * icons ;
 	static char * nameLetters ;
+	static bool map_is_init ;
 	
 	/*this holds references to all the new threads spawned by instances of GameObject
 	 allowing us to join and delete them as needed. Using a list allows us to insert and erase
@@ -46,8 +47,22 @@ private:
 	//the last thread added to allThreads
 	static list<thread *>::iterator lastAddedThread ;
 	
-	/*Flag which sets to false when this GameObject is running a threaded
-	 function, and true once the GameObject has completed its threaded task */
+	/**
+	 * Static member that holds the iterator of the last GameObject added to
+	 * allGameObjects 
+	 */
+	static list<GameObject *>::iterator next_goIterator ;
+	
+	/**
+	 * Iterator member pointing to the position of this in
+	 * allGameObjects 
+	 */
+	list<GameObject *>::iterator goIterator ;
+	
+	/*
+	 * Flag which sets to false when this GameObject is running a threaded
+	 * function, and true once the GameObject has completed its threaded task 
+	 */
 	bool threadFinished = false ;
 	
 	
@@ -55,10 +70,10 @@ private:
 	 * Handles thread starting duties. Should always be called by the function that calls
 	 * the threaded function.
 	 *
-	 * @param gObjThr The thread to manage
+	 * @param goThr The thread to manage
 	 * @param wait Whether to wait for the thread to finish (by calling join()) or continue execution
 	 */
-	list<thread *>::iterator startThreading(std::thread * gObjThr, bool wait) ;
+	list<thread *>::iterator startThreading(std::thread * goThr, bool wait) ;
 	
 	/**
 	 * Handles thread duties. In some case will be called by the threaded function once it has completed,
@@ -95,10 +110,10 @@ protected:
 	
 	/**
 	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
-	 * gObjThread is provided for that purpose. When the function is handed off to the thread, that member's gObjThread pointer should
+	 * goThread is provided for that purpose. When the function is handed off to the thread, that member's goThread pointer should
 	 * be pushed back onto GameObject::allThreads.
 	 */
-	std::thread * gObjThread ;
+	std::thread * goThread ;
 	
 	
 public:
@@ -107,7 +122,7 @@ public:
 	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
 	 */
-	static vector<GameObject*> * allGameObjects ;
+	static list<GameObject*> * allGameObjects ;
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
@@ -115,10 +130,10 @@ public:
 	 */
 	static GameMap<GameObject> * map ;
 	
-	static const double GLOBAL_MAX_X ;
-	static const double GLOBAL_MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
-	static const double GLOBAL_MAX_Y ;
-	static const double GLOBAL_MIN_Y ;
+	static const long MAX_X ;
+	static const long MIN_X ; //easier without these, but could bring them back if we decide - coords make sense
+	static const long MAX_Y ;
+	static const long MIN_Y ;
 	
 	/**
 	 * Creates a new GameObject
@@ -297,7 +312,7 @@ public:
 	static void joinThreads() ;
 	
 	/**
-	 * Waits for this GameObjects thread (gObjThread) to finish execution, then joins the threads
+	 * Waits for this GameObjects thread (goThread) to finish execution, then joins the threads
 	 */
 	void joinThread() ;
 	
