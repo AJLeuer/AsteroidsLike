@@ -10,15 +10,16 @@
 
 using namespace std ;
 
-ostream * Debug::debugOutput { new ofstream("debug.txt") } ;
 
 unsigned Debug::debugCounter = 0 ;
 
+Debug * Debug::debugOutput = new Debug(new ofstream("debug.txt")) ;
+
 void Debug::init(bool stdoutput) {
 	if (stdoutput) {
-		Debug::debugOutput = &cout ;
+		Debug::debugOutput = new Debug(&cout) ;
 	}
 	else {
-		Debug::debugOutput = new ofstream("debug.txt")  ;
+		Debug::debugOutput = new Debug(new ofstream("debug.txt")) ;
 	}
 }

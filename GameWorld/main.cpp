@@ -36,10 +36,11 @@ int main(void) {
 
 	srand((unsigned)time(NULL)) ;
 
+	
 	BasicTime timer ;
 	
 	timer.startTimer() ;
-	Debug::init(true) ;
+	//Debug::init(true) ;
 	
 	WorldController::init() ;
 	
@@ -64,9 +65,11 @@ int main(void) {
 	
 	
 
-	 
+	Debug::init(false) ;
 	
-	*(Debug::debugOutput) << Debug::debugCounter << endl ;
+	//*(Debug::debugOutput) << Debug::debugCounter ;
+
+	
 	return 0;
 }
 

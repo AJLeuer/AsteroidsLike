@@ -16,23 +16,59 @@
 
 using namespace std ;
 
-class Debug {
+class Debug : public ostream {
+	
+private:
+	ostream * out ;
+	bool file_output ;
+	mutex dbgMutex ;
+	
 	
 public:
-	static ostream * debugOutput ;
+	Debug(ostream * _out) : out(_out) {}
+	
+
+	template <typename T>
+	Debug & operator <<(T data) ;
+	
+	
+	Debug & operator<<(std::ostream & (*ptr)(std::ostream&)) {
+		dbgMutex.lock() ;
+		(*out) << ptr;
+		return *this;
+		dbgMutex.unlock() ;
+	}
+	
+	Debug & operator<<(Debug & (*ptr)(Debug &)) {
+		dbgMutex.lock() ;
+		return ptr(*this);
+		dbgMutex.unlock() ;
+	}
+	
+	ostream & get_ostream() { return *(this->out) ; }
+	
+	static Debug * debugOutput ;
 	
 	static void init(bool stdoutput) ;
-	
-	
 	
 	/* Use for whatever */
 	static unsigned debugCounter ;
 	
 } ;
 
+template <typename T>
+Debug & Debug::operator<<(T data) {
+	dbgMutex.lock() ;
+	*out << data ;
+	return *this;
+	dbgMutex.unlock() ;
+}
 
 
 
-	
+
+
+
+
 
 #endif /* defined(__GameWorld__Debug__) */

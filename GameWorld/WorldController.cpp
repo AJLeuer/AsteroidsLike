@@ -56,7 +56,7 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
 	
 	Drawing drawing ;
-	drawing.draw2DRepresentation(*(Debug::debugOutput), GameObject::map->getMapVect(), ' ') ;
+	drawing.draw2DRepresentation((Debug::debugOutput)->get_ostream(), GameObject::map->getMapVect(), ' ') ;
 
 }
 
