@@ -18,7 +18,7 @@
 
 #include "Debug.h"
 #include "../Util/BasicTime.h"
-#include "../Util/Util.h"
+#include "../Util/Util.hpp"
 #include "Location.hpp"
 #include "GameMap.hpp"
 #include "GameInterface.h"
@@ -114,6 +114,8 @@ protected:
 	 * be pushed back onto GameObject::allThreads.
 	 */
 	std::thread * goThread ;
+	
+	static fastRand<int> goRand ;
 	
 	
 public:
@@ -286,7 +288,7 @@ public:
 	/** 
 	 * Returns this GameObject's icon
 	 */
-	string & getIcon() ;
+	const string & getIcon() const  ;
 	
 	/**
 	 * Override the << output stream operator

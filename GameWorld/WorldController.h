@@ -15,7 +15,7 @@
 #include <thread>
 
 #include "../Util/Debug.h"
-#include "../Util/Util.h"
+#include "../Util/Util.hpp"
 #include "../Util/Location.hpp"
 #include "../Util/BasicTime.h"
 #include "GameMap.hpp"

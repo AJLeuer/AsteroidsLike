@@ -15,7 +15,7 @@
 #include <climits>
 
 #include "../Util/Debug.h"
-#include "../Util/Util.h"
+#include "../Util/Util.hpp"
 #include "../Util/Location.hpp"
 #include "../Util/Navigator.h"
 
@@ -26,10 +26,10 @@ class GameMap {
 	
 private:
 	unsigned mapMembers = 0 ;
-	vector< vector<T*>*> * intern_map ;
+	vector< vector<const T*>*> * intern_map ;
 	
 	template<typename N>
-	void findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
+	void findAllNearby_helper(vector<const T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
 	
 	template<typename N>
 	bool boundsCheck(Location<N> & current) ;
@@ -48,7 +48,7 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	vector< vector<T *> *> * getMapVect() { return this->intern_map ; } ;
+	vector< vector<const T *> *> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
@@ -75,7 +75,7 @@ public:
 	 * Returns the first object at this Location<N>
 	 */
 	template<typename N>
-	T * at(const Location<N> & where) ;
+	const T * at(const Location<N> & where) ;
 	
 	template<typename N>
 	Location<N> currentLoc(T* obj) ;
@@ -95,18 +95,18 @@ public:
 	 * @param maxDistY The maximum distance to search latitudinally
 	 */
 	template<typename N>
-	vector<T*> * findNearby(const Location<N> * start, const N x_lim, const N y_lim) ;
+	vector<const T*> * findNearby(const Location<N> * start, const N x_lim, const N y_lim) ;
 	
 } ;
 
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector<T*>*>()),
+	intern_map(new vector< vector<const T*>*>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector<T*>()) ;
+		intern_map->push_back(new vector<const T*>()) ;
 		for (auto j = 0 ; j < maxY; j++) {
 			intern_map->at(i)->push_back(nullptr) ;
 		}
@@ -115,12 +115,14 @@ GameMap<T>::GameMap(N maxX, N maxY) :
 
 template<class T>
 GameMap<T>::~GameMap() {
+	
+	mapMembers = 0 ; 
+	
+	//delete all the vectors inside intern_map
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
-		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
-			intern_map->at(i)->at(j) = nullptr ;
-		}
+		delete intern_map->at(i) ;
 	}
-	mapMembers = 0 ;
+	
 	if (gmDebug != nullptr) {
 		delete gmDebug ;
 	}
@@ -163,7 +165,8 @@ Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
 	}
 	else {
 		
-		unsigned swt = (fastRand<unsigned>::nextValue() % 4) ;
+		fastRand<unsigned> rand(0, 3) ;
+		unsigned swt = rand.nextValue() ;
 		
 		switch (swt) {
 			case 0:
@@ -220,6 +223,7 @@ void GameMap<T>::eraseAll() {
 			intern_map->at(i)->at(j) = nullptr ;
 		}
 	}
+	mapMembers = 0 ;
 }
 
 template<class T>
@@ -232,7 +236,7 @@ void GameMap<T>::move(Location<N> & currentLoc, Location<N> & toNewLoc) {
 
 template<class T>
 template<typename N>
-T* GameMap<T>::at(const Location<N> & where) {
+const T* GameMap<T>::at(const Location<N> & where) {
 	return intern_map->at(where.getX())->at(where.getY()) ;
 }
 
@@ -264,10 +268,10 @@ T* GameMap<T>::remove(Location<N> & currentLoc) {
 
 template<class T>
 template<typename N>
-vector<T*> * GameMap<T>::findNearby(const Location<N> * start, N x_lim, N y_lim) {
+vector<const T*> * GameMap<T>::findNearby(const Location<N> * start, N x_lim, N y_lim) {
 	
 	searchSuccess = false ;
-	vector<T*> * store = new vector<T*>() ;
+	vector<const T*> * store = new vector<const T*>() ;
 	const Location<N> * strt = start ;
 	Location<N> init = Location<N>(*start) ;
 	Navigator nav(Direction::oneDirection, strt, init) ;
@@ -277,7 +281,7 @@ vector<T*> * GameMap<T>::findNearby(const Location<N> * start, N x_lim, N y_lim)
 
 template<class T>
 template<typename N>
-void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
+void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
 	
 	//Debug::debugCounter++ ;
 	

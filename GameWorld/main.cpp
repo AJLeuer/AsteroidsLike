@@ -13,7 +13,7 @@
 #include <iostream>
 #include <thread>
 
-#include "../Util/Util.h"
+#include "../Util/Util.hpp"
 #include "../Util/BasicTime.h"
 
 #include "../Adapter/Adapter.h"
@@ -30,19 +30,20 @@ int foo() {
 	return 1 ;
 }
 
+
+
 int main(void) {
 
 	srand((unsigned)time(NULL)) ;
-	
 
 	BasicTime timer ;
 	
 	timer.startTimer() ;
-
+	Debug::init(true) ;
 	
 	WorldController::init() ;
 	
-	AdapterInterface * chosenOutputAdapter = new Adapter(1) ;
+	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
 	
 	
 	chosenOutputAdapter->init() ;
@@ -51,15 +52,17 @@ int main(void) {
 	
 	bool run = true ;
 	
-	WorldController::foo(1, 30e+6, &run) ;
+	WorldController::foo(1, 0e+6, &run) ;
 	
-	usleep(30e+6) ;
+	usleep(0e+6) ;
 	
 	run = false ;
 	
 	WorldController::close() ;
 	
 	chosenOutputAdapter->close() ;
+	
+	
 
 	 
 	

@@ -48,6 +48,25 @@ enum Direction {
  */
 template <typename N>
 struct Location {
+private:
+	void boundsCheck() {
+		if (this->x >= (*Location<N>::MAX_X)) {
+			*(Debug::debugOutput) << "An X value was over the global limit. Reducing value..." << endl ;
+			this->x = *MAX_X - 1 ;
+		}
+		if (this->x < (*Location<N>::MIN_X)) {
+			*(Debug::debugOutput) << "An X value was under the global minimum. Increasing value..." << endl ;
+			this->x = *MIN_X ;
+		}
+		if (this->y >= (*Location<N>::MAX_Y)) {
+			*(Debug::debugOutput) << "A Y value was over the global limit. Reducing value..." << endl ;
+			this->y = *MAX_Y - 1 ;
+		}
+		if (this->y < (*Location<N>::MIN_Y)) {
+			*(Debug::debugOutput) << "A Y value was under the global minimum. Increasing value..." << endl ;
+			this->y = *MIN_Y ;
+		}
+	}
 
 public:
 	
@@ -65,7 +84,7 @@ public:
 	/**
      * Creates a Locationwith all coordinates initialized to 0
      */
-	Location() : x(0), y(0), z(0) {}
+	Location() : x(0), y(0), z(0) { this->boundsCheck() ; }
     
     /**
      * Copy constructor for Location
@@ -86,26 +105,15 @@ public:
      * @param z The z coordinate
      */
 	Location(N x, N y, N z) : x{x}, y{y}, z{z} {
-		if (this->x >= (*Location<N>::MAX_X)) {
-			this->x = *MAX_X - 1 ;
-		}
-		if (this->x < (*Location<N>::MIN_X)) {
-			this->x = *MIN_X + 1 ;
-		}
-		if (this->y >= (*Location<N>::MAX_Y)) {
-			this->y = *MAX_Y - 1 ;
-		}
-		if (this->y < (*Location<N>::MIN_Y)) {
-			this->y = *MIN_Y + 1 ;
-		}
+		this->boundsCheck() ;
 	}
 	
 	Location(N nx, N ny, N nz, bool noBoundsCheck) {
 		if (!noBoundsCheck) {
-			Location<N> l (nx, ny, nz) ;
-			this->x = l.x ;
-			this->y = l.y ;
-			this->z = l.z ;
+			this->x = nx ;
+			this->y = ny ;
+			this->z = nz ;
+			this->boundsCheck() ;
 		}
 		else {
 			this->x = nx ;
@@ -123,26 +131,25 @@ public:
      * Assigment operator overload (copy)
      */
     Location & operator=(const Location & rhs) {
-		Location<N> r = Location(rhs) ;
         if (this != &rhs) {
-            this->x = r.x ;
-            this->y = r.y ;
-            this->z = r.z ;
+            this->x = rhs.x ;
+            this->y = rhs.y ;
+            this->z = rhs.z ;
         }
-        Location l(*this) ;
-		return l ;
+		this->boundsCheck() ;
+		return *this;
     }
 	
 	/**
      * Assigment operator overload (move)
      */
     Location & operator=(Location && rhs) {
-		rhs = Location(rhs) ;
         if (this != &rhs) {
             this->x = rhs.x ;
             this->y = rhs.y ;
             this->z = rhs.z ;
         }
+		this->boundsCheck() ;
 		return(*this) ;
     }
 	
@@ -196,11 +203,11 @@ public:
 	
 	N getZ() const { return this->z ; }
 	
-	void setX(const N x) { this->x = x ; }
+	void setX(const N x) { this->x = x ; this->boundsCheck() ; }
 	
-	void setY(const N y) { this->y = y ; }
+	void setY(const N y) { this->y = y ; this->boundsCheck() ; }
 	
-	void setZ(const N z) { this->z = z ; }
+	void setZ(const N z) { this->z = z ; this->boundsCheck() ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 
@@ -211,19 +218,15 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x = 0, N delta_y = 0, N delta_z = 0) {
+	void modify(N delta_x, N delta_y, N delta_z) {
 		
 		this->x += delta_x ;
 		this->y += delta_y ;
 		this->z += delta_z ;
-		Location l = Location<N>(this->x, this->y, this->z) ;
-		this->x = l.x ;
-		this->y = l.y ;
-		this->z = l.z ;
-		
+		this->boundsCheck() ;
 	}
 	
-	static N calcDistance(Location & here, Location & there) {
+	static N calcDistance(const Location & here, const Location & there) {
 		N dx = here.x - there.x ;
 		N dy = here.y - there.y ;
 		N nx = setUnsigned(dx) ;

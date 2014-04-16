@@ -29,6 +29,8 @@ const long GameObject::MIN_X = GLOBAL_MIN_X ;
 const long GameObject::MAX_Y = GLOBAL_MAX_Y ;
 const long GameObject::MIN_Y = GLOBAL_MIN_Y ;
 
+fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
+
 
 GameObject::GameObject() :
 	ID(IDs),
@@ -125,12 +127,14 @@ GameObject::GameObject(int randSeed) :
 		map_is_init = true ;
 	}
 	
-	randSeed = fastRand<int>::nextValue() ; //we'll get our own
+	auto rnd = fastRand<long>(0, 100) ; //we'll get our own
 	
-	icon = icons->at(randSeed % icons->size()) ;
+	auto sz = icons->size()-1 ;
+	auto tmprnd = rnd.nextValue<vector<string>::size_type>(0, sz) ;
+	icon = icons->at(tmprnd) ;
 	
-	long x = (fastRand<unsigned long>::nextValue() % lrint(MAX_X)) ;
-	long y = (fastRand<unsigned long>::nextValue() % lrint(MAX_Y)) ;
+	long x = (rnd.nextValue(0, lrint(MAX_X))) ;
+	long y = (rnd.nextValue(0, lrint(MAX_Y))) ;
 	
 	loc = new Location<long>(x, y, 0) ;
 	
@@ -139,7 +143,7 @@ GameObject::GameObject(int randSeed) :
 }
 
 GameObject::~GameObject() {
-	next_goIterator = allGameObjects->erase(goIterator) ;
+	//next_goIterator = allGameObjects->erase(goIterator) ;
 	map->erase(*(getLocation())) ;
 	
 	
@@ -348,7 +352,7 @@ void GameObject::setIcon(const string & icon) {
 	this->icon = icon ;
 }
 
-string & GameObject::getIcon() {
+const string & GameObject::getIcon() const {
 	return this->icon ;
 }
 
@@ -367,9 +371,10 @@ string GameObject::toString() const {
 
 const string GameObject::generateName(unsigned int length) {
 	string s = "" ;
-	s += std::toupper(GameObject::nameLetters[(fastRand<unsigned long>::nextValue() % 27)]) ;
+	fastRand<int> rnd(0, 27) ;
+	s += std::toupper(GameObject::nameLetters[rnd.nextValue()]) ;
 	for (unsigned i = 0 ; i < length ; i++) {
-		s += nameLetters[(fastRand<unsigned long>::nextValue() % 27)] ;
+		s += nameLetters[(rnd.nextValue())] ;
 	}
 	return s ;
 }

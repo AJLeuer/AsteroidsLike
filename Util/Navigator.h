@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include "Util.h"
+#include "Util.hpp"
 #include "Location.hpp"
 
 class Navigator {

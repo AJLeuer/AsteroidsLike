@@ -49,14 +49,14 @@ void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
 	}
 	
 	
-	vector<GameObject*> * found ;
+	vector< const GameObject*> * found ;
 	
 	const Location<long> * loc = new Location<long>(95, 15, 0) ;
 	
 	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
 	
-	
-	Debug::draw2DRepresentation(*(Debug::debugOutput), GameObject::map->getMapVect(), ' ') ;
+	Drawing drawing ;
+	drawing.draw2DRepresentation(*(Debug::debugOutput), GameObject::map->getMapVect(), ' ') ;
 
 }
 
@@ -77,11 +77,14 @@ void WorldController::close() {
 	runningMtx.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	running = false ;
 	GameObject::joinThreads() ;
-	//GameObject::map->eraseAll() ;
-	delete GameObject::map ;
+	//delete GameObject::map ; //deletes internal vectors
+	
+	unsigned n = 0 ; //debug symbol
 	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
 		delete (*i) ;
+		n++ ;
 	}
+	
 	delete gameObjects ;
 	gameObjects = nullptr ;
 	runningMtx.unlock() ;
