@@ -25,6 +25,7 @@ template <class T>
 class GameMap {
 	
 private:
+	unsigned mapMembers = 0 ;
 	vector< vector<T*>*> * intern_map ;
 	
 	template<typename N>
@@ -53,10 +54,10 @@ public:
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	bool place(const Location<N> & where, T * mapObj) ;
+	Location<N> * place(Location<N> * where, T * mapObj) ;
 	
 	template<typename N>
-	bool placeAtNearestFree(const Location<N> & where, T * mapObj) ;
+	Location<N> * placeAtNearestFree(Location<N> * where, T * mapObj) ;
 	
 	template<typename N>
 	void erase(Location<N> & currentLoc) ;
@@ -119,6 +120,7 @@ GameMap<T>::~GameMap() {
 			intern_map->at(i)->at(j) = nullptr ;
 		}
 	}
+	mapMembers = 0 ;
 	if (gmDebug != nullptr) {
 		delete gmDebug ;
 	}
@@ -126,64 +128,89 @@ GameMap<T>::~GameMap() {
 
 template<class T>
 template<typename N>
-bool GameMap<T>::place(const Location<N> & where, T * mapObj) {
+Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
+	if (mapObj == nullptr) {
+		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll()" << endl;
+		throw new exception() ;
+	}
 	
-	if (at(where) == nullptr) {
-		intern_map->at(where.getX())->at(where.getY()) = mapObj ;
-		return true ;
+	if (at(*where) == nullptr) {
+		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
+		mapMembers++ ;
+		return where ;
 	}
 	else {
 		
 		*(Debug::debugOutput) << "Warning: Call to GameMap::place() unsucessful. That Location was already taken." << endl ;
 		*(Debug::debugOutput) << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
-		bool b = placeAtNearestFree(where, mapObj) ;
-		return b ;
+
+		return placeAtNearestFree(where, mapObj) ;
 	}
+	
 }
 
 template<class T>
 template<typename N>
-bool GameMap<T>::placeAtNearestFree(const Location<N> & where, T * mapObj) {
-	if (at(where) == nullptr) {
-		place(where, mapObj) ;
+Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
+	if (mapObj == nullptr) {
+		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll()" << endl;
+		throw new exception() ;
+	}
+	if (at(*where) == nullptr) {
+		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
+		mapMembers++ ;
+		return where ;
 	}
 	else {
-		bool b = false ;
-		Location<N> n = Location<N>(where.x, where.y + 1, where.z) ;
-		Location<N> s = Location<N>(where.x, where.y - 1, where.z) ;
-		Location<N> e = Location<N>(where.x + 1, where.y, where.z) ;
-		Location<N> w = Location<N>(where.x - 1, where.y, where.z) ;
-		vector<Location<N>> locs = { Location<N>(n), Location<N>(s), Location<N>(e), Location<N>(w) } ;
-		for (auto i = (fastRand<typename vector<Location<N>>::size_type>::nextValue() % locs.size()) ; !(locs.empty()) ; i = (fastRand<typename vector<Location<N>>::size_type>::nextValue() % locs.size())) {
-			b = place(locs.at(i), mapObj) ;
-			if (b) {
-				return true ;
-			}
-		}
 		
-		unsigned sw = (fastRand<unsigned>::nextValue() % 4) ;
-		switch (sw) {
+		unsigned swt = (fastRand<unsigned>::nextValue() % 4) ;
+		
+		switch (swt) {
 			case 0:
-				return placeAtNearestFree(n, mapObj) ;
+			{
+				Location<N> * temp = new Location<N>(where->x, where->y + 1, where->z) ;
+				delete where ;
+				where = temp ;
+				return placeAtNearestFree(where, mapObj) ;
+			}
 
 			case 1:
-				return placeAtNearestFree(s, mapObj) ;
+			{
+				Location<N> * temp = new Location<N>(where->x, where->y - 1, where->z) ;
+				delete where ;
+				where =  temp ;
+				return placeAtNearestFree(where, mapObj) ;
+			}
 				
 			case 2:
-				return placeAtNearestFree(e, mapObj) ;
+			{
+				Location<N> * temp = new Location<N>(where->x + 1, where->y, where->z) ;
+				delete where ;
+				where =  temp ;
+				return placeAtNearestFree(where, mapObj) ;
+			}
 				
 			case 3:
-				return placeAtNearestFree(w, mapObj) ;
+			{
+				Location<N> * temp = new Location<N>(where->x - 1, where->y, where->z);
+				delete where ;
+				where = temp ;
+				return placeAtNearestFree(where, mapObj) ;
+			}
 		}
+		//mapMembers++ ;
 	}
-	*Debug::debugOutput << "Exception raised in call to placeAtNearestFree()" << endl ;
+	*Debug::debugOutput << "No empty positions found on map. placeAtNearestFree() threw exception" << endl ;
 	throw new exception() ;
 }
 
 template<class T>
 template<typename N>
 void GameMap<T>::erase(Location<N> & currentLoc) {
-	place(currentLoc, nullptr) ;
+	if (at(currentLoc) != nullptr) {
+		mapMembers-- ;
+	}
+	intern_map->at(currentLoc.getX())->at(currentLoc.getY()) = nullptr ;
 }
 
 template<class T>
@@ -220,7 +247,7 @@ Location<N> GameMap<T>::currentLoc(T *obj) {
 			}
 		}
 	}
-	*(Debug::debugOutput) << "GameMap::currentLoc calling exception" << endl ;
+	*(Debug::debugOutput) << "GameMap::currentLoc() throwing exception. No object found at that location." << endl ;
 	throw exception() ;
 }
 
@@ -228,7 +255,10 @@ template<class T>
 template<typename N>
 T* GameMap<T>::remove(Location<N> & currentLoc) {
 	T * temp = at(currentLoc) ;
-	erase(currentLoc) ;
+	if (temp != nullptr) {
+		mapMembers-- ;
+	}
+	this->erase(currentLoc) ;
 	return temp ;
 }
 

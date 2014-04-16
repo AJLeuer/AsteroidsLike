@@ -27,6 +27,10 @@ WorldController::WorldController() {}
 void WorldController::init() {
 	running = true ;
 	
+	/* debug code */
+	for (unsigned i = 0 ; i < 50 ; i++) {
+		new GameObject(1) ;
+	}
 	
 	WorldController::gameObjects = GameObject::allGameObjects ;
 	WorldController::map = GameObject::map ;
@@ -39,11 +43,11 @@ void WorldController::init() {
 
 //testing code
 void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
-	/*
-	for (vector<GameObject*>::size_type i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->wander(xyOffs, b) ;
+	
+	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
+		(*i)->wander(xyOffs, b) ;
 	}
-	*/
+	
 	
 	vector<GameObject*> * found ;
 	
@@ -73,7 +77,7 @@ void WorldController::close() {
 	runningMtx.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	running = false ;
 	GameObject::joinThreads() ;
-	GameObject::map->eraseAll() ;
+	//GameObject::map->eraseAll() ;
 	delete GameObject::map ;
 	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
 		delete (*i) ;

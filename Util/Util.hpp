@@ -118,7 +118,7 @@ random_device fastRand<T>::rnd("/dev/urandom") ;
 
 template<typename T>
 T fastRand<T>::nextValue() {
-	T n = rnd.operator()() ;
+	T n = rand()/*rnd.operator()()*/ ; //<-uncomment
 	return n ;
 }
 

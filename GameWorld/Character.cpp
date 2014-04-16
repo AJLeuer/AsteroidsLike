@@ -24,7 +24,7 @@ Character::Character(const Character & other) :
 }
 
 Character::Character(Character && other) :
-	GameObject(other),
+	GameObject(std::move(other)),
 	name(std::move(other.name)), alive(std::move(other.alive)),
 	state(std::move(other.state)), health(std::move(other.health)),
 	damage(std::move(other.damage))
@@ -66,7 +66,7 @@ Character & Character::operator=(const Character &rhs) {
 
 Character & Character::operator=(Character && rhs) {
 	if (this != &rhs) {
-		this->GameObject::operator=(rhs) ;
+		this->GameObject::operator=(std::move(rhs)) ;
 		this->name = std::move(rhs.name) ;
 		this->alive = std::move(rhs.alive) ;
 		this->state = std::move(rhs.state) ;

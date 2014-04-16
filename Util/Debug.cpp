@@ -10,7 +10,7 @@
 
 using namespace std ;
 
-ostream * Debug::debugOutput { nullptr } ;
+ostream * Debug::debugOutput { new ofstream("debug.txt") } ;
 
 unsigned Debug::debugCounter = 0 ;
 

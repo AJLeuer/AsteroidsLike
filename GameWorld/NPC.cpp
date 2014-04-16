@@ -22,7 +22,7 @@ NPC::NPC(const NPC & other) :
 }
 
 NPC::NPC(NPC && other) :
-	Character(other),
+	Character(std::move(other)),
 	reaction(std::move(other.reaction))
 {
 }
@@ -55,7 +55,7 @@ NPC & NPC::operator=(const NPC & rhs) {
 
 NPC & NPC::operator=(NPC && rhs) {
 	if (this != &rhs) {
-		this->Character::operator=(rhs) ;
+		this->Character::operator=(std::move(rhs)) ;
 		this->reaction = std::move(rhs.reaction) ;
 	}
 	return *this ;

@@ -20,7 +20,7 @@ list<thread *> * GameObject::allThreads  = new list<thread *>() ;
 list<thread *>::iterator GameObject::lastAddedThread = allThreads->begin() ;
 
 list<GameObject *> * GameObject::allGameObjects = new list<GameObject*>() ;
-list<GameObject *>::iterator GameObject::next_goIterator = allGameObjects->begin() ;
+list<GameObject *>::iterator GameObject::next_goIterator = (allGameObjects->begin()) ;
 
 GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
 
@@ -33,19 +33,19 @@ const long GameObject::MIN_Y = GLOBAL_MIN_Y ;
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Location<long>()),
+	loc(new Location<long>(0, 0, 0)),
 	goIterator(next_goIterator)
 {
 	IDs++ ;
-	next_goIterator++ ;
+	//next_goIterator++ ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
 		map_is_init = true ;
 	}
 	
-	allGameObjects->insert(this->goIterator, this) ;
-	map->place((*this->loc), this) ;
+	next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
@@ -56,15 +56,15 @@ GameObject::GameObject(const GameObject & other) :
 	goIterator(next_goIterator)
 {
 	IDs++ ;
-	next_goIterator++ ;
+	//next_goIterator++ ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
 		map_is_init = true ;
 	}
 	
-	allGameObjects->insert(this->goIterator, this) ;
-	map->place((*this->loc), this) ;
+	next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 GameObject::GameObject(GameObject && other) :
@@ -74,7 +74,7 @@ GameObject::GameObject(GameObject && other) :
 	loc(other.loc),
 	goIterator(next_goIterator)
 {
-	next_goIterator++ ;
+	//next_goIterator++ ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
@@ -87,8 +87,8 @@ GameObject::GameObject(GameObject && other) :
 	other.goThread = nullptr ;
 	other.loc = nullptr ;
 	
-	allGameObjects->insert(this->goIterator, this) ;
-	map->place(*(this->loc), this) ;
+	next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 GameObject::GameObject(string symbol, Location<long> * loc) :
@@ -99,15 +99,15 @@ GameObject::GameObject(string symbol, Location<long> * loc) :
 	goIterator(next_goIterator)
 {
 	IDs++ ;
-	next_goIterator++ ;
+	//next_goIterator++ ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
 		map_is_init = true ;
 	}
 	
-	allGameObjects->insert(this->goIterator, this) ;
-	map->place((*this->loc), this) ;
+	next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 GameObject::GameObject(int randSeed) :
@@ -118,7 +118,7 @@ GameObject::GameObject(int randSeed) :
 	goIterator(next_goIterator)
 {
 	IDs++ ;
-	next_goIterator++ ;
+	//next_goIterator++ ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
@@ -134,12 +134,12 @@ GameObject::GameObject(int randSeed) :
 	
 	loc = new Location<long>(x, y, 0) ;
 	
-	allGameObjects->insert(this->goIterator, this) ;
-	map->place((*this->loc), this) ;
+	next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 GameObject::~GameObject() {
-	allGameObjects->erase(goIterator) ;
+	next_goIterator = allGameObjects->erase(goIterator) ;
 	map->erase(*(getLocation())) ;
 	
 	
@@ -156,10 +156,10 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->goIterator = next_goIterator ;
 		
 		IDs++ ;
-		next_goIterator++ ;
+		//next_goIterator++ ;
 		
-		allGameObjects->insert(this->goIterator, this) ;
-		map->place((*this->loc), this) ;
+		next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+		this->loc = map->place(this->loc, this) ;
 	}
 	return *this ;
 }
@@ -172,7 +172,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
         this->loc = rhs.loc ;
 		this->goIterator = next_goIterator ;
 		
-		next_goIterator++ ;
+		//next_goIterator++ ;
 		
 		allGameObjects->erase(rhs.goIterator) ;
 		map->erase(*(rhs.getLocation())) ;
@@ -180,8 +180,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		rhs.goThread = nullptr ;
 		rhs.loc = nullptr ;
 		
-		allGameObjects->insert(this->goIterator, this) ;
-		map->place(*(this->loc), this) ;
+		next_goIterator = allGameObjects->insert(this->goIterator, this) ;
+		this->loc = map->place(this->loc, this) ;
 	}
 	return *this ;
 }
@@ -271,7 +271,7 @@ void GameObject::move(long xoffset, long yoffset) {
 	}
 	map->erase(*(this->getLocation())) ;
 	this->loc->modify(xoffset, yoffset, 0) ;
-	map->place(*(this->loc), this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 void GameObject::move(const Location<long> & moveTo) {
@@ -291,7 +291,7 @@ void GameObject::move(const Location<long> & moveTo) {
 	map->erase(*(this->getLocation())) ;
 	delete this->loc ;
 	this->loc = new Location<long>(mt) ;
-	map->place(*(this->loc), this) ;
+	this->loc = map->place(this->loc, this) ;
 }
 
 void GameObject::wander(double xyOffset, long time) {

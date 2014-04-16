@@ -34,7 +34,7 @@ int main(void) {
 
 	srand((unsigned)time(NULL)) ;
 	
-	/*
+
 	BasicTime timer ;
 	
 	timer.startTimer() ;
@@ -60,18 +60,7 @@ int main(void) {
 	WorldController::close() ;
 	
 	chosenOutputAdapter->close() ;
-	*/
-	
-	Character pawn = Character(1) ;
-	
-	Character c2(std::move(pawn)) ;
-	
-	Character c3 = Character(c2) ;
-	
-	Character c4 = Character(std::move(c3)) ;
-	
-	Character c5 = std::move(c4) ;
-	
+
 	 
 	
 	*(Debug::debugOutput) << Debug::debugCounter << endl ;
