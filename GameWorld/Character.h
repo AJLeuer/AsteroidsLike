@@ -141,7 +141,7 @@ public:
 	/**
 	 * Writes a formatted text description of this Character into the desired output stream
 	 */
-	virtual void textDescription(ostream * writeTO) const ;
+	virtual void textDescription(ostream * writeTo) const ;
 	
 	/**
 	 * Attacks a hostile Character
@@ -153,7 +153,7 @@ public:
 	/**
 	 * Getter for name
 	 */
-	string getName() { return this->name ; }
+	const string & getName() const { return this->name ; }
 	
 	/**
 	 * Setter for name

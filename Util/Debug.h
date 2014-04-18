@@ -22,6 +22,9 @@ private:
 	ostream * out ;
 	bool file_output ;
 	mutex dbgMutex ;
+	mutex dbgMutex1 ;
+	mutex dbgMutex2 ;
+	
 	
 	
 public:
@@ -29,20 +32,20 @@ public:
 	
 
 	template <typename T>
-	Debug & operator <<(T data) ;
+	Debug & operator <<(const T & data) ;
 	
 	
 	Debug & operator<<(std::ostream & (*ptr)(std::ostream&)) {
 		dbgMutex.lock() ;
 		(*out) << ptr;
-		return *this;
 		dbgMutex.unlock() ;
+		return *this;
 	}
 	
 	Debug & operator<<(Debug & (*ptr)(Debug &)) {
-		dbgMutex.lock() ;
+		dbgMutex1.lock() ;
 		return ptr(*this);
-		dbgMutex.unlock() ;
+		dbgMutex1.unlock() ;
 	}
 	
 	ostream & get_ostream() { return *(this->out) ; }
@@ -57,11 +60,11 @@ public:
 } ;
 
 template <typename T>
-Debug & Debug::operator<<(T data) {
-	dbgMutex.lock() ;
+Debug & Debug::operator<<(const T & data) {
+	dbgMutex2.lock() ;
 	*out << data ;
+	dbgMutex2.unlock() ;
 	return *this;
-	dbgMutex.unlock() ;
 }
 
 

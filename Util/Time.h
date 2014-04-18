@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Adam J. Leuer. All rights reserved.
 //
 
-#ifndef __BasicTime__
-#define __BasicTime__
+#ifndef __Time__
+#define __Time__
 
 #include <iostream>
 #include <boost/chrono/chrono.hpp>
@@ -18,7 +18,7 @@
 using namespace std ;
 
 //use clock() to get time since program start
-class BasicTime {
+class Time {
 	
 private:
 	bool timerStarted ;
@@ -26,11 +26,11 @@ private:
 	
 	
 public:
-	BasicTime() : timerStarted(false) {}
+	Time() : timerStarted(false) {}
 	
 	void startTimer() {
 		if (timerStarted) {
-			*(Debug::debugOutput) << "stopTimer() must be called before startTimer() can be called again for this BasicTime object" << endl ;
+			*(Debug::debugOutput) << "stopTimer() must be called before startTimer() can be called again for this Time object" << endl ;
 			throw new exception() ;
 		}
 		timerStarted = true ;
@@ -51,8 +51,12 @@ public:
 		return d ;
 	}
 	
+	/**
+	 * Stops timer and returns the time elapsed
+	 * in microseconds (= 1000 milliseconds) - may need to convert
+	 */
 	const long stopTimer() {
-		//returns in microseconds (= 1000 milliseconds) - may need to convert
+		
 		if (!timerStarted) {
 			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once" << endl ;
 			throw new exception() ;
@@ -61,7 +65,8 @@ public:
 		timerStarted = false ;
 		return duration.count() ;
 	}
-};
+} ;
+
 
 
 

@@ -17,7 +17,8 @@
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Location.hpp"
-#include "../Util/BasicTime.h"
+#include "../Util/Time.h"
+#include "GameData.h"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"
@@ -43,6 +44,11 @@ class WorldController {
 	
 private:
 	
+	/**
+	 * A container holding most objects in the game world
+	 */
+	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
+	
 	
 	friend class GameInterface ;
 	
@@ -54,7 +60,7 @@ private:
 	 */
 	static ostream * gameLog ;
 	
-	static bool running ; //has WorldController started yet?
+	
 	
 	WorldController() ;
 	
@@ -63,15 +69,14 @@ public:
 	/**
 	 * A container holding most objects in the game world
 	 */
-	static list<GameObject*> * gameObjects ; //Adapters need to access this too
+	static const vector<GameObject*> * getGameObjects() { return WorldController::gameObjects ; }  //Interfaces need to access this too
+	
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its location. Is synced with GameObjects's map.
 	 */
 	static GameMap<GameObject> * map ;
-	
-	static mutex runningMtx ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
@@ -80,11 +85,11 @@ public:
 	
 	static ostream ** getGameLog() { return & gameLog ; }
 	
-	static bool isRunning() { return running ; }
+	//static bool isRunning() { return running ; }
 	
 	static void init() ;
 	
-	static void foo(double xyOffs, unsigned long, bool * b) ;
+	static void runWorldSimulation(unsigned long) ;
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting

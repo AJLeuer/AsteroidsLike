@@ -225,6 +225,13 @@ void Drawing::draw2DRepresentation (ostream & writeTo, const Container * contain
 	}
 }
 
+/* misc. other */
+extern char * basicAlphabet ;
+
+const string generateName(unsigned int length) ;
+
+
+
 
 
 

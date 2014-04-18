@@ -12,7 +12,12 @@
 
 using namespace std ;
 
-extern const long GLOBAL_MAX_X = 300 ;
-extern const long GLOBAL_MIN_X = 0 ;
-extern const long GLOBAL_MAX_Y = 74 ;
-extern const long GLOBAL_MIN_Y = 0 ;
+mutex Locking::sharedMutex ;
+
+extern const long GLOBAL_MAX_X { 300 } ;
+extern const long GLOBAL_MIN_X { 0 } ;
+extern const long GLOBAL_MAX_Y { 74 } ;
+extern const long GLOBAL_MIN_Y { 0 } ;
+
+
+

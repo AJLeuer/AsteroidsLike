@@ -14,13 +14,14 @@
 #include <thread>
 
 #include "../Util/Util.hpp"
-#include "../Util/BasicTime.h"
+#include "../Util/Time.h"
 
-#include "../Adapter/Adapter.h"
-#include "../Adapter/TestAdapter.h"
+#include "../Adapter/Adapter.hpp"
+#include "../Adapter/TestAdapter.hpp"
 
-#include "WorldController.h"
+#include "MainController.h"
 #include "GameObject.h"
+#include "WorldController.h"
 #include "NPC.h"
 
 
@@ -35,41 +36,14 @@ int foo() {
 int main(void) {
 
 	srand((unsigned)time(NULL)) ;
+	
+	/* Debug */
 
-	
-	BasicTime timer ;
-	
-	timer.startTimer() ;
-	//Debug::init(true) ;
-	
-	WorldController::init() ;
-	
-	AdapterInterface * chosenOutputAdapter = new TestAdapter(1) ;
+	MainController::start(10000) ;
+	MainController::stop() ;
 	
 	
-	chosenOutputAdapter->init() ;
-
-	chosenOutputAdapter->show() ;
-	
-	bool run = true ;
-	
-	WorldController::foo(1, 0e+6, &run) ;
-	
-	usleep(0e+6) ;
-	
-	run = false ;
-	
-	WorldController::close() ;
-	
-	chosenOutputAdapter->close() ;
-	
-	
-
-	Debug::init(false) ;
-	
-	//*(Debug::debugOutput) << Debug::debugCounter ;
-
-	
+	/* end debug */
 	return 0;
 }
 

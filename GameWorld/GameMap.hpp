@@ -60,7 +60,7 @@ public:
 	Location<N> * placeAtNearestFree(Location<N> * where, T * mapObj) ;
 	
 	template<typename N>
-	void erase(Location<N> & currentLoc) ;
+	void erase (const Location<N> & currentLoc) ;
 	
 	void eraseAll() ;
 	
@@ -128,11 +128,15 @@ GameMap<T>::~GameMap() {
 	}
 }
 
+/**
+ * Places at Location where. If this Location is taken, places at the nearest Location that is free, and *updates the
+ * Location object pointed by where to reflect the new Location
+ */
 template<class T>
 template<typename N>
 Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
 	if (mapObj == nullptr) {
-		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll()" << endl;
+		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
 	}
 	
@@ -142,20 +146,21 @@ Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
 		return where ;
 	}
 	else {
-		
-		*(Debug::debugOutput) << "Warning: Call to GameMap::place() unsucessful. That Location was already taken." << endl ;
-		*(Debug::debugOutput) << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
-
+		stringstream ss ;
+		ss << "Warning: Call to GameMap::place() unsucessful. That Location was already taken." << endl ;
+		ss << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
+		*(Debug::debugOutput) << ss.rdbuf() ;
 		return placeAtNearestFree(where, mapObj) ;
 	}
 	
 }
 
+
 template<class T>
 template<typename N>
 Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
 	if (mapObj == nullptr) {
-		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll()" << endl;
+		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
 	}
 	if (at(*where) == nullptr) {
@@ -172,44 +177,44 @@ Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
 			case 0:
 			{
 				Location<N> * temp = new Location<N>(where->x, where->y + 1, where->z) ;
-				delete where ;
-				where = temp ;
+				//delete where ;
+				*where = std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj) ;
 			}
 
 			case 1:
 			{
 				Location<N> * temp = new Location<N>(where->x, where->y - 1, where->z) ;
-				delete where ;
-				where =  temp ;
+				//delete where ;
+				*where = std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj) ;
 			}
 				
 			case 2:
 			{
 				Location<N> * temp = new Location<N>(where->x + 1, where->y, where->z) ;
-				delete where ;
-				where =  temp ;
+				//delete where ;
+				*where =  std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj) ;
 			}
 				
 			case 3:
 			{
 				Location<N> * temp = new Location<N>(where->x - 1, where->y, where->z);
-				delete where ;
-				where = temp ;
+				//delete where ;
+				*where =  std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj) ;
 			}
 		}
 		//mapMembers++ ;
 	}
-	*Debug::debugOutput << "No empty positions found on map. placeAtNearestFree() threw exception" << endl ;
+	*Debug::debugOutput << "No empty positions found on map. placeAtNearestFree() threw exception \n" ;
 	throw new exception() ;
 }
 
 template<class T>
 template<typename N>
-void GameMap<T>::erase(Location<N> & currentLoc) {
+void GameMap<T>::erase(const Location<N> & currentLoc) {
 	if (at(currentLoc) != nullptr) {
 		mapMembers-- ;
 	}
@@ -251,7 +256,7 @@ Location<N> GameMap<T>::currentLoc(T *obj) {
 			}
 		}
 	}
-	*(Debug::debugOutput) << "GameMap::currentLoc() throwing exception. No object found at that location." << endl ;
+	*(Debug::debugOutput) << "GameMap::currentLoc() throwing exception. No object found at that location. \n" ;
 	throw exception() ;
 }
 
@@ -289,7 +294,7 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator & nav,
 		searchSuccess = true ;
 		store->push_back(at(nav.current)) ;
 	}
-	*(Debug::debugOutput) << Debug::debugCounter++ << endl ;
+
 	switch (nav.dir) {
 		case north : {
 			if ((nav.y_travelled() <= y_lim) && (nav.current.y < getYBound())) {

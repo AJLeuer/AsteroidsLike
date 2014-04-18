@@ -10,83 +10,75 @@
 
 
 
-bool WorldController::running = false ;
+//bool WorldController::running = false ;
 
-list<GameObject*> * WorldController::gameObjects  = nullptr ;
+vector<GameObject*> * WorldController::gameObjects  = nullptr ;
 GameMap<GameObject> * WorldController::map = nullptr ;
 
-std::mutex WorldController::runningMtx ;
 
-const long WorldController::MAX_X = GameObject::MAX_X ;
-const long WorldController::MIN_X = GameObject::MIN_X ;
-const long WorldController::MAX_Y = GameObject::MAX_Y ;
-const long WorldController::MIN_Y = GameObject::MIN_Y ;
+
+const long WorldController::MAX_X { GLOBAL_MAX_X } ;
+const long WorldController::MIN_X { GLOBAL_MIN_X } ;
+const long WorldController::MAX_Y { GLOBAL_MAX_Y } ;
+const long WorldController::MIN_Y { GLOBAL_MIN_Y } ;
 
 WorldController::WorldController() {}
 
 void WorldController::init() {
-	running = true ;
-	
-	/* debug code */
-	for (unsigned i = 0 ; i < 50 ; i++) {
-		new GameObject(1) ;
-	}
-	
+
 	WorldController::gameObjects = GameObject::allGameObjects ;
 	WorldController::map = GameObject::map ;
+	
+	/* debug code */
+	for (unsigned i = 0 ; i < 3 ; i++) {
+		new GameObject(1) ;
+	}
+	/* debug end */
 	
 	//we also assigned all the MAX constants in both GameObject and
 	//WorldController so that they sync together (see above)
 	
-	
 }
 
-//testing code
-void WorldController::foo(double xyOffs, unsigned long time, bool * b) {
+
+void WorldController::runWorldSimulation(unsigned long time) {
+/* debug code */
+	auto wanderOffset = 1 ;
 	
-	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
-		(*i)->wander(xyOffs, b) ;
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		gameObjects->at(i)->wander(wanderOffset, time) ;
 	}
-	
 	
 	vector< const GameObject*> * found ;
 	
 	const Location<long> * loc = new Location<long>(95, 15, 0) ;
 	
 	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
-	
-	Drawing drawing ;
-	drawing.draw2DRepresentation((Debug::debugOutput)->get_ostream(), GameObject::map->getMapVect(), ' ') ;
-
+/* end debug code */
 }
+
 
 void WorldController::playGameInRealTime() {
 	//todo
 }
 
 void WorldController::playGameRecorded(std::ostream * writeTo) {
-	//testing code
-	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
-		(*i)->textDescription(writeTo) ;
-		*writeTo << endl << endl ;
-	}
+	
 }
 
 void WorldController::close() {
 	
-	runningMtx.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
-	running = false ;
+	Locking::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	GameObject::joinThreads() ;
 	//delete GameObject::map ; //deletes internal vectors
 	
-	unsigned n = 0 ; //debug symbol
-	for (auto i = gameObjects->begin() ; i != gameObjects->end() ; i++) {
-		delete (*i) ;
-		n++ ;
+
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		delete gameObjects->at(i) ;
 	}
 	
 	delete gameObjects ;
 	gameObjects = nullptr ;
-	runningMtx.unlock() ;
+	Locking::sharedMutex.unlock() ;
 	
 }

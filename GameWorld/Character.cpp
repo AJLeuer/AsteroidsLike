@@ -47,7 +47,7 @@ Character::Character(int randSeed) :
 	damage{goRand.nextValue(0, 50)}
 {
 	
-	name = GameObject::generateName(goRand.nextValue(0, 11) + 5) ;
+	name = generateName(goRand.nextValue(0, 11) + 5) ;
 }
 
 Character::~Character() {
@@ -93,12 +93,14 @@ void Character::passMessage(Message *message, GameObject &recipient) {
 	//todo
 }
 
-void Character::textDescription(ostream * writeTO) const {
-	*writeTO << "Character name: " << this->name << endl ;;
-	*writeTO << "Current status: " << this->state << endl  ;
-	*writeTO << "Current health: " << this->health << endl ;
-	*writeTO << "Damage capability: " << this->damage << endl ;
-	this->GameObject::textDescription(writeTO) ;
+void Character::textDescription(ostream * writeTo) const {
+	stringstream ss ;
+	ss << "Character name: " << this->name << endl ;;
+	ss << "Current status: " << this->state << endl  ;
+	ss << "Current health: " << this->health << endl ;
+	ss << "Damage capability: " << this->damage << endl ;
+	this->GameObject::textDescription(&ss) ;
+	*writeTo << ss.rdbuf() ;
 }
 
 void Character::attack(Character & enemy) {

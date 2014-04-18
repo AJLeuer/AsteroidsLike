@@ -78,9 +78,11 @@ void NPC::passMessage(Message * message, Character & recipient) {
 	//todo
 }
 
-void NPC::textDescription(ostream * writeTO) const {
-	this->Character::textDescription(writeTO) ;
-	*writeTO << "Reaction to player: " << this->reaction << endl ;
+void NPC::textDescription(ostream * writeTo) const {
+	stringstream ss ;
+	this->Character::textDescription(&ss) ;
+	ss << "Reaction to player: " << this->reaction << endl ;
+	*writeTo << ss.rdbuf() ;
 }
 
 void NPC::attack(Character & enemy) {
