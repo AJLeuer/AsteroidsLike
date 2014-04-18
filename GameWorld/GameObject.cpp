@@ -16,7 +16,7 @@ vector<string> * GameObject::icons = new vector<string>{"🎾", "🔱", "💩", 
 
 bool GameObject::map_is_init = false ;
 
-vector<thread *> * GameObject::allThreads  = new vector<thread *>() ;
+vector<pair <thread *, GameObject*> > * GameObject::allThreads  = new vector<pair <thread *, GameObject*> >() ;
 
 vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
@@ -248,7 +248,7 @@ bool GameObject::operator==(GameObject & other) const {
 
 void GameObject::eraseByID(unsigned ID) {
 	for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-		if ((allGameObjects->at(i)->ID) == ID) {
+		if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
 			allGameObjects->at(i) = nullptr ;
 		}
 	}
@@ -264,7 +264,8 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 
 void GameObject::startThreading(std::thread * goThr, bool wait) {
 	*(this->currentlyThreading) = true ;
-	GameObject::allThreads->push_back(this->goThread) ;
+	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->goThread, this) ;
+	GameObject::allThreads->push_back(threadPair) ;
 	if (wait) {
 		goThread->join() ;
 		allThreads->pop_back() ;
@@ -279,18 +280,18 @@ void GameObject::endThreading(bool join) {
 		goThread->join() ;
 	}
 	for (auto i = 0 ; i < allThreads->size() ; i++) {
-		if (allThreads->at(i) == this->goThread) {
-			allThreads->at(i) = nullptr ;
+		if (get<0>(allThreads->at(i)) == this->goThread) {
+			get<0>(allThreads->at(i)) = nullptr ;
 		}
 	}
-	delete this->goThread ;
-	this->goThread = nullptr ;
+	//delete this->goThread ;
+	//this->goThread = nullptr ;
 }
 
 void GameObject::joinThreads() {
-	for (auto i = 0 ; i < allThreads->size() ; i++) {
-		allThreads->at(i)->join() ;
-		allThreads->at(i) = nullptr ;
+	for (auto i = allThreads->begin() ; i != allThreads->end() ; i++) {
+		get<0>(*i)->join() ;
+		*(get<1>(*i)->currentlyThreading) = false ;
 	}
 }
 

@@ -40,13 +40,9 @@ class TestAdapter : public AdapterInterface<T> {
 	
 
 private:
-	std::thread * aiThread ;
-	std::ostream * file = new ofstream("AdapterOutput.txt") ;
-	const vector<T*> * container ;
-	
-	void show_threaded(bool * contin) ;
 
-	
+	void show_threaded(bool * contin) ;
+	 
 public:
 	
 	/**
@@ -72,7 +68,6 @@ public:
 	
 	void show(bool * contin) ;
 	
-	void drawRepresentation(vector< vector<const T *> *> *, ostream * = Debug::debugOutput) ;
 	
 	/**
 	 * See show()
@@ -85,8 +80,8 @@ public:
 
 
 template<class T>
-void TestAdapter<T>::init(const vector<T *> *container_) {
-	this->AdapterInterface<T>::init(container_) ;
+void TestAdapter<T>::init(const vector<T*> * container_) {
+	this->AdapterInterface<T>::container = container_ ;
 	
 	//local initializations:
 	//
@@ -108,7 +103,7 @@ void TestAdapter<T>::init(const vector<T *> *container_) {
 
 template<class T>
 void TestAdapter<T>::show(bool * contin) {
-	aiThread = new std::thread(&TestAdapter<T>::show_threaded, this, contin) ;
+	this->AdapterInterface<T>::aiThread = new std::thread(&TestAdapter<T>::show_threaded, std::move(this), contin) ;
 }
 
 template<class T>
@@ -116,8 +111,8 @@ void TestAdapter<T>::show_threaded(bool * contin) {
 	while (*contin) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
-		for (auto i = 0 ; i < container->size() ; i++) {
-			auto temp = container->at(i) ;
+		for (auto i = 0 ; i < TestAdapter<T>::container->size() ; i++) {
+			auto temp = TestAdapter<T>::container->at(i) ;
 			ss << "Current GameObject: " ;
 			ss << *temp ;
 			ss << temp->getIcon().c_str() << endl << endl ;
@@ -129,11 +124,6 @@ void TestAdapter<T>::show_threaded(bool * contin) {
 		//
 		//
 	}
-}
-
-template<class T>
-void TestAdapter<T>::drawRepresentation(vector< vector<const T *> *> * map, ostream * out) {
-	this->AdapterInterface<T>::drawRepresentation(map, out) ;
 }
 
 template<class T>

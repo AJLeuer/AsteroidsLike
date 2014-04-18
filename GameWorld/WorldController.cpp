@@ -70,7 +70,7 @@ void WorldController::close() {
 	
 	Locking::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	GameObject::joinThreads() ;
-	//delete GameObject::map ; //deletes internal vectors
+	
 	
 
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
@@ -78,6 +78,7 @@ void WorldController::close() {
 	}
 	
 	delete gameObjects ;
+	delete GameObject::map ; 
 	gameObjects = nullptr ;
 	Locking::sharedMutex.unlock() ;
 	

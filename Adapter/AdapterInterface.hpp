@@ -60,7 +60,8 @@ public:
 	
 	virtual void show(bool * contin) ;
 	
-	virtual void drawRepresentation(vector< vector<const T *> *> *, ostream * ) ;
+	void drawRepresentation(vector< vector<const T *> *> *, ostream * out = Debug::debugOutput) ;
+	
 	
 	
 	/**
@@ -109,13 +110,13 @@ template<class T>
 AdapterInterface<T> & AdapterInterface<T>::operator=(AdapterInterface && rhs) {
 	if (this != &rhs) {
 		if (this != &rhs) {
-			this->aiThread = rhs.aidThread ;
+			this->aiThread = rhs.aiThread ;
 			container = rhs.container ;
 			currentlyThreading = rhs.currentlyThreading ;
 			file = rhs.file ;
 		}
 		if (!currentlyThreading) {
-			rhs.aidThread = nullptr ;
+			rhs.aiThread = nullptr ;
 			rhs.container = nullptr ;
 			rhs.currentlyThreading = nullptr ;
 			rhs.file = nullptr ;
@@ -125,10 +126,7 @@ AdapterInterface<T> & AdapterInterface<T>::operator=(AdapterInterface && rhs) {
 }
 
 template<class T>
-void AdapterInterface<T>::init(const vector<T *> *container_) {
-	container = container_ ;
-}
-
+void AdapterInterface<T>::init(const vector<T *> *container_) {}
 
 template<class T>
 void AdapterInterface<T>::show(bool * contin) {}
@@ -140,9 +138,6 @@ void AdapterInterface<T>::show_threaded(bool * contin) {}
 template<class T>
 void AdapterInterface<T>::drawRepresentation(vector< vector<const T *> *> * map, ostream * out) {
 	Drawing drawing ;
-	if (out != nullptr) {
-		this->file = out ;
-	}
 	stringstream ss ;
 	drawing.draw2DRepresentation(ss, map, ' ') ;
 	*file << ss.rdbuf() << endl ;

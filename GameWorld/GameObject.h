@@ -58,6 +58,7 @@ private:
 	
 	/**
 	 * Handles thread duties. In some case will be called by the threaded function once it has completed,
+	 * don't call if joinThreads() will be called
 	 *
 	 * @param join whether to call join() on this thread first
 	 */
@@ -99,7 +100,7 @@ protected:
 	 * allowing us to join and delete them as needed. Using a list allows us to insert and erase
 	 * elements without invalidating other iterators
 	 */
-	static vector<thread *>* allThreads ;
+	static vector< pair<thread *, GameObject*> > * allThreads ;
 	
 	/**
 	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.

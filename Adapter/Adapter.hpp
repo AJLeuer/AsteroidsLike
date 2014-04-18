@@ -39,12 +39,8 @@ class Adapter : public AdapterInterface<T> {
 
 
 private:
-	std::thread * aiThread ;
-	std::ostream * file ;
-	const vector<T*> * container ;
-	
-	void show_threaded(bool * contin) ;
 
+	void show_threaded(bool * contin) ;
 	
 public:
 	
@@ -65,13 +61,11 @@ public:
 	 */
 	Adapter & operator=(Adapter && rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
 	
-	~Adapter() { } //should automatically call ~AdapterInterface()
+	~Adapter() {} //should automatically call ~AdapterInterface()
 	
 	void init(const vector<T*> * container_) ;
 	
 	void show(bool * contin) ;
-	
-	void drawRepresentation(vector< vector<const T *> *> *, ostream * = Debug::debugOutput) ;
 	
 	
 	/**
@@ -86,7 +80,7 @@ public:
 
 template<class T>
 void Adapter<T>::init(const vector<T *> *container_) {
-	this->AdapterInterface<T>::init(container_) ;
+	this->AdapterInterface<T>::container = container_ ;
 	
 	//local initializations:
 	setlocale(LC_ALL, ""); //allows printing more types of characters (?)
@@ -102,7 +96,7 @@ void Adapter<T>::init(const vector<T *> *container_) {
 
 template<class T>
 void Adapter<T>::show(bool * contin) {
-	aiThread = new std::thread((&Adapter<T>::show_threaded), std::move(this), contin) ;
+	this->AdapterInterface<T>::aiThread = new std::thread((&Adapter<T>::show_threaded), std::move(this), contin) ;
 }
 
 template<class T>
@@ -110,8 +104,8 @@ void Adapter<T>::show_threaded(bool * contin) {
 	while (*contin) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
-		for (auto i = 0 ; i < container->size() ; i++) {
-			auto temp = container->at(i) ;
+		for (auto i = 0 ; i < this->AdapterInterface<T>::container->size() ; i++) {
+			auto temp = this->AdapterInterface<T>::container->at(i) ;
 			ss << "Current GameObject: " << endl << temp << endl ;
 			Location<long> trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
 			mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
@@ -124,11 +118,6 @@ void Adapter<T>::show_threaded(bool * contin) {
 		usleep(90000) ;
 		wclear(stdscr) ;
 	}
-}
-
-template<class T>
-void Adapter<T>::drawRepresentation(vector< vector<const T *> *> * map, ostream * out) {
-	this->AdapterInterface<T>::drawRepresentation(map, out) ;
 }
 
 template<class T>

@@ -24,7 +24,7 @@
 class MainController {
 	
 private:
-	static AdapterInterface<GameObject> currentAdapter ;
+	static AdapterInterface<GameObject> * currentAdapter ;
 	
 	
 public:

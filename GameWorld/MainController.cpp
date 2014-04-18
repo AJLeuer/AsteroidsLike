@@ -9,7 +9,7 @@
 #include "MainController.h"
 
 
-AdapterInterface<GameObject> MainController::currentAdapter = Adapter<GameObject>() ;
+AdapterInterface<GameObject> * MainController::currentAdapter = nullptr ;
 
 void MainController::start(unsigned long microseconds) {
 	
@@ -22,17 +22,18 @@ void MainController::start(unsigned long microseconds) {
 	
 	WorldController::init() ;
 	
-	currentAdapter.init(WorldController::getGameObjects()) ;
+	currentAdapter = new TestAdapter<GameObject>() ;
 	
-	currentAdapter.show(&b) ;
+	currentAdapter->init(WorldController::getGameObjects()) ;
 	
-	currentAdapter.drawRepresentation(GameObject::map->getMapVect(), nullptr) ;
+	currentAdapter->show(&b) ;
 	
-	WorldController::runWorldSimulation(0e+6 + 10) ;
+	currentAdapter->drawRepresentation(GameObject::map->getMapVect()) ;
 	
-	while (timer.checkTimeElapsed() < microseconds) {
-		usleep(((unsigned int)microseconds)/100) ;
-	}
+	WorldController::runWorldSimulation((unsigned)microseconds) ;
+	
+	
+	usleep(((unsigned int)microseconds)) ;
 	
 	b = false ;
 	
@@ -44,7 +45,8 @@ void MainController::stop() {
 	
 	WorldController::close() ;
 	
-	currentAdapter.close() ;
+	currentAdapter->close() ;
+	delete currentAdapter ;
 	
 }
 
