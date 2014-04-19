@@ -9,6 +9,12 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
+#define GLOBAL_MAX_X_ 179
+#define GLOBAL_MIN_X_ 0
+#define GLOBAL_MAX_Y_ 37
+#define GLOBAL_MIN_Y_ 0
+
+
 #include <iostream>
 #include <ostream>
 
@@ -330,15 +336,7 @@ std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 	return os;
 }
 
-struct BoundsCheck {
-	const long MAX_X ;
-	const long MIN_X ;
-	const long MAX_Y ;
-	const long MIN_Y ;
-	
-	BoundsCheck(long MAX_X_, long MIN_X_, long MAX_Y_, long MIN_Y_) :
-		MAX_X(MAX_X_), MIN_X(MIN_X_), MAX_Y(MAX_Y_), MIN_Y(MIN_Y_) {}
-} ;
+
 
 struct Locking {
 	static mutex sharedMutex ;
@@ -349,7 +347,7 @@ extern const long GLOBAL_MIN_X ;
 extern const long GLOBAL_MAX_Y ;
 extern const long GLOBAL_MIN_Y ;
 
-static BoundsCheck check(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
+
 
 
 

@@ -10,7 +10,7 @@
 #define __GameWorld__GameMap__
 
 #include <iostream>
-#include <vector>
+#include <array>
 #include <list>
 #include <climits>
 
@@ -26,13 +26,10 @@ class GameMap {
 	
 private:
 	unsigned mapMembers = 0 ;
-	vector< vector<const T*>*> * intern_map ;
+	array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_> * intern_map ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<const T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
-	
-	template<typename N>
-	bool boundsCheck(Location<N> & current) ;
 	
 	GameMap<string> * gmDebug ; //debug
 
@@ -48,16 +45,16 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	vector< vector<const T *> *> * getMapVect() { return this->intern_map ; } ;
+	array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	Location<N> * place(Location<N> * where, T * mapObj) ;
+	Location<N> * place(Location<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) ;
 	
 	template<typename N>
-	Location<N> * placeAtNearestFree(Location<N> * where, T * mapObj) ;
+	Location<N> * placeAtNearestFree(Location<N> * where, T * mapObj, BoundsCheck<N> check) ;
 	
 	template<typename N>
 	void erase (const Location<N> & currentLoc) ;
@@ -102,13 +99,13 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector<const T*>*>()),
+	intern_map(new array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector<const T*>()) ;
+		intern_map->at(i) = new array<const T*, GLOBAL_MAX_Y_>() ;
 		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->push_back(nullptr) ;
+			intern_map->at(i)->at(j) = nullptr ;
 		}
 	}
 }
@@ -134,7 +131,7 @@ GameMap<T>::~GameMap() {
  */
 template<class T>
 template<typename N>
-Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
+Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) {
 	if (mapObj == nullptr) {
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
@@ -145,12 +142,15 @@ Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
 		mapMembers++ ;
 		return where ;
 	}
-	else {
+	else if (allowMove) {
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Location was already taken." << endl ;
 		ss << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		return placeAtNearestFree(where, mapObj) ;
+		return placeAtNearestFree(where, mapObj, check) ;
+	}
+	else {
+		return nullptr ;
 	}
 	
 }
@@ -158,7 +158,7 @@ Location<N> * GameMap<T>::place(Location<N> * where, T * mapObj) {
 
 template<class T>
 template<typename N>
-Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
+Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj, const BoundsCheck<N> check) {
 	if (mapObj == nullptr) {
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
@@ -176,34 +176,34 @@ Location<N> * GameMap<T>::placeAtNearestFree(Location<N> * where, T * mapObj) {
 		switch (swt) {
 			case 0:
 			{
-				Location<N> * temp = new Location<N>(where->x, where->y + 1, where->z) ;
+				Location<N> * temp = new Location<N>(where->x, where->y + 1, where->z, check) ;
 				//delete where ;
 				*where = std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj) ;
+				return placeAtNearestFree(where, mapObj, Location<N>::defaultCheck) ;
 			}
 
 			case 1:
 			{
-				Location<N> * temp = new Location<N>(where->x, where->y - 1, where->z) ;
+				Location<N> * temp = new Location<N>(where->x, where->y - 1, where->z, check) ;
 				//delete where ;
 				*where = std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj) ;
+				return placeAtNearestFree(where, mapObj, Location<N>::defaultCheck) ;
 			}
 				
 			case 2:
 			{
-				Location<N> * temp = new Location<N>(where->x + 1, where->y, where->z) ;
+				Location<N> * temp = new Location<N>(where->x + 1, where->y, where->z, check) ;
 				//delete where ;
 				*where =  std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj) ;
+				return placeAtNearestFree(where, mapObj, Location<N>::defaultCheck) ;
 			}
 				
 			case 3:
 			{
-				Location<N> * temp = new Location<N>(where->x - 1, where->y, where->z);
+				Location<N> * temp = new Location<N>(where->x - 1, where->y, where->z, check);
 				//delete where ;
 				*where =  std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj) ;
+				return placeAtNearestFree(where, mapObj, Location<N>::defaultCheck) ;
 			}
 		}
 		//mapMembers++ ;
@@ -527,16 +527,6 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator & nav,
 
 }
 
-template<class T>
-template<typename N>
-bool GameMap<T>::boundsCheck(Location<N> & current) {
-	if ((current.x > 0) && (current.y > 0)) {
-		if ((current.x < (intern_map->size() - 1)) && (current.y < (intern_map->at(0)->size() - 1))) {
-			return true ;
-		}
-	}
-	return false ;
-}
 
 
 #endif /* defined(__GameWorld__GameMap__) */

@@ -28,7 +28,7 @@ void MainController::start(unsigned long microseconds) {
 	
 	currentAdapter->show(&b) ;
 	
-	currentAdapter->drawRepresentation(GameObject::map->getMapVect()) ;
+	currentAdapter->drawRepresentation(GameObject::map->getMapVect(), new ofstream("Graphical View.txt")) ;
 	
 	WorldController::runWorldSimulation((unsigned)microseconds) ;
 	

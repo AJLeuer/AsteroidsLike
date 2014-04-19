@@ -36,7 +36,7 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Location<long>(0, 0, 0, check))
+	loc(new Location<long>(0, 0, 0, Location<long>::defaultCheck))
 {
 	IDs++ ;
 	
@@ -46,14 +46,14 @@ GameObject::GameObject() :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Location<long>(*(other.loc), check))
+	loc(new Location<long>(*(other.loc), Location<long>::defaultCheck))
 {
 	/* debug */
 	stringstream ss ;
@@ -70,7 +70,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Location if place unsuccessful at given Loc */
-	this->loc = map->place(this->loc, this) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -121,7 +121,7 @@ GameObject::GameObject(string symbol, Location<long> * loc) :
 {
 	IDs++ ;
 	
-	loc->boundsCheck(check) ;
+	loc->checkBounds(Location<long>::defaultCheck) ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
@@ -129,7 +129,7 @@ GameObject::GameObject(string symbol, Location<long> * loc) :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(int randSeed) :
@@ -154,10 +154,10 @@ GameObject::GameObject(int randSeed) :
 	long x = (rnd.nextValue(0, lrint(MAX_X))) ;
 	long y = (rnd.nextValue(0, lrint(MAX_Y))) ;
 	
-	loc = new Location<long>(x, y, 0, check) ;
+	loc = new Location<long>(x, y, 0, Location<long>::defaultCheck) ;
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 }
 
 GameObject::~GameObject() {
@@ -188,8 +188,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
 		}
-        this->loc = new Location<long>(*(rhs.loc), check) ;
-		this->loc = map->place(this->loc, this) ;
+        this->loc = new Location<long>(*(rhs.loc), Location<long>::defaultCheck) ;
+		this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 		allGameObjects->push_back(this) ;
 		
 		IDs++ ;
@@ -219,7 +219,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
-		loc->boundsCheck(check) ;
+		loc->checkBounds(Location<long>::defaultCheck) ;
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
@@ -319,12 +319,12 @@ void GameObject::move(long xoffset, long yoffset) {
 		yoffset -= (loc->y + yoffset) ;
 	}
 	map->erase(*(this->getLocation())) ;
-	this->loc->modify(xoffset, yoffset, 0, check) ;
-	this->loc = map->place(this->loc, this) ;
+	this->loc->modify(xoffset, yoffset, 0, Location<long>::defaultCheck) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 }
 
 void GameObject::move(const Location<long> & moveTo) {
-	Location<long> mt = Location<long>(moveTo, check) ;
+	Location<long> mt = Location<long>(moveTo, Location<long>::defaultCheck) ;
 	if (mt.x >= MAX_X) {
 		mt.x = MAX_X - 1 ;
 	}
@@ -339,8 +339,8 @@ void GameObject::move(const Location<long> & moveTo) {
 	}
 	map->erase(*(this->getLocation())) ;
 	delete this->loc ;
-	this->loc = new Location<long>(mt, check) ;
-	this->loc = map->place(this->loc, this) ;
+	this->loc = new Location<long>(mt, Location<long>::defaultCheck) ;
+	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
 }
 
 void GameObject::wander(double xyOffset, long time) {

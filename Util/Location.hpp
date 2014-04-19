@@ -36,10 +36,22 @@ enum Direction {
 	oneDirection //the best direction!
 } ;
 
+/**
+ * Helps with checking validity of Location objects
+ */
+template<typename N>
+struct BoundsCheck {
+	const N MAX_X ;
+	const N MIN_X ;
+	const N MAX_Y ;
+	const N MIN_Y ;
+	
+	BoundsCheck<N>(N MAX_X_, N MIN_X_, N MAX_Y_, N MIN_Y_) :
+		MAX_X(MAX_X_), MIN_X(MIN_X_), MAX_Y(MAX_Y_), MIN_Y(MIN_Y_) {}
+} ;
 
 template <typename N>
 struct Location {
-	
 	
 public:
 	
@@ -47,7 +59,7 @@ public:
 	N y ;
     N z ;
 	
-
+	static const BoundsCheck<N> defaultCheck ;
 	
 	/**
      * Creates a Locationwith all coordinates initialized to 0
@@ -57,7 +69,7 @@ public:
 	/**
      * Creates a Locationwith all coordinates initialized to 0
      */
-	Location(BoundsCheck check) : x(0), y(0), z(0) { this->boundsCheck(check) ; }
+	Location(const BoundsCheck<N> check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
     
     /**
      * Copy constructor for Location
@@ -67,7 +79,7 @@ public:
 	/**
      * Copy constructor for Location
      */
-    Location(const Location & other, BoundsCheck check) : Location(other.x, other.y, other.z)  { this->boundsCheck(check) ; }
+    Location(const Location & other, const BoundsCheck<N> check) : Location(other.x, other.y, other.z)  { this->checkBounds(check) ; }
 	
 	/**
      * Move constructor for Location
@@ -77,7 +89,7 @@ public:
 	/**
      * Move constructor for Location
      */
-    Location(Location && other, BoundsCheck check) : Location(other.x, other.y, other.z) { this->boundsCheck(check) ; }
+    Location(Location && other, const BoundsCheck<N> check) : Location(other.x, other.y, other.z) { this->checkBounds(check) ; }
     
 	/**
      * Creates a location with coordinates initialized to the
@@ -97,8 +109,8 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Location(N x, N y, N z, BoundsCheck check) : x{x}, y{y}, z{z} {
-		this->boundsCheck(check) ;
+	Location(N x, N y, N z, const BoundsCheck<N> check) : x{x}, y{y}, z{z} {
+		this->checkBounds(check) ;
 	}
 	
     /**
@@ -184,15 +196,15 @@ public:
 	
 	void setX(const N x) { this->x = x ; }
 	
-	void setX(const N x, BoundsCheck check) { this->x = x ; boundsCheck(check) ; }
+	void setX(const N x, const BoundsCheck<N> check) { this->x = x ; checkBounds(check) ; }
 	
 	void setY(const N y) { this->y = y ; }
 	
-	void setY(const N y, BoundsCheck check) { this->y = y ; boundsCheck(check) ; }
+	void setY(const N y, const BoundsCheck<N> check) { this->y = y ; checkBounds(check) ; }
 	
 	void setZ(const N z) { this->z = z ; }
 	
-	void setZ(const N z, BoundsCheck check) { this->z = z ; boundsCheck(check) ; }
+	void setZ(const N z, const BoundsCheck<N> check) { this->z = z ; checkBounds(check) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 
@@ -218,12 +230,12 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, N delta_z, BoundsCheck check) {
+	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> check) {
 		
 		this->x += delta_x ;
 		this->y += delta_y ;
 		this->z += delta_z ;
-		this->boundsCheck(check) ;
+		this->checkBounds(check) ;
 	}
 	
 	static N calcDistance(const Location & here, const Location & there) {
@@ -250,7 +262,7 @@ public:
  * null pointer.
  */
 
-	void boundsCheck(BoundsCheck check) {
+	void checkBounds(const BoundsCheck<N> check) {
 		
 		if (this->x >= check.MAX_X) {
 			*(Debug::debugOutput) << "An X value was over the global limit. Reducing value..." << endl ;
@@ -270,7 +282,11 @@ public:
 		}
 	}
 
-};
+} ;
+
+template<typename N>
+const BoundsCheck<N> Location<N>::defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
+
 
 
 

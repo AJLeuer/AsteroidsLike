@@ -81,24 +81,9 @@ public:
 
 template<class T>
 void TestAdapter<T>::init(const vector<T*> * container_) {
+	
 	this->AdapterInterface<T>::container = container_ ;
-	
-	//local initializations:
-	//
-	///
-	//
-	///
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	
 }
-
 
 template<class T>
 void TestAdapter<T>::show(bool * contin) {
@@ -119,9 +104,6 @@ void TestAdapter<T>::show_threaded(bool * contin) {
 		}
 		Locking::sharedMutex.unlock() ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		//
-		//
-		//
 	}
 }
 

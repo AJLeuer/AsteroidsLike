@@ -39,7 +39,7 @@ int main(void) {
 	
 	/* Debug */
 
-	MainController::start(100000000) ;
+	MainController::start(10000000) ;
 	MainController::stop() ;
 	
 	

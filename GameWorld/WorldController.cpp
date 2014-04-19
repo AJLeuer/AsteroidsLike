@@ -30,7 +30,7 @@ void WorldController::init() {
 	WorldController::map = GameObject::map ;
 	
 	/* debug code */
-	for (unsigned i = 0 ; i < 3 ; i++) {
+	for (unsigned i = 0 ; i < 250 ; i++) {
 		new GameObject(1) ;
 	}
 	/* debug end */

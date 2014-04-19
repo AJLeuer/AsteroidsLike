@@ -17,6 +17,7 @@
 #include <vector>
 
 #include "AdapterUtil.h"
+#include "ConsoleOutput.hpp"
 
 #include "../Util/Debug.h"
 #include "../Util/Location.hpp"
@@ -34,7 +35,7 @@ class AdapterInterface {
 	
 protected:
 	std::thread * aiThread ;
-	std::ostream * file ;
+	std::ostream * outputDebug ;
 	const vector<T*> * container ;
 	bool * currentlyThreading ;
 	
@@ -60,7 +61,8 @@ public:
 	
 	virtual void show(bool * contin) ;
 	
-	void drawRepresentation(vector< vector<const T *> *> *, ostream * out = Debug::debugOutput) ;
+	
+	void drawRepresentation(array< array<const T *, GLOBAL_MAX_Y_> *, GLOBAL_MAX_X_> * map, ostream * out) ;
 	
 	
 	
@@ -77,7 +79,7 @@ public:
 template<class T>
 AdapterInterface<T>::AdapterInterface() :
 	aiThread(nullptr),
-	file(new ofstream("AdapterOutput.txt")),
+	outputDebug(new ofstream("Output Debug.txt")),
 	container(nullptr),
 	currentlyThreading(new bool{false})
 	/* container initialized via init() */ {}
@@ -87,11 +89,11 @@ AdapterInterface<T>::AdapterInterface() :
 template<class T>
 AdapterInterface<T>::AdapterInterface(AdapterInterface<T> && other) :
 	aiThread(other.aiThread),
-	file(other.file),
+	outputDebug(other.outputDebug),
 	container(other.container)
 {
 	//other.aidThread = nullptr ;
-	other.file = nullptr ;
+	other.outputDebug = nullptr ;
 	other.container = nullptr ;
 }
 
@@ -102,7 +104,7 @@ AdapterInterface<T>::~AdapterInterface() {
 		delete aiThread ;
 		container = nullptr ;
 		delete currentlyThreading ;
-		delete file ;
+		delete outputDebug ;
 	}
 }
 
@@ -113,13 +115,13 @@ AdapterInterface<T> & AdapterInterface<T>::operator=(AdapterInterface && rhs) {
 			this->aiThread = rhs.aiThread ;
 			container = rhs.container ;
 			currentlyThreading = rhs.currentlyThreading ;
-			file = rhs.file ;
+			outputDebug = rhs.outputDebug ;
 		}
 		if (!currentlyThreading) {
 			rhs.aiThread = nullptr ;
 			rhs.container = nullptr ;
 			rhs.currentlyThreading = nullptr ;
-			rhs.file = nullptr ;
+			rhs.outputDebug = nullptr ;
 		}
 	}
 	return *this ;
@@ -136,11 +138,11 @@ template<class T>
 void AdapterInterface<T>::show_threaded(bool * contin) {}
 
 template<class T>
-void AdapterInterface<T>::drawRepresentation(vector< vector<const T *> *> * map, ostream * out) {
+void AdapterInterface<T>::drawRepresentation(array< array<const T *, GLOBAL_MAX_Y_> *, GLOBAL_MAX_X_> * map, ostream * out) {
 	Drawing drawing ;
 	stringstream ss ;
 	drawing.draw2DRepresentation(ss, map, ' ') ;
-	*file << ss.rdbuf() << endl ;
+	*outputDebug << ss.rdbuf() << endl ;
 }
 
 template<class T>

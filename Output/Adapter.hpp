@@ -17,6 +17,7 @@
 
 #include "AdapterUtil.h"
 #include "AdapterInterface.hpp"
+#include "ConsoleOutput.hpp"
 
 #include "../Util/Util.hpp"
 #include "../Util/Location.hpp"
@@ -49,7 +50,7 @@ public:
 	 * Trying to create more than one instance of Adapter or any other
 	 * class inheriting from AdapterInterface will result in an exception being thrown.
 	 */
-	Adapter() : AdapterInterface<T>() {} ;
+	Adapter() : AdapterInterface<T>() { Debug::init(false) ; }
 
 	/**
 	 * Move constructor. Will change AdapterInterface<T>'s pointer to new object
@@ -80,22 +81,9 @@ public:
 
 template<class T>
 void Adapter<T>::init(const vector<T *> *container_) {
+	ConsoleOutput::init() ;
 	this->AdapterInterface<T>::container = container_ ;
-	
-	//local initializations:
-	setlocale(LC_ALL, ""); //allows printing more types of characters (?)
-	
-	initscr();  //this inits and returns a reference to a WINDOW*, which we don't need
-	
-	cbreak() ; //character-at-a-time  input  without buffering
-	noecho() ; //wont print input back out
-	
-	curs_set(0) ; //sets cursor to invisible
 }
-
-
-
-
 
 template<class T>
 void Adapter<T>::show(bool * contin) {
@@ -108,18 +96,14 @@ void Adapter<T>::show_threaded(bool * contin) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
 		for (auto i = 0 ; i < this->AdapterInterface<T>::container->size() ; i++) {
-			auto temp = this->AdapterInterface<T>::container->at(i) ;
+			auto temp = AdapterInterface<T>::container->at(i) ;
 			ss << "Current GameObject: " << endl << temp << endl ;
-			Location<long> trans = AdapterUtil::transLocation(*(temp->getLocation())) ;
-			mvwaddstr(stdscr, trans.getY(), trans.getX(), temp->getIcon().c_str()) ;
-			wnoutrefresh(stdscr) ;
+			ConsoleOutput::setOutput(*temp->getLocation(), temp->getIcon().c_str()) ;
 			temp = nullptr ;
 		}
 		Locking::sharedMutex.unlock() ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		doupdate() ;
-		usleep(90000) ;
-		wclear(stdscr) ;
+		ConsoleOutput::update(500000) ;
 	}
 }
 
@@ -130,10 +114,8 @@ void Adapter<T>::operator()(bool * contin) {
 
 template<class T>
 void Adapter<T>::close() {
-	this->AdapterInterface<T>::close() ;
-	
-	//local cleanup:
-	endwin() ;
+	ConsoleOutput::close() ;
+	AdapterInterface<T>::close() ;
 }
 
 #endif /* defined(__GameWorld__Adapter__) */

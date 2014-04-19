@@ -10,14 +10,15 @@
 
 #include "GameData.h"
 
+
 using namespace std ;
 
 mutex Locking::sharedMutex ;
 
-extern const long GLOBAL_MAX_X { 179 } ;
-extern const long GLOBAL_MIN_X { 0 } ;
-extern const long GLOBAL_MAX_Y { 37 } ;
-extern const long GLOBAL_MIN_Y { 0 } ;
+extern const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
+extern const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
+extern const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
+extern const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
 
 
 
