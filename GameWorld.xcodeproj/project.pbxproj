@@ -13,7 +13,7 @@
 		66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8118DB0FF100DF0A26 /* libboost_system.dylib */; };
 		66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */; };
 		665DBB5A18F4F4F2006F2026 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665DBB5818F4F4F2006F2026 /* Navigator.cpp */; };
-		6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */; };
+		666D354F19022C3000A615D5 /* AdapterUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 666D354C19022C3000A615D5 /* AdapterUtil.cpp */; };
 		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C3FB5118FCE4A30082320A /* GameData.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
@@ -47,17 +47,17 @@
 		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
-		6651BAAB18DA73EC00F5DCE7 /* AdapterInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdapterInterface.hpp; sourceTree = "<group>"; };
-		6651BAAE18DA9A4400F5DCE7 /* TestAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestAdapter.hpp; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Location.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Location.hpp; sourceTree = "<group>"; };
 		665DBB5818F4F4F2006F2026 /* Navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Navigator.cpp; sourceTree = "<group>"; };
 		665DBB5918F4F4F2006F2026 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigator.h; sourceTree = "<group>"; };
 		665DBB5B18F520A7006F2026 /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
+		666D354A19022C3000A615D5 /* Adapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Adapter.hpp; sourceTree = "<group>"; };
+		666D354B19022C3000A615D5 /* AdapterInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdapterInterface.hpp; sourceTree = "<group>"; };
+		666D354C19022C3000A615D5 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
+		666D354D19022C3000A615D5 /* AdapterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterUtil.h; sourceTree = "<group>"; };
+		666D354E19022C3000A615D5 /* TestAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestAdapter.hpp; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
 		6678790118DAE25E00618712 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
-		6681A1C618D917EB00F5A2E2 /* Adapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Adapter.hpp; sourceTree = "<group>"; };
-		6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
-		6681A1CD18D94A6C00F5A2E2 /* AdapterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterUtil.h; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap.hpp; sourceTree = "<group>"; };
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDecl.h; sourceTree = "<group>"; };
@@ -96,6 +96,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		666D354919022C3000A615D5 /* Output */ = {
+			isa = PBXGroup;
+			children = (
+				666D354A19022C3000A615D5 /* Adapter.hpp */,
+				666D354B19022C3000A615D5 /* AdapterInterface.hpp */,
+				666D354C19022C3000A615D5 /* AdapterUtil.cpp */,
+				666D354D19022C3000A615D5 /* AdapterUtil.h */,
+				666D354E19022C3000A615D5 /* TestAdapter.hpp */,
+			);
+			path = Output;
+			sourceTree = "<group>";
+		};
 		6678790018DAE21200618712 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,18 +123,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		6681A1C718D9180A00F5A2E2 /* Adapter */ = {
-			isa = PBXGroup;
-			children = (
-				6681A1CD18D94A6C00F5A2E2 /* AdapterUtil.h */,
-				6681A1CC18D94A6C00F5A2E2 /* AdapterUtil.cpp */,
-				6651BAAB18DA73EC00F5DCE7 /* AdapterInterface.hpp */,
-				6681A1C618D917EB00F5A2E2 /* Adapter.hpp */,
-				6651BAAE18DA9A4400F5DCE7 /* TestAdapter.hpp */,
-			);
-			path = Adapter;
-			sourceTree = "<group>";
-		};
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +131,7 @@
 				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				6678790018DAE21200618712 /* Util */,
-				6681A1C718D9180A00F5A2E2 /* Adapter */,
+				666D354919022C3000A615D5 /* Output */,
 				66E97F3018CF009E002EFA00 /* GameWorld */,
 				66E97F2F18CF009E002EFA00 /* Products */,
 			);
@@ -225,7 +225,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6681A1CF18D95FE300F5A2E2 /* AdapterUtil.cpp in Sources */,
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
 				66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */,
 				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
@@ -234,6 +233,7 @@
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
+				666D354F19022C3000A615D5 /* AdapterUtil.cpp in Sources */,
 				662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,

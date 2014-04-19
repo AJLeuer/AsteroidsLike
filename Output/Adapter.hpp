@@ -94,6 +94,9 @@ void Adapter<T>::init(const vector<T *> *container_) {
 }
 
 
+
+
+
 template<class T>
 void Adapter<T>::show(bool * contin) {
 	this->AdapterInterface<T>::aiThread = new std::thread((&Adapter<T>::show_threaded), std::move(this), contin) ;

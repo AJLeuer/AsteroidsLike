@@ -16,8 +16,8 @@
 #include "../Util/Util.hpp"
 #include "../Util/Time.h"
 
-#include "../Adapter/Adapter.hpp"
-#include "../Adapter/TestAdapter.hpp"
+#include "../Output/Adapter.hpp"
+#include "../Output/TestAdapter.hpp"
 
 #include "MainController.h"
 #include "GameObject.h"
@@ -39,7 +39,7 @@ int main(void) {
 	
 	/* Debug */
 
-	MainController::start(10000000) ;
+	MainController::start(100000000) ;
 	MainController::stop() ;
 	
 	

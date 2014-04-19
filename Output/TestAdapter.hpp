@@ -100,7 +100,6 @@ void TestAdapter<T>::init(const vector<T*> * container_) {
 }
 
 
-
 template<class T>
 void TestAdapter<T>::show(bool * contin) {
 	this->AdapterInterface<T>::aiThread = new std::thread(&TestAdapter<T>::show_threaded, std::move(this), contin) ;

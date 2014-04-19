@@ -12,9 +12,9 @@
 #include <iostream>
 
 #include "../Util/Debug.h"
-#include "../Adapter/AdapterInterface.hpp"
-#include "../Adapter/Adapter.hpp"
-#include "../Adapter/TestAdapter.hpp"
+#include "../Output/AdapterInterface.hpp"
+#include "../Output/Adapter.hpp"
+#include "../Output/TestAdapter.hpp"
 #include "../Util/Time.h"
 #include "WorldController.h"
 

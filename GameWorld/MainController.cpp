@@ -22,7 +22,7 @@ void MainController::start(unsigned long microseconds) {
 	
 	WorldController::init() ;
 	
-	currentAdapter = new TestAdapter<GameObject>() ;
+	currentAdapter = new Adapter<GameObject>() ;
 	
 	currentAdapter->init(WorldController::getGameObjects()) ;
 	
