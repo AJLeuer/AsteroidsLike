@@ -68,7 +68,6 @@ private:
 	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread.
 	 * This overload runs the given period of time (in microseconds).
 	 *
-	 * @param pos The position of this thread in the allThreads list
 	 */
 	void wander_threaded(long xyOffset, unsigned timeInterval, long time) ;
 	
@@ -76,7 +75,6 @@ private:
 	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
 	 * This overload takes a pointer to a bool and runs until it is false.
 	 *
-	 * @param pos The position of this thread in the allThreads list
 	 */
 	void wander_threaded(long xyOffset, unsigned timeInterval,  bool * run) ;
 	

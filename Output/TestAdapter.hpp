@@ -9,6 +9,8 @@
 #ifndef __GameWorld__TestAdapter__
 #define __GameWorld__TestAdapter__
 
+#define eight_milliseconds 8333 //expressed in microseconds
+
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -116,7 +118,6 @@ void TestAdapter<T>::operator()() {
 template<class T>
 void TestAdapter<T>::close() {
 	this->AdapterInterface<T>::close() ;
-	
 	//local cleanup:
 }
 

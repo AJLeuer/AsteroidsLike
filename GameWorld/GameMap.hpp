@@ -25,7 +25,7 @@ template <class T>
 class GameMap {
 	
 private:
-	unsigned mapMembers = 0 ;
+	int mapMembers = 0 ;
 	array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_> * intern_map ;
 	
 	template<typename N>
@@ -51,10 +51,10 @@ public:
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	Position<N> * place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) ;
+	void place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) ;
 	
 	template<typename N>
-	Position<N> * placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ;
+	void placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ;
 	
 	template<typename N>
 	void erase (const Position<N> & currentLoc) ;
@@ -131,7 +131,7 @@ GameMap<T>::~GameMap() {
  */
 template<class T>
 template<typename N>
-Position<N> * GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) {
+void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) {
 	if (mapObj == nullptr) {
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
@@ -140,17 +140,20 @@ Position<N> * GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsChe
 	if (at(*where) == nullptr) {
 		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
 		mapMembers++ ;
-		return where ;
+		return ;
 	}
 	else if (allowMove) {
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << endl ;
-		ss << "Call rerouted to placeAtNearestFree(). Some GameObjects may be in the wrong spot." << endl ;
+		ss << "Call rerouted to placeAtNearestFree(). Some objects may be in the wrong spot." << endl ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		return placeAtNearestFree(where, mapObj, check) ;
+		placeAtNearestFree(where, mapObj, check) ;
 	}
 	else {
-		return nullptr ;
+		stringstream ss ;
+		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << endl ;
+		ss << "The given position was not changed, nor was it moved on the GameMap" << endl ;
+		*(Debug::debugOutput) << ss.rdbuf() ;
 	}
 	
 }
@@ -158,7 +161,7 @@ Position<N> * GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsChe
 
 template<class T>
 template<typename N>
-Position<N> * GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
+void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
 	if (mapObj == nullptr) {
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
@@ -166,7 +169,7 @@ Position<N> * GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, co
 	if (at(*where) == nullptr) {
 		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
 		mapMembers++ ;
-		return where ;
+		return ;
 	}
 	else {
 		
@@ -194,7 +197,7 @@ Position<N> * GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, co
 			{
 				Position<N> * temp = new Position<N>(where->x + 1, where->y, where->z, check) ;
 				//delete where ;
-				*where =  std::move(*temp) ;
+				*where = std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
 			}
 				
@@ -204,6 +207,11 @@ Position<N> * GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, co
 				//delete where ;
 				*where =  std::move(*temp) ;
 				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
+			}
+			default:
+			{
+				cerr << "Problem with placeAtNearestFree() \n" ;
+				throw new exception() ;
 			}
 		}
 		//mapMembers++ ;

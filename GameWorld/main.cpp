@@ -41,6 +41,7 @@ int main(void) {
 	
 	MainController::start(GLOBAL_CONTINUE_SIGNAL) ;
 	usleep(1e7) ; // sleep 1.0 x 10⁷ microseconds or 10 seconds
+	
 	MainController::stop(GLOBAL_CONTINUE_SIGNAL) ;
 	
 	

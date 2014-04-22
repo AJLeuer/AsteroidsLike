@@ -46,7 +46,7 @@ GameObject::GameObject() :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
@@ -70,7 +70,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -129,7 +129,7 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(int randSeed) :
@@ -157,7 +157,7 @@ GameObject::GameObject(int randSeed) :
 	loc = new Position<long>(x, y, 0, Position<long>::defaultCheck) ;
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::~GameObject() {
@@ -187,7 +187,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 			delete loc ;
 		}
         this->loc = new Position<long>(*(rhs.loc), Position<long>::defaultCheck) ;
-		this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+		map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 		allGameObjects->push_back(this) ;
 		
 		IDs++ ;
@@ -318,27 +318,14 @@ void GameObject::move(long xoffset, long yoffset) {
 	}
 	map->erase(*(this->getPosition())) ;
 	this->loc->modify(xoffset, yoffset, 0, Position<long>::defaultCheck) ;
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ; // place may need to modify this->loc again to find spot on map
 }
 
 void GameObject::move(const Position<long> & moveTo) {
 	Position<long> mt = Position<long>(moveTo, Position<long>::defaultCheck) ;
-	if (mt.x >= MAX_X) {
-		mt.x = MAX_X - 1 ;
-	}
-	else if (mt.x < 0) {
-		mt.x = 0 ;
-	}
-	if (mt.y >= MAX_Y) {
-		mt.y = MAX_Y - 1 ;
-	}
-	else if (mt.y < 0) {
-		mt.y = 0 ;
-	}
 	map->erase(*(this->getPosition())) ;
-	delete this->loc ;
-	this->loc = new Position<long>(mt, Position<long>::defaultCheck) ;
-	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	*(this->loc) = mt ;
+	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {
@@ -366,7 +353,7 @@ void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, long time
 		}
 		
 		//repeat for y coord
-		double nY = randSignFlip(xyOffset) ;
+		long nY = randSignFlip(xyOffset) ;
 		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
 			nY = (nY * -1) ;
 		}
@@ -382,11 +369,10 @@ void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, bool * ru
 			nX = (nX * -1) ;
 		}
 		//repeat for y coord
-		double nY = randSignFlip(xyOffset) ;
+		long nY = randSignFlip(xyOffset) ;
 		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
 			nY = (nY * -1) ;
 		}
-		
 		move(nX, nY) ;
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}

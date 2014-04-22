@@ -44,7 +44,7 @@ void WorldController::init() {
 
 void WorldController::runWorldSimulation() {
 	/* debug code */
-	void (*rws_ptr)() = &WorldController::runWorldSimulation ;
+	void (*rws_ptr)() = &WorldController::runWorldSimulation_threaded ;
 	new std::thread(rws_ptr) ;
 	/* end debug code */
 }
