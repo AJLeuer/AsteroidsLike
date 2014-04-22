@@ -117,7 +117,7 @@ public:
     /**
      * Destructor for Position
      */
-    ~Position() {}
+    virtual ~Position() {}
     
     /**
      * Assigment operator overload (copy)
@@ -170,7 +170,7 @@ public:
 		return !(this->operator==(rhs)) ;
 	}
 	
-	Position operator+(const Position & rhs) {
+	Position operator+(const Position & rhs) const {
 		N x = this->x + rhs.x ;
 		N y = this->y + rhs.y ;
 		N z = this->z + rhs.z ;
@@ -178,7 +178,7 @@ public:
 		return temp ;
 	}
 	
-	Position operator-(const Position & rhs) {
+	Position operator-(const Position & rhs) const {
 		N x = this->x - rhs.x ;
 		N y = this->y - rhs.y ;
 		N z = this->z - rhs.z ;
@@ -287,6 +287,101 @@ public:
 
 template<typename N>
 const BoundsCheck<N> Position<N>::defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
+
+
+/**
+ * Gives a representation a vector or direction in 3 dimensions
+ * Note: do not use with unsigned ints
+ */
+template<typename N>
+struct vectorHeading : public Position<N> {
+	
+protected:
+	Position<N> last ;
+	const Position<N> * current ;
+	
+	/* x, y, and z here are deltas that we can add to current to calculate next */
+	
+	void update() ;
+	
+public:
+	vectorHeading(const Position<N> & last_, Position<N> * current_) ;
+	vectorHeading(Position<N> * current_) ;
+	vectorHeading(int n) ; //don't use
+	~vectorHeading() ;
+	
+	void update(const Position<N> * next) ;
+	Position<N> calculateNextPosition() ;
+	Position<N> calculateNextPositionAndUpdate() ;
+
+} ;
+
+template<typename N>
+vectorHeading<N>::vectorHeading(const Position<N> & last_, Position<N> * current_) :
+	last(last_), current(current_)
+{
+	update() ;
+}
+
+template<typename N>
+vectorHeading<N>::vectorHeading(Position<N> * current_) :
+	last(*current_), current(current_)
+{
+	this->x = 0 ;
+	this->y = 0 ;
+	this->z = 0 ;
+}
+
+template<typename N>
+vectorHeading<N>::vectorHeading(int n) :
+	last(Position<N>(0, 0, 0)), current(nullptr)
+{
+	this->x = 0 ;
+	this->y = 0 ;
+	this->z = 0 ;
+}
+
+template<typename N>
+vectorHeading<N>::~vectorHeading()
+{
+	this->current = nullptr ;
+}
+
+template<typename N>
+void vectorHeading<N>::update() {
+	Position<N> temp = ((*current) - last) ;
+	this->modify(temp.x, temp.y, temp.z) ;
+}
+
+template<typename N>
+void vectorHeading<N>::update(const Position<N> * next) {
+	this->last = (*this->current) ;
+	this->current = next ;
+	update() ;
+}
+
+template<typename N>
+Position<N> vectorHeading<N>::calculateNextPosition() {
+	Position<N> next = (*this->current) + (*this) ; /* uses Location's operator+() overload to add
+													our x, y, and z (which are offset values) to those
+													 stored in current, giving our new location */
+	return next ;
+}
+
+/**
+ * This should be the default choice for both calculating the next value
+ * and updating current state
+ */
+template<typename N>
+Position<N> vectorHeading<N>::calculateNextPositionAndUpdate() {
+	auto next = calculateNextPosition() ;
+	this->last = (*current) ;
+	delete current ;
+	this->current = new Position<N>(next) ;
+	update() ;
+	
+	return next ;
+}
 
 
 

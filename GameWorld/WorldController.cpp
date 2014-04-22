@@ -32,7 +32,7 @@ void WorldController::init() {
 	WorldController::map = GameObject::map ;
 	
 	/* debug code */
-	for (unsigned i = 0 ; i < 5 ; i++) {
+	for (unsigned i = 0 ; i < 50 ; i++) {
 		new GameObject(1) ;
 	}
 	/* debug end */
@@ -75,10 +75,9 @@ void WorldController::playGameRecorded(std::ostream * writeTo) {
 void WorldController::close() {
 	
 	Locking::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
+	
 	GameObject::joinThreads() ;
 	
-	
-
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		delete gameObjects->at(i) ;
 	}
@@ -86,6 +85,6 @@ void WorldController::close() {
 	delete gameObjects ;
 	delete GameObject::map ; 
 	gameObjects = nullptr ;
-	Locking::sharedMutex.unlock() ;
 	
+	Locking::sharedMutex.unlock() ;
 }

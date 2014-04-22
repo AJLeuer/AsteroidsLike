@@ -36,7 +36,8 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Position<long>(0, 0, 0, Position<long>::defaultCheck))
+	loc(new Position<long>(0, 0, 0, Position<long>::defaultCheck)),
+	vectDir(new vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
@@ -47,13 +48,15 @@ GameObject::GameObject() :
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	vectDir.update(loc) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Position<long>(*(other.loc), Position<long>::defaultCheck))
+	loc(new Position<long>(*(other.loc), Position<long>::defaultCheck)),
+	vectDir(new vectorHeading<long>(loc))
 {
 	/* debug */
 	stringstream ss ;
@@ -71,6 +74,7 @@ GameObject::GameObject(const GameObject & other) :
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	vectDir.update(loc) ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -89,7 +93,8 @@ GameObject::GameObject(GameObject && other) :
 	goThread(other.goThread),
 	ID(other.ID),
 	icon(std::move(other.icon)),
-	loc(other.loc)
+	loc(other.loc),
+	vectDir(new vectorHeading<long>(loc))
 {
 	/* debug */
 	*(Debug::debugOutput) << "Move constructor called \n" ;
@@ -117,7 +122,8 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(symbol),
-	loc(loc)
+	loc(loc),
+	vectDir(new vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
@@ -130,13 +136,15 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	vectDir.update(loc) ;
 }
 
 GameObject::GameObject(int randSeed) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(""),
-	loc(nullptr)
+	loc(nullptr),
+	vectDir(vectorHeading<long>(0))
 {
 	IDs++ ;
 	
@@ -158,10 +166,11 @@ GameObject::GameObject(int randSeed) :
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	vectDir.update(loc) ;
 }
 
+
 GameObject::~GameObject() {
-	
 	eraseByID(this->ID) ;
 	
 	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
@@ -248,6 +257,7 @@ void GameObject::eraseByID(unsigned ID) {
 	for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 		if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
 			allGameObjects->at(i) = nullptr ;
+			break ;
 		}
 	}
 }
@@ -319,6 +329,7 @@ void GameObject::move(long xoffset, long yoffset) {
 	map->erase(*(this->getPosition())) ;
 	this->loc->modify(xoffset, yoffset, 0, Position<long>::defaultCheck) ;
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ; // place may need to modify this->loc again to find spot on map
+	vectDir.update(loc) ;
 }
 
 void GameObject::move(const Position<long> & moveTo) {
@@ -326,6 +337,7 @@ void GameObject::move(const Position<long> & moveTo) {
 	map->erase(*(this->getPosition())) ;
 	*(this->loc) = mt ;
 	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+	vectDir.update(loc) ;
 }
 
 void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {

@@ -24,6 +24,8 @@ protected:
 	
 	string name ;
 	
+	const char missile = '.' ;
+	
 	DoA alive ;
 	
 	/**

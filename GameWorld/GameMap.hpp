@@ -259,13 +259,15 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
 		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
 			if ((intern_map->at(i)->at(j) != nullptr) && ((*(intern_map->at(i)->at(j)) == *obj))) {
-				Position<N> l = (Position<N>((double) i, (double) j, 0)) ;
+				Position<N> l = (Position<N>(i, j, 0)) ;
 				return l ;
 			}
 		}
 	}
+	/* debug code */
 	*(Debug::debugOutput) << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
 	throw exception() ;
+	/* end debug code */
 }
 
 template<class T>

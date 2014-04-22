@@ -86,6 +86,7 @@ protected:
 	unsigned ID ;
 	string icon ;
     Position<long> * loc ;
+	vectorHeading<long> vectDir ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
@@ -277,6 +278,11 @@ public:
 	 * @return This GameObject's Position<long>
 	 */
 	const Position<long> * getPosition() const {return this->loc ; }
+	
+	/**
+	 * @return This GameObject's vector in 3-D space
+	 */
+	const vectorHeading<long> getVector() const {return this->vectDir ; }
 	
 	/**
 	 * Sets this GameObject's icon to the icon argument
