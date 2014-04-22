@@ -6,42 +6,36 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+
+
 #include "MainController.h"
 
 
 AdapterInterface<GameObject> * MainController::currentAdapter = nullptr ;
 
-void MainController::start(unsigned long microseconds) {
+void MainController::start(bool * b) {
+	GLOBAL_CONTINUE_SIGNAL = b ;
 	
 	Debug::init(true) ;
 	
 	Time timer ;
 	timer.startTimer() ;
 	
-	bool b = true ;
-	
 	WorldController::init() ;
 	
-	currentAdapter = new Adapter<GameObject>() ;
+	currentAdapter = new TestAdapter<GameObject>() ;
 	
 	currentAdapter->init(WorldController::getGameObjects()) ;
 	
-	currentAdapter->show(&b) ;
+	currentAdapter->show() ;
 	
-	currentAdapter->drawRepresentation(GameObject::map->getMapVect(), new ofstream("Graphical View.txt")) ;
-	
-	WorldController::runWorldSimulation((unsigned)microseconds) ;
-	
-	
-	usleep(((unsigned int)microseconds)) ;
-	
-	b = false ;
-	
-	timer.stopTimer() ;
+	WorldController::runWorldSimulation() ;
 	
 }
 
-void MainController::stop() {
+void MainController::stop(bool * b) {
+	
+	*b = false ; // b is the same as GLOBAL_CONTINUE_SIGNAL normally. 
 	
 	WorldController::close() ;
 	

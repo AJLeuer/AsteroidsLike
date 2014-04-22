@@ -19,7 +19,7 @@
 #include "../Util/Time.h"
 #include "../Util/Util.hpp"
 #include "ForwardDecl.h"
-#include "Location.hpp"
+#include "Position.hpp"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 
@@ -70,7 +70,7 @@ private:
 	 *
 	 * @param pos The position of this thread in the allThreads list
 	 */
-	void wander_threaded(double xyOffset, long time) ;
+	void wander_threaded(long xyOffset, unsigned timeInterval, long time) ;
 	
 	/**
 	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
@@ -78,7 +78,7 @@ private:
 	 *
 	 * @param pos The position of this thread in the allThreads list
 	 */
-	void wander_threaded(double xyOffset, bool * run) ;
+	void wander_threaded(long xyOffset, unsigned timeInterval,  bool * run) ;
 	
 	friend class WorldController ;
 	
@@ -87,7 +87,7 @@ protected:
 
 	unsigned ID ;
 	string icon ;
-    Location<long> * loc ;
+    Position<long> * loc ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
@@ -126,7 +126,7 @@ public:
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its location. Is synced with WorldController's map.
+	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
 	 */
 	static GameMap<GameObject> * map ;
 	
@@ -154,9 +154,9 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param symbol The icon to be used by this GameObject
-     * @param loc This GameObject's Location<long>
+     * @param loc This GameObject's Position<long>
 	 */
-	GameObject(string symbol, Location<long> * loc) ;
+	GameObject(string symbol, Position<long> * loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -245,19 +245,19 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 
 	/**
-	 * Moves this GameObject by changing its Location<long> x and y coordinates by the given offsets
+	 * Moves this GameObject by changing its Position<long> x and y coordinates by the given offsets
 	 *
-	 * @param xoffset The change in this GameObject's Location<long>.x
-	 * @param yoffset The change in this GameObject's Location<long>.y
+	 * @param xoffset The change in this GameObject's Position<long>.x
+	 * @param yoffset The change in this GameObject's Position<long>.y
 	 */
 	void move(long xoffset, long yoffset) ;
 	
 	/**
-	 * Moves this GameObject to the Location<long> moveTo
+	 * Moves this GameObject to the Position<long> moveTo
 	 *
-	 * @param moveTO The Location<long> where this GameObject is to move
+	 * @param moveTO The Position<long> where this GameObject is to move
 	 */
-	void move(const Location<long> & moveTo) ;
+	void move(const Position<long> & moveTo) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
@@ -265,7 +265,7 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
-	void wander(double xyOffset, long time) ;
+	void wander(long xyOffset, unsigned timeInterval, long time) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
@@ -273,12 +273,12 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param run Flag to continue or end execution
 	 */
-	void wander(double xyOffset, bool * run) ;
+	void wander(long xyOffset, unsigned timeInterval, bool * run) ;
 	
 	/**
-	 * @return This GameObject's Location<long>
+	 * @return This GameObject's Position<long>
 	 */
-	const Location<long> * getLocation() const {return this->loc ; }
+	const Position<long> * getPosition() const {return this->loc ; }
 	
 	/**
 	 * Sets this GameObject's icon to the icon argument

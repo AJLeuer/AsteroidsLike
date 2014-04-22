@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../GameWorld/GameData.h"
 #include "../GameWorld/GameObject.h"
 
@@ -23,15 +23,15 @@ public:
 	static unsigned termHeight() ;
 	
 	/**
-	 * Translates a location from within the GameWorld to a location
+	 * Translates a Position from within the GameWorld to a Position
 	 * equivelent within the boundaries of the current screen.
-	 * Gets the current GLOBAL_MAX_LOCATION (and MIN) from World
+	 * Gets the current GLOBAL_MAX_Position (and MIN) from World
 	 * to calculate the ratio
 	 *
-	 * @param inGameWorld The Location from within the GameWorld
+	 * @param inGameWorld The Position from within the GameWorld
 	 */
 	template<typename T>
-	static Location<T> transLocation(const Location<T> & inGameWorld) {
+	static Position<T> transPosition(const Position<T> & inGameWorld) {
 		auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_MIN_X*/ ;
 		auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_MIN_Y*/ ;
 		
@@ -44,7 +44,7 @@ public:
 		T x = (tw * tempX)/worldXSize ;
 		T y = (th * tempY)/worldYSize ;
 		
-		return Location<T>(x, y, 0) ;
+		return Position<T>(x, y, 0) ;
 	}
 	
 } ;

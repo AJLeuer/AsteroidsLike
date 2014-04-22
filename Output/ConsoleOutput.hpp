@@ -13,7 +13,7 @@
 #include <ncurses.h>
 
 #include "AdapterUtil.h"
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../GameWorld/GameData.h"
 
 using namespace std ;
@@ -30,7 +30,7 @@ public:
 	static void init() ;
 	
 	template<typename N>
-	static void setOutput(const Location<N> pos_on_screen, const char * str) ;
+	static void setOutput(const Position<N> pos_on_screen, const char * str) ;
 	
 	static void update(unsigned int wait_micros) ;
 	
@@ -40,8 +40,8 @@ public:
 
 
 template<typename N>
-void ConsoleOutput::setOutput(const Location<N> pos_on_screen, const char * str) {
-	const Location<long> trans = AdapterUtil::transLocation(pos_on_screen) ;
+void ConsoleOutput::setOutput(const Position<N> pos_on_screen, const char * str) {
+	const Position<long> trans = AdapterUtil::transPosition(pos_on_screen) ;
 	mvwaddstr(stdscr, trans.getY(), trans.getX(), str) ;
 	wnoutrefresh(stdscr) ;
 }

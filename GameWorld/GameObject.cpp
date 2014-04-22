@@ -36,7 +36,7 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Location<long>(0, 0, 0, Location<long>::defaultCheck))
+	loc(new Position<long>(0, 0, 0, Position<long>::defaultCheck))
 {
 	IDs++ ;
 	
@@ -46,14 +46,14 @@ GameObject::GameObject() :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Location<long>(*(other.loc), Location<long>::defaultCheck))
+	loc(new Position<long>(*(other.loc), Position<long>::defaultCheck))
 {
 	/* debug */
 	stringstream ss ;
@@ -69,8 +69,8 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-	/* places and updates to our new (nearby) Location if place unsuccessful at given Loc */
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -113,7 +113,7 @@ GameObject::GameObject(GameObject && other) :
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(string symbol, Location<long> * loc) :
+GameObject::GameObject(string symbol, Position<long> * loc) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(symbol),
@@ -121,7 +121,7 @@ GameObject::GameObject(string symbol, Location<long> * loc) :
 {
 	IDs++ ;
 	
-	loc->checkBounds(Location<long>::defaultCheck) ;
+	loc->checkBounds(Position<long>::defaultCheck) ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
@@ -129,7 +129,7 @@ GameObject::GameObject(string symbol, Location<long> * loc) :
 	}
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::GameObject(int randSeed) :
@@ -154,20 +154,18 @@ GameObject::GameObject(int randSeed) :
 	long x = (rnd.nextValue(0, lrint(MAX_X))) ;
 	long y = (rnd.nextValue(0, lrint(MAX_Y))) ;
 	
-	loc = new Location<long>(x, y, 0, Location<long>::defaultCheck) ;
+	loc = new Position<long>(x, y, 0, Position<long>::defaultCheck) ;
 	
 	allGameObjects->push_back(this) ;
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
 GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 	
-	if (*currentlyThreading == false) {
-		if (currentlyThreading != nullptr) {
-			delete currentlyThreading ;
-		}
+	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
+		delete currentlyThreading ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
 		}
@@ -188,8 +186,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
 		}
-        this->loc = new Location<long>(*(rhs.loc), Location<long>::defaultCheck) ;
-		this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+        this->loc = new Position<long>(*(rhs.loc), Position<long>::defaultCheck) ;
+		this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 		allGameObjects->push_back(this) ;
 		
 		IDs++ ;
@@ -219,7 +217,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
-		loc->checkBounds(Location<long>::defaultCheck) ;
+		loc->checkBounds(Position<long>::defaultCheck) ;
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
@@ -300,7 +298,7 @@ void GameObject::textDescription(ostream * writeTo) const {
 	ss << "GameObject ID#: " << this->ID << endl ;
 	ss << "Icon: " << this->icon << endl ;
 	if (loc != nullptr) {
-		ss << "Current Location: " << loc->toString() << endl ;
+		ss << "Current Position: " << loc->toString() << endl ;
 	}
 	*writeTo << ss.rdbuf() ;
 }
@@ -318,13 +316,13 @@ void GameObject::move(long xoffset, long yoffset) {
 	else if ((loc->y + yoffset) < 0) {
 		yoffset -= (loc->y + yoffset) ;
 	}
-	map->erase(*(this->getLocation())) ;
-	this->loc->modify(xoffset, yoffset, 0, Location<long>::defaultCheck) ;
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	map->erase(*(this->getPosition())) ;
+	this->loc->modify(xoffset, yoffset, 0, Position<long>::defaultCheck) ;
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
-void GameObject::move(const Location<long> & moveTo) {
-	Location<long> mt = Location<long>(moveTo, Location<long>::defaultCheck) ;
+void GameObject::move(const Position<long> & moveTo) {
+	Position<long> mt = Position<long>(moveTo, Position<long>::defaultCheck) ;
 	if (mt.x >= MAX_X) {
 		mt.x = MAX_X - 1 ;
 	}
@@ -337,32 +335,32 @@ void GameObject::move(const Location<long> & moveTo) {
 	else if (mt.y < 0) {
 		mt.y = 0 ;
 	}
-	map->erase(*(this->getLocation())) ;
+	map->erase(*(this->getPosition())) ;
 	delete this->loc ;
-	this->loc = new Location<long>(mt, Location<long>::defaultCheck) ;
-	this->loc = map->place(this->loc, this, Location<long>::defaultCheck, true) ;
+	this->loc = new Position<long>(mt, Position<long>::defaultCheck) ;
+	this->loc = map->place(this->loc, this, Position<long>::defaultCheck, true) ;
 }
 
-void GameObject::wander(double xyOffset, long time) {
-	void (GameObject::*wanderThrPtr)(double, long) = &GameObject::wander_threaded ;
+void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {
+	void (GameObject::*wanderThrPtr)(long, unsigned, long) = &GameObject::wander_threaded ;
 	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, time) ;
+	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, timeInterval, time) ;
 	startThreading(this->goThread, false) ;
 }
 
-void GameObject::wander(double xyOffset, bool * run) {
-	void (GameObject::*wanderThrPtr)(double, bool *) = &GameObject::wander_threaded ;
+void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run) {
+	void (GameObject::*wanderThrPtr)(long, unsigned, bool *) = &GameObject::wander_threaded ;
 	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, run) ;
+	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, timeInterval, run) ;
 	startThreading(this->goThread, false) ;
 }
 
 
-void GameObject::wander_threaded(double xyOffset, long time) {
+void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, long time) {
 	Time timer ;
 	timer.startTimer() ;
 	while (timer.checkTimeElapsed() < time) {
-		double nX = randSignFlip(xyOffset) ;
+		long nX = randSignFlip(xyOffset) ;
 		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
 			nX = (nX * -1) ;
 		}
@@ -373,13 +371,13 @@ void GameObject::wander_threaded(double xyOffset, long time) {
 			nY = (nY * -1) ;
 		}
 		move(nX, nY) ;
-		usleep(5000) ;
+		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 
-void GameObject::wander_threaded(double xyOffset, bool * run) {
+void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, bool * run) {
 	while (*run) {
-		double nX = randSignFlip(xyOffset) ;
+		long nX = randSignFlip(xyOffset) ;
 		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
 			nX = (nX * -1) ;
 		}
@@ -390,7 +388,7 @@ void GameObject::wander_threaded(double xyOffset, bool * run) {
 		}
 		
 		move(nX, nY) ;
-		usleep(5000) ;
+		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 

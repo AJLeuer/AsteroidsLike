@@ -29,6 +29,6 @@ private:
 	
 public:
 	
-	static void start(unsigned long microseconds) ;
-	static void stop() ;
+	static void start(bool * b) ;
+	static void stop(bool * b) ;
 } ;

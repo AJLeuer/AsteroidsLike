@@ -7,8 +7,8 @@
 //
 
 
-#ifndef GameWorld_Location_h
-#define GameWorld_Location_h
+#ifndef GameWorld_Position_h
+#define GameWorld_Position_h
 
 #include <iostream>
 #include <sstream>
@@ -33,11 +33,12 @@ enum Direction {
 	se = south + east,
 	sw = south + west,
 	nw = north + west,
-	oneDirection //the best direction!
+	oneDirection //the best direction! (and also a base case in certain recursive algorithms)
 } ;
 
 /**
- * Helps with checking validity of Location objects
+ * Helps with checking validity of Position objects
+ * Used in Position's checkBounds()
  */
 template<typename N>
 struct BoundsCheck {
@@ -51,7 +52,7 @@ struct BoundsCheck {
 } ;
 
 template <typename N>
-struct Location {
+struct Position {
 	
 public:
 	
@@ -62,66 +63,66 @@ public:
 	static const BoundsCheck<N> defaultCheck ;
 	
 	/**
-     * Creates a Locationwith all coordinates initialized to 0
+     * Creates a Positionwith all coordinates initialized to 0
      */
-	Location() : x(0), y(0), z(0) {}
+	Position() : x(0), y(0), z(0) {}
 	
 	/**
-     * Creates a Locationwith all coordinates initialized to 0
+     * Creates a Positionwith all coordinates initialized to 0
      */
-	Location(const BoundsCheck<N> check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
+	Position(const BoundsCheck<N> check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
     
     /**
-     * Copy constructor for Location
+     * Copy constructor for Position
      */
-    Location(const Location & other) : Location(other.x, other.y, other.z)  {}
+    Position(const Position & other) : Position(other.x, other.y, other.z)  {}
 	
 	/**
-     * Copy constructor for Location
+     * Copy constructor for Position
      */
-    Location(const Location & other, const BoundsCheck<N> check) : Location(other.x, other.y, other.z)  { this->checkBounds(check) ; }
+    Position(const Position & other, const BoundsCheck<N> check) : Position(other.x, other.y, other.z)  { this->checkBounds(check) ; }
 	
 	/**
-     * Move constructor for Location
+     * Move constructor for Position
      */
-    Location(Location && other) : Location(other.x, other.y, other.z) {}
+    Position(Position && other) : Position(other.x, other.y, other.z) {}
 	
 	/**
-     * Move constructor for Location
+     * Move constructor for Position
      */
-    Location(Location && other, const BoundsCheck<N> check) : Location(other.x, other.y, other.z) { this->checkBounds(check) ; }
+    Position(Position && other, const BoundsCheck<N> check) : Position(other.x, other.y, other.z) { this->checkBounds(check) ; }
     
 	/**
-     * Creates a location with coordinates initialized to the
+     * Creates a Position with coordinates initialized to the
      * given arguments
      *
      * @param x The x coordinate
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Location(N x, N y, N z) : x{x}, y{y}, z{z} {}
+	Position(N x, N y, N z) : x{x}, y{y}, z{z} {}
 	
     /**
-     * Creates a location with coordinates initialized to the
+     * Creates a Position with coordinates initialized to the
      * given arguments
      *
      * @param x The x coordinate
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Location(N x, N y, N z, const BoundsCheck<N> check) : x{x}, y{y}, z{z} {
+	Position(N x, N y, N z, const BoundsCheck<N> check) : x{x}, y{y}, z{z} {
 		this->checkBounds(check) ;
 	}
 	
     /**
-     * Destructor for Location
+     * Destructor for Position
      */
-    ~Location() {}
+    ~Position() {}
     
     /**
      * Assigment operator overload (copy)
      */
-    Location & operator=(const Location & rhs) {
+    Position & operator=(const Position & rhs) {
         if (this != &rhs) {
             this->x = rhs.x ;
             this->y = rhs.y ;
@@ -133,7 +134,7 @@ public:
 	/**
      * Assigment operator overload (move)
      */
-    Location & operator=(Location && rhs) {
+    Position & operator=(Position && rhs) {
         if (this != &rhs) {
             this->x = rhs.x ;
             this->y = rhs.y ;
@@ -143,7 +144,7 @@ public:
     }
 	
 	
-	bool operator==(const Location & rhs) {
+	bool operator==(const Position & rhs) {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -152,7 +153,7 @@ public:
 		}
 	}
 	
-	bool operator==(Location & rhs) {
+	bool operator==(Position & rhs) {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -161,27 +162,27 @@ public:
 		}
 	}
 	
-	bool operator!=(const Location & rhs) {
+	bool operator!=(const Position & rhs) {
 		return !(this->operator==(rhs)) ;
 	}
 	
-	bool operator!=(Location & rhs) {
+	bool operator!=(Position & rhs) {
 		return !(this->operator==(rhs)) ;
 	}
 	
-	Location operator+(const Location & rhs) {
+	Position operator+(const Position & rhs) {
 		N x = this->x + rhs.x ;
 		N y = this->y + rhs.y ;
 		N z = this->z + rhs.z ;
-		Location temp(x, y, z) ;
+		Position temp(x, y, z) ;
 		return temp ;
 	}
 	
-	Location operator-(const Location & rhs) {
+	Position operator-(const Position & rhs) {
 		N x = this->x - rhs.x ;
 		N y = this->y - rhs.y ;
 		N z = this->z - rhs.z ;
-		Location temp(x, y, z) ;
+		Position temp(x, y, z) ;
 		return temp ;
 	}
 	
@@ -238,7 +239,7 @@ public:
 		this->checkBounds(check) ;
 	}
 	
-	static N calcDistance(const Location & here, const Location & there) {
+	static N calcDistance(const Position & here, const Position & there) {
 		N dx = here.x - there.x ;
 		N dy = here.y - there.y ;
 		N nx = setUnsigned(dx) ;
@@ -254,11 +255,11 @@ public:
 	}
 
 /**
- * A relatively simple data structure representing a location vector.
+ * A relatively simple data structure representing a Position vector.
  *
- * Note: Classes with a location data member will typically want to have a pointer,
- * instead of holding the Location locally. This is because many objects in the GameWorld
- * may not actually have a physcical location in space, in which case they can just hold a
+ * Note: Classes with a Position data member will typically want to have a pointer,
+ * instead of holding the Position locally. This is because many objects in the GameWorld
+ * may not actually have a physcical Position in space, in which case they can just hold a
  * null pointer.
  */
 
@@ -285,7 +286,7 @@ public:
 } ;
 
 template<typename N>
-const BoundsCheck<N> Location<N>::defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
+const BoundsCheck<N> Position<N>::defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
 
 
 

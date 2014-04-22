@@ -9,6 +9,8 @@
 #ifndef __GameWorld__Adapter__
 #define __GameWorld__Adapter__
 
+#define eight_milliseconds 8333 //expressed in microseconds
+
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -20,7 +22,7 @@
 #include "ConsoleOutput.hpp"
 
 #include "../Util/Util.hpp"
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../GameWorld/GameData.h"
 
 
@@ -41,7 +43,7 @@ class Adapter : public AdapterInterface<T> {
 
 private:
 
-	void show_threaded(bool * contin) ;
+	void show_threaded() ;
 	
 public:
 	
@@ -66,13 +68,13 @@ public:
 	
 	void init(const vector<T*> * container_) ;
 	
-	void show(bool * contin) ;
+	void show() ;
 	
 	
 	/**
 	 * See show()
 	 */
-	void operator()(bool * contin) ;
+	void operator()() ;
 	
 	void close() ;
 	
@@ -86,30 +88,31 @@ void Adapter<T>::init(const vector<T *> *container_) {
 }
 
 template<class T>
-void Adapter<T>::show(bool * contin) {
-	this->AdapterInterface<T>::aiThread = new std::thread((&Adapter<T>::show_threaded), std::move(this), contin) ;
+void Adapter<T>::show() {
+	this->AdapterInterface<T>::aiThread = new std::thread((&Adapter<T>::show_threaded), std::move(this)) ;
 }
 
 template<class T>
-void Adapter<T>::show_threaded(bool * contin) {
-	while (*contin) {
+void Adapter<T>::show_threaded() {
+	while (*GLOBAL_CONTINUE_SIGNAL) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
 		for (auto i = 0 ; i < this->AdapterInterface<T>::container->size() ; i++) {
 			auto temp = AdapterInterface<T>::container->at(i) ;
 			ss << "Current GameObject: " << endl << temp << endl ;
-			ConsoleOutput::setOutput(*temp->getLocation(), temp->getIcon().c_str()) ;
+			ConsoleOutput::setOutput(*temp->getPosition(), temp->getIcon().c_str()) ;
 			temp = nullptr ;
 		}
 		Locking::sharedMutex.unlock() ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		ConsoleOutput::update(500000) ;
+		ConsoleOutput::update(eight_milliseconds) ; //waits for 8 ms (i.e. 120th of a second) before clearing
 	}
+	ConsoleOutput::close() ;
 }
 
 template<class T>
-void Adapter<T>::operator()(bool * contin) {
-	this->show(contin) ;
+void Adapter<T>::operator()() {
+	this->show() ;
 }
 
 template<class T>

@@ -16,7 +16,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../Util/Time.h"
 #include "GameData.h"
 #include "GameMap.hpp"
@@ -64,6 +64,8 @@ private:
 	
 	WorldController() ;
 	
+	static void runWorldSimulation_threaded() ;
+	
 public:
 	
 	/**
@@ -74,7 +76,7 @@ public:
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its location. Is synced with GameObjects's map.
+	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
 	static GameMap<GameObject> * map ;
 	
@@ -89,7 +91,8 @@ public:
 	
 	static void init() ;
 	
-	static void runWorldSimulation(unsigned long) ;
+	static void runWorldSimulation() ;
+	
 	
 	/**
 	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting

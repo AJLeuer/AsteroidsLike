@@ -12,7 +12,7 @@
 #include <iostream>
 
 #include "Util.hpp"
-#include "Location.hpp"
+#include "Position.hpp"
 
 class Navigator {
 	
@@ -20,24 +20,24 @@ public:
 	
 	Direction dir ;
 	
-	const Location<long> * start ;
-	Location<long> current ;
+	const Position<long> * start ;
+	Position<long> current ;
 	
 	long x_travelled() {
-		Location<long> temp = current - (*start) ;
+		Position<long> temp = current - (*start) ;
 		long x_trav = setUnsigned(temp.x) ;
 		return x_trav ;
 	}
 	
 	long y_travelled() {
-		Location<long> temp = current - (*start) ;
+		Position<long> temp = current - (*start) ;
 		long y_trav = setUnsigned(temp.y) ;
 		return y_trav ;
 	}
 	
 	Navigator(int) ;
 	
-	Navigator(Direction d, const Location<long> * s, Location<long> c) ;
+	Navigator(Direction d, const Position<long> * s, Position<long> c) ;
 	
 	Navigator(const Navigator & other) ;
 	

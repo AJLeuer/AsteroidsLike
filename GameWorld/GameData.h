@@ -342,6 +342,8 @@ struct Locking {
 	static mutex sharedMutex ;
 };
 
+extern bool * GLOBAL_CONTINUE_SIGNAL ;
+
 extern const long GLOBAL_MAX_X ;
 extern const long GLOBAL_MIN_X ; 
 extern const long GLOBAL_MAX_Y ;

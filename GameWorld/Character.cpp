@@ -32,7 +32,7 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(string symbol, Location<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) :
+Character::Character(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) :
 	GameObject(symbol, loc),
 	name(name), alive(alive),
 	state(state), health(health), damage(damage)

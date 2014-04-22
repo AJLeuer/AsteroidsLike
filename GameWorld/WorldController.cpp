@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+#define eight_milliseconds 8333
+
 #include "WorldController.h"
 
 
@@ -30,7 +32,7 @@ void WorldController::init() {
 	WorldController::map = GameObject::map ;
 	
 	/* debug code */
-	for (unsigned i = 0 ; i < 250 ; i++) {
+	for (unsigned i = 0 ; i < 5 ; i++) {
 		new GameObject(1) ;
 	}
 	/* debug end */
@@ -40,21 +42,25 @@ void WorldController::init() {
 	
 }
 
+void WorldController::runWorldSimulation() {
+	/* debug code */
+	void (*rws_ptr)() = &WorldController::runWorldSimulation ;
+	new std::thread(rws_ptr) ;
+	/* end debug code */
+}
 
-void WorldController::runWorldSimulation(unsigned long time) {
-/* debug code */
-	auto wanderOffset = 1 ;
+void WorldController::runWorldSimulation_threaded() {
+	/* debug code */
+	unsigned wanderOffset = 1 ;
 	
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->wander(wanderOffset, time) ;
+		auto rand = fastRand<unsigned int>(8, 40) ;
+		unsigned speedChange = rand.nextValue() ; //use this to differentiate the rate at which each
+													  //wandering object will update its speed
+		gameObjects->at(i)->wander(wanderOffset, (speedChange * eight_milliseconds), GLOBAL_CONTINUE_SIGNAL) ;
 	}
-	
-	vector< const GameObject*> * found ;
-	
-	const Location<long> * loc = new Location<long>(95, 15, 0) ;
-	
-	found = GameObject::map->findNearby<long>(loc, 5, 5) ;
-/* end debug code */
+
+	/* end debug code */
 }
 
 

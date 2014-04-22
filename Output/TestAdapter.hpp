@@ -20,7 +20,7 @@
 #include "AdapterInterface.hpp"
 
 #include "../Util/Util.hpp"
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../GameWorld/GameData.h"
 
 
@@ -41,7 +41,7 @@ class TestAdapter : public AdapterInterface<T> {
 
 private:
 
-	void show_threaded(bool * contin) ;
+	void show_threaded() ;
 	 
 public:
 	
@@ -66,13 +66,13 @@ public:
 	
 	void init(const vector<T*> * container_) ;
 	
-	void show(bool * contin) ;
+	void show() ;
 	
 	
 	/**
 	 * See show()
 	 */
-	void operator()(bool * contin) ;
+	void operator()() ;
 	
 	void close() ;
 	
@@ -86,13 +86,13 @@ void TestAdapter<T>::init(const vector<T*> * container_) {
 }
 
 template<class T>
-void TestAdapter<T>::show(bool * contin) {
-	this->AdapterInterface<T>::aiThread = new std::thread(&TestAdapter<T>::show_threaded, std::move(this), contin) ;
+void TestAdapter<T>::show() {
+	this->AdapterInterface<T>::aiThread = new std::thread(&TestAdapter<T>::show_threaded, std::move(this)) ;
 }
 
 template<class T>
-void TestAdapter<T>::show_threaded(bool * contin) {
-	while (*contin) {
+void TestAdapter<T>::show_threaded() {
+	while (*GLOBAL_CONTINUE_SIGNAL) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
 		for (auto i = 0 ; i < TestAdapter<T>::container->size() ; i++) {
@@ -105,11 +105,12 @@ void TestAdapter<T>::show_threaded(bool * contin) {
 		Locking::sharedMutex.unlock() ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
 	}
+	/*   */
 }
 
 template<class T>
-void TestAdapter<T>::operator()(bool * contin) {
-	this->show(contin) ;
+void TestAdapter<T>::operator()() {
+	this->show() ;
 }
 
 template<class T>

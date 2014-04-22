@@ -35,7 +35,7 @@
 		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
-		665DBB5718F4F44F006F2026 /* Location.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Location.hpp; sourceTree = "<group>"; };
+		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 		665DBB5818F4F4F2006F2026 /* Navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Navigator.cpp; sourceTree = "<group>"; };
 		665DBB5918F4F4F2006F2026 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigator.h; sourceTree = "<group>"; };
 		665DBB5B18F520A7006F2026 /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				667878FF18DACE9000618712 /* Util.hpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
-				665DBB5718F4F44F006F2026 /* Location.hpp */,
+				665DBB5718F4F44F006F2026 /* Position.hpp */,
 				6678790118DAE25E00618712 /* Time.h */,
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
 				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,

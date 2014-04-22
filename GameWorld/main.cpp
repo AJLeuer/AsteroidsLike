@@ -35,12 +35,13 @@ int foo() {
 
 int main(void) {
 
-	srand((unsigned)time(NULL)) ;
+	Time timer ;
+	timer.startTimer() ;
 	
-	/* Debug */
-
-	MainController::start(10000000) ;
-	MainController::stop() ;
+	
+	MainController::start(GLOBAL_CONTINUE_SIGNAL) ;
+	usleep(1e7) ; // sleep 1.0 x 10⁷ microseconds or 10 seconds
+	MainController::stop(GLOBAL_CONTINUE_SIGNAL) ;
 	
 	
 	/* end debug */

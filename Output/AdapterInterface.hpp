@@ -20,7 +20,7 @@
 #include "ConsoleOutput.hpp"
 
 #include "../Util/Debug.h"
-#include "../Util/Location.hpp"
+#include "../Util/Position.hpp"
 #include "../GameWorld/GameData.h"
 
 using namespace std ;
@@ -39,7 +39,7 @@ protected:
 	const vector<T*> * container ;
 	bool * currentlyThreading ;
 	
-	virtual void show_threaded(bool * contin) ;
+	virtual void show_threaded() ;
 	
 public:
 	
@@ -59,7 +59,7 @@ public:
 	
 	virtual void init(const vector<T*> * container_ ) ;
 	
-	virtual void show(bool * contin) ;
+	virtual void show() ;
 	
 	
 	void drawRepresentation(array< array<const T *, GLOBAL_MAX_Y_> *, GLOBAL_MAX_X_> * map, ostream * out) ;
@@ -69,7 +69,7 @@ public:
 	/**
 	 * See show()
 	 */
-	virtual void operator()(bool * contin) ;
+	virtual void operator()() ;
 	
 	virtual void close() ;
 	
@@ -131,11 +131,11 @@ template<class T>
 void AdapterInterface<T>::init(const vector<T *> *container_) {}
 
 template<class T>
-void AdapterInterface<T>::show(bool * contin) {}
+void AdapterInterface<T>::show() {}
  
 
 template<class T>
-void AdapterInterface<T>::show_threaded(bool * contin) {}
+void AdapterInterface<T>::show_threaded() {}
 
 template<class T>
 void AdapterInterface<T>::drawRepresentation(array< array<const T *, GLOBAL_MAX_Y_> *, GLOBAL_MAX_X_> * map, ostream * out) {
@@ -146,8 +146,8 @@ void AdapterInterface<T>::drawRepresentation(array< array<const T *, GLOBAL_MAX_
 }
 
 template<class T>
-void AdapterInterface<T>::operator()(bool * contin) {
-	this->show(contin) ;
+void AdapterInterface<T>::operator()() {
+	this->show() ;
 }
 
 template<class T>
