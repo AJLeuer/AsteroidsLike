@@ -36,8 +36,8 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	icon("no icon"),
-	loc(new Position<long>(0, 0, 0, Position<long>::defaultCheck)),
-	vectDir(new vectorHeading<long>(loc))
+	loc(new Position<long>(0, 0, 0, defaultCheck)),
+	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
@@ -47,16 +47,16 @@ GameObject::GameObject() :
 	}
 	
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
-	vectDir.update(loc) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.update() ;
 }
 
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(other.icon),
-	loc(new Position<long>(*(other.loc), Position<long>::defaultCheck)),
-	vectDir(new vectorHeading<long>(loc))
+	loc(new Position<long>(*(other.loc), defaultCheck)),
+	vectDir(vectorHeading<long>(other.vectDir))
 {
 	/* debug */
 	stringstream ss ;
@@ -73,8 +73,8 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
-	vectDir.update(loc) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.update() ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -94,7 +94,7 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
 	icon(std::move(other.icon)),
 	loc(other.loc),
-	vectDir(new vectorHeading<long>(loc))
+	vectDir(std::move(other.vectDir))
 {
 	/* debug */
 	*(Debug::debugOutput) << "Move constructor called \n" ;
@@ -123,11 +123,11 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	ID(IDs),
 	icon(symbol),
 	loc(loc),
-	vectDir(new vectorHeading<long>(loc))
+	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
-	loc->checkBounds(Position<long>::defaultCheck) ;
+	loc->checkBounds(defaultCheck) ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
@@ -135,16 +135,16 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	}
 	
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
-	vectDir.update(loc) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.update() ;
 }
 
-GameObject::GameObject(int randSeed) :
+GameObject::GameObject(fastRand<long> rand) :
 	goThread(nullptr),
 	ID(IDs),
 	icon(""),
-	loc(nullptr),
-	vectDir(vectorHeading<long>(0))
+	loc(new Position<long>(rand, defaultCheck)),
+	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
@@ -153,20 +153,19 @@ GameObject::GameObject(int randSeed) :
 		map_is_init = true ;
 	}
 	
-	auto rnd = fastRand<long>(0, 100) ; //we'll get our own
 	
 	auto sz = icons->size()-1 ;
-	auto tmprnd = rnd.nextValue<vector<string>::size_type>(0, sz) ;
+	auto tmprnd = rand.nextValue<vector<string>::size_type>(0, sz) ;
 	icon = icons->at(tmprnd) ;
 	
-	long x = (rnd.nextValue(0, lrint(MAX_X))) ;
-	long y = (rnd.nextValue(0, lrint(MAX_Y))) ;
+	long x = (rand.nextValue(MIN_X, MAX_X)) ;
+	long y = (rand.nextValue(MIN_Y, MAX_Y)) ;
 	
-	loc = new Position<long>(x, y, 0, Position<long>::defaultCheck) ;
+	loc = new Position<long>(x, y, 0, defaultCheck) ;
 	
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
-	vectDir.update(loc) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.update() ;
 }
 
 
@@ -195,8 +194,11 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
 		}
-        this->loc = new Position<long>(*(rhs.loc), Position<long>::defaultCheck) ;
-		map->place(this->loc, this, Position<long>::defaultCheck, true) ;
+        this->loc = new Position<long>(*(rhs.loc), defaultCheck) ;
+		vectDir = vectorHeading<long>(loc) ;
+		map->place(this->loc, this, defaultCheck, true) ;
+		vectDir.update() ;
+		
 		allGameObjects->push_back(this) ;
 		
 		IDs++ ;
@@ -226,7 +228,9 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
-		loc->checkBounds(Position<long>::defaultCheck) ;
+		this->vectDir = std::move(rhs.vectDir) ;
+		loc->checkBounds(defaultCheck) ;
+		vectDir.update() ;
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
@@ -240,7 +244,7 @@ void GameObject::operator()() {
 	//todo
 }
 
-void GameObject::operator()(GameObject &sentObject) {
+void GameObject::operator()(GameObject & sentObject) {
 
 }
 
@@ -327,17 +331,17 @@ void GameObject::move(long xoffset, long yoffset) {
 		yoffset -= (loc->y + yoffset) ;
 	}
 	map->erase(*(this->getPosition())) ;
-	this->loc->modify(xoffset, yoffset, 0, Position<long>::defaultCheck) ;
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ; // place may need to modify this->loc again to find spot on map
-	vectDir.update(loc) ;
+	this->loc->modify(xoffset, yoffset, 0, defaultCheck) ;
+	map->place(this->loc, this, defaultCheck, true) ; // place may need to modify this->loc again to find spot on map
+	vectDir.update() ;
 }
 
 void GameObject::move(const Position<long> & moveTo) {
-	Position<long> mt = Position<long>(moveTo, Position<long>::defaultCheck) ;
+	Position<long> mt = Position<long>(moveTo, defaultCheck) ;
 	map->erase(*(this->getPosition())) ;
 	*(this->loc) = mt ;
-	map->place(this->loc, this, Position<long>::defaultCheck, true) ;
-	vectDir.update(loc) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.update() ;
 }
 
 void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {

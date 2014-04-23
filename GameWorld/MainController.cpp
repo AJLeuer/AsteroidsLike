@@ -14,6 +14,7 @@
 AdapterInterface<GameObject> * MainController::currentAdapter = nullptr ;
 
 void MainController::start(bool * b) {
+	
 	GLOBAL_CONTINUE_SIGNAL = b ;
 	
 	Debug::init(true) ;
@@ -23,7 +24,7 @@ void MainController::start(bool * b) {
 	
 	WorldController::init() ;
 	
-	currentAdapter = new Adapter<GameObject>() ;
+	currentAdapter = new TestAdapter<GameObject>() ;
 	
 	currentAdapter->init(WorldController::getGameObjects()) ;
 	

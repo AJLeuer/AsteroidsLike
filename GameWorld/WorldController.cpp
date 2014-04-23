@@ -32,8 +32,10 @@ void WorldController::init() {
 	WorldController::map = GameObject::map ;
 	
 	/* debug code */
+	fastRand<long> rand(returnSmaller(GLOBAL_MIN_X, GLOBAL_MIN_Y), returnLarger(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
+	
 	for (unsigned i = 0 ; i < 50 ; i++) {
-		new GameObject(1) ;
+		new GameObject(rand) ;
 	}
 	/* debug end */
 	

@@ -14,7 +14,8 @@
 #include <sstream>
 
 #include "Debug.h"
-#include "Util.h"
+#include "Util.hpp"
+#include "BoundsCheck.hpp"
 
 #include "../GameWorld/GameData.h"
 
@@ -36,21 +37,6 @@ enum Direction {
 	oneDirection //the best direction! (and also a base case in certain recursive algorithms)
 } ;
 
-/**
- * Helps with checking validity of Position objects
- * Used in Position's checkBounds()
- */
-template<typename N>
-struct BoundsCheck {
-	const N MAX_X ;
-	const N MIN_X ;
-	const N MAX_Y ;
-	const N MIN_Y ;
-	
-	BoundsCheck<N>(N MAX_X_, N MIN_X_, N MAX_Y_, N MIN_Y_) :
-		MAX_X(MAX_X_), MIN_X(MIN_X_), MAX_Y(MAX_Y_), MIN_Y(MIN_Y_) {}
-} ;
-
 template <typename N>
 struct Position {
 	
@@ -59,8 +45,6 @@ public:
 	N x ;
 	N y ;
     N z ;
-	
-	static const BoundsCheck<N> defaultCheck ;
 	
 	/**
      * Creates a Positionwith all coordinates initialized to 0
@@ -71,7 +55,26 @@ public:
      * Creates a Positionwith all coordinates initialized to 0
      */
 	Position(const BoundsCheck<N> check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
-    
+	
+	/**
+     * Creates a Positionwith all coordinates initialized to n
+     */
+	Position(N n) : x(n), y(n), z(n) {}
+	
+	/**
+     * Creates a Positionwith all coordinates initialized to n
+     */
+	Position(N n, const BoundsCheck<N> check) : x(n), y(n), z(n) { this->checkBounds(check) ; }
+	
+	/**
+     * Creates a Positionwith all coordinates randomized, with bounds set by check
+     */
+	Position(fastRand<N> rand, const BoundsCheck<N> check) {
+		x = rand.nextValue(check.MIN_X, check.MAX_X) ;
+		y = rand.nextValue(check.MIN_Y, check.MAX_Y) ;
+		z = 0 ;
+	}
+	
     /**
      * Copy constructor for Position
      */
@@ -144,7 +147,7 @@ public:
     }
 	
 	
-	bool operator==(const Position & rhs) {
+	bool operator==(const Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -153,7 +156,7 @@ public:
 		}
 	}
 	
-	bool operator==(Position & rhs) {
+	bool operator==(Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -162,7 +165,7 @@ public:
 		}
 	}
 	
-	bool operator!=(const Position & rhs) {
+	bool operator!=(const Position & rhs) const {
 		return !(this->operator==(rhs)) ;
 	}
 	
@@ -285,9 +288,6 @@ public:
 
 } ;
 
-template<typename N>
-const BoundsCheck<N> Position<N>::defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
-
 
 /**
  * Gives a representation a vector or direction in 3 dimensions
@@ -300,19 +300,20 @@ protected:
 	Position<N> last ;
 	const Position<N> * current ;
 	
-	/* x, y, and z here are deltas that we can add to current to calculate next */
+	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
 	
-	void update() ;
 	
 public:
 	vectorHeading(const Position<N> & last_, Position<N> * current_) ;
 	vectorHeading(Position<N> * current_) ;
-	vectorHeading(int n) ; //don't use
+	vectorHeading(const vectorHeading<N> & other) ;
+	vectorHeading(vectorHeading<N> && other) ;
 	~vectorHeading() ;
+	vectorHeading & operator=(const vectorHeading<N> & rhs) ;
+	vectorHeading & operator=(vectorHeading<N> && rhs) ;
 	
-	void update(const Position<N> * next) ;
+	void update() ;
 	Position<N> calculateNextPosition() ;
-	Position<N> calculateNextPositionAndUpdate() ;
 
 } ;
 
@@ -325,20 +326,20 @@ vectorHeading<N>::vectorHeading(const Position<N> & last_, Position<N> * current
 
 template<typename N>
 vectorHeading<N>::vectorHeading(Position<N> * current_) :
-	last(*current_), current(current_)
-{
-	this->x = 0 ;
-	this->y = 0 ;
-	this->z = 0 ;
-}
+	Position<N>(0),
+	last(*current_), current(current_) {}
 
 template<typename N>
-vectorHeading<N>::vectorHeading(int n) :
-	last(Position<N>(0, 0, 0)), current(nullptr)
+vectorHeading<N>::vectorHeading(const vectorHeading<N> & other) :
+	Position<N>(other),
+	last(Position<N>(other.last)), current(other.current) {}
+
+template<typename N>
+vectorHeading<N>::vectorHeading(vectorHeading<N> && other) :
+	Position<N>(std::move(other)),
+	last(std::move(other.last)), current(other.current)
 {
-	this->x = 0 ;
-	this->y = 0 ;
-	this->z = 0 ;
+	other.current = nullptr ;
 }
 
 template<typename N>
@@ -348,40 +349,45 @@ vectorHeading<N>::~vectorHeading()
 }
 
 template<typename N>
-void vectorHeading<N>::update() {
-	Position<N> temp = ((*current) - last) ;
-	this->modify(temp.x, temp.y, temp.z) ;
+vectorHeading<N> & vectorHeading<N>::operator=(const vectorHeading<N> & rhs) {
+	if (this != &rhs) {
+		Position<N>::operator=(rhs) ;
+		this->last = Position<N>(rhs.last) ;
+		this->current = rhs.current ;
+	}
+	return *this ;
 }
 
 template<typename N>
-void vectorHeading<N>::update(const Position<N> * next) {
-	this->last = (*this->current) ;
-	this->current = next ;
-	update() ;
+vectorHeading<N> & vectorHeading<N>::operator=(vectorHeading<N> && rhs) {
+	if (this != &rhs) {
+		Position<N>::operator=(std::move(rhs)) ;
+		this->last = Position<N>(rhs.last) ;
+		this->current = rhs.current ;
+		rhs.current = nullptr ;
+	}
+	return *this ;
 }
+
+template<typename N>
+void vectorHeading<N>::update() {
+	
+	if (last != *current) { //only if we've moved...
+		Position<N> temp = ((*current) - last) ;              /* uses Location's operator+() overload to add
+															   our x, y, and z (which are offset values) to those
+															   stored in current, giving our new location */
+		this->modify(temp.x, temp.y, temp.z) ;
+		this->last = Position<N>(*this->current) ;
+	}
+}
+
 
 template<typename N>
 Position<N> vectorHeading<N>::calculateNextPosition() {
-	Position<N> next = (*this->current) + (*this) ; /* uses Location's operator+() overload to add
-													our x, y, and z (which are offset values) to those
-													 stored in current, giving our new location */
-	return next ;
+	Position<N> next = (*this->current) + (*this) ;
+	return std::move(next) ;
 }
 
-/**
- * This should be the default choice for both calculating the next value
- * and updating current state
- */
-template<typename N>
-Position<N> vectorHeading<N>::calculateNextPositionAndUpdate() {
-	auto next = calculateNextPosition() ;
-	this->last = (*current) ;
-	delete current ;
-	this->current = new Position<N>(next) ;
-	update() ;
-	
-	return next ;
-}
 
 
 

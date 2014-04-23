@@ -163,7 +163,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(int randSeed) ;
+	GameObject(fastRand<long> rand) ;
 	
 	
 	/**

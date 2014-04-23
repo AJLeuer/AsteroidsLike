@@ -15,6 +15,7 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/Time.h"
+#include "../Util/OpenClUtil.h"
 
 #include "../Output/Adapter.hpp"
 #include "../Output/TestAdapter.hpp"
@@ -37,6 +38,12 @@ int main(void) {
 
 	Time timer ;
 	timer.startTimer() ;
+	
+	
+	
+	
+	
+	
 	
 	
 	MainController::start(GLOBAL_CONTINUE_SIGNAL) ;

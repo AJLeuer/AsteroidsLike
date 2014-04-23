@@ -18,6 +18,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/Navigator.h"
+#include "GameData.h"
 
 
 
@@ -182,7 +183,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 				Position<N> * temp = new Position<N>(where->x, where->y + 1, where->z, check) ;
 				//delete where ;
 				*where = std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
+				return placeAtNearestFree(where, mapObj, defaultCheck) ;
 			}
 
 			case 1:
@@ -190,7 +191,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 				Position<N> * temp = new Position<N>(where->x, where->y - 1, where->z, check) ;
 				//delete where ;
 				*where = std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
+				return placeAtNearestFree(where, mapObj, defaultCheck) ;
 			}
 				
 			case 2:
@@ -198,7 +199,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 				Position<N> * temp = new Position<N>(where->x + 1, where->y, where->z, check) ;
 				//delete where ;
 				*where = std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
+				return placeAtNearestFree(where, mapObj, defaultCheck) ;
 			}
 				
 			case 3:
@@ -206,7 +207,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 				Position<N> * temp = new Position<N>(where->x - 1, where->y, where->z, check);
 				//delete where ;
 				*where =  std::move(*temp) ;
-				return placeAtNearestFree(where, mapObj, Position<N>::defaultCheck) ;
+				return placeAtNearestFree(where, mapObj, defaultCheck) ;
 			}
 			default:
 			{

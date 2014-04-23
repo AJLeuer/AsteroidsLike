@@ -33,8 +33,8 @@ NPC::NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterS
 {
 }
 
-NPC::NPC(int randSeed) :
-	Character(randSeed)
+NPC::NPC(fastRand<long> rand) :
+	Character(rand)
 {
 	this->reaction = Reaction(rand() % 5) ;
 	//todo finish

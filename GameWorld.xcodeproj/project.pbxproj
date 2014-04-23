@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		66086F2C1902B440003F3F90 /* ConsoleOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */; };
+		661C1935190794DF00DB929C /* OpenClUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661C1934190794DF00DB929C /* OpenClUtil.cpp */; };
+		6624417219077851000D8F8A /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6624417119077851000D8F8A /* OpenCL.framework */; };
 		662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6C18FF763A003A6EE0 /* Util.cpp */; };
 		662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6E18FF90C7003A6EE0 /* MainController.cpp */; };
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
@@ -28,11 +30,15 @@
 
 /* Begin PBXFileReference section */
 		66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleOutput.cpp; sourceTree = "<group>"; };
+		661C1934190794DF00DB929C /* OpenClUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenClUtil.cpp; sourceTree = "<group>"; };
+		6624417119077851000D8F8A /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
+		662441731907804A000D8F8A /* OpenClUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenClUtil.h; sourceTree = "<group>"; };
 		662D9E6C18FF763A003A6EE0 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		662D9E6E18FF90C7003A6EE0 /* MainController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainController.cpp; sourceTree = "<group>"; };
 		662D9E6F18FF90C7003A6EE0 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		662FA07718F609B2009E87BE /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
 		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundsCheck.hpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
@@ -76,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6624417219077851000D8F8A /* OpenCL.framework in Frameworks */,
 				66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */,
 				66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */,
 				66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */,
@@ -107,9 +114,12 @@
 				667878FF18DACE9000618712 /* Util.hpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
 				665DBB5718F4F44F006F2026 /* Position.hpp */,
+				66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */,
 				6678790118DAE25E00618712 /* Time.h */,
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
 				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
+				662441731907804A000D8F8A /* OpenClUtil.h */,
+				661C1934190794DF00DB929C /* OpenClUtil.cpp */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -117,6 +127,7 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
+				6624417119077851000D8F8A /* OpenCL.framework */,
 				665DBB5B18F520A7006F2026 /* Search Algorithm Illustration.png */,
 				66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */,
 				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
@@ -221,6 +232,7 @@
 				66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
+				661C1935190794DF00DB929C /* OpenClUtil.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				666D354F19022C3000A615D5 /* AdapterUtil.cpp in Sources */,

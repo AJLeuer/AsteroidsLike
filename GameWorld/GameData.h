@@ -18,6 +18,8 @@
 #include <iostream>
 #include <ostream>
 
+#include "../Util/BoundsCheck.hpp"
+
 using namespace std ;
 
 /**
@@ -348,6 +350,8 @@ extern const long GLOBAL_MAX_X ;
 extern const long GLOBAL_MIN_X ; 
 extern const long GLOBAL_MAX_Y ;
 extern const long GLOBAL_MIN_Y ;
+
+static const BoundsCheck<long> defaultCheck(GLOBAL_MAX_X, GLOBAL_MIN_X, GLOBAL_MAX_Y, GLOBAL_MIN_Y) ;
 
 
 

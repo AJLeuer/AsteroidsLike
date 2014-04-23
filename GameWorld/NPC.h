@@ -66,7 +66,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	NPC(int randSeed) ;
+	NPC(fastRand<long> rand) ;
 	
 	
 	/**

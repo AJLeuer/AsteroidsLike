@@ -85,7 +85,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	Character(int randSeed) ;
+	Character(fastRand<long> rand) ;
 	
 	
 	/**

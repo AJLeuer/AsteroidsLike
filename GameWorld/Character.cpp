@@ -39,8 +39,8 @@ Character::Character(string symbol, Position<long> * loc, string name, DoA alive
 {
 }
 
-Character::Character(int randSeed) :
-	GameObject(randSeed),
+Character::Character(fastRand<long> rand) :
+	GameObject(rand),
 	alive((DoA)goRand.nextValue(0, 1)),
 	state((CharacterState)(goRand.nextValue(0, 3))),
 	health{goRand.nextValue(0, 500)},
