@@ -74,6 +74,42 @@ public:
 		return *this ;
 	}
 	
+	bool operator==(GameData & rhs) {
+		return (this->value() == rhs.value()) ;
+	}
+	
+	bool operator!=(GameData & rhs) {
+		return !(this->operator==(rhs)) ;
+	}
+	
+	bool operator>(GameData & rhs) {
+		return (this->value() > rhs.value()) ;
+	}
+	
+	bool operator<(GameData & rhs) {
+		return (this->value() < rhs.value()) ;
+	}
+	
+	bool operator>=(GameData & rhs) {
+		return (this->value() >= rhs.value()) ;
+	}
+	
+	bool operator<=(GameData & rhs) {
+		return (this->value() <= rhs.value()) ;
+	}
+	
+	GameData & operator+(const GameData & rhs) {
+		this->baseValue += rhs.baseValue ;
+		this->modifier += rhs.modifier ;
+		return *this ;
+	}
+	
+	GameData & operator-(const GameData & rhs) {
+		this->baseValue -= rhs.baseValue ;
+		this->modifier -= rhs.modifier ;
+		return *this ;
+	}
+	
 	/**
 	 * Override the << output stream operator
 	 */
@@ -132,22 +168,6 @@ public:
 	Damage(const Damage & other) :
 		GameData(other) {}
 	
-	Damage(Damage && other) :
-		GameData(other) {}
-	
-	Damage & operator=(const Damage & rhs) {
-		if (this != &rhs) {
-			this->GameData::operator=(rhs) ;
-		}
-		return *this ;
-	}
-	
-	Damage & operator=(Damage && rhs) {
-		if (this != &rhs) {
-			this->GameData::operator=(rhs) ;
-		}
-		return *this ;
-	}
 	
 } ;
 
@@ -171,23 +191,7 @@ public:
 	
 	Health(const Health & other) :
 		GameData(other) {}
-	
-	Health(Health && other) :
-		GameData(other) {}
-	
-	Health & operator=(const Health & rhs) {
-		if (this != &rhs) {
-			this->GameData::operator=(rhs) ;
-		}
-		return *this ;
-	}
-	
-	Health & operator=(Health && rhs) {
-		if (this != &rhs) {
-			this->GameData::operator=(rhs) ;
-		}
-		return *this ;
-	}
+
 	
 } ;
 
@@ -217,7 +221,7 @@ enum class CharacterState {
 	inCombat = 1,
 	inDialogue = 2,
 	idle = 3
-	
+
 } ;
 
 enum class DoA {
@@ -229,13 +233,13 @@ enum class DoA {
 
 enum class Reaction {
 	
-	noreact = -1,
+	noreact = -100,
 	/*typically npc*/
-	loyal = 0,
+	loyal = 2,
 	friendly = 1,
-	neutral = 2,
-	unfriendly = 3,
-	hostile = 4
+	neutral = 0,
+	unfriendly = (-friendly),
+	hostile = (-loyal)
 	//add more here
 } ;
 

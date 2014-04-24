@@ -24,7 +24,7 @@ void MainController::start(bool * b) {
 	
 	WorldController::init() ;
 	
-	currentAdapter = new TestAdapter<GameObject>() ;
+	currentAdapter = new Adapter<GameObject>() ;
 	
 	currentAdapter->init(WorldController::getGameObjects()) ;
 	

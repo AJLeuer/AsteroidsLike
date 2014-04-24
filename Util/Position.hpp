@@ -210,6 +210,19 @@ public:
 	
 	void setZ(const N z, const BoundsCheck<N> check) { this->z = z ; checkBounds(check) ; }
 	
+	void setAll(const N x, const N y, const N z) {
+		this->x = x ;
+		this->y = y ;
+		this->z = z ;
+	}
+	
+	void setAll(const N x, const N y, const N z, const BoundsCheck<N> check) {
+		this->x = x ;
+		this->y = y ;
+		this->z = z ;
+		checkBounds(check) ;
+	}
+	
 	/**
 	 * Increments or decrements the x, y and z values according to 
 	 * the arguments passed in. Use negative values to decrement. Passing
@@ -294,49 +307,64 @@ public:
  * Note: do not use with unsigned ints
  */
 template<typename N>
-struct vectorHeading : public Position<N> {
+struct vectorHeading : public Position<float> {
 	
 protected:
 	Position<N> last ;
 	const Position<N> * current ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	
+	vectorHeading(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
+	void update() ;
 	
 public:
+	vectorHeading(float headingX, float headingY, float headingZ, Position<N> * current_) ;
 	vectorHeading(const Position<N> & last_, Position<N> * current_) ;
-	vectorHeading(Position<N> * current_) ;
+	vectorHeading(const Position<N> * current_) ;
 	vectorHeading(const vectorHeading<N> & other) ;
 	vectorHeading(vectorHeading<N> && other) ;
 	~vectorHeading() ;
 	vectorHeading & operator=(const vectorHeading<N> & rhs) ;
 	vectorHeading & operator=(vectorHeading<N> && rhs) ;
 	
-	void update() ;
-	Position<N> calculateNextPosition() ;
+	void normalize() ;
+	void updateAndNormalize() ;
+	Position<N> calculateNextPosition(const BoundsCheck<N> &) ;
+	static Position<N> calculateNextPosition(const vectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) ;
 
 } ;
 
 template<typename N>
+vectorHeading<N>::vectorHeading(float headingX, float headingY, float headingZ, Position<N> * current_) :
+	Position<float>(headingX, headingY, headingZ),
+	current(current_) {}
+
+template<typename N>
+vectorHeading<N>::vectorHeading(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
+	Position<float>(overrideCurrData),
+	current(current_) {}
+
+template<typename N>
 vectorHeading<N>::vectorHeading(const Position<N> & last_, Position<N> * current_) :
+	Position<float>(),
 	last(last_), current(current_)
 {
 	update() ;
 }
 
 template<typename N>
-vectorHeading<N>::vectorHeading(Position<N> * current_) :
-	Position<N>(0),
+vectorHeading<N>::vectorHeading(const Position<N> * current_) :
+	Position<float>(),
 	last(*current_), current(current_) {}
 
 template<typename N>
 vectorHeading<N>::vectorHeading(const vectorHeading<N> & other) :
-	Position<N>(other),
+	Position<float>(other),
 	last(Position<N>(other.last)), current(other.current) {}
 
 template<typename N>
 vectorHeading<N>::vectorHeading(vectorHeading<N> && other) :
-	Position<N>(std::move(other)),
+	Position<float>(std::move(other)),
 	last(std::move(other.last)), current(other.current)
 {
 	other.current = nullptr ;
@@ -351,7 +379,7 @@ vectorHeading<N>::~vectorHeading()
 template<typename N>
 vectorHeading<N> & vectorHeading<N>::operator=(const vectorHeading<N> & rhs) {
 	if (this != &rhs) {
-		Position<N>::operator=(rhs) ;
+		Position<float>::operator=(rhs) ;
 		this->last = Position<N>(rhs.last) ;
 		this->current = rhs.current ;
 	}
@@ -361,7 +389,7 @@ vectorHeading<N> & vectorHeading<N>::operator=(const vectorHeading<N> & rhs) {
 template<typename N>
 vectorHeading<N> & vectorHeading<N>::operator=(vectorHeading<N> && rhs) {
 	if (this != &rhs) {
-		Position<N>::operator=(std::move(rhs)) ;
+		Position<float>::operator=(std::move(rhs)) ;
 		this->last = Position<N>(rhs.last) ;
 		this->current = rhs.current ;
 		rhs.current = nullptr ;
@@ -376,16 +404,45 @@ void vectorHeading<N>::update() {
 		Position<N> temp = ((*current) - last) ;              /* uses Location's operator+() overload to add
 															   our x, y, and z (which are offset values) to those
 															   stored in current, giving our new location */
-		this->modify(temp.x, temp.y, temp.z) ;
+		this->setAll(temp.x, temp.y, temp.z) ;
 		this->last = Position<N>(*this->current) ;
 	}
 }
 
+template<typename N>
+void vectorHeading<N>::normalize() {
+	auto distance = pythag<float>(x, y) ;
+	if (x != 0) {
+		x = (x / distance) ;
+	}
+	if (y != 0) {
+		y = (y / distance) ;
+	}
+	z = 0 ;
+}
 
 template<typename N>
-Position<N> vectorHeading<N>::calculateNextPosition() {
-	Position<N> next = (*this->current) + (*this) ;
+void vectorHeading<N>::updateAndNormalize() {
+	update() ;
+	normalize() ;
+}
+
+
+template<typename N>
+Position<N> vectorHeading<N>::calculateNextPosition(const BoundsCheck<N> & check) {
+	normalize() ;
+	N nx = (*this->current).x + roundF((*this).x) ;
+	N ny = (*this->current).y + roundF((*this).y) ;
+	N nz = (*this->current).z + roundF((*this).z) ;
+	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;
+}
+
+template<typename N>
+Position<N> vectorHeading<N>::calculateNextPosition(const vectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) {
+	Position<float> direc(dir.x, dir.y, dir.z) ;
+	vectorHeading<N> calc = vectorHeading<N>(direc, current, true) ;
+	return calc.calculateNextPosition(check) ;
 }
 
 

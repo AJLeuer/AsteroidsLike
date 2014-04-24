@@ -20,7 +20,7 @@ class NPC : public Character {
   
 protected:
 	
-    Reaction reaction ;
+    
 	//todo
 	
 	
@@ -57,7 +57,7 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage, Reaction reaction) ;
+	NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) ;
 	
 	
 	/**
@@ -131,7 +131,7 @@ public:
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	void attack(Character & enemy) ;
+	void attack(Character * enemy) ;
 	
 	
 	/**

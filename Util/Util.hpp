@@ -245,6 +245,15 @@ N returnSmaller(N n1, N n2) {
 	}
 }
 
+template<typename F> //some float or double
+long roundF(F value)
+{
+    F temp = (value >= 0.0f) ? (floor(value + 0.5f)) : (ceil(value - 0.5f)) ;
+    long round = static_cast<long>(temp) ;
+    return round ;
+}
+
+
 /* misc. other */
 extern char * basicAlphabet ;
 

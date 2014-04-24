@@ -27,10 +27,10 @@ class GameMap {
 	
 private:
 	int mapMembers = 0 ;
-	array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_> * intern_map ;
+	array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1> * intern_map ;
 	
 	template<typename N>
-	void findAllNearby_helper(vector<const T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
+	void findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
 	
 	GameMap<string> * gmDebug ; //debug
 
@@ -46,7 +46,7 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_> * getMapVect() { return this->intern_map ; } ;
+	array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
@@ -73,7 +73,7 @@ public:
 	 * Returns the first object at this Position<N>
 	 */
 	template<typename N>
-	const T * at(const Position<N> & where) ;
+	T * at(const Position<N> & where) ;
 	
 	template<typename N>
 	Position<N> currentLoc(T* obj) ;
@@ -93,18 +93,18 @@ public:
 	 * @param maxDistY The maximum distance to search latitudinally
 	 */
 	template<typename N>
-	vector<const T*> * findNearby(const Position<N> * start, const N x_lim, const N y_lim) ;
+	vector<T*> * findNearby(const Position<N> * start, const N x_lim, const N y_lim) ;
 	
 } ;
 
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new array< array<const T*, GLOBAL_MAX_Y_>*, GLOBAL_MAX_X_>()),
+	intern_map(new array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->at(i) = new array<const T*, GLOBAL_MAX_Y_>() ;
+		intern_map->at(i) = new array< T *, GLOBAL_MAX_Y_+1>() ;
 		for (auto j = 0 ; j < maxY; j++) {
 			intern_map->at(i)->at(j) = nullptr ;
 		}
@@ -250,7 +250,7 @@ void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc) {
 
 template<class T>
 template<typename N>
-const T* GameMap<T>::at(const Position<N> & where) {
+T* GameMap<T>::at(const Position<N> & where) {
 	return intern_map->at(where.getX())->at(where.getY()) ;
 }
 
@@ -284,10 +284,10 @@ T* GameMap<T>::remove(Position<N> & currentLoc) {
 
 template<class T>
 template<typename N>
-vector<const T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N y_lim) {
+vector<T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N y_lim) {
 	
 	searchSuccess = false ;
-	vector<const T*> * store = new vector<const T*>() ;
+	vector<T*> * store = new vector<T*>() ;
 	const Position<N> * strt = start ;
 	Position<N> init = Position<N>(*start) ;
 	Navigator nav(Direction::oneDirection, strt, init) ;
@@ -297,7 +297,7 @@ vector<const T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N 
 
 template<class T>
 template<typename N>
-void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
+void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
 	
 	//Debug::debugCounter++ ;
 	

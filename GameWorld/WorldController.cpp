@@ -15,7 +15,7 @@
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
-GameMap<GameObject> * WorldController::map = nullptr ;
+const GameMap<GameObject> * WorldController::map = nullptr ;
 
 
 
@@ -28,13 +28,13 @@ WorldController::WorldController() {}
 
 void WorldController::init() {
 
-	WorldController::gameObjects = GameObject::allGameObjects ;
-	WorldController::map = GameObject::map ;
+	WorldController::gameObjects = GameObject::getAllGameObjects() ;
+	WorldController::map = GameObject::getMap() ;
 	
 	/* debug code */
 	fastRand<long> rand(returnSmaller(GLOBAL_MIN_X, GLOBAL_MIN_Y), returnLarger(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	
-	for (unsigned i = 0 ; i < 50 ; i++) {
+	for (unsigned i = 0 ; i < 1 ; i++) {
 		new GameObject(rand) ;
 	}
 	/* debug end */
@@ -45,24 +45,29 @@ void WorldController::init() {
 }
 
 void WorldController::runWorldSimulation() {
-	/* debug code */
 	void (*rws_ptr)() = &WorldController::runWorldSimulation_threaded ;
-	new std::thread(rws_ptr) ;
-	/* end debug code */
+	thread * thr  = new std::thread(rws_ptr) ;
+	thr->join() ;
+	void (*chdel_ptr)() = &WorldController::checkForMarkedDeletions ;
+	new std::thread(chdel_ptr) ;
 }
 
 void WorldController::runWorldSimulation_threaded() {
-	/* debug code */
-	unsigned wanderOffset = 1 ;
-	
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		auto rand = fastRand<unsigned int>(8, 40) ;
-		unsigned speedChange = rand.nextValue() ; //use this to differentiate the rate at which each
-													  //wandering object will update its speed
-		gameObjects->at(i)->wander(wanderOffset, (speedChange * eight_milliseconds), GLOBAL_CONTINUE_SIGNAL) ;
-	}
 
-	/* end debug code */
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		gameObjects->at(i)->runOnThread() ;
+	}
+}
+
+void WorldController::checkForMarkedDeletions() {
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		for (auto i = 0 ; i < gameObjects->size() ; i++) {
+			if (gameObjects->at(i)->markedForDeletion == true) {
+				delete gameObjects->at(i) ;
+				gameObjects->at(i) = nullptr ;
+			}
+		}
+	}
 }
 
 
@@ -85,7 +90,7 @@ void WorldController::close() {
 	}
 	
 	delete gameObjects ;
-	delete GameObject::map ; 
+	delete map ; 
 	gameObjects = nullptr ;
 	
 	Locking::sharedMutex.unlock() ;

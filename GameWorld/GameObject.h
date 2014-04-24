@@ -64,20 +64,6 @@ private:
 	 */
 	void endThreading(bool join) ;
 	
-	/**
-	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread.
-	 * This overload runs the given period of time (in microseconds).
-	 *
-	 */
-	void wander_threaded(long xyOffset, unsigned timeInterval, long time) ;
-	
-	/**
-	 * Private internal implementation of wander(), allows GameObject to wander() on its own thread
-	 * This overload takes a pointer to a bool and runs until it is false.
-	 *
-	 */
-	void wander_threaded(long xyOffset, unsigned timeInterval,  bool * run) ;
-	
 	friend class WorldController ;
 	
 protected:
@@ -85,13 +71,22 @@ protected:
 
 	unsigned ID ;
 	string icon ;
+	bool markedForDeletion = false ;
     Position<long> * loc ;
 	vectorHeading<long> vectDir ;
+	
+	GameObject * ally = nullptr ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
 	static const long MAX_Y ;
 	static const long MIN_Y ;
+	
+	/**
+	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
+	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
+	 */
+	static GameMap<GameObject> * map ;
 	
 	
 	/**
@@ -107,6 +102,7 @@ protected:
 	 * be pushed back onto GameObject::allThreads.
 	 */
 	std::thread * goThread ;
+	
 	bool * currentlyThreading ;
 	
 	static fastRand<int> goRand ;
@@ -118,16 +114,12 @@ public:
 	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
 	 */
-	static const vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
+	static vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
 	
-	static const vector<GameObject*>::iterator start() { return GameObject::allGameObjects->begin() ; }
-	static const vector<GameObject*>::iterator end() { return GameObject::allGameObjects->end() ; }
+	//static const vector<GameObject*>::iterator start() { return GameObject::allGameObjects->begin() ; }
+	//static const vector<GameObject*>::iterator end() { return GameObject::allGameObjects->end() ; }
 	
-	/**
-	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
-	 */
-	static GameMap<GameObject> * map ;
+	static const GameMap<GameObject> * getMap() { return GameObject::map ; }
 	
 	/**
 	 * Creates a new GameObject
@@ -242,14 +234,6 @@ public:
 	 * Writes a formatted text description of this GameObject into the desired output stream
 	 */
 	virtual void textDescription(ostream * writeTo) const ;
-
-	/**
-	 * Moves this GameObject by changing its Position<long> x and y coordinates by the given offsets
-	 *
-	 * @param xoffset The change in this GameObject's Position<long>.x
-	 * @param yoffset The change in this GameObject's Position<long>.y
-	 */
-	void move(long xoffset, long yoffset) ;
 	
 	/**
 	 * Moves this GameObject to the Position<long> moveTo
@@ -259,12 +243,42 @@ public:
 	void move(const Position<long> & moveTo) ;
 	
 	/**
+	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
+	 * vectorHeading of its last move
+	 */
+	void moveSameDirection() ;
+	
+	/**
+	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the given
+	 * vectorHeading
+	 *
+	 * @param newDirection The new vectorDirection specifying the direction of travel
+	 */
+	void moveNewDirection(vectorHeading<long> & newDirection) ;
+	
+	
+	/**
+	 * Runs this GameObject's defaultBehaviors on its own thread ;
+	 */
+	void runOnThread() ;
+	
+	/**
+	 * Each GameObject can implement this to enable its default behaviors to run 
+	 * on a loop on a separate thread
+	 */
+	virtual void defaultBehaviors() ;
+	
+	virtual void attack(GameObject * enemy) ;
+	
+	virtual void allyWith(GameObject *) ;
+	
+	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
 	 *
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
-	void wander(long xyOffset, unsigned timeInterval, long time) ;
+	virtual void wander(long xyOffset, unsigned timeInterval, long time) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
@@ -272,7 +286,15 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param run Flag to continue or end execution
 	 */
-	void wander(long xyOffset, unsigned timeInterval, bool * run) ;
+	virtual void wander(long xyOffset, unsigned timeInterval, bool * run) ;
+	
+	/**
+	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
+	 *
+	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
+	 * @param run Flag to continue or end execution
+	 */
+	virtual void wander(long xyOffset, unsigned timeInterval, int loops, int ignored) ;
 	
 	/**
 	 * @return This GameObject's Position<long>

@@ -10,28 +10,16 @@
 #include "NPC.h"
 
 NPC::NPC() :
-	Character(),
-	reaction(Reaction::neutral)
-{
-}
+	Character() {}
 
 NPC::NPC(const NPC & other) :
-	Character(other),
-	reaction(other.reaction)
-{
-}
+	Character(other) {}
 
 NPC::NPC(NPC && other) :
-	Character(std::move(other)),
-	reaction(std::move(other.reaction))
-{
-}
+	Character(std::move(other)) {}
 
-NPC::NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage, Reaction reaction) :
-	Character(symbol, loc, name, alive, state, health, damage),
-	reaction(reaction)
-{
-}
+NPC::NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) :
+	Character(symbol, loc, name, reaction, alive, state, health, damage) {}
 
 NPC::NPC(fastRand<long> rand) :
 	Character(rand)
@@ -48,7 +36,6 @@ NPC::~NPC() {
 NPC & NPC::operator=(const NPC & rhs) {
 	if (this != &rhs) {
 		this->Character::operator=(rhs) ;
-		this->reaction = rhs.reaction ;
 	}
 	return *this ;
 }
@@ -56,7 +43,6 @@ NPC & NPC::operator=(const NPC & rhs) {
 NPC & NPC::operator=(NPC && rhs) {
 	if (this != &rhs) {
 		this->Character::operator=(std::move(rhs)) ;
-		this->reaction = std::move(rhs.reaction) ;
 	}
 	return *this ;
 }
@@ -85,7 +71,7 @@ void NPC::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void NPC::attack(Character & enemy) {
+void NPC::attack(Character * enemy) {
 	//todo
 }
 

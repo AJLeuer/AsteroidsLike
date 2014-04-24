@@ -66,6 +66,8 @@ private:
 	
 	static void runWorldSimulation_threaded() ;
 	
+	friend class GameObject ;
+	
 public:
 	
 	/**
@@ -78,7 +80,7 @@ public:
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
-	static GameMap<GameObject> * map ;
+	static const GameMap<GameObject> * map ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
@@ -92,6 +94,8 @@ public:
 	static void init() ;
 	
 	static void runWorldSimulation() ;
+	
+	static void checkForMarkedDeletions() ;
 	
 	
 	/**

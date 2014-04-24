@@ -26,6 +26,8 @@ protected:
 	
 	const char missile = '.' ;
 	
+	Reaction reaction ;
+	
 	DoA alive ;
 	
 	/**
@@ -36,12 +38,21 @@ protected:
 	/**
 	 * The Character's current Health (a data structure inheriting from GameData)
 	 */
-	Health health ;
+	Health * health ;
 	
 	/**
 	 * The Character's current Damage (a data structure inheriting from GameData)
 	 */
-	Damage damage ;
+	Damage * damage ;
+	
+	/**
+	 * Used by attack()
+	 */
+	bool turn = false ;
+	
+	float hitPercentage = fastRand<float>(0, 1).nextValue() ;
+	
+	void attack_helper(Character * enemy) ;
 
 public:
 	
@@ -76,7 +87,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health health, Damage damage) ;
+	Character(string symbol, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
 	
 	
 	/**
@@ -146,11 +157,16 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 	
 	/**
+	 *
+	 */
+	virtual void defaultBehaviors() ;
+	
+	/**
 	 * Attacks a hostile Character
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	virtual void attack(Character & enemy) ;
+	virtual void attack(Character * enemy) ;
 	
 	/**
 	 * Getter for name
@@ -186,7 +202,7 @@ public:
 	/**
 	 * Sets this Character's health
 	 */
-	void modHealth(const Health &) ;
+	void modHealth(Health *) ;
 	
 	
 	/**
@@ -198,7 +214,7 @@ public:
 	/**
 	 * Sets this Character's damage
 	 */
-	void modDamage(const Damage &) ;
+	void modDamage(Damage *) ;
 	
 	
 } ;

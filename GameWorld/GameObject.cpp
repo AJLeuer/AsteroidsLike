@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+#define eight_milliseconds 8333
+
 #include "GameObject.h"
 
 /* starts at 1 (0 is a special case */
@@ -42,13 +44,12 @@ GameObject::GameObject() :
 	IDs++ ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
-	vectDir.update() ;
 }
 
 GameObject::GameObject(const GameObject & other) :
@@ -68,13 +69,12 @@ GameObject::GameObject(const GameObject & other) :
 	IDs++ ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
 	map->place(this->loc, this, defaultCheck, true) ;
-	vectDir.update() ;
 	
 	allGameObjects->push_back(this) ;
 	
@@ -103,7 +103,7 @@ GameObject::GameObject(GameObject && other) :
 	//don't need to incr IDs
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -130,13 +130,12 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	loc->checkBounds(defaultCheck) ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
-	vectDir.update() ;
 }
 
 GameObject::GameObject(fastRand<long> rand) :
@@ -149,7 +148,7 @@ GameObject::GameObject(fastRand<long> rand) :
 	IDs++ ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -158,14 +157,8 @@ GameObject::GameObject(fastRand<long> rand) :
 	auto tmprnd = rand.nextValue<vector<string>::size_type>(0, sz) ;
 	icon = icons->at(tmprnd) ;
 	
-	long x = (rand.nextValue(MIN_X, MAX_X)) ;
-	long y = (rand.nextValue(MIN_Y, MAX_Y)) ;
-	
-	loc = new Position<long>(x, y, 0, defaultCheck) ;
-	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
-	vectDir.update() ;
 }
 
 
@@ -197,7 +190,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         this->loc = new Position<long>(*(rhs.loc), defaultCheck) ;
 		vectDir = vectorHeading<long>(loc) ;
 		map->place(this->loc, this, defaultCheck, true) ;
-		vectDir.update() ;
+		vectDir.updateAndNormalize() ;
 		
 		allGameObjects->push_back(this) ;
 		
@@ -230,7 +223,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
         this->loc = rhs.loc ;
 		this->vectDir = std::move(rhs.vectDir) ;
 		loc->checkBounds(defaultCheck) ;
-		vectDir.update() ;
+		vectDir.updateAndNormalize() ;
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
@@ -317,83 +310,126 @@ void GameObject::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void GameObject::move(long xoffset, long yoffset) {
-	if ((loc->x + xoffset) >= MAX_X) {
-		xoffset -= ((loc->x + xoffset) - MAX_X + 1) ;
-	}
-	else if ((loc->x + xoffset) < 0) {
-		xoffset -= (loc->x + xoffset) ;
-	}
-	if ((loc->y + yoffset) >= MAX_Y) {
-		yoffset -= ((loc->y + yoffset) - MAX_Y + 1) ;
-	}
-	else if ((loc->y + yoffset) < 0) {
-		yoffset -= (loc->y + yoffset) ;
-	}
-	map->erase(*(this->getPosition())) ;
-	this->loc->modify(xoffset, yoffset, 0, defaultCheck) ;
-	map->place(this->loc, this, defaultCheck, true) ; // place may need to modify this->loc again to find spot on map
-	vectDir.update() ;
-}
-
 void GameObject::move(const Position<long> & moveTo) {
 	Position<long> mt = Position<long>(moveTo, defaultCheck) ;
 	map->erase(*(this->getPosition())) ;
 	*(this->loc) = mt ;
 	map->place(this->loc, this, defaultCheck, true) ;
-	vectDir.update() ;
+	vectDir.updateAndNormalize() ;
+}
+
+void GameObject::moveSameDirection() {
+	vectDir.normalize() ;
+	auto next = vectDir.calculateNextPosition(defaultCheck) ;
+	move(next) ;
+}
+
+void GameObject::moveNewDirection(vectorHeading<long> & newDirection) {
+	newDirection.normalize() ;
+	auto next = vectorHeading<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
+	move(next) ;
+}
+
+void GameObject::runOnThread() {
+	void (GameObject::*behaviorsPtr)() = &GameObject::defaultBehaviors ;
+	this->currentlyThreading = new bool{true} ;
+	goThread = new std::thread(behaviorsPtr, std::move(this)) ;
+	startThreading(this->goThread, false) ;
+}
+
+void GameObject::defaultBehaviors() {
+	
+	int i = 0 ;
+	vector<GameObject *> * nearby = nullptr ;
+	auto rand = fastRand<unsigned int>(8, 40) ;
+	
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		unsigned speedChange = rand.nextValue() ;
+		wander(1, (speedChange * eight_milliseconds), 5, 0) ;
+		nearby = map->findNearby(loc, (long)5, (long)5) ;
+		if ((nearby != nullptr) && (nearby->size() > 0)) {
+			this->ally = nearby->at(0) ;
+		}
+		i++ ;
+	}
+}
+
+void GameObject::attack(GameObject * enemy) {
+	
+}
+
+void GameObject::allyWith(GameObject * ) {
+	
 }
 
 void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {
-	void (GameObject::*wanderThrPtr)(long, unsigned, long) = &GameObject::wander_threaded ;
-	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, timeInterval, time) ;
-	startThreading(this->goThread, false) ;
-}
-
-void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run) {
-	void (GameObject::*wanderThrPtr)(long, unsigned, bool *) = &GameObject::wander_threaded ;
-	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(wanderThrPtr, std::move(this), xyOffset, timeInterval, run) ;
-	startThreading(this->goThread, false) ;
-}
-
-
-void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, long time) {
 	Time timer ;
 	timer.startTimer() ;
 	while (timer.checkTimeElapsed() < time) {
-		long nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
-			nX = (nX * -1) ;
-		}
+		if (ally == nullptr) {
+			float nX = randSignFlip(xyOffset) ;
+			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
+				nX = (nX * -1) ;
+			}
 		
-		//repeat for y coord
-		long nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
-			nY = (nY * -1) ;
+			//repeat for y coord
+			float nY = randSignFlip(xyOffset) ;
+			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
+				nY = (nY * -1) ;
+			}
+			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
+			moveNewDirection(vecdir) ;
 		}
-		move(nX, nY) ;
+		else if (ally != nullptr) {
+			move(*ally->getPosition()) ;
+		}
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 
-void GameObject::wander_threaded(long xyOffset, unsigned timeInterval, bool * run) {
+void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run) {
 	while (*run) {
-		long nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
-			nX = (nX * -1) ;
+		if (ally == nullptr) {
+			float nX = randSignFlip(xyOffset) ;
+			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
+				nX = (nX * -1) ;
+			}
+			//repeat for y coord
+			float nY = randSignFlip(xyOffset) ;
+			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
+				nY = (nY * -1) ;
+			}
+			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
+			moveNewDirection(vecdir) ;
 		}
-		//repeat for y coord
-		long nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
-			nY = (nY * -1) ;
+		else if (ally != nullptr) {
+			move(*ally->getPosition()) ;
 		}
-		move(nX, nY) ;
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 
+void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, int ignored) {
+	for (long i = 0 ; i < loops ; i++) {
+		if (ally == nullptr) {
+			float nX = randSignFlip(xyOffset) ;
+			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
+				nX = (nX * -1) ;
+			}
+			//repeat for y coord
+			float nY = randSignFlip(xyOffset) ;
+			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
+				nY = (nY * -1) ;
+			}
+			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
+			moveNewDirection(vecdir) ;
+		}
+		else if (ally != nullptr) {
+			move(*ally->getPosition()) ;
+		}
+		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
+	}
+}
 
 void GameObject::setIcon(const string & icon) {
 	this->icon = icon ;
