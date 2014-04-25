@@ -60,8 +60,6 @@ private:
 	 */
 	static ostream * gameLog ;
 	
-	
-	
 	WorldController() ;
 	
 	static void runWorldSimulation_threaded() ;

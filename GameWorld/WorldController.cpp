@@ -34,8 +34,8 @@ void WorldController::init() {
 	/* debug code */
 	fastRand<long> rand(returnSmaller(GLOBAL_MIN_X, GLOBAL_MIN_Y), returnLarger(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	
-	for (unsigned i = 0 ; i < 1 ; i++) {
-		new GameObject(rand) ;
+	for (unsigned i = 0 ; i < 15 ; i++) {
+		new NPC(rand) ;
 	}
 	/* debug end */
 	
@@ -53,7 +53,6 @@ void WorldController::runWorldSimulation() {
 }
 
 void WorldController::runWorldSimulation_threaded() {
-
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		gameObjects->at(i)->runOnThread() ;
 	}
@@ -63,6 +62,7 @@ void WorldController::checkForMarkedDeletions() {
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
 			if (gameObjects->at(i)->markedForDeletion == true) {
+				*gameObjects->at(i)->currentlyThreading = false ;
 				delete gameObjects->at(i) ;
 				gameObjects->at(i) = nullptr ;
 			}

@@ -15,7 +15,7 @@
 
 
 /**
- * The virtual base class that will serve as an interface
+ * The pure virtual base class that will serve as an interface
  * to every object in the game world. It defines all methods by
  * which any class can talk to another.
  */

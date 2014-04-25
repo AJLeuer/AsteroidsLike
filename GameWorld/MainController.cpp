@@ -24,7 +24,7 @@ void MainController::start(bool * b) {
 	
 	WorldController::init() ;
 	
-	currentAdapter = new Adapter<GameObject>() ;
+	currentAdapter = new TestAdapter<GameObject>() ;
 	
 	currentAdapter->init(WorldController::getGameObjects()) ;
 	
@@ -35,14 +35,12 @@ void MainController::start(bool * b) {
 }
 
 void MainController::stop(bool * b) {
-	
 	*b = false ; // b is the same as GLOBAL_CONTINUE_SIGNAL normally. 
 	
 	WorldController::close() ;
 	
 	currentAdapter->close() ;
 	delete currentAdapter ;
-	
 }
 
 
