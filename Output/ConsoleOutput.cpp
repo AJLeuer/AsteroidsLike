@@ -36,6 +36,6 @@ void ConsoleOutput::update(unsigned int wait_micros) {
 	wclear(stdscr) ;
 }
 
-void ConsoleOutput::close() {
+void ConsoleOutput::exit() {
 	endwin() ;
 }

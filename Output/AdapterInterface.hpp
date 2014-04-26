@@ -44,6 +44,11 @@ protected:
 public:
 	
 	AdapterInterface() ;
+	
+	/**
+	 * Copy constructor
+	 */
+	AdapterInterface(const AdapterInterface & other) ;
 		
 	/**
 	 * Move constructor
@@ -51,6 +56,11 @@ public:
 	AdapterInterface(AdapterInterface && other) ;
 				
 	virtual ~AdapterInterface() ;
+	
+	/**
+	 * Assignment operator overload (copy)
+	 */
+	AdapterInterface & operator=(const AdapterInterface &) ;
 	
 	/**
 	 * Assignment operator overload (move)
@@ -65,13 +75,12 @@ public:
 	void drawRepresentation(array< array<const T *, GLOBAL_MAX_Y_> *, GLOBAL_MAX_X_> * map, ostream * out) ;
 	
 	
-	
 	/**
 	 * See show()
 	 */
 	virtual void operator()() ;
 	
-	virtual void close() ;
+	virtual void exit() ;
 	
 	
 };
@@ -84,15 +93,23 @@ AdapterInterface<T>::AdapterInterface() :
 	currentlyThreading(new bool{false})
 	/* container initialized via init() */ {}
 
-
+template<class T>
+AdapterInterface<T>::AdapterInterface(const AdapterInterface<T> & other) :
+aiThread(other.aiThread),
+outputDebug(other.outputDebug),
+container(other.container),
+currentlyThreading(new bool(true))
+{
+}
 
 template<class T>
 AdapterInterface<T>::AdapterInterface(AdapterInterface<T> && other) :
 	aiThread(other.aiThread),
 	outputDebug(other.outputDebug),
-	container(other.container)
+	container(other.container),
+	currentlyThreading(new bool(true))
 {
-	//other.aidThread = nullptr ;
+	other.aidThread = nullptr ;
 	other.outputDebug = nullptr ;
 	other.container = nullptr ;
 }
@@ -106,6 +123,17 @@ AdapterInterface<T>::~AdapterInterface() {
 		delete currentlyThreading ;
 		delete outputDebug ;
 	}
+}
+
+template<class T>
+AdapterInterface<T> & AdapterInterface<T>::operator=(const AdapterInterface & rhs) {
+	if (this != &rhs) {
+		this->aiThread = rhs.aiThread ;
+		container = rhs.container ;
+		currentlyThreading = rhs.currentlyThreading ;
+		outputDebug = rhs.outputDebug ;
+	}
+	return *this ;
 }
 
 template<class T>
@@ -151,7 +179,7 @@ void AdapterInterface<T>::operator()() {
 }
 
 template<class T>
-void AdapterInterface<T>::close() {
+void AdapterInterface<T>::exit() {
 	this->aiThread->join() ;
 }
 

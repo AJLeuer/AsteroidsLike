@@ -1,13 +1,13 @@
 //
-//  TestAdapter.h
+//  TestOutputAdapter.h
 //  GameWorld
 //
 //  Created by Adam James Leuer on 3/19/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__TestAdapter__
-#define __GameWorld__TestAdapter__
+#ifndef __GameWorld__TestOutputAdapter__
+#define __GameWorld__TestOutputAdapter__
 
 #define eight_milliseconds 8333 //expressed in microseconds
 
@@ -38,33 +38,43 @@ using namespace std ;
  *
  */
 template<class T>
-class TestAdapter : public AdapterInterface<T> {
+class TestOutputAdapter : public AdapterInterface<T> {
 	
 
 private:
 
-	void show_threaded() ;
+	
 	 
 public:
 	
 	/**
-	 * This class should be instantiated only once, and not with this constructor. Call TestAdapter(int).
-	 * Trying to create more than one instance of TestAdapter or any other
+	 * This class should be instantiated only once, and not with this constructor. Call TestOutputAdapter(int).
+	 * Trying to create more than one instance of TestOutputAdapter or any other
 	 * class inheriting from AdapterInterface will result in an exception being thrown.
 	 */
-	TestAdapter() : AdapterInterface<T>() {}
+	TestOutputAdapter() : AdapterInterface<T>() {}
+	
+	/**
+	 * Copy constructor.
+	 */
+	TestOutputAdapter(const TestOutputAdapter & other) : AdapterInterface<T>(other) {}
 	
 	/**
 	 * Move constructor. Will change AdapterInterface<T>'s pointer to new object
 	 */
-	TestAdapter(TestAdapter && other) : AdapterInterface<T>(other) {}
+	TestOutputAdapter(TestOutputAdapter && other) : AdapterInterface<T>(other) {}
+	
+	/**
+	 * Assignment operator overload (copy)
+	 */
+	TestOutputAdapter & operator=(const TestOutputAdapter & rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
 	
 	/**
 	 * Assignment operator overload (move)
 	 */
-	TestAdapter & operator=(TestAdapter && rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
+	TestOutputAdapter & operator=(TestOutputAdapter && rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
 	
-	~TestAdapter() {} //should automatically call ~AdapterInterface<T>()
+	~TestOutputAdapter() {} //should automatically call ~AdapterInterface<T>()
 	
 	void init(const vector<T*> * container_) ;
 	
@@ -76,29 +86,24 @@ public:
 	 */
 	void operator()() ;
 	
-	void close() ;
+	void exit() ;
 	
 } ;
 
 
 template<class T>
-void TestAdapter<T>::init(const vector<T*> * container_) {
+void TestOutputAdapter<T>::init(const vector<T*> * container_) {
 	
 	this->AdapterInterface<T>::container = container_ ;
 }
 
 template<class T>
-void TestAdapter<T>::show() {
-	this->AdapterInterface<T>::aiThread = new std::thread(&TestAdapter<T>::show_threaded, std::move(this)) ;
-}
-
-template<class T>
-void TestAdapter<T>::show_threaded() {
+void TestOutputAdapter<T>::show() {
 	while (*GLOBAL_CONTINUE_SIGNAL) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
-		for (auto i = 0 ; i < TestAdapter<T>::container->size() ; i++) {
-			auto temp = TestAdapter<T>::container->at(i) ;
+		for (auto i = 0 ; i < TestOutputAdapter<T>::container->size() ; i++) {
+			auto temp = TestOutputAdapter<T>::container->at(i) ;
 			ss << "Current GameObject: " ;
 			ss << *temp ;
 			ss << temp->getIcon().c_str() << endl << endl ;
@@ -111,14 +116,14 @@ void TestAdapter<T>::show_threaded() {
 }
 
 template<class T>
-void TestAdapter<T>::operator()() {
+void TestOutputAdapter<T>::operator()() {
 	this->show() ;
 }
 
 template<class T>
-void TestAdapter<T>::close() {
-	this->AdapterInterface<T>::close() ;
+void TestOutputAdapter<T>::exit() {
+	this->AdapterInterface<T>::exit() ;
 	//local cleanup:
 }
 
-#endif /* defined(__GameWorld__TestAdapter__) */
+#endif /* defined(__GameWorld__TestOutputAdapter__) */

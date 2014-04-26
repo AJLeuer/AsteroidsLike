@@ -49,8 +49,7 @@ private:
 	 */
 	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
 	
-	
-	friend class GameInterface ;
+	static thread * checkDelThread ;
 	
 	/**
 	 * gameLog is a pointer which references the basic ostream* which will
@@ -60,19 +59,12 @@ private:
 	 */
 	static ostream * gameLog ;
 	
-	WorldController() ;
-	
-	static void runWorldSimulation_threaded() ;
-	
+	friend class GameInterface ;
 	friend class GameObject ;
 	
+	WorldController() ;
+	
 public:
-	
-	/**
-	 * A container holding most objects in the game world
-	 */
-	static const vector<GameObject*> * getGameObjects() { return WorldController::gameObjects ; }  //Interfaces need to access this too
-	
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -84,6 +76,13 @@ public:
 	static const long MIN_X ;
 	static const long MAX_Y ;
 	static const long MIN_Y ;
+
+	
+	/**
+	 * A container holding most objects in the game world
+	 */
+	static const vector<GameObject*> * getGameObjects() { return WorldController::gameObjects ; }  //Interfaces need to access this too
+	
 	
 	static ostream ** getGameLog() { return & gameLog ; }
 	
@@ -91,23 +90,14 @@ public:
 	
 	static void init() ;
 	
+	static void exec() ;
+	
 	static void runWorldSimulation() ;
 	
 	static void checkForMarkedDeletions() ;
 	
 	
-	/**
-	 * Plays the game in real time. Cannot be called if gameRecorded() is active. Attempting
-	 * to call both concurrently will result in an exception being thrown.
-	 */
-	static void playGameInRealTime() ;
-	
-	/**
-	 * Plays the game and saves all events to an output stream.
-	 */
-	static void playGameRecorded(std::ostream * writeTo) ;
-	
-	static void close() ;
+	static void exit() ;
 	
 	
 	

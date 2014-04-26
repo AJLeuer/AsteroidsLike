@@ -12,6 +12,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "../Input/Input.h"
+
 #include "GameObject.h"
 
 /**
@@ -23,8 +25,6 @@ class Character : public GameObject {
 protected:
 	
 	string name ;
-	
-	const char missile = '.' ;
 	
 	Reaction reaction ;
 	
@@ -44,7 +44,7 @@ protected:
 	 * The Character's current Damage (a data structure inheriting from GameData)
 	 */
 	Damage * damage ;
-	
+
 	/**
 	 * Used by attack()
 	 */

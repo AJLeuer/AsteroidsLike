@@ -21,7 +21,6 @@
 		666F1C04190A20090004B793 /* libSDL2main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F1C03190A20090004B793 /* libSDL2main.a */; };
 		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C3FB5118FCE4A30082320A /* GameData.cpp */; };
-		66CF981E1908FD4F008A30F9 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66CF981C1908FD4F008A30F9 /* Input.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
 		66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4018CF032B002EFA00 /* WorldController.cpp */; };
@@ -44,17 +43,16 @@
 		66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundsCheck.hpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
-		66516A11190A05DD006ADA05 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 		665DBB5818F4F4F2006F2026 /* Navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Navigator.cpp; sourceTree = "<group>"; };
 		665DBB5918F4F4F2006F2026 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigator.h; sourceTree = "<group>"; };
 		665DBB5B18F520A7006F2026 /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
 		666C2B1A1909266B00C6FDC3 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		666D354A19022C3000A615D5 /* Adapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Adapter.hpp; sourceTree = "<group>"; };
+		666D354A19022C3000A615D5 /* OutputAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputAdapter.hpp; sourceTree = "<group>"; };
 		666D354B19022C3000A615D5 /* AdapterInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdapterInterface.hpp; sourceTree = "<group>"; };
 		666D354C19022C3000A615D5 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
 		666D354D19022C3000A615D5 /* AdapterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterUtil.h; sourceTree = "<group>"; };
-		666D354E19022C3000A615D5 /* TestAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestAdapter.hpp; sourceTree = "<group>"; };
+		666D354E19022C3000A615D5 /* TestOutputAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestOutputAdapter.hpp; sourceTree = "<group>"; };
 		666F1C03190A20090004B793 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2main.a; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
 		6678790118DAE25E00618712 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDecl.h; sourceTree = "<group>"; };
 		66C3FB5118FCE4A30082320A /* GameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameData.cpp; sourceTree = "<group>"; };
-		66CF981C1908FD4F008A30F9 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		66CF981D1908FD4F008A30F9 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -106,29 +103,39 @@
 			isa = PBXGroup;
 			children = (
 				666D354D19022C3000A615D5 /* AdapterUtil.h */,
-				666D354C19022C3000A615D5 /* AdapterUtil.cpp */,
 				666D354B19022C3000A615D5 /* AdapterInterface.hpp */,
-				666D354A19022C3000A615D5 /* Adapter.hpp */,
-				666D354E19022C3000A615D5 /* TestAdapter.hpp */,
+				666D354A19022C3000A615D5 /* OutputAdapter.hpp */,
+				666D354E19022C3000A615D5 /* TestOutputAdapter.hpp */,
 				66914DD219024AB20012957D /* ConsoleOutput.hpp */,
+				666D354C19022C3000A615D5 /* AdapterUtil.cpp */,
 				66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */,
 			);
 			path = Output;
+			sourceTree = "<group>";
+		};
+		666F1C07190A2C1F0004B793 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				662D9E6F18FF90C7003A6EE0 /* MainController.h */,
+				662D9E6E18FF90C7003A6EE0 /* MainController.cpp */,
+				66E97F3118CF009E002EFA00 /* main.cpp */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		6678790018DAE21200618712 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				662FA07718F609B2009E87BE /* Debug.h */,
-				662FA07818F609B2009E87BE /* Debug.cpp */,
 				667878FF18DACE9000618712 /* Util.hpp */,
-				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
 				665DBB5718F4F44F006F2026 /* Position.hpp */,
 				66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */,
-				6678790118DAE25E00618712 /* Time.h */,
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
-				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
+				6678790118DAE25E00618712 /* Time.h */,
 				662441731907804A000D8F8A /* OpenClUtil.h */,
+				662FA07818F609B2009E87BE /* Debug.cpp */,
+				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
+				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
 				661C1934190794DF00DB929C /* OpenClUtil.cpp */,
 			);
 			path = Util;
@@ -138,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				66CF981D1908FD4F008A30F9 /* Input.h */,
-				66CF981C1908FD4F008A30F9 /* Input.cpp */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 				66CF981B1908FCA6008A30F9 /* Input */,
 				666D354919022C3000A615D5 /* Output */,
 				66E97F3018CF009E002EFA00 /* GameWorld */,
+				666F1C07190A2C1F0004B793 /* Control */,
 				66E97F2F18CF009E002EFA00 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,25 +183,21 @@
 				66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */,
 				66934EA018F3699100BE3714 /* GameMap.hpp */,
 				66E97F5618CF2A3D002EFA00 /* GameData.h */,
-				66C3FB5118FCE4A30082320A /* GameData.cpp */,
 				66E97F4418CF03AE002EFA00 /* Message.h */,
 				66E97F3B18CF012F002EFA00 /* GameInterface.h */,
 				66E97F5118CF17F6002EFA00 /* GameEvent.h */,
-				66E97F5018CF17F6002EFA00 /* GameEvent.cpp */,
 				66E97F5418CF1892002EFA00 /* Ability.h */,
-				66E97F5318CF1892002EFA00 /* Ability.cpp */,
-				662D9E6F18FF90C7003A6EE0 /* MainController.h */,
-				662D9E6E18FF90C7003A6EE0 /* MainController.cpp */,
 				66E97F3E18CF02B8002EFA00 /* GameObject.h */,
-				66E97F3D18CF02B8002EFA00 /* GameObject.cpp */,
-				66E97F4118CF032B002EFA00 /* WorldController.h */,
-				66E97F4018CF032B002EFA00 /* WorldController.cpp */,
 				66E97F4818CF109A002EFA00 /* Character.h */,
-				66E97F4718CF109A002EFA00 /* Character.cpp */,
 				66E97F4E18CF149F002EFA00 /* NPC.h */,
+				66E97F4118CF032B002EFA00 /* WorldController.h */,
+				66C3FB5118FCE4A30082320A /* GameData.cpp */,
+				66E97F5018CF17F6002EFA00 /* GameEvent.cpp */,
+				66E97F5318CF1892002EFA00 /* Ability.cpp */,
+				66E97F3D18CF02B8002EFA00 /* GameObject.cpp */,
+				66E97F4718CF109A002EFA00 /* Character.cpp */,
 				66E97F4D18CF149F002EFA00 /* NPC.cpp */,
-				66516A11190A05DD006ADA05 /* main.h */,
-				66E97F3118CF009E002EFA00 /* main.cpp */,
+				66E97F4018CF032B002EFA00 /* WorldController.cpp */,
 			);
 			path = GameWorld;
 			sourceTree = "<group>";
@@ -259,7 +262,6 @@
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				666D354F19022C3000A615D5 /* AdapterUtil.cpp in Sources */,
-				66CF981E1908FD4F008A30F9 /* Input.cpp in Sources */,
 				662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,

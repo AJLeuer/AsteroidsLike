@@ -12,8 +12,8 @@
 #include <iostream>
 #include <ncurses.h>
 
-#include "AdapterUtil.h"
 #include "../Util/Position.hpp"
+#include "AdapterUtil.h"
 #include "../GameWorld/GameData.h"
 
 using namespace std ;
@@ -34,7 +34,7 @@ public:
 	
 	static void update(unsigned int wait_micros) ;
 	
-	static void close() ;
+	static void exit() ;
 			
 } ;
 

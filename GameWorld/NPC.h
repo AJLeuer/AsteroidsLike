@@ -11,6 +11,7 @@
 
 #include <iostream>
 
+#include "../Input/Input.h"
 
 #include "Character.h"
 
@@ -139,7 +140,7 @@ public:
 	 */
 	Reaction getReaction() { return  this->reaction ; }
 	
-
+	
   
 } ;
 

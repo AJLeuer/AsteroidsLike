@@ -11,6 +11,7 @@
 
 /* forward declaring */
 class WorldController ;
+class GameObject ;
 
 
 

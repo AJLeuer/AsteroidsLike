@@ -15,9 +15,12 @@
 #include <thread>
 #include <cmath>
 
-#include "Debug.h"
+#include "../Util/Debug.h"
 #include "../Util/Time.h"
 #include "../Util/Util.hpp"
+
+#include "../Input/Input.h"
+
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"
@@ -333,6 +336,8 @@ public:
 	 * Waits for this GameObjects thread (goThread) to finish execution, then joins the threads
 	 */
 	static void joinThreads() ;
+	
+
 	
 } ;
 
