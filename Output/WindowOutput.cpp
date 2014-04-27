@@ -24,20 +24,25 @@ void WindowOutput::init() {
 	WindowOutput::window = SDL_CreateWindow("SDL 2 window",
 														   SDL_WINDOWPOS_CENTERED,     // x position, centered
 														   SDL_WINDOWPOS_CENTERED,     // y position, centered
-														   640,                        // width, in pixels
-														   480,                        // height, in pixels
-														   SDL_WINDOW_OPENGL           // flags
+														   960,                        // width, in pixels
+														   540,                        // height, in pixels
+														   (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL) // flags
 														   ) ;
 	
-	
-	SDL_RWops * bitmapFile = SDL_RWFromFile("Pixel Art.png", "r") ;
-	surface = SDL_LoadBMP_RW(bitmapFile, 1) ;
-	
 	renderer = SDL_CreateRenderer(window, -1, (SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE)) ;
-	texture = SDL_CreateTextureFromSurface(renderer, surface) ;
-	SDL_SetRenderTarget(renderer, texture) ;
-	SDL_RenderPresent(renderer) ;
-	usleep(1e8) ;
 	
-
+	
+	SDL_RWops * bitmapFile = SDL_RWFromFile("PixelArtB.bmp", "r") ;
+	surface = SDL_LoadBMP_RW(bitmapFile, 1) ;
+	texture = SDL_CreateTextureFromSurface(renderer, surface) ;
+	SDL_FreeSurface(surface) ;
+	
+	while (true) {
+		SDL_RenderClear(renderer) ;
+        SDL_RenderCopy(renderer, texture, NULL, NULL) ;
+        SDL_RenderPresent(renderer) ;
+	}
+	
+	
+	
 }

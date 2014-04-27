@@ -13,7 +13,7 @@ using namespace std ;
 
 unsigned Debug::debugCounter = 0 ;
 
-Debug * Debug::debugOutput = new Debug(new ofstream("Debug.txt")) ;
+Debug * Debug::debugOutput = nullptr ;
 
 void Debug::init(bool stdoutput) {
 	if (stdoutput) {

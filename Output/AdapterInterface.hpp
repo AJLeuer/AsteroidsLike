@@ -76,7 +76,7 @@ public:
 
 template<class T>
 AdapterInterface<T>::AdapterInterface() :
-	outputDebug(new ofstream("Output Debug.txt")),
+	outputDebug(nullptr/*new ofstream("Output Debug.txt")*/),
 	container(nullptr),
 	currentlyThreaded(new bool{false})
 	/* container initialized via init() */ {}

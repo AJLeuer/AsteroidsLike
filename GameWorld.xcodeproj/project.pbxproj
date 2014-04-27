@@ -59,6 +59,9 @@
 		666F1C03190A20090004B793 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2main.a; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
 		6678790118DAE25E00618712 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
+		667BD13A190D5484001319AD /* PixelArtA.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtA.bmp; sourceTree = "<group>"; };
+		667BD13B190D5484001319AD /* PixelArtB.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtB.bmp; sourceTree = "<group>"; };
+		667BD13C190D5484001319AD /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
 		66914DD219024AB20012957D /* ConsoleOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConsoleOutput.hpp; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap.hpp; sourceTree = "<group>"; };
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
@@ -146,6 +149,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		667BD139190D5484001319AD /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				667BD13A190D5484001319AD /* PixelArtA.bmp */,
+				667BD13B190D5484001319AD /* PixelArtB.bmp */,
+				667BD13C190D5484001319AD /* Search Algorithm Illustration.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		66CF981B1908FCA6008A30F9 /* Input */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +170,7 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
+				667BD139190D5484001319AD /* Assets */,
 				666F1C03190A20090004B793 /* libSDL2main.a */,
 				666C2B1A1909266B00C6FDC3 /* SDL2.framework */,
 				6624417119077851000D8F8A /* OpenCL.framework */,
