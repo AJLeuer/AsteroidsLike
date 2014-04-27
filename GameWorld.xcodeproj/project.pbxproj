@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6603FD74190C902800A5F41A /* WindowOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6603FD73190C902800A5F41A /* WindowOutput.cpp */; };
 		66086F2C1902B440003F3F90 /* ConsoleOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */; };
 		661C1935190794DF00DB929C /* OpenClUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661C1934190794DF00DB929C /* OpenClUtil.cpp */; };
 		6624417219077851000D8F8A /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6624417119077851000D8F8A /* OpenCL.framework */; };
@@ -31,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6603FD72190C902800A5F41A /* WindowOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowOutput.h; sourceTree = "<group>"; };
+		6603FD73190C902800A5F41A /* WindowOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowOutput.cpp; sourceTree = "<group>"; };
+		6603FD75190C926900A5F41A /* OutputAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputAdapter.hpp; sourceTree = "<group>"; };
 		66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleOutput.cpp; sourceTree = "<group>"; };
 		661C1934190794DF00DB929C /* OpenClUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenClUtil.cpp; sourceTree = "<group>"; };
 		6624417119077851000D8F8A /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
@@ -48,7 +52,6 @@
 		665DBB5918F4F4F2006F2026 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigator.h; sourceTree = "<group>"; };
 		665DBB5B18F520A7006F2026 /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
 		666C2B1A1909266B00C6FDC3 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		666D354A19022C3000A615D5 /* OutputAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputAdapter.hpp; sourceTree = "<group>"; };
 		666D354B19022C3000A615D5 /* AdapterInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AdapterInterface.hpp; sourceTree = "<group>"; };
 		666D354C19022C3000A615D5 /* AdapterUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdapterUtil.cpp; sourceTree = "<group>"; };
 		666D354D19022C3000A615D5 /* AdapterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterUtil.h; sourceTree = "<group>"; };
@@ -104,11 +107,13 @@
 			children = (
 				666D354D19022C3000A615D5 /* AdapterUtil.h */,
 				666D354B19022C3000A615D5 /* AdapterInterface.hpp */,
-				666D354A19022C3000A615D5 /* OutputAdapter.hpp */,
+				6603FD75190C926900A5F41A /* OutputAdapter.hpp */,
 				666D354E19022C3000A615D5 /* TestOutputAdapter.hpp */,
 				66914DD219024AB20012957D /* ConsoleOutput.hpp */,
+				6603FD72190C902800A5F41A /* WindowOutput.h */,
 				666D354C19022C3000A615D5 /* AdapterUtil.cpp */,
 				66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */,
+				6603FD73190C902800A5F41A /* WindowOutput.cpp */,
 			);
 			path = Output;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				666D354F19022C3000A615D5 /* AdapterUtil.cpp in Sources */,
+				6603FD74190C902800A5F41A /* WindowOutput.cpp in Sources */,
 				662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,

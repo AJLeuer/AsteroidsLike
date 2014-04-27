@@ -20,6 +20,7 @@
 
 #include "AdapterUtil.h"
 #include "AdapterInterface.hpp"
+#include "WindowOutput.h"
 
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
@@ -48,31 +49,19 @@ private:
 public:
 	
 	/**
-	 * This class should be instantiated only once, and not with this constructor. Call TestOutputAdapter(int).
-	 * Trying to create more than one instance of TestOutputAdapter or any other
-	 * class inheriting from AdapterInterface will result in an exception being thrown.
+	 * This class should be instantiated only once.
 	 */
 	TestOutputAdapter() : AdapterInterface<T>() {}
 	
 	/**
-	 * Copy constructor.
-	 */
-	TestOutputAdapter(const TestOutputAdapter & other) : AdapterInterface<T>(other) {}
-	
-	/**
 	 * Move constructor. Will change AdapterInterface<T>'s pointer to new object
 	 */
-	TestOutputAdapter(TestOutputAdapter && other) : AdapterInterface<T>(other) {}
-	
-	/**
-	 * Assignment operator overload (copy)
-	 */
-	TestOutputAdapter & operator=(const TestOutputAdapter & rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
+	TestOutputAdapter(TestOutputAdapter && other) : AdapterInterface<T>(move(other)) {}
 	
 	/**
 	 * Assignment operator overload (move)
 	 */
-	TestOutputAdapter & operator=(TestOutputAdapter && rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
+	TestOutputAdapter & operator=(TestOutputAdapter && rhs){ this->AdapterInterface<T>::operator=(move(rhs)) ; }
 	
 	~TestOutputAdapter() {} //should automatically call ~AdapterInterface<T>()
 	
@@ -93,13 +82,13 @@ public:
 
 template<class T>
 void TestOutputAdapter<T>::init(const vector<T*> * container_) {
-	
+	WindowOutput::init() ;
 	this->AdapterInterface<T>::container = container_ ;
 }
 
 template<class T>
 void TestOutputAdapter<T>::show() {
-	while (*GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_SIGNAL) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
 		for (auto i = 0 ; i < TestOutputAdapter<T>::container->size() ; i++) {

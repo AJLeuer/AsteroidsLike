@@ -34,10 +34,9 @@ template<class T>
 class AdapterInterface {
 	
 protected:
-	std::thread * aiThread ;
 	std::ostream * outputDebug ;
 	const vector<T*> * container ;
-	bool * currentlyThreading ;
+	bool * currentlyThreaded ;
 	
 	virtual void show_threaded() ;
 	
@@ -46,21 +45,11 @@ public:
 	AdapterInterface() ;
 	
 	/**
-	 * Copy constructor
-	 */
-	AdapterInterface(const AdapterInterface & other) ;
-		
-	/**
 	 * Move constructor
 	 */
 	AdapterInterface(AdapterInterface && other) ;
 				
 	virtual ~AdapterInterface() ;
-	
-	/**
-	 * Assignment operator overload (copy)
-	 */
-	AdapterInterface & operator=(const AdapterInterface &) ;
 	
 	/**
 	 * Assignment operator overload (move)
@@ -87,29 +76,19 @@ public:
 
 template<class T>
 AdapterInterface<T>::AdapterInterface() :
-	aiThread(nullptr),
 	outputDebug(new ofstream("Output Debug.txt")),
 	container(nullptr),
-	currentlyThreading(new bool{false})
+	currentlyThreaded(new bool{false})
 	/* container initialized via init() */ {}
 
-template<class T>
-AdapterInterface<T>::AdapterInterface(const AdapterInterface<T> & other) :
-aiThread(other.aiThread),
-outputDebug(other.outputDebug),
-container(other.container),
-currentlyThreading(new bool(true))
-{
-}
 
 template<class T>
 AdapterInterface<T>::AdapterInterface(AdapterInterface<T> && other) :
-	aiThread(other.aiThread),
 	outputDebug(other.outputDebug),
 	container(other.container),
-	currentlyThreading(new bool(true))
+	currentlyThreaded(new bool(true))
 {
-	other.aidThread = nullptr ;
+	other.aiThread = nullptr ;
 	other.outputDebug = nullptr ;
 	other.container = nullptr ;
 }
@@ -117,23 +96,11 @@ AdapterInterface<T>::AdapterInterface(AdapterInterface<T> && other) :
 
 template<class T>
 AdapterInterface<T>::~AdapterInterface() {
-	if (!(*currentlyThreading)) {
-		delete aiThread ;
+	if (!(*currentlyThreaded)) {
 		container = nullptr ;
-		delete currentlyThreading ;
+		delete currentlyThreaded ;
 		delete outputDebug ;
 	}
-}
-
-template<class T>
-AdapterInterface<T> & AdapterInterface<T>::operator=(const AdapterInterface & rhs) {
-	if (this != &rhs) {
-		this->aiThread = rhs.aiThread ;
-		container = rhs.container ;
-		currentlyThreading = rhs.currentlyThreading ;
-		outputDebug = rhs.outputDebug ;
-	}
-	return *this ;
 }
 
 template<class T>
@@ -142,13 +109,13 @@ AdapterInterface<T> & AdapterInterface<T>::operator=(AdapterInterface && rhs) {
 		if (this != &rhs) {
 			this->aiThread = rhs.aiThread ;
 			container = rhs.container ;
-			currentlyThreading = rhs.currentlyThreading ;
+			currentlyThreaded = rhs.currentlyThreaded ;
 			outputDebug = rhs.outputDebug ;
 		}
-		if (!currentlyThreading) {
+		if (!currentlyThreaded) {
 			rhs.aiThread = nullptr ;
 			rhs.container = nullptr ;
-			rhs.currentlyThreading = nullptr ;
+			rhs.currentlyThreaded = nullptr ;
 			rhs.outputDebug = nullptr ;
 		}
 	}
@@ -180,7 +147,7 @@ void AdapterInterface<T>::operator()() {
 
 template<class T>
 void AdapterInterface<T>::exit() {
-	this->aiThread->join() ;
+	*currentlyThreaded = false ;
 }
 
 

@@ -343,7 +343,7 @@ void GameObject::defaultBehaviors() {
 	vector<GameObject *> * nearby = nullptr ;
 	auto rand = fastRand<unsigned int>(8, 40) ;
 	
-	while (*GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_SIGNAL) {
 		unsigned speedChange = rand.nextValue() ;
 		wander(1, (speedChange * eight_milliseconds), 5, 0) ;
 		nearby = map->findNearby(loc, (long)5, (long)5) ;

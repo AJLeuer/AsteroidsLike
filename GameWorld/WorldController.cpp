@@ -56,7 +56,7 @@ void WorldController::runWorldSimulation() {
 
 
 void WorldController::checkForMarkedDeletions() {
-	while (*GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
 			if (gameObjects->at(i)->markedForDeletion == true) {
 				*gameObjects->at(i)->currentlyThreading = false ;

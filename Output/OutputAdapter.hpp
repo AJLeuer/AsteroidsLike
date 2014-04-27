@@ -18,8 +18,8 @@
 #include <thread>
 
 #include "AdapterUtil.h"
-#include "AdapterInterface.hpp"
 #include "ConsoleOutput.hpp"
+#include "WindowOutput.h"
 
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
@@ -48,31 +48,19 @@ private:
 public:
 	
 	/**
-	 * This class should be instantiated only once, and not with this constructor. Call OutputAdapter(int).
-	 * Trying to create more than one instance of OutputAdapter or any other
-	 * class inheriting from AdapterInterface will result in an exception being thrown.
+	 * This class should be instantiated only once.
 	 */
-	OutputAdapter() : AdapterInterface<T>() { Debug::init(false) ; }
+	OutputAdapter() : AdapterInterface<T>() {}
 	
-	/**
-	 * Copy constructor.
-	 */
-	OutputAdapter(const OutputAdapter & other) : AdapterInterface<T>(other) {}
-
 	/**
 	 * Move constructor. Will change AdapterInterface<T>'s pointer to new object
 	 */
-	OutputAdapter(OutputAdapter && other) : AdapterInterface<T>(other) {}
-	
-	/**
-	 * Assignment operator overload (copy)
-	 */
-	OutputAdapter & operator=(const OutputAdapter & rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
-	
+	OutputAdapter(OutputAdapter && other) : AdapterInterface<T>(move(other)) {}
+		
 	/**
 	 * Assignment operator overload (move)
 	 */
-	OutputAdapter & operator=(OutputAdapter && rhs){ this->AdapterInterface<T>::operator=(rhs) ; }
+	OutputAdapter & operator=(OutputAdapter && rhs){ this->AdapterInterface<T>::operator=(move(rhs)) ; }
 	
 	~OutputAdapter() {} //should automatically call ~AdapterInterface()
 	
@@ -99,7 +87,7 @@ void OutputAdapter<T>::init(const vector<T *> *container_) {
 
 template<class T>
 void OutputAdapter<T>::show() {
-	while (*GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_SIGNAL) {
 		stringstream ss ;
 		Locking::sharedMutex.lock() ;
 		for (auto i = 0 ; i < this->AdapterInterface<T>::container->size() ; i++) {

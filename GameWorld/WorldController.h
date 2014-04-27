@@ -96,11 +96,8 @@ public:
 	
 	static void checkForMarkedDeletions() ;
 	
-	
 	static void exit() ;
 	
-	
-	
-};
+} ;
 
 #endif /* defined(__GameWorld__WorldController__) */

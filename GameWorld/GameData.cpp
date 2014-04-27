@@ -15,7 +15,8 @@ using namespace std ;
 
 mutex Locking::sharedMutex ;
 
-extern bool * GLOBAL_CONTINUE_SIGNAL = new bool(true) ;
+extern bool GLOBAL_CONTINUE_SIGNAL = true ;
+
 
 extern const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
 extern const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
