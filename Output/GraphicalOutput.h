@@ -9,25 +9,38 @@
 #ifndef __GameWorld__WindowOutput__
 #define __GameWorld__WindowOutput__
 
+#include <unistd.h>
 #include <iostream>
+
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_rect.h>
+#include <SDL2_image/SDL_image.h>
 
 #include "../Util/Position.hpp"
+#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameObject.h"
 
-#endif /* defined(__GameWorld__WindowOutput__) */
 
-class WindowOutput {
+
+class GraphicalOutput {
+	
 protected:
+	
 	static struct SDL_Window * window ;
 	static SDL_Renderer * renderer ;
-	static SDL_Surface * surface ;
-	static SDL_Texture * texture ;
-	
+		
 public:
-	static void init() ;
 	
+	GraphicalOutput() ;
+	static void init() ;
+	static void addSprites(const Position<long> & pos, SDL_Surface * surface) ;
+	static void update() ;
+	static void exec() ;
+	static void exit() ;
 	
 } ;
 
+#endif /* defined(__GameWorld__WindowOutput__) */

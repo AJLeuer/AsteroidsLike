@@ -13,15 +13,25 @@
 
 using namespace std ;
 
-mutex Locking::sharedMutex ;
+const vector<GameObject *> * SharedGameData::gameObjects = nullptr ;
+const GameMap<GameObject> * SharedGameData::map ;
+
+void SharedGameData::initData(vector<GameObject *> * gobs, const GameMap<GameObject> * map) {
+	SharedGameData::gameObjects = gobs ;
+	SharedGameData::map = map ;
+}
+
+
+std::mutex sharedMutex ;
 
 extern bool GLOBAL_CONTINUE_SIGNAL = true ;
-
 
 extern const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
 extern const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
 extern const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
 extern const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
+
+extern string currentDirectory = "" ;
 
 
 

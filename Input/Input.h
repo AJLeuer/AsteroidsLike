@@ -80,8 +80,6 @@ class InputController {
 	
 protected:
 
-	
-	
 	static vector<KeyInputRegister<T>> * keyInputRegistry ;
 	
 	static void listenForKeyEvents() ;

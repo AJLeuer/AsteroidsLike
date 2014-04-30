@@ -36,15 +36,15 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(string symbol, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) :
-	GameObject(symbol, loc),
+Character::Character(ImageType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) :
+	GameObject(ImageType::character, imageFilename, loc),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(health), damage(damage)
 {
 }
 
 Character::Character(fastRand<long> rand) :
-	GameObject(rand),
+	GameObject(rand, ImageType::character),
 	reaction((Reaction)rand.nextValue(-2, 2)), 
 	alive(DoA::alive),
 	state(CharacterState::normal),

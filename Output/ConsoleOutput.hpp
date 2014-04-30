@@ -9,11 +9,12 @@
 #ifndef __GameWorld__ConsoleOutput__
 #define __GameWorld__ConsoleOutput__
 
-#include <iostream>
 #include <ncurses.h>
+#include <unistd.h>
+
+#include <iostream>
 
 #include "../Util/Position.hpp"
-#include "AdapterUtil.h"
 #include "../GameWorld/GameData.h"
 
 using namespace std ;
@@ -41,7 +42,7 @@ public:
 
 template<typename N>
 void ConsoleOutput::setOutput(const Position<N> pos_on_screen, const char * str) {
-	const Position<long> trans = AdapterUtil::transPosition(pos_on_screen) ;
+	const Position<long> trans = transPosition(pos_on_screen) ;
 	mvwaddstr(stdscr, trans.getY(), trans.getX(), str) ;
 	wnoutrefresh(stdscr) ;
 }

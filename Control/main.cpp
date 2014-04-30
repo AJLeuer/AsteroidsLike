@@ -18,12 +18,11 @@
 #include "../Util/Util.hpp"
 #include "../Util/Time.h"
 #include "../Util/OpenClUtil.h"
+#include "../Util/AssetFileIO.h"
 
 #include "../Input/Input.h"
 
-//#include "../Output/OutputAdapter.hpp"
-#include "../Output/TestOutputAdapter.hpp"
-
+#include "../GameWorld/GameData.h"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/NPC.h"
 #include "../GameWorld/WorldController.h"
@@ -32,7 +31,11 @@
 
 
 int main(int argc, char ** argv) {
+	currentDirectory = argv[0] ;
+	cout << "the current directory is: " << currentDirectory << endl ;
+	auto s = AssetFileIO::getRandomImageFilename(ImageType::character) ;
 
+	
 	Time timer ;
 	timer.startTimer() ;
 	Debug::init(true) ;

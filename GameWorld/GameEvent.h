@@ -9,6 +9,7 @@
 #ifndef __GameWorld__GameEvent__
 #define __GameWorld__GameEvent__
 
+#include <dirent.h>
 #include <iostream>
 
 #include "GameInterface.h"

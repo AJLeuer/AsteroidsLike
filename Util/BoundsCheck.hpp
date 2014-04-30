@@ -24,6 +24,30 @@ struct BoundsCheck {
 	
 	BoundsCheck<N>(N MAX_X_, N MIN_X_, N MAX_Y_, N MIN_Y_) :
 	MAX_X(MAX_X_), MIN_X(MIN_X_), MAX_Y(MAX_Y_), MIN_Y(MIN_Y_) {}
+	
+	void checkAgainst(N * x) {
+		if (*x > this->MAX_X) {
+			*x = this->MAX_X ;
+		}
+		else if (*x < this->MIN_X) {
+			*x = this->MIN_X ;
+		}
+	}
+	
+	void checkAgainst(N * x, N * y) {
+		if (*x > this->MAX_X) {
+			*x = this->MAX_X ;
+		}
+		else if (*x < this->MIN_X) {
+			*x = this->MIN_X ;
+		}
+		if (*y > this->MAX_Y) {
+			*y = this->MAX_Y ;
+		}
+		else if (*y < this->MIN_Y) {
+			*y = this->MIN_Y ;
+		}
+	}
 } ;
 
 #endif /* defined(__GameWorld__BoundsCheck__) */

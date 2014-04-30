@@ -253,6 +253,11 @@ long roundF(F value)
     return round ;
 }
 
+unsigned termWidth() ;
+unsigned termHeight() ;
+
+
+
 
 /* misc. other */
 extern char * basicAlphabet ;

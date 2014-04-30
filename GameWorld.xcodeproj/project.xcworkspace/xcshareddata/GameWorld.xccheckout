@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D3A929CD-F6D1-4845-B52C-C8DA3B290C6C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GameWorld</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>84C53F70-F14E-4501-B86D-BB2F2D814025</key>
+		<string>https://github.com/AJLeuer/GameWorld.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GameWorld.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>84C53F70-F14E-4501-B86D-BB2F2D814025</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AJLeuer/GameWorld.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>84C53F70-F14E-4501-B86D-BB2F2D814025</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>84C53F70-F14E-4501-B86D-BB2F2D814025</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GameWorld</string>
+		</dict>
+	</array>
+</dict>
+</plist>

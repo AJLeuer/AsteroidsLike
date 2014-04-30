@@ -13,8 +13,6 @@
 /* starts at 1 (0 is a special case */
 unsigned GameObject::IDs = 1 ;
 
-vector<string> * GameObject::icons = new vector<string>{"🎾", "🔱", "💩", "🍹", "🎅", "👿", "👮", "👹", "🚶", "👩", "💂", "💊"} ;
-
 
 bool GameObject::map_is_init = false ;
 
@@ -37,7 +35,6 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	icon("no icon"),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -55,7 +52,7 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
-	icon(other.icon),
+	surface(other.surface),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
 	vectDir(vectorHeading<long>(other.vectDir))
 {
@@ -92,7 +89,7 @@ GameObject::GameObject(GameObject && other) :
 	currentlyThreading(other.currentlyThreading),
 	goThread(other.goThread),
 	ID(other.ID),
-	icon(std::move(other.icon)),
+	surface(other.surface),
 	loc(other.loc),
 	vectDir(std::move(other.vectDir))
 {
@@ -115,13 +112,15 @@ GameObject::GameObject(GameObject && other) :
 		other.goThread = nullptr ;
 	}
 	other.ID = 0 ;
+	SDL_FreeSurface(other.surface) ;
+	other.surface = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(string symbol, Position<long> * loc) :
+GameObject::GameObject(ImageType type, const string & imageFilename, Position<long> * loc) :
 	goThread(nullptr),
 	ID(IDs),
-	icon(symbol),
+	surface(AssetFileIO::getSurfaceFromFilename(type, imageFilename)),
 	loc(loc),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -138,10 +137,9 @@ GameObject::GameObject(string symbol, Position<long> * loc) :
 	map->place(this->loc, this, defaultCheck, true) ;
 }
 
-GameObject::GameObject(fastRand<long> rand) :
+GameObject::GameObject(fastRand<long> rand, ImageType assetType) :
 	goThread(nullptr),
 	ID(IDs),
-	icon(""),
 	loc(new Position<long>(rand, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -151,12 +149,7 @@ GameObject::GameObject(fastRand<long> rand) :
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
-	
-	
-	auto sz = icons->size()-1 ;
-	auto tmprnd = rand.nextValue<vector<string>::size_type>(0, sz) ;
-	icon = icons->at(tmprnd) ;
-	
+	surface = AssetFileIO::getSurfaceFromFilename(assetType, AssetFileIO::getRandomImageFilename(assetType)) ;
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 }
@@ -166,6 +159,8 @@ GameObject::~GameObject() {
 	eraseByID(this->ID) ;
 	
 	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
+		SDL_FreeSurface(surface) ;
+		surface = nullptr ;
 		delete currentlyThreading ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
@@ -182,7 +177,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		*(this->currentlyThreading) = false ;
 		this->goThread = nullptr ;
 		this->ID = IDs ;
-		this->icon = rhs.icon ;
+		this->surface = rhs.surface ;
 		if (this->loc != nullptr) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
@@ -216,7 +211,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			rhs.goThread = nullptr ;
 		}
 		
-		this->icon = std::move(rhs.icon) ;
+		this->surface = rhs.surface ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
@@ -227,6 +222,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
+		SDL_FreeSurface(rhs.surface) ;
+		rhs.surface = nullptr ;
 		rhs.loc = nullptr ;
 
 	}
@@ -303,7 +300,6 @@ void GameObject::joinThreads() {
 void GameObject::textDescription(ostream * writeTo) const {
 	stringstream ss ;
 	ss << "GameObject ID#: " << this->ID << endl ;
-	ss << "Icon: " << this->icon << endl ;
 	if (loc != nullptr) {
 		ss << "Current Position: " << loc->toString() << endl ;
 	}
@@ -431,12 +427,12 @@ void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, int
 	}
 }
 
-void GameObject::setIcon(const string & icon) {
-	this->icon = icon ;
+void GameObject::setSurface(const char * icon) {
+	this->surface = IMG_Load(icon) ;
 }
 
-const string & GameObject::getIcon() const {
-	return this->icon ;
+SDL_Surface * GameObject::getSurface() const {
+	return this->surface ;
 }
 
 ostream & operator<<(std::ostream & os, const GameObject & gameObj)  {

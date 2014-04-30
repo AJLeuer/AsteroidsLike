@@ -34,11 +34,11 @@ using namespace std ;
 /**
  * The class controlling the world managing all the objects within it.
  * It is generally responsible for managing everything that happens within the scope of a game. 
- * It holds all the GameObjects, mediates their interactions when neccessary (more or less, in many 
+ * It holds all the GameObjects, mediates their interactions when neccessary (more or less, in many
  * cases they interact directly), handles output of the game state (whether that means realtime or recorded.
  * rendered or printed. etc. - it was designed to be flexible and extensible), and handles initialization and
  * clean up. It is essentially all static should be treated as a singleton object: don't try to create instances
- * of it. Rather call init() once at the beginning, and end the game program with clear() or end().
+ * of it. Rather call init() once at the beginning, and end the game program with exit().
  */
 class WorldController {
 	
@@ -78,11 +78,7 @@ public:
 	static const long MIN_Y ;
 
 	
-	/**
-	 * A container holding most objects in the game world
-	 */
-	static const vector<GameObject*> * getGameObjects() { return WorldController::gameObjects ; }  //Interfaces need to access this too
-	
+		
 	
 	static ostream ** getGameLog() { return & gameLog ; }
 	

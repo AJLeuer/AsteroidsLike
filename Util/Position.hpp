@@ -54,7 +54,7 @@ public:
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
-	Position(const BoundsCheck<N> check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
+	Position(const BoundsCheck<N> & check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
 	
 	/**
      * Creates a Positionwith all coordinates initialized to n
@@ -64,12 +64,12 @@ public:
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
-	Position(N n, const BoundsCheck<N> check) : x(n), y(n), z(n) { this->checkBounds(check) ; }
+	Position(N n, const BoundsCheck<N> & check) : x(n), y(n), z(n) { this->checkBounds(check) ; }
 	
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
-	Position(fastRand<N> rand, const BoundsCheck<N> check) {
+	Position(fastRand<N> rand, const BoundsCheck<N> & check) {
 		x = rand.nextValue(check.MIN_X, check.MAX_X) ;
 		y = rand.nextValue(check.MIN_Y, check.MAX_Y) ;
 		z = 0 ;
@@ -83,7 +83,7 @@ public:
 	/**
      * Copy constructor for Position
      */
-    Position(const Position & other, const BoundsCheck<N> check) : Position(other.x, other.y, other.z)  { this->checkBounds(check) ; }
+    Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z)  { this->checkBounds(check) ; }
 	
 	/**
      * Move constructor for Position
@@ -93,7 +93,7 @@ public:
 	/**
      * Move constructor for Position
      */
-    Position(Position && other, const BoundsCheck<N> check) : Position(other.x, other.y, other.z) { this->checkBounds(check) ; }
+    Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z) { this->checkBounds(check) ; }
     
 	/**
      * Creates a Position with coordinates initialized to the
@@ -113,7 +113,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Position(N x, N y, N z, const BoundsCheck<N> check) : x{x}, y{y}, z{z} {
+	Position(N x, N y, N z, const BoundsCheck<N> & check) : x{x}, y{y}, z{z} {
 		this->checkBounds(check) ;
 	}
 	
@@ -189,6 +189,7 @@ public:
 		return temp ;
 	}
 	
+	void resetAllTo() { x = 0 ; y = 0 ; z = 0 ; }
 	
 	N getX() const { return this->x ; }
 	
@@ -196,19 +197,17 @@ public:
 	
 	N getZ() const { return this->z ; }
 	
-	
-	
 	void setX(const N x) { this->x = x ; }
 	
-	void setX(const N x, const BoundsCheck<N> check) { this->x = x ; checkBounds(check) ; }
+	void setX(const N x, const BoundsCheck<N> & check) { this->x = x ; checkBounds(check) ; }
 	
 	void setY(const N y) { this->y = y ; }
 	
-	void setY(const N y, const BoundsCheck<N> check) { this->y = y ; checkBounds(check) ; }
+	void setY(const N y, const BoundsCheck<N> & check) { this->y = y ; checkBounds(check) ; }
 	
 	void setZ(const N z) { this->z = z ; }
 	
-	void setZ(const N z, const BoundsCheck<N> check) { this->z = z ; checkBounds(check) ; }
+	void setZ(const N z, const BoundsCheck<N> & check) { this->z = z ; checkBounds(check) ; }
 	
 	void setAll(const N x, const N y, const N z) {
 		this->x = x ;
@@ -216,12 +215,18 @@ public:
 		this->z = z ;
 	}
 	
-	void setAll(const N x, const N y, const N z, const BoundsCheck<N> check) {
+	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
 		this->x = x ;
 		this->y = y ;
 		this->z = z ;
 		checkBounds(check) ;
 	}
+	
+	void setAll(const N n) { setAll(n, n, n) ; }
+	
+	void setAll(const N n, const BoundsCheck<N> check) { setAll(n, n, n, check) ; }
+	
+	void setAllZero() { setAll(0) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 
@@ -247,7 +252,7 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> check) {
+	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
 		
 		this->x += delta_x ;
 		this->y += delta_y ;
@@ -279,7 +284,7 @@ public:
  * null pointer.
  */
 
-	void checkBounds(const BoundsCheck<N> check) {
+	void checkBounds(const BoundsCheck<N> & check) {
 		
 		if (this->x >= check.MAX_X) {
 			*(Debug::debugOutput) << "An X value was over the global limit. Reducing value..." << endl ;
@@ -443,6 +448,33 @@ Position<N> vectorHeading<N>::calculateNextPosition(const vectorHeading<N> & dir
 	Position<float> direc(dir.x, dir.y, dir.z) ;
 	vectorHeading<N> calc = vectorHeading<N>(direc, current, true) ;
 	return calc.calculateNextPosition(check) ;
+}
+
+
+/**
+ * Translates a Position from within the GameWorld to a Position
+ * equivelent within the boundaries of the current screen.
+ * Gets the current GLOBAL_MAX_Position (and MIN) from World
+ * to calculate the ratio
+ *
+ * @param inGameWorld The Position from within the GameWorld
+ */
+template<typename T>
+extern Position<T> transPosition(const Position<T> & inGameWorld) {
+
+	auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_MIN_X*/ ;
+	auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_MIN_Y*/ ;
+	
+	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_MAX_X)*/ ;
+	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_MAX_Y)*/ ;
+	
+	unsigned tw = termWidth() ;
+	unsigned th = termHeight() ;
+	
+	T x = (tw * tempX)/worldXSize ;
+	T y = (th * tempY)/worldYSize ;
+	
+	return Position<T>(x, y, 0) ;
 }
 
 

@@ -13,6 +13,9 @@
 class WorldController ;
 class GameObject ;
 
+template<class T>
+class GameMap ;
+
 
 
 

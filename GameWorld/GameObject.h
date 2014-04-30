@@ -15,9 +15,12 @@
 #include <thread>
 #include <cmath>
 
+#include <SDL2/SDL_surface.h>
+
 #include "../Util/Debug.h"
 #include "../Util/Time.h"
 #include "../Util/Util.hpp"
+#include "../Util/AssetFileIO.h"
 
 #include "../Input/Input.h"
 
@@ -39,7 +42,7 @@ private:
 	
 	
 	static unsigned IDs ;
-	static vector<string> * icons ;
+	
 	
 	static bool map_is_init ;
 	
@@ -73,9 +76,17 @@ protected:
 	
 
 	unsigned ID ;
-	string icon ;
+	
+
+	/**
+	 * The surface that will represent this GameObject when rendered
+	 */
+	SDL_Surface * surface ;
+	
 	bool markedForDeletion = false ;
+	
     Position<long> * loc ;
+	
 	vectorHeading<long> vectDir ;
 	
 	GameObject * ally = nullptr ;
@@ -147,10 +158,11 @@ public:
 	 * Creates an object with the given UTF-8 symbol (preferably just
 	 * one character) as its icon
 	 *
-	 * @param symbol The icon to be used by this GameObject
+	 * @param type The type of image file associated with this GameObject (character, scenery, etc)
+	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(string symbol, Position<long> * loc) ;
+	GameObject(ImageType type, const string & imageFilename, Position<long> * loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -158,7 +170,8 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(fastRand<long> rand) ;
+	GameObject(fastRand<long> rand, ImageType assetType = ImageType(fastRand<unsigned>(0, 1)())) ; //increase fastRand limit (currently 1) to maximum number
+																								   //of values represented by enum class FileType
 	
 	
 	/**
@@ -314,12 +327,12 @@ public:
 	 *
 	 * @param icon This GameObject's new icon
 	 */
-	void setIcon(const string & icon) ;
+	void setSurface(const char * icon) ;
 	
 	/** 
 	 * Returns this GameObject's icon
 	 */
-	const string & getIcon() const  ;
+	SDL_Surface * getSurface() const  ;
 	
 	/**
 	 * Override the << output stream operator

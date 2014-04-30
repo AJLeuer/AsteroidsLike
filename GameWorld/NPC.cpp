@@ -18,8 +18,8 @@ NPC::NPC(const NPC & other) :
 NPC::NPC(NPC && other) :
 	Character(std::move(other)) {}
 
-NPC::NPC(string symbol, Position<long> * loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) :
-	Character(symbol, loc, name, reaction, alive, state, health, damage) {}
+NPC::NPC(ImageType type, const string & imageFilename, Position<long> * loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) :
+	Character(type, imageFilename, loc, name, reaction, alive, state, health, damage) {}
 
 NPC::NPC(fastRand<long> rand) :
 	Character(rand)

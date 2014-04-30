@@ -11,7 +11,6 @@
 #include "MainController.h"
 
 
-AdapterInterface<GameObject> * MainController::currentOutAdapter = nullptr ;
 thread * MainController::outPutThread = nullptr ;
 
 void MainController::setupMainContrExit() {
@@ -24,19 +23,18 @@ void MainController::setupMainContrExit() {
 void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
-	currentOutAdapter = new TestOutputAdapter<GameObject>() ;
-	
 	//do initializations
+	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	WorldController::init() ;
 	InputController<GameObject>::init() ;
-	currentOutAdapter->init(WorldController::getGameObjects()) ;
+	GraphicalOutput::init() ;
 	
 	//setup MainController to exit() later
 	setupMainContrExit() ;
 	
 	//start main functions for all controller classes
 	WorldController::exec() ;
-	outPutThread = new std::thread(&AdapterInterface<GameObject>::show, currentOutAdapter) ; //runs OutputAdapter.show() on its own thread
+	GraphicalOutput::exec() ;
 	InputController<GameObject>::exec() ;
 }
 
@@ -49,10 +47,9 @@ void MainController::exit() {
 	
 	WorldController::exit() ;
 	InputController<GameObject>::exit() ; //joins GameObjects threads also
-	currentOutAdapter->exit() ;
-	
+
 	delete outPutThread ;
-	delete currentOutAdapter ;
+	
 }
 
 

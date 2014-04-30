@@ -16,10 +16,9 @@
 
 #include "../Input/Input.h"
 
-#include "../Output/AdapterInterface.hpp"
-//#include "../Output/OutputAdapter.hpp"
-#include "../Output/TestOutputAdapter.hpp"
+#include "../Output/GraphicalOutput.h"
 
+#include "../GameWorld/GameData.h"
 #include "../GameWorld/WorldController.h"
 
 #endif /* defined(__GameWorld__MainController__) */
@@ -29,7 +28,6 @@ class MainController {
 	
 private:
 	
-	static AdapterInterface<GameObject> * currentOutAdapter ;
 	static thread * outPutThread ;
 	static thread * exitingThread ;
 	

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "../Util/AssetFileIO.h"
 #include "../Input/Input.h"
 
 #include "GameObject.h"
@@ -80,14 +81,13 @@ public:
 	/**
 	 * Constructs a Character based on the arguments given
 	 *
-	 * @param symbol The icon to be used by this Character
 	 * @param name The name of this Character
 	 * @param alive Whether this Character is dead or alive
 	 * @param state The CharacterState of this Character
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(string symbol, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
+	Character(ImageType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
 	
 	
 	/**

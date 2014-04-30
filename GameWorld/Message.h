@@ -12,7 +12,7 @@
 #include <iostream>
 
 
-#include "GameData.h"
+#include "CharacterData.h"
 
 using namespace std ;
 

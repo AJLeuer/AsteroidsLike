@@ -24,3 +24,13 @@ const string generateName(unsigned int length)  {
 	}
 	return std::move(s) ;
 }
+
+unsigned termWidth() {
+	unsigned r = atoi(getenv("COLUMNS")) ;
+	return r ;
+}
+
+unsigned termHeight() {
+	unsigned r = atoi(getenv("LINES")) ;
+	return r ;
+}

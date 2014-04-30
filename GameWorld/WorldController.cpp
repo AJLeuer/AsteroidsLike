@@ -69,7 +69,7 @@ void WorldController::checkForMarkedDeletions() {
 
 void WorldController::exit() {
 	
-	Locking::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
+	sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	
 	checkDelThread->join() ;
 	
@@ -84,5 +84,5 @@ void WorldController::exit() {
 	delete map ; 
 	gameObjects = nullptr ;
 	
-	Locking::sharedMutex.unlock() ;
+	sharedMutex.unlock() ;
 }
