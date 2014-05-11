@@ -34,9 +34,11 @@ void GraphicalOutput::init() {
 	SDL_RenderSetLogicalSize(renderer, 3840, 2160);
 	float * currY, * currX ;
 	SDL_RenderGetScale(renderer, currX, currY) ;
-	
-	int x = 6 ;
-	cout << x ;
+
+	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
+		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
+		addSprites(*(temp->getPosition()), temp->getSurface()) ;
+	}
 }
 
 void GraphicalOutput::addSprites(const Position<long> & pos, SDL_Surface * surface) {
@@ -67,21 +69,9 @@ void GraphicalOutput::update() {
 	SDL_RenderPresent(renderer) ;
 }
 
-void GraphicalOutput::exec() {
-	while (true) {
-		for (auto i = 0 ; i < SharedGameData::gameObjects->size() ; i++) {
-			GameObject * temp = SharedGameData::gameObjects->at(i) ;
-			addSprites(*(temp->getPosition()), temp->getSurface()) ;
-		}
-		update() ;
-	}
-}
-
 void GraphicalOutput::exit() {
 	//todo
 }
-
-
 
 /**
  * Other useful functions that may come in handy:

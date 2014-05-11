@@ -19,7 +19,9 @@
 #include <SDL2/SDL_rect.h>
 #include <SDL2_image/SDL_image.h>
 
+#include "../Util/Debug.h"
 #include "../Util/Position.hpp"
+
 #include "../GameWorld/GameData.h"
 #include "../GameWorld/GameObject.h"
 
@@ -31,14 +33,15 @@ protected:
 	
 	static struct SDL_Window * window ;
 	static SDL_Renderer * renderer ;
+	
+	static void addSprites(const Position<long> & pos, SDL_Surface * surface) ;
+	
 		
 public:
 	
 	GraphicalOutput() ;
 	static void init() ;
-	static void addSprites(const Position<long> & pos, SDL_Surface * surface) ;
 	static void update() ;
-	static void exec() ;
 	static void exit() ;
 	
 } ;

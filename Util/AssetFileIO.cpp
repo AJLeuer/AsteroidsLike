@@ -103,8 +103,8 @@ std::string & AssetFileIO::getRandomImageFilename(ImageType type) {
 		{
 			//todo
 			/* temp code */
-			string * s = new string("") ; //placeholder code
-			return *s ;
+			fastRand<vector<string>::size_type> rnd(0, characterImageFilenames->size() -1) ;
+			return getImageFilename(ImageType::character, rnd()) ;          //placeholder code
 		}
 	}
 }

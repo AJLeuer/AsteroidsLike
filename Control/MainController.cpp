@@ -29,19 +29,23 @@ void MainController::init() {
 	InputController<GameObject>::init() ;
 	GraphicalOutput::init() ;
 	
-	//setup MainController to exit() later
+	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
 	
-	//start main functions for all controller classes
+	/*start main functions for all controller classes. WorldController::exec() runs on its own thread, and input and output
+	switch off on the main thread */
 	WorldController::exec() ;
-	GraphicalOutput::exec() ;
-	InputController<GameObject>::exec() ;
+	
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		GraphicalOutput::update() ;
+		InputController<GameObject>::update() ;
+	}
 }
 
 
 
 void MainController::exit() {
-	GLOBAL_CONTINUE_SIGNAL = false ; // b is the same as GLOBAL_CONTINUE_SIGNAL normally.
+	GLOBAL_CONTINUE_SIGNAL = false ; 
 	
 	outPutThread->join() ;
 	

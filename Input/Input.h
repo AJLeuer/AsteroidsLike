@@ -81,17 +81,17 @@ class InputController {
 protected:
 
 	static vector<KeyInputRegister<T>> * keyInputRegistry ;
-	
 	static void listenForKeyEvents() ;
-	
+	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
+																								   //I forget how to get scancodes!)
 public:
 	
-	static void init() ;
-	static void exec() ;
-	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //just to remember how to get scancodes
 	static void registerForKeypress(KeyInputRegister<T> & reg) ;
-	static void exit() ;
 	
+	static void init() ;
+	
+	static void update() ;
+	static void exit() ;
 	
 } ;
 
@@ -113,7 +113,7 @@ void InputController<T>::registerForKeypress(KeyInputRegister<T> & reg) {
 }
 
 template <class T>
-void InputController<T>::exec() {
+void InputController<T>::update() {
 	listenForKeyEvents() ;
 }
 

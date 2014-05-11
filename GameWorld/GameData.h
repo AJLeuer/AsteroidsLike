@@ -17,8 +17,10 @@
 
 #include <iostream>
 #include <ostream>
+#include <sstream>
 #include <vector>
 
+#include "../Util/Debug.h"
 #include "../Util/BoundsCheck.hpp"
 #include "ForwardDecl.h"
 //#include "GameMap.hpp"
@@ -29,14 +31,14 @@ using namespace std ;
  * A singleton class that will be used purely for shared storage and retrieval.
  * It, and all its members, should be accessible to every other class.
  * It will have only one, statically initialized instance.
+ * GameData.h also holds various statics, globals and defines that are used throughout the scope
+ * of the program.
  */
 
 struct SharedGameData {
 	
 private:
-	SharedGameData() ;
 	
-public:
 	/**
 	 * A container holding most objects in the game world
 	 */
@@ -48,8 +50,25 @@ public:
 	 */
 	static const GameMap<GameObject> * map ;
 	
+	static bool isInit ;
+	
+	SharedGameData() ;
+	
+public:
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
+	
+	/**
+	 * A container holding most objects in the game world
+	 */
+	static const vector<GameObject*> * getGameObjects() ;
+	
+	/**
+	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
+	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
+	 */
+	static const GameMap<GameObject> * getMap() ;
+	
 } ;
 
 extern std::mutex sharedMutex ;

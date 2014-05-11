@@ -27,7 +27,7 @@ WorldController::WorldController() {}
 
 void WorldController::init() {
 
-	WorldController::gameObjects = GameObject::getAllGameObjects() ;
+	WorldController::gameObjects = GameObject::getAllGameObjects() ; 
 	WorldController::map = GameObject::getMap() ;
 	
 	/* debug code */

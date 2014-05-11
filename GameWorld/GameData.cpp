@@ -13,12 +13,36 @@
 
 using namespace std ;
 
+bool SharedGameData::isInit = false ;
 const vector<GameObject *> * SharedGameData::gameObjects = nullptr ;
 const GameMap<GameObject> * SharedGameData::map ;
 
 void SharedGameData::initData(vector<GameObject *> * gobs, const GameMap<GameObject> * map) {
 	SharedGameData::gameObjects = gobs ;
 	SharedGameData::map = map ;
+	isInit = true ;
+}
+
+
+const vector<GameObject*> * SharedGameData::getGameObjects()  {
+	if (isInit == false) {
+		stringstream ss ;
+		ss << "SharedGameData::init() must be called before reading any of its data members" << '/n' ;
+		*Debug::debugOutput << ss.rdbuf() ;
+		throw exception() ;
+	}
+	return gameObjects ;
+}
+
+
+const GameMap<GameObject> * SharedGameData::getMap()  {
+	if (isInit == false) {
+		stringstream ss ;
+		ss << "SharedGameData::init() must be called before reading any of its data members" << '/n' ;
+		*Debug::debugOutput << ss.rdbuf() ;
+		throw exception() ;
+	}
+	return map ;
 }
 
 

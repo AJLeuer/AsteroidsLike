@@ -52,7 +52,6 @@ private:
 	 */
 	static vector<GameObject*> * allGameObjects ;
 	
-	
 	/**
 	 * Handles thread starting duties. Should always be called by the function that calls
 	 * the threaded function.
@@ -71,6 +70,7 @@ private:
 	void endThreading(bool join) ;
 	
 	friend class WorldController ;
+	friend class SharedGameData ;
 	
 protected:
 	
@@ -101,7 +101,6 @@ protected:
 	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
 	 */
 	static GameMap<GameObject> * map ;
-	
 	
 	/**
 	 * This holds references to all the new threads spawned by instances of GameObject
@@ -134,6 +133,7 @@ public:
 	//static const vector<GameObject*>::iterator end() { return GameObject::allGameObjects->end() ; }
 	
 	static const GameMap<GameObject> * getMap() { return GameObject::map ; }
+	
 	
 	/**
 	 * Creates a new GameObject
