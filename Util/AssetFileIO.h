@@ -23,8 +23,7 @@
 using namespace std ;
 
 enum class ImageType {
-	character = 0, 
-	scenery = 1
+	character = 0
 	//add more here
 };
 

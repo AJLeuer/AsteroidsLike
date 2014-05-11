@@ -47,46 +47,48 @@ SDL_Surface * AssetFileIO::getSurfaceFromFilename(ImageType type, const string &
 		case ImageType::character:
 		{
 			bool noMatch = true ;
+			//check the string given to make sure it's a match
 			for (auto i = 0 ; i < characterImageFilenames->size() ; i++) {
 				if (str == characterImageFilenames->at(i)) {
 					noMatch = false ;
+					break ;
 				}
 			}
+			//throw an except if it's not
 			if (noMatch) {
 				cout << "No file matching given filename" << endl ;
 				throw exception() ;
 			}
-			return IMG_Load(str.c_str()) ;
+			//otherwise, return the requested surface
+			auto img = IMG_Load(str.c_str()) ;
+			return img ;
 		}
-		case ImageType::scenery:
+		/*
+		case ImageType::somethingElse?:
 		{
 			//todo
-			/* temp code */
-			return new SDL_Surface ;
 		}
+		*/
 	}
 }
 
 
 /* Add other vectors of filename strings here */
 string & AssetFileIO::getImageFilename(ImageType type, vector<string>::size_type index) {
-	index = (vector<string>::size_type)index ;
 	switch (type) {
 		case ImageType::character:
 		{
-			BoundsCheck<vector<string>::size_type> bc = BoundsCheck<vector<string>::size_type>(0, characterImageFilenames->size() -1 /*y vals don't matter*/, 0, 0) ;
+			BoundsCheck<vector<string>::size_type> bc = BoundsCheck<vector<string>::size_type>(0, characterImageFilenames->size()-1, /*rest of vals don't matter*/ 0, 0) ;
 			bc.checkAgainst(&index) ;
 			return characterImageFilenames->at(index) ;
 			break ;
 		}
-		case ImageType::scenery:
+		/*
+		case ImageType::somethingElse?:
 		{
 			//todo
-			/* get string from scenery filename vector */
-			string * s = new string("") ; //placeholder code
-			return *s ;
 		}
-			
+		*/
 	}
 }
 
@@ -97,15 +99,13 @@ std::string & AssetFileIO::getRandomImageFilename(ImageType type) {
 		{
 			fastRand<vector<string>::size_type> rnd(0, characterImageFilenames->size() -1) ;
 			return getImageFilename(ImageType::character, rnd()) ;
-			/* break ; */
 		}
+		/*
 		case ImageType::scenery:
 		{
 			//todo
-			/* temp code */
-			fastRand<vector<string>::size_type> rnd(0, characterImageFilenames->size() -1) ;
-			return getImageFilename(ImageType::character, rnd()) ;          //placeholder code
 		}
+		*/
 	}
 }
 

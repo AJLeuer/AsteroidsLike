@@ -162,7 +162,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(ImageType type, const string & imageFilename, Position<long> * loc) ;
+	GameObject(ImageType assetType, const string & imageFilename, Position<long> * loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as

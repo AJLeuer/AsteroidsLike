@@ -3,6 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GraphicalOutput::addSprites(Position&lt;long&gt; const&amp;, SDL_Surface*):GraphicalOutput.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "fastRand:Util.hpp">
+      </ContextState>
+      <ContextState
+         contextName = "AssetFileIO::getSurfaceFromFilename(ImageType, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;):AssetFileIO.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "GraphicalOutput::init():GraphicalOutput.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "BoundsCheck&lt;unsigned long&gt;::checkAgainst(unsigned long*):BoundsCheck.hpp">
+      </ContextState>
+      <ContextState
+         contextName = "NPC:NPC.cpp">
+      </ContextState>
+      <ContextState
          contextName = "WorldController::foo(double, unsigned long, bool*):WorldController.cpp">
       </ContextState>
    </ContextStates>

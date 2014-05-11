@@ -62,6 +62,10 @@ private:
 	friend class GameInterface ;
 	friend class GameObject ;
 	
+	static void runWorldSimulation() ;
+	
+	static void checkForMarkedDeletions() ;
+	
 	WorldController() ;
 	
 public:
@@ -78,8 +82,6 @@ public:
 	static const long MIN_Y ;
 
 	
-		
-	
 	static ostream ** getGameLog() { return & gameLog ; }
 	
 	//static bool isRunning() { return running ; }
@@ -87,10 +89,6 @@ public:
 	static void init() ;
 	
 	static void exec() ;
-	
-	static void runWorldSimulation() ;
-	
-	static void checkForMarkedDeletions() ;
 	
 	static void exit() ;
 	

@@ -48,8 +48,8 @@ void GraphicalOutput::addSprites(const Position<long> & pos, SDL_Surface * surfa
 															  //for the sake of convenience. Just remember to reset it!
 	SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface) ;
 	
-	Uint32 * ignored1 ;
-	int * ignored2 ;
+	Uint32 * ignored1 = 0 ;
+	int * ignored2 = 0 ;
 	SDL_QueryTexture(texture, ignored1, ignored2, &(tempValueStorage.x), &(tempValueStorage.y)) ; //we'll temporarily store the w and h
 																								  //of our texture in the x and y
 																								  //of tempValueStorage

@@ -35,6 +35,7 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
+	surface(AssetFileIO::getSurfaceFromFilename(ImageType::character, AssetFileIO::getRandomImageFilename(ImageType::character))),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -117,10 +118,10 @@ GameObject::GameObject(GameObject && other) :
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(ImageType type, const string & imageFilename, Position<long> * loc) :
+GameObject::GameObject(ImageType assetType, const string & imageFilename, Position<long> * loc) :
 	goThread(nullptr),
 	ID(IDs),
-	surface(AssetFileIO::getSurfaceFromFilename(type, imageFilename)),
+	surface(AssetFileIO::getSurfaceFromFilename(assetType, imageFilename)),
 	loc(loc),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -140,16 +141,15 @@ GameObject::GameObject(ImageType type, const string & imageFilename, Position<lo
 GameObject::GameObject(fastRand<long> rand, ImageType assetType) :
 	goThread(nullptr),
 	ID(IDs),
+	surface(AssetFileIO::getSurfaceFromFilename(assetType, AssetFileIO::getRandomImageFilename(assetType))),
 	loc(new Position<long>(rand, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
-	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
-	surface = AssetFileIO::getSurfaceFromFilename(assetType, AssetFileIO::getRandomImageFilename(assetType)) ;
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 }

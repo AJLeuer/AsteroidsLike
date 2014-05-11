@@ -34,7 +34,7 @@ struct KeyInputRegister {
 	 * The string representing the keyboard key
 	 * the client wishes to listen for
 	 */
-	const char * requestedChar ;
+	string requestedChar ;
 	
 	T * member_callOn ;
 	
@@ -53,11 +53,24 @@ struct KeyInputRegister {
 	 */
 	void (*callBackFn)() ;
 	
+	KeyInputRegister() {} ;
+	
+	
+	KeyInputRegister(const KeyInputRegister<T> & other) :
+		requestedChar(other.requestedChar),
+		member_callOn(other.member_callOn), member_callBackFn(other.member_callBackFn) {} 
+	
+	KeyInputRegister(KeyInputRegister<T> && other) :
+		requestedChar(std::move(other.requestedChar)),
+		member_callOn(other.member_callOn), member_callBackFn(std::move(other.member_callBackFn)) {}
+	
 	KeyInputRegister(const char* ch, T * callOn, void (T::*cb)()) :
 		requestedChar(ch), member_callOn(callOn), member_callBackFn(cb) {}
 	
 	KeyInputRegister(const char* ch, void (*cb)()) :
 		requestedChar(ch), member_callOn(nullptr), callBackFn(cb) {}
+	
+	~KeyInputRegister() {}
 	
 	
 	void callBack() ;
@@ -80,35 +93,44 @@ class InputController {
 	
 protected:
 
-	static vector<KeyInputRegister<T>> * keyInputRegistry ;
-	static void listenForKeyEvents() ;
-	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
+	vector<KeyInputRegister<T> *> * keyInputRegistry = nullptr ;
+	void listenForKeyEvents() ;
+	SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
 																								   //I forget how to get scancodes!)
 public:
+	InputController() {} ;
 	
-	static void registerForKeypress(KeyInputRegister<T> & reg) ;
+	void registerForKeypress(KeyInputRegister<T> * reg) ;
 	
-	static void init() ;
-	
-	static void update() ;
-	static void exit() ;
+	void init() ;
+	void update() ;
+	void exit() ;
 	
 } ;
 
 
-
-
-
 template <class T>
-vector<KeyInputRegister<T>> * InputController<T>::keyInputRegistry = nullptr ;
-
-template <class T>
-void InputController<T>::init() {
-	keyInputRegistry = new vector<KeyInputRegister<T>> ;
+void InputController<T>::listenForKeyEvents() {
+	int i ;
+	auto * keys = SDL_GetKeyboardState(&i) ; //only need to call once, stores pointer that stays valid for program duration
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
+			SDL_PumpEvents() ;
+			auto currScanCode = getScancodeFromChar(keyInputRegistry->at(i)->requestedChar.c_str()) ;
+			if (keys[currScanCode] == 1) {
+				keyInputRegistry->at(i)->callBack() ;
+			}
+		}
+	}
 }
 
 template <class T>
-void InputController<T>::registerForKeypress(KeyInputRegister<T> & reg) {
+void InputController<T>::init() {
+	keyInputRegistry = new vector<KeyInputRegister<T> *>() ;
+}
+
+template <class T>
+void InputController<T>::registerForKeypress(KeyInputRegister<T> * reg) {
 	keyInputRegistry->push_back(reg) ;
 }
 
@@ -118,27 +140,17 @@ void InputController<T>::update() {
 }
 
 template <class T>
-void InputController<T>::listenForKeyEvents() {
-	
-	int i ;
-	auto * keys = SDL_GetKeyboardState(&i) ; //only need to call once, stores pointer that stays valid for program duration
-	
-	while (GLOBAL_CONTINUE_SIGNAL) {
-		for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
-			SDL_PumpEvents() ;
-			auto currScanCode = getScancodeFromChar(keyInputRegistry->at(i).requestedChar) ;
-			if (keys[currScanCode] == 1) {
-				
-				keyInputRegistry->at(i).callBack() ;
-			}
+void InputController<T>::exit() {
+	SDL_Quit() ;
+	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
+		if (keyInputRegistry->at(i) != nullptr) {
+			delete keyInputRegistry->at(i) ;
 		}
 	}
 }
 
+typedef InputController<GameObject> MainInputController ;
 
-template <class T>
-void InputController<T>::exit() {
-	SDL_Quit() ;
-}
+static MainInputController mainInputController ;
 
 #endif /* defined(__GameWorld__Input__) */

@@ -70,8 +70,8 @@ public:
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
 	Position(fastRand<N> rand, const BoundsCheck<N> & check) {
-		x = rand.nextValue(check.MIN_X, check.MAX_X) ;
-		y = rand.nextValue(check.MIN_Y, check.MAX_Y) ;
+		x = rand.nextValue(check.min_X, check.max_X) ;
+		y = rand.nextValue(check.min_Y, check.max_Y) ;
 		z = 0 ;
 	}
 	
@@ -286,21 +286,21 @@ public:
 
 	void checkBounds(const BoundsCheck<N> & check) {
 		
-		if (this->x >= check.MAX_X) {
+		if (this->x >= check.max_X) {
 			*(Debug::debugOutput) << "An X value was over the global limit. Reducing value..." << endl ;
-			this->x = check.MAX_X - 1 ;
+			this->x = check.max_X - 1 ;
 		}
-		if (this->x < check.MIN_X) {
+		if (this->x < check.min_X) {
 			*(Debug::debugOutput) << "An X value was under the global minimum. Increasing value..." << endl ;
-			this->x = check.MIN_X ;
+			this->x = check.min_X ;
 		}
-		if (this->y >= check.MAX_Y) {
+		if (this->y >= check.max_Y) {
 			*(Debug::debugOutput) << "A Y value was over the global limit. Reducing value..." << endl ;
-			this->y = check.MAX_Y - 1 ;
+			this->y = check.max_Y - 1 ;
 		}
-		if (this->y < check.MIN_Y) {
+		if (this->y < check.min_Y) {
 			*(Debug::debugOutput) << "A Y value was under the global minimum. Increasing value..." << endl ;
-			this->y = check.MIN_Y ;
+			this->y = check.min_Y ;
 		}
 	}
 
@@ -454,7 +454,7 @@ Position<N> vectorHeading<N>::calculateNextPosition(const vectorHeading<N> & dir
 /**
  * Translates a Position from within the GameWorld to a Position
  * equivelent within the boundaries of the current screen.
- * Gets the current GLOBAL_MAX_Position (and MIN) from World
+ * Gets the current GLOBAL_max_Position (and min) from World
  * to calculate the ratio
  *
  * @param inGameWorld The Position from within the GameWorld
@@ -462,11 +462,11 @@ Position<N> vectorHeading<N>::calculateNextPosition(const vectorHeading<N> & dir
 template<typename T>
 extern Position<T> transPosition(const Position<T> & inGameWorld) {
 
-	auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_MIN_X*/ ;
-	auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_MIN_Y*/ ;
+	auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_min_X*/ ;
+	auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_min_Y*/ ;
 	
-	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_MAX_X)*/ ;
-	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_MAX_Y)*/ ;
+	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
+	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
 	
 	unsigned tw = termWidth() ;
 	unsigned th = termHeight() ;

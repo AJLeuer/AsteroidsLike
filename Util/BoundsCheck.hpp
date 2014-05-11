@@ -17,35 +17,35 @@
  */
 template<typename N>
 struct BoundsCheck {
-	const N MAX_X ;
-	const N MIN_X ;
-	const N MAX_Y ;
-	const N MIN_Y ;
+	const N min_X ;
+	const N max_X ;
+	const N min_Y ;
+	const N max_Y ;
 	
-	BoundsCheck<N>(N MAX_X_, N MIN_X_, N MAX_Y_, N MIN_Y_) :
-	MAX_X(MAX_X_), MIN_X(MIN_X_), MAX_Y(MAX_Y_), MIN_Y(MIN_Y_) {}
+	BoundsCheck<N>(N min_X_, N max_X_, N min_Y_, N max_Y_) :
+	max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
 	
 	void checkAgainst(N * x) {
-		if (*x > this->MAX_X) {
-			*x = this->MAX_X ;
+		if (*x > this->max_X) {
+			*x = this->max_X ;
 		}
-		else if (*x < this->MIN_X) {
-			*x = this->MIN_X ;
+		else if (*x < this->min_X) {
+			*x = this->min_X ;
 		}
 	}
 	
 	void checkAgainst(N * x, N * y) {
-		if (*x > this->MAX_X) {
-			*x = this->MAX_X ;
+		if (*x > this->max_X) {
+			*x = this->max_X ;
 		}
-		else if (*x < this->MIN_X) {
-			*x = this->MIN_X ;
+		else if (*x < this->min_X) {
+			*x = this->min_X ;
 		}
-		if (*y > this->MAX_Y) {
-			*y = this->MAX_Y ;
+		if (*y > this->max_Y) {
+			*y = this->max_Y ;
 		}
-		else if (*y < this->MIN_Y) {
-			*y = this->MIN_Y ;
+		else if (*y < this->min_Y) {
+			*y = this->min_Y ;
 		}
 	}
 } ;

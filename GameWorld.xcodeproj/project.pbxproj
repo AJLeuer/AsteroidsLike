@@ -437,7 +437,6 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
-				667BD139190D5484001319AD /* Assets */,
 				666F1C03190A20090004B793 /* libSDL2main.a */,
 				666C2B1A1909266B00C6FDC3 /* SDL2.framework */,
 				6624417119077851000D8F8A /* OpenCL.framework */,
@@ -445,6 +444,7 @@
 				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */,
+				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
 				66CF981B1908FCA6008A30F9 /* Input */,
 				666D354919022C3000A615D5 /* Output */,
