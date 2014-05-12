@@ -92,41 +92,45 @@ template <class T>
 class InputController {
 	
 protected:
-
-	vector<KeyInputRegister<T> *> * keyInputRegistry = nullptr ;
-	void listenForKeyEvents() ;
-	SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
-																								   //I forget how to get scancodes!)
+	
+	static vector<KeyInputRegister<T> *> * keyInputRegistry ;
+	static void listenForKeyEvents() ;
+	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
+																								//I forget how to get scancodes!)
+	InputController() ;
+	
 public:
-	InputController() {} ;
 	
-	void registerForKeypress(KeyInputRegister<T> * reg) ;
 	
-	void init() ;
-	void update() ;
-	void exit() ;
+	static void registerForKeypress(KeyInputRegister<T> * reg) ;
+	
+	static void init() ;
+	static void update() ;
+	static void exit() ;
 	
 } ;
+
+
+template <class T>
+vector<KeyInputRegister<T> *> * InputController<T>::keyInputRegistry = new vector<KeyInputRegister<T> *>() ;
 
 
 template <class T>
 void InputController<T>::listenForKeyEvents() {
 	int i ;
 	auto * keys = SDL_GetKeyboardState(&i) ; //only need to call once, stores pointer that stays valid for program duration
-	while (GLOBAL_CONTINUE_SIGNAL) {
-		for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
-			SDL_PumpEvents() ;
-			auto currScanCode = getScancodeFromChar(keyInputRegistry->at(i)->requestedChar.c_str()) ;
-			if (keys[currScanCode] == 1) {
-				keyInputRegistry->at(i)->callBack() ;
-			}
+	for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
+		SDL_PumpEvents() ;
+		auto currScanCode = getScancodeFromChar(keyInputRegistry->at(i)->requestedChar.c_str()) ;
+		if (keys[currScanCode] == 1) { // key is 1 if pressed
+			keyInputRegistry->at(i)->callBack() ;
 		}
 	}
 }
 
 template <class T>
 void InputController<T>::init() {
-	keyInputRegistry = new vector<KeyInputRegister<T> *>() ;
+	//keyInputRegistry is already initialized. add anything else here.
 }
 
 template <class T>
@@ -150,7 +154,5 @@ void InputController<T>::exit() {
 }
 
 typedef InputController<GameObject> MainInputController ;
-
-static MainInputController mainInputController ;
 
 #endif /* defined(__GameWorld__Input__) */

@@ -21,6 +21,11 @@
 		666C2B1B1909266B00C6FDC3 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666C2B1A1909266B00C6FDC3 /* SDL2.framework */; };
 		666F1C04190A20090004B793 /* libSDL2main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F1C03190A20090004B793 /* libSDL2main.a */; };
 		667BD13E190D5B6D001319AD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667BD13D190D5B6D001319AD /* SDL2_image.framework */; };
+		66913F7A1920EEBF0040E2CC /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66913F791920EEBF0040E2CC /* AppKit.framework */; };
+		66913F7E1920EFDD0040E2CC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66913F7D1920EFDD0040E2CC /* CoreFoundation.framework */; };
+		66913F801920EFE60040E2CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66913F7F1920EFE60040E2CC /* Cocoa.framework */; };
+		66913F821920F00B0040E2CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66913F811920F00B0040E2CC /* Foundation.framework */; };
+		66913F841920F0340040E2CC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66913F831920F0340040E2CC /* CoreData.framework */; };
 		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C3FB5118FCE4A30082320A /* GameData.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
@@ -60,6 +65,11 @@
 		667BD13B190D5484001319AD /* PixelArtB.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtB.bmp; sourceTree = "<group>"; };
 		667BD13C190D5484001319AD /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
 		667BD13D190D5B6D001319AD /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		66913F791920EEBF0040E2CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		66913F7D1920EFDD0040E2CC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		66913F7F1920EFE60040E2CC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		66913F811920F00B0040E2CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66913F831920F0340040E2CC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		66914DD219024AB20012957D /* ConsoleOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConsoleOutput.hpp; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap.hpp; sourceTree = "<group>"; };
 		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
@@ -219,9 +229,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66913F841920F0340040E2CC /* CoreData.framework in Frameworks */,
+				66913F821920F00B0040E2CC /* Foundation.framework in Frameworks */,
+				66913F801920EFE60040E2CC /* Cocoa.framework in Frameworks */,
+				66913F7E1920EFDD0040E2CC /* CoreFoundation.framework in Frameworks */,
+				66913F7A1920EEBF0040E2CC /* AppKit.framework in Frameworks */,
+				6624417219077851000D8F8A /* OpenCL.framework in Frameworks */,
 				667BD13E190D5B6D001319AD /* SDL2_image.framework in Frameworks */,
 				666C2B1B1909266B00C6FDC3 /* SDL2.framework in Frameworks */,
-				6624417219077851000D8F8A /* OpenCL.framework in Frameworks */,
 				666F1C04190A20090004B793 /* libSDL2main.a in Frameworks */,
 				66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */,
 				66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */,
@@ -437,13 +452,18 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
-				666F1C03190A20090004B793 /* libSDL2main.a */,
+				66913F7F1920EFE60040E2CC /* Cocoa.framework */,
+				66913F811920F00B0040E2CC /* Foundation.framework */,
+				66913F7D1920EFDD0040E2CC /* CoreFoundation.framework */,
+				66913F831920F0340040E2CC /* CoreData.framework */,
+				66913F791920EEBF0040E2CC /* AppKit.framework */,
 				666C2B1A1909266B00C6FDC3 /* SDL2.framework */,
 				6624417119077851000D8F8A /* OpenCL.framework */,
 				667BD13D190D5B6D001319AD /* SDL2_image.framework */,
 				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */,
+				666F1C03190A20090004B793 /* libSDL2main.a */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
 				66CF981B1908FCA6008A30F9 /* Input */,

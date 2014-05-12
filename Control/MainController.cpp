@@ -17,7 +17,7 @@ void MainController::setupMainContrExit() {
 	//we can choose whatever method we want for when or how to tell InputController to exit() later
 	//we could also set up at timer that calls exit() after a certain amount of time, and call setInpContrExit() to run on its own thread during MainController::init()
 	KeyInputRegister<GameObject> * exitKey = new KeyInputRegister<GameObject>("-", &MainController::exit) ;
-	mainInputController.registerForKeypress(exitKey) ;
+	MainInputController::registerForKeypress(exitKey) ;
 }
 
 void MainController::init() {
@@ -26,7 +26,7 @@ void MainController::init() {
 	//do initializations
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	WorldController::init() ;
-	mainInputController.init() ;
+	MainInputController::init() ;
 	GraphicalOutput::init() ;
 	
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
@@ -38,7 +38,7 @@ void MainController::init() {
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		GraphicalOutput::update() ;
-		mainInputController.update() ;
+		MainInputController::update() ;
 	}
 }
 
@@ -50,7 +50,7 @@ void MainController::exit() {
 	outPutThread->join() ;
 	
 	WorldController::exit() ;
-	mainInputController.exit() ; //joins GameObjects threads also
+	MainInputController::exit() ; //joins GameObjects threads also
 
 	delete outPutThread ;
 	

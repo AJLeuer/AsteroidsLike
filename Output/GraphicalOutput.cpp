@@ -28,12 +28,16 @@ void GraphicalOutput::init() {
 	
 	renderer = SDL_CreateRenderer(window, -1, (SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE)) ;
 	
-	float * initY, * initX ;
-	SDL_RenderGetScale(renderer, initX, initY) ;
+	float x_ = 0 ;
+	float y_ = 0 ;
+	float * x = &x_ ;
+	float * y = &y_ ;
+
+	SDL_RenderGetScale(renderer, x, y) ;
 	
 	SDL_RenderSetLogicalSize(renderer, 3840, 2160);
-	float * currY, * currX ;
-	SDL_RenderGetScale(renderer, currX, currY) ;
+	
+	SDL_RenderGetScale(renderer, x, y) ;
 
 	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
 		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
@@ -66,7 +70,15 @@ void GraphicalOutput::addSprites(const Position<long> & pos, SDL_Surface * surfa
 }
 
 void GraphicalOutput::update() {
+	/* temp code */
+	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
+		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
+		addSprites(*(temp->getPosition()), temp->getSurface()) ;
+	}
+	/* end temp code */
+	
 	SDL_RenderPresent(renderer) ;
+	SDL_UpdateWindowSurface(window) ; //may need to delete
 }
 
 void GraphicalOutput::exit() {
