@@ -12,6 +12,7 @@
 
 
 SDL_Window * GraphicalOutput::window = nullptr ;
+
 SDL_Renderer * GraphicalOutput::renderer = nullptr ;
 
 
@@ -23,7 +24,7 @@ void GraphicalOutput::init() {
 														   SDL_WINDOWPOS_CENTERED,     // y position, centered
 														   (int)GLOBAL_MAX_X,                        // width, in pixels
 														   (int)GLOBAL_MAX_Y,                        // height, in pixels
-														   (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL) // flags
+														   (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN) // flags
 														   ) ;
 	
 	renderer = SDL_CreateRenderer(window, -1, (SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE)) ;
@@ -35,22 +36,27 @@ void GraphicalOutput::init() {
 
 	SDL_RenderGetScale(renderer, x, y) ;
 	
-	SDL_RenderSetLogicalSize(renderer, 3840, 2160);
+	//SDL_RenderSetLogicalSize(renderer, 1024, 768);
 	
 	SDL_RenderGetScale(renderer, x, y) ;
 
+	renderSprites() ;
+}
+
+void GraphicalOutput::renderSprites() {
 	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
 		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
-		addSprites(*(temp->getPosition()), temp->getSurface()) ;
+		auto * pos = temp->getPosition() ;
+		SDL_Texture * tempTex = AssetFileIO::getTextureFromFilename(renderer, temp->getSprite(), temp->getType()) ;
+		renderSprite(pos, tempTex) ;
 	}
 }
 
-void GraphicalOutput::addSprites(const Position<long> & pos, SDL_Surface * surface) {
+void GraphicalOutput::renderSprite(const Position<long> * pos, SDL_Texture * texture) {
 	SDL_Rect * rectangle = static_cast<SDL_Rect *>(malloc(sizeof(*rectangle))) ;
 	
 	Position<int> tempValueStorage = Position<int>(0, 0, 0) ; //we'll use this Position to store a few different values
 															  //for the sake of convenience. Just remember to reset it!
-	SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface) ;
 	
 	Uint32 * ignored1 = 0 ;
 	int * ignored2 = 0 ;
@@ -58,32 +64,36 @@ void GraphicalOutput::addSprites(const Position<long> & pos, SDL_Surface * surfa
 																								  //of our texture in the x and y
 																								  //of tempValueStorage
 	
-	rectangle->x = (int)pos.getX() ;
-	rectangle->y = (int)pos.getY() ;
+	rectangle->x = (int)pos->getX() ;
+	rectangle->y = (int)pos->getY() ;
 	rectangle->w = tempValueStorage.x ;
 	rectangle->h = tempValueStorage.y ;
 	
 	tempValueStorage.setAllZero() ;
 	
-		
 	SDL_RenderCopy(renderer, texture, NULL, rectangle) ;
+	
+	SDL_DestroyTexture(texture) ; // <-temporary. need a better way to manage textures
 }
 
 void GraphicalOutput::update() {
-	/* temp code */
-	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
-		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
-		addSprites(*(temp->getPosition()), temp->getSurface()) ;
-	}
-	/* end temp code */
+	
+	//usleep(eight_milliseconds) ;
+	
+	SDL_RenderClear(renderer);
+	
+	renderSprites() ;
 	
 	SDL_RenderPresent(renderer) ;
-	SDL_UpdateWindowSurface(window) ; //may need to delete
+	
 }
 
 void GraphicalOutput::exit() {
 	//todo
 }
+
+
+
 
 /**
  * Other useful functions that may come in handy:

@@ -48,14 +48,14 @@ const GameMap<GameObject> * SharedGameData::getMap()  {
 
 std::mutex sharedMutex ;
 
-extern bool GLOBAL_CONTINUE_SIGNAL = true ;
+extern bool GLOBAL_CONTINUE_SIGNAL { true } ;
 
 extern const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
 extern const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
 extern const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
 extern const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
 
-extern string currentDirectory = "" ;
+extern string currentDirectory { "" } ;
 
 
 

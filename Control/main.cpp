@@ -33,7 +33,7 @@
 int main(int argc, char ** argv) {
 	currentDirectory = argv[0] ;
 	cout << "the current directory is: " << currentDirectory << endl ;
-	auto s = AssetFileIO::getRandomImageFilename(ImageType::character) ;
+	auto s = AssetFileIO::getRandomImageFilename(AssetType::character) ;
 
 	
 	Time timer ;

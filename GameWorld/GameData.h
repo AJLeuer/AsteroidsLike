@@ -14,6 +14,7 @@
 #define GLOBAL_MAX_Y_ 540
 #define GLOBAL_MIN_Y_ 0
 
+#define eight_milliseconds 8333 //in microseconds
 
 #include <iostream>
 #include <ostream>
@@ -71,6 +72,12 @@ public:
 	
 } ;
 
+enum class AssetType {
+	character = 0
+	//scenery? what else do we need?
+	//add more here
+} ;
+
 extern std::mutex sharedMutex ;
 
 extern bool GLOBAL_CONTINUE_SIGNAL ;
@@ -83,9 +90,6 @@ extern const long GLOBAL_MIN_Y ;
 static const BoundsCheck<long> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
 
 extern string currentDirectory ;
-
-
-
 
 
 #endif

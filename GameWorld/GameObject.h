@@ -43,7 +43,6 @@ private:
 	
 	static unsigned IDs ;
 	
-	
 	static bool map_is_init ;
 	
 	/**
@@ -79,9 +78,11 @@ protected:
 	
 
 	/**
-	 * The surface that will represent this GameObject when rendered
+	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
 	 */
-	SDL_Surface * surface ;
+	string spriteImageFile ;
+	
+	AssetType type ;
 	
 	bool markedForDeletion = false ;
 	
@@ -162,7 +163,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(ImageType assetType, const string & imageFilename, Position<long> * loc) ;
+	GameObject(AssetType type, const string & imageFileName, Position<long> * loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -170,7 +171,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(fastRand<long> rand, ImageType assetType = ImageType(fastRand<unsigned>(0, 1)())) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(fastRand<long> rand, AssetType type = AssetType(fastRand<unsigned>(0, 1)())) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	
@@ -323,16 +324,21 @@ public:
 	const vectorHeading<long> getVector() const {return this->vectDir ; }
 	
 	/**
-	 * Sets this GameObject's icon to the icon argument
+	 * Sets this GameObject's sprite to the specified file
 	 *
-	 * @param icon This GameObject's new icon
+	 * @param imageFile The filename and path of the sprite image
 	 */
-	void setSurface(const char * icon) ;
+	void setSprite(string imageFileName) ;
 	
 	/** 
-	 * Returns this GameObject's icon
+	 * @return This GameObject's sprite icon
 	 */
-	SDL_Surface * getSurface() const  ;
+	string getSprite() const ;
+	
+	/**
+	 * @return This GameObject's asset type
+	 */
+	AssetType getType() { return this->type ; }
 	
 	/**
 	 * Override the << output stream operator

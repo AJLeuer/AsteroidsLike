@@ -10,7 +10,10 @@
 #define __GameWorld__WindowOutput__
 
 #include <unistd.h>
+
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_rect.h>
@@ -34,12 +37,19 @@ protected:
 	static struct SDL_Window * window ;
 	static SDL_Renderer * renderer ;
 	
-	static void addSprites(const Position<long> & pos, SDL_Surface * surface) ;
+	/**
+	 * Adds textures to the current renderer. Gets a list of current GameObjects from
+	 * SharedGameData, then gets information from each game object to decide what texture
+	 * to send to output.
+	 */
+	static void renderSprites() ;
 	
-		
+	static void renderSprite(const Position<long> * pos, SDL_Texture * texture) ;
+	
+	GraphicalOutput() ; //private to prevent instantiation
+	
 public:
 	
-	GraphicalOutput() ;
 	static void init() ;
 	static void update() ;
 	static void exit() ;

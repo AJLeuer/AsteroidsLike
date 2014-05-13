@@ -87,7 +87,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(ImageType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
+	Character(AssetType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
 	
 	
 	/**

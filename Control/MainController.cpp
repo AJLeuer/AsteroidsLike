@@ -26,8 +26,8 @@ void MainController::init() {
 	//do initializations
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	WorldController::init() ;
-	MainInputController::init() ;
 	GraphicalOutput::init() ;
+	MainInputController::init() ;
 	
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;

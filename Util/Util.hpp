@@ -226,7 +226,7 @@ void Drawing::draw2DRepresentation (ostream & writeTo, const Container * contain
 }
 
 template<typename N>
-N returnLarger(N n1, N n2) {
+N ceilling(N n1, N n2) {
 	if (n1 >= n2) {
 		return n1 ;
 	}
@@ -236,7 +236,7 @@ N returnLarger(N n1, N n2) {
 }
 
 template<typename N>
-N returnSmaller(N n1, N n2) {
+N floor(N n1, N n2) {
 	if (n1 <= n2) {
 		return n1 ;
 	}

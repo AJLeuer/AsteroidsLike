@@ -31,9 +31,9 @@ void WorldController::init() {
 	WorldController::map = GameObject::getMap() ;
 	
 	/* debug code */
-	fastRand<long> rand(returnSmaller(GLOBAL_MIN_X, GLOBAL_MIN_Y), returnLarger(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
+	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	
-	for (unsigned i = 0 ; i < 3 ; i++) {
+	for (unsigned i = 0 ; i < 15 ; i++) {
 		new NPC(rand) ;
 	}
 	/* debug end */

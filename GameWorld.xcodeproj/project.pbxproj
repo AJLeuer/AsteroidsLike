@@ -204,7 +204,7 @@
 		66C3FB5118FCE4A30082320A /* GameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameData.cpp; sourceTree = "<group>"; };
 		66CF981D1908FD4F008A30F9 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
-		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66E97F3318CF009E002EFA00 /* GameWorld.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GameWorld.1; sourceTree = "<group>"; };
 		66E97F3B18CF012F002EFA00 /* GameInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInterface.h; sourceTree = "<group>"; };
@@ -461,8 +461,8 @@
 				6624417119077851000D8F8A /* OpenCL.framework */,
 				667BD13D190D5B6D001319AD /* SDL2_image.framework */,
 				66498B8118DB0FF100DF0A26 /* libboost_system.dylib */,
-				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */,
+				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				666F1C03190A20090004B793 /* libSDL2main.a */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
@@ -627,7 +627,7 @@
 					"$(inherited)",
 					/Applications/Development/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				KEEP_PRIVATE_EXTERNS = YES;
+				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Versions/A/Headers;
@@ -646,6 +646,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;
 				VALIDATE_PRODUCT = NO;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -694,7 +695,7 @@
 					/Applications/Development/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
-				KEEP_PRIVATE_EXTERNS = YES;
+				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Versions/A/Headers;
@@ -713,6 +714,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;
 				VALIDATE_PRODUCT = NO;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -725,6 +727,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
@@ -747,6 +750,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
 				LIBRARY_SEARCH_PATHS = (

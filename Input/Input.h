@@ -34,7 +34,7 @@ struct KeyInputRegister {
 	 * The string representing the keyboard key
 	 * the client wishes to listen for
 	 */
-	string requestedChar ;
+	string requestedKeyboardChar ;
 	
 	T * member_callOn ;
 	
@@ -57,18 +57,18 @@ struct KeyInputRegister {
 	
 	
 	KeyInputRegister(const KeyInputRegister<T> & other) :
-		requestedChar(other.requestedChar),
+		requestedKeyboardChar(other.requestedKeyboardChar),
 		member_callOn(other.member_callOn), member_callBackFn(other.member_callBackFn) {} 
 	
 	KeyInputRegister(KeyInputRegister<T> && other) :
-		requestedChar(std::move(other.requestedChar)),
+		requestedKeyboardChar(std::move(other.requestedKeyboardChar)),
 		member_callOn(other.member_callOn), member_callBackFn(std::move(other.member_callBackFn)) {}
 	
 	KeyInputRegister(const char* ch, T * callOn, void (T::*cb)()) :
-		requestedChar(ch), member_callOn(callOn), member_callBackFn(cb) {}
+		requestedKeyboardChar(ch), member_callOn(callOn), member_callBackFn(cb) {}
 	
 	KeyInputRegister(const char* ch, void (*cb)()) :
-		requestedChar(ch), member_callOn(nullptr), callBackFn(cb) {}
+		requestedKeyboardChar(ch), member_callOn(nullptr), callBackFn(cb) {}
 	
 	~KeyInputRegister() {}
 	
@@ -93,7 +93,18 @@ class InputController {
 	
 protected:
 	
+	/**
+	 * Assigns keys to callback functions.
+	 */
 	static vector<KeyInputRegister<T> *> * keyInputRegistry ;
+	
+	/**
+	 * Holds pointers to the state of each key on the keyboard. Initialized once, but valid for the scope of the program.
+	 */
+	static const Uint8 * keys ;
+	
+	static int keyArraySize ;
+	
 	static void listenForKeyEvents() ;
 	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
 																								//I forget how to get scancodes!)
@@ -114,14 +125,19 @@ public:
 template <class T>
 vector<KeyInputRegister<T> *> * InputController<T>::keyInputRegistry = new vector<KeyInputRegister<T> *>() ;
 
+template <class T>
+const Uint8 * InputController<T>::keys ;
+
+template <class T>
+int InputController<T>::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter
 
 template <class T>
 void InputController<T>::listenForKeyEvents() {
-	int i ;
-	auto * keys = SDL_GetKeyboardState(&i) ; //only need to call once, stores pointer that stays valid for program duration
+	const char * keyAssignedToCallback ;
 	for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
-		SDL_PumpEvents() ;
-		auto currScanCode = getScancodeFromChar(keyInputRegistry->at(i)->requestedChar.c_str()) ;
+		SDL_PumpEvents() ; //calling this to update state of keys
+		keyAssignedToCallback = keyInputRegistry->at(i)->requestedKeyboardChar.c_str() ;
+		auto currScanCode = getScancodeFromChar(keyAssignedToCallback) ;
 		if (keys[currScanCode] == 1) { // key is 1 if pressed
 			keyInputRegistry->at(i)->callBack() ;
 		}
@@ -131,6 +147,7 @@ void InputController<T>::listenForKeyEvents() {
 template <class T>
 void InputController<T>::init() {
 	//keyInputRegistry is already initialized. add anything else here.
+	keys = SDL_GetKeyboardState(&keyArraySize) ; //only need to call once, stores pointer that stays valid for program duration
 }
 
 template <class T>

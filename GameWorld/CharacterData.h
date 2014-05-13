@@ -9,11 +9,6 @@
 #ifndef __GameWorld__CharacterData__
 #define __GameWorld__CharacterData__
 
-#define GLOBAL_MAX_X_ 179
-#define GLOBAL_MIN_X_ 0
-#define GLOBAL_MAX_Y_ 37
-#define GLOBAL_MIN_Y_ 0
-
 
 #include <iostream>
 #include <ostream>

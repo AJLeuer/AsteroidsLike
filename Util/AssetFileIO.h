@@ -13,7 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <dirent.h>
-#include <SDL2/SDL_surface.h>
+#include <SDL2/SDL_render.h>
 #include <SDL2_image/SDL_image.h>
 
 #include "../Util/Util.hpp"
@@ -21,11 +21,6 @@
 #include "../Gameworld/GameData.h"
 
 using namespace std ;
-
-enum class ImageType {
-	character = 0
-	//add more here
-};
 
 /**
  * This class will store the names and directory info of all file assets used in the program. 
@@ -37,9 +32,9 @@ class AssetFileIO {
 	/*static vector<string> * sceneryImageFilenames ; */  //todo add this
 	
 public:
-	static SDL_Surface * getSurfaceFromFilename(ImageType type, const string & str) ;
-	static string & getImageFilename(ImageType type, vector<string>::size_type index) ;
-	static string & getRandomImageFilename(ImageType type) ;
+	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;
+	static string & getImageFilename(vector<string>::size_type index, AssetType type) ;
+	static string & getRandomImageFilename(AssetType type) ;
 };
 
 

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#define eight_milliseconds 8333
 
 #include "GameObject.h"
 
@@ -35,7 +34,8 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	surface(AssetFileIO::getSurfaceFromFilename(ImageType::character, AssetFileIO::getRandomImageFilename(ImageType::character))),
+	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	type(AssetType::character),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -53,7 +53,8 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
-	surface(other.surface),
+	spriteImageFile(string(other.spriteImageFile)),
+	type(other.type),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
 	vectDir(vectorHeading<long>(other.vectDir))
 {
@@ -90,7 +91,8 @@ GameObject::GameObject(GameObject && other) :
 	currentlyThreading(other.currentlyThreading),
 	goThread(other.goThread),
 	ID(other.ID),
-	surface(other.surface),
+	spriteImageFile(std::move(other.spriteImageFile)),
+	type(other.type),
 	loc(other.loc),
 	vectDir(std::move(other.vectDir))
 {
@@ -113,15 +115,14 @@ GameObject::GameObject(GameObject && other) :
 		other.goThread = nullptr ;
 	}
 	other.ID = 0 ;
-	SDL_FreeSurface(other.surface) ;
-	other.surface = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(ImageType assetType, const string & imageFilename, Position<long> * loc) :
+GameObject::GameObject(AssetType type, const string & imageFileName, Position<long> * loc) :
 	goThread(nullptr),
 	ID(IDs),
-	surface(AssetFileIO::getSurfaceFromFilename(assetType, imageFilename)),
+	spriteImageFile(imageFileName),
+	type(type),
 	loc(loc),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -138,10 +139,11 @@ GameObject::GameObject(ImageType assetType, const string & imageFilename, Positi
 	map->place(this->loc, this, defaultCheck, true) ;
 }
 
-GameObject::GameObject(fastRand<long> rand, ImageType assetType) :
+GameObject::GameObject(fastRand<long> rand, AssetType type) :
 	goThread(nullptr),
 	ID(IDs),
-	surface(AssetFileIO::getSurfaceFromFilename(assetType, AssetFileIO::getRandomImageFilename(assetType))),
+	spriteImageFile(AssetFileIO::getRandomImageFilename(type)),
+	type(type),
 	loc(new Position<long>(rand, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
@@ -156,11 +158,10 @@ GameObject::GameObject(fastRand<long> rand, ImageType assetType) :
 
 
 GameObject::~GameObject() {
-	eraseByID(this->ID) ;
 	
+	eraseByID(this->ID) ;
+
 	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
-		SDL_FreeSurface(surface) ;
-		surface = nullptr ;
 		delete currentlyThreading ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
@@ -177,7 +178,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		*(this->currentlyThreading) = false ;
 		this->goThread = nullptr ;
 		this->ID = IDs ;
-		this->surface = rhs.surface ;
+		this->spriteImageFile = rhs.spriteImageFile ;
+		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
@@ -211,7 +213,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			rhs.goThread = nullptr ;
 		}
 		
-		this->surface = rhs.surface ;
+		this->spriteImageFile = std::move(rhs.spriteImageFile) ;
+		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
@@ -222,8 +225,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
-		SDL_FreeSurface(rhs.surface) ;
-		rhs.surface = nullptr ;
 		rhs.loc = nullptr ;
 
 	}
@@ -427,12 +428,12 @@ void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, int
 	}
 }
 
-void GameObject::setSurface(const char * icon) {
-	this->surface = IMG_Load(icon) ;
+void GameObject::setSprite(string imageFileName) {
+	this->spriteImageFile = imageFileName ;
 }
 
-SDL_Surface * GameObject::getSurface() const {
-	return this->surface ;
+string GameObject::getSprite() const {
+	return this->spriteImageFile ;
 }
 
 ostream & operator<<(std::ostream & os, const GameObject & gameObj)  {
