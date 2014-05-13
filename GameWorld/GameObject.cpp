@@ -34,7 +34,7 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
-	size(1.0),
+	sizeModifier(1.0),
 	type(AssetType::character),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
@@ -45,7 +45,7 @@ GameObject::GameObject() :
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
-	
+
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 }
@@ -54,7 +54,9 @@ GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	spriteImageFile(string(other.spriteImageFile)),
-	size(other.size),
+	texture(nullptr), //this GameObject will have to figure out what it's own texture and size are some other way
+    size(nullptr),
+	sizeModifier(other.sizeModifier),
 	type(other.type),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
 	vectDir(vectorHeading<long>(other.vectDir))
@@ -93,7 +95,9 @@ GameObject::GameObject(GameObject && other) :
 	goThread(other.goThread),
 	ID(other.ID),
 	spriteImageFile(std::move(other.spriteImageFile)),
+	texture(other.texture),
 	size(other.size),
+	sizeModifier(other.sizeModifier),
 	type(other.type),
 	loc(other.loc),
 	vectDir(std::move(other.vectDir))
@@ -117,14 +121,16 @@ GameObject::GameObject(GameObject && other) :
 		other.goThread = nullptr ;
 	}
 	other.ID = 0 ;
+	other.texture = nullptr ;
+	other.size = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, float size, const Position<long> & loc_) :
+GameObject::GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Position<long> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
 	spriteImageFile(imageFileName),
-	size(size),
+	sizeModifier(sizeModifier),
 	type(type),
 	loc(new Position<long>(loc_)),
 	vectDir(vectorHeading<long>(loc))
@@ -152,8 +158,8 @@ GameObject::GameObject(fastRand<long> rand) :
 {
 	IDs++ ;
 	
-	fastRand<float> randSize(0.25, 0.5) ; //set size to something small, since these are just randomly generated (likely enemies)
-	size = randSize() ;
+	fastRand<float> randSize(0.25, 0.5) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	sizeModifier = randSize() ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
@@ -170,6 +176,8 @@ GameObject::~GameObject() {
 
 	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
 		delete currentlyThreading ;
+		SDL_DestroyTexture(texture) ;
+		free(size) ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
 		}
@@ -186,7 +194,9 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->goThread = nullptr ;
 		this->ID = IDs ;
 		this->spriteImageFile = rhs.spriteImageFile ;
-		this->size = rhs.size ;
+		this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
+		this->size = nullptr ;
+		this->sizeModifier = rhs.sizeModifier ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			map->erase(*(this->loc)) ;
@@ -222,7 +232,9 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		}
 		
 		this->spriteImageFile = std::move(rhs.spriteImageFile) ;
+		this->texture = rhs.texture ;
 		this->size = rhs.size ;
+		this->sizeModifier = rhs.sizeModifier ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
@@ -234,8 +246,9 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
+		rhs.texture = nullptr ;
+		rhs.size = nullptr ;
 		rhs.loc = nullptr ;
-
 	}
 	return *this ;
 }
@@ -453,11 +466,11 @@ void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, boo
 	}
 }
 
-void GameObject::setSprite(string imageFileName) {
+void GameObject::setImageFile(string imageFileName) {
 	this->spriteImageFile = imageFileName ;
 }
 
-string GameObject::getSprite() const {
+string GameObject::getImageFile() const {
 	return this->spriteImageFile ;
 }
 

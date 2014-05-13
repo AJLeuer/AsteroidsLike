@@ -9,6 +9,9 @@
 #ifndef __GameWorld__GameObject__
 #define __GameWorld__GameObject__
 
+#define Texture SDL_Texture
+#define Size SDL_Rect
+
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -80,12 +83,15 @@ protected:
 	 */
 	string spriteImageFile ;
 	
+	Texture * texture = nullptr ; //we can set this and size to null at first because it won't be possible to initialize them in the constructor anyway
+	Size * size = nullptr ;
+	
 	/**
 	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
 	 * be multiplied by size. By default size will be 1, leaving the output unchanged. To adjust the size of this object, simply change the value of
 	 * size (for instance, to make this half the normal size, set size = 0.5).
 	 */
-	float size ;
+	float sizeModifier ;
 	
 	AssetType type ;
 	
@@ -142,7 +148,9 @@ public:
 	
 	/**
 	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
-	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
+	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same.
+	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
+	 * SharedGameData::getGameObjects().
 	 */
 	static vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
 	
@@ -179,7 +187,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(AssetType type, const string & imageFileName, float size, const Position<long> & loc) ;
+	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Position<long> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -345,22 +353,28 @@ public:
 	 *
 	 * @param imageFile The filename and path of the sprite image
 	 */
-	void setSprite(string imageFileName) ;
+	void setImageFile(string imageFileName) ;
+	
+	void setTexture(Texture * texture) { this->texture = texture ; }
+	
+	void setSize(Size * size) {
+		*size = (sizeModifier * (*size)) ;
+		this->size = size ;
+	}
 	
 	/**
-	 * Sets the size of this GameObject for output
+	 * Sets the sizeModifier of this GameObject for output
 	 */
-	void setSize(float size) { this->size = size ; }
+	void setsizeModifier(float sizeModifier) { this->sizeModifier = sizeModifier ; }
 	
 	/** 
 	 * @return This GameObject's spriteImageFile
 	 */
-	string getSprite() const ;
+	string getImageFile() const ;
 	
-	/**
-	 * @return This GameObject's size modifier
-	 */
-	float getSize() const { return this->size ; }
+	Texture * getTexture() const { return this->texture ; }
+	
+	Size * getSize() const { return size ; }
 	
 	/**
 	 * @return This GameObject's asset type

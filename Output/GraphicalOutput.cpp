@@ -43,56 +43,51 @@ void GraphicalOutput::init() {
 	//SDL_RenderSetLogicalSize(renderer, 1024, 768);
 	
 	SDL_RenderGetScale(renderer, x, y) ;
-
+	
+	//init all GameObjects with textures and rectangles (rects hold size info)
+	
+	initGameObjects() ;
 	renderSprites() ;
+}
+
+void GraphicalOutput::initGameObjects() {
+	for (auto i = 0 ; i < GameObject::getAllGameObjects()->size() ; i++) {
+		
+		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
+		
+		//set texture
+		Texture * texture = AssetFileIO::getTextureFromFilename(renderer, temp->getImageFile(), temp->getType()) ;
+		temp->setTexture(texture) ;
+		
+		//set size
+		Size * size = static_cast<SDL_Rect *>(malloc(sizeof(*size))) ;
+		Uint32 * ignored1 = 0 ;
+		int * ignored2 = 0 ;
+		SDL_QueryTexture(texture, ignored1, ignored2, &(size->w), &(size->h)) ; //init local size with size of texture
+		temp->setSize(size) ; //assign size to this GameObject
+	}
 }
 
 void GraphicalOutput::renderSprites() {
 	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
 		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
-		auto * pos = temp->getPosition() ;
-		float sizeModifier = temp->getSize() ;
-		SDL_Texture * tempTex = AssetFileIO::getTextureFromFilename(renderer, temp->getSprite(), temp->getType()) ;
-		renderSprite(pos, sizeModifier, tempTex) ;
+		renderSprite(temp) ;
 	}
 }
 
-void GraphicalOutput::renderSprite(const Position<long> * pos, const float sizeModifier, SDL_Texture * texture) {
-	SDL_Rect * rectangle = static_cast<SDL_Rect *>(malloc(sizeof(*rectangle))) ;
-	
-	int w, h ;
-	
-	Uint32 * ignored1 = 0 ;
-	int * ignored2 = 0 ;
-	SDL_QueryTexture(texture, ignored1, ignored2, &w, &h) ;
-	
-	w = w * sizeModifier ; //modify width and height by sizeModifier (which is typically GameObject->size)
-	h = h * sizeModifier ;
-				
-	rectangle->x = (int)pos->getX() ;
-	rectangle->y = (int)pos->getY() ;
-	rectangle->w = w ;
-	rectangle->h = h ;
-	
-	SDL_RenderCopy(renderer, texture, NULL, rectangle) ;
-	
-	SDL_DestroyTexture(texture) ; // <-temporary. need a better way to manage textures
+void GraphicalOutput::renderSprite(GameObject * gameObject) {
+	SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, gameObject->getSize()) ;
 }
 
 void GraphicalOutput::update() {
-	
-	//usleep(eight_milliseconds) ;
-	
+	usleep(eight_milliseconds) ;
 	SDL_RenderClear(renderer);
-	
 	renderSprites() ;
-	
 	SDL_RenderPresent(renderer) ;
-	
 }
 
 void GraphicalOutput::exit() {
-	//todo
+	//todo (assuming there's anything at all for us to do here)
 }
 
 

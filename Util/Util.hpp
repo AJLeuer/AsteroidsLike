@@ -15,6 +15,8 @@
 #include <random>
 #include <cmath>
 
+#include <SDL2/SDL_rect.h>
+
 using namespace std ;
 
 template<typename T>
@@ -252,6 +254,15 @@ long roundF(F value)
     long round = static_cast<long>(temp) ;
     return round ;
 }
+
+template<typename N>
+SDL_Rect & operator*(N n, SDL_Rect & rhs) {
+	rhs.w = n * rhs.w ;
+	rhs.h = n * rhs.h ;
+	return rhs ;
+}
+
+
 
 unsigned termWidth() ;
 unsigned termHeight() ;

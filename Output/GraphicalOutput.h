@@ -37,6 +37,8 @@ protected:
 	static struct SDL_Window * window ;
 	static SDL_Renderer * renderer ;
 	
+	static void initGameObjects() ;
+	
 	/**
 	 * Adds textures to the current renderer. Gets a list of current GameObjects from
 	 * SharedGameData, then gets information from each game object to decide what texture
@@ -44,7 +46,7 @@ protected:
 	 */
 	static void renderSprites() ;
 	
-	static void renderSprite(const Position<long> * pos, const float sizeModifier, SDL_Texture * texture) ;
+	static void renderSprite(GameObject *) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	

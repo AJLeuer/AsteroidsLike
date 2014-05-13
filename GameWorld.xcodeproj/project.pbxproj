@@ -646,6 +646,7 @@
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-lSDL2main",
+					"-v",
 				);
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
@@ -718,6 +719,7 @@
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-lSDL2main",
+					"-v",
 				);
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
