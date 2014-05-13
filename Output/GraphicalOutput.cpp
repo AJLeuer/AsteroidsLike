@@ -19,6 +19,10 @@ SDL_Renderer * GraphicalOutput::renderer = nullptr ;
 void GraphicalOutput::init() {
 	auto n = SDL_Init(SDL_INIT_EVERYTHING) ;
 	
+	if (n != 0) {
+		//Do something? or not...
+	}
+	
 	GraphicalOutput::window = SDL_CreateWindow("SDL 2 window",
 														   SDL_WINDOWPOS_CENTERED,     // x position, centered
 														   SDL_WINDOWPOS_CENTERED,     // y position, centered
@@ -47,29 +51,28 @@ void GraphicalOutput::renderSprites() {
 	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
 		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
 		auto * pos = temp->getPosition() ;
+		float sizeModifier = temp->getSize() ;
 		SDL_Texture * tempTex = AssetFileIO::getTextureFromFilename(renderer, temp->getSprite(), temp->getType()) ;
-		renderSprite(pos, tempTex) ;
+		renderSprite(pos, sizeModifier, tempTex) ;
 	}
 }
 
-void GraphicalOutput::renderSprite(const Position<long> * pos, SDL_Texture * texture) {
+void GraphicalOutput::renderSprite(const Position<long> * pos, const float sizeModifier, SDL_Texture * texture) {
 	SDL_Rect * rectangle = static_cast<SDL_Rect *>(malloc(sizeof(*rectangle))) ;
 	
-	Position<int> tempValueStorage = Position<int>(0, 0, 0) ; //we'll use this Position to store a few different values
-															  //for the sake of convenience. Just remember to reset it!
+	int w, h ;
 	
 	Uint32 * ignored1 = 0 ;
 	int * ignored2 = 0 ;
-	SDL_QueryTexture(texture, ignored1, ignored2, &(tempValueStorage.x), &(tempValueStorage.y)) ; //we'll temporarily store the w and h
-																								  //of our texture in the x and y
-																								  //of tempValueStorage
+	SDL_QueryTexture(texture, ignored1, ignored2, &w, &h) ;
 	
+	w = w * sizeModifier ; //modify width and height by sizeModifier (which is typically GameObject->size)
+	h = h * sizeModifier ;
+				
 	rectangle->x = (int)pos->getX() ;
 	rectangle->y = (int)pos->getY() ;
-	rectangle->w = tempValueStorage.x ;
-	rectangle->h = tempValueStorage.y ;
-	
-	tempValueStorage.setAllZero() ;
+	rectangle->w = w ;
+	rectangle->h = h ;
 	
 	SDL_RenderCopy(renderer, texture, NULL, rectangle) ;
 	

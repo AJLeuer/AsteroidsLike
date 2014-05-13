@@ -201,6 +201,7 @@
 		66B908FD190D6F4B005B3E86 /* Blocks_01_64x64_Alt_05_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_64x64_Alt_05_006.png; sourceTree = "<group>"; };
 		66B908FE190D6F4B005B3E86 /* Blocks_01_64x64_Alt_05_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_64x64_Alt_05_007.png; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDecl.h; sourceTree = "<group>"; };
+		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Size.hpp; sourceTree = "<group>"; };
 		66C3FB5118FCE4A30082320A /* GameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameData.cpp; sourceTree = "<group>"; };
 		66CF981D1908FD4F008A30F9 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
@@ -274,6 +275,7 @@
 				662FA07718F609B2009E87BE /* Debug.h */,
 				667878FF18DACE9000618712 /* Util.hpp */,
 				665DBB5718F4F44F006F2026 /* Position.hpp */,
+				66BE1FBD19226A3A0099FD97 /* Size.hpp */,
 				66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */,
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
 				6678790118DAE25E00618712 /* Time.h */,
@@ -630,8 +632,12 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
-				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Versions/A/Headers;
-				LIBRARY_SEARCH_PATHS = "";
+				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/sdl2/2.0.3/lib,
+					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
+					"$(inherited)",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;
@@ -698,8 +704,12 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
-				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Versions/A/Headers;
-				LIBRARY_SEARCH_PATHS = "";
+				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/sdl2/2.0.3/lib,
+					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
+					"$(inherited)",
+				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				LLVM_LTO = NO;
 				MACH_O_TYPE = mh_execute;
@@ -729,14 +739,10 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/chrono/build/darwin-4.2.1/release/threading-multi",
-					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/release/threading-multi",
-					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
-					/usr/local/Cellar/sdl2/2.0.3/lib,
 				);
 				PRELINK_LIBS = Yes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -752,14 +758,10 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "/Volumes/OS X HDD/Users/Adam/Library/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/chrono/build/darwin-4.2.1/release/threading-multi",
-					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/release/threading-multi",
-					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GameWorld-aafubcxecxbuiibizkhdadttveod/Build/Products/Debug/usr/lib",
-					/usr/local/Cellar/sdl2/2.0.3/lib,
 				);
 				PRELINK_LIBS = Yes;
 				PRODUCT_NAME = "$(TARGET_NAME)";

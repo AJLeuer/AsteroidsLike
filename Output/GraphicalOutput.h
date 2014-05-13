@@ -44,7 +44,7 @@ protected:
 	 */
 	static void renderSprites() ;
 	
-	static void renderSprite(const Position<long> * pos, SDL_Texture * texture) ;
+	static void renderSprite(const Position<long> * pos, const float sizeModifier, SDL_Texture * texture) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	

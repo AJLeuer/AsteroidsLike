@@ -28,13 +28,13 @@ const long GameObject::MAX_Y { GLOBAL_MAX_Y } ;
 const long GameObject::MIN_Y { GLOBAL_MIN_Y } ;
 
 
-
 fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 
 
 GameObject::GameObject() :
 	ID(IDs),
 	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	size(1.0),
 	type(AssetType::character),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
@@ -54,6 +54,7 @@ GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	spriteImageFile(string(other.spriteImageFile)),
+	size(other.size),
 	type(other.type),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
 	vectDir(vectorHeading<long>(other.vectDir))
@@ -92,6 +93,7 @@ GameObject::GameObject(GameObject && other) :
 	goThread(other.goThread),
 	ID(other.ID),
 	spriteImageFile(std::move(other.spriteImageFile)),
+	size(other.size),
 	type(other.type),
 	loc(other.loc),
 	vectDir(std::move(other.vectDir))
@@ -118,12 +120,13 @@ GameObject::GameObject(GameObject && other) :
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, Position<long> * loc) :
+GameObject::GameObject(AssetType type, const string & imageFileName, float size, const Position<long> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
 	spriteImageFile(imageFileName),
+	size(size),
 	type(type),
-	loc(loc),
+	loc(new Position<long>(loc_)),
 	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
@@ -139,15 +142,19 @@ GameObject::GameObject(AssetType type, const string & imageFileName, Position<lo
 	map->place(this->loc, this, defaultCheck, true) ;
 }
 
-GameObject::GameObject(fastRand<long> rand, AssetType type) :
+GameObject::GameObject(fastRand<long> rand) :
 	goThread(nullptr),
 	ID(IDs),
-	spriteImageFile(AssetFileIO::getRandomImageFilename(type)),
-	type(type),
+	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
+	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	loc(new Position<long>(rand, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
+	
+	fastRand<float> randSize(0.25, 0.5) ; //set size to something small, since these are just randomly generated (likely enemies)
+	size = randSize() ;
+	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
@@ -179,6 +186,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->goThread = nullptr ;
 		this->ID = IDs ;
 		this->spriteImageFile = rhs.spriteImageFile ;
+		this->size = rhs.size ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			map->erase(*(this->loc)) ;
@@ -214,6 +222,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		}
 		
 		this->spriteImageFile = std::move(rhs.spriteImageFile) ;
+		this->size = rhs.size ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
@@ -232,7 +241,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 }
 
 void GameObject::operator()() {
-	//todo
+	defaultBehaviors() ;
 }
 
 void GameObject::operator()(GameObject & sentObject) {
@@ -248,12 +257,31 @@ bool GameObject::operator==(GameObject & other) const {
 	}
 }
 
+void GameObject::checkForMarkedDeletions() {
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
+			if (allGameObjects->at(i)->markedForDeletion) {
+				*allGameObjects->at(i)->currentlyThreading = false ;
+				delete allGameObjects->at(i) ;
+				allGameObjects->at(i) = nullptr ;
+			}
+		}
+	}
+}
+
 void GameObject::eraseByID(unsigned ID) {
 	for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 		if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
 			allGameObjects->at(i) = nullptr ;
 			break ;
 		}
+	}
+}
+
+void GameObject::joinThreads() {
+	for (auto i = allThreads->begin() ; i != allThreads->end() ; i++) {
+		get<0>(*i)->join() ;
+		*(get<1>(*i)->currentlyThreading) = false ;
 	}
 }
 
@@ -289,13 +317,6 @@ void GameObject::endThreading(bool join) {
 	}
 	//delete this->goThread ;
 	//this->goThread = nullptr ;
-}
-
-void GameObject::joinThreads() {
-	for (auto i = allThreads->begin() ; i != allThreads->end() ; i++) {
-		get<0>(*i)->join() ;
-		*(get<1>(*i)->currentlyThreading) = false ;
-	}
 }
 
 void GameObject::textDescription(ostream * writeTo) const {
@@ -335,31 +356,35 @@ void GameObject::runOnThread() {
 }
 
 void GameObject::defaultBehaviors() {
-	
-	int i = 0 ;
-	vector<GameObject *> * nearby = nullptr ;
-	auto rand = fastRand<unsigned int>(8, 40) ;
-	
+	//we can change this to whatever we want
+	fastRand<unsigned> speedVariance = fastRand<unsigned>(8, 40);
 	while (GLOBAL_CONTINUE_SIGNAL) {
-		unsigned speedChange = rand.nextValue() ;
-		wander(1, (speedChange * eight_milliseconds), 5, 0) ;
-		nearby = map->findNearby(loc, (long)5, (long)5) ;
-		if ((nearby != nullptr) && (nearby->size() > 0)) {
-			this->ally = nearby->at(0) ;
-		}
-		i++ ;
+		wanderVariedSpeed(speedVariance) ;
 	}
+}
+
+void GameObject::wanderVariedSpeed(fastRand<unsigned> speedVariance) {
+	unsigned speedChange = speedVariance.nextValue() ; //by default between 8 and 40
+	wander(1, (speedChange * eight_milliseconds), 5, false) ;
 }
 
 void GameObject::attack(GameObject * enemy) {
 	
 }
 
-void GameObject::allyWith(GameObject * ) {
+void GameObject::findNearbyAlly(long searchDistanceX, long searchDistanceY) {
+	vector<GameObject *> * nearby = map->findNearby(loc, searchDistanceX, searchDistanceY) ;
 	
+	if ((nearby != nullptr) && (nearby->size() > 0)) {
+		allyWith(nearby->at(0)) ;
+	}
 }
 
-void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {
+void GameObject::allyWith(const GameObject * other) {
+	this->ally = other ;
+}
+
+void GameObject::wander(long xyOffset, unsigned timeInterval, long time, bool followAlly) {
 	Time timer ;
 	timer.startTimer() ;
 	while (timer.checkTimeElapsed() < time) {
@@ -377,14 +402,14 @@ void GameObject::wander(long xyOffset, unsigned timeInterval, long time) {
 			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
 			moveNewDirection(vecdir) ;
 		}
-		else if (ally != nullptr) {
+		else if ((ally != nullptr) && (followAlly)) {
 			move(*ally->getPosition()) ;
 		}
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 
-void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run) {
+void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run, bool followAlly) {
 	while (*run) {
 		if (ally == nullptr) {
 			float nX = randSignFlip(xyOffset) ;
@@ -399,14 +424,14 @@ void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run) {
 			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
 			moveNewDirection(vecdir) ;
 		}
-		else if (ally != nullptr) {
+		else if ((ally != nullptr) && (followAlly)) {
 			move(*ally->getPosition()) ;
 		}
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
 	}
 }
 
-void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, int ignored) {
+void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, bool followAlly) {
 	for (long i = 0 ; i < loops ; i++) {
 		if (ally == nullptr) {
 			float nX = randSignFlip(xyOffset) ;
@@ -421,7 +446,7 @@ void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, int
 			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
 			moveNewDirection(vecdir) ;
 		}
-		else if (ally != nullptr) {
+		else if ((ally != nullptr) && (followAlly)) {
 			move(*ally->getPosition()) ;
 		}
 		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25

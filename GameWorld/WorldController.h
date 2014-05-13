@@ -64,8 +64,6 @@ private:
 	
 	static void runWorldSimulation() ;
 	
-	static void checkForMarkedDeletions() ;
-	
 	WorldController() ;
 	
 public:

@@ -36,21 +36,22 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(AssetType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) :
-	GameObject(AssetType::character, imageFilename, loc),
+Character::Character(AssetType type, const string & imageFilename, float size, const Position<long> & loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) :
+	GameObject(AssetType::character, imageFilename, size, loc),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(health), damage(damage)
 {
 }
 
 Character::Character(fastRand<long> rand) :
-	GameObject(rand, AssetType::character),
+	GameObject(rand),
 	reaction((Reaction)rand.nextValue(-2, 2)), 
 	alive(DoA::alive),
 	state(CharacterState::normal),
 	health{new Health(goRand.nextValue(0, 500))},
 	damage{new Damage(goRand.nextValue(0, 50))}
 {
+	type = AssetType::character ;
 	name = generateName(goRand.nextValue(0, 11) + 5) ;
 }
 
@@ -111,30 +112,11 @@ void Character::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
+//using GameObject's implementation for now, may change
 void Character::defaultBehaviors() {
-	
-	int i = 0 ;
-	vector<GameObject *> * nearby = nullptr ;
-	auto rand = fastRand<unsigned int>(8, 40) ;
-	Character * chara ;
-	
-	while (GLOBAL_CONTINUE_SIGNAL) {
-		unsigned speedChange = rand.nextValue() ;
-		wander(1, (speedChange * eight_milliseconds), 5, 0) ;
-		nearby = map->findNearby(loc, (long)5, (long)5) ;
-		if ((nearby != nullptr) && (nearby->size() > 0)) {
-			if (typeid(nearby->at(0)) == typeid(this)) {
-				chara = static_cast<Character*>(nearby->at(0)) ;
-				if (chara->reaction < Reaction::neutral) {
-					attack(chara) ;
-				}
-				else if (ally == nullptr)
-					ally = chara ;
-			}
-		}
-		i++ ;
-	}
+	this->GameObject::defaultBehaviors() ;
 }
+
 
 void Character::attack(Character * enemy) {
 	(*Debug::debugOutput) << "Fight! " << this->name << " attacked " << enemy->name << '\n' ;

@@ -87,7 +87,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(AssetType type, const string & imageFilename, Position<long> * loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
+	Character(AssetType type, const string & imageFilename, float size, const Position<long> & loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
 	
 	
 	/**
@@ -156,9 +156,7 @@ public:
 	 */
 	virtual void textDescription(ostream * writeTo) const ;
 	
-	/**
-	 *
-	 */
+	//using GameObject's implementation for now, may change later
 	virtual void defaultBehaviors() ;
 	
 	/**

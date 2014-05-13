@@ -73,14 +73,19 @@ private:
 	
 protected:
 	
-
 	unsigned ID ;
-	
 
 	/**
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
 	 */
 	string spriteImageFile ;
+	
+	/**
+	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
+	 * be multiplied by size. By default size will be 1, leaving the output unchanged. To adjust the size of this object, simply change the value of
+	 * size (for instance, to make this half the normal size, set size = 0.5).
+	 */
+	float size ;
 	
 	AssetType type ;
 	
@@ -90,7 +95,7 @@ protected:
 	
 	vectorHeading<long> vectDir ;
 	
-	GameObject * ally = nullptr ;
+	const GameObject * ally = nullptr ;
 	
 	static const long MAX_X ;
 	static const long MIN_X ;
@@ -121,6 +126,17 @@ protected:
 	
 	static fastRand<int> goRand ;
 	
+	static void checkForMarkedDeletions() ;
+	
+	/**
+	 * Erases the GameObject in allGameObjects matching ID.
+	 */
+	static void eraseByID(unsigned ID) ;
+	
+	/**
+	 * Waits for this GameObjects thread (goThread) to finish execution, then joins the threads
+	 */
+	static void joinThreads() ;
 	
 public:
 	
@@ -163,7 +179,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(AssetType type, const string & imageFileName, Position<long> * loc) ;
+	GameObject(AssetType type, const string & imageFileName, float size, const Position<long> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -171,7 +187,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(fastRand<long> rand, AssetType type = AssetType(fastRand<unsigned>(0, 1)())) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(fastRand<long> rand) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	
@@ -226,10 +242,7 @@ public:
 	 */
 	unsigned getID() { return this->ID ; }
 	
-	/**
-	 * Erases the GameObject in allGameObjects matching ID.
-	 */
-	static void eraseByID(unsigned ID) ;
+
 	
 	/**
 	 * Every sub-type of GameObject should implement this to perform some
@@ -285,9 +298,13 @@ public:
 	 */
 	virtual void defaultBehaviors() ;
 	
+	virtual void wanderVariedSpeed(fastRand<unsigned> speedVariance = fastRand<unsigned>(8, 40)) ;
+	
 	virtual void attack(GameObject * enemy) ;
 	
-	virtual void allyWith(GameObject *) ;
+	virtual void findNearbyAlly(long searchDistanceX, long searchDistanceY) ;
+	
+	virtual void allyWith(const GameObject *) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
@@ -295,7 +312,7 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, long time) ;
+	virtual void wander(long xyOffset, unsigned timeInterval, long time, bool followAlly) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
@@ -303,7 +320,7 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param run Flag to continue or end execution
 	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, bool * run) ;
+	virtual void wander(long xyOffset, unsigned timeInterval, bool * run, bool followAlly) ;
 	
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
@@ -311,7 +328,7 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param run Flag to continue or end execution
 	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, int loops, int ignored) ;
+	virtual void wander(long xyOffset, unsigned timeInterval, int loops, bool followAlly) ;
 	
 	/**
 	 * @return This GameObject's Position<long>
@@ -330,10 +347,20 @@ public:
 	 */
 	void setSprite(string imageFileName) ;
 	
+	/**
+	 * Sets the size of this GameObject for output
+	 */
+	void setSize(float size) { this->size = size ; }
+	
 	/** 
-	 * @return This GameObject's sprite icon
+	 * @return This GameObject's spriteImageFile
 	 */
 	string getSprite() const ;
+	
+	/**
+	 * @return This GameObject's size modifier
+	 */
+	float getSize() const { return this->size ; }
 	
 	/**
 	 * @return This GameObject's asset type
@@ -350,13 +377,6 @@ public:
 	 */
 	string toString() const ;
 	
-	
-	/**
-	 * Waits for this GameObjects thread (goThread) to finish execution, then joins the threads
-	 */
-	static void joinThreads() ;
-	
-
 	
 } ;
 

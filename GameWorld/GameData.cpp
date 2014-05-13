@@ -27,7 +27,7 @@ void SharedGameData::initData(vector<GameObject *> * gobs, const GameMap<GameObj
 const vector<GameObject*> * SharedGameData::getGameObjects()  {
 	if (isInit == false) {
 		stringstream ss ;
-		ss << "SharedGameData::init() must be called before reading any of its data members" << '/n' ;
+		ss << "SharedGameData::init() must be called before reading any of its data members" << '\n';
 		*Debug::debugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
@@ -38,7 +38,7 @@ const vector<GameObject*> * SharedGameData::getGameObjects()  {
 const GameMap<GameObject> * SharedGameData::getMap()  {
 	if (isInit == false) {
 		stringstream ss ;
-		ss << "SharedGameData::init() must be called before reading any of its data members" << '/n' ;
+		ss << "SharedGameData::init() must be called before reading any of its data members" << '\n' ;
 		*Debug::debugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
@@ -48,14 +48,14 @@ const GameMap<GameObject> * SharedGameData::getMap()  {
 
 std::mutex sharedMutex ;
 
-extern bool GLOBAL_CONTINUE_SIGNAL { true } ;
+bool GLOBAL_CONTINUE_SIGNAL = true ;
 
-extern const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
-extern const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
-extern const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
-extern const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
+const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
+const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
+const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
+const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
 
-extern string currentDirectory { "" } ;
+string currentDirectory { "" } ;
 
 
 

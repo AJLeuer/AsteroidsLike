@@ -32,9 +32,9 @@ void WorldController::init() {
 	
 	/* debug code */
 	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
-	
-	for (unsigned i = 0 ; i < 15 ; i++) {
-		new NPC(rand) ;
+	Position<long> pos(500, 300, 0) ;
+	for (unsigned i = 0 ; i < 1 ; i++) {
+		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_01_001.png", 0.5, pos) ;
 	}
 	/* debug end */
 	
@@ -45,7 +45,7 @@ void WorldController::init() {
 
 void WorldController::exec() {
 	runWorldSimulation() ;
-	checkDelThread = new std::thread(&checkForMarkedDeletions) ;
+	checkDelThread = new std::thread(&GameObject::checkForMarkedDeletions) ;
 }
 
 void WorldController::runWorldSimulation() {
@@ -55,17 +55,6 @@ void WorldController::runWorldSimulation() {
 }
 
 
-void WorldController::checkForMarkedDeletions() {
-	while (GLOBAL_CONTINUE_SIGNAL) {
-		for (auto i = 0 ; i < gameObjects->size() ; i++) {
-			if (gameObjects->at(i)->markedForDeletion == true) {
-				*gameObjects->at(i)->currentlyThreading = false ;
-				delete gameObjects->at(i) ;
-				gameObjects->at(i) = nullptr ;
-			}
-		}
-	}
-}
 
 void WorldController::exit() {
 	

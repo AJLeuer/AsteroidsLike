@@ -58,7 +58,7 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(AssetType type, const string & imageFilename, Position<long> * loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) ;
+	NPC(AssetType type, const string & imageFilename, float size, const Position<long> & loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) ;
 	
 	
 	/**
