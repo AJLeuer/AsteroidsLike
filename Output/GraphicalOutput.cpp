@@ -13,7 +13,7 @@
 
 SDL_Window * GraphicalOutput::window = nullptr ;
 
-SDL_Renderer * GraphicalOutput::renderer = nullptr ;
+SDL_Renderer * GraphicalOutput::renderer ;
 
 
 void GraphicalOutput::init() {
@@ -32,6 +32,13 @@ void GraphicalOutput::init() {
 														   ) ;
 	
 	renderer = SDL_CreateRenderer(window, -1, (SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE)) ;
+	
+	if (renderer == NULL) {
+		throw exception() ;
+	}
+	
+	SDL_RendererInfo * info ;
+	SDL_GetRendererInfo(renderer, info) ;
 	
 	float x_ = 0 ;
 	float y_ = 0 ;
@@ -56,14 +63,14 @@ void GraphicalOutput::initGameObjects() {
 		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
 		
 		//set texture
-		Texture * texture = AssetFileIO::getTextureFromFilename(renderer, temp->getImageFile(), temp->getType()) ;
-		temp->setTexture(texture) ;
+		SDL_Texture * tex = AssetFileIO::getTextureFromFilename(renderer, temp->getImageFile(), temp->getType()) ;
+		temp->setTexture(tex) ;
 		
 		//set size
 		Size * size = static_cast<SDL_Rect *>(malloc(sizeof(*size))) ;
 		Uint32 * ignored1 = 0 ;
 		int * ignored2 = 0 ;
-		SDL_QueryTexture(texture, ignored1, ignored2, &(size->w), &(size->h)) ; //init local size with size of texture
+		SDL_QueryTexture(tex, ignored1, ignored2, &(size->w), &(size->h)) ; //init local size with size of texture
 		temp->setSize(size) ; //assign size to this GameObject
 	}
 }

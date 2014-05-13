@@ -9,7 +9,6 @@
 #ifndef __GameWorld__GameObject__
 #define __GameWorld__GameObject__
 
-#define Texture SDL_Texture
 #define Size SDL_Rect
 
 #include <iostream>
@@ -83,8 +82,8 @@ protected:
 	 */
 	string spriteImageFile ;
 	
-	Texture * texture = nullptr ; //we can set this and size to null at first because it won't be possible to initialize them in the constructor anyway
-	Size * size = nullptr ;
+	SDL_Texture * texture ; //It won't be possible to initialize texture or size in the constructor 
+	Size * size ;
 	
 	/**
 	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
@@ -355,7 +354,7 @@ public:
 	 */
 	void setImageFile(string imageFileName) ;
 	
-	void setTexture(Texture * texture) { this->texture = texture ; }
+	void setTexture(SDL_Texture * texture) { this->texture = texture ; }
 	
 	void setSize(Size * size) {
 		*size = (sizeModifier * (*size)) ;
@@ -372,7 +371,7 @@ public:
 	 */
 	string getImageFile() const ;
 	
-	Texture * getTexture() const { return this->texture ; }
+	SDL_Texture * getTexture() const { return this->texture ; }
 	
 	Size * getSize() const { return size ; }
 	

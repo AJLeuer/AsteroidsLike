@@ -54,8 +54,8 @@ GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	spriteImageFile(string(other.spriteImageFile)),
-	texture(nullptr), //this GameObject will have to figure out what it's own texture and size are some other way
-    size(nullptr),
+	//texture(nullptr), //this GameObject will have to figure out what it's own texture and size are some other way
+	//size(nullptr),
 	sizeModifier(other.sizeModifier),
 	type(other.type),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
@@ -121,8 +121,8 @@ GameObject::GameObject(GameObject && other) :
 		other.goThread = nullptr ;
 	}
 	other.ID = 0 ;
-	other.texture = nullptr ;
-	other.size = nullptr ;
+	//other.texture = nullptr ;
+	//other.size = nullptr ;
 	other.loc = nullptr ;
 }
 
@@ -194,8 +194,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->goThread = nullptr ;
 		this->ID = IDs ;
 		this->spriteImageFile = rhs.spriteImageFile ;
-		this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
-		this->size = nullptr ;
+		//this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
+		//this->size = nullptr ;
 		this->sizeModifier = rhs.sizeModifier ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
@@ -246,8 +246,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
-		rhs.texture = nullptr ;
-		rhs.size = nullptr ;
+		//rhs.texture = nullptr ;
+		//rhs.size = nullptr ;
 		rhs.loc = nullptr ;
 	}
 	return *this ;

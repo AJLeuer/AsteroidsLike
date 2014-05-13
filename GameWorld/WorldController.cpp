@@ -32,9 +32,10 @@ void WorldController::init() {
 	
 	/* debug code */
 	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
-	Position<long> pos(500, 300, 0) ;
-	for (unsigned i = 0 ; i < 1 ; i++) {
-		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_01_001.png", 0.5, pos) ;
+	Position<long> pos(200, 200, 0) ;
+	for (unsigned i = 0 ; i < 3 ; i++) {
+		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_01_001.png", 1, pos) ;
+		new GameObject(rand) ;
 	}
 	/* debug end */
 	
