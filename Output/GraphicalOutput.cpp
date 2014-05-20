@@ -38,7 +38,7 @@ void GraphicalOutput::init() {
 	}
 	
 	SDL_RendererInfo * info ;
-	SDL_GetRendererInfo(renderer, info) ;
+	//SDL_GetRendererInfo(renderer, info) ;
 	
 	float x_ = 0 ;
 	float y_ = 0 ;
