@@ -19,6 +19,7 @@
 #include <iostream>
 #include <ostream>
 #include <sstream>
+#include <mutex>
 #include <vector>
 
 #include "../Util/Debug.h"
@@ -35,7 +36,6 @@ using namespace std ;
  * GameData.h also holds various statics, globals and defines that are used throughout the scope
  * of the program.
  */
-
 struct SharedGameData {
 	
 private:

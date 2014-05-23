@@ -16,7 +16,9 @@
 
 template<typename N>
 struct Size : public Position<N> {
-	//todo implement
-}
+	int w = this->Position<N>::x ;
+
+	Size(N w_, N h_) ;
+} ;
 
 #endif /* defined(__GameWorld__Size__) */

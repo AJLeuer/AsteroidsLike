@@ -11,8 +11,6 @@
 #include "MainController.h"
 
 
-thread * MainController::outPutThread = nullptr ;
-
 void MainController::setupMainContrExit() {
 	//we can choose whatever method we want for when or how to tell InputController to exit() later
 	//we could also set up at timer that calls exit() after a certain amount of time, and call setInpContrExit() to run on its own thread during MainController::init()
@@ -45,14 +43,13 @@ void MainController::init() {
 
 
 void MainController::exit() {
+
 	GLOBAL_CONTINUE_SIGNAL = false ; 
-	
-	outPutThread->join() ;
-	
+
 	WorldController::exit() ;
+	GraphicalOutput::exit() ;
 	MainInputController::exit() ; //joins GameObjects threads also
 
-	delete outPutThread ;
 	
 }
 

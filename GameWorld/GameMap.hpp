@@ -266,7 +266,7 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 		}
 	}
 	/* debug code */
-	*(Debug::debugOutput) << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
+	cerr << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
 	throw exception() ;
 	/* end debug code */
 }

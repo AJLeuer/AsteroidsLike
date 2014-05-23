@@ -9,7 +9,7 @@
 #ifndef __GameWorld__GameObject__
 #define __GameWorld__GameObject__
 
-#define Size SDL_Rect
+
 
 #include <iostream>
 #include <sstream>
@@ -20,6 +20,7 @@
 #include <SDL2/SDL_surface.h>
 
 #include "../Util/Debug.h"
+#include "../Util/Size.hpp"
 #include "../Util/Time.h"
 #include "../Util/Util.hpp"
 #include "../Util/AssetFileIO.h"
@@ -80,10 +81,10 @@ protected:
 	/**
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
 	 */
-	string spriteImageFile ;
+	string textureImageFile ;
 	
-	SDL_Texture * texture ; //It won't be possible to initialize texture or size in the constructor 
-	Size * size ;
+	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
+	Size<long> * size = nullptr ;
 	
 	/**
 	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
@@ -367,7 +368,7 @@ public:
 	void setsizeModifier(float sizeModifier) { this->sizeModifier = sizeModifier ; }
 	
 	/** 
-	 * @return This GameObject's spriteImageFile
+	 * @return This GameObject's textureImageFile
 	 */
 	string getImageFile() const ;
 	

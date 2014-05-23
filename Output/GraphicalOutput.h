@@ -29,7 +29,9 @@
 #include "../GameWorld/GameObject.h"
 
 
-
+/**
+ * Controller class for all graphics output.
+ */
 class GraphicalOutput {
 	
 protected:
@@ -44,9 +46,9 @@ protected:
 	 * SharedGameData, then gets information from each game object to decide what texture
 	 * to send to output.
 	 */
-	static void renderSprites() ;
+	static void renderTextures() ;
 	
-	static void renderSprite(GameObject *) ;
+	static void renderTexture(GameObject *) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	

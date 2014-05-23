@@ -60,7 +60,14 @@ SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const
 				throw exception() ;
 			}
 			//otherwise, return the requested surface
-			auto img = IMG_LoadTexture(renderer, str.c_str()) ;
+			SDL_Texture * img = IMG_LoadTexture(renderer, str.c_str()) ;
+
+			/* debug code */
+			stringstream ss ;
+			ss << "Checking for IMG or SDL errors after IMG_LoadTexture(): " << IMG_GetError() << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+			/* end debug code */
+
 			return img ;
 		}
 		/*

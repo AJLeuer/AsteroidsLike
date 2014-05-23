@@ -15,7 +15,7 @@
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
-thread * WorldController::checkDelThread = nullptr ;
+std::thread * WorldController::checkDelThread = nullptr ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
 const long WorldController::MAX_X { GLOBAL_MAX_X } ;
@@ -33,9 +33,8 @@ void WorldController::init() {
 	/* debug code */
 	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	Position<long> pos(200, 200, 0) ;
-	for (unsigned i = 0 ; i < 3 ; i++) {
-		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_01_001.png", 1, pos) ;
-		new GameObject(rand) ;
+	for (unsigned i = 0 ; i < 1 ; i++) {
+		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_64x64_Alt_02_001.png", 1.0, {715, 428, 0}) ;
 	}
 	/* debug end */
 	

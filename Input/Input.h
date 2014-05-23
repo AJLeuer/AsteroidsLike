@@ -162,7 +162,7 @@ void InputController<T>::update() {
 
 template <class T>
 void InputController<T>::exit() {
-	SDL_Quit() ;
+	//GraphicalOutput::exit() already called SDL_Quit(), we don't need to
 	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
 		if (keyInputRegistry->at(i) != nullptr) {
 			delete keyInputRegistry->at(i) ;

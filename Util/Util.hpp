@@ -262,6 +262,11 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 	return rhs ;
 }
 
+template<typename T, class Vector_Like>
+SDL_Rect * convertToSDL_Rect(Vector_Like, Vector_Like) {
+	return new SDL_Rect() ;
+}
+
 
 
 unsigned termWidth() ;

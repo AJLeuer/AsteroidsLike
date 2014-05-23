@@ -69,9 +69,6 @@ Debug & Debug::operator<<(const T & data) {
 
 
 
-
-
-
-
+#define DebugOutput *(Debug::debugOutput)
 
 #endif /* defined(__GameWorld__Debug__) */

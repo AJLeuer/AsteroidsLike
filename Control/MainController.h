@@ -28,7 +28,6 @@ class MainController {
 	
 private:
 	
-	static thread * outPutThread ;
 	static thread * exitingThread ;
 	
 public:

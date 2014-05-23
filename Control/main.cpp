@@ -17,7 +17,6 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/Time.h"
-#include "../Util/OpenClUtil.h"
 #include "../Util/AssetFileIO.h"
 
 #include "../Input/Input.h"

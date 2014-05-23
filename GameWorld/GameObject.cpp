@@ -33,7 +33,7 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	sizeModifier(1.0),
 	type(AssetType::character),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
@@ -53,7 +53,7 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
-	spriteImageFile(string(other.spriteImageFile)),
+	textureImageFile(string(other.textureImageFile)),
 	//texture(nullptr), //this GameObject will have to figure out what it's own texture and size are some other way
 	//size(nullptr),
 	sizeModifier(other.sizeModifier),
@@ -94,7 +94,7 @@ GameObject::GameObject(GameObject && other) :
 	currentlyThreading(other.currentlyThreading),
 	goThread(other.goThread),
 	ID(other.ID),
-	spriteImageFile(std::move(other.spriteImageFile)),
+	textureImageFile(std::move(other.textureImageFile)),
 	texture(other.texture),
 	size(other.size),
 	sizeModifier(other.sizeModifier),
@@ -129,7 +129,7 @@ GameObject::GameObject(GameObject && other) :
 GameObject::GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Position<long> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
-	spriteImageFile(imageFileName),
+	textureImageFile(imageFileName),
 	sizeModifier(sizeModifier),
 	type(type),
 	loc(new Position<long>(loc_)),
@@ -152,13 +152,13 @@ GameObject::GameObject(fastRand<long> rand) :
 	goThread(nullptr),
 	ID(IDs),
 	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
-	spriteImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	loc(new Position<long>(rand, defaultCheck)),
 	vectDir(vectorHeading<long>(loc))
 {
 	IDs++ ;
 	
-	fastRand<float> randSize(0.25, 0.5) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	fastRand<float> randSize(1.0, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	sizeModifier = randSize() ;
 	
 	if (!map_is_init) {
@@ -193,7 +193,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		*(this->currentlyThreading) = false ;
 		this->goThread = nullptr ;
 		this->ID = IDs ;
-		this->spriteImageFile = rhs.spriteImageFile ;
+		this->textureImageFile = rhs.textureImageFile ;
 		//this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
 		//this->size = nullptr ;
 		this->sizeModifier = rhs.sizeModifier ;
@@ -231,7 +231,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			rhs.goThread = nullptr ;
 		}
 		
-		this->spriteImageFile = std::move(rhs.spriteImageFile) ;
+		this->textureImageFile = std::move(rhs.textureImageFile) ;
 		this->texture = rhs.texture ;
 		this->size = rhs.size ;
 		this->sizeModifier = rhs.sizeModifier ;
@@ -364,7 +364,7 @@ void GameObject::moveNewDirection(vectorHeading<long> & newDirection) {
 void GameObject::runOnThread() {
 	void (GameObject::*behaviorsPtr)() = &GameObject::defaultBehaviors ;
 	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(behaviorsPtr, std::move(this)) ;
+	goThread = new std::thread(behaviorsPtr, this) ;
 	startThreading(this->goThread, false) ;
 }
 
@@ -467,11 +467,11 @@ void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, boo
 }
 
 void GameObject::setImageFile(string imageFileName) {
-	this->spriteImageFile = imageFileName ;
+	this->textureImageFile = imageFileName ;
 }
 
 string GameObject::getImageFile() const {
-	return this->spriteImageFile ;
+	return this->textureImageFile ;
 }
 
 ostream & operator<<(std::ostream & os, const GameObject & gameObj)  {
