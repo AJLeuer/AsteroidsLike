@@ -68,6 +68,8 @@ protected:
 	 *  the front. See archive() (via setAll()).
 	 */
 	vector<Position<N>> * pastPositions ;
+    
+    //friend class VectorHeading ;
 
 public:
 	/**
@@ -117,7 +119,7 @@ public:
      */
     Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z)  {
 		if (other.pastPositions != nullptr) {
-			this->pastPositions = vector<Position<N>>(*other.pastPositions) ;
+			this->pastPositions = new vector<Position<N>>(*other.pastPositions) ;
 		}
 		this->checkBounds(check) ;
 	}
@@ -192,36 +194,44 @@ public:
 
 
     /**
-     * Assigment operator overload (copy)
+     * Assigment operator overload (copy).
+     * The copy assignment operator for Position is unusual. Instead of copying rhs completely, it takes the positional data
+     * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
+     * this Position's own pastPosition with this Position's current positional values (by calling archive()), before copying the positional
+     * values from rhs to this. Thus the copy assignment operator acts as though rhs is simply the latest position that this Position has been
+     * set to. If you need to properly duplicate rhs instead, call the move assignment operator. See setAll() for identical behavior.
      */
-	/* READ THIS: Commenting this out for now, it may be more trouble than it's worth
     Position & operator=(const Position & rhs) {
-		// Debug code
-		DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause unexpected behavior. \n" ;
-		// End Debug code
+        
+        // Debug code
+        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause unexpected behavior. \n" ;
+        // End Debug code
 
-        if (this != &rhs) {
-            setAll(rhs) ;
-        }
-		return *this;
+        this->setAll(rhs) ;
+       
+        return *this;
     }
-	*/
+	
 	
 	/**
      * Assigment operator overload (move)
      */
-	/* READ THIS: Commenting this out for now, it may be more trouble than it's worth
     Position & operator=(Position && rhs) {
 		// Debug code
 		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
 		// End Debug code
 
         if (this != &rhs) {
-            setAll(rhs) ;
+            this->x = rhs.x ;
+            this->y = rhs.y ;
+            this->z = rhs.z ;
+            this->pastPositions = rhs.pastPositions ;
+            
+            rhs.pastPositions = nullptr ;
         }
 		return(*this) ;
     }
-    */
+    
 	
 	
 	bool operator==(const Position & rhs) const {
@@ -250,21 +260,35 @@ public:
 		return !(this->operator==(rhs)) ;
 	}
 	
-	Position & operator+(const Position & rhs){
-		N x = this->x + rhs.x ;
-		N y = this->y + rhs.y ;
-		N z = this->z + rhs.z ;
-		this->setAll(x, y, z) ;
-		return *this ;
+	Position operator+(const Position & rhs) const {
+        Position temp = Position(*this) ;
+        
+		temp.x = temp.x + rhs.x ;
+		temp.y = temp.y + rhs.y ;
+		temp.z = temp.z + rhs.z ;
+		
+		return std::move(temp) ;
 	}
 	
-	Position & operator-(const Position & rhs) {
-		N x = this->x - rhs.x ;
-		N y = this->y - rhs.y ;
-		N z = this->z - rhs.z ;
+	Position operator-(const Position & rhs) const {
+        Position temp = Position(*this) ;
+        
+		temp.x = temp.x - rhs.x ;
+		temp.y = temp.y - rhs.y ;
+		temp.z = temp.z - rhs.z ;
+		
+		return std::move(temp) ;
+	}
+    
+    /*
+    friend Position & operator-(const Position & lhs, const Position & rhs) {
+		N x = lhs.x - rhs.x ;
+		N y = lhs.y - rhs.y ;
+		N z = lhs.z - rhs.z ;
 		this->setAll(x, y, z) ;
 		return *this ;
 	}
+     */
 
 	/** 
 	 * Saves our current state
@@ -406,30 +430,6 @@ public:
 		N dist = pythag(nx, ny) ;
 		return dist ;
 	}
-
-	void copyIgnoreArchived(const Position<N> & other) {
-		/* Debug code */
-		DebugOutput << "Warning: copyIgnoreArchived() called. It is not possible to save the\
-		argument's pastPositions, they may be lost. \n" ;
-		/* End Debug code */
-
-		this->x = other.x ;
-		this->y = other.y ;
-		this->z = other.z ;
-	}
-
-	void copyIncludeArchived(const Position<N> & other) {
-		/* Debug code */
-		DebugOutput << "Warning: copyIncludeArchived() called. This will delete this position's\
-		pastPositions. \n" ;
-		/* End Debug code */
-
-		this->x = other.x ;
-		this->y = other.y ;
-		this->z = other.z ;
-		delete this->pastPositions ;
-		this->pastPositions = other.pastPositions ;
-	}
 	
 	std::string toString() const {
 		stringstream ss ;
@@ -556,7 +556,7 @@ VectorHeading<N> & VectorHeading<N>::operator=(const VectorHeading<N> & rhs) {
 template<typename N>
 VectorHeading<N> & VectorHeading<N>::operator=(VectorHeading<N> && rhs) {
 	if (this != &rhs) {
-		this->copyIgnoreArchived(rhs) ;
+		this->Position<float>::operator=(std::move(rhs)) ;
 		this->last = Position<N>(rhs.last) ;
 		this->current = rhs.current ;
 		rhs.current = nullptr ;
@@ -571,8 +571,8 @@ void VectorHeading<N>::update() {
 		Position<N> temp = ((*current) - last) ;              /* uses Location's operator+() overload to add
 															   our x, y, and z (which are offset values) to those
 															   stored in current, giving our new location */
-		this->setAll(temp.x, temp.y, temp.z) ;
-		this->last.copyIncludeArchived(Position<N>(*this->current)) ;
+		this->setAll(temp.getX(), temp.getY(), temp.getZ()) ;
+		this->last = std::move((Position<N>(*this->current))) ;
 	}
 }
 
@@ -598,9 +598,9 @@ void VectorHeading<N>::updateAndNormalize() {
 template<typename N>
 Position<N> VectorHeading<N>::calculateNextPosition(const BoundsCheck<N> & check) {
 	normalize() ;
-	N nx = (*this->current).x + roundF((*this).x) ;
-	N ny = (*this->current).y + roundF((*this).y) ;
-	N nz = (*this->current).z + roundF((*this).z) ;
+	N nx = (*this->current).getX() + roundF((*this).getX()) ;
+	N ny = (*this->current).getY() + roundF((*this).getY()) ;
+	N nz = (*this->current).getZ() + roundF((*this).getZ()) ;
 	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;
 }

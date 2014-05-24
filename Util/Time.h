@@ -10,8 +10,7 @@
 #define __Time__
 
 #include <iostream>
-#include <boost/chrono/chrono.hpp>
-#include <boost/chrono/chrono_io.hpp>
+#include <chrono>
 
 #include "Debug.h"
 
