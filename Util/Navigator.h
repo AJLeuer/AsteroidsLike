@@ -24,14 +24,14 @@ public:
 	Position<long> current ;
 	
 	long x_travelled() {
-		Position<long> temp = current - (*start) ;
-		long x_trav = setUnsigned(temp.x) ;
+		Position<long> temp{ current - (*start) } ;
+		long x_trav = setUnsigned(temp.getX()) ;
 		return x_trav ;
 	}
 	
 	long y_travelled() {
 		Position<long> temp = current - (*start) ;
-		long y_trav = setUnsigned(temp.y) ;
+		long y_trav = setUnsigned(temp.getY()) ;
 		return y_trav ;
 	}
 	

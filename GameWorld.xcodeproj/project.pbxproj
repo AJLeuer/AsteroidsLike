@@ -16,6 +16,7 @@
 		66498B8218DB0FF100DF0A26 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8118DB0FF100DF0A26 /* libboost_system.dylib */; };
 		66498B8418DB0FF500DF0A26 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */; };
 		665DBB5A18F4F4F2006F2026 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665DBB5818F4F4F2006F2026 /* Navigator.cpp */; };
+		665E4731192FC38800738F85 /* Util2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665E472F192FC38800738F85 /* Util2.cpp */; };
 		666C2B1B1909266B00C6FDC3 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666C2B1A1909266B00C6FDC3 /* SDL2.framework */; };
 		666F1C04190A20090004B793 /* libSDL2main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F1C03190A20090004B793 /* libSDL2main.a */; };
 		667BD13E190D5B6D001319AD /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667BD13D190D5B6D001319AD /* SDL2_image.framework */; };
@@ -44,9 +45,11 @@
 		66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundsCheck.hpp; sourceTree = "<group>"; };
 		66498B8118DB0FF100DF0A26 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		66498B8318DB0FF500DF0A26 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = ../../../../../../usr/local/lib/libboost_chrono.dylib; sourceTree = "<group>"; };
-		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
+		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5818F4F4F2006F2026 /* Navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Navigator.cpp; sourceTree = "<group>"; };
 		665DBB5918F4F4F2006F2026 /* Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigator.h; sourceTree = "<group>"; };
+		665E472F192FC38800738F85 /* Util2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util2.cpp; sourceTree = "<group>"; };
+		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util2.h; sourceTree = "<group>"; };
 		666C2B1A1909266B00C6FDC3 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		666F1C03190A20090004B793 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../usr/local/Cellar/sdl2/2.0.3/lib/libSDL2main.a; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 			children = (
 				662FA07718F609B2009E87BE /* Debug.h */,
 				667878FF18DACE9000618712 /* Util.hpp */,
+				665E4730192FC38800738F85 /* Util2.h */,
 				665DBB5718F4F44F006F2026 /* Position.hpp */,
 				66BE1FBD19226A3A0099FD97 /* Size.hpp */,
 				66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */,
@@ -261,6 +265,7 @@
 				6617B185190D725C004B442B /* AssetFileIO.h */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
+				665E472F192FC38800738F85 /* Util2.cpp */,
 				665DBB5818F4F4F2006F2026 /* Navigator.cpp */,
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
 			);
@@ -542,6 +547,7 @@
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				6603FD74190C902800A5F41A /* GraphicalOutput.cpp in Sources */,
+				665E4731192FC38800738F85 /* Util2.cpp in Sources */,
 				662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,

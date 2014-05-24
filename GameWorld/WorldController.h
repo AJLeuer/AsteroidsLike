@@ -18,6 +18,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/Time.h"
+
 #include "GameData.h"
 #include "GameMap.hpp"
 #include "GameInterface.h"
@@ -48,8 +49,9 @@ private:
 	 * A container holding most objects in the game world
 	 */
 	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
-	
-	static thread * checkDelThread ;
+
+	static thread worldSimulationThread ;
+	static thread checkDelThread ;
 	
 	/**
 	 * gameLog is a pointer which references the basic ostream* which will

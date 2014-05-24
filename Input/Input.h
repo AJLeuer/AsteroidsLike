@@ -79,10 +79,12 @@ struct KeyInputRegister {
 
 template<class T>
 void KeyInputRegister<T>::callBack() {
-	if (member_callOn != nullptr) {
+
+	if (member_callOn != nullptr) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
+									//then call it on that object
 		(member_callOn->*member_callBackFn)();
 	}
-	else if (member_callOn == nullptr) {
+	else if (member_callOn == nullptr) { //else this is a global or static function, just call it
 		(*callBackFn)() ;
 	}
 }
@@ -134,12 +136,15 @@ int InputController<T>::keyArraySize = 1 ; //initializing to 1 only because SDL_
 template <class T>
 void InputController<T>::listenForKeyEvents() {
 	const char * keyAssignedToCallback ;
-	for	(unsigned i = 0 ; i < keyInputRegistry->size() ; i++) {
+	for	(unsigned i = 0 ; ((i < keyInputRegistry->size()) && (GLOBAL_CONTINUE_SIGNAL == true)) ; i++) {
 		SDL_PumpEvents() ; //calling this to update state of keys
 		keyAssignedToCallback = keyInputRegistry->at(i)->requestedKeyboardChar.c_str() ;
 		auto currScanCode = getScancodeFromChar(keyAssignedToCallback) ;
 		if (keys[currScanCode] == 1) { // key is 1 if pressed
 			keyInputRegistry->at(i)->callBack() ;
+		}
+		if (GLOBAL_CONTINUE_SIGNAL == false) {
+			break ;
 		}
 	}
 }
@@ -147,6 +152,7 @@ void InputController<T>::listenForKeyEvents() {
 template <class T>
 void InputController<T>::init() {
 	//keyInputRegistry is already initialized. add anything else here.
+	SDL_InitSubSystem(SDL_INIT_EVENTS) ;
 	keys = SDL_GetKeyboardState(&keyArraySize) ; //only need to call once, stores pointer that stays valid for program duration
 }
 
@@ -162,12 +168,13 @@ void InputController<T>::update() {
 
 template <class T>
 void InputController<T>::exit() {
-	//GraphicalOutput::exit() already called SDL_Quit(), we don't need to
 	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
 		if (keyInputRegistry->at(i) != nullptr) {
 			delete keyInputRegistry->at(i) ;
 		}
 	}
+	delete keyInputRegistry ;
+	SDL_QuitSubSystem(SDL_INIT_EVENTS) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
 }
 
 typedef InputController<GameObject> MainInputController ;

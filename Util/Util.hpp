@@ -15,6 +15,8 @@
 #include <random>
 #include <cmath>
 
+
+
 #include <SDL2/SDL_rect.h>
 
 using namespace std ;
@@ -262,9 +264,14 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 	return rhs ;
 }
 
-template<typename T, class Vector_Like>
-SDL_Rect * convertToSDL_Rect(Vector_Like, Vector_Like) {
-	return new SDL_Rect() ;
+template<class vec3, class vec2>
+SDL_Rect * convertToSDL_Rect(vec3 position, vec2 size) {
+	auto shape = new SDL_Rect() ;
+	shape->x = (int) position.getX() ;
+	shape->y = (int) position.getY() ;
+	shape->w = (int) size.getW() ;
+	shape->h = (int) size.getH() ;
+	return shape ;
 }
 
 

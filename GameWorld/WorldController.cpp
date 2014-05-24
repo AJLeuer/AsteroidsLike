@@ -10,12 +10,13 @@
 
 #include "WorldController.h"
 
-
+using namespace std ;
 
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
-std::thread * WorldController::checkDelThread = nullptr ;
+thread WorldController::worldSimulationThread ;
+thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
 const long WorldController::MAX_X { GLOBAL_MAX_X } ;
@@ -33,24 +34,31 @@ void WorldController::init() {
 	/* debug code */
 	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	Position<long> pos(200, 200, 0) ;
-	for (unsigned i = 0 ; i < 1 ; i++) {
-		new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_64x64_Alt_02_001.png", 1.0, {715, 428, 0}) ;
+	for (unsigned i = 0 ; i < 30 ; i++) {
+		new GameObject(fastRand<long>(0, GLOBAL_MAX_X)) ;
 	}
 	/* debug end */
 	
 	//we also assigned all the MAX constants in both GameObject and
 	//WorldController so that they sync together (see above)
-	
+
+	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 }
 
 void WorldController::exec() {
-	runWorldSimulation() ;
-	checkDelThread = new std::thread(&GameObject::checkForMarkedDeletions) ;
+	worldSimulationThread = thread(&WorldController::runWorldSimulation) ;  //runWorldSimulation()
+	checkDelThread = thread(&GameObject::checkForMarkedDeletions) ;
 }
 
 void WorldController::runWorldSimulation() {
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->runOnThread() ;
+
+	fastRand<unsigned> speedVariance = fastRand<unsigned>(1, 3) ;
+
+	while (GLOBAL_CONTINUE_SIGNAL) {
+		for (auto i = 0 ; i < gameObjects->size() ; i++) {
+			gameObjects->at(i)->wanderVariedSpeed(speedVariance) ;
+			//we can add any other default behaviors here
+		}
 	}
 }
 
@@ -60,15 +68,14 @@ void WorldController::exit() {
 	
 	sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	
-	checkDelThread->join() ;
+	checkDelThread.join() ;
 	
 	GameObject::joinThreads() ;
 	
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		delete gameObjects->at(i) ;
 	}
-	
-	delete checkDelThread ;
+
 	delete gameObjects ;
 	delete map ; 
 	gameObjects = nullptr ;

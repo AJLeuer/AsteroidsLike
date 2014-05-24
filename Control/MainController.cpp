@@ -22,18 +22,22 @@ void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
-	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
-	WorldController::init() ;
+	SDL_Init(0) ; /*SDL requires initializing with SDLInit(0) first, then we can init subsystems as we need them.
+				  e.g. SDL_InitSubSystem(SDL_INIT_EVENTS) in MainInputController::init() */
+
 	GraphicalOutput::init() ;
 	MainInputController::init() ;
-	
+	WorldController::init() ;    //must be last
+
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
-	
+}
+
+void MainController::exec() {
 	/*start main functions for all controller classes. WorldController::exec() runs on its own thread, and input and output
-	switch off on the main thread */
+	 switch off on the main thread */
 	WorldController::exec() ;
-	
+
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		GraphicalOutput::update() ;
 		MainInputController::update() ;
@@ -48,9 +52,8 @@ void MainController::exit() {
 
 	WorldController::exit() ;
 	GraphicalOutput::exit() ;
-	MainInputController::exit() ; //joins GameObjects threads also
-
-	
+	MainInputController::exit() ;
+	SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
 }
 
 

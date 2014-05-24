@@ -9,9 +9,9 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define GLOBAL_MAX_X_ 960
+#define GLOBAL_MAX_X_ 2048
 #define GLOBAL_MIN_X_ 0
-#define GLOBAL_MAX_Y_ 540
+#define GLOBAL_MAX_Y_ 1536
 #define GLOBAL_MIN_Y_ 0
 
 #define eight_milliseconds 8333 //in microseconds
@@ -21,6 +21,8 @@
 #include <sstream>
 #include <mutex>
 #include <vector>
+
+#include <SDL2/SDL_render.h>
 
 #include "../Util/Debug.h"
 #include "../Util/BoundsCheck.hpp"
@@ -50,14 +52,20 @@ private:
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * map ;
-	
-	static bool isInit ;
+
+	//this will allow GameObjects to initialize their own textures
+	static SDL_Renderer * renderer ;
+
+	static bool dataIsInit ;
+	static bool graphicsAreInit ;
 	
 	SharedGameData() ;
 	
 public:
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
+
+	static void initGraphics(SDL_Renderer *) ;
 	
 	/**
 	 * A container holding most objects in the game world
@@ -69,6 +77,8 @@ public:
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * getMap() ;
+
+	static SDL_Renderer * getMainRenderer() ;
 	
 } ;
 

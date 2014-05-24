@@ -23,6 +23,7 @@
 #include "../Util/Size.hpp"
 #include "../Util/Time.h"
 #include "../Util/Util.hpp"
+#include "../Util/Util2.h"
 #include "../Util/AssetFileIO.h"
 
 #include "../Input/Input.h"
@@ -53,15 +54,20 @@ private:
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
 	 */
 	static vector<GameObject*> * allGameObjects ;
+
+	/**
+	 * Initializes texture and size information for this GameObject
+	 */
+	void initGraphicsData(bool overrideCurrentTexture) ;
 	
 	/**
 	 * Handles thread starting duties. Should always be called by the function that calls
 	 * the threaded function.
 	 *
 	 * @param goThr The thread to manage
-	 * @param wait Whether to wait for the thread to finish (by calling join()) or continue execution
+	 * @param functionPointer Pointer to the instance member function to run on a thread
 	 */
-	void startThreading(std::thread * goThr, bool wait) ;
+	void startThreading(void (GameObject::*functionPointer)(), bool wait) ;
 	
 	/**
 	 * Handles thread duties. In some case will be called by the threaded function once it has completed,
@@ -84,22 +90,16 @@ protected:
 	string textureImageFile ;
 	
 	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
-	Size<long> * size = nullptr ;
-	
-	/**
-	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
-	 * be multiplied by size. By default size will be 1, leaving the output unchanged. To adjust the size of this object, simply change the value of
-	 * size (for instance, to make this half the normal size, set size = 0.5).
-	 */
-	float sizeModifier ;
-	
+
+	Size<int> size ;
+	Position<long> * loc ;
+	VectorHeading<long> vectDir ;
+
 	AssetType type ;
 	
 	bool markedForDeletion = false ;
 	
-    Position<long> * loc ;
-	
-	vectorHeading<long> vectDir ;
+
 	
 	const GameObject * ally = nullptr ;
 	
@@ -128,7 +128,7 @@ protected:
 	 */
 	std::thread * goThread ;
 	
-	bool * currentlyThreading ;
+	bool * currentlyThreading = new bool(false) ;
 	
 	static fastRand<int> goRand ;
 	
@@ -282,23 +282,23 @@ public:
 	
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
-	 * vectorHeading of its last move
+	 * VectorHeading of its last move
 	 */
 	void moveSameDirection() ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the given
-	 * vectorHeading
+	 * VectorHeading
 	 *
 	 * @param newDirection The new vectorDirection specifying the direction of travel
 	 */
-	void moveNewDirection(vectorHeading<long> & newDirection) ;
+	void moveNewDirection(VectorHeading<long> & newDirection) ;
 	
 	
 	/**
 	 * Runs this GameObject's defaultBehaviors on its own thread ;
 	 */
-	void runOnThread() ;
+	void defaultBehaviors_threaded() ;
 	
 	/**
 	 * Each GameObject can implement this to enable its default behaviors to run 
@@ -320,23 +320,7 @@ public:
 	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
 	 * @param time How long (in microseconds) this GameObject should wander
 	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, long time, bool followAlly) ;
-	
-	/**
-	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
-	 *
-	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
-	 * @param run Flag to continue or end execution
-	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, bool * run, bool followAlly) ;
-	
-	/**
-	 * Moves this GameObject randomly around the World (calls move() with an RNG) until run is false
-	 *
-	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
-	 * @param run Flag to continue or end execution
-	 */
-	virtual void wander(long xyOffset, unsigned timeInterval, int loops, bool followAlly) ;
+	virtual void wander(long xyOffset, bool followAlly) ;
 	
 	/**
 	 * @return This GameObject's Position<long>
@@ -346,7 +330,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const vectorHeading<long> getVector() const {return this->vectDir ; }
+	const VectorHeading<long> getVector() const {return this->vectDir ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
@@ -357,15 +341,7 @@ public:
 	
 	void setTexture(SDL_Texture * texture) { this->texture = texture ; }
 	
-	void setSize(Size * size) {
-		*size = (sizeModifier * (*size)) ;
-		this->size = size ;
-	}
-	
-	/**
-	 * Sets the sizeModifier of this GameObject for output
-	 */
-	void setsizeModifier(float sizeModifier) { this->sizeModifier = sizeModifier ; }
+	void setSize(int w, int h) { size.setW(w) ; size.setH(h) ; }
 	
 	/** 
 	 * @return This GameObject's textureImageFile
@@ -374,7 +350,7 @@ public:
 	
 	SDL_Texture * getTexture() const { return this->texture ; }
 	
-	Size * getSize() const { return size ; }
+	Size<int> getSize() const { return size ; }
 	
 	/**
 	 * @return This GameObject's asset type

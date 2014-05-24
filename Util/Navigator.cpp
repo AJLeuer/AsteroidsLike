@@ -30,7 +30,7 @@ Navigator & Navigator::operator=(Navigator && rhs) {
 	if (this != &rhs) {
 		this->dir = rhs.dir ;
 		this->start = rhs.start ;
-		this->current = std::move(rhs.current) ;
+		this->current = Position<long>(rhs.current) ;
 		rhs.start = nullptr ;
 	}
 	return *this ;

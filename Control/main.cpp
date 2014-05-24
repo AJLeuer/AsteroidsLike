@@ -40,6 +40,8 @@ int main(int argc, char ** argv) {
 	Debug::init(true) ;
 	
 	MainController::init() ;
+	MainController::exec() ;
+	//MainController calls its own exit()
 
 	return 0;
 }

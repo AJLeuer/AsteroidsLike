@@ -23,6 +23,7 @@
 #include <SDL2_image/SDL_image.h>
 
 #include "../Util/Debug.h"
+#include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
 #include "../GameWorld/GameData.h"
@@ -38,8 +39,7 @@ protected:
 	
 	static struct SDL_Window * window ;
 	static SDL_Renderer * renderer ;
-	
-	static void initGameObjects() ;
+
 	
 	/**
 	 * Adds textures to the current renderer. Gets a list of current GameObjects from

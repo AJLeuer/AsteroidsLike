@@ -29,7 +29,8 @@ class MainController {
 private:
 	
 	static thread * exitingThread ;
-	
+	static void exit() ;
+
 public:
 	
 	/**
@@ -39,7 +40,8 @@ public:
 	 * and since each controller runs a while loop, it will not return until the bool* it checks changes.
 	*/
 	static void setupMainContrExit() ;
-	
+
 	static void init() ;
-	static void exit() ;
+	static void exec() ;
+
 } ;

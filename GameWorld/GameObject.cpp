@@ -34,12 +34,15 @@ fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
-	sizeModifier(1.0),
+	size(Size<int>()),
 	type(AssetType::character),
 	loc(new Position<long>(0, 0, 0, defaultCheck)),
-	vectDir(vectorHeading<long>(loc))
+	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
+
+	fastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	size.setModifier(randSize()) ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
@@ -48,23 +51,25 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
+	initGraphicsData(false) ;
+	//already set: currentlyThreading = new bool(false) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
+	currentlyThreading(new bool(*(other.currentlyThreading))),
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(string(other.textureImageFile)),
-	//texture(nullptr), //this GameObject will have to figure out what it's own texture and size are some other way
-	//size(nullptr),
-	sizeModifier(other.sizeModifier),
+	texture(nullptr), //this GameObject willfigure out what it's own texture and size are some other way
+	size(Size<int>()),
 	type(other.type),
 	loc(new Position<long>(*(other.loc), defaultCheck)),
-	vectDir(vectorHeading<long>(other.vectDir))
+	vectDir(VectorHeading<long>(other.vectDir))
 {
 	/* debug */
 	stringstream ss ;
 	ss << "Warning: Copy constructor called on GameObject ID# " << other.ID
-	<< endl << "Dumping desciption of GameObject to be copied from: " << endl << other << endl ;
+		<< endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
 	*(Debug::debugOutput) << ss.rdbuf() ;
 	/* end debug */
 	
@@ -79,13 +84,15 @@ GameObject::GameObject(const GameObject & other) :
 	map->place(this->loc, this, defaultCheck, true) ;
 	
 	allGameObjects->push_back(this) ;
+
+	initGraphicsData(true) ;
 	
 	/* Don't want to copy goThread or goIterator */
 	
 	/* debug */
 	stringstream st ;
 	st << "Warning: Copy constructor finished copying GameObject ID# " << other.ID
-		<< " to GameObject ID# " << this->ID << endl << "Dumping desciption of GameObject copied to: " << endl << this << endl ;
+		<< " to GameObject ID# " << this->ID << '\n' << "Dumping desciption of GameObject copied to: " << '\n' << this << '\n' ;
 	*(Debug::debugOutput) << st.rdbuf() ;
 	/* end debug */
 }
@@ -96,14 +103,13 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
 	textureImageFile(std::move(other.textureImageFile)),
 	texture(other.texture),
-	size(other.size),
-	sizeModifier(other.sizeModifier),
+	size(std::move(other.size)),
 	type(other.type),
 	loc(other.loc),
 	vectDir(std::move(other.vectDir))
 {
 	/* debug */
-	*(Debug::debugOutput) << "Move constructor called \n" ;
+	*(Debug::debugOutput) << "Warning: move constructor called. \n" ;
 	/*end debug */
 	
 	//don't need to incr IDs
@@ -116,29 +122,27 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
-	if (!currentlyThreading) {
+	if (!(*(other.currentlyThreading))) {
 		other.currentlyThreading = nullptr ;
 		other.goThread = nullptr ;
 	}
 	other.ID = 0 ;
-	//other.texture = nullptr ;
-	//other.size = nullptr ;
+	other.textureImageFile = "" ;
+	other.texture = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Position<long> & loc_) :
+GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Position<long> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(imageFileName),
-	sizeModifier(sizeModifier),
+	size(Size<int>()),
 	type(type),
-	loc(new Position<long>(loc_)),
-	vectDir(vectorHeading<long>(loc))
+	loc(new Position<long>(loc_, defaultCheck)),
+	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
-	
-	loc->checkBounds(defaultCheck) ;
-	
+
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
@@ -146,6 +150,9 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float sizeM
 	
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
+	initGraphicsData(false) ;
+	size.setModifier(modifier) ;
+	//already set: currentlyThreading = new bool(false) ;
 }
 
 GameObject::GameObject(fastRand<long> rand) :
@@ -153,20 +160,23 @@ GameObject::GameObject(fastRand<long> rand) :
 	ID(IDs),
 	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	size(Size<int>()),
 	loc(new Position<long>(rand, defaultCheck)),
-	vectDir(vectorHeading<long>(loc))
+	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
-	
-	fastRand<float> randSize(1.0, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
-	sizeModifier = randSize() ;
-	
+
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
 		map_is_init = true ;
 	}
+
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
+	initGraphicsData(false) ;
+	fastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	size.setModifier(randSize()) ;
+	//already set: currentlyThreading = new bool(false) ;
 }
 
 
@@ -177,7 +187,6 @@ GameObject::~GameObject() {
 	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
 		delete currentlyThreading ;
 		SDL_DestroyTexture(texture) ;
-		free(size) ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
 		}
@@ -189,6 +198,11 @@ GameObject::~GameObject() {
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
+	/* Debug code */
+	stringstream ss ;
+	ss << "Warning: GameObject assignment operator overload (copy) called." << '\n' ;
+	DebugOutput << ss.rdbuf() ;
+	/* End Debug code */
 	if (this != &rhs) {
 		*(this->currentlyThreading) = false ;
 		this->goThread = nullptr ;
@@ -196,14 +210,13 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->textureImageFile = rhs.textureImageFile ;
 		//this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
 		//this->size = nullptr ;
-		this->sizeModifier = rhs.sizeModifier ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			map->erase(*(this->loc)) ;
 			delete loc ;
 		}
         this->loc = new Position<long>(*(rhs.loc), defaultCheck) ;
-		vectDir = vectorHeading<long>(loc) ;
+		vectDir = VectorHeading<long>(loc) ;
 		map->place(this->loc, this, defaultCheck, true) ;
 		vectDir.updateAndNormalize() ;
 		
@@ -215,6 +228,11 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 }
 
 GameObject & GameObject::operator=(GameObject && rhs) {
+	/* Debug code */
+	stringstream ss ;
+	ss << "Warning: GameObject assignment operator overload (move) called." << '\n' ;
+	DebugOutput << ss.rdbuf() ;
+	/* End Debug code */
 	if (this != &rhs) {
 		if (this->currentlyThreading != nullptr) {
 			delete this->currentlyThreading ;
@@ -225,7 +243,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		}
 		this->goThread = rhs.goThread ;
 		
-		
 		if (!currentlyThreading) {
 			rhs.currentlyThreading = nullptr ;
 			rhs.goThread = nullptr ;
@@ -233,8 +250,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->textureImageFile = std::move(rhs.textureImageFile) ;
 		this->texture = rhs.texture ;
-		this->size = rhs.size ;
-		this->sizeModifier = rhs.sizeModifier ;
+		this->size = std::move(rhs.size) ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
@@ -246,8 +262,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		rhs.ID = 0 ;
-		//rhs.texture = nullptr ;
-		//rhs.size = nullptr ;
+		rhs.textureImageFile = "" ;
+		rhs.texture = nullptr ;
 		rhs.loc = nullptr ;
 	}
 	return *this ;
@@ -268,6 +284,30 @@ bool GameObject::operator==(GameObject & other) const {
 	else {
 		return false ;
 	}
+}
+
+void GameObject::initGraphicsData(bool overrideCurrentTexture) {
+
+	//set texture
+	if ((texture == nullptr) || (overrideCurrentTexture)) {
+		SDL_Texture * tex = nullptr ;
+		tex = AssetFileIO::getTextureFromFilename(SharedGameData::getMainRenderer(), this->getImageFile(), this->getType()) ;
+
+		if (tex == nullptr) {
+			stringstream ss ;
+			ss << "Load texture failed." << '\n' ;
+			ss << SDL_GetError() << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+			throw exception() ;
+		}
+		this->setTexture(tex) ;
+	}
+
+	//set size
+	int tempW = this->size.getW() ; //don't ever assign or change size directly
+	int tempH = this->size.getH() ;
+	SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
+	this->setSize(tempW, tempH) ; //assign new size to this GameObject
 }
 
 void GameObject::checkForMarkedDeletions() {
@@ -306,7 +346,8 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 	//todo
 }
 
-void GameObject::startThreading(std::thread * goThr, bool wait) {
+void GameObject::startThreading(void (GameObject::*functionPointer)(), bool wait) {
+	this->goThread = new thread(functionPointer, this) ;
 	*(this->currentlyThreading) = true ;
 	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->goThread, this) ;
 	GameObject::allThreads->push_back(threadPair) ;
@@ -344,7 +385,7 @@ void GameObject::textDescription(ostream * writeTo) const {
 void GameObject::move(const Position<long> & moveTo) {
 	Position<long> mt = Position<long>(moveTo, defaultCheck) ;
 	map->erase(*(this->getPosition())) ;
-	*(this->loc) = mt ;
+	this->loc->setAll(mt) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	vectDir.updateAndNormalize() ;
 }
@@ -355,30 +396,24 @@ void GameObject::moveSameDirection() {
 	move(next) ;
 }
 
-void GameObject::moveNewDirection(vectorHeading<long> & newDirection) {
+void GameObject::moveNewDirection(VectorHeading<long> & newDirection) {
 	newDirection.normalize() ;
-	auto next = vectorHeading<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
+	auto next = VectorHeading<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
 	move(next) ;
 }
 
-void GameObject::runOnThread() {
+void GameObject::defaultBehaviors_threaded() {
 	void (GameObject::*behaviorsPtr)() = &GameObject::defaultBehaviors ;
-	this->currentlyThreading = new bool{true} ;
-	goThread = new std::thread(behaviorsPtr, this) ;
-	startThreading(this->goThread, false) ;
+	startThreading(behaviorsPtr, false) ;
 }
 
 void GameObject::defaultBehaviors() {
 	//we can change this to whatever we want
-	fastRand<unsigned> speedVariance = fastRand<unsigned>(8, 40);
-	while (GLOBAL_CONTINUE_SIGNAL) {
-		wanderVariedSpeed(speedVariance) ;
-	}
 }
 
 void GameObject::wanderVariedSpeed(fastRand<unsigned> speedVariance) {
-	unsigned speedChange = speedVariance.nextValue() ; //by default between 8 and 40
-	wander(1, (speedChange * eight_milliseconds), 5, false) ;
+	unsigned speedChange = speedVariance.nextValue() ; //smaller values are faster
+	wander(speedChange, false) ;
 }
 
 void GameObject::attack(GameObject * enemy) {
@@ -397,72 +432,25 @@ void GameObject::allyWith(const GameObject * other) {
 	this->ally = other ;
 }
 
-void GameObject::wander(long xyOffset, unsigned timeInterval, long time, bool followAlly) {
-	Time timer ;
-	timer.startTimer() ;
-	while (timer.checkTimeElapsed() < time) {
-		if (ally == nullptr) {
-			float nX = randSignFlip(xyOffset) ;
-			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
-				nX = (nX * -1) ;
-			}
-		
-			//repeat for y coord
-			float nY = randSignFlip(xyOffset) ;
-			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
-				nY = (nY * -1) ;
-			}
-			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
-			moveNewDirection(vecdir) ;
-		}
-		else if ((ally != nullptr) && (followAlly)) {
-			move(*ally->getPosition()) ;
-		}
-		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
-	}
-}
+void GameObject::wander(long xyOffset, bool followAlly) {
 
-void GameObject::wander(long xyOffset, unsigned timeInterval, bool * run, bool followAlly) {
-	while (*run) {
-		if (ally == nullptr) {
-			float nX = randSignFlip(xyOffset) ;
-			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
-				nX = (nX * -1) ;
-			}
-			//repeat for y coord
-			float nY = randSignFlip(xyOffset) ;
-			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
-				nY = (nY * -1) ;
-			}
-			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
-			moveNewDirection(vecdir) ;
-		}
-		else if ((ally != nullptr) && (followAlly)) {
-			move(*ally->getPosition()) ;
-		}
-		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
-	}
-}
+	if ((!followAlly) || (ally == nullptr)) {
 
-void GameObject::wander(long xyOffset, unsigned int timeInterval, int loops, bool followAlly) {
-	for (long i = 0 ; i < loops ; i++) {
-		if (ally == nullptr) {
-			float nX = randSignFlip(xyOffset) ;
-			if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
-				nX = (nX * -1) ;
-			}
-			//repeat for y coord
-			float nY = randSignFlip(xyOffset) ;
-			if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
-				nY = (nY * -1) ;
-			}
-			auto vecdir = vectorHeading<long>(nX, nY, 0, this->loc) ;
-			moveNewDirection(vecdir) ;
+		float nX = randSignFlip(xyOffset) ;
+		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
+			nX = (nX * -1) ;
 		}
-		else if ((ally != nullptr) && (followAlly)) {
-			move(*ally->getPosition()) ;
+
+		//repeat for y coord
+		float nY = randSignFlip(xyOffset) ;
+		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
+			nY = (nY * -1) ;
 		}
-		usleep(timeInterval) ; //i.e. 8.33 milliseconds x 25
+		auto vecdir = VectorHeading<long>(nX, nY, 0, this->loc) ;
+		moveNewDirection(vecdir) ;
+	}
+	else if ((ally != nullptr) && (followAlly)) {
+		move(*ally->getPosition()) ;
 	}
 }
 
