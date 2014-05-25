@@ -38,10 +38,15 @@ enum Direction {
 } ;
 
 
+
 /**
  * Position<> is a simple vector type with the useful feature of storing all its previous states,
  * back through time. Thus an object using Position to store location information will be able to
  * retrace its steps.
+ * Note: Classes with a Position data member will typically want to have a pointer,
+ * instead of holding the Position locally. This is because many objects in the GameWorld
+ * may not actually have a physcical Position in space, in which case they can just hold a
+ * null pointer.
  */
 template <typename N>
 struct Position {
@@ -130,13 +135,11 @@ public:
     Position(Position && other) : Position(other.x, other.y, other.z) {
 
 		/* Debug code */
-		DebugOutput << "Warning: Position move constructor called. The\
-			argument's pastPositions were deleted. \n" ;
+		//DebugOutput << "Warning: Position move constructor called. The argument's pastPositions are now null. \n" ;
 		/* End Debug code */
 
 		pastPositions = other.pastPositions ;
 
-		delete other.pastPositions ;
 		other.pastPositions = nullptr ;
 	}
 	
@@ -146,13 +149,11 @@ public:
     Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z) {
 
 		/* Debug code */
-		DebugOutput << "Warning: Position move constructor called. The\
-			argument's pastPositions were deleted. \n" ;
+		DebugOutput << "Warning: Position move constructor called. The argument's pastPositions are now null. \n" ;
 		/* End Debug code */
 
 		pastPositions = other.pastPositions ;
 
-		delete other.pastPositions ;
 		other.pastPositions = nullptr ;
 
 		this->checkBounds(check) ;
@@ -185,11 +186,12 @@ public:
      */
     virtual ~Position() {
 		/* Debug code */
-		DebugOutput << "Warning: Position destructor called. The\
-			instances pastPositions were deleted \n" ;
+		//DebugOutput << "Warning: Position destructor called. This instance's pastPositions were deleted \n" ;
 		/* End Debug code */
 
-		delete pastPositions ;
+		if (pastPositions != nullptr) {
+			delete pastPositions ;
+		}
 	}
 
 
@@ -199,7 +201,8 @@ public:
      * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
      * this Position's own pastPosition with this Position's current positional values (by calling archive()), before copying the positional
      * values from rhs to this. Thus the copy assignment operator acts as though rhs is simply the latest position that this Position has been
-     * set to. If you need to properly duplicate rhs instead, call the move assignment operator. See setAll() for identical behavior.
+     * set to. If you need to properly duplicate rhs instead, call the move assignment operator, or better yet, the copy constructor.
+	 * See setAll() for identical behavior.
      */
     Position & operator=(const Position & rhs) {
         
@@ -218,7 +221,7 @@ public:
      */
     Position & operator=(Position && rhs) {
 		// Debug code
-		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
+		//DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
 		// End Debug code
 
         if (this != &rhs) {
@@ -314,8 +317,8 @@ public:
 		this->z = z ;
 	}
 
-	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
-		setAll(other.x, other.y, other.z) ;
+	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
+		setAll(x, y, z) ;
 		checkBounds(check) ;
 	}
 
@@ -323,8 +326,8 @@ public:
 		setAll(other.x, other.y, other.z) ;
 	}
 
-	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
-		setAll(x, y, z) ;
+	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
+		setAll(other.x, other.y, other.z) ;
 		checkBounds(check) ;
 	}
 
@@ -413,12 +416,12 @@ public:
 		setAll(tempX, tempY, tempZ, check) ;
 	}
 
-	void moveTo(const Position<N> & other) {
+	void moveHere(const Position<N> & other) {
 		setAll(other.x, other.y, other.z) ;
 	}
 
-	void moveTo(const Position<N> & other, const BoundsCheck<N> & check) {
-		moveTo(other) ;
+	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
+		moveHere(other) ;
 		checkBounds(check) ;
 	}
 	
@@ -437,14 +440,6 @@ public:
 		return ss.str() ;
 	}
 
-/**
- * A relatively simple data structure representing a Position vector.
- *
- * Note: Classes with a Position data member will typically want to have a pointer,
- * instead of holding the Position locally. This is because many objects in the GameWorld
- * may not actually have a physcical Position in space, in which case they can just hold a
- * null pointer.
- */
 
 	void checkBounds(const BoundsCheck<N> & check) {
 		

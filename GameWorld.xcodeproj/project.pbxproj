@@ -29,8 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E64D2D7193145D700A3B7C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		1E64D2D7193145D700A3B7C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicalOutput.h; sourceTree = "<group>"; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicalOutput.cpp; sourceTree = "<group>"; };
 		66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleOutput.cpp; sourceTree = "<group>"; };
@@ -427,8 +427,8 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
-				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
+				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
 				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
@@ -569,7 +569,7 @@
 				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					/Library/Frameworks,
+					"$(Frameworks)",
 					/Applications/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks,
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
@@ -596,11 +596,12 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
-				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/;
+				LD_RUNPATH_SEARCH_PATHS = "$(Frameworks)";
 				LIBRARY_SEARCH_PATHS = (
+					"$(Libraries)",
+					"$(LocalLibs)",
 					/usr/local/Cellar/sdl2/2.0.3/lib,
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
-					"$(inherited)",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				LLVM_LTO = NO;
@@ -647,7 +648,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					/Library/Frameworks,
+					"$(Frameworks)",
 					/Applications/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks,
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
@@ -669,11 +670,12 @@
 				KEEP_PRIVATE_EXTERNS = NO;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
-				LD_RUNPATH_SEARCH_PATHS = /Library/Frameworks/;
+				LD_RUNPATH_SEARCH_PATHS = "$(Frameworks)";
 				LIBRARY_SEARCH_PATHS = (
+					"$(Libraries)",
+					"$(LocalLibs)",
 					/usr/local/Cellar/sdl2/2.0.3/lib,
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/system/build/darwin-4.2.1/debug/threading-multi",
-					"$(inherited)",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				LLVM_LTO = NO;
@@ -704,7 +706,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					/Users/aleuer2/Library/Frameworks,
+					"~/Library/Frameworks",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
@@ -724,7 +726,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					/Users/aleuer2/Library/Frameworks,
+					"~/Library/Frameworks",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (

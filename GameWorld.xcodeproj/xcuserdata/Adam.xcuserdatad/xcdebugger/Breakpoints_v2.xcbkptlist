@@ -19,5 +19,249 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Util/Position.hpp"
+            timestampString = "422671402.041332"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Util/Position.hpp"
+            timestampString = "422671403.165414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;long&gt;::Position(Position&lt;long&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.212319"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;float&gt;::Position(Position&lt;float&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.212486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;float&gt;::Position(Position&lt;float&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.212621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;int&gt;::Position(Position&lt;int&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.212747"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "55">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;int&gt;::Position(Position&lt;int&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/Output/../Util/Position.hpp"
+                  timestampString = "422671560.212864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Util/Position.hpp"
+            timestampString = "422671436.490906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;int&gt;::operator=(Position&lt;int&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.214072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;long&gt;::operator=(Position&lt;long&gt; const&amp;)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/Util/Position.hpp"
+                  timestampString = "422671560.214196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Util/Position.hpp"
+            timestampString = "422671545.915012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;long&gt;::Position(long, long, long)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.214751"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;long&gt;::Position(long, long, long)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.214872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;float&gt;::Position(float, float, float)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.214988"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;float&gt;::Position(float, float, float)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.215101"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;int&gt;::Position(int, int, int)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.215215"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Position&lt;int&gt;::Position(int, int, int)"
+                  moduleName = "GameWorld"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/GameWorld/GameWorld/../Util/Position.hpp"
+                  timestampString = "422671560.215326"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

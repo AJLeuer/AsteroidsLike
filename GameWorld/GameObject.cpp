@@ -191,7 +191,7 @@ GameObject::~GameObject() {
 			delete this->goThread ;
 		}
 		if (loc != nullptr) {
-			map->erase(*loc) ;
+			map->erase(loc) ;
 			delete loc ;
 		}
 	}
@@ -212,7 +212,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		//this->size = nullptr ;
 		this->type = rhs.type ;
 		if (this->loc != nullptr) {
-			map->erase(*(this->loc)) ;
+			map->erase(this->loc) ;
 			delete loc ;
 		}
         this->loc = new Position<long>(*(rhs.loc), defaultCheck) ;
@@ -382,10 +382,18 @@ void GameObject::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void GameObject::move(const Position<long> & moveTo) {
-	Position<long> mt = Position<long>(moveTo, defaultCheck) ;
-	map->erase(*(this->getPosition())) ;
-	this->loc->setAll(mt) ;
+void GameObject::moveTo(Position<long> * to) {
+	to->checkBounds(defaultCheck) ;
+	map->erase(this->getPosition()) ;
+	this->loc->setAll(*to) ;
+	map->place(this->loc, this, defaultCheck, true) ;
+	vectDir.updateAndNormalize() ;
+}
+
+void GameObject::moveTo(Position<long> to) {
+	to.checkBounds(defaultCheck) ;
+	map->erase(this->getPosition()) ;
+	this->loc->setAll(to) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	vectDir.updateAndNormalize() ;
 }
@@ -393,13 +401,13 @@ void GameObject::move(const Position<long> & moveTo) {
 void GameObject::moveSameDirection() {
 	vectDir.normalize() ;
 	auto next = vectDir.calculateNextPosition(defaultCheck) ;
-	move(next) ;
+	moveTo(std::move(next)) ;
 }
 
 void GameObject::moveNewDirection(VectorHeading<long> & newDirection) {
 	newDirection.normalize() ;
 	auto next = VectorHeading<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
-	move(next) ;
+	moveTo(std::move(next)) ;
 }
 
 void GameObject::defaultBehaviors_threaded() {
@@ -450,7 +458,7 @@ void GameObject::wander(long xyOffset, bool followAlly) {
 		moveNewDirection(vecdir) ;
 	}
 	else if ((ally != nullptr) && (followAlly)) {
-		move(*ally->getPosition()) ;
+		this->moveTo(*(ally->getPosition())) ;
 	}
 }
 

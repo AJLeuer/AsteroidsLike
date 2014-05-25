@@ -58,7 +58,7 @@ public:
 	void placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ;
 	
 	template<typename N>
-	void erase(Position<N> * currentLoc) ;
+	void erase(const Position<N> * currentLoc) ;
 	
 	void eraseAll() ;
 	
@@ -73,7 +73,7 @@ public:
 	 * Returns the first object at this Position<N>
 	 */
 	template<typename N>
-	T * at(const Position<N> & where) ;
+	T * at(const Position<N> * where) ;
 	
 	template<typename N>
 	Position<N> currentLoc(T* obj) ;
@@ -138,7 +138,7 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 		throw new exception() ;
 	}
 	
-	if (at(*where) == nullptr) {
+	if (at(where) == nullptr) {
 		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
 		mapMembers++ ;
 		return ;
@@ -148,7 +148,7 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
 		ss << "Call rerouted to placeAtNearestFree(). Some objects may be in the wrong spot." << '\n' ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		placeAtNearestFree(&where, mapObj, check) ;
+		placeAtNearestFree(where, mapObj, check) ;
 	}
 	else {
 		stringstream ss ;
@@ -167,7 +167,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
 	}
-	if (at(*where) == nullptr) {
+	if (at(where) == nullptr) {
 		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
 		mapMembers++ ;
 		return ;
@@ -180,26 +180,26 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		switch (swt) {
 			case 0:
 			{
-				Position<N> here = Position<N>(where->getX(), where->getY() + 1, where->getZ(), check) ;
-				return placeAtNearestFree(std::move(here), mapObj, defaultCheck) ;
+				Position<N> * here = new Position<N>(where->getX(), where->getY() + 1, where->getZ(), check) ;
+				return placeAtNearestFree(here, mapObj, defaultCheck) ;
 			}
 
 			case 1:
 			{
-				Position<N> here = Position<N>(where->getX(), where->getY() - 1, where->getZ(), check) ;
-				return placeAtNearestFree(std::move(here), mapObj, defaultCheck) ;
+				Position<N> * here = new Position<N>(where->getX(), where->getY() - 1, where->getZ(), check) ;
+				return placeAtNearestFree(here, mapObj, defaultCheck) ;
 			}
 				
 			case 2:
 			{
-				Position<N> here = Position<N>(where->getX() + 1, where->getY(), where->getZ(), check) ;
-				return placeAtNearestFree(std::move(here), mapObj, defaultCheck) ;
+				Position<N> * here = new Position<N>(where->getX() + 1, where->getY(), where->getZ(), check) ;
+				return placeAtNearestFree(here, mapObj, defaultCheck) ;
 			}
 				
 			case 3:
 			{
-				Position<N> here = Position<N>(where->getX() - 1, where->getY(), where->getZ(), check);
-				return placeAtNearestFree(std::move(here), mapObj, defaultCheck) ;
+				Position<N> * here = new Position<N>(where->getX() - 1, where->getY(), where->getZ(), check);
+				return placeAtNearestFree(here, mapObj, defaultCheck) ;
 			}
 			default:
 			{
@@ -215,11 +215,11 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 
 template<class T>
 template<typename N>
-void GameMap<T>::erase(Position<N> * currentLoc) {
+void GameMap<T>::erase(const Position<N> * currentLoc) {
 	if (at(currentLoc) != nullptr) {
 		mapMembers-- ;
 	}
-	intern_map->at(currentLoc.getX())->at(currentLoc.getY()()) = nullptr ;
+	intern_map->at(currentLoc->getX())->at(currentLoc->getY()) = nullptr ;
 }
 
 template<class T>
@@ -242,8 +242,8 @@ void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc) {
 
 template<class T>
 template<typename N>
-T* GameMap<T>::at(const Position<N> & where) {
-	return intern_map->at(where.getX())->at(where.getY()) ;
+T* GameMap<T>::at(const Position<N> * where) {
+	return intern_map->at(where->getX())->at(where->getY()) ;
 }
 
 template<class T>
@@ -293,9 +293,9 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 	
 	//Debug::debugCounter++ ;
 	
-	if ((at(nav.current) != nullptr) && (nav.current != *(nav.start))) {
+	if ((at(&(nav.current)) != nullptr) && (nav.current != *(nav.start))) {
 		searchSuccess = true ;
-		store->push_back(at(nav.current)) ;
+		store->push_back(at(&(nav.current))) ;
 	}
 
 	switch (nav.dir) {

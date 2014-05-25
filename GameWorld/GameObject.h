@@ -278,7 +278,14 @@ public:
 	 *
 	 * @param moveTO The Position<long> where this GameObject is to move
 	 */
-	void move(const Position<long> & moveTo) ;
+	void moveTo(Position<long> * to) ;
+
+	/**
+	 * Moves this GameObject to the Position<long> moveTo
+	 *
+	 * @param moveTO The Position<long> where this GameObject is to move
+	 */
+	void moveTo(Position<long> to) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
@@ -325,7 +332,7 @@ public:
 	/**
 	 * @return This GameObject's Position<long>
 	 */
-	const Position<long> * getPosition() const {return this->loc ; }
+	const Position<long> * getPosition() const { return this->loc ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
