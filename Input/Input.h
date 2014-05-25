@@ -25,7 +25,7 @@
 using namespace std ;
 
 /**
- * For registering member functions
+ * For assigning functions to keypresses
  */
 template<class T>
 struct KeyInputRegister {
@@ -47,9 +47,9 @@ struct KeyInputRegister {
 	
 	/**
 	 * A pointer to the function to be called
-	 * when the requested keyboard input is detected. This variable pointers
-	 * to static or global functions (member_calledOn should be a nullptr in any
-	 * KeyInputRegister where a callBackFn, and not a member_callBackFn, is held
+	 * when the requested keyboard input is detected. This variable points
+	 * to static or global functions (member_callOn should be a nullptr in any
+	 * KeyInputRegister where a callBackFn, and not a member_callBackFn, is held)
 	 */
 	void (*callBackFn)() ;
 	
@@ -103,7 +103,7 @@ protected:
 	/**
 	 * Holds pointers to the state of each key on the keyboard. Initialized once, but valid for the scope of the program.
 	 */
-	static const Uint8 * keys ;
+	static const unsigned char * keys ;
 	
 	static int keyArraySize ;
 	
@@ -128,7 +128,7 @@ template <class T>
 vector<KeyInputRegister<T> *> * InputController<T>::keyInputRegistry = new vector<KeyInputRegister<T> *>() ;
 
 template <class T>
-const Uint8 * InputController<T>::keys ;
+const unsigned char * InputController<T>::keys ;
 
 template <class T>
 int InputController<T>::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter

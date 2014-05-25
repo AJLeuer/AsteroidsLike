@@ -17,8 +17,9 @@
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
 		665DBB5A18F4F4F2006F2026 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665DBB5818F4F4F2006F2026 /* Navigator.cpp */; };
 		665E4731192FC38800738F85 /* Util2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665E472F192FC38800738F85 /* Util2.cpp */; };
-		66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B5F85C18D7CC1500342AEF /* libncurses.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C3FB5118FCE4A30082320A /* GameData.cpp */; };
+		66E3235919327A07005A1144 /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E3235819327A07005A1144 /* libncurses.dylib */; };
+		66E3235B19327C28005A1144 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E3235A19327C28005A1144 /* Configuration.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
 		66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4018CF032B002EFA00 /* WorldController.cpp */; };
@@ -54,7 +55,6 @@
 		667BD13C190D5484001319AD /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
 		66914DD219024AB20012957D /* ConsoleOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConsoleOutput.hpp; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap.hpp; sourceTree = "<group>"; };
-		66B5F85C18D7CC1500342AEF /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		66B90880190D6F4B005B3E86 /* Blocks_01.ai */ = {isa = PBXFileReference; lastKnownFileType = text; path = Blocks_01.ai; sourceTree = "<group>"; };
 		66B90881190D6F4B005B3E86 /* Blocks_01_128x128_Alt_00_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_128x128_Alt_00_001.png; sourceTree = "<group>"; };
 		66B90882190D6F4B005B3E86 /* Blocks_01_128x128_Alt_00_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_128x128_Alt_00_002.png; sourceTree = "<group>"; };
@@ -187,6 +187,10 @@
 		66C3FB5118FCE4A30082320A /* GameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameData.cpp; sourceTree = "<group>"; };
 		66CF981D1908FD4F008A30F9 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
+		66E323541932765D005A1144 /* Settings.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.cfg; sourceTree = "<group>"; };
+		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		66E3235819327A07005A1144 /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
+		66E3235A19327C28005A1144 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		66E97F2E18CF009E002EFA00 /* GameWorld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameWorld; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66E97F3318CF009E002EFA00 /* GameWorld.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = GameWorld.1; sourceTree = "<group>"; };
@@ -214,7 +218,7 @@
 			files = (
 				1E64D2D8193145D700A3B7C5 /* SDL2.framework in Frameworks */,
 				1E64D2DA193145E300A3B7C5 /* SDL2_image.framework in Frameworks */,
-				66B5F85D18D7CC1500342AEF /* libncurses.dylib in Frameworks */,
+				66E3235919327A07005A1144 /* libncurses.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +249,7 @@
 		6678790018DAE21200618712 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				66E3235619327761005A1144 /* Configuration.h */,
 				662FA07718F609B2009E87BE /* Debug.h */,
 				667878FF18DACE9000618712 /* Util.hpp */,
 				665E4730192FC38800738F85 /* Util2.h */,
@@ -254,6 +259,7 @@
 				665DBB5918F4F4F2006F2026 /* Navigator.h */,
 				6678790118DAE25E00618712 /* Time.h */,
 				6617B185190D725C004B442B /* AssetFileIO.h */,
+				66E3235A19327C28005A1144 /* Configuration.cpp */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
 				665E472F192FC38800738F85 /* Util2.cpp */,
@@ -424,12 +430,21 @@
 			path = Input;
 			sourceTree = "<group>";
 		};
+		66E3234619326E2C005A1144 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				66E323541932765D005A1144 /* Settings.cfg */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
+				66E3235819327A07005A1144 /* libncurses.dylib */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
 				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
-				66B5F85C18D7CC1500342AEF /* libncurses.dylib */,
+				66E3234619326E2C005A1144 /* Settings */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
 				66CF981B1908FCA6008A30F9 /* Input */,
@@ -533,6 +548,7 @@
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
+				66E3235B19327C28005A1144 /* Configuration.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,
 				6603FD74190C902800A5F41A /* GraphicalOutput.cpp in Sources */,
 				665E4731192FC38800738F85 /* Util2.cpp in Sources */,

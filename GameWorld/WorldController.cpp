@@ -19,11 +19,6 @@ thread WorldController::worldSimulationThread ;
 thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
-const long WorldController::MAX_X { GLOBAL_MAX_X } ;
-const long WorldController::MIN_X { GLOBAL_MIN_X } ;
-const long WorldController::MAX_Y { GLOBAL_MAX_Y } ;
-const long WorldController::MIN_Y { GLOBAL_MIN_Y } ;
-
 WorldController::WorldController() {}
 
 void WorldController::init() {

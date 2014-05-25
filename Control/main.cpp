@@ -15,6 +15,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_main.h>
 
+#include "../Util/Configuration.h"
 #include "../Util/Util.hpp"
 #include "../Util/Time.h"
 #include "../Util/AssetFileIO.h"
@@ -30,6 +31,7 @@
 
 
 int main(int argc, char ** argv) {
+	
 	currentDirectory = argv[0] ;
 	cout << "the current directory is: " << currentDirectory << endl ;
 	auto s = AssetFileIO::getRandomImageFilename(AssetType::character) ;

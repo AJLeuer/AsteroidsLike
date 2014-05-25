@@ -196,7 +196,7 @@ public:
 
 
     /**
-     * Assigment operator overload (copy).
+     * Assigment operator (copy).
      * The copy assignment operator for Position is unusual. Instead of copying rhs completely, it takes the positional data
      * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
      * this Position's own pastPosition with this Position's current positional values (by calling archive()), before copying the positional
@@ -217,7 +217,7 @@ public:
 	
 	
 	/**
-     * Assigment operator overload (move)
+     * Assigment operator (move)
      */
     Position & operator=(Position && rhs) {
 		// Debug code

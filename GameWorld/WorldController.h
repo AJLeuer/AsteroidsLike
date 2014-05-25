@@ -76,12 +76,6 @@ public:
 	 */
 	static const GameMap<GameObject> * map ;
 	
-	static const long MAX_X ;
-	static const long MIN_X ;
-	static const long MAX_Y ;
-	static const long MIN_Y ;
-
-	
 	static ostream ** getGameLog() { return & gameLog ; }
 	
 	//static bool isRunning() { return running ; }
