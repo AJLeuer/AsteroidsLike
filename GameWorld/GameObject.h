@@ -281,7 +281,19 @@ public:
 	 * @param moveTO The Position<long> where this GameObject is to move
 	 */
 	void moveTo(Position<long> to) ;
-	
+
+	void moveTo(long x, long y, long z) { moveTo(Position<long>(x, y, z)) ; }
+
+	void moveRight() { moveTo((loc->getX()+1), loc->getY(), loc->getZ()) ; }
+	void moveLeft() { moveTo((loc->getX()-1), loc->getY(), loc->getZ()) ; }
+	void moveUp() { moveTo(loc->getX(), (loc->getY()+1), loc->getZ()) ; }
+	void moveDown() { moveTo(loc->getX(), (loc->getY()-1), loc->getZ()) ; }
+
+	void moveUpRight() { moveTo((loc->getX()+1), (loc->getY()+1), loc->getZ()) ; }
+	void moveUpLeft() { moveTo((loc->getX()-1), (loc->getY()+1), loc->getZ()) ; }
+	void moveDownRight() { moveTo((loc->getX()+1), (loc->getY()-1), loc->getZ()) ; }
+	void moveDownLeft() { moveTo((loc->getX()-1), (loc->getY()-1), loc->getZ()) ; }
+
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
 	 * VectorHeading of its last move
@@ -319,10 +331,8 @@ public:
 	/**
 	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
 	 *
-	 * @param xyOffset The max distance (in both the X and Y directions) between each move()
-	 * @param time How long (in microseconds) this GameObject should wander
 	 */
-	virtual void wander(long xyOffset, bool followAlly) ;
+	virtual void wander() ;
 	
 	/**
 	 * @return This GameObject's Position<long>

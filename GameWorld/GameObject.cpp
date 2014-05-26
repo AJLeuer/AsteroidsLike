@@ -379,7 +379,6 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(Position<long> * to) {
-	to->checkBounds(defaultCheck) ;
 	map->erase(this->getPosition()) ;
 	this->loc->setAll(*to) ;
 	map->place(this->loc, this, defaultCheck, true) ;
@@ -387,7 +386,6 @@ void GameObject::moveTo(Position<long> * to) {
 }
 
 void GameObject::moveTo(Position<long> to) {
-	to.checkBounds(defaultCheck) ;
 	map->erase(this->getPosition()) ;
 	this->loc->setAll(to) ;
 	map->place(this->loc, this, defaultCheck, true) ;
@@ -396,7 +394,13 @@ void GameObject::moveTo(Position<long> to) {
 
 void GameObject::moveSameDirection() {
 	vectDir.normalize() ;
-	auto next = vectDir.calculateNextPosition(defaultCheck) ;
+	Position<long> next ;
+	if (loc->overBounds(defaultCheck) == true) {
+		next = vectDir.calculateReverseNextPosition(defaultCheck) ;
+	}
+	else {
+		next = vectDir.calculateNextPosition() ;
+	}
 	moveTo(std::move(next)) ;
 }
 
@@ -416,8 +420,7 @@ void GameObject::defaultBehaviors() {
 }
 
 void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {
-	unsigned speedChange = speedVariance.nextValue() ; //smaller values are faster
-	wander(speedChange, false) ;
+	wander() ;
 }
 
 void GameObject::attack(GameObject * enemy) {
@@ -436,25 +439,23 @@ void GameObject::allyWith(const GameObject * other) {
 	this->ally = other ;
 }
 
-void GameObject::wander(long xyOffset, bool followAlly) {
+void GameObject::wander() {
 
-	if ((!followAlly) || (ally == nullptr)) {
+	FastRand<int> randm(0, 1) ;
+	int cases = randm() ;
 
-		float nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GLOBAL_MAX_X) || ((loc->getX() + nX) < GLOBAL_MIN_X)) {
-			nX = (nX * -1) ;
+	switch (cases) {
+		case 0:
+		{
+			moveUp() ;
 		}
+		break ;
 
-		//repeat for y coord
-		float nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GLOBAL_MAX_Y) || ((loc->getY() + nY) < GLOBAL_MIN_Y)) {
-			nY = (nY * -1) ;
+		case 1:
+		{
+			moveDown() ;
 		}
-		auto vecdir = VectorHeading<long>(nX, nY, 0, this->loc) ;
-		moveNewDirection(vecdir) ;
-	}
-	else if ((ally != nullptr) && (followAlly)) {
-		this->moveTo(*ally->getPosition()) ;
+		break;
 	}
 }
 

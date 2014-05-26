@@ -292,6 +292,16 @@ public:
 	virtual void y_minus_one() { setY(y--) ; }
 
 	virtual void y_minus_one(const BoundsCheck<N> & check) { setY(y--) ; checkBounds(check) ; }
+
+	virtual void moveRight() { setAll((this->x+1), this->y, this->z) ; }
+	virtual void moveLeft() { setAll((this->x-1), this->y, this->z) ; }
+	virtual void moveUp() { setAll(this->x, (this->y+1), this->z) ; }
+	virtual void moveDown() { setAll(this->x, (this->y-1), this->z) ; }
+
+	virtual void moveUpRight() { setAll((this->x+1), (this->y+1), this->z) ; }
+	virtual void moveUpLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
+	virtual void moveDownRight() { setAll((this->x+1), (this->y-1), this->z) ; }
+	virtual void moveDownLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 
@@ -386,6 +396,18 @@ public:
 		if (this->y < check.min_Y) {
 			*(Debug::debugOutput) << "A Y value was under the global minimum. Increasing value..." << endl ;
 			this->y = check.min_Y ;
+		}
+	}
+
+	bool overBounds(BoundsCheck<N> check) {
+		if ((this->x > check.max_X) || (this->y > check.max_Y)) {
+			return true ;
+		}
+		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {
+			return true ;
+		}
+		else {
+			return false ;
 		}
 	}
 
@@ -698,7 +720,6 @@ public:
 
 	void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; this->checkBounds(check) ; }
 
-
 	void x_plus_one() { setX(this->x++) ; }
 
 	void x_plus_one(const BoundsCheck<N> & check) { setX(this->x++) ; this->checkBounds(check) ; }
@@ -715,6 +736,16 @@ public:
 	void y_minus_one() { setY(this->y--) ; }
 
 	void y_minus_one(const BoundsCheck<N> & check) { setY(this->y--) ; this->checkBounds(check) ; }
+
+	void moveRight() { setAll((this->x+1), this->y, this->z) ; }
+	void moveLeft() { setAll((this->x-1), this->y, this->z) ; }
+	void moveUp() { setAll(this->x, (this->y+1), this->z) ; }
+	void moveDown() { setAll(this->x, (this->y-1), this->z) ; }
+
+	void moveUpRight() { setAll((this->x+1), (this->y+1), this->z) ; }
+	void moveUpLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
+	void moveDownRight() { setAll((this->x+1), (this->y-1), this->z) ; }
+	void moveDownLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
 
 	/**
 	 * Increments or decrements the x, y and z values according to
@@ -814,7 +845,9 @@ public:
 	
 	void normalize() ;
 	void updateAndNormalize() ;
+	Position<N> calculateNextPosition() ;
 	Position<N> calculateNextPosition(const BoundsCheck<N> &) ;
+	Position<N> calculateReverseNextPosition(const BoundsCheck<N> &) ;
 	static Position<N> calculateNextPosition(const VectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) ;
 
 } ;
@@ -913,6 +946,15 @@ void VectorHeading<N>::updateAndNormalize() {
 	normalize() ;
 }
 
+template<typename N>
+Position<N> VectorHeading<N>::calculateNextPosition() {
+	normalize() ;
+	N nx = (*this->current).getX() + roundF((*this).getX()) ;
+	N ny = (*this->current).getY() + roundF((*this).getY()) ;
+	N nz = (*this->current).getZ() + roundF((*this).getZ()) ;
+	Position<N> next(nx, ny, nz) ;
+	return std::move(next) ;
+}
 
 template<typename N>
 Position<N> VectorHeading<N>::calculateNextPosition(const BoundsCheck<N> & check) {
@@ -922,6 +964,14 @@ Position<N> VectorHeading<N>::calculateNextPosition(const BoundsCheck<N> & check
 	N nz = (*this->current).getZ() + roundF((*this).getZ()) ;
 	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;
+}
+
+template<typename N>
+Position<N> VectorHeading<N>::calculateReverseNextPosition(const BoundsCheck<N> & check) {
+	this->x = this->x * -1 ;
+	this->y = this->y * -1 ;
+	this->z = this->z * -1 ;
+	return calculateNextPosition(check) ;
 }
 
 template<typename N>

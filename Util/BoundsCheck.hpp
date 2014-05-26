@@ -48,6 +48,7 @@ struct BoundsCheck {
 			*y = this->min_Y ;
 		}
 	}
+
 } ;
 
 #endif /* defined(__GameWorld__BoundsCheck__) */

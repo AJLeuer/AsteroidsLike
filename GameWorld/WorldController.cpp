@@ -25,12 +25,15 @@ void WorldController::init() {
 
 	WorldController::gameObjects = GameObject::getAllGameObjects() ;
 	WorldController::map = GameObject::getMap() ;
+
+	FastRand<int> posModifier(-100, 100) ;
+	long startingXArea = (GLOBAL_MAX_X * 0.75) ;
+	long startingYArea = (GLOBAL_MAX_Y * 0.5) ;
 	
 	/* debug code */
-	FastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
-	Position<long> pos(200, 200, 0) ;
 	for (unsigned i = 0 ; i < 30 ; i++) {
-		new GameObject(FastRand<long>(0, GLOBAL_MAX_X)) ;
+		new GameObject(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+					   0.50, Pos2<long>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck)) ;
 	}
 	/* debug end */
 	
@@ -47,12 +50,15 @@ void WorldController::exec() {
 
 void WorldController::runWorldSimulation() {
 
-	FastRand<unsigned> speedVariance = FastRand<unsigned>(1, 3) ;
+
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		gameObjects->at(i)->wander() ;
+	}
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
-			gameObjects->at(i)->wanderVariedSpeed(speedVariance) ;
-			//we can add any other default behaviors here
+			gameObjects->at(i)->moveSameDirection() ;
+
 		}
         usleep(eight_milliseconds) ;
 	}
