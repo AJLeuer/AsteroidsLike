@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#define eight_milliseconds 8333
+#define eight_milliseconds 8333 //i.e. 8 millis in microseconds
 
 #include "WorldController.h"
 
@@ -54,6 +54,7 @@ void WorldController::runWorldSimulation() {
 			gameObjects->at(i)->wanderVariedSpeed(speedVariance) ;
 			//we can add any other default behaviors here
 		}
+        usleep(eight_milliseconds) ;
 	}
 }
 

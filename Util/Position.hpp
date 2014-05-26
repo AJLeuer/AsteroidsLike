@@ -264,7 +264,8 @@ public:
 	}
 	
 	Position operator+(const Position & rhs) const {
-        Position temp = Position(*this) ;
+        
+        Position temp = Position(this->x, this->y, this->z) ;
         
 		temp.x = temp.x + rhs.x ;
 		temp.y = temp.y + rhs.y ;
@@ -274,7 +275,8 @@ public:
 	}
 	
 	Position operator-(const Position & rhs) const {
-        Position temp = Position(*this) ;
+        
+        Position temp = Position(this->x, this->y, this->z) ;
         
 		temp.x = temp.x - rhs.x ;
 		temp.y = temp.y - rhs.y ;
@@ -563,6 +565,7 @@ template<typename N>
 void VectorHeading<N>::update() {
 	
 	if (last != *current) { //only if we've moved...
+        
 		Position<N> temp = ((*current) - last) ;              /* uses Location's operator+() overload to add
 															   our x, y, and z (which are offset values) to those
 															   stored in current, giving our new location */
