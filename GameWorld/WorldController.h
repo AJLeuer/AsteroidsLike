@@ -48,18 +48,10 @@ private:
 	/**
 	 * A container holding most objects in the game world
 	 */
-	static vector<GameObject*> * gameObjects ; //Adapters need to access this too
+	static vector<GameObject*> * gameObjects ; //Other classes need to access this too
 
 	static thread worldSimulationThread ;
 	static thread checkDelThread ;
-	
-	/**
-	 * gameLog is a pointer which references the basic ostream* which will
-	 * record, print, draw, or render everything that happens in our game. As it is defined now, it
-	 * may in some cases point to std::cout, in other cases it may record to a stringstream. If
-	 * other means of outputting that game state are created we may change the type of gameLog later.
-	 */
-	static ostream * gameLog ;
 	
 	friend class GameInterface ;
 	friend class GameObject ;
@@ -75,8 +67,6 @@ public:
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * map ;
-	
-	static ostream ** getGameLog() { return & gameLog ; }
 	
 	//static bool isRunning() { return running ; }
 	
