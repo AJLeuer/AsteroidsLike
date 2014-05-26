@@ -92,7 +92,7 @@ protected:
 	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
 
 	Size<int> size ;
-	Position<long> * loc ;
+	Pos2<long> * loc ;
 	VectorHeading<long> vectDir ;
 
 	AssetType type ;
@@ -102,11 +102,6 @@ protected:
 
 	
 	const GameObject * ally = nullptr ;
-	
-	static const long MAX_X ;
-	static const long MIN_X ;
-	static const long MAX_Y ;
-	static const long MIN_Y ;
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
@@ -130,7 +125,7 @@ protected:
 	
 	bool * currentlyThreading = new bool(false) ;
 	
-	static fastRand<int> goRand ;
+	static FastRand<int> goRand ;
 	
 	static void checkForMarkedDeletions() ;
 	
@@ -187,7 +182,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<long>
 	 */
-	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Position<long> & loc) ;
+	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<long> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -195,7 +190,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(fastRand<long> rand) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(FastRand<long> rand) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	
@@ -313,7 +308,7 @@ public:
 	 */
 	virtual void defaultBehaviors() ;
 	
-	virtual void wanderVariedSpeed(fastRand<unsigned> speedVariance = fastRand<unsigned>(8, 40)) ;
+	virtual void wanderVariedSpeed(FastRand<unsigned> speedVariance = FastRand<unsigned>(8, 40)) ;
 	
 	virtual void attack(GameObject * enemy) ;
 	
@@ -333,11 +328,16 @@ public:
 	 * @return This GameObject's Position<long>
 	 */
 	const Position<long> * getPosition() const { return this->loc ; }
+
+	/**
+	 * @return This GameObject's Position history (Pos2)
+	 */
+	const Pos2<long> * getPositionHistory() const { return this->loc ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const VectorHeading<long> getVector() const {return this->vectDir ; }
+	const VectorHeading<long> getVector() const { return this->vectDir ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
@@ -348,7 +348,7 @@ public:
 	
 	void setTexture(SDL_Texture * texture) { this->texture = texture ; }
 	
-	void setSize(int w, int h) { size.setW(w) ; size.setH(h) ; }
+	void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
 	/** 
 	 * @return This GameObject's textureImageFile

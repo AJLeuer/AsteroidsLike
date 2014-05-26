@@ -174,7 +174,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 	}
 	else {
 		
-		fastRand<unsigned> rand(0, 3) ;
+		FastRand<unsigned> rand(0, 3) ;
 		unsigned swt = rand.nextValue() ;
 		
 		switch (swt) {
@@ -258,7 +258,7 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 		}
 	}
 	/* debug code */
-	cerr << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
+	DebugOutput << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
 	throw exception() ;
 	/* end debug code */
 }
@@ -282,7 +282,7 @@ vector<T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N y_lim)
 	vector<T*> * store = new vector<T*>() ;
 	const Position<N> * strt = start ;
 	Position<N> init = Position<N>(*start) ;
-	Navigator nav(Direction::oneDirection, strt, init) ;
+	Navigator nav(Direction::noDirection, strt, init) ;
 	findAllNearby_helper(store, nav, x_lim, y_lim) ;
 	return store ;
 }
@@ -306,7 +306,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			}
 			
 		}
-			break ;
+		break ;
 			
 				
 		case south : {
@@ -315,7 +315,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
 		}
-			break ;
+		break ;
 			
 			
 		case east : {
@@ -324,7 +324,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
 		}
-			break ;
+		break ;
 			
 				
 		case west : {
@@ -333,7 +333,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
 		}
-			break ;
+		break ;
 			
 				
 		case ne : {
@@ -366,7 +366,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				}
 			}
 		}
-			break ;
+		break ;
 			
 				
 		case se : {
@@ -399,7 +399,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				}
 			}
 		}
-			break ;
+		break ;
 			
 				
 		case sw : {
@@ -432,7 +432,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				}
 			}
 		}
-			break ;
+		break ;
 			
 				
 		case nw : {
@@ -465,9 +465,9 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				}
 			}
 		}
-			break ;
+		break ;
 			
-		case oneDirection : { //the best case! (also base case)
+		case noDirection : { //the base case
 			if ((nav.current.getY() < getYBound())) {
 				Position<N> n_loc = Position<N>(*nav.start) ;
 				n_loc.y_plus_one() ;

@@ -17,6 +17,7 @@
 
 #include "../Util/Configuration.h"
 #include "../Util/Util.hpp"
+#include "../Util/Position.hpp"
 #include "../Util/Time.h"
 #include "../Util/AssetFileIO.h"
 
@@ -39,6 +40,7 @@ int main(int argc, char ** argv) {
 	
 	Time timer ;
 	timer.startTimer() ;
+	
 	Debug::init(true) ;
 	
 	MainController::init() ;

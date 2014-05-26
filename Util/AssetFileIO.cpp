@@ -104,7 +104,7 @@ std::string & AssetFileIO::getRandomImageFilename(AssetType type) {
 	switch (type) {
 		case AssetType::character:
 		{
-			fastRand<vector<string>::size_type> rnd(0, characterImageFilenames->size() -1) ;
+			FastRand<vector<string>::size_type> rnd(0, characterImageFilenames->size() -1) ;
 			return getImageFilename(rnd(), AssetType::character) ;
 		}
 		/*

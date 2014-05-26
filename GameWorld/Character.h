@@ -51,7 +51,7 @@ protected:
 	 */
 	bool turn = false ;
 	
-	float hitPercentage = fastRand<float>(0, 1).nextValue() ;
+	float hitPercentage = FastRand<float>(0, 1).nextValue() ;
 	
 	void attack_helper(Character * enemy) ;
 
@@ -87,7 +87,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(AssetType type, const string & imageFilename, float size, const Position<long> & loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
+	Character(AssetType type, const string & imageFilename, float size, const Pos2<long> & loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
 	
 	
 	/**
@@ -96,7 +96,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	Character(fastRand<long> rand) ;
+	Character(FastRand<long> rand) ;
 	
 	
 	/**

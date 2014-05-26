@@ -44,8 +44,6 @@ void MainController::exec() {
 	}
 }
 
-
-
 void MainController::exit() {
 
 	GLOBAL_CONTINUE_SIGNAL = false ; 

@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <queue>
 
 #include "Debug.h"
 #include "Util.hpp"
@@ -34,7 +35,7 @@ enum Direction {
 	se = south + east,
 	sw = south + west,
 	nw = north + west,
-	oneDirection //the best direction! (and also a base case in certain recursive algorithms)
+	noDirection //the best direction! (and also a base case in certain recursive algorithms)
 } ;
 
 
@@ -57,106 +58,60 @@ protected:
 	N y ;
     N z ;
 
-	/**
-	 * A special copying function that won't push another instance of ourselves onto
-	 * pastPositions or copy pastPositions (it's left null), avoiding the possibility of infinite recursion. Will use this for
-	 * when we need to push a copy of ourselves onto pastPositions. See setAll(), archive() and pastPositions.
-	 */
-	Position<N> copyNoSave() {
-		Position<N> copy {this->x, this->y, this->z} ;
-		copy.pastPositions = nullptr ;
-		return copy ;
-	}
-
-	/** A vector container storing all the previous positions of this Position object,
-	 *  with the most recent positions at the end of the vector, and the initial position at
-	 *  the front. See archive() (via setAll()).
-	 */
-	vector<Position<N>> * pastPositions ;
-    
-    //friend class VectorHeading ;
-
 public:
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
-	Position() : x(0), y(0), z(0), pastPositions(new vector<Position<N>>) {}
+	Position() : x(0), y(0), z(0) {}
 	
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
-	Position(const BoundsCheck<N> & check) : x(0), y(0), z(0), pastPositions(new vector<Position<N>>) { this->checkBounds(check) ; }
+	Position(const BoundsCheck<N> & check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
 	
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
-	Position(N n) : x(n), y(n), z(n), pastPositions(new vector<Position<N>>) {}
+	Position(N n) : x(n), y(n), z(n) {}
 	
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
-	Position(N n, const BoundsCheck<N> & check) : x(n), y(n), z(n), pastPositions(new vector<Position<N>>) { this->checkBounds(check) ; }
+	Position(N n, const BoundsCheck<N> & check) : x(n), y(n), z(n) { this->checkBounds(check) ; }
 	
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
-	Position(fastRand<N> rand, const BoundsCheck<N> & check) :
+	Position(FastRand<N> rand, const BoundsCheck<N> & check) :
 		x(rand.nextValue(check.min_X, check.max_X)),
 		y(rand.nextValue(check.min_Y, check.max_Y)),
-		z(0),
-		pastPositions(new vector<Position<N>>)
+		z(0)
 	{
 		checkBounds(check) ;
 	}
 
-	
     /**
      * Copy constructor for Position
      */
-    Position(const Position & other) : Position(other.x, other.y, other.z)  {
-		if (other.pastPositions != nullptr) {
-			this->pastPositions = new vector<Position<N>>(*other.pastPositions) ;
-		}
-	}
+    Position(const Position & other) : Position(other.x, other.y, other.z) {}
 	
 	/**
      * Copy constructor for Position
      */
     Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z)  {
-		if (other.pastPositions != nullptr) {
-			this->pastPositions = new vector<Position<N>>(*other.pastPositions) ;
-		}
-		this->checkBounds(check) ;
+		checkBounds(check) ;
 	}
 	
 	/**
      * Move constructor for Position
      */
-    Position(Position && other) : Position(other.x, other.y, other.z) {
-
-		/* Debug code */
-		//DebugOutput << "Warning: Position move constructor called. The argument's pastPositions are now null. \n" ;
-		/* End Debug code */
-
-		pastPositions = other.pastPositions ;
-
-		other.pastPositions = nullptr ;
-	}
+    Position(Position && other) : Position(other.x, other.y, other.z) {}
 	
 	/**
      * Move constructor for Position
      */
     Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z) {
-
-		/* Debug code */
-		DebugOutput << "Warning: Position move constructor called. The argument's pastPositions are now null. \n" ;
-		/* End Debug code */
-
-		pastPositions = other.pastPositions ;
-
-		other.pastPositions = nullptr ;
-
-		this->checkBounds(check) ;
+		checkBounds(check) ;
 	}
     
 	/**
@@ -167,7 +122,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Position(N x, N y, N z) : x{x}, y{y}, z{z}, pastPositions(new vector<Position<N>>) {}
+	Position(N x, N y, N z) : x{x}, y{y}, z{z} {}
 	
     /**
      * Creates a Position with coordinates initialized to the
@@ -177,40 +132,24 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Position(N x, N y, N z, const BoundsCheck<N> & check) : x{x}, y{y}, z{z}, pastPositions(new vector<Position<N>>)  {
+	Position(N x, N y, N z, const BoundsCheck<N> & check) : x{x}, y{y}, z{z} {
 		this->checkBounds(check) ;
 	}
 	
     /**
      * Destructor for Position
      */
-    virtual ~Position() {
-		/* Debug code */
-		//DebugOutput << "Warning: Position destructor called. This instance's pastPositions were deleted \n" ;
-		/* End Debug code */
-
-		if (pastPositions != nullptr) {
-			delete pastPositions ;
-		}
-	}
+    virtual ~Position() {}
 
 
     /**
      * Assigment operator (copy).
-     * The copy assignment operator for Position is unusual. Instead of copying rhs completely, it takes the positional data
-     * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
-     * this Position's own pastPosition with this Position's current positional values (by calling archive()), before copying the positional
-     * values from rhs to this. Thus the copy assignment operator acts as though rhs is simply the latest position that this Position has been
-     * set to. If you need to properly duplicate rhs instead, call the move assignment operator, or better yet, the copy constructor.
-	 * See setAll() for identical behavior.
      */
-    Position & operator=(const Position & rhs) {
-        
-        // Debug code
-        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause unexpected behavior. \n" ;
-        // End Debug code
+    virtual Position & operator=(const Position & rhs) {
 
-        this->setAll(rhs) ;
+		this->x = rhs.x ;
+		this->y = rhs.y ;
+		this->z = rhs.z ;
        
         return *this;
     }
@@ -219,25 +158,18 @@ public:
 	/**
      * Assigment operator (move)
      */
-    Position & operator=(Position && rhs) {
-		// Debug code
-		//DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
-		// End Debug code
+    virtual Position & operator=(Position && rhs) {
 
-        if (this != &rhs) {
-            this->x = rhs.x ;
-            this->y = rhs.y ;
-            this->z = rhs.z ;
-            this->pastPositions = rhs.pastPositions ;
-            
-            rhs.pastPositions = nullptr ;
-        }
+		this->x = rhs.x ;
+		this->y = rhs.y ;
+		this->z = rhs.z ;
+
 		return(*this) ;
     }
     
 	
 	
-	bool operator==(const Position & rhs) const {
+	virtual bool operator==(const Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -246,7 +178,7 @@ public:
 		}
 	}
 	
-	bool operator==(Position & rhs) const {
+	virtual bool operator==(Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
 			return true ;
 		}
@@ -255,11 +187,11 @@ public:
 		}
 	}
 	
-	bool operator!=(const Position & rhs) const {
+	virtual bool operator!=(const Position & rhs) const {
 		return !(this->operator==(rhs)) ;
 	}
 	
-	bool operator!=(Position & rhs) {
+	virtual bool operator!=(Position & rhs) {
 		return !(this->operator==(rhs)) ;
 	}
 	
@@ -295,49 +227,34 @@ public:
 	}
      */
 
-	/** 
-	 * Saves our current state
-	 */
-	void archive() {
-		Position<N> archive = this->copyNoSave() ;
-		archive.pastPositions = nullptr ;
-		this->pastPositions->push_back(archive) ;
-	}
-
-	const vector<Position<N>> * getHistory() {
-		return this->pastPositions ;
-	}
-
 	/**
-	 * This function is key! Everything that changes state must call it because it calls archive() to store our
-	 * previous state.
+	 * Sets x, y, and z to the given values.
 	 */
-	void setAll(const N x, const N y, const N z) {
-		this->archive() ;
+	virtual void setAll(const N x, const N y, const N z) {
 		this->x = x ;
 		this->y = y ;
 		this->z = z ;
 	}
 
-	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
+	virtual void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
 		setAll(x, y, z) ;
 		checkBounds(check) ;
 	}
 
-	void setAll(const Position<N> & other) {
+	virtual void setAll(const Position<N> & other) {
 		setAll(other.x, other.y, other.z) ;
 	}
 
-	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
+	virtual void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
 		setAll(other.x, other.y, other.z) ;
 		checkBounds(check) ;
 	}
 
-	void setAll(const N n) { setAll(n, n, n) ; }
+	virtual void setAll(const N n) { setAll(n, n, n) ; }
 
-	void setAll(const N n, const BoundsCheck<N> check) { setAll(n, n, n, check) ; }
+	virtual void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, n, check) ; }
 
-	void setAllZero() { setAll(0) ; }
+	virtual void setAllZero() { setAll(0) ; }
 
 	
 	N getX() const { return this->x ; }
@@ -346,35 +263,35 @@ public:
 	
 	N getZ() const { return this->z ; }
 	
-	void setX(const N x) { setAll(x, this->y, this->z) ; }
+	virtual void setX(const N x) { setAll(x, this->y, this->z) ; }
 	
-	void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; checkBounds(check) ; }
+	virtual void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; checkBounds(check) ; }
 	
-	void setY(const N y) { setAll(this->x, y, this->z) ; }
+	virtual void setY(const N y) { setAll(this->x, y, this->z) ; }
 	
-	void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; checkBounds(check) ; }
+	virtual void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; checkBounds(check) ; }
 	
-	void setZ(const N z) { setAll(this->x, this->y, z) ; }
+	virtual void setZ(const N z) { setAll(this->x, this->y, z) ; }
 	
-	void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; checkBounds(check) ; }
+	virtual void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; checkBounds(check) ; }
 
 
-	void x_plus_one() { setX(x++) ; }
+	virtual void x_plus_one() { setX(x++) ; }
 
-	void x_plus_one(const BoundsCheck<N> & check) { setX(x++) ; checkBounds(check) ; }
+	virtual void x_plus_one(const BoundsCheck<N> & check) { setX(x++) ; checkBounds(check) ; }
 
-	void x_minus_one() { setX(x--) ; }
+	virtual void x_minus_one() { setX(x--) ; }
 
-	void x_minus_one(const BoundsCheck<N> & check) { setX(x--) ; checkBounds(check) ; }
+	virtual void x_minus_one(const BoundsCheck<N> & check) { setX(x--) ; checkBounds(check) ; }
 
 
-	void y_plus_one() { setY(y++) ; }
+	virtual void y_plus_one() { setY(y++) ; }
 
-	void y_plus_one(const BoundsCheck<N> & check) { setY(y++) ; checkBounds(check) ; }
+	virtual void y_plus_one(const BoundsCheck<N> & check) { setY(y++) ; checkBounds(check) ; }
 
-	void y_minus_one() { setY(y--) ; }
+	virtual void y_minus_one() { setY(y--) ; }
 
-	void y_minus_one(const BoundsCheck<N> & check) { setY(y--) ; checkBounds(check) ; }
+	virtual void y_minus_one(const BoundsCheck<N> & check) { setY(y--) ; checkBounds(check) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 
@@ -385,7 +302,7 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, N delta_z) {
+	virtual void modify(N delta_x, N delta_y, N delta_z) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
 		auto tempZ = this->z ;
@@ -406,7 +323,7 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
+	virtual void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
 		auto tempZ = this->z ;
@@ -418,11 +335,20 @@ public:
 		setAll(tempX, tempY, tempZ, check) ;
 	}
 
-	void moveHere(const Position<N> & other) {
+	virtual void moveHere(N x, N y, N z) {
+		setAll(x, y, z) ;
+	}
+
+	virtual void moveHere(N x, N y, N z, const BoundsCheck<N> & check) {
+		moveHere(x, y, z) ;
+		checkBounds(check) ;
+	}
+
+	virtual void moveHere(const Position<N> & other) {
 		setAll(other.x, other.y, other.z) ;
 	}
 
-	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
+	virtual void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
 		moveHere(other) ;
 		checkBounds(check) ;
 	}
@@ -465,6 +391,401 @@ public:
 
 } ;
 
+/**
+ * Similar to Position, but also holds copies of each of its previous states.
+ */
+template<typename N>
+struct Pos2 : public Position<N> {
+
+protected:
+
+	/** 
+	 * A vector container storing all the previous positions of this object,
+	 * with the most recent positions at the end of the vector, and the initial position at
+	 * the front. See archive().
+	 */
+	queue<Position<N>> * pastPositions ;
+
+	/**
+	 * Saves our current state
+	 */
+	void archive() {
+		Position<N> archived(this->x, this->y, this->z) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
+
+		if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
+			pastPositions->pop() ;
+		}
+		pastPositions->push(archived) ;
+	}
+
+public:
+
+	/**
+     * Creates a Pos2 with all coordinates initialized to 0
+     */
+	Pos2() : Position<N>(0, 0, 0), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Creates a Pos2 with all coordinates initialized to 0
+     */
+	Pos2(const BoundsCheck<N> & check) : Position<N>(check), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Creates a Pos2 with all coordinates initialized to n
+     */
+	Pos2(N n) : Position<N>(n), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Creates a Pos2 with all coordinates initialized to n
+     */
+	Pos2(N n, const BoundsCheck<N> & check) : Position<N>(n, check), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Creates a Pos2 all coordinates randomized, with bounds set by check
+     */
+	Pos2(FastRand<N> rand, const BoundsCheck<N> & check) :
+		Position<N>(rand, check),
+		pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Copy constructor for Pos2
+     */
+    Pos2(const Pos2 & other) : Position<N>(other)  {
+		if (other.pastPositions != nullptr) {
+			this->pastPositions = new queue<Position<N>>(*other.pastPositions) ;
+		}
+	}
+
+	/**
+     * Copy constructor for Pos2
+     */
+    Pos2(const Pos2 & other, const BoundsCheck<N> & check) : Position<N>(other, check)  {
+		if (other.pastPositions != nullptr) {
+			this->pastPositions = new queue<Position<N>>(*other.pastPositions) ;
+		}
+	}
+
+	/**
+     * Move constructor for Pos2
+     */
+    Pos2(Pos2 && other) : Position<N>(std::move(other)) {
+
+		/* Debug code */
+		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
+		/* End Debug code */
+
+		pastPositions = other.pastPositions ;
+
+		other.pastPositions = nullptr ;
+	}
+
+	/**
+     * Move constructor for Position
+     */
+    Pos2(Pos2 && other, const BoundsCheck<N> & check) : Position<N>(std::move(other), check) {
+
+		/* Debug code */
+		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
+		/* End Debug code */
+
+		pastPositions = other.pastPositions ;
+
+		other.pastPositions = nullptr ;
+	}
+
+	/**
+     * Creates a Pos2 with coordinates initialized to the
+     * given arguments
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     */
+	Pos2(N x, N y, N z) : Position<N>(x, y, z), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Creates a Pos2 with coordinates initialized to the
+     * given arguments
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     */
+	Pos2(N x, N y, N z, const BoundsCheck<N> & check) : Position<N>(x, y, z, check), pastPositions(new queue<Position<N>>) {}
+
+	/**
+     * Destructor for Position
+     */
+    virtual ~Pos2() {
+		/* Debug code */
+		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
+		/* End Debug code */
+
+		if (pastPositions != nullptr) {
+			delete pastPositions ;
+		}
+	}
+
+	/**
+     * Assigment operator (copy).
+     * The copy assignment operator for Pos2 is unusual. Instead of copying rhs completely, it takes the positional data
+     * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
+     * this Pos2's own pastPosition with this Pos2's current positional values (by calling archive()), before copying the positional
+     * values from rhs to this. Thus the copy assignment operator acts as though rhs is simply the latest position that this Position has been
+     * set to. If you need to properly duplicate rhs instead, call the move assignment operator, or better yet, the copy constructor.
+	 * See setAll() for identical behavior.
+     */
+    Pos2 & operator=(const Pos2 & rhs) {
+
+        // Debug code
+        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause performance issues. \n" ;
+        // End Debug code
+
+		if (pastPositions != nullptr) {
+			delete pastPositions ;
+		}
+
+		pastPositions = nullptr ;
+
+	    this->Position<N>::operator=(std::move(rhs)) ;
+
+        pastPositions = new queue<Position<N>>() ;
+
+		for (auto i = rhs.pastPositions->begin() ; i != rhs.pastPositions.end() ; i++) {
+			this->pastPositions->push(Position<N>(*i)) ; //push_back()
+		}
+
+        return *this;
+    }
+
+	/**
+     * Assigment operator (move)
+     */
+    Pos2 & operator=(Pos2 && rhs) {
+
+		// Debug code
+		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
+		// End Debug code
+
+		this->Position<N>::operator=(std::move(rhs)) ;
+
+		this->pastPositions = rhs.pastPositions ;
+		rhs.pastPositions = nullptr ;
+
+		return(*this) ;
+    }
+
+	/**
+     * Assigment operator (copy). Treats rhs as this Pos2 object's current position, and pushes back its previous state
+	 * onto pastPositions.
+     */
+    Pos2 & operator=(const Position<N> & rhs) {
+
+        // Debug code
+        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause unexpected behavior. \n" ;
+        // End Debug code
+
+        setAll(rhs) ;
+
+        return *this;
+    }
+
+	/**
+     * Assigment operator (move)
+     */
+    Pos2 & operator=(Position<N> && rhs) {
+
+		// Debug code
+		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
+		// End Debug code
+
+		setAll(rhs) ;
+
+        return *this ;
+    }
+
+	bool operator==(const Pos2 & rhs) const {
+		return Position<N>::operator==(rhs) ;
+	}
+
+	bool operator==(Pos2 & rhs) const {
+		return Position<N>::operator==(rhs) ;
+	}
+
+	bool operator==(const Position<N> & rhs) const {
+		return Position<N>::operator==(rhs) ;
+	}
+
+	bool operator==(Position<N> & rhs) const {
+		return Position<N>::operator==(rhs) ;
+	}
+
+	bool operator!=(Pos2 & rhs) const {
+		return Position<N>::operator!=(rhs) ;
+	}
+
+	bool operator!=(const Pos2 & rhs) const {
+		return Position<N>::operator!=(rhs) ;
+	}
+
+	bool operator!=(Position<N> & rhs) const {
+		return Position<N>::operator!=(rhs) ;
+	}
+
+	bool operator!=(const Position<N> & rhs) const {
+		return Position<N>::operator!=(rhs) ;
+	}
+
+	Pos2 operator+(const Pos2 & rhs) const {
+		return Position<N>::operator+(rhs) ;
+	}
+
+	Pos2 operator+(const Position<N> & rhs) const {
+		Pos2 pos2 = Position<N>::operator+(rhs) ;
+		return pos2 ;
+	}
+
+	Pos2 operator-(const Pos2 & rhs) const {
+		return Position<N>::operator-(rhs) ;
+	}
+
+	Pos2 operator-(const Position<N> & rhs) const {
+		return Position<N>::operator-(rhs) ;
+	}
+
+	const Position<N> * getCurrent() {
+		return (Position<N>)(this) ;
+	}
+	
+	const queue<Position<N>> * getHistory() {
+		return pastPositions ;
+	}
+
+	void setAll(const N x, const N y, const N z) {
+		archive() ;
+		this->Position<N>::setAll(x, y, z) ;
+	}
+
+	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
+		archive() ;
+		Position<N>::setAll(x, y, z, check) ;
+	}
+
+	void setAll(const Position<N> & other) {
+		setAll(other.getX(), other.getY(), other.getZ()) ;
+	}
+
+	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
+		setAll(other.getX(), other.getY(), other.getZ(), check) ;
+	}
+
+	void setAll(const N n) { setAll(n, n, n) ; }
+
+	void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, n, check) ; }
+
+	void setAllZero() { setAll(0) ; }
+
+
+	void setX(const N x) { setAll(x, this->y, this->z) ; }
+
+	void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; this->checkBounds(check) ; }
+
+	void setY(const N y) { setAll(this->x, y, this->z) ; }
+
+	void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; this->checkBounds(check) ; }
+
+	void setZ(const N z) { setAll(this->x, this->y, z) ; }
+
+	void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; this->checkBounds(check) ; }
+
+
+	void x_plus_one() { setX(this->x++) ; }
+
+	void x_plus_one(const BoundsCheck<N> & check) { setX(this->x++) ; this->checkBounds(check) ; }
+
+	void x_minus_one() { setX(this->x--) ; }
+
+	void x_minus_one(const BoundsCheck<N> & check) { setX(this->x--) ; this->checkBounds(check) ; }
+
+
+	void y_plus_one() { setY(this->y++) ; }
+
+	void y_plus_one(const BoundsCheck<N> & check) { setY(this->y++) ; this->checkBounds(check) ; }
+
+	void y_minus_one() { setY(this->y--) ; }
+
+	void y_minus_one(const BoundsCheck<N> & check) { setY(this->y--) ; this->checkBounds(check) ; }
+
+	/**
+	 * Increments or decrements the x, y and z values according to
+	 * the arguments passed in. Use negative values to decrement. Passing
+	 * 0 for any argument will keep the x, y, or z value the same.
+	 *
+	 * @param delta_x The change in x value
+	 * @param delta_y The change in y value
+	 * @param delta_z The change in z value
+	 */
+	void modify(N delta_x, N delta_y, N delta_z) {
+		auto tempX = this->x ;
+		auto tempY = this->y ;
+		auto tempZ = this->z ;
+
+		tempX += delta_x ;
+		tempY += delta_y ;
+		tempZ += delta_z ;
+
+		setAll(tempX, tempY, tempZ) ;
+	}
+
+	/**
+	 * Increments or decrements the x, y and z values according to
+	 * the arguments passed in. Use negative values to decrement. Passing
+	 * 0 for any argument will keep the x, y, or z value the same.
+	 *
+	 * @param delta_x The change in x value
+	 * @param delta_y The change in y value
+	 * @param delta_z The change in z value
+	 */
+	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
+		auto tempX = this->x ;
+		auto tempY = this->y ;
+		auto tempZ = this->z ;
+
+		tempX += delta_x ;
+		tempY += delta_y ;
+		tempZ += delta_z ;
+
+		setAll(tempX, tempY, tempZ, check) ;
+	}
+
+	void moveHere(N x, N y, N z) {
+		setAll(x, y, z) ;
+	}
+
+	void moveHere(N x, N y, N z, const BoundsCheck<N> & check) {
+		moveHere(x, y, z) ;
+		this->checkBounds(check) ;
+	}
+
+	void moveHere(const Pos2 & other) {
+		setAll(other.x, other.y, other.z) ;
+	}
+
+	void moveHere(const Position<N> & other) {
+		setAll(other.getX(), other.getY(), other.getZ()) ;
+	}
+
+	void moveHere(const Pos2 & other, const BoundsCheck<N> & check) {
+		moveHere(other) ;
+		this->Position<N>::checkBounds(check) ;
+	}
+
+	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
+		moveHere(other) ;
+		this->Position<N>::checkBounds(check) ;
+	}
+
+} ;
 
 /**
  * Gives a representation a vector or direction in 3 dimensions

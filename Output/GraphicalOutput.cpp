@@ -82,8 +82,8 @@ void GraphicalOutput::renderTextures() {
 }
 
 void GraphicalOutput::renderTexture(GameObject * gameObject) {
-	SDL_Rect * tempShape = convertToSDL_Rect<Position<long>, Size<int>>(*(gameObject->getPosition()), gameObject->getSize()) ;
-	int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, tempShape) ;
+	SDL_Rect tempShape = convertToSDL_Rect<Position<long>, Size<int>>(*(gameObject->getPosition()), gameObject->getSize()) ;
+	int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
 
 	/* debug code */
 	/*

@@ -20,15 +20,9 @@ vector<pair <thread *, GameObject*> > * GameObject::allThreads  = new vector<pai
 vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
 
-GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(MAX_X, MAX_Y) ;
+GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(GLOBAL_MAX_X, GLOBAL_MAX_Y) ;
 
-const long GameObject::MAX_X { GLOBAL_MAX_X } ;
-const long GameObject::MIN_X { GLOBAL_MIN_X } ;
-const long GameObject::MAX_Y { GLOBAL_MAX_Y } ;
-const long GameObject::MIN_Y { GLOBAL_MIN_Y } ;
-
-
-fastRand<int> GameObject::goRand(fastRand<int>(0, INT_MAX));
+FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 
 GameObject::GameObject() :
@@ -36,16 +30,16 @@ GameObject::GameObject() :
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
 	type(AssetType::character),
-	loc(new Position<long>(0, 0, 0, defaultCheck)),
+	loc(new Pos2<long>(0, 0, 0, defaultCheck)),
 	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
 
-	fastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
+		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 
@@ -60,10 +54,10 @@ GameObject::GameObject(const GameObject & other) :
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(string(other.textureImageFile)),
-	texture(nullptr), //this GameObject willfigure out what it's own texture and size are some other way
+	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
 	type(other.type),
-	loc(new Position<long>(*(other.loc), defaultCheck)),
+	loc(new Pos2<long>(*(other.loc), defaultCheck)),
 	vectDir(VectorHeading<long>(other.vectDir))
 {
 	/* debug */
@@ -76,7 +70,7 @@ GameObject::GameObject(const GameObject & other) :
 	IDs++ ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
+		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -115,7 +109,7 @@ GameObject::GameObject(GameObject && other) :
 	//don't need to incr IDs
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
+		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -132,19 +126,19 @@ GameObject::GameObject(GameObject && other) :
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Position<long> & loc_) :
+GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Pos2<long> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(imageFileName),
 	size(Size<int>()),
 	type(type),
-	loc(new Position<long>(loc_, defaultCheck)),
+	loc(new Pos2<long>(loc_, defaultCheck)),
 	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
 
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
+		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -155,26 +149,26 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	//already set: currentlyThreading = new bool(false) ;
 }
 
-GameObject::GameObject(fastRand<long> rand) :
+GameObject::GameObject(FastRand<long> rand) :
 	goThread(nullptr),
 	ID(IDs),
 	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
-	loc(new Position<long>(rand, defaultCheck)),
+	loc(new Pos2<long>(rand, defaultCheck)),
 	vectDir(VectorHeading<long>(loc))
 {
 	IDs++ ;
 
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(MAX_X+1, MAX_Y+1) ;
+		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	initGraphicsData(false) ;
-	fastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
+	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
 	//already set: currentlyThreading = new bool(false) ;
 }
@@ -200,7 +194,7 @@ GameObject::~GameObject() {
 GameObject & GameObject::operator=(const GameObject & rhs) {
 	/* Debug code */
 	stringstream ss ;
-	ss << "Warning: GameObject assignment operator overload (copy) called." << '\n' ;
+	ss << "Warning: GameObject assignment operator overload (copy) called. This will cause performance issues." << '\n' ;
 	DebugOutput << ss.rdbuf() ;
 	/* End Debug code */
 	if (this != &rhs) {
@@ -208,20 +202,21 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->goThread = nullptr ;
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
-		//this->texture = nullptr ; //this GameObject will have to figure out what it's own texture and size are
-		//this->size = nullptr ;
 		this->type = rhs.type ;
+		initGraphicsData(true) ;
+
 		if (this->loc != nullptr) {
 			map->erase(this->loc) ;
 			delete loc ;
 		}
-        this->loc = new Position<long>(*(rhs.loc), defaultCheck) ;
+
+        loc = new Pos2<long>(*rhs.loc) ;
 		vectDir = VectorHeading<long>(loc) ;
 		map->place(this->loc, this, defaultCheck, true) ;
 		vectDir.updateAndNormalize() ;
 		
 		allGameObjects->push_back(this) ;
-		
+
 		IDs++ ;
 	}
 	return *this ;
@@ -300,12 +295,13 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture) {
 			DebugOutput << ss.rdbuf() ;
 			throw exception() ;
 		}
+
 		this->setTexture(tex) ;
 	}
 
 	//set size
-	int tempW = this->size.getW() ; //don't ever assign or change size directly
-	int tempH = this->size.getH() ;
+	int tempW = this->size.getWidth() ; //don't ever assign or change size directly
+	int tempH = this->size.getHeight() ;
 	SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
 	this->setSize(tempW, tempH) ; //assign new size to this GameObject
 }
@@ -419,7 +415,7 @@ void GameObject::defaultBehaviors() {
 	//we can change this to whatever we want
 }
 
-void GameObject::wanderVariedSpeed(fastRand<unsigned> speedVariance) {
+void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {
 	unsigned speedChange = speedVariance.nextValue() ; //smaller values are faster
 	wander(speedChange, false) ;
 }
@@ -445,20 +441,20 @@ void GameObject::wander(long xyOffset, bool followAlly) {
 	if ((!followAlly) || (ally == nullptr)) {
 
 		float nX = randSignFlip(xyOffset) ;
-		if (((loc->getX() + nX) > GameObject::MAX_X) || ((loc->getX() + nX) < GameObject::MIN_X)) {
+		if (((loc->getX() + nX) > GLOBAL_MAX_X) || ((loc->getX() + nX) < GLOBAL_MIN_X)) {
 			nX = (nX * -1) ;
 		}
 
 		//repeat for y coord
 		float nY = randSignFlip(xyOffset) ;
-		if (((loc->getY() + nY) > GameObject::MAX_Y) || ((loc->getY() + nY) < GameObject::MIN_Y)) {
+		if (((loc->getY() + nY) > GLOBAL_MAX_Y) || ((loc->getY() + nY) < GLOBAL_MIN_Y)) {
 			nY = (nY * -1) ;
 		}
 		auto vecdir = VectorHeading<long>(nX, nY, 0, this->loc) ;
 		moveNewDirection(vecdir) ;
 	}
 	else if ((ally != nullptr) && (followAlly)) {
-		this->moveTo(*(ally->getPosition())) ;
+		this->moveTo(*ally->getPosition()) ;
 	}
 }
 

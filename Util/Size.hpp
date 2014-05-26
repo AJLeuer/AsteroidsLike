@@ -59,11 +59,11 @@ public:
 
 	void setModifier(float modifier) { this->sizeModifier = modifier ; }
 
-	void setW(N w) { *(this->w) = w ; }
-	void setH(N h) { *(this->h) = h ; }
+	void setWidth(N w) { *(this->w) = w ; }
+	void setHeight(N h) { *(this->h) = h ; }
 
-	N getW() { return (*(this->w) * sizeModifier) ; }
-	N getH() { return (*(this->h) * sizeModifier) ; }
+	N getWidth() { return (*(this->w) * sizeModifier) ; }
+	N getHeight() { return (*(this->h) * sizeModifier) ; }
 
 } ;
 

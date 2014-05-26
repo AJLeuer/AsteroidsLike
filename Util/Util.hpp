@@ -22,7 +22,7 @@
 using namespace std ;
 
 template<typename T>
-class fastRand {
+class FastRand {
 	
 private:
 	std::random_device dev{};
@@ -33,10 +33,10 @@ private:
 	T max ;
 	
 public:
-	fastRand(T _min, T _max) ;
-	fastRand(const fastRand<T> & other) ;
-	fastRand<T> & operator=(const fastRand<T> & rhs) ;
-	~fastRand() ;
+	FastRand(T _min, T _max) ;
+	FastRand(const FastRand<T> & other) ;
+	FastRand<T> & operator=(const FastRand<T> & rhs) ;
+	~FastRand() ;
 	T nextValue() ;
 	T nextValue(T min, T max) ;
 	template<typename R> R nextValue(R _min, R _max) ;
@@ -47,7 +47,7 @@ public:
 
 
 template<typename T>
-fastRand<T>::fastRand(T _min, T _max) :
+FastRand<T>::FastRand(T _min, T _max) :
 	min(_min),
 	max(_max)
 {
@@ -57,7 +57,7 @@ fastRand<T>::fastRand(T _min, T _max) :
 }
 
 template<typename T>
-fastRand<T>::fastRand(const fastRand<T> & other)
+FastRand<T>::FastRand(const FastRand<T> & other)
 {
 	std::random_device dev2{} ;
 	dist = uniform_int_distribution<T>(other.min, other.max) ;
@@ -65,10 +65,10 @@ fastRand<T>::fastRand(const fastRand<T> & other)
 }
 
 template<typename T>
-fastRand<T>::~fastRand(){}
+FastRand<T>::~FastRand(){}
 
 template<typename T>
-fastRand<T> & fastRand<T>::operator=(const fastRand<T> & rhs)
+FastRand<T> & FastRand<T>::operator=(const FastRand<T> & rhs)
 {
 	if (this != &rhs) {
 		std::random_device dev2{} ;
@@ -79,29 +79,29 @@ fastRand<T> & fastRand<T>::operator=(const fastRand<T> & rhs)
 }
 
 template<typename T>
-T fastRand<T>::nextValue() {
+T FastRand<T>::nextValue() {
 	return dist(rnd) ;
 }
 
 template<typename T>
-T fastRand<T>::nextValue(T min, T max) {
+T FastRand<T>::nextValue(T min, T max) {
 	std::uniform_int_distribution<T> dif_dist{min, max} ;
 	return dif_dist(rnd) ;
 }
 
 template<typename T>
-T fastRand<T>::operator()() {
+T FastRand<T>::operator()() {
 	return nextValue() ;
 }
 
 template<typename T>
-T fastRand<T>::operator()(T min, T max) {
+T FastRand<T>::operator()(T min, T max) {
 	return nextValue(min, max) ;
 }
 
 template<typename T>
 template<typename R>
-R fastRand<T>::nextValue(R _min, R _max) {
+R FastRand<T>::nextValue(R _min, R _max) {
 	std::uniform_int_distribution<R> dif_dist{_min, _max} ;
 	return dif_dist(rnd) ;
 }
@@ -129,7 +129,7 @@ T * findSmallest_helper(unsigned long currSmallest, vector<T*> cont) ;
 
 template<typename T>
 T randSignFlip(T n) {
-	fastRand<unsigned long> rand(0, 1) ;
+	FastRand<unsigned long> rand(0, 1) ;
 	bool pos = rand.nextValue() % 2 ;
 	if (pos) {
 		return n ;
@@ -149,7 +149,7 @@ T setUnsigned(T n) {
 
 template <typename T>
 T chooseAtRand(T n1, T n2) {
-	fastRand<unsigned long> rand(0, 1) ;
+	FastRand<unsigned long> rand(0, 1) ;
 	bool first = rand.nextValue() ;
 	if (first) {
 		return n1 ;
@@ -265,13 +265,13 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 }
 
 template<class vec3, class vec2>
-SDL_Rect * convertToSDL_Rect(vec3 position, vec2 size) {
-	auto shape = new SDL_Rect() ;
-	shape->x = (int) position.getX() ;
-	shape->y = (int) position.getY() ;
-	shape->w = (int) size.getW() ;
-	shape->h = (int) size.getH() ;
-	return shape ;
+SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
+	auto shape = SDL_Rect() ;
+	shape.x = (int) position.getX() ;
+	shape.y = (int) position.getY() ;
+	shape.w = (int) size.getWidth() ;
+	shape.h = (int) size.getHeight() ;
+	return std::move(shape) ;
 }
 
 

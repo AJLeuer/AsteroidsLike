@@ -23,14 +23,14 @@ WorldController::WorldController() {}
 
 void WorldController::init() {
 
-	WorldController::gameObjects = GameObject::getAllGameObjects() ; 
+	WorldController::gameObjects = GameObject::getAllGameObjects() ;
 	WorldController::map = GameObject::getMap() ;
 	
 	/* debug code */
-	fastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
+	FastRand<long> rand(floor(GLOBAL_MIN_X, GLOBAL_MIN_Y), ceilling(GLOBAL_MAX_X, GLOBAL_MAX_Y)) ;
 	Position<long> pos(200, 200, 0) ;
 	for (unsigned i = 0 ; i < 30 ; i++) {
-		new GameObject(fastRand<long>(0, GLOBAL_MAX_X)) ;
+		new GameObject(FastRand<long>(0, GLOBAL_MAX_X)) ;
 	}
 	/* debug end */
 	
@@ -47,7 +47,7 @@ void WorldController::exec() {
 
 void WorldController::runWorldSimulation() {
 
-	fastRand<unsigned> speedVariance = fastRand<unsigned>(1, 3) ;
+	FastRand<unsigned> speedVariance = FastRand<unsigned>(1, 3) ;
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {

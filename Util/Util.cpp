@@ -17,7 +17,7 @@ char * basicAlphabet = new char[26] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'
 
 const string generateName(unsigned int length)  {
 	string s = "" ;
-	fastRand<int> rnd(0, 27) ;
+	FastRand<int> rnd(0, 27) ;
 	s += std::toupper(basicAlphabet[rnd.nextValue()]) ;
 	for (unsigned i = 0 ; i < length ; i++) {
 		s += basicAlphabet[(rnd.nextValue())] ;
