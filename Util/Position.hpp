@@ -57,7 +57,16 @@ protected:
 	N y ;
     N z ;
 
-protected:
+	/**
+	 * A special copying function that won't push another instance of ourselves onto
+	 * pastPositions or copy pastPositions (it's left null), avoiding the possibility of infinite recursion. Will use this for
+	 * when we need to push a copy of ourselves onto pastPositions. See setAll(), archive() and pastPositions.
+	 */
+	Position<N> copyNoSave() {
+		Position<N> copy {this->x, this->y, this->z} ;
+		copy.pastPositions = nullptr ;
+		return copy ;
+	}
 
 	/** A vector container storing all the previous positions of this Position object,
 	 *  with the most recent positions at the end of the vector, and the initial position at
@@ -452,23 +461,6 @@ public:
 		}
 	}
 
-} ;
-
-/**
- * Similar to Position, except stores copies of previous versions of itself
- */
-template<typename N>
-struct Pos2 : public Position<N> {
-	/**
-	 * A special copying function that won't push another instance of ourselves onto
-	 * pastPositions or copy pastPositions (it's left null), avoiding the possibility of infinite recursion. Will use this for
-	 * when we need to push a copy of ourselves onto pastPositions. See setAll(), archive() and pastPositions.
-	 */
-	Position<N> copyNoSave() {
-		Position<N> copy {this->x, this->y, this->z} ;
-		copy.pastPositions = nullptr ;
-		return copy ;
-	}
 } ;
 
 
