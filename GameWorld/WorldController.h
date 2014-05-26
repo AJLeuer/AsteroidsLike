@@ -9,6 +9,8 @@
 #ifndef __GameWorld__WorldController__
 #define __GameWorld__WorldController__
 
+#include <unistd.h>
+
 #include <iostream>
 #include <ostream>
 #include <vector>
