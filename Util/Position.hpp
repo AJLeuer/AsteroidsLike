@@ -399,11 +399,29 @@ public:
 		}
 	}
 
-	bool overBounds(BoundsCheck<N> check) {
-		if ((this->x > check.max_X) || (this->y > check.max_Y)) {
+	bool overBounds(const BoundsCheck<N> & check) {
+		if ((this->x >= check.max_X) || (this->y >= check.max_Y)) {
 			return true ;
 		}
 		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+
+	bool overXBounds(const BoundsCheck<N> & check) {
+		if ((this->x >= check.max_X) || (this->x < check.min_X)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+
+	bool overYBounds(const BoundsCheck<N> & check) {
+		if ((this->y >= check.max_Y) || (this->y < check.min_Y)) {
 			return true ;
 		}
 		else {
@@ -845,9 +863,12 @@ public:
 	
 	void normalize() ;
 	void updateAndNormalize() ;
-	Position<N> calculateNextPosition() ;
-	Position<N> calculateNextPosition(const BoundsCheck<N> &) ;
-	Position<N> calculateReverseNextPosition(const BoundsCheck<N> &) ;
+
+	static Position<N> calculateNextPosition(VectorHeading &) ;
+	static Position<N> calculateNextPosition(VectorHeading &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseNextPosition(VectorHeading &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseXPosition(VectorHeading &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseYPosition(VectorHeading &, const BoundsCheck<N> &) ;
 	static Position<N> calculateNextPosition(const VectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) ;
 
 } ;
@@ -947,38 +968,50 @@ void VectorHeading<N>::updateAndNormalize() {
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateNextPosition() {
-	normalize() ;
-	N nx = (*this->current).getX() + roundF((*this).getX()) ;
-	N ny = (*this->current).getY() + roundF((*this).getY()) ;
-	N nz = (*this->current).getZ() + roundF((*this).getZ()) ;
+Position<N> VectorHeading<N>::calculateNextPosition(VectorHeading & vec) {
+	vec.normalize() ;
+	N nx = (vec.current)->getX() + roundF(vec.getX()) ;
+	N ny = (vec.current)->getY() + roundF(vec.getY()) ;
+	N nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
 	Position<N> next(nx, ny, nz) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateNextPosition(const BoundsCheck<N> & check) {
-	normalize() ;
-	N nx = (*this->current).getX() + roundF((*this).getX()) ;
-	N ny = (*this->current).getY() + roundF((*this).getY()) ;
-	N nz = (*this->current).getZ() + roundF((*this).getZ()) ;
+Position<N> VectorHeading<N>::calculateNextPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
+	vec.normalize() ;
+	N nx = (vec.current)->getX() + roundF(vec.getX()) ;
+	N ny = (vec.current)->getY() + roundF(vec.getY()) ;
+	N nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
 	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateReverseNextPosition(const BoundsCheck<N> & check) {
-	this->x = this->x * -1 ;
-	this->y = this->y * -1 ;
-	this->z = this->z * -1 ;
+Position<N> VectorHeading<N>::calculateReverseNextPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
+	vec.x = vec.x * -1 ;
+	vec.y = vec.y * -1 ;
+	vec.z = vec.z * -1 ;
 	return calculateNextPosition(check) ;
+}
+
+template<typename N>
+Position<N> VectorHeading<N>::calculateReverseXPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
+	vec.x = vec.x * -1 ;
+	return calculateNextPosition(vec, check) ;
+}
+
+template<typename N>
+Position<N> VectorHeading<N>::calculateReverseYPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
+	vec.y = vec.y * -1 ;
+	return calculateNextPosition(vec, check) ;
 }
 
 template<typename N>
 Position<N> VectorHeading<N>::calculateNextPosition(const VectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) {
 	Position<float> direc(dir.x, dir.y, dir.z) ;
 	VectorHeading<N> calc = VectorHeading<N>(direc, current, true) ;
-	return calc.calculateNextPosition(check) ;
+	return calculateNextPosition(calc, check) ;
 }
 
 

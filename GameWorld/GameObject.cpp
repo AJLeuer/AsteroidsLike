@@ -393,14 +393,20 @@ void GameObject::moveTo(Position<long> to) {
 }
 
 void GameObject::moveSameDirection() {
+
 	vectDir.normalize() ;
-	Position<long> next ;
-	if (loc->overBounds(defaultCheck) == true) {
-		next = vectDir.calculateReverseNextPosition(defaultCheck) ;
+	Position<long> next = VectorHeading<long>::calculateNextPosition(vectDir) ;
+
+	if (next.overXBounds(defaultCheck) == true) {
+		next = VectorHeading<long>::calculateReverseXPosition(vectDir, defaultCheck) ;
+	}
+	if (next.overYBounds(defaultCheck) == true) {
+		next = VectorHeading<long>::calculateReverseYPosition(vectDir, defaultCheck) ;
 	}
 	else {
-		next = vectDir.calculateNextPosition() ;
+		next = VectorHeading<long>::calculateNextPosition(vectDir) ;
 	}
+	
 	moveTo(std::move(next)) ;
 }
 
@@ -441,21 +447,44 @@ void GameObject::allyWith(const GameObject * other) {
 
 void GameObject::wander() {
 
-	FastRand<int> randm(0, 1) ;
+	FastRand<int> randm(0, 5) ;
 	int cases = randm() ;
 
 	switch (cases) {
-		case 0:
+		case 0 :
 		{
 			moveUp() ;
+			break ;
 		}
-		break ;
 
-		case 1:
+		case 1 :
 		{
 			moveDown() ;
+			break;
 		}
-		break;
+
+		case 2 :
+		{
+			moveUpRight() ;
+			break ;
+		}
+
+		case 3 :
+		{
+			moveUpLeft() ;
+			break ;
+		}
+
+		case 4 :
+		{
+			moveDownRight() ;
+			break ;
+		}
+		case 5 :
+		{
+			moveDownLeft() ;
+			break ;
+		}
 	}
 }
 

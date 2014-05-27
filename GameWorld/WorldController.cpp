@@ -31,7 +31,7 @@ void WorldController::init() {
 	long startingYArea = (GLOBAL_MAX_Y * 0.5) ;
 	
 	/* debug code */
-	for (unsigned i = 0 ; i < 30 ; i++) {
+	for (unsigned i = 0 ; i < 20 ; i++) {
 		new GameObject(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
 					   0.50, Pos2<long>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck)) ;
 	}
@@ -49,7 +49,6 @@ void WorldController::exec() {
 }
 
 void WorldController::runWorldSimulation() {
-
 
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		gameObjects->at(i)->wander() ;

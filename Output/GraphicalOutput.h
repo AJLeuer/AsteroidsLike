@@ -48,7 +48,7 @@ protected:
 	 */
 	static void renderTextures() ;
 	
-	static void renderTexture(GameObject *) ;
+	static void renderObject(GameObject *) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	
