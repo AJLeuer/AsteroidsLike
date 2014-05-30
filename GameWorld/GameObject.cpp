@@ -31,7 +31,8 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	type(AssetType::character),
 	loc(new Pos2<long>(0, 0, 0, defaultCheck)),
-	vectDir(VectorHeading<long>(loc))
+	precisionLocation(0.0, 0.0, 0.0),
+	vectDir(DirectionVector<long>(loc))
 {
 	IDs++ ;
 
@@ -58,7 +59,8 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	type(other.type),
 	loc(new Pos2<long>(*(other.loc), defaultCheck)),
-	vectDir(VectorHeading<long>(other.vectDir))
+	precisionLocation(other.precisionLocation),
+	vectDir(DirectionVector<long>(other.vectDir))
 {
 	/* debug */
 	stringstream ss ;
@@ -100,6 +102,7 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	type(other.type),
 	loc(other.loc),
+	precisionLocation(std::move(other.precisionLocation)),
 	vectDir(std::move(other.vectDir))
 {
 	/* debug */
@@ -133,7 +136,8 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	size(Size<int>()),
 	type(type),
 	loc(new Pos2<long>(loc_, defaultCheck)),
-	vectDir(VectorHeading<long>(loc))
+	precisionLocation(loc_.getX(), loc_.getY(), loc_.getZ()),
+	vectDir(DirectionVector<long>(loc))
 {
 	IDs++ ;
 
@@ -156,7 +160,7 @@ GameObject::GameObject(FastRand<long> rand) :
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
 	loc(new Pos2<long>(rand, defaultCheck)),
-	vectDir(VectorHeading<long>(loc))
+	vectDir(DirectionVector<long>(loc))
 {
 	IDs++ ;
 
@@ -164,7 +168,7 @@ GameObject::GameObject(FastRand<long> rand) :
 		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
-
+	precisionLocation = Position<float>(loc->getX(), loc->getY(), loc->getZ()) ;
 	allGameObjects->push_back(this) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	initGraphicsData(false) ;
@@ -211,7 +215,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		}
 
         loc = new Pos2<long>(*rhs.loc) ;
-		vectDir = VectorHeading<long>(loc) ;
+		precisionLocation = Position<float>(rhs.precisionLocation) ;
+		vectDir = DirectionVector<long>(loc) ;
 		map->place(this->loc, this, defaultCheck, true) ;
 		vectDir.updateAndNormalize() ;
 		
@@ -251,6 +256,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
+		this->precisionLocation = std::move(rhs.precisionLocation) ;
 		this->vectDir = std::move(rhs.vectDir) ;
 		loc->checkBounds(defaultCheck) ;
 		vectDir.updateAndNormalize() ;
@@ -380,14 +386,14 @@ void GameObject::textDescription(ostream * writeTo) const {
 
 void GameObject::moveTo(Position<long> * to) {
 	map->erase(this->getPosition()) ;
-	this->loc->setAll(*to) ;
+	loc->setAll(*to) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	vectDir.updateAndNormalize() ;
 }
 
 void GameObject::moveTo(Position<long> to) {
 	map->erase(this->getPosition()) ;
-	this->loc->setAll(to) ;
+	loc->setAll(to) ;
 	map->place(this->loc, this, defaultCheck, true) ;
 	vectDir.updateAndNormalize() ;
 }
@@ -395,28 +401,31 @@ void GameObject::moveTo(Position<long> to) {
 void GameObject::moveSameDirection() {
 
 	vectDir.normalize() ;
-	Position<long> next = VectorHeading<long>::calculateNextPosition(vectDir) ;
+	Position<long> next = DirectionVector<long>::calculateNextPosition<long>(vectDir) ;
+	precisionLocation = DirectionVector<long>::calculateNextPosition<float>(vectDir) ;
 
 	if (next.overXBounds(defaultCheck) == true) {
-		next = VectorHeading<long>::calculateReverseXPosition(vectDir, defaultCheck) ;
+		next = DirectionVector<long>::calculateReverseXPosition(vectDir, defaultCheck) ;
+		precisionLocation = DirectionVector<long>::calculateReverseXPosition<float>(vectDir, defaultCheckFP) ;
 	}
 	if (next.overYBounds(defaultCheck) == true) {
-		next = VectorHeading<long>::calculateReverseYPosition(vectDir, defaultCheck) ;
+		next = DirectionVector<long>::calculateReverseYPosition(vectDir, defaultCheck) ;
+		precisionLocation = DirectionVector<long>::calculateReverseYPosition<float>(vectDir, defaultCheckFP) ;
 	}
-	else {
-		next = VectorHeading<long>::calculateNextPosition(vectDir) ;
-	}
-	
+
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::moveNewDirection(VectorHeading<long> & newDirection) {
+void GameObject::moveNewDirection(DirectionVector<long> & newDirection) {
+
 	newDirection.normalize() ;
-	auto next = VectorHeading<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
+	auto next = DirectionVector<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
+	precisionLocation = DirectionVector<long>::calculateNextPosition<float>(newDirection, loc, defaultCheckFP) ;
 	moveTo(std::move(next)) ;
 }
 
 void GameObject::defaultBehaviors_threaded() {
+
 	void (GameObject::*behaviorsPtr)() = &GameObject::defaultBehaviors ;
 	startThreading(behaviorsPtr, false) ;
 }

@@ -122,7 +122,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Position(N x, N y, N z) : x{x}, y{y}, z{z} {}
+	Position(N x, N y, N z) : x(x), y(y), z(z) {}
 	
     /**
      * Creates a Position with coordinates initialized to the
@@ -132,7 +132,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Position(N x, N y, N z, const BoundsCheck<N> & check) : x{x}, y{y}, z{z} {
+	Position(N x, N y, N z, const BoundsCheck<N> & check) : x(x), y(y), z(z) {
 		this->checkBounds(check) ;
 	}
 	
@@ -841,50 +841,61 @@ public:
  * Note: do not use with unsigned ints
  */
 template<typename N>
-struct VectorHeading : public Position<float> {
+struct DirectionVector : public Position<float> {
 	
 protected:
 	Position<N> last ;
 	const Position<N> * current ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	VectorHeading(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
+	DirectionVector(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
 	void update() ;
 	
 public:
-	VectorHeading(float headingX, float headingY, float headingZ, Position<N> * current_) ;
-	VectorHeading(const Position<N> & last_, Position<N> * current_) ;
-	VectorHeading(const Position<N> * current_) ;
-	VectorHeading(const VectorHeading<N> & other) ;
-	VectorHeading(VectorHeading<N> && other) ;
-	~VectorHeading() ;
-	VectorHeading & operator=(const VectorHeading<N> & rhs) ;
-	VectorHeading & operator=(VectorHeading<N> && rhs) ;
+	DirectionVector(float headingX, float headingY, float headingZ, Position<N> * current_) ;
+	DirectionVector(const Position<N> & last_, Position<N> * current_) ;
+	DirectionVector(const Position<N> * current_) ;
+	DirectionVector(const DirectionVector<N> & other) ;
+	DirectionVector(DirectionVector<N> && other) ;
+	~DirectionVector() ;
+	DirectionVector & operator=(const DirectionVector<N> & rhs) ;
+	DirectionVector & operator=(DirectionVector<N> && rhs) ;
 	
 	void normalize() ;
 	void updateAndNormalize() ;
 
-	static Position<N> calculateNextPosition(VectorHeading &) ;
-	static Position<N> calculateNextPosition(VectorHeading &, const BoundsCheck<N> &) ;
-	static Position<N> calculateReverseNextPosition(VectorHeading &, const BoundsCheck<N> &) ;
-	static Position<N> calculateReverseXPosition(VectorHeading &, const BoundsCheck<N> &) ;
-	static Position<N> calculateReverseYPosition(VectorHeading &, const BoundsCheck<N> &) ;
-	static Position<N> calculateNextPosition(const VectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) ;
+	template<typename M>
+	static Position<M> calculateNextPosition(DirectionVector<N> &) ;
+
+	template<typename M>
+	static Position<M> calculateNextPosition(DirectionVector<N> &, const BoundsCheck<M> &) ;
+
+	template<typename M>
+	static Position<M> calculateReverseNextPosition(DirectionVector<N> &, const BoundsCheck<M> &) ;
+
+	template<typename M>
+	static Position<M> calculateReverseXPosition(DirectionVector<N> &, const BoundsCheck<M> &) ;
+
+	template<typename M>
+	static Position<M> calculateReverseYPosition(DirectionVector<N> &, const BoundsCheck<M> &) ;
+
+	template<typename M>
+	static Position<M> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, const BoundsCheck<M> & check) ;
 
 } ;
 
 template<typename N>
-VectorHeading<N>::VectorHeading(float headingX, float headingY, float headingZ, Position<N> * current_) :
+DirectionVector<N>::DirectionVector(float headingX, float headingY, float headingZ, Position<N> * current_) :
 	Position<float>(headingX, headingY, headingZ),
 	current(current_) {}
 
 template<typename N>
-VectorHeading<N>::VectorHeading(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
+DirectionVector<N>::DirectionVector(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_) {}
 
 template<typename N>
-VectorHeading<N>::VectorHeading(const Position<N> & last_, Position<N> * current_) :
+DirectionVector<N>::DirectionVector(const Position<N> & last_, Position<N> * current_) :
 	Position<float>(),
 	last(last_), current(current_)
 {
@@ -892,17 +903,17 @@ VectorHeading<N>::VectorHeading(const Position<N> & last_, Position<N> * current
 }
 
 template<typename N>
-VectorHeading<N>::VectorHeading(const Position<N> * current_) :
+DirectionVector<N>::DirectionVector(const Position<N> * current_) :
 	Position<float>(),
 	last(*current_), current(current_) {}
 
 template<typename N>
-VectorHeading<N>::VectorHeading(const VectorHeading<N> & other) :
+DirectionVector<N>::DirectionVector(const DirectionVector<N> & other) :
 	Position<float>(other),
-	last(Position<N>(other.last)), current(other.current) {}
+	last(Position<N>(other.last)) {}
 
 template<typename N>
-VectorHeading<N>::VectorHeading(VectorHeading<N> && other) :
+DirectionVector<N>::DirectionVector(DirectionVector<N> && other) :
 	Position<float>(std::move(other)),
 	last(std::move(other.last)), current(other.current)
 {
@@ -910,15 +921,15 @@ VectorHeading<N>::VectorHeading(VectorHeading<N> && other) :
 }
 
 template<typename N>
-VectorHeading<N>::~VectorHeading()
+DirectionVector<N>::~DirectionVector()
 {
 	this->current = nullptr ;
 }
 
 template<typename N>
-VectorHeading<N> & VectorHeading<N>::operator=(const VectorHeading<N> & rhs) {
+DirectionVector<N> & DirectionVector<N>::operator=(const DirectionVector<N> & rhs) {
 	if (this != &rhs) {
-		this->copyIgnoreArchived(rhs) ;
+		this->Position<float>::operator=(rhs) ;
 		this->last = Position<N>(rhs.last) ;
 		this->current = rhs.current ;
 	}
@@ -926,7 +937,7 @@ VectorHeading<N> & VectorHeading<N>::operator=(const VectorHeading<N> & rhs) {
 }
 
 template<typename N>
-VectorHeading<N> & VectorHeading<N>::operator=(VectorHeading<N> && rhs) {
+DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
 	if (this != &rhs) {
 		this->Position<float>::operator=(std::move(rhs)) ;
 		this->last = Position<N>(rhs.last) ;
@@ -937,20 +948,21 @@ VectorHeading<N> & VectorHeading<N>::operator=(VectorHeading<N> && rhs) {
 }
 
 template<typename N>
-void VectorHeading<N>::update() {
-	
+void DirectionVector<N>::update() {
+	/*
 	if (last != *current) { //only if we've moved...
         
-		Position<N> temp = ((*current) - last) ;              /* uses Location's operator+() overload to add
+		Position<N> temp = ((*current) - last) ;               uses Location's operator+() overload to add
 															   our x, y, and z (which are offset values) to those
-															   stored in current, giving our new location */
+															   stored in current, giving our new location
 		this->setAll(temp.getX(), temp.getY(), temp.getZ()) ;
 		this->last = std::move((Position<N>(*this->current))) ;
 	}
+	*/
 }
 
 template<typename N>
-void VectorHeading<N>::normalize() {
+void DirectionVector<N>::normalize() {
 	auto distance = pythag<float>(x, y) ;
 	if (x != 0) {
 		x = (x / distance) ;
@@ -962,55 +974,89 @@ void VectorHeading<N>::normalize() {
 }
 
 template<typename N>
-void VectorHeading<N>::updateAndNormalize() {
+void DirectionVector<N>::updateAndNormalize() {
 	update() ;
 	normalize() ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateNextPosition(VectorHeading & vec) {
+template<typename M>
+Position<M> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec) {
+	
 	vec.normalize() ;
-	N nx = (vec.current)->getX() + roundF(vec.getX()) ;
-	N ny = (vec.current)->getY() + roundF(vec.getY()) ;
-	N nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
-	Position<N> next(nx, ny, nz) ;
+
+	N nx ;
+	N ny ;
+	N nz ;
+
+	if ((typeid(M) == typeid(float)) || (typeid(M) == typeid(double))) {
+		nx = (vec.current)->getX() + vec.getX() ;
+		ny = (vec.current)->getY() + vec.getY() ;
+		nz = (vec.current)->getZ() + vec.getZ() ;
+	}
+	else {
+		nx = (vec.current)->getX() + roundF(vec.getX()) ;
+		ny = (vec.current)->getY() + roundF(vec.getY()) ;
+		nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
+	}
+
+	Position<M> next(nx, ny, nz) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateNextPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
+template<typename M>
+Position<M> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, const BoundsCheck<M> & check) {
+
 	vec.normalize() ;
-	N nx = (vec.current)->getX() + roundF(vec.getX()) ;
-	N ny = (vec.current)->getY() + roundF(vec.getY()) ;
-	N nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
-	Position<N> next(nx, ny, nz, check) ;
+
+	M nx ;
+	M ny ;
+	M nz ;
+
+	if ((typeid(M) == typeid(float)) || (typeid(M) == typeid(double))) {
+		nx = (vec.current)->getX() + vec.getX() ;
+		ny = (vec.current)->getY() + vec.getY() ;
+		nz = (vec.current)->getZ() + vec.getZ() ;
+	}
+	else {
+		nx = (vec.current)->getX() + roundF(vec.getX()) ;
+		ny = (vec.current)->getY() + roundF(vec.getY()) ;
+		nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
+	}
+
+	Position<M> next(nx, ny, nz, check) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateReverseNextPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
-	vec.x = vec.x * -1 ;
-	vec.y = vec.y * -1 ;
-	vec.z = vec.z * -1 ;
+template<typename M>
+Position<M> DirectionVector<N>::calculateReverseNextPosition(DirectionVector<N> & vec, const BoundsCheck<M> & check) {
+	vec.x = (vec.x * -1) ;
+	vec.y = (vec.y * -1) ;
+	vec.z = (vec.z * -1) ;
 	return calculateNextPosition(check) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateReverseXPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
-	vec.x = vec.x * -1 ;
+template<typename M>
+Position<M> DirectionVector<N>::calculateReverseXPosition(DirectionVector<N> & vec, const BoundsCheck<M> & check) {
+	vec.x = (vec.x * -1) ;
 	return calculateNextPosition(vec, check) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateReverseYPosition(VectorHeading & vec, const BoundsCheck<N> & check) {
-	vec.y = vec.y * -1 ;
+template<typename M>
+Position<M> DirectionVector<N>::calculateReverseYPosition(DirectionVector<N> & vec, const BoundsCheck<M> & check) {
+	vec.y = (vec.y * -1) ;
 	return calculateNextPosition(vec, check) ;
 }
 
 template<typename N>
-Position<N> VectorHeading<N>::calculateNextPosition(const VectorHeading<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) {
+template<typename M>
+Position<M> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, const BoundsCheck<M> & check) {
 	Position<float> direc(dir.x, dir.y, dir.z) ;
-	VectorHeading<N> calc = VectorHeading<N>(direc, current, true) ;
+	DirectionVector<N> calc = DirectionVector<N>(direc, current, true) ;
 	return calculateNextPosition(calc, check) ;
 }
 

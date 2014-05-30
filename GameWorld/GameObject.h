@@ -92,15 +92,14 @@ protected:
 	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
 
 	Size<int> size ;
+	Position<float> precisionLocation ;
 	Pos2<long> * loc ;
-	VectorHeading<long> vectDir ;
+	DirectionVector<long> vectDir ;
 
 	AssetType type ;
 	
 	bool markedForDeletion = false ;
-	
 
-	
 	const GameObject * ally = nullptr ;
 	
 	/**
@@ -269,16 +268,17 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 	
 	/**
-	 * Moves this GameObject to the Position<long> moveTo
+	 * Moves this GameObject to the Position<long> moveTo. All other movement
+	 * functions should call this.
 	 *
 	 * @param moveTO The Position<long> where this GameObject is to move
 	 */
 	void moveTo(Position<long> * to) ;
 
 	/**
-	 * Moves this GameObject to the Position<long> moveTo
+	 * Moves this GameObject to the Position<long> moveTo.
 	 *
-	 * @param moveTO The Position<long> where this GameObject is to move
+	 * @param to The Position<long> where this GameObject is to move
 	 */
 	void moveTo(Position<long> to) ;
 
@@ -296,17 +296,17 @@ public:
 
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
-	 * VectorHeading of its last move
+	 * DirectionVector of its last move
 	 */
 	void moveSameDirection() ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the given
-	 * VectorHeading
+	 * DirectionVector
 	 *
 	 * @param newDirection The new vectorDirection specifying the direction of travel
 	 */
-	void moveNewDirection(VectorHeading<long> & newDirection) ;
+	void moveNewDirection(DirectionVector<long> & newDirection) ;
 	
 	
 	/**
@@ -347,7 +347,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const VectorHeading<long> getVector() const { return this->vectDir ; }
+	const DirectionVector<long> getVector() const { return this->vectDir ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

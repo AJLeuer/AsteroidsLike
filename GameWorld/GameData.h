@@ -98,6 +98,7 @@ extern const long GLOBAL_MAX_Y ;
 extern const long GLOBAL_MIN_Y ;
 
 static const BoundsCheck<long> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
+static const BoundsCheck<float> defaultCheckFP(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
 
 extern string currentDirectory ;
 

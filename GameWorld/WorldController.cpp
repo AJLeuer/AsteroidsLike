@@ -27,18 +27,16 @@ void WorldController::init() {
 	WorldController::map = GameObject::getMap() ;
 
 	FastRand<int> posModifier(-100, 100) ;
+
 	long startingXArea = (GLOBAL_MAX_X * 0.75) ;
 	long startingYArea = (GLOBAL_MAX_Y * 0.5) ;
 	
-	/* debug code */
-	for (unsigned i = 0 ; i < 20 ; i++) {
+
+	for (unsigned i = 0 ; i < 2 ; i++) {
 		new GameObject(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
 					   0.50, Pos2<long>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck)) ;
 	}
-	/* debug end */
-	
-	//we also assigned all the MAX constants in both GameObject and
-	//WorldController so that they sync together (see above)
+
 
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 }
@@ -50,14 +48,20 @@ void WorldController::exec() {
 
 void WorldController::runWorldSimulation() {
 
+	DirectionVector<long> rightUp(2, 1, 0, nullptr) ;
+	DirectionVector<long> leftUp(-2, 1, 0, nullptr) ;
+
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->wander() ;
+		//
 	}
+
+	gameObjects->at(0)->moveNewDirection(rightUp) ;
+	gameObjects->at(1)->moveNewDirection(leftUp) ;
+
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
 			gameObjects->at(i)->moveSameDirection() ;
-
 		}
         usleep(eight_milliseconds) ;
 	}
