@@ -20,10 +20,10 @@ Player::Player(const string & name, const string & imageFile) :
 }
 
 void Player::registerForCallbacks() {
-	KeyInputRegister * moveUpRegister = new KeyInputRegister("W", this, (&GameInterface::moveUp)) ;
-	KeyInputRegister * moveDownRegister = new KeyInputRegister("S", this, (&GameInterface::moveDown)) ;
-	KeyInputRegister * moveLeftRegister = new KeyInputRegister("A", this, (&GameInterface::moveLeft)) ;
-	KeyInputRegister * moveRightRegister = new KeyInputRegister("D", this, (&GameInterface::moveRight)) ;
+	KeyInputRegister * moveUpRegister = new KeyInputRegister({"W", "8"}, this, (&GameInterface::moveUp)) ;
+	KeyInputRegister * moveDownRegister = new KeyInputRegister({"S", "2"}, this, (&GameInterface::moveDown)) ;
+	KeyInputRegister * moveLeftRegister = new KeyInputRegister({"A", "4"}, this, (&GameInterface::moveLeft)) ;
+	KeyInputRegister * moveRightRegister = new KeyInputRegister({"D", "6"}, this, (&GameInterface::moveRight)) ;
 
 	InputController::registerForKeypress(moveUpRegister) ;
 	InputController::registerForKeypress(moveDownRegister) ;

@@ -9,10 +9,26 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define GLOBAL_MAX_X_ 1920
-#define GLOBAL_MIN_X_ 0
-#define GLOBAL_MAX_Y_ 1080
-#define GLOBAL_MIN_Y_ 0
+#define MAX_X_ 1920
+#define MIN_X_ 0
+#define MAX_Y_ 1080
+#define MIN_Y_ 0
+
+/* comment this out (or #undef) when not running in high-dpi mode */
+//#define HIGH_DPI
+
+#ifdef  HIGH_DPI
+#define GLOBAL_MAX_X_ (MAX_X_ / 2)
+#define GLOBAL_MIN_X_ (MIN_X_ / 2)
+#define GLOBAL_MAX_Y_ (MAX_Y_ / 2)
+#define GLOBAL_MIN_Y_ (MIN_Y_ / 2)
+
+#else
+#define GLOBAL_MAX_X_ MAX_X_
+#define GLOBAL_MIN_X_ MIN_X_
+#define GLOBAL_MAX_Y_ MAX_Y_
+#define GLOBAL_MIN_Y_ MIN_Y_
+#endif
 
 #define eight_milliseconds 8333 //in microseconds
 

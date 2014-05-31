@@ -10,6 +10,18 @@
 
 #include "Input.hpp"
 
+using namespace std ;
+
+void KeyInputRegister::callBack() {
+    if (member_callOn != nullptr) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
+        //then call it on that object
+        (member_callOn->*member_callBackFn)();
+    }
+    else if (member_callOn == nullptr) { //else this is a global or static function, just call it
+        (*callBackFn)() ;
+    }
+}
+
 
 vector<KeyInputRegister *> * InputController::keyInputRegistry = new vector<KeyInputRegister *>() ;
 
@@ -18,14 +30,21 @@ const unsigned char * InputController::keys ;
 int InputController::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter
 
 void InputController::listenForKeyEvents() {
-	const char * keyAssignedToCallback ;
+	const vector<string> * keysAssignedToCallback ;
 	for	(unsigned i = 0 ; ((i < keyInputRegistry->size()) && (GLOBAL_CONTINUE_SIGNAL == true)) ; i++) {
+        
 		SDL_PumpEvents() ; //calling this to update state of keys
-		keyAssignedToCallback = keyInputRegistry->at(i)->requestedKeyboardChar.c_str() ;
-		auto currScanCode = getScancodeFromChar(keyAssignedToCallback) ;
-		if (keys[currScanCode] == 1) { // key is 1 if pressed
-			keyInputRegistry->at(i)->callBack() ;
-		}
+		keysAssignedToCallback = keyInputRegistry->at(i)->getAllRequestedKeys() ;
+        
+        /* iterate through every key paired with the callback function at the current index, and
+           if there's a match (the key was pressed) call it */
+        for (auto j = 0 ; j < keysAssignedToCallback->size() ; j++) {
+            auto currScanCode = getScancodeFromChar(keysAssignedToCallback->at(j).c_str()) ;
+            if (keys[currScanCode] == 1) { // key is 1 if pressed
+                keyInputRegistry->at(i)->callBack() ;
+            }
+        }
+		
 		if (GLOBAL_CONTINUE_SIGNAL == false) {
 			break ;
 		}

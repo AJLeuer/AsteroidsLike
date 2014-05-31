@@ -29,11 +29,12 @@ using namespace std ;
  */
 struct KeyInputRegister {
 	
+private:
 	/**
 	 * The string representing the keyboard key
 	 * the client wishes to listen for
 	 */
-	string requestedKeyboardChar ;
+	vector<string> requestedKeyboardChars ;
 
 	GameInterface * member_callOn ;
 	
@@ -52,36 +53,38 @@ struct KeyInputRegister {
 	 * KeyInputRegister where a callBackFn, and not a member_callBackFn, is held)
 	 */
 	void (*callBackFn)() ;
+    
+public:
 	
 	KeyInputRegister() {} ;
-	
-	
+    
+    
 	KeyInputRegister(const KeyInputRegister & other) :
-		requestedKeyboardChar(other.requestedKeyboardChar),
+		requestedKeyboardChars(vector<string>(other.requestedKeyboardChars)),
 		member_callOn(other.member_callOn), member_callBackFn(other.member_callBackFn) {} 
 	
 	KeyInputRegister(KeyInputRegister && other) :
-		requestedKeyboardChar(std::move(other.requestedKeyboardChar)),
+		requestedKeyboardChars(std::move(other.requestedKeyboardChars)),
 		member_callOn(other.member_callOn), member_callBackFn(std::move(other.member_callBackFn)) {}
+    
+    KeyInputRegister(vector<string> keyChars, GameInterface * callOn, void (GameInterface::*cb)()) :
+        requestedKeyboardChars(keyChars), member_callOn(callOn), member_callBackFn(cb) {}
+	
+	KeyInputRegister(vector<string> keyChars, void (*cb)()) :
+        requestedKeyboardChars(keyChars), member_callOn(nullptr), callBackFn(cb) {}
 	
 	KeyInputRegister(const char * ch, GameInterface * callOn, void (GameInterface::*cb)()) :
-		requestedKeyboardChar(ch), member_callOn(callOn), member_callBackFn(cb) {}
+        requestedKeyboardChars(vector<string>{ch}), member_callOn(callOn), member_callBackFn(cb) {}
 	
 	KeyInputRegister(const char * ch, void (*cb)()) :
-		requestedKeyboardChar(ch), member_callOn(nullptr), callBackFn(cb) {}
+        requestedKeyboardChars(vector<string>{ch}), member_callOn(nullptr), callBackFn(cb) {}
 	
 	~KeyInputRegister() {}
+    
+    const vector<string> * getAllRequestedKeys() { return &requestedKeyboardChars ; }
 	
-	
-	inline void callBack() {
-		if (member_callOn != nullptr) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
-										//then call it on that object
-			(member_callOn->*member_callBackFn)();
-		}
-		else if (member_callOn == nullptr) { //else this is a global or static function, just call it
-			(*callBackFn)() ;
-		}
-	}
+	void callBack() ;
+    
 	
 } ;
 

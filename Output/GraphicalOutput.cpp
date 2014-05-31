@@ -17,6 +17,9 @@ SDL_Renderer * GraphicalOutput::renderer = NULL ;
 
 
 void GraphicalOutput::init() {
+    
+    auto testX = GLOBAL_MAX_X ;
+    auto testY = GLOBAL_MAX_Y ;
 	
 	int sdlinit_error = SDL_InitSubSystem(SDL_INIT_VIDEO) ;
 
@@ -36,8 +39,8 @@ void GraphicalOutput::init() {
 
 	window = SDL_CreateWindow("SDL 2 window", SDL_WINDOWPOS_CENTERED,     // x position, centered
 											  SDL_WINDOWPOS_CENTERED,     // y position, centered
-											  (int)(GLOBAL_MAX_X / 2),                        // width, in pixels (/2 for highdpi)
-											  (int)(GLOBAL_MAX_Y / 2),                        // height, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_X),                        // width, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_Y),                        // height, in pixels (/2 for highdpi)
 											  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
 
 	/* debug code */
