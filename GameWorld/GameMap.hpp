@@ -17,7 +17,7 @@
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
-#include "../Util/Navigator.h"
+#include "../Util/Navigator.hpp"
 #include "GameData.h"
 
 
@@ -30,7 +30,7 @@ private:
 	array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1> * intern_map ;
 	
 	template<typename N>
-	void findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) ;
+	void findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
 	
 	GameMap<string> * gmDebug ; //debug
 
@@ -128,7 +128,7 @@ GameMap<T>::~GameMap() {
 
 /**
  * Places mapObj at Position where. If this Position is taken, places at the nearest Position that is free, and updates the
- * Position object pointed by where to reflect the new Position
+ * Position object pointed by where to reflect the new Position.
  */
 template<class T>
 template<typename N>
@@ -139,7 +139,7 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 	}
 	
 	if (at(where) == nullptr) {
-		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
+		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
 		mapMembers++ ;
 		return ;
 	}
@@ -168,7 +168,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		throw new exception() ;
 	}
 	if (at(where) == nullptr) {
-		intern_map->at(where->getX())->at(where->getY()) = mapObj ;
+		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
 		mapMembers++ ;
 		return ;
 	}
@@ -180,25 +180,25 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		switch (swt) {
 			case 0:
 			{
-				Position<N> * here = new Position<N>(where->getX(), where->getY() + 1, where->getZ(), check) ;
+				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() + 1, where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
 			}
 
 			case 1:
 			{
-				Position<N> * here = new Position<N>(where->getX(), where->getY() - 1, where->getZ(), check) ;
+				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() - 1, where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
 			}
 				
 			case 2:
 			{
-				Position<N> * here = new Position<N>(where->getX() + 1, where->getY(), where->getZ(), check) ;
+				Position<N> * here = new Position<N>(where->getIntX() + 1, where->getIntY(), where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
 			}
 				
 			case 3:
 			{
-				Position<N> * here = new Position<N>(where->getX() - 1, where->getY(), where->getZ(), check);
+				Position<N> * here = new Position<N>(where->getIntX() - 1, where->getIntY(), where->getIntZ(), check);
 				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
 			}
 			default:
@@ -219,7 +219,7 @@ void GameMap<T>::erase(const Position<N> * currentLoc) {
 	if (at(currentLoc) != nullptr) {
 		mapMembers-- ;
 	}
-	intern_map->at(currentLoc->getX())->at(currentLoc->getY()) = nullptr ;
+	intern_map->at(currentLoc->getIntX())->at(currentLoc->getIntY()) = nullptr ;
 }
 
 template<class T>
@@ -242,8 +242,8 @@ void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc) {
 
 template<class T>
 template<typename N>
-T* GameMap<T>::at(const Position<N> * where) {
-	return intern_map->at(where->getX())->at(where->getY()) ;
+T * GameMap<T>::at(const Position<N> * where) {
+	return intern_map->at(where->getIntX())->at(where->getIntY()) ;
 }
 
 template<class T>
@@ -282,14 +282,14 @@ vector<T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N y_lim)
 	vector<T*> * store = new vector<T*>() ;
 	const Position<N> * strt = start ;
 	Position<N> init = Position<N>(*start) ;
-	Navigator nav(Direction::noDirection, strt, init) ;
+	Navigator<N> nav(Direction::noDirection, strt, init) ;
 	findAllNearby_helper(store, nav, x_lim, y_lim) ;
 	return store ;
 }
 
 template<class T>
 template<typename N>
-void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const N x_lim, const N y_lim) {
+void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) {
 	
 	//Debug::debugCounter++ ;
 	
@@ -300,7 +300,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 
 	switch (nav.dir) {
 		case north : {
-			if ((nav.y_travelled() <= y_lim) && (nav.current.getY() < getYBound())) {
+			if ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() < getYBound())) {
 				nav.current.y_plus_one() ;
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
@@ -310,7 +310,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case south : {
-			if ((nav.y_travelled() <= y_lim) && (nav.current.getY() > 0)) {
+			if ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() > 0)) {
 				nav.current.y_minus_one() ;
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
@@ -319,7 +319,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 			
 		case east : {
-			if ((nav.x_travelled() <= x_lim) && (nav.current.getX() < getXBound())) {
+			if ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() < getXBound())) {
 				nav.current.x_plus_one() ;
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
@@ -328,7 +328,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case west : {
-			if ((nav.x_travelled() <= x_lim) && (nav.current.getX() > 0)) {
+			if ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() > 0)) {
 				nav.current.x_minus_one() ;
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
@@ -337,8 +337,8 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case ne : {
-			bool continue_e = ((nav.x_travelled() <= x_lim) && (nav.current.getX() < getXBound())) ;
-			bool continue_n = ((nav.y_travelled() <= y_lim) && (nav.current.getY() < getYBound())) ;
+			bool continue_e = ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() < getXBound())) ;
+			bool continue_n = ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() < getYBound())) ;
 			
 			if (continue_e || continue_n)
 			//if (((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) && //old code
@@ -347,14 +347,14 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				if (continue_n) {
 					Position<N> n_loc((nav.current)) ;
 					n_loc.y_plus_one() ;
-					Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
+					Navigator<N> n_nav = Navigator<N>(Direction::north, nav.start, n_loc) ;
 					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_e) {
 					Position<N> e_loc((nav.current)) ;
 					e_loc.x_plus_one() ;
-					Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
+					Navigator<N> e_nav = Navigator<N>(Direction::east, nav.start, e_loc) ;
 					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
 				}
 				
@@ -370,8 +370,8 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case se : {
-			bool continue_e = ((nav.x_travelled() <= x_lim) && (nav.current.getX() < getXBound())) ;
-			bool continue_s = ((nav.y_travelled() <= y_lim) && (nav.current.getY() > 0)) ;
+			bool continue_e = ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() < getXBound())) ;
+			bool continue_s = ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() > 0)) ;
 			
 			if (continue_e || continue_s)
 				//(((nav.x_travelled() < x_lim) && (nav.current.x < getXBound())) &&
@@ -380,14 +380,14 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				if (continue_s) {
 					Position<N> s_loc((nav.current)) ;
 					s_loc.y_minus_one() ;
-					Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
+					Navigator<N> s_nav = Navigator<N>(Direction::south, nav.start, s_loc) ;
 					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_e) {
 					Position<N> e_loc((nav.current)) ;
 					e_loc.x_plus_one() ;
-					Navigator e_nav = Navigator(Direction::east, nav.start, e_loc) ;
+					Navigator<N> e_nav = Navigator<N>(Direction::east, nav.start, e_loc) ;
 					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
 				}
 			
@@ -403,8 +403,8 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case sw : {
-			bool continue_w = ((nav.x_travelled() <= x_lim) && (nav.current.getX() > 0)) ;
-			bool continue_s = ((nav.y_travelled() <= y_lim) && (nav.current.getY() > 0)) ;
+			bool continue_w = ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() > 0)) ;
+			bool continue_s = ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() > 0)) ;
 			
 			if (continue_w || continue_s)
 				//(((nav.x_travelled() < x_lim) && (nav.current.x > 0)) &&
@@ -413,14 +413,14 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				if (continue_s) {
 					Position<N> s_loc((nav.current)) ;
 					s_loc.y_minus_one() ;
-					Navigator s_nav = Navigator(Direction::south, nav.start, s_loc) ;
+					Navigator<N> s_nav = Navigator<N>(Direction::south, nav.start, s_loc) ;
 					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_w) {
 					Position<N> w_loc((nav.current)) ;
 					w_loc.x_minus_one() ;
-					Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
+					Navigator<N> w_nav = Navigator<N>(Direction::west, nav.start, w_loc) ;
 					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
 				}
 				
@@ -436,8 +436,8 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 			
 				
 		case nw : {
-			bool continue_w = ((nav.x_travelled() <= x_lim) && (nav.current.getX() > 0)) ;
-			bool continue_n = ((nav.y_travelled() <= y_lim) && (nav.current.getY() < getYBound())) ;
+			bool continue_w = ((nav.x_travelled() <= x_lim) && (nav.current.getIntX() > 0)) ;
+			bool continue_n = ((nav.y_travelled() <= y_lim) && (nav.current.getIntY() < getYBound())) ;
 			
 	
 			if (continue_w || continue_w)
@@ -447,14 +447,14 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 				if (continue_n) {
 					Position<N> n_loc((nav.current)) ;
 					n_loc.y_plus_one() ;
-					Navigator n_nav = Navigator(Direction::north, nav.start, n_loc) ;
+					Navigator<N> n_nav = Navigator<N>(Direction::north, nav.start, n_loc) ;
 					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_w) {
 					Position<N> w_loc((nav.current)) ;
 					w_loc.x_minus_one() ;
-					Navigator w_nav = Navigator(Direction::west, nav.start, w_loc) ;
+					Navigator<N> w_nav = Navigator<N>(Direction::west, nav.start, w_loc) ;
 					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
 				}
 				
@@ -468,59 +468,59 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator & nav, const
 		break ;
 			
 		case noDirection : { //the base case
-			if ((nav.current.getY() < getYBound())) {
+			if ((nav.current.getIntY() < getYBound())) {
 				Position<N> n_loc = Position<N>(*nav.start) ;
 				n_loc.y_plus_one() ;
-				Navigator n_nav(north, nav.start, n_loc) ;
+				Navigator<N> n_nav(north, nav.start, n_loc) ;
 				findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 			}
 			
-			if ((nav.current.getY() > 0)) {
+			if ((nav.current.getIntY() > 0)) {
 				Position<N> s_loc = Position<N>(*nav.start) ;
 				s_loc.y_minus_one() ;
-				Navigator s_nav(south, nav.start, s_loc) ;
+				Navigator<N> s_nav(south, nav.start, s_loc) ;
 				findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 			}
 			
-			if (nav.current.getX() < getXBound()) {
+			if (nav.current.getIntX() < getXBound()) {
 				Position<N> e_loc = Position<N>(*nav.start) ;
 				e_loc.x_plus_one() ;
-				Navigator e_nav(east, nav.start, e_loc) ;
+				Navigator<N> e_nav(east, nav.start, e_loc) ;
 				findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
 			}
 			
-			if ((nav.current.getX() > 0)) {
+			if ((nav.current.getIntX() > 0)) {
 				Position<N> w_loc = Position<N>(*nav.start) ;
 				w_loc.x_minus_one() ;
-				Navigator w_nav(west, nav.start, w_loc) ;
+				Navigator<N> w_nav(west, nav.start, w_loc) ;
 				findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
 			}
-			if ((nav.current.getX() < getXBound()) && ((nav.current.getY() < getYBound()))) {
+			if ((nav.current.getIntX() < getXBound()) && ((nav.current.getIntY() < getYBound()))) {
 				Position<N> ne_loc = Position<N>(*nav.start) ;
 				ne_loc.x_plus_one() ;
 				ne_loc.y_plus_one() ;
-				Navigator ne_nav(ne, nav.start, ne_loc) ;
+				Navigator<N> ne_nav(ne, nav.start, ne_loc) ;
 				findAllNearby_helper(store, ne_nav, x_lim, y_lim) ;
 			}
-			if ((nav.current.getX() < getXBound()) && ((nav.current.getY() > 0))) {
+			if ((nav.current.getIntX() < getXBound()) && ((nav.current.getIntY() > 0))) {
 				Position<N> se_loc = Position<N>(*nav.start) ;
 				se_loc.x_plus_one() ;
 				se_loc.y_minus_one() ;
-				Navigator se_nav(se, nav.start, se_loc) ;
+				Navigator<N> se_nav(se, nav.start, se_loc) ;
 				findAllNearby_helper(store, se_nav, x_lim, y_lim) ;
 			}
-			if ((nav.current.getX() > 0) && ((nav.current.getY() > 0))) {
+			if ((nav.current.getIntX() > 0) && ((nav.current.getIntY() > 0))) {
 				Position<N> sw_loc = Position<N>(*nav.start) ;
 				sw_loc.x_minus_one() ;
 				sw_loc.y_minus_one() ;
-				Navigator sw_nav(sw, nav.start, sw_loc) ;
+				Navigator<N> sw_nav(sw, nav.start, sw_loc) ;
 				findAllNearby_helper(store, sw_nav, x_lim, y_lim) ;
 			}
-			if ((nav.current.getX() > 0) && ((nav.current.getY() < getYBound()))) {
+			if ((nav.current.getIntX() > 0) && ((nav.current.getIntY() < getYBound()))) {
 				Position<N> nw_loc = Position<N>(*nav.start) ;
 				nw_loc.x_minus_one() ;
 				nw_loc.y_plus_one() ;
-				Navigator nw_nav(nw, nav.start, nw_loc) ;
+				Navigator<N> nw_nav(nw, nav.start, nw_loc) ;
 				findAllNearby_helper(store, nw_nav, x_lim, y_lim) ;
 			}
 			

@@ -30,14 +30,15 @@ void WorldController::init() {
 
 	float startingXArea = (GLOBAL_MAX_X * 0.75) ;
 	float startingYArea = (GLOBAL_MAX_Y * 0.5) ;
+
+	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
+
+	new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_02_006.png",
+			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
+
+	new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_02_005.png",
+			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
 	
-
-	for (unsigned i = 0 ; i < 2 ; i++) {
-		new GameObject(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-					   0.50, Pos2<float>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
-	}
-
-
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 }
 
@@ -48,15 +49,8 @@ void WorldController::exec() {
 
 void WorldController::runWorldSimulation() {
 
-	DirectionVector<float> rightUp(2.0, 1.0, 0, nullptr) ;
-	DirectionVector<float> leftUp(-2.0, 1.0, 0, nullptr) ;
-
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		//
-	}
-
-	gameObjects->at(0)->moveNewDirection(rightUp) ;
-	gameObjects->at(1)->moveNewDirection(leftUp) ;
+	gameObjects->at(0)->moveDown() ;
+	gameObjects->at(1)->moveUp() ;
 
 
 	while (GLOBAL_CONTINUE_SIGNAL) {

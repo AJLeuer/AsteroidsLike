@@ -293,6 +293,19 @@ FloatPosition roundF(FloatPosition * pos) {
     }
 }
 
+template<typename I = int, class FloatPosition>
+FloatPosition * roundF(FloatPosition * pos) {
+    if ((typeid(pos->x) == typeid(unsigned)) || (typeid(pos->x) == typeid(int)) || (typeid(pos->x) == typeid(long)))  {
+        return pos ;
+    }
+    else {
+        I tempX = roundFI(pos->getX()) ;
+        I tempY = roundFI(pos->getY()) ;
+        I tempZ = roundFI(pos->getZ()) ;
+        return new FloatPosition(tempX, tempY, tempZ) ;
+    }
+}
+
 template<typename N>
 SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 	rhs.w = n * rhs.w ;
@@ -302,11 +315,14 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 
 template<class vec3, class vec2>
 SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
+
 	auto shape = SDL_Rect() ;
 	shape.x = roundF(position.getX()) ;
 	shape.y = roundF(position.getY()) ;
-	shape.w = roundF(size.getWidth()) ;
-	shape.h = roundF(size.getHeight()) ;
+
+	shape.w = roundF(size->getWidth()) ;
+	shape.h = roundF(size->getHeight()) ;
+
 	return std::move(shape) ;
 }
 

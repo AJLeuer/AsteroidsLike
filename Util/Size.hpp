@@ -62,8 +62,8 @@ public:
 	void setWidth(N w) { *(this->w) = w ; }
 	void setHeight(N h) { *(this->h) = h ; }
 
-	N getWidth() { return (*(this->w) * sizeModifier) ; }
-	N getHeight() { return (*(this->h) * sizeModifier) ; }
+	N getWidth() const { return (*(this->w) * sizeModifier) ; }
+	N getHeight() const { return (*(this->h) * sizeModifier) ; }
 
 } ;
 

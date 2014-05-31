@@ -31,7 +31,7 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	type(AssetType::character),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
-	vectDir(DirectionVector<float>(loc))
+	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -44,7 +44,8 @@ GameObject::GameObject() :
 	}
 
 	allGameObjects->push_back(this) ;
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
 	initGraphicsData(false) ;
 	//already set: currentlyThreading = new bool(false) ;
 }
@@ -58,7 +59,7 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	type(other.type),
 	loc(new Pos2<float>(*(other.loc), defaultCheck<float>)),
-	vectDir(DirectionVector<float>(other.vectDir))
+	vectr(DirectionVector<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
 	/* debug */
 	stringstream ss ;
@@ -75,7 +76,8 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -100,7 +102,7 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	type(other.type),
 	loc(other.loc),
-	vectDir(std::move(other.vectDir))
+	vectr(std::move(other.vectr))
 {
 	/* debug */
 	*(Debug::debugOutput) << "Warning: move constructor called. \n" ;
@@ -133,7 +135,7 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	size(Size<int>()),
 	type(type),
 	loc(new Pos2<float>(loc_, defaultCheck<float>)),
-	vectDir(DirectionVector<float>(loc))
+	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -143,7 +145,8 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	}
 	
 	allGameObjects->push_back(this) ;
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
 	initGraphicsData(false) ;
 	size.setModifier(modifier) ;
 	//already set: currentlyThreading = new bool(false) ;
@@ -156,7 +159,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, defaultCheck<float>)),
-	vectDir(DirectionVector<float>(loc))
+	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -165,7 +168,8 @@ GameObject::GameObject(FastRand<int> rand) :
 		map_is_init = true ;
 	}
 	allGameObjects->push_back(this) ;
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
 	initGraphicsData(false) ;
 	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
@@ -184,7 +188,7 @@ GameObject::~GameObject() {
 			delete this->goThread ;
 		}
 		if (loc != nullptr) {
-			map->erase(convert<float, int>(loc)) ;
+			map->erase(loc) ;
 			delete loc ;
 		}
 	}
@@ -205,15 +209,15 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		initGraphicsData(true) ;
 
 		if (this->loc != nullptr) {
-			map->erase(convert<float, int>(loc)) ;
+			map->erase<float>(loc) ;
 			delete loc ;
 		}
 
         loc = new Pos2<float>(*rhs.loc) ;
-		vectDir = DirectionVector<float>(loc) ;
-		map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
-		vectDir.updateAndNormalize() ;
-		
+		vectr = DirectionVector<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
+		map->place<float>(loc, this, defaultCheck<float>, true) ;
+		vectr.updateAndNormalize() ;
+
 		allGameObjects->push_back(this) ;
 
 		IDs++ ;
@@ -250,11 +254,10 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
-		this->vectDir = std::move(rhs.vectDir) ;
-		loc->checkBounds(defaultCheck<float>) ;
-		vectDir.updateAndNormalize() ;
+		this->vectr = std::move(rhs.vectr) ;
 		
 		this->ID = rhs.ID ;
+
 		rhs.ID = 0 ;
 		rhs.textureImageFile = "" ;
 		rhs.texture = nullptr ;
@@ -305,7 +308,7 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture) {
 	this->setSize(tempW, tempH) ; //assign new size to this GameObject
 }
 
-void GameObject::checkForMarkedDeletions() {
+void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 			if (allGameObjects->at(i)->markedForDeletion) {
@@ -378,29 +381,39 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(Position<float> * to) {
-	map->erase(convert<float, int>(getPosition())) ;
+	map->erase<float>(getPosition()) ;
 	loc->setAll(*to) ;
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
-	vectDir.updateAndNormalize() ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
+	//Debug code
+	stringstream ss ;
+	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
+	DebugOutput << ss.rdbuf() ;
+	//end debug
 }
 
 void GameObject::moveTo(Position<float> to) {
-	map->erase(convert<float, int>(getPosition())) ;
+	map->erase<float>(getPosition()) ;
 	loc->setAll(to) ;
-	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
-	vectDir.updateAndNormalize() ;
+	map->place<float>(loc, this, defaultCheck<float>, true) ;
+	vectr.updateAndNormalize() ;
+	//Debug code
+	stringstream ss ;
+	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
+	DebugOutput << ss.rdbuf() ;
+	//end debug
 }
 
 void GameObject::moveSameDirection() {
 
-	vectDir.normalize() ;
-	Position<float> next = DirectionVector<float>::calculateNextPosition(vectDir) ;
+	vectr.normalize() ;
+	Position<float> next = DirectionVector<float>::calculateNextPosition(vectr) ;
 
-	if (next.overXBounds(defaultCheck<float>) == true) {
-		next = DirectionVector<float>::calculateReverseXPosition(vectDir, defaultCheck<float>) ;
+	if (next.overXBounds(defaultCheck<float>)) {
+		next = DirectionVector<float>::calculateReverseXPosition(vectr, defaultCheck<float>) ;
 	}
-	if (next.overYBounds(defaultCheck<float>) == true) {
-		next = DirectionVector<float>::calculateReverseYPosition(vectDir, defaultCheck<float>) ;
+	if (next.overYBounds(defaultCheck<float>)) {
+		next = DirectionVector<float>::calculateReverseYPosition(vectr, defaultCheck<float>) ;
 	}
 
 	moveTo(std::move(next)) ;
@@ -433,7 +446,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<GameObject *> * nearby = map->findNearby(convert<float, int>(loc), searchDistanceX, searchDistanceY) ;
+	vector<GameObject *> * nearby = map->findNearby<float>(loc, searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;

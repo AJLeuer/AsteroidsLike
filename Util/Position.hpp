@@ -21,9 +21,6 @@
 #include "../GameWorld/GameData.h"
 
 
-
-
-
 using namespace std ;
 
 enum Direction {
@@ -218,15 +215,26 @@ public:
 		return std::move(temp) ;
 	}
     
-    /*
-    friend Position & operator-(const Position & lhs, const Position & rhs) {
-		N x = lhs.x - rhs.x ;
-		N y = lhs.y - rhs.y ;
-		N z = lhs.z - rhs.z ;
-		this->setAll(x, y, z) ;
-		return *this ;
+	template<typename O, typename P>
+    friend const Position<P> * operator+(const Position<P> & lhs, const Position<O> * rhs) {
+
+		P x = lhs.x + rhs->x ;
+		P y = lhs.y + rhs->y ;
+		P z = lhs.z + rhs->z ;
+
+		return new Position<P>(x, y, z) ;
 	}
-     */
+
+	template<typename O, typename P>
+    friend const Position<P> * operator-(const Position<P> & lhs, const Position<O> * rhs) {
+
+		P x = lhs.x - rhs->x ;
+		P y = lhs.y - rhs->y ;
+		P z = lhs.z - rhs->z ;
+
+		return new Position<P>(x, y, z) ;
+	}
+
 
 	/**
 	 * Sets x, y, and z to the given values.
@@ -263,6 +271,21 @@ public:
 	N getY() const { return this->y ; }
 	
 	N getZ() const { return this->z ; }
+
+	/**
+	 * @return x as an integer
+	 */
+	int getIntX() const { return roundF<N, int>(x) ; }
+
+	/**
+	 * @return z as an integer
+	 */
+	int getIntY() const { return roundF<N, int>(y) ; }
+
+	/**
+	 * @return z as an integer
+	 */
+	int getIntZ() const { return roundF<N, int>(z) ; }
 	
 	virtual void setX(const N x) { setAll(x, this->y, this->z) ; }
 	
@@ -951,16 +974,16 @@ DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
 
 template<typename N>
 void DirectionVector<N>::update() {
-	/*
+
 	if (last != *current) { //only if we've moved...
         
-		Position<N> temp = ((*current) - last) ;               uses Location's operator+() overload to add
+		Position<N> temp = ((*current) - last) ;               /*uses Location's operator+() overload to add
 															   our x, y, and z (which are offset values) to those
-															   stored in current, giving our new location
+															   stored in current, giving our new location*/
 		this->setAll(temp.getX(), temp.getY(), temp.getZ()) ;
 		this->last = std::move((Position<N>(*this->current))) ;
 	}
-	*/
+
 }
 
 template<typename N>
@@ -990,16 +1013,9 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec) 
 	N ny ;
 	N nz ;
 
-	if ((typeid(N) == typeid(float)) || (typeid(N) == typeid(double))) {
-		nx = (vec.current)->getX() + vec.getX() ;
-		ny = (vec.current)->getY() + vec.getY() ;
-		nz = (vec.current)->getZ() + vec.getZ() ;
-	}
-	else {
-		nx = (vec.current)->getX() + roundF(vec.getX()) ;
-		ny = (vec.current)->getY() + roundF(vec.getY()) ;
-		nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
-	}
+	nx = (vec.current)->getX() + vec.getX() ;
+	ny = (vec.current)->getY() + vec.getY() ;
+	nz = (vec.current)->getZ() + vec.getZ() ;
 
 	Position<N> next(nx, ny, nz) ;
 	return std::move(next) ;
@@ -1014,16 +1030,9 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, 
 	N ny ;
 	N nz ;
 
-	if ((typeid(N) == typeid(float)) || (typeid(N) == typeid(double))) {
-		nx = (vec.current)->getX() + vec.getX() ;
-		ny = (vec.current)->getY() + vec.getY() ;
-		nz = (vec.current)->getZ() + vec.getZ() ;
-	}
-	else {
-		nx = (vec.current)->getX() + roundF(vec.getX()) ;
-		ny = (vec.current)->getY() + roundF(vec.getY()) ;
-		nz = (vec.current)->getZ() + roundF(vec.getZ()) ;
-	}
+	nx = (vec.current)->getX() + vec.getX() ;
+	ny = (vec.current)->getY() + vec.getY() ;
+	nz = (vec.current)->getZ() + vec.getZ() ;
 
 	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;

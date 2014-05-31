@@ -93,7 +93,7 @@ protected:
 
 	Size<int> size ;
 	Pos2<float> * loc ;
-	DirectionVector<float> vectDir ;
+	DirectionVector<float> vectr ;
 
 	AssetType type ;
 	
@@ -283,6 +283,9 @@ public:
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y, z)) ; }
 
+	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
+	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
+
 	void moveRight() { moveTo((loc->getX()+1), loc->getY(), loc->getZ()) ; }
 	void moveLeft() { moveTo((loc->getX()-1), loc->getY(), loc->getZ()) ; }
 	void moveUp() { moveTo(loc->getX(), (loc->getY()+1), loc->getZ()) ; }
@@ -346,7 +349,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const DirectionVector<float> getVector() const { return this->vectDir ; }
+	const DirectionVector<float> getVector() const { return this->vectr ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
@@ -366,7 +369,7 @@ public:
 	
 	SDL_Texture * getTexture() const { return this->texture ; }
 	
-	Size<int> getSize() const { return size ; }
+	const Size<int> * getSize() const { const Size<int> * rtnSize = & size ; return rtnSize ; }
 	
 	/**
 	 * @return This GameObject's asset type

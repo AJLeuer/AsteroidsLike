@@ -40,18 +40,14 @@ int main(int argc, char ** argv) {
 	auto s = AssetFileIO::getRandomImageFilename(AssetType::character) ;
 
 	Debug::init(true) ;
-    
-    float a = 2.56 ;
-    int b = static_cast<int>(a) ;
-    
-    
+
+
 	MainController::init() ;
 	MainController::exec() ;
      
 	//MainController calls its own exit()
     
     
-
 	return 0;
 }
 
