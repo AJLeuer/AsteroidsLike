@@ -9,9 +9,9 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define GLOBAL_MAX_X_ 1920
+#define GLOBAL_MAX_X_ 1280
 #define GLOBAL_MIN_X_ 0
-#define GLOBAL_MAX_Y_ 1080
+#define GLOBAL_MAX_Y_ 720
 #define GLOBAL_MIN_Y_ 0
 
 #define eight_milliseconds 8333 //in microseconds
@@ -92,13 +92,15 @@ extern std::mutex sharedMutex ;
 
 extern bool GLOBAL_CONTINUE_SIGNAL ;
 
-extern const long GLOBAL_MAX_X ;
-extern const long GLOBAL_MIN_X ; 
-extern const long GLOBAL_MAX_Y ;
-extern const long GLOBAL_MIN_Y ;
+extern const int GLOBAL_MAX_X ;
+extern const int GLOBAL_MIN_X ;
+extern const int GLOBAL_MAX_Y ;
+extern const int GLOBAL_MIN_Y ;
 
-static const BoundsCheck<long> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
-static const BoundsCheck<float> defaultCheckFP(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
+template<typename N>
+static const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
+
+//static const BoundsCheck<float> defaultCheckFP(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
 
 extern string currentDirectory ;
 

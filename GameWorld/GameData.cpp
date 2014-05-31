@@ -67,10 +67,10 @@ std::mutex sharedMutex ;
 
 bool GLOBAL_CONTINUE_SIGNAL = true ;
 
-const long GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
-const long GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
-const long GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
-const long GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
+const int GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
+const int GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
+const int GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
+const int GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
 
 string currentDirectory { "" } ;
 

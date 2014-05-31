@@ -15,6 +15,7 @@
 #include <random>
 #include <cmath>
 
+#include "../Util/Util.hpp"
 #include "../Util/Size.hpp"
 
 /* Creating a second header for utility functions since we ran into some trouble 
@@ -27,6 +28,10 @@ Size<N> & operator*(M m, Size<N> & rhs) {
 	return rhs ;
 }
 
+template<typename M, typename N>
+Position<N> * convert(const Position<M> * converted) {
+    return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
+}
 
 
 

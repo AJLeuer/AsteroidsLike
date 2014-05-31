@@ -36,8 +36,8 @@ void GraphicalOutput::init() {
 
 	window = SDL_CreateWindow("SDL 2 window", SDL_WINDOWPOS_CENTERED,     // x position, centered
 											  SDL_WINDOWPOS_CENTERED,     // y position, centered
-											  (int)(GLOBAL_MAX_X / 2),                        // width, in pixels (/2 for highdpi)
-											  (int)(GLOBAL_MAX_Y / 2),                        // height, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_X),                        // width, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_Y),                        // height, in pixels (/2 for highdpi)
 											  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
 
 	/* debug code */
@@ -82,7 +82,7 @@ void GraphicalOutput::renderTextures() {
 }
 
 void GraphicalOutput::renderObject(GameObject * gameObject) {
-	SDL_Rect tempShape = convertToSDL_Rect<Position<long>, Size<int>>(*(gameObject->getPosition()), gameObject->getSize()) ;
+	SDL_Rect tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
 	int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
 
 	/* debug code */

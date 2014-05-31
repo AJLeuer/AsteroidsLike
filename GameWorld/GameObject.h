@@ -92,9 +92,8 @@ protected:
 	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
 
 	Size<int> size ;
-	Position<float> precisionLocation ;
-	Pos2<long> * loc ;
-	DirectionVector<long> vectDir ;
+	Pos2<float> * loc ;
+	DirectionVector<float> vectDir ;
 
 	AssetType type ;
 	
@@ -179,9 +178,9 @@ public:
 	 *
 	 * @param type The type of image file associated with this GameObject (character, scenery, etc)
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
-     * @param loc This GameObject's Position<long>
+     * @param loc This GameObject's Position<float>
 	 */
-	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<long> & loc) ;
+	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<float> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -189,7 +188,7 @@ public:
 	 *
 	 * @param randSeed A seed to initialize the random number generator
 	 */
-	GameObject(FastRand<long> rand) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(FastRand<int> rand) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	
@@ -268,21 +267,21 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 	
 	/**
-	 * Moves this GameObject to the Position<long> moveTo. All other movement
+	 * Moves this GameObject to the Position<float> moveTo. All other movement
 	 * functions should call this.
 	 *
-	 * @param moveTO The Position<long> where this GameObject is to move
+	 * @param moveTO The Position<float> where this GameObject is to move
 	 */
-	void moveTo(Position<long> * to) ;
+	void moveTo(Position<float> * to) ;
 
 	/**
-	 * Moves this GameObject to the Position<long> moveTo.
+	 * Moves this GameObject to the Position<float> moveTo.
 	 *
-	 * @param to The Position<long> where this GameObject is to move
+	 * @param to The Position<float> where this GameObject is to move
 	 */
-	void moveTo(Position<long> to) ;
+	void moveTo(Position<float> to) ;
 
-	void moveTo(long x, long y, long z) { moveTo(Position<long>(x, y, z)) ; }
+	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y, z)) ; }
 
 	void moveRight() { moveTo((loc->getX()+1), loc->getY(), loc->getZ()) ; }
 	void moveLeft() { moveTo((loc->getX()-1), loc->getY(), loc->getZ()) ; }
@@ -295,18 +294,18 @@ public:
 	void moveDownLeft() { moveTo((loc->getX()-1), (loc->getY()-1), loc->getZ()) ; }
 
 	/**
-	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the
+	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
 	 * DirectionVector of its last move
 	 */
 	void moveSameDirection() ;
 	
 	/**
-	 * Moves this GameObject by changing its Position<long> x and y coordinates according to the given
+	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
 	 * DirectionVector
 	 *
 	 * @param newDirection The new vectorDirection specifying the direction of travel
 	 */
-	void moveNewDirection(DirectionVector<long> & newDirection) ;
+	void moveNewDirection(DirectionVector<float> & newDirection) ;
 	
 	
 	/**
@@ -324,7 +323,7 @@ public:
 	
 	virtual void attack(GameObject * enemy) ;
 	
-	virtual void findNearbyAlly(long searchDistanceX, long searchDistanceY) ;
+	virtual void findNearbyAlly(int searchDistanceX, int searchDistanceY) ;
 	
 	virtual void allyWith(const GameObject *) ;
 	
@@ -335,19 +334,19 @@ public:
 	virtual void wander() ;
 	
 	/**
-	 * @return This GameObject's Position<long>
+	 * @return This GameObject's Position<float>
 	 */
-	const Position<long> * getPosition() const { return this->loc ; }
+	const Position<float> * getPosition() const { return this->loc ; }
 
 	/**
 	 * @return This GameObject's Position history (Pos2)
 	 */
-	const Pos2<long> * getPositionHistory() const { return this->loc ; }
+	const Pos2<float> * getPositionHistory() const { return this->loc ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const DirectionVector<long> getVector() const { return this->vectDir ; }
+	const DirectionVector<float> getVector() const { return this->vectDir ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

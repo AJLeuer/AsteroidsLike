@@ -10,7 +10,7 @@
 
 Navigator::Navigator(int i) {}
 
-Navigator::Navigator(Direction d, const Position<long> * s, Position<long> c) :
+Navigator::Navigator(Direction d, const Position<int> * s, Position<int> c) :
 	dir{d}, start{s}, current{c} {}
 
 Navigator::Navigator(const Navigator & other) :
@@ -30,7 +30,7 @@ Navigator & Navigator::operator=(Navigator && rhs) {
 	if (this != &rhs) {
 		this->dir = rhs.dir ;
 		this->start = rhs.start ;
-		this->current = Position<long>(rhs.current) ;
+		this->current = Position<int>(rhs.current) ;
 		rhs.start = nullptr ;
 	}
 	return *this ;

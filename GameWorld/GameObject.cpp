@@ -30,9 +30,8 @@ GameObject::GameObject() :
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
 	type(AssetType::character),
-	loc(new Pos2<long>(0, 0, 0, defaultCheck)),
-	precisionLocation(0.0, 0.0, 0.0),
-	vectDir(DirectionVector<long>(loc))
+	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
+	vectDir(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -45,7 +44,7 @@ GameObject::GameObject() :
 	}
 
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	initGraphicsData(false) ;
 	//already set: currentlyThreading = new bool(false) ;
 }
@@ -58,9 +57,8 @@ GameObject::GameObject(const GameObject & other) :
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
 	type(other.type),
-	loc(new Pos2<long>(*(other.loc), defaultCheck)),
-	precisionLocation(other.precisionLocation),
-	vectDir(DirectionVector<long>(other.vectDir))
+	loc(new Pos2<float>(*(other.loc), defaultCheck<float>)),
+	vectDir(DirectionVector<float>(other.vectDir))
 {
 	/* debug */
 	stringstream ss ;
@@ -77,7 +75,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -102,7 +100,6 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	type(other.type),
 	loc(other.loc),
-	precisionLocation(std::move(other.precisionLocation)),
 	vectDir(std::move(other.vectDir))
 {
 	/* debug */
@@ -129,15 +126,14 @@ GameObject::GameObject(GameObject && other) :
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Pos2<long> & loc_) :
+GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Pos2<float> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(imageFileName),
 	size(Size<int>()),
 	type(type),
-	loc(new Pos2<long>(loc_, defaultCheck)),
-	precisionLocation(loc_.getX(), loc_.getY(), loc_.getZ()),
-	vectDir(DirectionVector<long>(loc))
+	loc(new Pos2<float>(loc_, defaultCheck<float>)),
+	vectDir(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -147,20 +143,20 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	}
 	
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 	initGraphicsData(false) ;
 	size.setModifier(modifier) ;
 	//already set: currentlyThreading = new bool(false) ;
 }
 
-GameObject::GameObject(FastRand<long> rand) :
+GameObject::GameObject(FastRand<int> rand) :
 	goThread(nullptr),
 	ID(IDs),
 	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
 	size(Size<int>()),
-	loc(new Pos2<long>(rand, defaultCheck)),
-	vectDir(DirectionVector<long>(loc))
+	loc(new Pos2<float>(rand, defaultCheck<float>)),
+	vectDir(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
@@ -168,9 +164,8 @@ GameObject::GameObject(FastRand<long> rand) :
 		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
-	precisionLocation = Position<float>(loc->getX(), loc->getY(), loc->getZ()) ;
 	allGameObjects->push_back(this) ;
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 	initGraphicsData(false) ;
 	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
@@ -189,7 +184,7 @@ GameObject::~GameObject() {
 			delete this->goThread ;
 		}
 		if (loc != nullptr) {
-			map->erase(loc) ;
+			map->erase(dynamic_cast<Pos2<int> *>(loc)) ;
 			delete loc ;
 		}
 	}
@@ -210,14 +205,13 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		initGraphicsData(true) ;
 
 		if (this->loc != nullptr) {
-			map->erase(this->loc) ;
+			map->erase(dynamic_cast<Pos2<int> *>(loc)) ;
 			delete loc ;
 		}
 
-        loc = new Pos2<long>(*rhs.loc) ;
-		precisionLocation = Position<float>(rhs.precisionLocation) ;
-		vectDir = DirectionVector<long>(loc) ;
-		map->place(this->loc, this, defaultCheck, true) ;
+        loc = new Pos2<float>(*rhs.loc) ;
+		vectDir = DirectionVector<float>(loc) ;
+		map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 		vectDir.updateAndNormalize() ;
 		
 		allGameObjects->push_back(this) ;
@@ -256,9 +250,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 			delete this->loc ;
 		}
         this->loc = rhs.loc ;
-		this->precisionLocation = std::move(rhs.precisionLocation) ;
 		this->vectDir = std::move(rhs.vectDir) ;
-		loc->checkBounds(defaultCheck) ;
+		loc->checkBounds(defaultCheck<float>) ;
 		vectDir.updateAndNormalize() ;
 		
 		this->ID = rhs.ID ;
@@ -384,43 +377,39 @@ void GameObject::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void GameObject::moveTo(Position<long> * to) {
-	map->erase(this->getPosition()) ;
+void GameObject::moveTo(Position<float> * to) {
+	map->erase(dynamic_cast<const Pos2<int> *>(getPosition())) ;
 	loc->setAll(*to) ;
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 	vectDir.updateAndNormalize() ;
 }
 
-void GameObject::moveTo(Position<long> to) {
-	map->erase(this->getPosition()) ;
+void GameObject::moveTo(Position<float> to) {
+	map->erase(dynamic_cast<const Pos2<int> *>(getPosition())) ;
 	loc->setAll(to) ;
-	map->place(this->loc, this, defaultCheck, true) ;
+	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
 	vectDir.updateAndNormalize() ;
 }
 
 void GameObject::moveSameDirection() {
 
 	vectDir.normalize() ;
-	Position<long> next = DirectionVector<long>::calculateNextPosition<long>(vectDir) ;
-	precisionLocation = DirectionVector<long>::calculateNextPosition<float>(vectDir) ;
+	Position<float> next = DirectionVector<float>::calculateNextPosition(vectDir) ;
 
-	if (next.overXBounds(defaultCheck) == true) {
-		next = DirectionVector<long>::calculateReverseXPosition(vectDir, defaultCheck) ;
-		precisionLocation = DirectionVector<long>::calculateReverseXPosition<float>(vectDir, defaultCheckFP) ;
+	if (next.overXBounds(defaultCheck<float>) == true) {
+		next = DirectionVector<float>::calculateReverseXPosition(vectDir, defaultCheck<float>) ;
 	}
-	if (next.overYBounds(defaultCheck) == true) {
-		next = DirectionVector<long>::calculateReverseYPosition(vectDir, defaultCheck) ;
-		precisionLocation = DirectionVector<long>::calculateReverseYPosition<float>(vectDir, defaultCheckFP) ;
+	if (next.overYBounds(defaultCheck<float>) == true) {
+		next = DirectionVector<float>::calculateReverseYPosition(vectDir, defaultCheck<float>) ;
 	}
 
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::moveNewDirection(DirectionVector<long> & newDirection) {
+void GameObject::moveNewDirection(DirectionVector<float> & newDirection) {
 
 	newDirection.normalize() ;
-	auto next = DirectionVector<long>::calculateNextPosition(newDirection, loc, defaultCheck) ;
-	precisionLocation = DirectionVector<long>::calculateNextPosition<float>(newDirection, loc, defaultCheckFP) ;
+	auto next = DirectionVector<float>::calculateNextPosition(newDirection, loc, defaultCheck<float>) ;
 	moveTo(std::move(next)) ;
 }
 
@@ -442,8 +431,9 @@ void GameObject::attack(GameObject * enemy) {
 	
 }
 
-void GameObject::findNearbyAlly(long searchDistanceX, long searchDistanceY) {
-	vector<GameObject *> * nearby = map->findNearby(loc, searchDistanceX, searchDistanceY) ;
+void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
+    
+	vector<GameObject *> * nearby = map->findNearby(dynamic_cast<Pos2<int> *>(loc), searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;

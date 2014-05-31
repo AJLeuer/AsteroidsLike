@@ -28,13 +28,13 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	long startingXArea = (GLOBAL_MAX_X * 0.75) ;
-	long startingYArea = (GLOBAL_MAX_Y * 0.5) ;
+	float startingXArea = (GLOBAL_MAX_X * 0.75) ;
+	float startingYArea = (GLOBAL_MAX_Y * 0.5) ;
 	
 
 	for (unsigned i = 0 ; i < 2 ; i++) {
 		new GameObject(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-					   0.50, Pos2<long>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck)) ;
+					   0.50, Pos2<float>((startingXArea + posModifier()), (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
 	}
 
 
@@ -48,8 +48,8 @@ void WorldController::exec() {
 
 void WorldController::runWorldSimulation() {
 
-	DirectionVector<long> rightUp(2, 1, 0, nullptr) ;
-	DirectionVector<long> leftUp(-2, 1, 0, nullptr) ;
+	DirectionVector<float> rightUp(2.0, 1.0, 0, nullptr) ;
+	DirectionVector<float> leftUp(-2.0, 1.0, 0, nullptr) ;
 
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		//

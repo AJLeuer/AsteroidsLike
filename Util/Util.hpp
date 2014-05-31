@@ -249,12 +249,48 @@ N floor(N n1, N n2) {
 	}
 }
 
-template<typename F = float> //some float or double
-long roundF(F value)
-{
-    F temp = (value >= 0.0f) ? (floor(value + 0.5f)) : (ceil(value - 0.5f)) ;
-    long round = static_cast<long>(temp) ;
-    return round ;
+
+/**
+ * Rounds a float or double to an int or long
+ */
+template<typename F = float, typename I = int> // F = some float or double, I = some unsigned, int, long, etc
+I roundF(F value) {
+    if ((typeid(F) == typeid(unsigned)) || (typeid(F) == typeid(int)) || (typeid(F) == typeid(long)))  {
+        return value ;
+    }
+    else {
+        F temp = (value >= 0.0f) ? (floor(value + 0.5f)) : (ceil(value - 0.5f)) ;
+        I round = static_cast<I>(temp) ;
+        return round ;
+    }
+}
+
+template<typename I = int, class FloatPosition>
+FloatPosition roundF(FloatPosition & pos) {
+    if ((typeid(pos.x) == typeid(unsigned)) || (typeid(pos.x) == typeid(int)) || (typeid(pos.x) == typeid(long)))  {
+        return pos ;
+    }
+    else {
+        I tempX = roundFI(pos.getX()) ;
+        I tempY = roundFI(pos.getY()) ;
+        I tempZ = roundFI(pos.getZ()) ;
+        return FloatPosition(tempX, tempY, tempZ) ;
+    }
+}
+
+
+
+template<typename I = int, class FloatPosition>
+FloatPosition roundF(FloatPosition * pos) {
+    if ((typeid(pos->x) == typeid(unsigned)) || (typeid(pos->x) == typeid(int)) || (typeid(pos->x) == typeid(long)))  {
+        return pos ;
+    }
+    else {
+        I tempX = roundFI(pos->getX()) ;
+        I tempY = roundFI(pos->getY()) ;
+        I tempZ = roundFI(pos->getZ()) ;
+        return FloatPosition(tempX, tempY, tempZ) ;
+    }
 }
 
 template<typename N>
@@ -267,10 +303,10 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 template<class vec3, class vec2>
 SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 	auto shape = SDL_Rect() ;
-	shape.x = (int) position.getX() ;
-	shape.y = (int) position.getY() ;
-	shape.w = (int) size.getWidth() ;
-	shape.h = (int) size.getHeight() ;
+	shape.x = roundF(position.getX()) ;
+	shape.y = roundF(position.getY()) ;
+	shape.w = roundF(size.getWidth()) ;
+	shape.h = roundF(size.getHeight()) ;
 	return std::move(shape) ;
 }
 
@@ -278,8 +314,6 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 
 unsigned termWidth() ;
 unsigned termHeight() ;
-
-
 
 
 /* misc. other */
