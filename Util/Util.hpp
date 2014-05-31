@@ -261,6 +261,12 @@ I roundF(F value) {
     else {
         F temp = (value >= 0.0f) ? (floor(value + 0.5f)) : (ceil(value - 0.5f)) ;
         I round = static_cast<I>(temp) ;
+
+		/* catch a weird problem where this was returning a negative value from a posititive input */
+		if ((value >= 0) && (round < 0)) {
+			round = (round * -1) ;
+		}
+		
         return round ;
     }
 }

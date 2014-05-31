@@ -15,6 +15,7 @@ using namespace std ;
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
+vector<GameObject*> * WorldController::secondaryGameObjects = new vector<GameObject *>() ;
 thread WorldController::worldSimulationThread ;
 thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
@@ -33,11 +34,11 @@ void WorldController::init() {
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
 
-	new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_02_006.png",
-			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
+	secondaryGameObjects->push_back(new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
+			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
 
-	new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_02_005.png",
-			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>)) ;
+	secondaryGameObjects->push_back(new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
+			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
 	
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 }
@@ -54,8 +55,8 @@ void WorldController::runWorldSimulation() {
 
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
-		for (auto i = 0 ; i < gameObjects->size() ; i++) {
-			gameObjects->at(i)->moveSameDirection() ;
+		for (auto i = 0 ; i < secondaryGameObjects->size() ; i++) {
+			secondaryGameObjects->at(i)->moveSameDirection() ;
 		}
         usleep(eight_milliseconds) ;
 	}

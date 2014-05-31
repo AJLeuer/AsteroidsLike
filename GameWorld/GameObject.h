@@ -9,7 +9,7 @@
 #ifndef __GameWorld__GameObject__
 #define __GameWorld__GameObject__
 
-
+#define defaultOffset 8
 
 #include <iostream>
 #include <sstream>
@@ -26,12 +26,12 @@
 #include "../Util/Util2.h"
 #include "../Util/AssetFileIO.h"
 
-#include "../Input/Input.h"
-
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"
 #include "GameInterface.h"
+
+#include "../Control/Input.hpp"
 
 using namespace::std ;
 
@@ -286,15 +286,15 @@ public:
 	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
 	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
 
-	void moveRight() { moveTo((loc->getX()+1), loc->getY(), loc->getZ()) ; }
-	void moveLeft() { moveTo((loc->getX()-1), loc->getY(), loc->getZ()) ; }
-	void moveUp() { moveTo(loc->getX(), (loc->getY()+1), loc->getZ()) ; }
-	void moveDown() { moveTo(loc->getX(), (loc->getY()-1), loc->getZ()) ; }
+	void moveUp() { moveTo(loc->getX(), (loc->getY()-defaultOffset), loc->getZ()) ; }
+	void moveDown() { moveTo(loc->getX(), (loc->getY()+defaultOffset), loc->getZ()) ; }
+	void moveRight() { moveTo((loc->getX()+defaultOffset), loc->getY(), loc->getZ()) ; }
+	void moveLeft() { moveTo((loc->getX()-defaultOffset), loc->getY(), loc->getZ()) ; }
 
-	void moveUpRight() { moveTo((loc->getX()+1), (loc->getY()+1), loc->getZ()) ; }
-	void moveUpLeft() { moveTo((loc->getX()-1), (loc->getY()+1), loc->getZ()) ; }
-	void moveDownRight() { moveTo((loc->getX()+1), (loc->getY()-1), loc->getZ()) ; }
-	void moveDownLeft() { moveTo((loc->getX()-1), (loc->getY()-1), loc->getZ()) ; }
+	void moveUpRight() { moveTo((loc->getX()+defaultOffset), (loc->getY()-defaultOffset), loc->getZ()) ; }
+	void moveUpLeft() { moveTo((loc->getX()-defaultOffset), (loc->getY()-defaultOffset), loc->getZ()) ; }
+	void moveDownRight() { moveTo((loc->getX()+defaultOffset), (loc->getY()+defaultOffset), loc->getZ()) ; }
+	void moveDownLeft() { moveTo((loc->getX()-defaultOffset), (loc->getY()+defaultOffset), loc->getZ()) ; }
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the

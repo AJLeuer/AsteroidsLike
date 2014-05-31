@@ -10,12 +10,16 @@
 
 #include "MainController.h"
 
+using namespace std ;
+
+/* not safe to initialize this yet */
+Player * MainController::player = nullptr ;
 
 void MainController::setupMainContrExit() {
-	//we can choose whatever method we want for when or how to tell InputController to exit() later
-	//we could also set up at timer that calls exit() after a certain amount of time, and call setInpContrExit() to run on its own thread during MainController::init()
-	KeyInputRegister<GameObject> * exitKey = new KeyInputRegister<GameObject>("-", &MainController::exit) ;
-	MainInputController::registerForKeypress(exitKey) ;
+	/*we can choose whatever method we want for when or how to tell InputController to exit() later
+	we could also set up at timer that calls exit() after a certain amount of time, and call setInpContrExit() to run on its own thread during MainController::init() */
+	KeyInputRegister * exitKey = new KeyInputRegister("-", &MainController::exit) ;
+	InputController::registerForKeypress(exitKey) ;
 }
 
 void MainController::init() {
@@ -26,8 +30,9 @@ void MainController::init() {
 				  e.g. SDL_InitSubSystem(SDL_INIT_EVENTS) in MainInputController::init() */
 
 	GraphicalOutput::init() ;
-	MainInputController::init() ;
+	InputController::init() ;
 	WorldController::init() ;    //must be last
+	player = new Player() ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
@@ -40,7 +45,7 @@ void MainController::exec() {
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		GraphicalOutput::update() ;
-		MainInputController::update() ;
+		InputController::update() ;
 	}
 }
 
@@ -50,7 +55,7 @@ void MainController::exit() {
 
 	WorldController::exit() ;
 	GraphicalOutput::exit() ;
-	MainInputController::exit() ;
+	InputController::exit() ;
 	SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
 }
 

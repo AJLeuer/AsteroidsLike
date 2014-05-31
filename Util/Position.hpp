@@ -319,13 +319,13 @@ public:
 
 	virtual void moveRight() { setAll((this->x+1), this->y, this->z) ; }
 	virtual void moveLeft() { setAll((this->x-1), this->y, this->z) ; }
-	virtual void moveUp() { setAll(this->x, (this->y+1), this->z) ; }
-	virtual void moveDown() { setAll(this->x, (this->y-1), this->z) ; }
+	virtual void moveUp() { setAll(this->x, (this->y-1), this->z) ; }
+	virtual void moveDown() { setAll(this->x, (this->y+1), this->z) ; }
 
-	virtual void moveUpRight() { setAll((this->x+1), (this->y+1), this->z) ; }
-	virtual void moveUpLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
-	virtual void moveDownRight() { setAll((this->x+1), (this->y-1), this->z) ; }
-	virtual void moveDownLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
+	virtual void moveUpRight() { setAll((this->x+1), (this->y-1), this->z) ; }
+	virtual void moveUpLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
+	virtual void moveDownRight() { setAll((this->x+1), (this->y+1), this->z) ; }
+	virtual void moveDownLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 

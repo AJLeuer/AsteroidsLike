@@ -23,14 +23,14 @@
 #include "../Util/Time.h"
 #include "../Util/AssetFileIO.h"
 
-#include "../Input/Input.h"
-
 #include "../GameWorld/GameData.h"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/NPC.h"
 #include "../GameWorld/WorldController.h"
 
+#include "../Control/Input.hpp"
 #include "MainController.h"
+
 
 
 int main(int argc, char ** argv) {

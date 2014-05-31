@@ -9,9 +9,9 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define GLOBAL_MAX_X_ 1280
+#define GLOBAL_MAX_X_ 1920
 #define GLOBAL_MIN_X_ 0
-#define GLOBAL_MAX_Y_ 720
+#define GLOBAL_MAX_Y_ 1080
 #define GLOBAL_MIN_Y_ 0
 
 #define eight_milliseconds 8333 //in microseconds
@@ -27,7 +27,6 @@
 #include "../Util/Debug.h"
 #include "../Util/BoundsCheck.hpp"
 #include "ForwardDecl.h"
-//#include "GameMap.hpp"
 
 using namespace std ;
 

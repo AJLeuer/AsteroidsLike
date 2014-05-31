@@ -137,7 +137,7 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw new exception() ;
 	}
-	
+	where->checkBounds(check) ;
 	if (at(where) == nullptr) {
 		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
 		mapMembers++ ;
@@ -243,7 +243,9 @@ void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc) {
 template<class T>
 template<typename N>
 T * GameMap<T>::at(const Position<N> * where) {
-	return intern_map->at(where->getIntX())->at(where->getIntY()) ;
+	auto x = where->getIntX() ;
+	auto y = where->getIntY() ;
+	return intern_map->at(x)->at(y) ;
 }
 
 template<class T>

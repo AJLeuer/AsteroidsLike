@@ -51,6 +51,7 @@ private:
 	 * A container holding most objects in the game world
 	 */
 	static vector<GameObject*> * gameObjects ; //Other classes need to access this too
+	static vector<GameObject*> * secondaryGameObjects ; //Other classes need to access this too
 
 	static thread worldSimulationThread ;
 	static thread checkDelThread ;

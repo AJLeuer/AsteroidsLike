@@ -13,9 +13,8 @@
 #include <sstream>
 
 #include "../Util/AssetFileIO.h"
-#include "../Input/Input.h"
-
 #include "GameObject.h"
+#include "../Control/Input.hpp"
 
 /**
  * A class which serves as the basic template for just about any person in the game world, whether player 
@@ -87,7 +86,7 @@ public:
 	 * @param health The Health of this Character
 	 * @param damage The Damage capability of this Character
 	 */
-	Character(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, Health * health, Damage * damage) ;
+	Character(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
 	
 	
 	/**

@@ -11,9 +11,9 @@
 
 #include <iostream>
 
-#include "../Input/Input.h"
-
 #include "Character.h"
+
+#include "../Control/Input.hpp"
 
 
 class NPC : public Character {
@@ -58,7 +58,7 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, Health * health, Damage * damage, Reaction reaction) ;
+	NPC(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) ;
 	
 	
 	/**

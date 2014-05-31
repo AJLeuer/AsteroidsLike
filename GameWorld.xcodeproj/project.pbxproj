@@ -15,6 +15,8 @@
 		662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6C18FF763A003A6EE0 /* Util.cpp */; };
 		662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6E18FF90C7003A6EE0 /* MainController.cpp */; };
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
+		664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB01939E6BE008F4CD1 /* Player.cpp */; };
+		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		665E4731192FC38800738F85 /* Util2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665E472F192FC38800738F85 /* Util2.cpp */; };
 		66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C3FB5118FCE4A30082320A /* GameData.cpp */; };
 		66E3235919327A07005A1144 /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E3235819327A07005A1144 /* libncurses.dylib */; };
@@ -43,6 +45,12 @@
 		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundsCheck.hpp; sourceTree = "<group>"; };
 		664BFFAF1939E559008F4CD1 /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Input.hpp; sourceTree = "<group>"; };
+		664BFFB01939E6BE008F4CD1 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		664BFFB11939E6BE008F4CD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		664BFFB41939F747008F4CD1 /* BOOST LICENSE 1_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BOOST LICENSE 1_0.txt"; sourceTree = "<group>"; };
+		664BFFB51939F747008F4CD1 /* SDL 2_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SDL 2_0.txt"; sourceTree = "<group>"; };
+		664BFFB61939F747008F4CD1 /* SDL_IMAGE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SDL_IMAGE.txt; sourceTree = "<group>"; };
+		664BFFB7193A0730008F4CD1 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Navigator.hpp; sourceTree = "<group>"; };
 		665E472F192FC38800738F85 /* Util2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util2.cpp; sourceTree = "<group>"; };
@@ -223,6 +231,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664BFFB31939F713008F4CD1 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				664BFFB41939F747008F4CD1 /* BOOST LICENSE 1_0.txt */,
+				664BFFB51939F747008F4CD1 /* SDL 2_0.txt */,
+				664BFFB61939F747008F4CD1 /* SDL_IMAGE.txt */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
 		666D354919022C3000A615D5 /* Output */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +255,11 @@
 		666F1C07190A2C1F0004B793 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				664BFFB11939E6BE008F4CD1 /* Player.h */,
 				664BFFAF1939E559008F4CD1 /* Input.hpp */,
 				662D9E6F18FF90C7003A6EE0 /* MainController.h */,
+				664BFFB01939E6BE008F4CD1 /* Player.cpp */,
+				664BFFB7193A0730008F4CD1 /* Input.cpp */,
 				662D9E6E18FF90C7003A6EE0 /* MainController.cpp */,
 				66E97F3118CF009E002EFA00 /* main.cpp */,
 			);
@@ -435,6 +456,7 @@
 				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
 				66E3235819327A07005A1144 /* libncurses.dylib */,
 				66E3234619326E2C005A1144 /* Settings */,
+				664BFFB31939F713008F4CD1 /* Licenses */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
 				666D354919022C3000A615D5 /* Output */,
@@ -533,8 +555,10 @@
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
 				66C3FB5218FCE4A30082320A /* GameData.cpp in Sources */,
 				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
+				664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */,
 				66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */,
 				6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */,
+				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,

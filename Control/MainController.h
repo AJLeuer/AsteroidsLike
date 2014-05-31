@@ -14,21 +14,23 @@
 #include "../Util/Debug.h"
 #include "../Util/Time.h"
 
-#include "../Input/Input.h"
-
 #include "../Output/GraphicalOutput.h"
 
 #include "../GameWorld/GameData.h"
 #include "../GameWorld/WorldController.h"
 
-#endif /* defined(__GameWorld__MainController__) */
+#include "../Control/Player.h"
+#include "../Control/Input.hpp"
+
+
+using namespace std ;
 
 
 class MainController {
 	
 private:
 	
-	static thread * exitingThread ;
+	static Player * player ;
 	static void exit() ;
 
 public:
@@ -45,3 +47,6 @@ public:
 	static void exec() ;
 
 } ;
+
+
+#endif /* defined(__GameWorld__MainController__) */
