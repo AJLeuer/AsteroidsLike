@@ -12,7 +12,7 @@ using namespace std ;
 
 Player::Player(const string & name, const string & imageFile) :
 	name(name),
-	playerCharacter(AssetType::character, imageFile, 0.5,
+	playerCharacter(AssetType::block, imageFile, 0.5,
 					Pos2<float>(50, 650, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal,
 					500, 100)
 {

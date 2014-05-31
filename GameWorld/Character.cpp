@@ -51,7 +51,7 @@ Character::Character(FastRand<int> rand) :
 	health{new Health(goRand.nextValue(0, 500))},
 	damage{new Damage(goRand.nextValue(0, 50))}
 {
-	type = AssetType::character ;
+	type = AssetType::block ;
 	name = generateName(goRand.nextValue(0, 11) + 5) ;
 }
 

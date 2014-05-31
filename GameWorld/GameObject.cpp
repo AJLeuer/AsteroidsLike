@@ -27,9 +27,9 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
 	size(Size<int>()),
-	type(AssetType::character),
+	type(AssetType::block),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
 {
@@ -155,8 +155,8 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 GameObject::GameObject(FastRand<int> rand) :
 	goThread(nullptr),
 	ID(IDs),
-	type(AssetType::character), //TODO randomly select other AssetTypes if we add them later
-	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::character)),
+	type(AssetType::block), //TODO randomly select other AssetTypes if we add them later
+	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))

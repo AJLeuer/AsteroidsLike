@@ -12,7 +12,9 @@
 
 #include <iostream>
 #include <vector>
+
 #include <dirent.h>
+
 #include <SDL2/SDL_render.h>
 #include <SDL2_image/SDL_image.h>
 
@@ -28,8 +30,8 @@ using namespace std ;
  */
 class AssetFileIO {
 	
-	static vector<std::string> * characterImageFilenames ;
-	/*static vector<string> * sceneryImageFilenames ; */  //todo add this
+	static vector<std::string> * blockImageFilenames ;
+	static vector<string> * shipImageFilenames ;   //todo add more
 	
 public:
 	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;

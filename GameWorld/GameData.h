@@ -82,7 +82,8 @@ public:
 } ;
 
 enum class AssetType {
-	character = 0
+	block = 0,
+    ship = 1
 	//scenery? what else do we need?
 	//add more here
 } ;

@@ -34,10 +34,10 @@ void WorldController::init() {
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
 
-	secondaryGameObjects->push_back(new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
+	secondaryGameObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
 			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
 
-	secondaryGameObjects->push_back(new GameObject(AssetType::character, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
+	secondaryGameObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
 			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
 	
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
