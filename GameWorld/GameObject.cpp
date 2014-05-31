@@ -75,7 +75,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
 	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
-	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -143,7 +143,7 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	}
 	
 	allGameObjects->push_back(this) ;
-	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	initGraphicsData(false) ;
 	size.setModifier(modifier) ;
 	//already set: currentlyThreading = new bool(false) ;
@@ -165,7 +165,7 @@ GameObject::GameObject(FastRand<int> rand) :
 		map_is_init = true ;
 	}
 	allGameObjects->push_back(this) ;
-	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	initGraphicsData(false) ;
 	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
@@ -184,7 +184,7 @@ GameObject::~GameObject() {
 			delete this->goThread ;
 		}
 		if (loc != nullptr) {
-			map->erase(dynamic_cast<Pos2<int> *>(loc)) ;
+			map->erase(convert<float, int>(loc)) ;
 			delete loc ;
 		}
 	}
@@ -205,13 +205,13 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		initGraphicsData(true) ;
 
 		if (this->loc != nullptr) {
-			map->erase(dynamic_cast<Pos2<int> *>(loc)) ;
+			map->erase(convert<float, int>(loc)) ;
 			delete loc ;
 		}
 
         loc = new Pos2<float>(*rhs.loc) ;
 		vectDir = DirectionVector<float>(loc) ;
-		map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+		map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 		vectDir.updateAndNormalize() ;
 		
 		allGameObjects->push_back(this) ;
@@ -378,16 +378,16 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(Position<float> * to) {
-	map->erase(dynamic_cast<const Pos2<int> *>(getPosition())) ;
+	map->erase(convert<float, int>(getPosition())) ;
 	loc->setAll(*to) ;
-	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	vectDir.updateAndNormalize() ;
 }
 
 void GameObject::moveTo(Position<float> to) {
-	map->erase(dynamic_cast<const Pos2<int> *>(getPosition())) ;
+	map->erase(convert<float, int>(getPosition())) ;
 	loc->setAll(to) ;
-	map->place(dynamic_cast<Pos2<int> *>(loc), this, defaultCheck<int>, true) ;
+	map->place(convert<float, int>(loc), this, defaultCheck<int>, true) ;
 	vectDir.updateAndNormalize() ;
 }
 
@@ -433,7 +433,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<GameObject *> * nearby = map->findNearby(dynamic_cast<Pos2<int> *>(loc), searchDistanceX, searchDistanceY) ;
+	vector<GameObject *> * nearby = map->findNearby(convert<float, int>(loc), searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;
