@@ -27,7 +27,7 @@ class GameMap {
 	
 private:
 	int mapMembers = 0 ;
-	array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1> * intern_map ;
+	array< array< T *, GLOBAL_MAX_Y+1>*, GLOBAL_MAX_X+1> * intern_map ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
@@ -46,7 +46,7 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1> * getMapVect() { return this->intern_map ; } ;
+	array< array< T *, GLOBAL_MAX_Y+1>*, GLOBAL_MAX_X+1> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
@@ -100,11 +100,11 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new array< array< T *, GLOBAL_MAX_Y_+1>*, GLOBAL_MAX_X_+1>()),
+	intern_map(new array< array< T *, GLOBAL_MAX_Y+1>*, GLOBAL_MAX_X+1>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->at(i) = new array< T *, GLOBAL_MAX_Y_+1>() ;
+		intern_map->at(i) = new array< T *, GLOBAL_MAX_Y+1>() ;
 		for (auto j = 0 ; j < maxY; j++) {
 			intern_map->at(i)->at(j) = nullptr ;
 		}

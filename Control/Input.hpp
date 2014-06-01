@@ -26,6 +26,8 @@ using namespace std ;
 
 typedef SDL_Event Event ;
 typedef SDL_EventType EventType ;
+typedef SDL_Keycode KeyCode ;
+typedef SDL_Scancode ScanCode ;
 
 class EventRegisterBase {
 	
@@ -121,7 +123,7 @@ public:
 	
 	~EventRegister() {}
 	
-	EventType getEventType() { return this->eventType ; }
+	void handleEvent(const Event * currentEvent) ;
 	
 } ;
 
@@ -136,8 +138,18 @@ private:
 	 * The string representing the keyboard key
 	 * the client wishes to listen for
 	 */
-	vector<string> requestedKeyboardChars ;
+	string requestedKeyboardChar ;
 	
+	KeyCode requestedKeyCode ;
+	
+	/**
+	 * This enumeration represents whether this KeyInputRegister references
+	 */
+	enum class KeyIdenMethod {
+		keyChar = 0,
+		keyCode = 1,
+		both = (keyChar & keyCode)
+	} keyIDMethod ;
 	
 public:
 	
@@ -145,31 +157,53 @@ public:
     
 	KeyInputRegister(const KeyInputRegister & other) :
 		EventRegisterBase(other),
-		requestedKeyboardChars(vector<string>(other.requestedKeyboardChars)) {}
+		requestedKeyboardChar(string(other.requestedKeyboardChar)),
+		keyIDMethod(other.keyIDMethod) {}
 	
 	KeyInputRegister(KeyInputRegister && other) :
 		EventRegisterBase(std::move(other)),
-		requestedKeyboardChars(std::move(other.requestedKeyboardChars)) {}
+		requestedKeyboardChar(std::move(other.requestedKeyboardChar)),
+		keyIDMethod(std::move(other.keyIDMethod)) {}
     
-    KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), vector<string> keyChars) :
+    KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), string keyChar) :
 		EventRegisterBase(callOn, cb),
-		requestedKeyboardChars(keyChars) {}
+		requestedKeyboardChar(keyChar),
+		keyIDMethod(KeyIdenMethod::keyChar) {}
 	
-	KeyInputRegister(void (*cb)(), vector<string> keyChars) :
+	KeyInputRegister(void (*cb)(), string keyChar) :
 		EventRegisterBase(cb),
-		requestedKeyboardChars(keyChars) {}
+		requestedKeyboardChar(keyChar),
+		keyIDMethod(KeyIdenMethod::keyChar) {}
 	
-	KeyInputRegister(const char * ch, GameInterface * callOn, void (GameInterface::*cb)()) :
+	KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), KeyCode keyCode) :
 		EventRegisterBase(callOn, cb),
-		requestedKeyboardChars(vector<string>{ch}) {}
+		requestedKeyCode(keyCode),
+		keyIDMethod(KeyIdenMethod::keyCode) {}
 	
-	KeyInputRegister(const char * ch, void (*cb)()) :
+	KeyInputRegister(void (*cb)(), KeyCode keyCode) :
 		EventRegisterBase(cb),
-		requestedKeyboardChars(vector<string>{ch}) {}
+		requestedKeyCode(keyCode),
+		keyIDMethod(KeyIdenMethod::keyCode) {}
+	
+	KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), string keyChar, KeyCode keyCode) :
+		EventRegisterBase(callOn, cb),
+		requestedKeyboardChar(keyChar),
+		requestedKeyCode(keyCode),
+		keyIDMethod(KeyIdenMethod::both) {}
+	
+	KeyInputRegister(void (*cb)(), string keyChar, KeyCode keyCode) :
+		EventRegisterBase(cb),
+		requestedKeyboardChar(keyChar),
+		requestedKeyCode(keyCode),
+		keyIDMethod(KeyIdenMethod::both) {}
 	
 	~KeyInputRegister() {}
     
-    const vector<string> * getAllRequestedKeys() { return &requestedKeyboardChars ; }
+    void handleKeyboardInput(const unsigned char * keyboardState) ;
+	
+	static ScanCode getScanCodeFor(const char* c) { return SDL_GetScancodeFromName(c) ; } /* wrapper (just in case
+																							   I forget how to get scancodes!) */
+	static ScanCode getScanCodeFor(KeyCode code) { return SDL_GetScancodeFromKey(code) ; }
 	
 } ;
 
@@ -196,9 +230,6 @@ protected:
 	 */
 	static const unsigned char * keys ;
 	static int keyArraySize ;
-	
-	static SDL_Scancode getScancodeFromChar(const char* c) { return SDL_GetScancodeFromName(c) ; } //wrapper (just in case
-																								   //I forget how to get scancodes!)
 	
 	static void listenForKeypress() ;
 	

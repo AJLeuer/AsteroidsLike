@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#define eight_milliseconds 8333
 
 #include "Character.h"
 

@@ -9,7 +9,7 @@
 #ifndef __GameWorld__GameObject__
 #define __GameWorld__GameObject__
 
-#define defaultOffset 8
+#define defaultOffset 4
 
 #include <iostream>
 #include <sstream>

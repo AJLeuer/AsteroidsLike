@@ -13,10 +13,10 @@
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define MAX_X_ 960
-#define MIN_X_ 0
-#define MAX_Y_ 540
-#define MIN_Y_ 0
+#define MAX_X 1600
+#define MIN_X 0
+#define MAX_Y 900
+#define MIN_Y 0
 
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
@@ -25,19 +25,19 @@
 #define HIGH_DPI
 
 #ifdef  HIGH_DPI
-#define GLOBAL_MAX_X_ (MAX_X_ / 2)
-#define GLOBAL_MIN_X_ (MIN_X_ / 2)
-#define GLOBAL_MAX_Y_ (MAX_Y_ / 2)
-#define GLOBAL_MIN_Y_ (MIN_Y_ / 2)
+#define WINDOW_MAX_X (MAX_X / 2)
+#define WINDOW_MIN_X (MIN_X / 2)
+#define WINDOW_MAX_Y (MAX_Y / 2)
+#define WINDOW_MIN_Y (MIN_Y / 2)
 
 #else
-#define GLOBAL_MAX_X_ MAX_X_
-#define GLOBAL_MIN_X_ MIN_X_
-#define GLOBAL_MAX_Y_ MAX_Y_
-#define GLOBAL_MIN_Y_ MIN_Y_
+#define WINDOW_MAX_X MAX_X
+#define WINDOW_MIN_X MIN_X
+#define WINDOW_MAX_Y MAX_Y
+#define WINDOW_MIN_Y MIN_Y
 #endif
 
-#define eight_milliseconds std::chrono::milliseconds(8) //in microseconds
+#define eight_milliseconds std::chrono::milliseconds(8)
 
 #include <iostream>
 #include <ostream>
@@ -115,10 +115,10 @@ extern std::mutex sharedMutex ;
 
 extern bool GLOBAL_CONTINUE_SIGNAL ;
 
-extern const int GLOBAL_MAX_X ;
-extern const int GLOBAL_MIN_X ;
-extern const int GLOBAL_MAX_Y ;
-extern const int GLOBAL_MIN_Y ;
+constexpr int GLOBAL_MAX_X = MAX_X ;
+constexpr int GLOBAL_MIN_X = MIN_X ;
+constexpr int GLOBAL_MAX_Y = MAX_Y ;
+constexpr int GLOBAL_MIN_Y = MIN_Y ;
 
 template<typename N>
 static const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;

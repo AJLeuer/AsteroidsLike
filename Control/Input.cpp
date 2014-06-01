@@ -22,6 +22,49 @@ void EventRegisterBase::callBack() {
     }
 }
 
+void EventRegister::handleEvent(const Event * currentEvent) {
+	if (currentEvent->type == eventType) {
+		callBack() ;
+	}
+}
+
+
+void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) {
+	
+	ScanCode scanCode ;
+	
+	if ((keyIDMethod == KeyIdenMethod::keyChar) || (keyIDMethod == KeyIdenMethod::both)) {
+		scanCode = getScanCodeFor(requestedKeyboardChar.c_str()) ;
+		if (keyboardState[scanCode]) {
+			callBack() ;
+		}
+	}
+	
+	if ((keyIDMethod == KeyIdenMethod::keyCode) || (keyIDMethod == KeyIdenMethod::both)) {
+		scanCode = getScanCodeFor(requestedKeyCode) ;
+		if (keyboardState[scanCode]) {
+			callBack() ;
+		}
+	}
+	
+	/*
+	switch (keyIDMethod) {
+		case KeyIdenMethod::keyChar:
+		{
+			scanCode = getScanCodeFor(requestedKeyboardChar.c_str()) ;
+		}
+		case KeyIdenMethod::keyCode:
+		{
+			scanCode = getScanCodeFor(requestedKeyCode) ;
+		}
+		break ;
+	}
+	
+	if (keyboardState[scanCode]) {
+		callBack() ;
+	}
+	*/
+}
 
 vector<EventRegister *> * InputController::eventListenerRegistry = new vector<EventRegister *>() ;
 vector<KeyInputRegister *> * InputController::keyInputRegistry = new vector<KeyInputRegister *>() ;
@@ -32,41 +75,20 @@ const unsigned char * InputController::keys ;
 
 int InputController::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter
 
+
 void InputController::listenForEvents() {
-	while ((GLOBAL_CONTINUE_SIGNAL == true) && (SDL_PollEvent(event))) {
-		EventType currentEventType ;
-		for (auto i = 0 ; i < eventListenerRegistry->size() ; i++) {
-			currentEventType = eventListenerRegistry->at(i)->getEventType() ;
-			if (event->type == currentEventType) {
-				eventListenerRegistry->at(i)->callBack() ;
-			}
-			if (GLOBAL_CONTINUE_SIGNAL == false) {
-				break ;
-			}
+	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_SIGNAL == true)) {
+		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_SIGNAL == true)) ; i++) {
+			eventListenerRegistry->at(i)->handleEvent(event) ;
 		}
 	}
 }
 
+
 void InputController::listenForKeypress() {
-	
-	const vector<string> * keysAssignedToCallback ;
 	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_SIGNAL == true) && (i < keyInputRegistry->size())) ; i++) {
-        
 		SDL_PumpEvents() ;
-		
-		keysAssignedToCallback = keyInputRegistry->at(i)->getAllRequestedKeys() ;
-        
-        /* iterate through every key paired with the callback function at the current index, and
-           if there's a match (the key was pressed) call it */
-        for (auto j = 0 ; j < keysAssignedToCallback->size() ; j++) {
-            auto currScanCode = getScancodeFromChar(keysAssignedToCallback->at(j).c_str()) ;
-            if (keys[currScanCode] == 1) { // key is 1 if pressed
-                keyInputRegistry->at(i)->callBack() ;
-            }
-			if (GLOBAL_CONTINUE_SIGNAL == false) {
-				break ;
-			}
-        }
+		keyInputRegistry->at(i)->handleKeyboardInput(keys) ;
 	}
 }
 
