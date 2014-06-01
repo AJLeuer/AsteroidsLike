@@ -406,19 +406,43 @@ public:
 	void checkBounds(const BoundsCheck<N> & check) {
 		
 		if (this->x >= check.max_X) {
-			*(Debug::debugOutput) << "An X value was over the global limit. Reducing value..." << endl ;
+			{
+			/* Debug code */
+			#ifdef DEBUG_MODE
+			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
+			#endif
+			/* End Debug code */
+			}
 			this->x = check.max_X - 1 ;
 		}
 		if (this->x < check.min_X) {
-			*(Debug::debugOutput) << "An X value was under the global minimum. Increasing value..." << endl ;
+			{
+			/* Debug code */
+			#ifdef DEBUG_MODE
+			DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
+			#endif
+			/* End Debug code */
+			}
 			this->x = check.min_X ;
 		}
 		if (this->y >= check.max_Y) {
-			*(Debug::debugOutput) << "A Y value was over the global limit. Reducing value..." << endl ;
+			{
+			/* Debug code */
+			#ifdef DEBUG_MODE
+			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
+			#endif
+			/* End Debug code */
+			}
 			this->y = check.max_Y - 1 ;
 		}
 		if (this->y < check.min_Y) {
-			*(Debug::debugOutput) << "A Y value was under the global minimum. Increasing value..." << endl ;
+			{
+			/* Debug code */
+			#ifdef DEBUG_MODE
+			DebugOutput << "A Y value was under the global minimum. Increasing value... \n" ;
+			#endif
+			/* End Debug code */
+			}
 			this->y = check.min_Y ;
 		}
 	}
@@ -535,9 +559,13 @@ public:
      */
     Pos2(Pos2 && other) : Position<N>(std::move(other)) {
 
+		{
 		/* Debug code */
+		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
+		#endif
 		/* End Debug code */
+		}
 
 		pastPositions = other.pastPositions ;
 
@@ -549,9 +577,13 @@ public:
      */
     Pos2(Pos2 && other, const BoundsCheck<N> & check) : Position<N>(std::move(other), check) {
 
+		{
 		/* Debug code */
+		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
+		#endif
 		/* End Debug code */
+		}
 
 		pastPositions = other.pastPositions ;
 
@@ -582,9 +614,14 @@ public:
      * Destructor for Position
      */
     virtual ~Pos2() {
+		
+		{
 		/* Debug code */
+		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
+		#endif
 		/* End Debug code */
+		}
 
 		if (pastPositions != nullptr) {
 			delete pastPositions ;
@@ -593,18 +630,17 @@ public:
 
 	/**
      * Assigment operator (copy).
-     * The copy assignment operator for Pos2 is unusual. Instead of copying rhs completely, it takes the positional data
-     * from rhs, and updates this->x, y, and z to match. However, it does not copy the rhs's pastPositions, instead merely updating
-     * this Pos2's own pastPosition with this Pos2's current positional values (by calling archive()), before copying the positional
-     * values from rhs to this. Thus the copy assignment operator acts as though rhs is simply the latest position that this Position has been
-     * set to. If you need to properly duplicate rhs instead, call the move assignment operator, or better yet, the copy constructor.
-	 * See setAll() for identical behavior.
+	 *
      */
     Pos2 & operator=(const Pos2 & rhs) {
 
-        // Debug code
-        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause performance issues. \n" ;
-        // End Debug code
+		{
+        /* Debug code */
+		#ifdef DEBUG_MODE
+        DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause a performance hit. \n" ;
+		#endif
+        /* End Debug code */
+		}
 
 		if (pastPositions != nullptr) {
 			delete pastPositions ;
@@ -627,10 +663,14 @@ public:
      * Assigment operator (move)
      */
     Pos2 & operator=(Pos2 && rhs) {
-
-		// Debug code
-		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
-		// End Debug code
+		
+		{
+		/* Debug code */
+		#ifdef DEBUG_MODE
+		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
+		#endif
+		/* End Debug code */
+		}
 
 		this->Position<N>::operator=(std::move(rhs)) ;
 
@@ -645,10 +685,14 @@ public:
 	 * onto pastPositions.
      */
     Pos2 & operator=(const Position<N> & rhs) {
-
-        // Debug code
-        DebugOutput << "Warning, assignment operator (copy) for Position called. This may cause unexpected behavior. \n" ;
-        // End Debug code
+		
+		{
+        /* Debug code */
+		#ifdef DEBUG_MODE
+        DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause unexpected behavior. \n" ;
+		#endif
+        /* End Debug code */
+		}
 
         setAll(rhs) ;
 
@@ -659,10 +703,14 @@ public:
      * Assigment operator (move)
      */
     Pos2 & operator=(Position<N> && rhs) {
-
-		// Debug code
-		DebugOutput << "Warning, assignment operator (move) for Position called. This may cause unexpected behavior. \n" ;
-		// End Debug code
+		
+		{
+		/* Debug code */
+		#ifdef DEBUG_MODE
+		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
+		#endif
+		/* End Debug code */
+		}
 
 		setAll(rhs) ;
 

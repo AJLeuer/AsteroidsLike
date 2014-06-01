@@ -6,16 +6,23 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
+/**
+ * This header holds important data and definitions used throughout the program
+ */
+
 #ifndef GameWorld_GameData_h
 #define GameWorld_GameData_h
 
-#define MAX_X_ 1920
+#define MAX_X_ 960
 #define MIN_X_ 0
-#define MAX_Y_ 1080
+#define MAX_Y_ 540
 #define MIN_Y_ 0
 
+/* comment this out (or #undef) when not running in debug mode */
+#define DEBUG_MODE
+
 /* comment this out (or #undef) when not running in high-dpi mode */
-//#define HIGH_DPI
+#define HIGH_DPI
 
 #ifdef  HIGH_DPI
 #define GLOBAL_MAX_X_ (MAX_X_ / 2)
@@ -30,7 +37,7 @@
 #define GLOBAL_MIN_Y_ MIN_Y_
 #endif
 
-#define eight_milliseconds 8333 //in microseconds
+#define eight_milliseconds std::chrono::milliseconds(8) //in microseconds
 
 #include <iostream>
 #include <ostream>
@@ -115,8 +122,6 @@ extern const int GLOBAL_MIN_Y ;
 
 template<typename N>
 static const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
-
-//static const BoundsCheck<float> defaultCheckFP(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
 
 extern string currentDirectory ;
 

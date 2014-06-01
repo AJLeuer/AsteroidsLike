@@ -58,7 +58,8 @@ void WorldController::runWorldSimulation() {
 		for (auto i = 0 ; i < secondaryGameObjects->size() ; i++) {
 			secondaryGameObjects->at(i)->moveSameDirection() ;
 		}
-        usleep(eight_milliseconds) ;
+        //usleep(eight_milliseconds) ;
+		this_thread::sleep_for(eight_milliseconds) ;
 	}
 }
 

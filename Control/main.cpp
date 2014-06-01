@@ -7,7 +7,7 @@
 //
 
 
-#include <ncurses.h>
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -37,10 +37,11 @@ int main(int argc, char ** argv) {
 	
 	currentDirectory = argv[0] ;
 	cout << "the current directory is: " << currentDirectory << endl ;
-	auto s = AssetFileIO::getRandomImageFilename(AssetType::block) ;
 
 	Debug::init(true) ;
-
+	auto testX1 = GLOBAL_MAX_X ;
+	auto testY1 = GLOBAL_MAX_Y ;
+	auto test = defaultCheck<float> ;
 
 	MainController::init() ;
 	MainController::exec() ;

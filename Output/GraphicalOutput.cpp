@@ -18,20 +18,11 @@ SDL_Renderer * GraphicalOutput::renderer = NULL ;
 
 void GraphicalOutput::init() {
     
-    auto testX = GLOBAL_MAX_X ;
-    auto testY = GLOBAL_MAX_Y ;
-	
 	int sdlinit_error = SDL_InitSubSystem(SDL_INIT_VIDEO) ;
-
-	/* debug code */
-	stringstream aa ;
-	aa << "Checking for SDL errors after SDL_Init(): " << SDL_GetError() << '\n' ;
-	DebugOutput << aa.rdbuf() ;
-	/* end debug code */
-
+	
 	if (sdlinit_error != 0) {
 		stringstream ss ;
-		ss << "SDL_Init() failed." << '\n' ;
+		ss << "SDL_InitSubSystem(SDL_INIT_VIDEO) failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
 		DebugOutput << ss.rdbuf() ;
 		throw exception() ;
@@ -39,17 +30,20 @@ void GraphicalOutput::init() {
 
 	window = SDL_CreateWindow("SDL 2 window", SDL_WINDOWPOS_CENTERED,     // x position, centered
 											  SDL_WINDOWPOS_CENTERED,     // y position, centered
-											  (int)(GLOBAL_MAX_X),                        // width, in pixels (/2 for highdpi)
-											  (int)(GLOBAL_MAX_Y),                        // height, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_X),        // width, in pixels (/2 for highdpi)
+											  (int)(GLOBAL_MAX_Y),        // height, in pixels (/2 for highdpi)
 											  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
-
+	{
 	/* debug code */
+	#ifdef DEBUG_MODE
 	stringstream ab ;
 	ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;
 	DebugOutput << ab.rdbuf() ;
+	#endif
 	/* end debug code */
+	}
 
-	if (window == 0) {
+	if (window == NULL) {
 		stringstream ss ;
 		ss << "Window creation failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
@@ -59,11 +53,15 @@ void GraphicalOutput::init() {
 
 	renderer = SDL_CreateRenderer(window, -1, (SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) ;
 
+	{
 	/* debug code */
+	#ifdef DEBUG_MODE
 	stringstream ac ;
 	ac << "Checking for SDL errors after SDL_CreateRenderer(): " << SDL_GetError() << '\n' ;
 	DebugOutput << ac.rdbuf() ;
+	#endif
 	/* end debug code */
+	}
 	
 	if (renderer == NULL) {
 		stringstream ss ;
@@ -85,16 +83,8 @@ void GraphicalOutput::renderTextures() {
 }
 
 void GraphicalOutput::renderObject(GameObject * gameObject) {
-	SDL_Rect tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
+	auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
 	int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
-
-	/* debug code */
-	/*
-	stringstream ab ;
-	ab << "Checking for SDL errors after SDL_RenderCopy(): " << SDL_GetError() << '\n' ;
-	DebugOutput << ab.rdbuf() ;
-	 */
-	/* end debug code */
 
 	if (sdlrend_error == -1) {
 		stringstream ss ;
@@ -106,7 +96,8 @@ void GraphicalOutput::renderObject(GameObject * gameObject) {
 }
 
 void GraphicalOutput::update() {
-	usleep(eight_milliseconds) ;
+	//usleep(eight_milliseconds) ;
+	this_thread::sleep_for(eight_milliseconds) ;
 	SDL_RenderClear(renderer);
 	renderTextures() ;
 	SDL_RenderPresent(renderer) ;
@@ -118,8 +109,6 @@ void GraphicalOutput::exit() {
 	SDL_DestroyWindow(window);
 	SDL_QuitSubSystem(SDL_INIT_VIDEO) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
 }
-
-
 
 
 /**

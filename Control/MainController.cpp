@@ -16,18 +16,27 @@ using namespace std ;
 Player * MainController::player = nullptr ;
 
 void MainController::setupMainContrExit() {
-	/*we can choose whatever method we want for when or how to tell InputController to exit() later
-	we could also set up at timer that calls exit() after a certain amount of time, and call setInpContrExit() to run on its own thread during MainController::init() */
-	KeyInputRegister * exitKey = new KeyInputRegister("-", &MainController::exit) ;
-	InputController::registerForKeypress(exitKey) ;
+	
+	/* Register for MainController::exit() to be called if a quit event is initiated (i.e. user clicks
+	  window close button, presses ⌘Q, etc */
+	EventRegister * quitEvent = new EventRegister(&WorldController::exit, EventType::SDL_QUIT) ;
+	InputController::registerForEvent(quitEvent) ;
 }
 
 void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
-	SDL_Init(0) ; /*SDL requires initializing with SDLInit(0) first, then we can init subsystems as we need them.
-				  e.g. SDL_InitSubSystem(SDL_INIT_EVENTS) in MainInputController::init() */
+	
+	int sdlinit_error = SDL_Init(0) ;
+	
+	if (sdlinit_error != 0) {
+		stringstream ss ;
+		ss << "SDL_Init() failed." << '\n' ;
+		ss << SDL_GetError() << '\n' ;
+		DebugOutput << ss.rdbuf() ;
+		throw exception() ;
+	}
 
 	GraphicalOutput::init() ;
 	InputController::init() ;

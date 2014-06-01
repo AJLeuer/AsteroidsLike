@@ -33,7 +33,7 @@ public:
 	template<typename N>
 	static void setOutput(const Position<N> pos_on_screen, const char * str) ;
 	
-	static void update(unsigned int wait_micros) ;
+	static void update(unsigned int waitForMicrosec) ;
 	
 	static void exit() ;
 			

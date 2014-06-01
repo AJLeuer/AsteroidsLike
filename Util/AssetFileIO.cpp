@@ -67,17 +67,21 @@ SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const
 			}
 			//throw an except if it's not
 			if (noMatch) {
-				cout << "No file matching given filename" << endl ;
+				DebugOutput << "No file matching given filename \n" ;
 				throw exception() ;
 			}
 			//otherwise, return the requested surface
 			SDL_Texture * img = IMG_LoadTexture(renderer, str.c_str()) ;
 
+			{
 			/* debug code */
+			#ifdef DEBUG_MODE
 			stringstream ss ;
 			ss << "Checking for IMG or SDL errors after IMG_LoadTexture(): " << IMG_GetError() << '\n' ;
 			DebugOutput << ss.rdbuf() ;
+			#endif
 			/* end debug code */
+			}
 
 			return img ;
 		}
@@ -94,17 +98,21 @@ SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const
 			}
 			//throw an except if it's not
 			if (noMatch) {
-				cout << "No file matching given filename" << endl ;
+				DebugOutput << "No file matching given filename \n" ;
 				throw exception() ;
 			}
 			//otherwise, return the requested surface
 			SDL_Texture * img = IMG_LoadTexture(renderer, str.c_str()) ;
-            
+
+			{
 			/* debug code */
+			#ifdef DEBUG_MODE
 			stringstream ss ;
 			ss << "Checking for IMG or SDL errors after IMG_LoadTexture(): " << IMG_GetError() << '\n' ;
 			DebugOutput << ss.rdbuf() ;
+			#endif
 			/* end debug code */
+			}
             
 			return img ;
 		}

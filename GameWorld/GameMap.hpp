@@ -144,17 +144,31 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 		return ;
 	}
 	else if (allowMove) {
+		{
+        /* Debug code */
+		#ifdef DEBUG_MODE
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
 		ss << "Call rerouted to placeAtNearestFree(). Some objects may be in the wrong spot." << '\n' ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
+		#endif
+        /* End Debug code */
+		}
 		placeAtNearestFree(where, mapObj, check) ;
 	}
 	else {
+		{
+        /* Debug code */
+		#ifdef DEBUG_MODE
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
 		ss << "The given position was not changed, nor was it moved on the GameMap" << '\n' ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
+        DebugOutput << " ...  \n" ;
+		#endif
+        /* End Debug code */
+		}
+		
 	}
 	
 }
@@ -259,10 +273,8 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 			}
 		}
 	}
-	/* debug code */
 	DebugOutput << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
 	throw exception() ;
-	/* end debug code */
 }
 
 template<class T>

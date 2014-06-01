@@ -7,12 +7,11 @@
 //
 
 #include <iostream>
+#include <thread>
 
 #include "ConsoleOutput.hpp"
 
 using namespace std ;
-
-
 
 void ConsoleOutput::init() {
 	
@@ -29,10 +28,9 @@ void ConsoleOutput::init() {
 }
 
 
-
-void ConsoleOutput::update(unsigned int wait_micros) {
+void ConsoleOutput::update(unsigned int waitForMicrosec) {
 	doupdate() ;
-	usleep(wait_micros) ;
+	std::this_thread::sleep_for(chrono::microseconds(waitForMicrosec)) ;	//equivelent to usleep(waitForMicrosec) ;
 	wclear(stdscr) ;
 }
 

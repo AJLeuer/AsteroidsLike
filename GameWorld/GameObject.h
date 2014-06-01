@@ -29,6 +29,7 @@
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"
+#include "GameData.h"
 #include "GameInterface.h"
 
 #include "../Control/Input.hpp"

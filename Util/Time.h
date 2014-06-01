@@ -20,11 +20,13 @@ using namespace std ;
 class Time {
 	
 private:
+	
 	bool timerStarted ;
 	chrono::time_point<chrono::system_clock> start ;
 	
 	
 public:
+	
 	Time() : timerStarted(false) {}
 	
 	void startTimer() {

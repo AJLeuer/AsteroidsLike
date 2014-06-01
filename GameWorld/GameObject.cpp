@@ -61,12 +61,16 @@ GameObject::GameObject(const GameObject & other) :
 	loc(new Pos2<float>(*(other.loc), defaultCheck<float>)),
 	vectr(DirectionVector<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
+	{
 	/* debug */
+	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: Copy constructor called on GameObject ID# " << other.ID
 		<< endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
 	*(Debug::debugOutput) << ss.rdbuf() ;
+	#endif
 	/* end debug */
+	}
 	
 	IDs++ ;
 	
@@ -84,13 +88,18 @@ GameObject::GameObject(const GameObject & other) :
 	initGraphicsData(true) ;
 	
 	/* Don't want to copy goThread or goIterator */
-	
+
+	{
 	/* debug */
+	#ifdef DEBUG_MODE
 	stringstream st ;
 	st << "Warning: Copy constructor finished copying GameObject ID# " << other.ID
 		<< " to GameObject ID# " << this->ID << '\n' << "Dumping desciption of GameObject copied to: " << '\n' << this << '\n' ;
 	*(Debug::debugOutput) << st.rdbuf() ;
+	#endif
 	/* end debug */
+	}
+
 }
 
 GameObject::GameObject(GameObject && other) :
@@ -104,9 +113,13 @@ GameObject::GameObject(GameObject && other) :
 	loc(other.loc),
 	vectr(std::move(other.vectr))
 {
+	{
 	/* debug */
+	#ifdef DEBUG_MODE
 	*(Debug::debugOutput) << "Warning: move constructor called. \n" ;
+	#endif
 	/*end debug */
+	}
 	
 	//don't need to incr IDs
 	
@@ -195,11 +208,17 @@ GameObject::~GameObject() {
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
+
+	{
 	/* Debug code */
+	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: GameObject assignment operator overload (copy) called. This will cause performance issues." << '\n' ;
 	DebugOutput << ss.rdbuf() ;
+	#endif
 	/* End Debug code */
+	}
+
 	if (this != &rhs) {
 		*(this->currentlyThreading) = false ;
 		this->goThread = nullptr ;
@@ -213,7 +232,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 			delete loc ;
 		}
 
-        loc = new Pos2<float>(*rhs.loc) ;
+        loc = std::move(new Pos2<float>(*rhs.loc)) ;
 		vectr = DirectionVector<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
 		map->place<float>(loc, this, defaultCheck<float>, true) ;
 		vectr.updateAndNormalize() ;
@@ -226,11 +245,17 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 }
 
 GameObject & GameObject::operator=(GameObject && rhs) {
+
+	{
 	/* Debug code */
+	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: GameObject assignment operator overload (move) called." << '\n' ;
 	DebugOutput << ss.rdbuf() ;
+	#endif
 	/* End Debug code */
+	}
+
 	if (this != &rhs) {
 		if (this->currentlyThreading != nullptr) {
 			delete this->currentlyThreading ;
@@ -385,11 +410,18 @@ void GameObject::moveTo(Position<float> * to) {
 	loc->setAll(*to) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
-	//Debug code
+	
+	{
+	/* Debug code */
+	/*
+	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	//end debug
+	#endif
+	*/
+	/* end debug */
+	}
 }
 
 void GameObject::moveTo(Position<float> to) {
@@ -397,11 +429,18 @@ void GameObject::moveTo(Position<float> to) {
 	loc->setAll(to) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
-	//Debug code
+	
+	{
+	/* Debug code */
+	/*
+	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	//end debug
+	#endif
+	*/
+	/* end debug */
+	}
 }
 
 void GameObject::moveSameDirection() {

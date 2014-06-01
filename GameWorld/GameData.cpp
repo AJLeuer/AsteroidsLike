@@ -35,7 +35,7 @@ void SharedGameData::initGraphics(SDL_Renderer * renderer_) {
 const vector<GameObject*> * SharedGameData::getGameObjects()  {
 	if (dataIsInit == false) {
 		stringstream ss ;
-		ss << "SharedGameData::initData() must be called before reading any of its data members" << '\n';
+		ss << "SharedGameData::initData() must be called before reading any of its data members \n" ;
 		*Debug::debugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
@@ -46,7 +46,7 @@ const vector<GameObject*> * SharedGameData::getGameObjects()  {
 const GameMap<GameObject> * SharedGameData::getMap()  {
 	if (dataIsInit == false) {
 		stringstream ss ;
-		ss << "SharedGameData::initData() must be called before reading any of its data members" << '\n' ;
+		ss << "SharedGameData::initData() must be called before reading any of its data members \n" ;
 		*Debug::debugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
@@ -56,7 +56,7 @@ const GameMap<GameObject> * SharedGameData::getMap()  {
 SDL_Renderer * SharedGameData::getMainRenderer() {
 	if (graphicsAreInit == false) {
 		stringstream ss ;
-		ss << "SharedGameData::initGraphics() must be called before reading SharedGameData::getMainRenderer()" << '\n' ;
+		ss << "SharedGameData::initGraphics() must be called before reading SharedGameData::getMainRenderer() \n" ;
 		*Debug::debugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
@@ -67,12 +67,12 @@ std::mutex sharedMutex ;
 
 bool GLOBAL_CONTINUE_SIGNAL = true ;
 
-const int GLOBAL_MAX_X { GLOBAL_MAX_X_ } ;
-const int GLOBAL_MIN_X { GLOBAL_MIN_X_ } ;
-const int GLOBAL_MAX_Y { GLOBAL_MAX_Y_ } ;
-const int GLOBAL_MIN_Y { GLOBAL_MIN_Y_ } ;
+const int GLOBAL_MAX_X = GLOBAL_MAX_X_ ;
+const int GLOBAL_MIN_X = GLOBAL_MIN_X_ ;
+const int GLOBAL_MAX_Y = GLOBAL_MAX_Y_ ;
+const int GLOBAL_MIN_Y = GLOBAL_MIN_Y_ ;
 
-string currentDirectory { "" } ;
+string currentDirectory = "" ;
 
 
 
