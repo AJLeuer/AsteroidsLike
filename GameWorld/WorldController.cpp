@@ -21,6 +21,12 @@ const GameMap<GameObject> * WorldController::map = nullptr ;
 
 WorldController::WorldController() {}
 
+void WorldController::update() {
+	for (auto i = 0 ; i < secondaryGameObjects->size() ; i++) {
+		secondaryGameObjects->at(i)->moveSameDirection() ;
+	}
+}
+
 void WorldController::init() {
 
 	WorldController::gameObjects = GameObject::getAllGameObjects() ;
@@ -40,6 +46,10 @@ void WorldController::init() {
 			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
 	
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
+	
+	/* start some of the GameObjects moving. exec() will take over from here */
+	gameObjects->at(0)->moveDown() ;
+	gameObjects->at(1)->moveUp() ;
 }
 
 void WorldController::exec() {
@@ -48,17 +58,16 @@ void WorldController::exec() {
 }
 
 void WorldController::runWorldSimulation() {
-
-	gameObjects->at(0)->moveDown() ;
-	gameObjects->at(1)->moveUp() ;
-
-
+	
 	while (GLOBAL_CONTINUE_SIGNAL) {
-		for (auto i = 0 ; i < secondaryGameObjects->size() ; i++) {
-			secondaryGameObjects->at(i)->moveSameDirection() ;
-		}
-        //usleep(eight_milliseconds) ;
-		this_thread::sleep_for(eight_milliseconds) ;
+		auto startTime = mainGameClock->checkTimeElapsed() ;
+		auto refreshTime = eight_milliseconds ;
+		
+		update() ;
+		
+		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
+		auto sleepTime = refreshTime - timeElapsed ;
+		this_thread::sleep_for(sleepTime) ;
 	}
 }
 

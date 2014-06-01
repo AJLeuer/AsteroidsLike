@@ -49,6 +49,8 @@
 
 #include "../Util/Debug.h"
 #include "../Util/BoundsCheck.hpp"
+#include "../Util/Time.hpp"
+
 #include "ForwardDecl.h"
 
 using namespace std ;
@@ -110,6 +112,8 @@ enum class AssetType {
 	//scenery? what else do we need?
 	//add more here
 } ;
+
+extern Time<nanosecPrecisionClock> * mainGameClock ;
 
 extern std::mutex sharedMutex ;
 

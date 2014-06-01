@@ -65,8 +65,9 @@ SDL_Renderer * SharedGameData::getMainRenderer() {
 
 std::mutex sharedMutex ;
 
-bool GLOBAL_CONTINUE_SIGNAL = true ;
+Time<nanosecPrecisionClock> * mainGameClock = nullptr ;
 
+bool GLOBAL_CONTINUE_SIGNAL = true ;
 
 string currentDirectory = "" ;
 

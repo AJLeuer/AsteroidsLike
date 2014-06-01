@@ -100,8 +100,6 @@ void GraphicalOutput::renderObject(GameObject * gameObject) {
 }
 
 void GraphicalOutput::update() {
-	//usleep(eight_milliseconds) ;
-	this_thread::sleep_for(eight_milliseconds) ;
 	SDL_RenderClear(renderer);
 	renderTextures() ;
 	SDL_RenderPresent(renderer) ;

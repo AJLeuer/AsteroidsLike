@@ -21,7 +21,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Size.hpp"
-#include "../Util/Time.h"
+#include "../Util/Time.hpp"
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
 #include "../Util/AssetFileIO.h"

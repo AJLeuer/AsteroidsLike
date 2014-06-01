@@ -24,6 +24,8 @@ void MainController::setupMainContrExit() {
 }
 
 void MainController::init() {
+	mainGameClock = new Time<nanosecPrecisionClock>() ;
+	mainGameClock->startTimer() ;
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
@@ -49,13 +51,20 @@ void MainController::init() {
 
 void MainController::exec() {
     
-	/*start main functions for all controller classes. WorldController::exec() runs on its own thread, and input and output
+	/* Start main functions for all controller classes. WorldController manages the world on its own thread, and input and output
 	 switch off on the main thread */
 	WorldController::exec() ;
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
+		auto startTime = mainGameClock->checkTimeElapsed() ;
+		auto refreshTime = eight_milliseconds ;
+		
 		GraphicalOutput::update() ;
 		InputController::update() ;
+		
+		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
+		auto sleepTime = (refreshTime - timeElapsed) ;
+		this_thread::sleep_for(sleepTime) ;
 	}
 }
 
@@ -67,6 +76,7 @@ void MainController::exit() {
 	GraphicalOutput::exit() ;
 	InputController::exit() ;
 	SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
+	mainGameClock->stopTimer() ;
 }
 
 

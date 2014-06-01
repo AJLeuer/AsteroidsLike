@@ -19,7 +19,7 @@
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
-#include "../Util/Time.h"
+#include "../Util/Time.hpp"
 
 #include "GameData.h"
 #include "GameMap.hpp"
@@ -45,7 +45,7 @@ using namespace std ;
  */
 class WorldController {
 	
-private:
+protected:
 	
 	/**
 	 * A container holding most objects in the game world
@@ -62,6 +62,8 @@ private:
 	static void runWorldSimulation() ;
 	
 	WorldController() ;
+	
+	static void update() ;
 	
 public:
 	

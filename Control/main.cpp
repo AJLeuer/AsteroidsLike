@@ -20,7 +20,7 @@
 #include "../Util/Configuration.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
-#include "../Util/Time.h"
+#include "../Util/Time.hpp"
 #include "../Util/AssetFileIO.h"
 
 #include "../GameWorld/GameData.h"
@@ -39,9 +39,6 @@ int main(int argc, char ** argv) {
 	cout << "the current directory is: " << currentDirectory << endl ;
 
 	Debug::init(true) ;
-	auto testX1 = GLOBAL_MAX_X ;
-	auto testY1 = GLOBAL_MAX_Y ;
-	auto test = defaultCheck<float> ;
 
 	MainController::init() ;
 	MainController::exec() ;

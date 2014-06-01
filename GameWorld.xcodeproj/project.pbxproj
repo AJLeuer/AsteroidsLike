@@ -10,7 +10,6 @@
 		1E64D2D8193145D700A3B7C5 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E64D2D7193145D700A3B7C5 /* SDL2.framework */; };
 		1E64D2DA193145E300A3B7C5 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */; };
 		6603FD74190C902800A5F41A /* GraphicalOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6603FD73190C902800A5F41A /* GraphicalOutput.cpp */; };
-		66086F2C1902B440003F3F90 /* ConsoleOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */; };
 		6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6617B184190D725C004B442B /* AssetFileIO.cpp */; };
 		662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6C18FF763A003A6EE0 /* Util.cpp */; };
 		662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6E18FF90C7003A6EE0 /* MainController.cpp */; };
@@ -35,7 +34,6 @@
 		1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicalOutput.h; sourceTree = "<group>"; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicalOutput.cpp; sourceTree = "<group>"; };
-		66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleOutput.cpp; sourceTree = "<group>"; };
 		6617B184190D725C004B442B /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetFileIO.cpp; sourceTree = "<group>"; };
 		6617B185190D725C004B442B /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetFileIO.h; sourceTree = "<group>"; };
 		662D9E6C18FF763A003A6EE0 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
@@ -56,11 +54,10 @@
 		665E472F192FC38800738F85 /* Util2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util2.cpp; sourceTree = "<group>"; };
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util2.h; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
-		6678790118DAE25E00618712 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
+		6678790118DAE25E00618712 /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 		667BD13A190D5484001319AD /* PixelArtA.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtA.bmp; sourceTree = "<group>"; };
 		667BD13B190D5484001319AD /* PixelArtB.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtB.bmp; sourceTree = "<group>"; };
 		667BD13C190D5484001319AD /* Search Algorithm Illustration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search Algorithm Illustration.png"; sourceTree = "<group>"; };
-		66914DD219024AB20012957D /* ConsoleOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConsoleOutput.hpp; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66B90880190D6F4B005B3E86 /* Blocks_01.ai */ = {isa = PBXFileReference; lastKnownFileType = text; path = Blocks_01.ai; sourceTree = "<group>"; };
 		66B90881190D6F4B005B3E86 /* Blocks_01_128x128_Alt_00_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_128x128_Alt_00_001.png; sourceTree = "<group>"; };
@@ -244,9 +241,7 @@
 		666D354919022C3000A615D5 /* Output */ = {
 			isa = PBXGroup;
 			children = (
-				66914DD219024AB20012957D /* ConsoleOutput.hpp */,
 				6603FD72190C902800A5F41A /* GraphicalOutput.h */,
-				66086F2B1902B440003F3F90 /* ConsoleOutput.cpp */,
 				6603FD73190C902800A5F41A /* GraphicalOutput.cpp */,
 			);
 			path = Output;
@@ -277,7 +272,7 @@
 				66BE1FBD19226A3A0099FD97 /* Size.hpp */,
 				66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */,
 				665DBB5918F4F4F2006F2026 /* Navigator.hpp */,
-				6678790118DAE25E00618712 /* Time.h */,
+				6678790118DAE25E00618712 /* Time.hpp */,
 				6617B185190D725C004B442B /* AssetFileIO.h */,
 				66E3235A19327C28005A1144 /* Configuration.cpp */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
@@ -569,7 +564,6 @@
 				662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */,
 				66E97F4F18CF149F002EFA00 /* NPC.cpp in Sources */,
 				66E97F3218CF009E002EFA00 /* main.cpp in Sources */,
-				66086F2C1902B440003F3F90 /* ConsoleOutput.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
