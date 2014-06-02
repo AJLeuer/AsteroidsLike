@@ -15,17 +15,14 @@ using namespace std ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
 vector<GameObject*> * WorldController::secondaryGameObjects = new vector<GameObject *>() ;
+vector<GameObject*> * WorldController::obstacleObjects = new vector<GameObject *>() ;
 thread WorldController::worldSimulationThread ;
 thread WorldController::checkDelThread ;
+unsigned WorldController::worldControllerLoopCount = 0 ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
 WorldController::WorldController() {}
 
-void WorldController::update() {
-	for (auto i = 0 ; i < secondaryGameObjects->size() ; i++) {
-		secondaryGameObjects->at(i)->moveSameDirection() ;
-	}
-}
 
 void WorldController::init() {
 
@@ -34,22 +31,20 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	float startingXArea = (GLOBAL_MAX_X * 0.75) ;
-	float startingYArea = (GLOBAL_MAX_Y * 0.5) ;
+	float startingYAreaHi = (GLOBAL_MAX_Y * 0.75) ;
+	float startingYAreaLo = (GLOBAL_MAX_Y * 0.25) ;
+	
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
 
-	secondaryGameObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
-			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
+	obstacleObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
+			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaHi + posModifier()), 0, defaultCheck<float>))) ;
 
-	secondaryGameObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
-			0.50, Pos2<float>(startingXArea, (startingYArea + posModifier()), 0, defaultCheck<float>))) ;
+	obstacleObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
+			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaLo + posModifier()), 0, defaultCheck<float>))) ;
 	
 	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	
-	/* start some of the GameObjects moving. exec() will take over from here */
-	gameObjects->at(0)->moveDown() ;
-	gameObjects->at(1)->moveUp() ;
 }
 
 void WorldController::exec() {
@@ -67,6 +62,7 @@ void WorldController::runWorldSimulation() {
 		
 		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
 		auto sleepTime = refreshTime - timeElapsed ;
+		worldControllerLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
 	}
 }
@@ -91,3 +87,30 @@ void WorldController::exit() {
 	
 	sharedMutex.unlock() ;
 }
+
+void WorldController::update() {
+	obstacleBehavior() ;
+	/* other actor behavior */
+}
+
+void WorldController::obstacleBehavior() {
+	/* So we can alter our behavior each time through the loop */
+	bool even = ((worldControllerLoopCount % 2) == 0) ;
+	
+	FastRand<float> randOffsetter(-defaultOffset<float>, defaultOffset<float>) ;
+	auto randOffsetVal = (randOffsetter() * 30) ;
+	
+	for (auto i = 0 ; i < obstacleObjects->size() ; i++) {
+		if (even) {
+			obstacleObjects->at(i)->moveUp(randOffsetVal) ; /* will actually move us up or down (randomly) */
+			obstacleObjects->at(i)->moveUp(randOffsetVal * (-1)) ; /* will put us back where we started longtitudinally, though
+																	laterally we've still moved to the left  */
+		}
+		else {
+			obstacleObjects->at(i)->moveLeft(defaultOffset<float> * 2) ;
+		}
+	}
+}
+
+
+

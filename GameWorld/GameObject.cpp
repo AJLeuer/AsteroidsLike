@@ -30,6 +30,7 @@ GameObject::GameObject() :
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
 	size(Size<int>()),
 	type(AssetType::block),
+	visible(true),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
 {
@@ -58,6 +59,7 @@ GameObject::GameObject(const GameObject & other) :
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
 	type(other.type),
+	visible(other.visible),
 	loc(new Pos2<float>(*(other.loc), defaultCheck<float>)),
 	vectr(DirectionVector<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
@@ -110,6 +112,7 @@ GameObject::GameObject(GameObject && other) :
 	texture(other.texture),
 	size(std::move(other.size)),
 	type(other.type),
+	visible(other.visible),
 	loc(other.loc),
 	vectr(std::move(other.vectr))
 {
@@ -147,6 +150,7 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	textureImageFile(imageFileName),
 	size(Size<int>()),
 	type(type),
+	visible(true),
 	loc(new Pos2<float>(loc_, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
 {
@@ -169,6 +173,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	goThread(nullptr),
 	ID(IDs),
 	type(AssetType::block), //TODO randomly select other AssetTypes if we add them later
+	visible(true),
 	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, defaultCheck<float>)),
@@ -225,6 +230,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
 		this->type = rhs.type ;
+		this->visible = rhs.visible ;
 		initGraphicsData(true) ;
 
 		if (this->loc != nullptr) {
@@ -275,6 +281,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->texture = rhs.texture ;
 		this->size = std::move(rhs.size) ;
 		this->type = rhs.type ;
+		this->visible = rhs.visible ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}

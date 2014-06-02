@@ -63,9 +63,12 @@ SDL_Renderer * SharedGameData::getMainRenderer() {
 	return renderer ;
 }
 
-std::mutex sharedMutex ;
+
+unsigned globalGameLoopCount = 0 ;
 
 Time<nanosecPrecisionClock> * mainGameClock = nullptr ;
+
+std::mutex sharedMutex ;
 
 bool GLOBAL_CONTINUE_SIGNAL = true ;
 

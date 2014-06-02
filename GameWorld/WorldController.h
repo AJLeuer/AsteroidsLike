@@ -50,11 +50,14 @@ protected:
 	/**
 	 * A container holding most objects in the game world
 	 */
-	static vector<GameObject*> * gameObjects ; //Other classes need to access this too
-	static vector<GameObject*> * secondaryGameObjects ; //Other classes need to access this too
-
+	static vector<GameObject*> * gameObjects ; /* Convenience to access GameObject::getAllGameObjects() */
+	static vector<GameObject*> * secondaryGameObjects ;
+	static vector<GameObject*> * obstacleObjects ;
+ 
 	static thread worldSimulationThread ;
 	static thread checkDelThread ;
+	
+	static unsigned worldControllerLoopCount ;
 	
 	friend class GameInterface ;
 	friend class GameObject ;
@@ -64,6 +67,7 @@ protected:
 	WorldController() ;
 	
 	static void update() ;
+	static void obstacleBehavior() ;
 	
 public:
 	

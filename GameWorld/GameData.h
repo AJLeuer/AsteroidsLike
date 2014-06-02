@@ -25,9 +25,9 @@
 #define HIGH_DPI
 
 #ifdef  HIGH_DPI
-#define WINDOW_MAX_X (MAX_X / 2)
+#define WINDOW_SIZE_X (MAX_X / 2)
 #define WINDOW_MIN_X (MIN_X / 2)
-#define WINDOW_MAX_Y (MAX_Y / 2)
+#define WINDOW_SIZE_Y (MAX_Y / 2)
 #define WINDOW_MIN_Y (MIN_Y / 2)
 
 #else
@@ -112,6 +112,11 @@ enum class AssetType {
 	//scenery? what else do we need?
 	//add more here
 } ;
+
+extern unsigned globalGameLoopCount ;
+
+template<typename N = float>
+N defaultOffset = 4 ;
 
 extern Time<nanosecPrecisionClock> * mainGameClock ;
 

@@ -32,10 +32,10 @@ void GraphicalOutput::init() {
 	int testY = (int)(GLOBAL_MAX_Y) ;
 
 	window = SDL_CreateWindow("T^2",
-							  SDL_WINDOWPOS_CENTERED,     // x position, centered
-							  SDL_WINDOWPOS_CENTERED,     // y position, centered
-							  WINDOW_MAX_X,        // width, in pixels (/2 for highdpi)
-							  WINDOW_MAX_Y,        // height, in pixels (/2 for highdpi)
+							  SDL_WINDOWPOS_CENTERED,   // x position, centered
+							  SDL_WINDOWPOS_CENTERED,   // y position, centered
+							  WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
+							  WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
 							  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
 	{
 	/* debug code */
@@ -87,15 +87,18 @@ void GraphicalOutput::renderTextures() {
 }
 
 void GraphicalOutput::renderObject(GameObject * gameObject) {
-	auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
-	int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
-
-	if (sdlrend_error == -1) {
-		stringstream ss ;
-		ss << "SDL_RenderCopy() failed." << '\n' ;
-		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
-		throw exception() ;
+	/* Don't render if invisible */
+	if (gameObject->isVisible()) {
+		auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
+		int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
+		
+		if (sdlrend_error == -1) {
+			stringstream ss ;
+			ss << "SDL_RenderCopy() failed." << '\n' ;
+			ss << SDL_GetError() << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+			throw exception() ;
+		}
 	}
 }
 

@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "Message.h"
+#include "GameData.h"
 
 
 /**
@@ -29,11 +30,16 @@ public:
 	 * An implementing class can define a default function by overloading its () operator
 	 */
 	virtual void operator()() = 0 ;
-
+	
 	virtual void moveUp() = 0 ;
 	virtual void moveDown() = 0 ;
 	virtual void moveRight() = 0 ;
 	virtual void moveLeft() = 0 ;
+
+	virtual void moveUp(float offset = defaultOffset<float>) = 0 ;
+	virtual void moveDown(float offset = defaultOffset<float>) = 0 ;
+	virtual void moveRight(float offset = defaultOffset<float>) = 0 ;
+	virtual void moveLeft(float offset = defaultOffset<float>) = 0 ;
 	
 	
 };

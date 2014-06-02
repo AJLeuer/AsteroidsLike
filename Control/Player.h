@@ -33,11 +33,19 @@ public:
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
+	
+	void moveUp() { playerCharacter.moveUp(defaultOffset<float>) ; }
+	void moveDown() { playerCharacter.moveDown(defaultOffset<float>) ; }
+	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; }
+	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
+	
+	/* offset is ignored, only included to properly implement interface */
+	void moveRight(float offset = defaultOffset<float>) { playerCharacter.moveRight(offset) ; }
+	void moveLeft(float offset = defaultOffset<float>) { playerCharacter.moveLeft(offset) ; }
+	void moveUp(float offset = defaultOffset<float>) { playerCharacter.moveUp(offset) ; }
+	void moveDown(float offset = defaultOffset<float>) { playerCharacter.moveDown(offset) ; }
+	
 
-	void moveRight() { playerCharacter.moveRight() ; }
-	void moveLeft() { playerCharacter.moveLeft() ; }
-	void moveUp() { playerCharacter.moveUp() ; }
-	void moveDown() { playerCharacter.moveDown() ; }
 
 
 
