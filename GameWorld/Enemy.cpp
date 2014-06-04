@@ -15,7 +15,7 @@ Enemy::Enemy() {
 
 void Enemy::defaultBehaviors() {
     /* So we can alter our behavior each time through the loop */
-	bool even = ((worldControllerLoopCount % 2) == 0) ;
+	bool even = ((worldLoopCount % 2) == 0) ;
 	
 	FastRand<float> randOffsetter(-defaultOffset<float>, defaultOffset<float>) ;
 	auto randOffsetVal = (randOffsetter() * 30) ;

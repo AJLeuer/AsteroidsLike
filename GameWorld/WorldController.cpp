@@ -18,7 +18,6 @@ vector<GameObject*> * WorldController::secondaryGameObjects = new vector<GameObj
 vector<GameObject*> * WorldController::obstacleObjects = new vector<GameObject *>() ;
 thread WorldController::worldSimulationThread ;
 thread WorldController::checkDelThread ;
-unsigned WorldController::worldControllerLoopCount = 0 ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
 WorldController::WorldController() {}
@@ -62,7 +61,7 @@ void WorldController::runWorldSimulation() {
 		
 		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
 		auto sleepTime = refreshTime - timeElapsed ;
-		worldControllerLoopCount++ ;
+		worldLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
 	}
 }

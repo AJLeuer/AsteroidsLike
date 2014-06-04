@@ -118,7 +118,7 @@ void InputController::registerForKeypress(KeyInputRegister * reg) {
 
 void InputController::update() {
 	listenForKeypress() ;
-	listenForEvents() ; /* this will also call listenForKeypress()d when needed */
+	listenForEvents() ;
 }
 
 

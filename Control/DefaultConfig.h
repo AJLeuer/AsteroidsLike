@@ -22,7 +22,7 @@
 #define DEBUG_MODE
 
 /* comment this out (or #undef) when not running in high-dpi mode */
-#define HIGH_DPI
+//#define HIGH_DPI
 
 #ifdef  HIGH_DPI
 #define WINDOW_SIZE_X (MAX_X / 2)
@@ -31,9 +31,9 @@
 #define WINDOW_MIN_Y (MIN_Y / 2)
 
 #else
-#define WINDOW_MAX_X MAX_X
+#define WINDOW_SIZE_X MAX_X
 #define WINDOW_MIN_X MIN_X
-#define WINDOW_MAX_Y MAX_Y
+#define WINDOW_SIZE_Y MAX_Y
 #define WINDOW_MIN_Y MIN_Y
 #endif
 
