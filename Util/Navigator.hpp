@@ -57,11 +57,11 @@ Navigator<N>::Navigator(N i) {}
 
 template<typename N>
 Navigator<N>::Navigator(Direction d, const Position<N> * s, Position<N> c) :
-	dir{d}, start{s}, current{c} {}
+	dir(d), start(s), current{c} {}
 
 template<typename N>
 Navigator<N>::Navigator(const Navigator & other) :
-	dir{other.dir}, start{other.start}, current{other.current} {}
+	dir(other.dir), start(other.start), current(other.current) {}
 
 template<typename N>
 Navigator<N>::Navigator(Navigator && other) :
