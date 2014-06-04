@@ -111,7 +111,7 @@ protected:
 	/**
 	 * This holds references to all the new threads spawned by instances of GameObject
 	 * allowing us to join and delete them as needed. Using a list allows us to insert and erase
-	 * elements without invalidating other iterators
+	 * elements without invalidating other iterators.
 	 */
 	static vector< pair<thread *, GameObject*> > * allThreads ;
 	
