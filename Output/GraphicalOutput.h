@@ -26,7 +26,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
-#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameState.h"
 #include "../GameWorld/GameObject.h"
 
 
@@ -43,7 +43,7 @@ protected:
 	
 	/**
 	 * Adds textures to the current renderer. Gets a list of current GameObjects from
-	 * SharedGameData, then gets information from each game object to decide what texture
+	 * GameState, then gets information from each game object to decide what texture
 	 * to send to output.
 	 */
 	static void renderTextures() ;

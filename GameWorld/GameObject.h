@@ -27,9 +27,10 @@
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"
-#include "GameData.h"
+#include "GameState.h"
 #include "GameInterface.h"
 
+#include "../Control/Configuration.h"
 #include "../Control/Input.hpp"
 
 using namespace::std ;
@@ -77,7 +78,7 @@ private:
 	void endThreading(bool join) ;
 	
 	friend class WorldController ;
-	friend class SharedGameData ;
+	friend class GameState ;
 	
 protected:
 	
@@ -143,7 +144,7 @@ public:
 	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same.
 	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
-	 * SharedGameData::getGameObjects().
+	 * GameState::getGameObjects().
 	 */
 	static vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
 	

@@ -46,9 +46,6 @@ public:
 	void moveDown(float offset = defaultOffset<float>) { playerCharacter.moveDown(offset) ; }
 	
 
-
-
-
 } ;
 
 #endif /* defined(__GameWorld__Player__) */

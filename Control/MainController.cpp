@@ -27,7 +27,6 @@ void MainController::init() {
 	mainGameClock = new Time<nanosecPrecisionClock>() ;
 	mainGameClock->startTimer() ;
 	GLOBAL_CONTINUE_SIGNAL = true ;
-	globalGameLoopCount = 0 ;
 	
 	//do initializations
 	
@@ -65,7 +64,7 @@ void MainController::exec() {
 		
 		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
 		auto sleepTime = (refreshTime - timeElapsed) ;
-		globalGameLoopCount++ ;
+		mainGameLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
 	}
 }

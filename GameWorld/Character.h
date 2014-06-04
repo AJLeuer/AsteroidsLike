@@ -36,12 +36,12 @@ protected:
 	CharacterState state ;
 	
 	/**
-	 * The Character's current Health (a data structure inheriting from GameData)
+	 * The Character's current Health (a data structure inheriting from GameState)
 	 */
 	Health * health ;
 	
 	/**
-	 * The Character's current Damage (a data structure inheriting from GameData)
+	 * The Character's current Damage (a data structure inheriting from GameState)
 	 */
 	Damage * damage ;
 

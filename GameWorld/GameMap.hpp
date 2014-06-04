@@ -18,8 +18,10 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/Navigator.hpp"
-#include "GameData.h"
 
+#include "GameState.h"
+
+#include "../Control/Configuration.h"
 
 
 template <class T>

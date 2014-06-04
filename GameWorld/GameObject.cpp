@@ -320,7 +320,7 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture) {
 	//set texture
 	if ((texture == nullptr) || (overrideCurrentTexture)) {
 		SDL_Texture * tex = nullptr ;
-		tex = AssetFileIO::getTextureFromFilename(SharedGameData::getMainRenderer(), this->getImageFile(), this->getType()) ;
+		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->getImageFile(), this->getType()) ;
 
 		if (tex == nullptr) {
 			stringstream ss ;

@@ -18,9 +18,10 @@
 
 #include "../Output/GraphicalOutput.h"
 
-#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameState.h"
 #include "../GameWorld/WorldController.h"
 
+#include "../Control/Configuration.h"
 #include "../Control/Player.h"
 #include "../Control/Input.hpp"
 

@@ -12,7 +12,7 @@
 /* forward declaring */
 class WorldController ;
 class GameObject ;
-class SharedGameData ;
+class GameState ;
 
 template<class T>
 class GameMap ;

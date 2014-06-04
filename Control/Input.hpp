@@ -19,8 +19,10 @@
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_video.h>
 
-#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameState.h"
 #include "../GameWorld/GameInterface.h"
+
+#include "../Control/Configuration.h"
 
 using namespace std ;
 

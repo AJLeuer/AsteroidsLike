@@ -17,17 +17,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_main.h>
 
-#include "../Util/Configuration.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/Time.hpp"
 #include "../Util/AssetFileIO.h"
 
-#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameState.h"
 #include "../GameWorld/GameObject.h"
 #include "../GameWorld/NPC.h"
 #include "../GameWorld/WorldController.h"
 
+#include "../Control/Configuration.h"
 #include "../Control/Input.hpp"
 #include "MainController.h"
 

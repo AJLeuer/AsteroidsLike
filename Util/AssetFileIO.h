@@ -20,9 +20,18 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/BoundsCheck.hpp"
-#include "../Gameworld/GameData.h"
+#include "../Gameworld/GameState.h"
+
+#include "../Control/Configuration.h"
 
 using namespace std ;
+
+enum class AssetType {
+	block = 0,
+    ship = 1
+	//scenery? what else do we need?
+	//add more here
+} ;
 
 /**
  * This class will store the names and directory info of all file assets used in the program. 

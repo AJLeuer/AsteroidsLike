@@ -18,7 +18,9 @@
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
 
-#include "../GameWorld/GameData.h"
+#include "../GameWorld/GameState.h"
+
+#include "../Control/Configuration.h"
 
 
 using namespace std ;

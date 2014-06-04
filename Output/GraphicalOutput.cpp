@@ -75,13 +75,13 @@ void GraphicalOutput::init() {
 		throw exception() ;
 	}
 
-	SharedGameData::initGraphics(renderer) ;
+	GameState::initGraphics(renderer) ;
 }
 
 
 void GraphicalOutput::renderTextures() {
-	for (auto i = 0 ; i < SharedGameData::getGameObjects()->size() ; i++) {
-		GameObject * temp = SharedGameData::getGameObjects()->at(i) ;
+	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
+		GameObject * temp = GameState::getGameObjects()->at(i) ;
 		renderObject(temp) ;
 	}
 }

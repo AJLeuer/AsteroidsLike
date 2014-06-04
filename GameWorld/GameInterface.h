@@ -12,7 +12,9 @@
 #include <iostream>
 
 #include "Message.h"
-#include "GameData.h"
+#include "GameState.h"
+
+#include "../Control/Configuration.h"
 
 
 /**

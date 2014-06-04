@@ -43,7 +43,7 @@ void WorldController::init() {
 	obstacleObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
 			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaLo + posModifier()), 0, defaultCheck<float>))) ;
 	
-	SharedGameData::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
+	GameState::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	
 }
 
@@ -94,22 +94,7 @@ void WorldController::update() {
 }
 
 void WorldController::obstacleBehavior() {
-	/* So we can alter our behavior each time through the loop */
-	bool even = ((worldControllerLoopCount % 2) == 0) ;
 	
-	FastRand<float> randOffsetter(-defaultOffset<float>, defaultOffset<float>) ;
-	auto randOffsetVal = (randOffsetter() * 30) ;
-	
-	for (auto i = 0 ; i < obstacleObjects->size() ; i++) {
-		if (even) {
-			obstacleObjects->at(i)->moveUp(randOffsetVal) ; /* will actually move us up or down (randomly) */
-			obstacleObjects->at(i)->moveUp(randOffsetVal * (-1)) ; /* will put us back where we started longtitudinally, though
-																	laterally we've still moved to the left  */
-		}
-		else {
-			obstacleObjects->at(i)->moveLeft(defaultOffset<float> * 2) ;
-		}
-	}
 }
 
 

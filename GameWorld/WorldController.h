@@ -21,7 +21,7 @@
 #include "../Util/Position.hpp"
 #include "../Util/Time.hpp"
 
-#include "GameData.h"
+#include "GameState.h"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"
@@ -29,6 +29,8 @@
 #include "GameObject.h"
 #include "Character.h"
 #include "NPC.h"
+
+#include "../Control/Configuration.h"
 
 
 
@@ -57,7 +59,7 @@ protected:
 	static thread worldSimulationThread ;
 	static thread checkDelThread ;
 	
-	static unsigned worldControllerLoopCount ;
+	
 	
 	friend class GameInterface ;
 	friend class GameObject ;
