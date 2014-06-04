@@ -50,7 +50,7 @@ protected:
 	 */
 	bool turn = false ;
 	
-	float hitPercentage = FastRand<float>(0, 1).nextValue() ;
+	float hitPercentage ;
 	
 	void attack_helper(Character * enemy) ;
 
