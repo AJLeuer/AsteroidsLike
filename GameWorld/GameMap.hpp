@@ -172,7 +172,6 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 		}
 		
 	}
-	
 }
 
 

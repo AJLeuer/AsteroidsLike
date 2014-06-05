@@ -37,7 +37,8 @@
 #define WINDOW_MIN_Y MIN_Y
 #endif
 
-#define eight_milliseconds std::chrono::milliseconds(8)
+#define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
+													         etc., instead of nano. */
 
 constexpr int GLOBAL_MAX_X = MAX_X ;
 constexpr int GLOBAL_MIN_X = MIN_X ;

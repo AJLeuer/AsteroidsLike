@@ -41,7 +41,7 @@ int main(int argc, char ** argv) {
 	Debug::init(true) ;
 
 	MainController::init() ;
-	MainController::exec() ;
+	MainController::main() ;
      
 	//MainController calls its own exit()
     

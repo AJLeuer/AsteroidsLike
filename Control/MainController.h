@@ -47,7 +47,7 @@ public:
 	static void setupMainContrExit() ;
 
 	static void init() ;
-	static void exec() ;
+	static void main() ;
 
 } ;
 

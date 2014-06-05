@@ -27,9 +27,6 @@ void GraphicalOutput::init() {
 		DebugOutput << ss.rdbuf() ;
 		throw exception() ;
 	}
-	
-	int testX = (int)(GLOBAL_MAX_X) ;
-	int testY = (int)(GLOBAL_MAX_Y) ;
 
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
@@ -37,6 +34,7 @@ void GraphicalOutput::init() {
 							  WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
 							  WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
 							  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
+	
 	{
 	/* debug code */
 	#ifdef DEBUG_MODE

@@ -122,7 +122,7 @@ protected:
 	 */
 	std::thread * goThread ;
 	
-	bool * currentlyThreading = new bool(false) ;
+	bool * hasThread = new bool(false) ;
 	
 	static FastRand<int> goRand ;
 	
@@ -181,7 +181,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<float> & loc) ;
+	GameObject(AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as

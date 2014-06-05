@@ -44,9 +44,10 @@ public:
 	
 	/**
 	 * 1 microsecond = 1000 milliseconds
+	 *
 	 * @return The time elapsed in microseconds or nanoseconds, depending on chosen precision.
 	 */
-	 TimerDuration checkTimeElapsed() {
+	TimerDuration checkTimeElapsed() {
 		//returns in micro or nanoseconds
 		if (!timerStarted) {
 			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once \n" ;
@@ -59,11 +60,12 @@ public:
 	/**
 	 * Stops timer and returns the time elapsed.
 	 *
+	 * @return The time elapsed in microseconds or nanoseconds, depending on chosen precision.
 	 */
 	TimerDuration stopTimer() {
 		
 		if (!timerStarted) {
-			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once" << endl ;
+			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once \n" ;
 			throw new exception() ;
 		}
 		auto duration = CurrentClock::now() - start ;

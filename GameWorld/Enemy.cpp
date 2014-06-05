@@ -9,10 +9,6 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy() {
-    
-}
-
 void Enemy::defaultBehaviors() {
     /* So we can alter our behavior each time through the loop */
 	bool even = ((worldLoopCount % 2) == 0) ;

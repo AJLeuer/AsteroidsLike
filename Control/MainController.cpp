@@ -49,11 +49,11 @@ void MainController::init() {
 	setupMainContrExit() ;
 }
 
-void MainController::exec() {
+void MainController::main() {
     
 	/* Start main functions for all controller classes. WorldController manages the world on its own thread, and input and output
 	 switch off on the main thread */
-	WorldController::exec() ;
+	WorldController::main() ;
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		auto startTime = mainGameClock->checkTimeElapsed() ;

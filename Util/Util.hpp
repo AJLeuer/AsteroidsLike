@@ -15,8 +15,6 @@
 #include <random>
 #include <cmath>
 
-
-
 #include <SDL2/SDL_rect.h>
 
 using namespace std ;
@@ -25,9 +23,9 @@ template<typename T>
 class FastRand {
 	
 private:
-	std::random_device dev{};
+	std::random_device dev ;
 	std::uniform_int_distribution<T> dist ;
-	std::default_random_engine rnd{dev()};
+	std::default_random_engine rndm{dev()} ;
 	
 	T min ;
 	T max ;
@@ -53,15 +51,15 @@ FastRand<T>::FastRand(T _min, T _max) :
 {
 	//dev ;
 	dist = uniform_int_distribution<T>(min, max) ;
-	rnd.seed(dev()) ;
+	rndm.seed(dev()) ;
 }
 
 template<typename T>
 FastRand<T>::FastRand(const FastRand<T> & other)
 {
-	std::random_device dev2{} ;
+	std::random_device dev2 ;
 	dist = uniform_int_distribution<T>(other.min, other.max) ;
-	rnd.seed(dev2()) ;
+	rndm.seed(dev2()) ;
 }
 
 template<typename T>
@@ -71,22 +69,22 @@ template<typename T>
 FastRand<T> & FastRand<T>::operator=(const FastRand<T> & rhs)
 {
 	if (this != &rhs) {
-		std::random_device dev2{} ;
-		dist(rhs.min, rhs.max) ;
-		rnd.seed(dev2()) ;
+		std::random_device dev2 ;
+		dist = uniform_int_distribution<T>(rhs.min, rhs.max) ;
+		rndm.seed(dev2()) ;
 	}
 	return *this ;
 }
 
 template<typename T>
 T FastRand<T>::nextValue() {
-	return dist(rnd) ;
+	return dist(rndm) ;
 }
 
 template<typename T>
 T FastRand<T>::nextValue(T min, T max) {
 	std::uniform_int_distribution<T> dif_dist{min, max} ;
-	return dif_dist(rnd) ;
+	return dif_dist(rndm) ;
 }
 
 template<typename T>
@@ -103,29 +101,11 @@ template<typename T>
 template<typename R>
 R FastRand<T>::nextValue(R _min, R _max) {
 	std::uniform_int_distribution<R> dif_dist{_min, _max} ;
-	return dif_dist(rnd) ;
+	return dif_dist(rndm) ;
 }
 
 
 /* more useful functions: */
-
-template<typename T>
-T randSignFlip(T n) ;
-
-template<typename T>
-T setUnsigned(T n) ;
-
-template<typename T>
-T chooseAtRand(T n1, T n2) ;
-
-template<typename T>
-T pythag(T a, T b) ;
-
-template<typename T>
-T * findSmallest(vector<T*> cont) ;
-
-template<typename T>
-T * findSmallest_helper(unsigned long currSmallest, vector<T*> cont) ;
 
 template<typename T>
 T randSignFlip(T n) {
@@ -160,37 +140,55 @@ T chooseAtRand(T n1, T n2) {
 }
 
 
-
 template<typename T>
 T pythag(T a, T b) {
 	return sqrt((pow(a,2)) + (pow(b,2))) ;
 }
 
 template<typename T>
-T * findSmallest(vector<T*> cont) {
-	return findSmallest_helper(0, cont) ;
-}
-
-template<typename T>
-T * findSmallest_helper(unsigned long currSmallest, vector<T*> cont) {
-	vector<T*> smallerElem = vector<T*>() ;
-	unsigned long size = cont.size() ;
+T findSmallest_helper(unsigned long currSmallest, vector<T> cont) {
+	//vector<T*> smallerElem = vector<T*>() ;
+	auto size = cont.size() ;
 	
-	for (unsigned i = 0 ; i != cont.size() ; i++) {
+	for (auto i = 0 ; i != cont.size() ; i++) {
 		
 		if (size == 1) {
 			return cont.at(currSmallest) ;
 		}
-		if ((cont.at(i) != nullptr) && (cont.at(currSmallest) != nullptr)) {
-			if (cont.at(i) < cont.at(currSmallest)) {
-				currSmallest = i ;
-				size-- ;
-			}
+		if (cont.at(i) < cont.at(currSmallest)) {
+			currSmallest = i ;
+			size-- ;
 		}
 	}
 	return cont.at(currSmallest) ;
 }
 
+template<typename T>
+T findSmallest(vector<T> cont) {
+	return findSmallest_helper(0, cont) ;
+}
+
+template<typename T>
+T findLargest_helper(unsigned long currLargest, vector<T> cont) {
+	auto size = cont.size() ;
+	
+	for (auto i = 0 ; i != cont.size() ; i++) {
+		
+		if (size == 1) {
+			return cont.at(currLargest) ;
+		}
+		if (cont.at(i) > cont.at(currLargest)) {
+			currLargest = i ;
+			size-- ;
+		}
+	}
+	return cont.at(currLargest) ;
+}
+
+template<typename T>
+T findLargest(vector<T> cont) {
+	return findLargest_helper(0, cont) ;
+}
 
 class Drawing {
 public:

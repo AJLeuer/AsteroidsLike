@@ -15,15 +15,14 @@
 
 class Enemy : public GameObject {
   
-    
-protected:
-    
-    
-    
+
 public:
     
     
-    Enemy() ;
+    Enemy() : GameObject() {}
+	
+	Enemy(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<float> & loc_) :
+		GameObject(type, imageFileName, sizeModifier, loc_) {}
     
     void defaultBehaviors() override ;
     

@@ -82,6 +82,15 @@ public:
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
     template<typename R>
+	Position(FastRand<R> rand) :
+		x(rand.nextValue()),
+		y(rand.nextValue()),
+		z(0) {}
+	
+	/**
+     * Creates a Positionwith all coordinates randomized, with bounds set by check
+     */
+    template<typename R>
 	Position(FastRand<R> rand, const BoundsCheck<N> & check) :
 		x(rand.nextValue(check.min_X, check.max_X)),
 		y(rand.nextValue(check.min_Y, check.max_Y)),
@@ -529,6 +538,14 @@ public:
      * Creates a Pos2 with all coordinates initialized to n
      */
 	Pos2(N n, const BoundsCheck<N> & check) : Position<N>(n, check), pastPositions(new queue<Position<N>>) {}
+	
+	/**
+     * Creates a Pos2 all coordinates randomized, with bounds set by check
+     */
+    template<typename R>
+	Pos2(FastRand<R> rand) :
+		Position<N>(rand),
+		pastPositions(new queue<Position<N>>) {}
 
 	/**
      * Creates a Pos2 all coordinates randomized, with bounds set by check

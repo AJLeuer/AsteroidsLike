@@ -14,8 +14,6 @@ using namespace std ;
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
-vector<GameObject*> * WorldController::secondaryGameObjects = new vector<GameObject *>() ;
-vector<GameObject*> * WorldController::obstacleObjects = new vector<GameObject *>() ;
 thread WorldController::worldSimulationThread ;
 thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
@@ -35,18 +33,29 @@ void WorldController::init() {
 	
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
-
-	obstacleObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_006.png",
-			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaHi + posModifier()), 0, defaultCheck<float>))) ;
-
-	obstacleObjects->push_back(new GameObject(AssetType::block, "/Assets/Blocks/Blocks_01_256x256_Alt_03_005.png",
-			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaLo + posModifier()), 0, defaultCheck<float>))) ;
 	
+	/* Init enemies */
+	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
+
+	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
+	
+	/* Init obstacles */
+	
+	FastRand<float>randomSizeModifier(0.75, 3.0) ;
+	
+	for (auto i = 0 ; i < 7 ; i++) {
+		new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
+					   Pos2<float>(randPosSetter<float>, defaultCheck<float>)) ;
+	}
+	
+	/* Init game state */
 	GameState::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
 	
 }
 
-void WorldController::exec() {
+void WorldController::main() {
 	worldSimulationThread = thread(&WorldController::runWorldSimulation) ;  //runWorldSimulation()
 	checkDelThread = thread(&GameObject::checkForMarkedDeletions) ;
 }
@@ -57,8 +66,7 @@ void WorldController::runWorldSimulation() {
 		auto startTime = mainGameClock->checkTimeElapsed() ;
 		auto refreshTime = eight_milliseconds ;
 		
-		update() ;
-		
+
 		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
 		auto sleepTime = refreshTime - timeElapsed ;
 		worldLoopCount++ ;
@@ -87,14 +95,8 @@ void WorldController::exit() {
 	sharedMutex.unlock() ;
 }
 
-void WorldController::update() {
-	obstacleBehavior() ;
-	/* other actor behavior */
-}
 
-void WorldController::obstacleBehavior() {
-	
-}
+
 
 
 

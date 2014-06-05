@@ -13,6 +13,7 @@
 
 #include "../GameWorld/GameInterface.h"
 #include "../GameWorld/Character.h"
+#include "../GameWorld/GameState.h"
 
 #include "../Control/Input.hpp"
 
@@ -24,12 +25,24 @@ protected:
 
 	string name ;
 	Character playerCharacter ;
+	
+	/* just for initializing playerCharacter */
+	AssetType pcAssetType = AssetType::character ; /* change if needed */
+	
 
 	void registerForCallbacks() ;
 
 public:
-
-	Player(const string & name = "Player 1", const string & imageFile = "/Assets/Blocks/Blocks_01_256x256_Alt_02_006.png") ;
+	
+	Player() :
+		name("Player1")
+	{
+		playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+									500, 100) ;
+	}
+		
+		
+	Player(const string & name, const string & imageFile) ;
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}

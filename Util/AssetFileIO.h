@@ -27,8 +27,9 @@
 using namespace std ;
 
 enum class AssetType {
-	block = 0,
-    ship = 1
+	character = 0,
+	block = 1,
+    ship = 2
 	//scenery? what else do we need?
 	//add more here
 } ;
@@ -39,6 +40,7 @@ enum class AssetType {
  */
 class AssetFileIO {
 	
+	static vector<std::string> * characterImageFilenames ;
 	static vector<std::string> * blockImageFilenames ;
 	static vector<string> * shipImageFilenames ;   //todo add more
 	
@@ -46,6 +48,16 @@ public:
 	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;
 	static string & getImageFilename(vector<string>::size_type index, AssetType type) ;
 	static string & getRandomImageFilename(AssetType type) ;
+	
+	/**
+	 * In addition to finding the AssetType corresponding to the given string,
+	 * getAssetTypeFrom() also serves to check that the string, which
+	 * will presumably be used to initialize a GameObject or other in-game actor's
+	 * texture, is in fact valid. It will throw an exception if it is not.
+	 *
+	 * @return The AssetType corresponding to imageFilename
+	 */
+	static AssetType getAssetTypeFrom(const string & imageFilename) ;
 };
 
 

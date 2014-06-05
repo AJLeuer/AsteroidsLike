@@ -123,14 +123,14 @@ void Character::attack(Character * enemy) {
 	if (this->health > enemy->health) {
 		(*Debug::debugOutput) << this->name << " wins!" << '\n' ;
 		if (enemy->health->value() <= 0) {
-			*enemy->currentlyThreading = false ;
+			*enemy->hasThread = false ;
 			enemy->markedForDeletion = true ;
 		}
 	}
 	else if (enemy->health > this->health) {
 		(*Debug::debugOutput) << enemy->name << " wins!" << '\n' ;
 		if (this->health->value() <= 0) {
-			*this->currentlyThreading = false ;
+			*this->hasThread = false ;
 			this->markedForDeletion = true ;
 		}
 	}

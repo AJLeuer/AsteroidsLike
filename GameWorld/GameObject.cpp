@@ -48,11 +48,11 @@ GameObject::GameObject() :
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false) ;
-	//already set: currentlyThreading = new bool(false) ;
+	//already set: hasThread = new bool(false) ;
 }
 
 GameObject::GameObject(const GameObject & other) :
-	currentlyThreading(new bool(*(other.currentlyThreading))),
+	hasThread(new bool(false)),
 	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(string(other.textureImageFile)),
@@ -105,7 +105,7 @@ GameObject::GameObject(const GameObject & other) :
 }
 
 GameObject::GameObject(GameObject && other) :
-	currentlyThreading(other.currentlyThreading),
+	hasThread(other.hasThread),
 	goThread(other.goThread),
 	ID(other.ID),
 	textureImageFile(std::move(other.textureImageFile)),
@@ -134,20 +134,20 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
-	if (!(*(other.currentlyThreading))) {
-		other.currentlyThreading = nullptr ;
-		other.goThread = nullptr ;
-	}
+
+	other.hasThread = nullptr ;
+	other.goThread = nullptr ;
+
 	other.ID = 0 ;
 	other.textureImageFile = "" ;
 	other.texture = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(AssetType type, const string & imageFileName, float modifier, const Pos2<float> & loc_) :
+GameObject::GameObject(AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc_) :
 	goThread(nullptr),
 	ID(IDs),
-	textureImageFile(imageFileName),
+	textureImageFile(imageFilename),
 	size(Size<int>()),
 	type(type),
 	visible(true),
@@ -165,8 +165,8 @@ GameObject::GameObject(AssetType type, const string & imageFileName, float modif
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false) ;
-	size.setModifier(modifier) ;
-	//already set: currentlyThreading = new bool(false) ;
+	size.setModifier(sizeModifier) ;
+	//already set: hasThread = new bool(false) ;
 }
 
 GameObject::GameObject(FastRand<int> rand) :
@@ -191,7 +191,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	initGraphicsData(false) ;
 	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
 	size.setModifier(randSize()) ;
-	//already set: currentlyThreading = new bool(false) ;
+	//already set: hasThread = new bool(false) ;
 }
 
 
@@ -199,8 +199,8 @@ GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 
-	if ((currentlyThreading != nullptr) && (*currentlyThreading == false)) {
-		delete currentlyThreading ;
+	if ((hasThread != nullptr) && (*hasThread == false)) {
+		delete hasThread ;
 		SDL_DestroyTexture(texture) ;
 		if (goThread != nullptr) {
 			delete this->goThread ;
@@ -225,8 +225,11 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	}
 
 	if (this != &rhs) {
-		*(this->currentlyThreading) = false ;
-		this->goThread = nullptr ;
+		*(this->hasThread) = false ;
+		if (this->goThread != nullptr) {
+			delete this->goThread ;
+			this->goThread = nullptr ;
+		}
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
 		this->type = rhs.type ;
@@ -263,19 +266,13 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 	}
 
 	if (this != &rhs) {
-		if (this->currentlyThreading != nullptr) {
-			delete this->currentlyThreading ;
-		}
-		this->currentlyThreading = rhs.currentlyThreading ;
-		if (this->goThread != nullptr) {
+		if (this->goThread != nullptr) { //should never be null
 			delete this->goThread ;
 		}
-		this->goThread = rhs.goThread ;
+		delete this->hasThread ;
 		
-		if (!currentlyThreading) {
-			rhs.currentlyThreading = nullptr ;
-			rhs.goThread = nullptr ;
-		}
+		this->hasThread = rhs.hasThread ;
+		this->goThread = rhs.goThread ;
 		
 		this->textureImageFile = std::move(rhs.textureImageFile) ;
 		this->texture = rhs.texture ;
@@ -289,7 +286,9 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->vectr = std::move(rhs.vectr) ;
 		
 		this->ID = rhs.ID ;
-
+		
+		rhs.hasThread = nullptr ;
+		rhs.goThread = nullptr ;
 		rhs.ID = 0 ;
 		rhs.textureImageFile = "" ;
 		rhs.texture = nullptr ;
@@ -344,7 +343,7 @@ void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 			if (allGameObjects->at(i)->markedForDeletion) {
-				*allGameObjects->at(i)->currentlyThreading = false ;
+				*allGameObjects->at(i)->hasThread = false ;
 				delete allGameObjects->at(i) ;
 				allGameObjects->at(i) = nullptr ;
 			}
@@ -364,7 +363,7 @@ void GameObject::eraseByID(unsigned ID) {
 void GameObject::joinThreads() {
 	for (auto i = allThreads->begin() ; i != allThreads->end() ; i++) {
 		get<0>(*i)->join() ;
-		*(get<1>(*i)->currentlyThreading) = false ;
+		*(get<1>(*i)->hasThread) = false ;
 	}
 }
 
@@ -378,7 +377,7 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 
 void GameObject::startThreading(void (GameObject::*functionPointer)(), bool wait) {
 	this->goThread = new thread(functionPointer, this) ;
-	*(this->currentlyThreading) = true ;
+	*(this->hasThread) = true ;
 	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->goThread, this) ;
 	GameObject::allThreads->push_back(threadPair) ;
 	if (wait) {
@@ -390,7 +389,7 @@ void GameObject::startThreading(void (GameObject::*functionPointer)(), bool wait
 }
 
 void GameObject::endThreading(bool join) {
-	*(this->currentlyThreading) = false ;
+	*(this->hasThread) = false ;
 	if (join) {
 		goThread->join() ;
 	}

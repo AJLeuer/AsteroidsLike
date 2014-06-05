@@ -13,7 +13,7 @@
 using namespace std ;
 
 void EventRegisterBase::callBack() {
-	if ((memberToCallOn != nullptr) || (member_callBackFunction == nullptr)) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
+	if ((memberToCallOn != nullptr) || (member_callBackFunction != nullptr)) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
 																			   //then call it on that object
         (memberToCallOn->*member_callBackFunction)();
     }

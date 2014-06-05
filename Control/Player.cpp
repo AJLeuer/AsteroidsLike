@@ -11,11 +11,10 @@
 using namespace std ;
 
 Player::Player(const string & name, const string & imageFile) :
-	name(name),
-	playerCharacter(AssetType::block, imageFile, 0.5,
-	Pos2<float>(50, 650, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal,
-		500, 100)
+	name(name)
 {
+	playerCharacter = Character(pcAssetType, imageFile, 1.0,
+								Pos2<float>(50, 650, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
 	registerForCallbacks() ;
 }
 

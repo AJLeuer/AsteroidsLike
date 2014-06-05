@@ -27,6 +27,7 @@
 #include "GameEvent.h"
 #include "Ability.h"
 #include "GameObject.h"
+#include "Enemy.h"
 #include "Character.h"
 #include "NPC.h"
 
@@ -53,8 +54,10 @@ protected:
 	 * A container holding most objects in the game world
 	 */
 	static vector<GameObject*> * gameObjects ; /* Convenience to access GameObject::getAllGameObjects() */
-	static vector<GameObject*> * secondaryGameObjects ;
-	static vector<GameObject*> * obstacleObjects ;
+	
+	/* We might need these later. Or we might not */
+	//static vector<GameObject*> * secondaryGameObjects ;
+	//static vector<GameObject*> * obstacleObjects ;
  
 	static thread worldSimulationThread ;
 	static thread checkDelThread ;
@@ -68,8 +71,8 @@ protected:
 	
 	WorldController() ;
 	
-	static void update() ;
-	static void obstacleBehavior() ;
+	/* can umcomment this later if we end up needing it */
+	//static void update() ;
 	
 public:
 	
@@ -79,11 +82,9 @@ public:
 	 */
 	static const GameMap<GameObject> * map ;
 	
-	//static bool isRunning() { return running ; }
-	
 	static void init() ;
 	
-	static void exec() ;
+	static void main() ;
 	
 	static void exit() ;
 	

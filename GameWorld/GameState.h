@@ -18,6 +18,7 @@
 
 #include <SDL2/SDL_render.h>
 
+#include "../Util/Util.hpp"
 #include "../Util/Debug.h"
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Time.hpp"
@@ -95,6 +96,9 @@ extern Time<nanosecPrecisionClock> * mainGameClock ;
 extern std::mutex sharedMutex ;
 
 extern bool GLOBAL_CONTINUE_SIGNAL ;
+
+template<typename N>
+FastRand<N> randPosSetter(findSmallest<N>({GLOBAL_MIN_X, GLOBAL_MIN_Y}), findLargest<N>({GLOBAL_MAX_X, GLOBAL_MAX_Y})) ;
 
 template<typename N>
 static const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;

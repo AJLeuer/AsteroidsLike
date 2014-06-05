@@ -31,26 +31,26 @@ protected:
 public:
 	
 	CharacterData() :
-	baseValue(0),
-	modifier(1) {}
+		baseValue(0),
+		modifier(1) {}
 	
 	CharacterData(unsigned long b) :
-	baseValue(b),
-	modifier(1) {}
+		baseValue(b),
+		modifier(1) {}
 	
 	
 	CharacterData(unsigned long b, unsigned m) :
-	baseValue(b),
-	modifier(m) {}
+		baseValue(b),
+		modifier(m) {}
 	
 	
 	CharacterData(const CharacterData & other) :
-	baseValue(other.baseValue),
-	modifier(other.modifier) {}
+		baseValue(other.baseValue),
+		modifier(other.modifier) {}
 	
 	CharacterData(CharacterData && other) :
-	baseValue(other.baseValue),
-	modifier(other.modifier) {}
+		baseValue(other.baseValue),
+		modifier(other.modifier) {}
 	
 	
 	CharacterData & operator=(const CharacterData & rhs) {
@@ -152,16 +152,16 @@ struct Damage : public CharacterData {
 public:
 	
 	Damage() :
-	CharacterData() {}
+		CharacterData() {}
 	
 	Damage(long b) :
-	CharacterData(b) {}
+		CharacterData(b) {}
 	
 	Damage(unsigned long b, unsigned m) :
-	CharacterData(b, m) {}
+		CharacterData(b, m) {}
 	
 	Damage(const Damage & other) :
-	CharacterData(other) {}
+		CharacterData(other) {}
 	
 	
 } ;
@@ -176,16 +176,16 @@ struct Health : public CharacterData {
 public:
 	
 	Health() :
-	CharacterData() {}
+		CharacterData() {}
 	
 	Health(long b) :
-	CharacterData(b) {}
+		CharacterData(b) {}
 	
 	Health(unsigned long b, unsigned m) :
-	CharacterData(b, m) {}
+		CharacterData(b, m) {}
 	
 	Health(const Health & other) :
-	CharacterData(other) {}
+		CharacterData(other) {}
 	
 	
 } ;
