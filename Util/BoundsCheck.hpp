@@ -23,7 +23,7 @@ struct BoundsCheck {
 	const N max_Y ;
 	
 	BoundsCheck<N>(N min_X_, N max_X_, N min_Y_, N max_Y_) :
-	max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
+		max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
 	
 	void checkAgainst(N * x) {
 		if (*x > this->max_X) {

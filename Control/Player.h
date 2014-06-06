@@ -38,7 +38,7 @@ public:
 		name("Player1")
 	{
 		playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
-									500, 100) ;
+				500, 100) ;
 	}
 		
 		
@@ -52,7 +52,6 @@ public:
 	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; }
 	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
 	
-	/* offset is ignored, only included to properly implement interface */
 	void moveRight(float offset = defaultOffset<float>) { playerCharacter.moveRight(offset) ; }
 	void moveLeft(float offset = defaultOffset<float>) { playerCharacter.moveLeft(offset) ; }
 	void moveUp(float offset = defaultOffset<float>) { playerCharacter.moveUp(offset) ; }

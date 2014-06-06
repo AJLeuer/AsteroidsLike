@@ -330,10 +330,33 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 	return std::move(shape) ;
 }
 
+/**
+ * Returns a random enumeration of enum type
+ * SomeEnum. SomeEnum should ideally use integer values starting
+ * at zero as the underlying value for its enumerations.
+ *
+ * @param SomeEnum An enumeration type
+ * @param N Some integer or floating point type
+ * @param max The numerical value of the maximum enum of type SomeEnum
+ */
+template<typename SomeEnum, typename N>
+SomeEnum randomEnumeration(N max) {
+	
+	FastRand<N> randm(0, max) ;
+	N num = randm() ;
+	return SomeEnum(num) ;
+}
 
 
-unsigned termWidth() ;
-unsigned termHeight() ;
+inline unsigned termWidth() {
+	unsigned r = atoi(getenv("COLUMNS")) ;
+	return r ;
+}
+
+inline unsigned termHeight() {
+	unsigned r = atoi(getenv("LINES")) ;
+	return r ;
+}
 
 
 /* misc. other */

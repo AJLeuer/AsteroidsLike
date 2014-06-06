@@ -54,11 +54,29 @@ private:
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
 	 */
 	static vector<GameObject*> * allGameObjects ;
+	
+	/**
+	 * This holds references to all the new threads spawned by instances of GameObject
+	 * allowing us to join and delete them as needed. Using a list allows us to insert and erase
+	 * elements without invalidating other iterators.
+	 */
+	static vector< pair<thread *, GameObject*> > * allThreads ;
+	
+	/**
+	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
+	 * gthread is provided for that purpose. When the function is handed off to the thread, that member's gthread pointer should
+	 * be pushed back onto GameObject::allThreads.
+	 */
+	std::thread * gthread = nullptr ;
+	
+	bool * hasThread = new bool(false) ;
+	
+	bool markedForDeletion = false ;
 
 	/**
 	 * Initializes texture and size information for this GameObject
 	 */
-	void initGraphicsData(bool overrideCurrentTexture) ;
+	void initGraphicsData(bool overrideCurrentTexture, float sizeModifier) ;
 	
 	/**
 	 * Handles thread starting duties. Should always be called by the function that calls
@@ -89,7 +107,7 @@ protected:
 	 */
 	string textureImageFile ;
 	
-	SDL_Texture * texture = nullptr ; //It won't be possible to initialize texture or size in the constructor
+	SDL_Texture * texture = nullptr ;
 
 	Size<int> size ;
 	Pos2<float> * loc ;
@@ -98,8 +116,6 @@ protected:
 	AssetType type ;
 	bool visible ;
 	
-	bool markedForDeletion = false ;
-
 	const GameObject * ally = nullptr ;
 	
 	/**
@@ -108,33 +124,19 @@ protected:
 	 */
 	static GameMap<GameObject> * map ;
 	
-	/**
-	 * This holds references to all the new threads spawned by instances of GameObject
-	 * allowing us to join and delete them as needed. Using a list allows us to insert and erase
-	 * elements without invalidating other iterators.
-	 */
-	static vector< pair<thread *, GameObject*> > * allThreads ;
-	
-	/**
-	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
-	 * goThread is provided for that purpose. When the function is handed off to the thread, that member's goThread pointer should
-	 * be pushed back onto GameObject::allThreads.
-	 */
-	std::thread * goThread ;
-	
-	bool * hasThread = new bool(false) ;
-	
 	static FastRand<int> goRand ;
+	
+	void markForDeletion() { markedForDeletion = true ; }
 	
 	static void checkForMarkedDeletions() ;
 	
 	/**
-	 * Erases the GameObject in allGameObjects matching ID.
+	 * Erases the GameObject pointer matching the given ID from the allGameObjects container.
 	 */
 	static void eraseByID(unsigned ID) ;
 	
 	/**
-	 * Waits for this GameObjects thread (goThread) to finish execution, then joins the threads
+	 * Waits for this GameObjects thread (gthread) to finish execution, then joins the threads
 	 */
 	static void joinThreads() ;
 	
@@ -366,7 +368,7 @@ public:
 	
 	void setTexture(SDL_Texture * texture) { this->texture = texture ; }
 	
-	void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
+	//void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
 	/** 
 	 * @return This GameObject's textureImageFile

@@ -27,18 +27,16 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
+	textureImageFile(""),
+	texture(nullptr),
 	size(Size<int>()),
-	type(AssetType::block),
+	type(),
 	visible(true),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
 
-	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
-	size.setModifier(randSize()) ;
-	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
@@ -47,13 +45,10 @@ GameObject::GameObject() :
 	allGameObjects->push_back(this) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
-	initGraphicsData(false) ;
-	//already set: hasThread = new bool(false) ;
+	/* No graphics data initialization here */
 }
 
 GameObject::GameObject(const GameObject & other) :
-	hasThread(new bool(false)),
-	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(string(other.textureImageFile)),
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
@@ -65,12 +60,10 @@ GameObject::GameObject(const GameObject & other) :
 {
 	{
 	/* debug */
-	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: Copy constructor called on GameObject ID# " << other.ID
 		<< endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
 	*(Debug::debugOutput) << ss.rdbuf() ;
-	#endif
 	/* end debug */
 	}
 	
@@ -81,35 +74,31 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-	/* places and updates to our new (nearby) Position if place unsuccessful at given Loc */
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
 
-	initGraphicsData(true) ;
+	initGraphicsData(true, other.getSize()->getModifier()) ;
 	
-	/* Don't want to copy goThread or goIterator */
+	/* Don't copy gthread or goIterator */
 
 	{
 	/* debug */
-	#ifdef DEBUG_MODE
 	stringstream st ;
 	st << "Warning: Copy constructor finished copying GameObject ID# " << other.ID
 		<< " to GameObject ID# " << this->ID << '\n' << "Dumping desciption of GameObject copied to: " << '\n' << this << '\n' ;
 	*(Debug::debugOutput) << st.rdbuf() ;
-	#endif
 	/* end debug */
 	}
-
 }
 
 GameObject::GameObject(GameObject && other) :
 	hasThread(other.hasThread),
-	goThread(other.goThread),
+	gthread(other.gthread),
 	ID(other.ID),
 	textureImageFile(std::move(other.textureImageFile)),
-	texture(other.texture),
+	texture(other.texture), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
 	type(other.type),
 	visible(other.visible),
@@ -118,13 +107,11 @@ GameObject::GameObject(GameObject && other) :
 {
 	{
 	/* debug */
-	#ifdef DEBUG_MODE
 	*(Debug::debugOutput) << "Warning: move constructor called. \n" ;
-	#endif
 	/*end debug */
 	}
 	
-	//don't need to incr IDs
+	/* don't need to incr IDs */
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
@@ -134,10 +121,8 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
-
 	other.hasThread = nullptr ;
-	other.goThread = nullptr ;
-
+	other.gthread = nullptr ;
 	other.ID = 0 ;
 	other.textureImageFile = "" ;
 	other.texture = nullptr ;
@@ -145,7 +130,6 @@ GameObject::GameObject(GameObject && other) :
 }
 
 GameObject::GameObject(AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc_) :
-	goThread(nullptr),
 	ID(IDs),
 	textureImageFile(imageFilename),
 	size(Size<int>()),
@@ -164,17 +148,13 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	allGameObjects->push_back(this) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
-	initGraphicsData(false) ;
-	size.setModifier(sizeModifier) ;
-	//already set: hasThread = new bool(false) ;
+	initGraphicsData(false, sizeModifier) ;
 }
 
 GameObject::GameObject(FastRand<int> rand) :
-	goThread(nullptr),
 	ID(IDs),
-	type(AssetType::block), //TODO randomly select other AssetTypes if we add them later
+	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
 	visible(true),
-	textureImageFile(AssetFileIO::getRandomImageFilename(AssetType::block)),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
@@ -188,10 +168,10 @@ GameObject::GameObject(FastRand<int> rand) :
 	allGameObjects->push_back(this) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
-	initGraphicsData(false) ;
-	FastRand<float> randSize(0.5, 1.0) ; //set sizeModifier to something small, since these are just randomly generated (likely enemies)
-	size.setModifier(randSize()) ;
-	//already set: hasThread = new bool(false) ;
+	
+	textureImageFile = AssetFileIO::getRandomImageFilename(type) ;
+	FastRand<float> randSizeMod(0.5, 1.0) ;
+	initGraphicsData(false, randSizeMod()) ;
 }
 
 
@@ -199,11 +179,11 @@ GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 
-	if ((hasThread != nullptr) && (*hasThread == false)) {
+	if ((hasThread == nullptr) || (*hasThread == false)) {
 		delete hasThread ;
 		SDL_DestroyTexture(texture) ;
-		if (goThread != nullptr) {
-			delete this->goThread ;
+		if (gthread != nullptr) {
+			delete this->gthread ;
 		}
 		if (loc != nullptr) {
 			map->erase(loc) ;
@@ -216,25 +196,23 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
 	{
 	/* Debug code */
-	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: GameObject assignment operator overload (copy) called. This will cause performance issues." << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	#endif
 	/* End Debug code */
 	}
 
 	if (this != &rhs) {
 		*(this->hasThread) = false ;
-		if (this->goThread != nullptr) {
-			delete this->goThread ;
-			this->goThread = nullptr ;
+		if (this->gthread != nullptr) {
+			delete this->gthread ;
+			this->gthread = nullptr ;
 		}
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
-		initGraphicsData(true) ;
+		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
 			map->erase<float>(loc) ;
@@ -257,25 +235,23 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 
 	{
 	/* Debug code */
-	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Warning: GameObject assignment operator overload (move) called." << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	#endif
 	/* End Debug code */
 	}
 
 	if (this != &rhs) {
-		if (this->goThread != nullptr) { //should never be null
-			delete this->goThread ;
+		if (this->gthread != nullptr) { 
+			delete this->gthread ;
 		}
 		delete this->hasThread ;
 		
 		this->hasThread = rhs.hasThread ;
-		this->goThread = rhs.goThread ;
+		this->gthread = rhs.gthread ;
 		
 		this->textureImageFile = std::move(rhs.textureImageFile) ;
-		this->texture = rhs.texture ;
+		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
@@ -288,7 +264,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->ID = rhs.ID ;
 		
 		rhs.hasThread = nullptr ;
-		rhs.goThread = nullptr ;
+		rhs.gthread = nullptr ;
 		rhs.ID = 0 ;
 		rhs.textureImageFile = "" ;
 		rhs.texture = nullptr ;
@@ -314,18 +290,18 @@ bool GameObject::operator==(GameObject & other) const {
 	}
 }
 
-void GameObject::initGraphicsData(bool overrideCurrentTexture) {
+void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifier) {
 
 	//set texture
 	if ((texture == nullptr) || (overrideCurrentTexture)) {
 		SDL_Texture * tex = nullptr ;
-		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->getImageFile(), this->getType()) ;
+		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), getImageFile(), getType()) ;
 
 		if (tex == nullptr) {
 			stringstream ss ;
 			ss << "Load texture failed." << '\n' ;
 			ss << SDL_GetError() << '\n' ;
-			DebugOutput << ss.rdbuf() ;
+			cerr << ss.rdbuf() ;
 			throw exception() ;
 		}
 
@@ -333,17 +309,18 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture) {
 	}
 
 	//set size
-	int tempW = this->size.getWidth() ; //don't ever assign or change size directly
-	int tempH = this->size.getHeight() ;
+	int tempW  ; 
+	int tempH  ;
+	
 	SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
-	this->setSize(tempW, tempH) ; //assign new size to this GameObject
+	size.setSize(tempW, tempH, sizeModifier) ; //assign new size to this GameObject
 }
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-			if (allGameObjects->at(i)->markedForDeletion) {
-				*allGameObjects->at(i)->hasThread = false ;
+			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->markedForDeletion)) {
+				allGameObjects->at(i)->endThreading(false) ;
 				delete allGameObjects->at(i) ;
 				allGameObjects->at(i) = nullptr ;
 			}
@@ -352,10 +329,16 @@ void GameObject::checkForMarkedDeletions() { //will run on own thread
 }
 
 void GameObject::eraseByID(unsigned ID) {
-	for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-		if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
-			allGameObjects->at(i) = nullptr ;
-			break ;
+	/* Try a shortcut first (this will only work if the Game o's were pushed onto the vector in the order of their creation) */
+	if (allGameObjects->at(ID)->getID() == ID) {
+		allGameObjects->at(ID) = nullptr ;
+	}
+	else {
+		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
+			if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
+				allGameObjects->at(i) = nullptr ;
+				break ;
+			}
 		}
 	}
 }
@@ -376,30 +359,30 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 }
 
 void GameObject::startThreading(void (GameObject::*functionPointer)(), bool wait) {
-	this->goThread = new thread(functionPointer, this) ;
+	this->gthread = new thread(functionPointer, this) ;
 	*(this->hasThread) = true ;
-	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->goThread, this) ;
+	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->gthread, this) ;
 	GameObject::allThreads->push_back(threadPair) ;
 	if (wait) {
-		goThread->join() ;
+		gthread->join() ;
 		allThreads->pop_back() ;
-		delete this->goThread ;
-		this->goThread = nullptr ;
+		delete this->gthread ;
+		this->gthread = nullptr ;
 	}
 }
 
 void GameObject::endThreading(bool join) {
 	*(this->hasThread) = false ;
 	if (join) {
-		goThread->join() ;
+		gthread->join() ;
 	}
 	for (auto i = 0 ; i < allThreads->size() ; i++) {
-		if (get<0>(allThreads->at(i)) == this->goThread) {
+		if (get<0>(allThreads->at(i)) == this->gthread) {
 			get<0>(allThreads->at(i)) = nullptr ;
 		}
 	}
-	//delete this->goThread ;
-	//this->goThread = nullptr ;
+	//delete this->gthread ;
+	//this->gthread = nullptr ;
 }
 
 void GameObject::textDescription(ostream * writeTo) const {
@@ -420,11 +403,9 @@ void GameObject::moveTo(Position<float> * to) {
 	{
 	/* Debug code */
 	/*
-	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	#endif
 	*/
 	/* end debug */
 	}
@@ -439,11 +420,9 @@ void GameObject::moveTo(Position<float> to) {
 	{
 	/* Debug code */
 	/*
-	#ifdef DEBUG_MODE
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	#endif
 	*/
 	/* end debug */
 	}

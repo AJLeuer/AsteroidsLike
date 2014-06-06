@@ -66,7 +66,9 @@ public:
 	static void initGraphics(SDL_Renderer *) ;
 	
 	/**
-	 * A container holding most objects in the game world
+	 * A container holding most objects in the game world.
+	 * Note: some indices of the returned vector<GameObject*> may be null. Any class calling this method is
+	 * responsible for checking for null pointer.
 	 */
 	static const vector<GameObject*> * getGameObjects() ;
 	
@@ -91,7 +93,7 @@ extern unsigned worldLoopCount ;
 template<typename N = float>
 N defaultOffset = 4 ;
 
-extern Time<nanosecPrecisionClock> * mainGameClock ;
+extern Time * mainGameClock ;
 
 extern std::mutex sharedMutex ;
 

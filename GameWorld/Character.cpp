@@ -118,24 +118,27 @@ void Character::defaultBehaviors() {
 
 
 void Character::attack(Character * enemy) {
-	(*Debug::debugOutput) << "Fight! " << this->name << " attacked " << enemy->name << '\n' ;
+	stringstream ss ;
+	ss << "Fight! " << this->name << " attacked " << enemy->name << '\n' ;
+	(*Debug::debugOutput) << ss.rdbuf() ;
+	ss.clear() ;
 	attack_helper(enemy) ;
 	if (this->health > enemy->health) {
-		(*Debug::debugOutput) << this->name << " wins!" << '\n' ;
+		ss << this->name << " wins!" << '\n' ;
+		DebugOutput << ss.rdbuf() ;
 		if (enemy->health->value() <= 0) {
-			*enemy->hasThread = false ;
-			enemy->markedForDeletion = true ;
+			enemy->markForDeletion() ;
 		}
 	}
 	else if (enemy->health > this->health) {
-		(*Debug::debugOutput) << enemy->name << " wins!" << '\n' ;
+		ss << enemy->name << " wins!" << '\n' ;
+		DebugOutput << ss.rdbuf() ;
 		if (this->health->value() <= 0) {
-			*this->hasThread = false ;
-			this->markedForDeletion = true ;
+			this->markForDeletion() ;
 		}
 	}
 	else {
-		(*Debug::debugOutput << "A tie!" << '\n') ;
+		(*Debug::debugOutput << "A tie! \n") ;
 	}
 }
 

@@ -24,7 +24,7 @@ void GraphicalOutput::init() {
 		stringstream ss ;
 		ss << "SDL_InitSubSystem(SDL_INIT_VIDEO) failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 
@@ -37,11 +37,9 @@ void GraphicalOutput::init() {
 	
 	{
 	/* debug code */
-	#ifdef DEBUG_MODE
 	stringstream ab ;
 	ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;
 	DebugOutput << ab.rdbuf() ;
-	#endif
 	/* end debug code */
 	}
 
@@ -49,7 +47,7 @@ void GraphicalOutput::init() {
 		stringstream ss ;
 		ss << "Window creation failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 
@@ -57,11 +55,9 @@ void GraphicalOutput::init() {
 
 	{
 	/* debug code */
-	#ifdef DEBUG_MODE
 	stringstream ac ;
 	ac << "Checking for SDL errors after SDL_CreateRenderer(): " << SDL_GetError() << '\n' ;
 	DebugOutput << ac.rdbuf() ;
-	#endif
 	/* end debug code */
 	}
 	
@@ -69,7 +65,7 @@ void GraphicalOutput::init() {
 		stringstream ss ;
 		ss << "Renderer creation failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 
@@ -85,17 +81,22 @@ void GraphicalOutput::renderTextures() {
 }
 
 void GraphicalOutput::renderObject(GameObject * gameObject) {
-	/* Don't render if invisible */
-	if (gameObject->isVisible()) {
-		auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
-		int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
+	
+	/* we will occasionally get null pointers */
+	if (gameObject != nullptr) {
 		
-		if (sdlrend_error == -1) {
-			stringstream ss ;
-			ss << "SDL_RenderCopy() failed." << '\n' ;
-			ss << SDL_GetError() << '\n' ;
-			DebugOutput << ss.rdbuf() ;
-			throw exception() ;
+		/* Don't render if invisible */
+		if (gameObject->isVisible()) {
+			auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
+			int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
+		
+			if (sdlrend_error == -1) {
+				stringstream ss ;
+				ss << "SDL_RenderCopy() failed." << '\n' ;
+				ss << SDL_GetError() << '\n' ;
+				cerr << ss.rdbuf() ;
+				throw exception() ;
+			}
 		}
 	}
 }

@@ -19,7 +19,7 @@ struct Size : public Position<N> {
 
 private:
 
-	N * w = &(this->x) ;
+	N * w = &(this->x) ; /* Never assign w or h, only ever assign to the values they point to (*w or *h) */
 	N * h = &(this->y) ;
 	N * z ; //don't use it
 
@@ -29,6 +29,10 @@ private:
 	 * size (for instance, to make this half the normal size, set size = 0.5).
 	 */
 	float sizeModifier ;
+	
+	void setModifier(float modifier) { this->sizeModifier = modifier ; }
+	void setWidth(N w) { *(this->w) = w ; }
+	void setHeight(N h) { *(this->h) = h ; }
 
 public:
 
@@ -56,12 +60,20 @@ public:
 		sizeModifier = rhs.sizeModifier ;
 		return *this ;
 	}
-
-	void setModifier(float modifier) { this->sizeModifier = modifier ; }
-
-	void setWidth(N w) { *(this->w) = w ; }
-	void setHeight(N h) { *(this->h) = h ; }
-
+	
+	Size & operator=(Size<N> && rhs) {
+		this->Position<N>::operator=(std::move(rhs)) ;
+		sizeModifier = rhs.sizeModifier ;
+		return *this ;
+	}
+	
+	void setSize(N w, N h, float modifier) {
+		setWidth(w) ;
+		setHeight(h) ;
+		setModifier(modifier) ;
+	}
+	
+	float getModifier() const { return sizeModifier ; }
 	N getWidth() const { return (*(this->w) * sizeModifier) ; }
 	N getHeight() const { return (*(this->h) * sizeModifier) ; }
 

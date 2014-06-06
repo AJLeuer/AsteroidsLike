@@ -101,7 +101,7 @@ void InputController::init() {
 		stringstream ss ;
 		ss << "SDL_InitSubSystem(SDL_INIT_EVENTS) failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 	

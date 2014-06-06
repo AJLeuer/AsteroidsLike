@@ -35,7 +35,7 @@ const vector<GameObject*> * GameState::getGameObjects()  {
 	if (dataIsInit == false) {
 		stringstream ss ;
 		ss << "GameState::initData() must be called before reading any of its data members \n" ;
-		*Debug::debugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 	return gameObjects ;
@@ -46,7 +46,7 @@ const GameMap<GameObject> * GameState::getMap()  {
 	if (dataIsInit == false) {
 		stringstream ss ;
 		ss << "GameState::initData() must be called before reading any of its data members \n" ;
-		*Debug::debugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 	return map ;
@@ -56,7 +56,7 @@ SDL_Renderer * GameState::getMainRenderer() {
 	if (graphicsAreInit == false) {
 		stringstream ss ;
 		ss << "GameState::initGraphics() must be called before reading GameState::getMainRenderer() \n" ;
-		*Debug::debugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 	return renderer ;
@@ -66,7 +66,7 @@ SDL_Renderer * GameState::getMainRenderer() {
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
-Time<nanosecPrecisionClock> * mainGameClock = nullptr ;
+Time * mainGameClock = new Time() ;
 
 std::mutex sharedMutex ;
 

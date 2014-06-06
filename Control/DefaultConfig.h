@@ -22,7 +22,7 @@
 #define DEBUG_MODE
 
 /* comment this out (or #undef) when not running in high-dpi mode */
-//#define HIGH_DPI
+#define HIGH_DPI
 
 #ifdef  HIGH_DPI
 #define WINDOW_SIZE_X (MAX_X / 2)
@@ -44,5 +44,7 @@ constexpr int GLOBAL_MAX_X = MAX_X ;
 constexpr int GLOBAL_MIN_X = MIN_X ;
 constexpr int GLOBAL_MAX_Y = MAX_Y ;
 constexpr int GLOBAL_MIN_Y = MIN_Y ;
+
+constexpr auto refreshTime = eight_milliseconds ;
 
 #endif

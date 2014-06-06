@@ -419,9 +419,7 @@ public:
 		if (this->x >= check.max_X) {
 			{
 			/* Debug code */
-			#ifdef DEBUG_MODE
 			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
-			#endif
 			/* End Debug code */
 			}
 			this->x = check.max_X - 1 ;
@@ -429,9 +427,7 @@ public:
 		if (this->x < check.min_X) {
 			{
 			/* Debug code */
-			#ifdef DEBUG_MODE
 			DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
-			#endif
 			/* End Debug code */
 			}
 			this->x = check.min_X ;
@@ -439,9 +435,7 @@ public:
 		if (this->y >= check.max_Y) {
 			{
 			/* Debug code */
-			#ifdef DEBUG_MODE
 			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
-			#endif
 			/* End Debug code */
 			}
 			this->y = check.max_Y - 1 ;
@@ -449,9 +443,7 @@ public:
 		if (this->y < check.min_Y) {
 			{
 			/* Debug code */
-			#ifdef DEBUG_MODE
 			DebugOutput << "A Y value was under the global minimum. Increasing value... \n" ;
-			#endif
 			/* End Debug code */
 			}
 			this->y = check.min_Y ;
@@ -580,9 +572,7 @@ public:
 
 		{
 		/* Debug code */
-		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
-		#endif
 		/* End Debug code */
 		}
 
@@ -598,9 +588,7 @@ public:
 
 		{
 		/* Debug code */
-		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
-		#endif
 		/* End Debug code */
 		}
 
@@ -636,9 +624,7 @@ public:
 		
 		{
 		/* Debug code */
-		#ifdef DEBUG_MODE
 		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
-		#endif
 		/* End Debug code */
 		}
 
@@ -655,9 +641,7 @@ public:
 
 		{
         /* Debug code */
-		#ifdef DEBUG_MODE
         DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause a performance hit. \n" ;
-		#endif
         /* End Debug code */
 		}
 
@@ -685,9 +669,7 @@ public:
 		
 		{
 		/* Debug code */
-		#ifdef DEBUG_MODE
 		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
-		#endif
 		/* End Debug code */
 		}
 
@@ -707,9 +689,7 @@ public:
 		
 		{
         /* Debug code */
-		#ifdef DEBUG_MODE
         DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause unexpected behavior. \n" ;
-		#endif
         /* End Debug code */
 		}
 
@@ -725,9 +705,7 @@ public:
 		
 		{
 		/* Debug code */
-		#ifdef DEBUG_MODE
 		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
-		#endif
 		/* End Debug code */
 		}
 

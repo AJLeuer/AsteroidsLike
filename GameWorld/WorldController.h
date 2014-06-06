@@ -59,7 +59,7 @@ protected:
 	//static vector<GameObject*> * secondaryGameObjects ;
 	//static vector<GameObject*> * obstacleObjects ;
  
-	static thread worldSimulationThread ;
+	static thread mainThread ;
 	static thread checkDelThread ;
 	
 	
@@ -67,7 +67,7 @@ protected:
 	friend class GameInterface ;
 	friend class GameObject ;
 	
-	static void runWorldSimulation() ;
+	static void main() ;
 	
 	WorldController() ;
 	
@@ -84,7 +84,7 @@ public:
 	
 	static void init() ;
 	
-	static void main() ;
+	static void begin_main() ;
 	
 	static void exit() ;
 	

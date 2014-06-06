@@ -24,7 +24,7 @@ void MainController::setupMainContrExit() {
 }
 
 void MainController::init() {
-	mainGameClock = new Time<nanosecPrecisionClock>() ;
+	
 	mainGameClock->startTimer() ;
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
@@ -36,7 +36,7 @@ void MainController::init() {
 		stringstream ss ;
 		ss << "SDL_Init() failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
 
@@ -53,11 +53,10 @@ void MainController::main() {
     
 	/* Start main functions for all controller classes. WorldController manages the world on its own thread, and input and output
 	 switch off on the main thread */
-	WorldController::main() ;
+	WorldController::begin_main() ;
 
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		auto startTime = mainGameClock->checkTimeElapsed() ;
-		auto refreshTime = eight_milliseconds ;
 		
 		GraphicalOutput::update() ;
 		InputController::update() ;

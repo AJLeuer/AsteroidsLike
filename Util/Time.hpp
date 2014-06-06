@@ -16,59 +16,59 @@
 
 using namespace std ;
 
-typedef chrono::system_clock microsecPrecisionClock ;
-typedef chrono::steady_clock nanosecPrecisionClock ;
 
 
-template<typename CurrentClock = nanosecPrecisionClock>
 class Time {
 	
 private:
 	
 	bool timerStarted ;
-	chrono::time_point<CurrentClock> start ;
-	typedef chrono::duration<typename CurrentClock::rep, typename CurrentClock::period> TimerDuration ;
+	
+	chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds> start ;
+
 	
 public:
 	
-	Time() : timerStarted(false) {}
+	inline Time() : timerStarted(false) {}
 	
-	void startTimer() {
+	inline void startTimer() {
 		if (timerStarted) {
-			*(Debug::debugOutput) << "stopTimer() must be called before startTimer() can be called again for this Time object \n" ;
-			throw new exception() ;
+			cerr << "stopTimer() must be called before startTimer() can be called again for this Time object \n" ;
+			throw exception() ;
 		}
 		timerStarted = true ;
-		start = CurrentClock::now() ;
+		start = chrono::steady_clock::now() ;
 	}
 	
 	/**
-	 * 1 microsecond = 1000 milliseconds
+	 * 1 millisecond = 1000000 nanoseconds
 	 *
-	 * @return The time elapsed in microseconds or nanoseconds, depending on chosen precision.
+	 * @return The time elapsed in nanoseconds.
 	 */
-	TimerDuration checkTimeElapsed() {
+	inline std::chrono::nanoseconds checkTimeElapsed() {
 		//returns in micro or nanoseconds
 		if (!timerStarted) {
-			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once \n" ;
-			throw new exception() ;
+			cerr << "stopTimer() can only be called after startTimer() has been called once \n" ;
+			throw exception() ;
 		}
-		auto duration = CurrentClock::now() - start ;
+		auto duration = chrono::steady_clock::now() - start ;
 		return duration ;
 	}
 	
 	/**
 	 * Stops timer and returns the time elapsed.
 	 *
-	 * @return The time elapsed in microseconds or nanoseconds, depending on chosen precision.
+	 * 1 millisecond = 1000000 nanoseconds
+	 *
+	 * @return The time elapsed in nanoseconds.
 	 */
-	TimerDuration stopTimer() {
+	inline std::chrono::nanoseconds stopTimer() {
 		
 		if (!timerStarted) {
-			*(Debug::debugOutput) << "stopTimer() can only be called after startTimer() has been called once \n" ;
-			throw new exception() ;
+			cerr << "stopTimer() can only be called after startTimer() has been called once \n" ;
+			throw exception() ;
 		}
-		auto duration = CurrentClock::now() - start ;
+		auto duration = chrono::steady_clock::now() - start ;
 		timerStarted = false ;
 		return duration ;
 	}

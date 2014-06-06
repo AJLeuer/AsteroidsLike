@@ -136,8 +136,8 @@ template<class T>
 template<typename N>
 void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) {
 	if (mapObj == nullptr) {
-		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
-		throw new exception() ;
+		cerr << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
+		throw exception() ;
 	}
 	where->checkBounds(check) ;
 	if (at(where) == nullptr) {
@@ -148,12 +148,10 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 	else if (allowMove) {
 		{
         /* Debug code */
-		#ifdef DEBUG_MODE
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
 		ss << "Call rerouted to placeAtNearestFree(). Some objects may be in the wrong spot." << '\n' ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
-		#endif
         /* End Debug code */
 		}
 		placeAtNearestFree(where, mapObj, check) ;
@@ -161,13 +159,11 @@ void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> che
 	else {
 		{
         /* Debug code */
-		#ifdef DEBUG_MODE
 		stringstream ss ;
 		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
 		ss << "The given position was not changed, nor was it moved on the GameMap" << '\n' ;
 		*(Debug::debugOutput) << ss.rdbuf() ;
         DebugOutput << " ...  \n" ;
-		#endif
         /* End Debug code */
 		}
 		
@@ -179,8 +175,8 @@ template<class T>
 template<typename N>
 void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
 	if (mapObj == nullptr) {
-		*(Debug::debugOutput) << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
-		throw new exception() ;
+		cerr << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
+		throw exception() ;
 	}
 	if (at(where) == nullptr) {
 		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
@@ -218,14 +214,14 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 			}
 			default:
 			{
-				DebugOutput << "Problem with placeAtNearestFree() \n" ;
-				throw new exception() ;
+				cerr << "Problem with placeAtNearestFree() \n" ;
+				throw exception() ;
 			}
 		}
 		//mapMembers++ ;
 	}
-	*Debug::debugOutput << "No empty positions found on map. placeAtNearestFree() threw exception \n" ;
-	throw new exception() ;
+	cerr << "No empty positions found on map. placeAtNearestFree() threw exception \n" ;
+	throw exception() ;
 }
 
 template<class T>
@@ -274,7 +270,7 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 			}
 		}
 	}
-	DebugOutput << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
+	cerr << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
 	throw exception() ;
 }
 

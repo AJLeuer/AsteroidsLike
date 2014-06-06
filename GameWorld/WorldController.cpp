@@ -14,7 +14,7 @@ using namespace std ;
 //bool WorldController::running = false ;
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
-thread WorldController::worldSimulationThread ;
+thread WorldController::mainThread ;
 thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
@@ -55,18 +55,24 @@ void WorldController::init() {
 	
 }
 
-void WorldController::main() {
-	worldSimulationThread = thread(&WorldController::runWorldSimulation) ;  //runWorldSimulation()
+void WorldController::begin_main() {
+	mainThread = thread(&WorldController::main) ;  //runWorldSimulation()
 	checkDelThread = thread(&GameObject::checkForMarkedDeletions) ;
 }
 
-void WorldController::runWorldSimulation() {
+void WorldController::main() {
+	
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		auto startTime = mainGameClock->checkTimeElapsed() ;
-		auto refreshTime = eight_milliseconds ;
 		
-
+		/* Do stuff */
+		for (auto i = 0 ; i < gameObjects->size() ; i++) {
+			if (gameObjects->at(i) != nullptr) {
+				gameObjects->at(i)->defaultBehaviors() ;
+			}
+		}
+		
 		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
 		auto sleepTime = refreshTime - timeElapsed ;
 		worldLoopCount++ ;

@@ -17,7 +17,10 @@
 
 using namespace std ;
 
-
+/**
+ * This class will mainly be used for overriding default settings,
+ * usually based on some form of user input. 
+ */
 class Configuration {
 
 private:
