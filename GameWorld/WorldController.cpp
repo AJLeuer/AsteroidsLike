@@ -11,7 +11,8 @@
 
 using namespace std ;
 
-//bool WorldController::running = false ;
+
+const unsigned * WorldController::loopCount = &worldLoopCount ; //Debug symbol, delete
 
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
 thread WorldController::mainThread ;
@@ -35,19 +36,19 @@ void WorldController::init() {
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
 	
 	/* Init enemies */
-	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
+	//new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+	//0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
 
-	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-			0.50, Pos2<float>(GLOBAL_MAX_X, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
+	//new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+	//0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
 	
 	/* Init obstacles */
 	
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
 	
 	for (auto i = 0 ; i < 7 ; i++) {
-		new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
-					   Pos2<float>(randPosSetter<float>, defaultCheck<float>)) ;
+		//new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
+		//Pos2<float>(randPosSetter<float>, defaultCheck<float>)) ;
 	}
 	
 	/* Init game state */
@@ -62,9 +63,10 @@ void WorldController::begin_main() {
 
 void WorldController::main() {
 	
+	auto rt = refreshTime ; //debug symbol
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
-		auto startTime = mainGameClock->checkTimeElapsed() ;
+		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
 		/* Do stuff */
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
@@ -73,7 +75,9 @@ void WorldController::main() {
 			}
 		}
 		
-		auto timeElapsed = (mainGameClock->checkTimeElapsed()) - startTime ;
+		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
+		auto timeElapsed = time2 - startTime ;
+		
 		auto sleepTime = refreshTime - timeElapsed ;
 		worldLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
@@ -84,7 +88,7 @@ void WorldController::main() {
 
 void WorldController::exit() {
 	
-	sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
+	GameState::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	
 	checkDelThread.join() ;
 	
@@ -98,7 +102,7 @@ void WorldController::exit() {
 	delete map ; 
 	gameObjects = nullptr ;
 	
-	sharedMutex.unlock() ;
+	GameState::sharedMutex.unlock() ;
 }
 
 

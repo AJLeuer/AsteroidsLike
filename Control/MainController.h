@@ -34,8 +34,10 @@ class MainController {
 private:
 	
 	static Player * player ;
+	static const unsigned * loopCount ; //Debug symbol, delete
+	
 	static void exit() ;
-
+	
 public:
 	
 	/**

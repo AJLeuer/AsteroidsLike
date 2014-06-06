@@ -37,8 +37,10 @@ public:
 	Player() :
 		name("Player1")
 	{
-		playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+		playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
 				500, 100) ;
+		
+		registerForCallbacks() ;
 	}
 		
 		

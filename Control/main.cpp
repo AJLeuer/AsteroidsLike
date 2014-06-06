@@ -35,8 +35,8 @@
 
 int main(int argc, char ** argv) {
 	
-	currentDirectory = argv[0] ;
-	cout << "the current directory is: " << currentDirectory << endl ;
+	GameState::currentDirectory = argv[0] ;
+	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 
 	Debug::init(true) ;
 

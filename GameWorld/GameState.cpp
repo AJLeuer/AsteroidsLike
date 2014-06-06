@@ -18,6 +18,10 @@ const vector<GameObject *> * GameState::gameObjects = nullptr ;
 const GameMap<GameObject> * GameState::map ;
 SDL_Renderer * GameState::renderer = nullptr ;
 
+bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;
+Time * GameState::mainGameClock = new Time() ;
+std::mutex GameState::sharedMutex ;
+string GameState::currentDirectory ;
 
 void GameState::initData(vector<GameObject *> * gobs, const GameMap<GameObject> * map) {
 	GameState::gameObjects = gobs ;
@@ -66,10 +70,6 @@ SDL_Renderer * GameState::getMainRenderer() {
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
-Time * mainGameClock = new Time() ;
 
-std::mutex sharedMutex ;
+//static bool GLOBAL_CONTINUE_SIGNAL = true ;
 
-bool GLOBAL_CONTINUE_SIGNAL = true ;
-
-string currentDirectory = "" ;

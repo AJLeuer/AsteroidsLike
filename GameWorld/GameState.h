@@ -61,6 +61,14 @@ private:
 	
 public:
 	
+	static bool GLOBAL_CONTINUE_SIGNAL ;
+	
+	static Time * mainGameClock ;
+	
+	static std::mutex sharedMutex ;
+	
+	static string currentDirectory ;
+	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
 	static void initGraphics(SDL_Renderer *) ;
@@ -93,18 +101,13 @@ extern unsigned worldLoopCount ;
 template<typename N = float>
 N defaultOffset = 4 ;
 
-extern Time * mainGameClock ;
-
-extern std::mutex sharedMutex ;
-
-extern bool GLOBAL_CONTINUE_SIGNAL ;
-
 template<typename N>
 FastRand<N> randPosSetter(findSmallest<N>({GLOBAL_MIN_X, GLOBAL_MIN_Y}), findLargest<N>({GLOBAL_MAX_X, GLOBAL_MAX_Y})) ;
 
 template<typename N>
-static const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
+const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
 
-extern string currentDirectory ;
+
+#define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL
 
 #endif /* defined(__GameWorld__GameState__) */
