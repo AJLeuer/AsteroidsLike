@@ -22,7 +22,7 @@
 #define DEBUG_MODE
 
 /* comment this out (or #undef) when not running in high-dpi mode */
-#define HIGH_DPI
+//#define HIGH_DPI
 
 #ifdef  HIGH_DPI
 #define WINDOW_SIZE_X (MAX_X / 2)

@@ -71,6 +71,11 @@ void MainController::main() {
 		auto sleepTime = (refreshTime - timeElapsed) ;
 		mainGameLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
+        
+       /* Sync loops */
+       while (mainGameLoopCount > worldLoopCount) {
+           /* wait */
+       }
 	}
 }
 

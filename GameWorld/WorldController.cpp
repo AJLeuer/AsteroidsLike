@@ -36,14 +36,13 @@ void WorldController::init() {
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
 	
 	/* Init enemies */
-	//new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-	//0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
+	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+              0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
 
-	//new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-	//0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
+	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
+              0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
 	
 	/* Init obstacles */
-	
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
 	
 	for (auto i = 0 ; i < 7 ; i++) {
@@ -81,6 +80,11 @@ void WorldController::main() {
 		auto sleepTime = refreshTime - timeElapsed ;
 		worldLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
+        
+       /* Sync loops */
+       while (worldLoopCount > mainGameLoopCount) {
+           /* wait */
+       }
 	}
 }
 
