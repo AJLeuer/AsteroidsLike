@@ -15,8 +15,9 @@
 #include <random>
 #include <cmath>
 
-#include "../Util/Util.hpp"
-#include "../Util/Size.hpp"
+#include "Util.hpp"
+#include "Position.hpp"
+#include "Size.hpp"
 
 /* Creating a second header for utility functions since we ran into some trouble 
    with includes */
@@ -32,6 +33,10 @@ template<typename M, typename N>
 Position<N> * convert(const Position<M> * converted) {
     return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
 }
+
+template<typename M, typename N>
+Position<N> translate ;
+
 
 
 

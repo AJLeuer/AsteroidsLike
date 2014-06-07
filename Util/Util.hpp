@@ -347,6 +347,39 @@ SomeEnum randomEnumeration(N max) {
 	return SomeEnum(num) ;
 }
 
+template<typename N>
+struct CoordinateSystem {
+    
+    static constexpr auto test = {0, 0} ;
+    //std origin = {0, 0} ; /* Just for clarity */
+    
+    N maxX ;
+    N maxY ;
+    
+    CoordinateSystem(N x, N y) :
+        maxX(x), maxY(y) {}
+    
+} ;
+
+template<typename N>
+struct CoordinateSystem2 {
+    
+    const CoordinateSystem<N> * other ;
+    
+    static constexpr auto origin = {0, 0} ; /* Just for clarity */
+    
+    N maxX ;
+    N maxY ;
+    
+    CoordinateSystem2(N x, N y) :
+        maxX(x), maxY(y) {}
+    
+} ;
+
+
+
+
+
 
 inline unsigned termWidth() {
 	unsigned r = atoi(getenv("COLUMNS")) ;

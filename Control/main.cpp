@@ -34,6 +34,11 @@
 
 
 int main(int argc, char ** argv) {
+    CoordinateSystem<unsigned> coord(15, 10) ;
+    auto test = CoordinateSystem<unsigned>::test ;
+    
+    
+    
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;

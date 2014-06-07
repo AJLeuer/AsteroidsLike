@@ -10,20 +10,13 @@
 
 
 void Enemy::defaultBehaviors() {
-    /* So we can alter our behavior each time through the loop */
-	bool even = ((worldLoopCount % 2) == 0) ;
-	
-	FastRand<float> randOffsetter(-defaultOffset<float>, defaultOffset<float>) ;
-	auto randOffsetVal = (randOffsetter() * 30) ;
-	
-	
-    if (even) {
-        moveUp(randOffsetVal) ; /* will actually move us up or down (randomly) */
-        moveUp(randOffsetVal * (-1)) ; /* will put us back where we started longtitudinally, though
-																	laterally we've still moved to the left  */
+  
+    if (this->getPosition()->getX() > GLOBAL_MIN_X) {
+        moveLeft(defaultOffset<float>) ;
     }
-    else {
-        moveLeft(defaultOffset<float> * 2) ;
+    else if ((this->getPosition()->getX()) <= (GLOBAL_MIN_X - 1)) {
+        
     }
+
 	
 }
