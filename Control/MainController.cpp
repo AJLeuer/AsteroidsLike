@@ -31,6 +31,7 @@ void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
+   GameState::initCoordinateSystems() ;
 	
 	int sdlinit_error = SDL_Init(0) ;
 	
@@ -44,7 +45,7 @@ void MainController::init() {
 
 	GraphicalOutput::init() ;
 	InputController::init() ;
-	WorldController::init() ;    //must be last
+	WorldController::init() ;    //must be last, will init GameState as well
 	player = new Player() ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)

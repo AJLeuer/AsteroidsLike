@@ -68,6 +68,8 @@ public:
 	static std::mutex sharedMutex ;
 	
 	static string currentDirectory ;
+    
+    static void initCoordinateSystems() ;
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
@@ -106,6 +108,15 @@ FastRand<N> randPosSetter(findSmallest<N>({GLOBAL_MIN_X, GLOBAL_MIN_Y}), findLar
 
 template<typename N>
 const BoundsCheck<N> defaultCheck(GLOBAL_MIN_X, GLOBAL_MAX_X, GLOBAL_MIN_Y, GLOBAL_MAX_Y) ;
+
+template<typename N>
+extern CoordinateSystem<N> * worldCoordinateSystem ;
+
+template<typename N>
+extern CoordinateSystem<N> * screenCoordinateSystem ;
+
+template<typename N>
+extern CoordinateSystem2<N> * screenCoordsAsWorldCoords ;
 
 
 #define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL

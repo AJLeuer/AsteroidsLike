@@ -34,8 +34,9 @@
 
 
 int main(int argc, char ** argv) {
+    
     CoordinateSystem<unsigned> coord(15, 10) ;
-    auto test = CoordinateSystem<unsigned>::test ;
+    auto test = {0, 0} ;
     
     
     

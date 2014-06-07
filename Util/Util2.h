@@ -34,8 +34,10 @@ Position<N> * convert(const Position<M> * converted) {
     return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
 }
 
-template<typename M, typename N>
-Position<N> translate ;
+template<typename N>
+Position<N> translateCoordinates(const Position<N> & coords, const CoordinateSystem<N> & fromCoordinateSystem, const CoordinateSystem2<N> toCoordinateSystem) {
+    
+}
 
 
 

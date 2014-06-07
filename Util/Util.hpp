@@ -350,8 +350,8 @@ SomeEnum randomEnumeration(N max) {
 template<typename N>
 struct CoordinateSystem {
     
-    static constexpr auto test = {0, 0} ;
-    //std origin = {0, 0} ; /* Just for clarity */
+    /* A pair of values representing the origin */
+    vector<N> origin = {0, 0} ;
     
     N maxX ;
     N maxY ;
@@ -362,17 +362,19 @@ struct CoordinateSystem {
 } ;
 
 template<typename N>
-struct CoordinateSystem2 {
+struct CoordinateSystem2 : public CoordinateSystem<N> {
     
     const CoordinateSystem<N> * other ;
     
-    static constexpr auto origin = {0, 0} ; /* Just for clarity */
+    /* A pair of values representing the value of this coordinate system's origin
+     * within coordinate system other
+     */
+    vector<N> originInOther ;
     
-    N maxX ;
-    N maxY ;
-    
-    CoordinateSystem2(N x, N y) :
-        maxX(x), maxY(y) {}
+    CoordinateSystem2(CoordinateSystem<N> local, CoordinateSystem<N> * other, vector<N> originInOther) :
+        CoordinateSystem<N>(local.x, local.y),
+        other(other),
+        originInOther(originInOther) {}
     
 } ;
 
