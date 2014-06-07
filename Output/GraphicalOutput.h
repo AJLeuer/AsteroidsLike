@@ -42,15 +42,13 @@ protected:
 
 	
 	/**
-	 * Adds textures to the current renderer. Gets a list of current GameObjects from
-	 * GameState, then gets information from each game object to decide what texture
-	 * to send to output.
+	 * Handles rendering.
 	 */
 	static void render() ;
 	
 	/** 
 	 * A convenience function for rendering GameObjects.
-	 * For more info, see render(SDL_Texture *, const Size<int> *, const Position<N> *)
+	 * For more info, see render(SDL_Texture *, const Position<N> &, const Size<int> *)
 	 *
 	 * @param object The object to be rendered
 	 */
@@ -61,7 +59,7 @@ protected:
 	 *
 	 * @param texture The SDL_Texture to render
 	 * @param size The desired size of the texture on the screen
-	 * @param pos The onscreen coordinate representing where this texture should be rendered
+	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename N>
 	static void render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) ;

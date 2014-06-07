@@ -10,6 +10,15 @@
 
 using namespace std ;
 
+Player::Player() :
+	name("Player 1")
+{
+	playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+								500, 100) ;
+	
+	registerForCallbacks() ;
+}
+
 Player::Player(const string & name, const string & imageFile) :
 	name(name)
 {

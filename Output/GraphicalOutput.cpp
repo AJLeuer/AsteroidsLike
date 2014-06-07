@@ -27,13 +27,18 @@ void GraphicalOutput::init() {
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
+	
+	/* debug code - delete */
+	auto winX = WINDOW_SIZE_X ;
+	auto winY = WINDOW_SIZE_Y ;
+	/* end debug code */
 
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
 							  SDL_WINDOWPOS_CENTERED,   // y position, centered
 							  WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
 							  WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
-							  (SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN)) ;
+							  WINDOW_ARGS) ;
 	
 	{
 	/* debug code */
@@ -88,9 +93,10 @@ void GraphicalOutput::render(const GameObject * object) {
 		/* Don't render if invisible */
 		if (object->isVisible()) {
 			
-			/* translates from world coordinates to screen coordinates */
-			auto objScreenPosition = translateCoordinates(object->getPosition(), worldCoordsAsScreenCoords<float>) ;
+			/* translate from world coordinates to screen coordinates */
+			auto objScreenPosition = translateCoordinates(object->getPosition(), /* trans to: */ worldCoordsAsScreenCoords<float>) ;
 			
+			/* render to output */
 			render(object->getTexture(), objScreenPosition, object->getSize()) ;
 		}
 	}
