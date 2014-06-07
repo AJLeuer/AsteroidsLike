@@ -372,7 +372,7 @@ struct CoordinateSystem2 : public CoordinateSystem<N> {
     vector<N> originInOther ;
     
     CoordinateSystem2(CoordinateSystem<N> local, CoordinateSystem<N> * other, vector<N> originInOther) :
-        CoordinateSystem<N>(local.x, local.y),
+        CoordinateSystem<N>(local[0], local[1]),
         other(other),
         originInOther(originInOther) {}
     

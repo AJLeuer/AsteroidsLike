@@ -36,7 +36,9 @@ Position<N> * convert(const Position<M> * converted) {
 
 template<typename N>
 Position<N> translateCoordinates(const Position<N> & coords, const CoordinateSystem<N> & fromCoordinateSystem, const CoordinateSystem2<N> toCoordinateSystem) {
-    
+    N tempX = coords.getX() + toCoordinateSystem.originInOther.at(0) ;
+    N tempY = coords.getY() + toCoordinateSystem.originInOther.at(1) ;
+    return Position<N>(tempX, tempY) ;
 }
 
 
