@@ -73,37 +73,32 @@ void GraphicalOutput::init() {
 }
 
 
-void GraphicalOutput::renderTextures() {
+void GraphicalOutput::render() {
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;
-		renderObject(temp) ;
+		render(temp) ;
 	}
 }
 
-void GraphicalOutput::renderObject(GameObject * gameObject) {
+void GraphicalOutput::render(const GameObject * object) {
 	
 	/* we will occasionally get null pointers */
-	if (gameObject != nullptr) {
+	if (object != nullptr) {
 		
 		/* Don't render if invisible */
-		if (gameObject->isVisible()) {
-			auto tempShape = convertToSDL_Rect(*(gameObject->getPosition()), gameObject->getSize()) ;
-			int sdlrend_error = SDL_RenderCopy(renderer, gameObject->getTexture(), NULL, & tempShape) ;
-		
-			if (sdlrend_error == -1) {
-				stringstream ss ;
-				ss << "SDL_RenderCopy() failed." << '\n' ;
-				ss << SDL_GetError() << '\n' ;
-				cerr << ss.rdbuf() ;
-				throw exception() ;
-			}
+		if (object->isVisible()) {
+			
+			/* translates from world coordinates to screen coordinates */
+			auto objScreenPosition = translateCoordinates(object->getPosition(), worldCoordsAsScreenCoords<float>) ;
+			
+			render(object->getTexture(), objScreenPosition, object->getSize()) ;
 		}
 	}
 }
 
 void GraphicalOutput::update() {
 	SDL_RenderClear(renderer);
-	renderTextures() ;
+	render() ;
 	SDL_RenderPresent(renderer) ;
 }
 

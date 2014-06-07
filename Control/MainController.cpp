@@ -31,7 +31,7 @@ void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
-   GameState::initCoordinateSystems() ;
+	GameState::initCoordinateSystems() ;
 	
 	int sdlinit_error = SDL_Init(0) ;
 	

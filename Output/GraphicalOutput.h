@@ -46,9 +46,25 @@ protected:
 	 * GameState, then gets information from each game object to decide what texture
 	 * to send to output.
 	 */
-	static void renderTextures() ;
+	static void render() ;
 	
-	static void renderObject(GameObject *) ;
+	/** 
+	 * A convenience function for rendering GameObjects.
+	 * For more info, see render(SDL_Texture *, const Size<int> *, const Position<N> *)
+	 *
+	 * @param object The object to be rendered
+	 */
+	static void render(const GameObject * object) ;
+	
+	/**
+	 * Renders the given texture at the desired position and size.
+	 *
+	 * @param texture The SDL_Texture to render
+	 * @param size The desired size of the texture on the screen
+	 * @param pos The onscreen coordinate representing where this texture should be rendered
+	 */
+	template<typename N>
+	static void render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	
@@ -59,5 +75,20 @@ public:
 	static void exit() ;
 	
 } ;
+
+template<typename N>
+void GraphicalOutput::render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) {
+	
+	auto tempShape = convertToSDL_Rect(pos, size) ;
+	int sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
+	
+	if (sdlrend_error == -1) {
+		stringstream ss ;
+		ss << "SDL_RenderCopy() failed." << '\n' ;
+		ss << SDL_GetError() << '\n' ;
+		cerr << ss.rdbuf() ;
+		throw exception() ;
+	}
+}
 
 #endif /* defined(__GameWorld__WindowOutput__) */

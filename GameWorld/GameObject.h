@@ -384,7 +384,7 @@ public:
 	 */
 	AssetType getType() { return type ; }
 	
-	bool isVisible() { return visible ; }
+	bool isVisible() const { return visible ; }
 	
 	/**
 	 * Override the << output stream operator

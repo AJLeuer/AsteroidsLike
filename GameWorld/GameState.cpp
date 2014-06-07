@@ -27,11 +27,16 @@ void GameState::initCoordinateSystems() {
     worldCoordinateSystem<float> = new CoordinateSystem<float>(GLOBAL_MAX_X, GLOBAL_MAX_X) ;
     screenCoordinateSystem<float> = new CoordinateSystem<float>(WINDOW_MAX_X, WINDOW_MAX_Y) ;
     
-    auto originX = 0.5 * (GLOBAL_MAX_X - WINDOW_MAX_X) ;
-    auto originY = 0.5 * (GLOBAL_MAX_Y - WINDOW_MAX_Y) ;
+    float originX = 0.5 * (GLOBAL_MAX_X - WINDOW_MAX_X) ;
+    float originY = 0.5 * (GLOBAL_MAX_Y - WINDOW_MAX_Y) ;
     
     screenCoordsAsWorldCoords<float> = new CoordinateSystem2<float>(*screenCoordinateSystem<float>, worldCoordinateSystem<float>,
-                                                                {static_cast<float>(originX), static_cast<float>(originY)}) ;
+																	{originX, originY}) ;
+	originX = 0.5 * (WINDOW_MAX_X - GLOBAL_MAX_X) ;
+	originY = 0.5 * (WINDOW_MAX_Y - GLOBAL_MAX_Y) ;
+	
+	worldCoordsAsScreenCoords<float> = new CoordinateSystem2<float>(*worldCoordinateSystem<float>, screenCoordinateSystem<float>,
+																	{originX, originY}) ;
 }
 
 void GameState::initData(vector<GameObject *> * gobs, const GameMap<GameObject> * map) {
@@ -86,6 +91,9 @@ CoordinateSystem<N> * worldCoordinateSystem = nullptr ;
 
 template<typename N>
 CoordinateSystem<N> * screenCoordinateSystem = nullptr ;
+
+template<typename N>
+CoordinateSystem2<N> * worldCoordsAsScreenCoords = nullptr ;
 
 template<typename N>
 CoordinateSystem2<N> * screenCoordsAsWorldCoords = nullptr ;

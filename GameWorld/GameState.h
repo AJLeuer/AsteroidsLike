@@ -116,6 +116,9 @@ template<typename N>
 extern CoordinateSystem<N> * screenCoordinateSystem ;
 
 template<typename N>
+extern CoordinateSystem2<N> * worldCoordsAsScreenCoords ;
+
+template<typename N>
 extern CoordinateSystem2<N> * screenCoordsAsWorldCoords ;
 
 

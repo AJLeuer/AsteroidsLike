@@ -13,9 +13,9 @@
  * This header holds important data and definitions used throughout the program
  */
 
-#define MAX_X 1600
+#define MAX_X 1920
 #define MIN_X 0
-#define MAX_Y 900
+#define MAX_Y 1080
 #define MIN_Y 0
 
 /* comment this out (or #undef) when not running in debug mode */
