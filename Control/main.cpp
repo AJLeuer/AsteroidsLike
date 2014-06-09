@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -32,14 +30,9 @@
 #include "MainController.h"
 
 
-
 int main(int argc, char ** argv) {
     
     CoordinateSystem<unsigned> coord(15, 10) ;
-    auto test = {0, 0} ;
-    
-    
-    
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;

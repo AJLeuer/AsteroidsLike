@@ -69,7 +69,7 @@ public:
 	
 	static string currentDirectory ;
     
-    static void initCoordinateSystems() ;
+    
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
@@ -120,6 +120,8 @@ extern CoordinateSystem2<N> * worldCoordsAsScreenCoords ;
 
 template<typename N>
 extern CoordinateSystem2<N> * screenCoordsAsWorldCoords ;
+
+extern void initCoordinateSystems() ;
 
 
 #define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL
