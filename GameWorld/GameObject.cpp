@@ -428,16 +428,22 @@ void GameObject::moveTo(Position<float> to) {
 	}
 }
 
+void GameObject::jump() {
+	vectr.normalize() ;
+	Position<float> next = DirectionVector<float>::calculateNextPosition(vectr, 10.0) ;
+	moveTo(std::move(next)) ;
+}
+
 void GameObject::moveSameDirection() {
 
 	vectr.normalize() ;
-	Position<float> next = DirectionVector<float>::calculateNextPosition(vectr) ;
+	Position<float> next = DirectionVector<float>::calculateNextPosition(vectr, 1.0) ;
 
 	if (next.overXBounds(defaultCheck<float>)) {
-		next = DirectionVector<float>::calculateReverseXPosition(vectr, defaultCheck<float>) ;
+		next = DirectionVector<float>::calculateReverseXPosition(vectr, 1.0, defaultCheck<float>) ;
 	}
 	if (next.overYBounds(defaultCheck<float>)) {
-		next = DirectionVector<float>::calculateReverseYPosition(vectr, defaultCheck<float>) ;
+		next = DirectionVector<float>::calculateReverseYPosition(vectr, 1.0, defaultCheck<float>) ;
 	}
 
 	moveTo(std::move(next)) ;
@@ -446,7 +452,7 @@ void GameObject::moveSameDirection() {
 void GameObject::moveNewDirection(DirectionVector<float> & newDirection) {
 
 	newDirection.normalize() ;
-	auto next = DirectionVector<float>::calculateNextPosition(newDirection, loc, defaultCheck<float>) ;
+	auto next = DirectionVector<float>::calculateNextPosition(newDirection, loc, 1.0, defaultCheck<float>) ;
 	moveTo(std::move(next)) ;
 }
 

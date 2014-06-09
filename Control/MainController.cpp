@@ -73,10 +73,10 @@ void MainController::main() {
 		mainGameLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
         
-       /* Sync loops */
-       while (mainGameLoopCount > worldLoopCount) {
-           /* wait */
-       }
+        /* Sync loops */
+        while (mainGameLoopCount > worldLoopCount) {
+            /* wait */
+        }
 	}
 }
 

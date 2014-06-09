@@ -46,10 +46,9 @@ public:
 	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; }
 	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
 	
-	void moveRight(float offset = defaultOffset<float>) { playerCharacter.moveRight(offset) ; }
-	void moveLeft(float offset = defaultOffset<float>) { playerCharacter.moveLeft(offset) ; }
-	void moveUp(float offset = defaultOffset<float>) { playerCharacter.moveUp(offset) ; }
-	void moveDown(float offset = defaultOffset<float>) { playerCharacter.moveDown(offset) ; }
+	void jump() { playerCharacter.jump() ; }
+	
+	
 	
 
 } ;

@@ -303,6 +303,8 @@ public:
 	void moveUpLeft(float offset = defaultOffset<float>) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }
 	void moveDownRight(float offset = defaultOffset<float>) { moveTo((loc->getX()+offset), (loc->getY()+offset), loc->getZ()) ; }
 	void moveDownLeft(float offset = defaultOffset<float>) { moveTo((loc->getX()-offset), (loc->getY()+offset), loc->getZ()) ; }
+	
+	void jump() ;
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the

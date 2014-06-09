@@ -28,13 +28,18 @@ Player::Player(const string & name, const string & imageFile) :
 }
 
 void Player::registerForCallbacks() {
-	KeyInputRegister * moveUpRegister = new KeyInputRegister(this, (&GameInterface::moveUp), "W", SDLK_UP) ;
-	KeyInputRegister * moveDownRegister = new KeyInputRegister(this, (&GameInterface::moveDown), "S",SDLK_DOWN) ;
-	KeyInputRegister * moveLeftRegister = new KeyInputRegister(this, (&GameInterface::moveLeft), "A", SDLK_LEFT) ;
-	KeyInputRegister * moveRightRegister = new KeyInputRegister(this, (&GameInterface::moveRight), "D", SDLK_RIGHT) ;
+	
+	KeyInputRegister * moveUpKey = new KeyInputRegister(this, (&GameInterface::moveUp), MOVE_UP, SDLK_UP) ;
+	KeyInputRegister * moveDownKey = new KeyInputRegister(this, (&GameInterface::moveDown), MOVE_DOWN, SDLK_DOWN) ;
+	KeyInputRegister * moveLeftKey = new KeyInputRegister(this, (&GameInterface::moveLeft), MOVE_LEFT, SDLK_LEFT) ;
+	KeyInputRegister * moveRightKey = new KeyInputRegister(this, (&GameInterface::moveRight), MOVE_RIGHT, SDLK_RIGHT) ;
+	
+	KeyInputRegister * jumpKey = new KeyInputRegister(this, (&GameInterface::jump), SDLK_SPACE) ;
 
-	InputController::registerForKeypress(moveUpRegister) ;
-	InputController::registerForKeypress(moveDownRegister) ;
-	InputController::registerForKeypress(moveLeftRegister) ;
-	InputController::registerForKeypress(moveRightRegister) ;
+	InputController::registerForKeypress(moveUpKey) ;
+	InputController::registerForKeypress(moveDownKey) ;
+	InputController::registerForKeypress(moveLeftKey) ;
+	InputController::registerForKeypress(moveRightKey) ;
+	
+	InputController::registerForKeypress(jumpKey) ;
 }

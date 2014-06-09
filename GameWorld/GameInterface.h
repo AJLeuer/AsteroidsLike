@@ -38,11 +38,8 @@ public:
 	virtual void moveRight() = 0 ;
 	virtual void moveLeft() = 0 ;
 
-	virtual void moveUp(float offset = defaultOffset<float>) = 0 ;
-	virtual void moveDown(float offset = defaultOffset<float>) = 0 ;
-	virtual void moveRight(float offset = defaultOffset<float>) = 0 ;
-	virtual void moveLeft(float offset = defaultOffset<float>) = 0 ;
 	
+	virtual void jump() = 0 ;
 	
 };
 

@@ -9,10 +9,12 @@
 #ifndef GameWorld_DefaultConfig_h
 #define GameWorld_DefaultConfig_h
 
+#include <chrono>
+
+
 /**
  * This header holds important data and definitions used throughout the program
  */
-
 #define MAX_X 640
 #define MIN_X 0
 #define MAX_Y 480
@@ -45,6 +47,7 @@
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
 
+
 constexpr float worldToWindowRatio = 1.5 ;
 
 constexpr int GLOBAL_MAX_X = (WINDOW_MAX_X * worldToWindowRatio) ; /* To give us buffer space outside the window margins */
@@ -53,5 +56,10 @@ constexpr int GLOBAL_MAX_Y = (WINDOW_MAX_Y * worldToWindowRatio) ;
 constexpr int GLOBAL_MIN_Y = (WINDOW_MIN_Y) ;
 
 constexpr auto refreshTime = eight_milliseconds ;
+
+extern char * MOVE_UP ;
+extern char * MOVE_DOWN ;
+extern char * MOVE_LEFT ;
+extern char * MOVE_RIGHT ;
 
 #endif

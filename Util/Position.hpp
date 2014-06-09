@@ -935,22 +935,22 @@ public:
 	void updateAndNormalize() ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> &) ;
+	static Position<N> calculateNextPosition(DirectionVector<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> &, const BoundsCheck<N> &) ;
+	static Position<N> calculateNextPositionCh(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
 
 	
-	static Position<N> calculateReverseNextPosition(DirectionVector<N> &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseNextPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
 
 	
-	static Position<N> calculateReverseXPosition(DirectionVector<N> &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseXPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
 
 	
-	static Position<N> calculateReverseYPosition(DirectionVector<N> &, const BoundsCheck<N> &) ;
+	static Position<N> calculateReverseYPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) ;
+	static Position<N> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>) ;
 
 } ;
 
@@ -1050,7 +1050,7 @@ void DirectionVector<N>::updateAndNormalize() {
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec) {
+Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, float modifier) {
 	
 	vec.normalize() ;
 
@@ -1058,16 +1058,16 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec) 
 	N ny ;
 	N nz ;
 
-	nx = (vec.current)->getX() + vec.getX() ;
-	ny = (vec.current)->getY() + vec.getY() ;
-	nz = (vec.current)->getZ() + vec.getZ() ;
+	nx = (vec.current)->getX() + (vec.getX() * modifier) ;
+	ny = (vec.current)->getY() + (vec.getY() * modifier) ;
+	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
 
 	Position<N> next(nx, ny, nz) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, const BoundsCheck<N> & check) {
+Position<N> DirectionVector<N>::calculateNextPositionCh(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
 
 	vec.normalize() ;
 
@@ -1075,39 +1075,39 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, 
 	N ny ;
 	N nz ;
 
-	nx = (vec.current)->getX() + vec.getX() ;
-	ny = (vec.current)->getY() + vec.getY() ;
-	nz = (vec.current)->getZ() + vec.getZ() ;
+	nx = (vec.current)->getX() + (vec.getX() * modifier) ;
+	ny = (vec.current)->getY() + (vec.getY() * modifier) ;
+	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
 
 	Position<N> next(nx, ny, nz, check) ;
 	return std::move(next) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseNextPosition(DirectionVector<N> & vec, const BoundsCheck<N> & check) {
+Position<N> DirectionVector<N>::calculateReverseNextPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.x = (vec.x * -1) ;
 	vec.y = (vec.y * -1) ;
 	vec.z = (vec.z * -1) ;
-	return calculateNextPosition(check) ;
+	return calculateNextPosition(vec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseXPosition(DirectionVector<N> & vec, const BoundsCheck<N> & check) {
+Position<N> DirectionVector<N>::calculateReverseXPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.x = (vec.x * -1) ;
-	return calculateNextPosition(vec, check) ;
+	return calculateNextPositionCh(vec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseYPosition(DirectionVector<N> & vec, const BoundsCheck<N> & check) {
+Position<N> DirectionVector<N>::calculateReverseYPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.y = (vec.y * -1) ;
-	return calculateNextPosition(vec, check) ;
+	return calculateNextPositionCh(vec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, const BoundsCheck<N> & check) {
+Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
 	Position<float> direc(dir.x, dir.y, dir.z) ;
 	DirectionVector<N> calc = DirectionVector<N>(direc, current, true) ;
-	return calculateNextPosition(calc, check) ;
+	return calculateNextPositionCh(calc, modifier, check) ;
 }
 
 
