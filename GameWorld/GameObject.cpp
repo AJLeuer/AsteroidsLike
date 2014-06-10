@@ -470,6 +470,8 @@ void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {
 	wander() ;
 }
 
+
+
 void GameObject::attack(GameObject * enemy) {
 	
 }
@@ -536,6 +538,18 @@ void GameObject::setImageFile(string imageFileName) {
 
 string GameObject::getImageFile() const {
 	return this->textureImageFile ;
+}
+
+void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
+	
+	visible = false ;
+	
+	auto invisTimer = [this, nano] {
+		this_thread::sleep_for(nano) ;
+		this->setVisible() ;
+	};
+	
+	new thread(invisTimer) ;
 }
 
 ostream & operator<<(std::ostream & os, const GameObject & gameObj)  {

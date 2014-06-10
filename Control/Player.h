@@ -10,6 +10,7 @@
 #define __GameWorld__Player__
 
 #include <iostream>
+#include <chrono>
 
 #include "../GameWorld/GameInterface.h"
 #include "../GameWorld/Character.h"
@@ -46,11 +47,12 @@ public:
 	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; }
 	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
 	
-	void jump() { playerCharacter.jump() ; }
+	inline void jump() {
+		playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
+		playerCharacter.jump() ;
+	}
 	
 	
-	
-
 } ;
 
 #endif /* defined(__GameWorld__Player__) */

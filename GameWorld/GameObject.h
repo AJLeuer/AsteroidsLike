@@ -386,7 +386,15 @@ public:
 	 */
 	AssetType getType() { return type ; }
 	
+	void setVisible() { visible = true ; }
 	bool isVisible() const { return visible ; }
+	
+	/**
+	 * Turns this GameObject invisible for nano nanoseconds
+	 *
+	 * @param nano The length of time to remain invisible
+	 */
+	void timedTurnInvisible(std::chrono::nanoseconds nano) ;
 	
 	/**
 	 * Override the << output stream operator

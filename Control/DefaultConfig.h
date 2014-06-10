@@ -15,16 +15,16 @@
 /**
  * This header holds important data and definitions used throughout the program
  */
-#define MAX_X 640
+#define MAX_X 1600
 #define MIN_X 0
-#define MAX_Y 480
+#define MAX_Y 900
 #define MIN_Y 0
 
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
 
 /* comment this out (or #undef) when not running in high-dpi mode */
-//#define HIGH_DPI
+#define HIGH_DPI
 
 #ifdef  HIGH_DPI
 #define WINDOW_MAX_X (MAX_X / 2)

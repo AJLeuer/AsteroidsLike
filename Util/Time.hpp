@@ -31,6 +31,18 @@ public:
 	
 	inline Time() : timerStarted(false) {}
 	
+	inline Time(Time && other) : timerStarted(std::move(other.timerStarted)), start(std::move(other.start)) {}
+	
+	inline ~Time() {}
+	
+	inline Time & operator=(Time && rhs) {
+		if (this != &rhs) {
+			timerStarted = rhs.timerStarted ;
+			start = std::move(rhs.start) ;
+		}
+		return *this ;
+	}
+	
 	inline void startTimer() {
 		if (timerStarted) {
 			cerr << "stopTimer() must be called before startTimer() can be called again for this Time object \n" ;
