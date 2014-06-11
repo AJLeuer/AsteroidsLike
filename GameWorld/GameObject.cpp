@@ -557,12 +557,13 @@ void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
 	visible = false ;
 	
-	auto invisTimer = [this, nano] {
+	auto invisTimer = [&] {
 		this_thread::sleep_for(nano) ;
 		this->setVisible() ;
-	};
+	} ;
 	
-	new thread(invisTimer) ;
+	std::thread thr(invisTimer) ;
+	thr.detach() ;
 }
 
 ostream & operator<<(std::ostream & os, const GameObject & gameObj)  {

@@ -16,6 +16,7 @@
 #include <mutex>
 #include <vector>
 
+#include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
 
 #include "../Util/Util.hpp"
@@ -51,6 +52,8 @@ private:
 	 */
 	static const GameMap<GameObject> * map ;
     
+	static SDL_Window * window ;
+	
 	//this will allow GameObjects to initialize their own textures
 	static SDL_Renderer * renderer ;
     
@@ -73,7 +76,7 @@ public:
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
-	static void initGraphics(SDL_Renderer *) ;
+	static void initGraphics(SDL_Window *, SDL_Renderer *) ;
 	
 	/**
 	 * A container holding most objects in the game world.
@@ -87,6 +90,8 @@ public:
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * getMap() ;
+	
+	static SDL_Window * getMainWindow() ;
     
 	static SDL_Renderer * getMainRenderer() ;
 	

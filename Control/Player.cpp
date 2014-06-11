@@ -13,7 +13,7 @@ using namespace std ;
 Player::Player() :
 	name("Player 1")
 {
-	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_256x256_Alt_02_002.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(randPosSetter<float>, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_64x64_Alt_02_005.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(0, 0, 0, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
 								500, 100) ;
 	
 	registerForCallbacks() ;
@@ -25,6 +25,12 @@ Player::Player(const string & name, const string & imageFile) :
 	playerCharacter = Character(pcAssetType, imageFile, 1.0,
 								Pos2<float>(50, 650, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
 	registerForCallbacks() ;
+}
+
+void Player::printPositition() {
+	stringstream ss ;
+	ss << "Player's current position is: " << playerCharacter.getPosition() << '\n' ;
+	DebugOutput << ss.rdbuf() ;
 }
 
 void Player::registerForCallbacks() {
@@ -42,4 +48,13 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(moveRightKey) ;
 	
 	InputController::registerForKeypress(jumpKey) ;
+}
+
+void Player::jump() {
+	playerCharacter.jump() ;
+	playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
+	
+	/* Debug */
+	printPositition() ;
+	/* end debug */
 }

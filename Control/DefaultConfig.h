@@ -15,9 +15,9 @@
 /**
  * This header holds important data and definitions used throughout the program
  */
-#define MAX_X 1280
+#define MAX_X 1920
 #define MIN_X 0
-#define MAX_Y 720
+#define MAX_Y 1080
 #define MIN_Y 0
 
 /* comment this out (or #undef) when not running in debug mode */
@@ -48,12 +48,10 @@
 													         etc., instead of nano. */
 
 
-constexpr float worldToWindowRatio = 1.5 ;
-
-constexpr int GLOBAL_MAX_X = (WINDOW_MAX_X /* worldToWindowRatio*/) ; /* To give us buffer space outside the window margins */
-constexpr int GLOBAL_MIN_X = (WINDOW_MIN_X) ;
-constexpr int GLOBAL_MAX_Y = (WINDOW_MAX_Y /* worldToWindowRatio*/) ;
-constexpr int GLOBAL_MIN_Y = (WINDOW_MIN_Y) ;
+constexpr int GLOBAL_MAX_X = (MAX_X /* worldToWindowRatio*/) ; /* To give us buffer space outside the window margins */
+constexpr int GLOBAL_MIN_X =  MIN_X ;
+constexpr int GLOBAL_MAX_Y = (MAX_Y /* worldToWindowRatio*/) ;
+constexpr int GLOBAL_MIN_Y =  MIN_Y ;
 
 constexpr auto refreshTime = eight_milliseconds ;
 

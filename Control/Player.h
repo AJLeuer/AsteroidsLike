@@ -10,6 +10,7 @@
 #define __GameWorld__Player__
 
 #include <iostream>
+#include <sstream>
 #include <chrono>
 
 #include "../GameWorld/GameInterface.h"
@@ -42,15 +43,14 @@ public:
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
 	
-	void moveUp() { playerCharacter.moveUp(defaultOffset<float>) ; }
-	void moveDown() { playerCharacter.moveDown(defaultOffset<float>) ; }
-	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; }
-	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
+	void moveUp() { playerCharacter.moveUp(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveDown() { playerCharacter.moveDown(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
 	
-	inline void jump() {
-        playerCharacter.jump() ;
-		playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
-	}
+	void printPositition() ;
+	
+	void jump() ;
 	
 	
 } ;

@@ -74,7 +74,7 @@ void GraphicalOutput::init() {
 		throw exception() ;
 	}
 
-	GameState::initGraphics(renderer) ;
+	GameState::initGraphics(window, renderer) ;
 }
 
 

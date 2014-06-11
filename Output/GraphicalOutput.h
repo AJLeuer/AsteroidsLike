@@ -37,7 +37,7 @@ class GraphicalOutput {
 	
 protected:
 	
-	static struct SDL_Window * window ;
+	static SDL_Window * window ;
 	static SDL_Renderer * renderer ;
 
 	

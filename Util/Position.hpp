@@ -11,8 +11,11 @@
 #define GameWorld_Position_h
 
 #include <iostream>
+#include <ostream>
 #include <sstream>
 #include <queue>
+
+#include <SDL2/SDL_video.h>
 
 #include "Debug.h"
 #include "Util.hpp"
@@ -244,6 +247,11 @@ public:
 
 		return new Position<P>(x, y, z) ;
 	}
+	
+	friend ostream & operator<<(std::ostream & os, const Position<N> * pos) {
+		os << "Position: X = " << pos->x << ", Y = " << pos->y << ", Z = " << pos->z << '\n' ;
+		return os ;
+	}
 
 
 	/**
@@ -408,36 +416,43 @@ public:
 	
 	std::string toString() const {
 		stringstream ss ;
-		ss << "x = " << x << ", y = " << y << ", z = " << z ;
+		ss << this ;
 		return ss.str() ;
 	}
 
 
 	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
 		
-		if ((this->x + objWidth) >= check.max_X) {
+		int x_(0) ;
+		int y_(0) ;
+		int * x = &x_ ;
+		int * y = &y_ ;
+		
+		SDL_GetWindowSize(GameState::getMainWindow(), x, y) ;
+		
+		if ((this->x /*+ objWidth*/) >= check.max_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
 			/* End Debug code */
 			}
-			this->x = check.max_X - 1 ;
+			this->x = check.max_X /*- objWidth*/ - 1 ;
 		}
-		if (this->x < check.min_X) {
+		if (this->x /*- objWidth*/ < check.min_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
 			/* End Debug code */
 			}
-			this->x = check.min_X ;
+			this->x = check.min_X /*+ objWidth*/ ;
 		}
-		if ((this->y + objHeight) >= check.max_Y) {
+		if ((this->y /*+ objHeight*/) >= check.max_Y) {
 			{
 			/* Debug code */
 			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
 			/* End Debug code */
 			}
-			this->y = check.max_Y - 1 ;
+			this->y = check.max_Y /*- objHeight*/ - 1 ;
 		}
 		if (this->y < check.min_Y) {
 			{

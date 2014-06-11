@@ -16,6 +16,7 @@ bool GameState::dataIsInit = false ;
 bool GameState::graphicsAreInit = false ;
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 const GameMap<GameObject> * GameState::map ;
+SDL_Window * GameState::window = nullptr ;
 SDL_Renderer * GameState::renderer = nullptr ;
 
 bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;
@@ -31,8 +32,9 @@ void GameState::initData(vector<GameObject *> * gobs, const GameMap<GameObject> 
 	dataIsInit = true ;
 }
 
-void GameState::initGraphics(SDL_Renderer * renderer_) {
-	renderer = renderer_ ;
+void GameState::initGraphics(SDL_Window * window, SDL_Renderer * renderer) {
+	GameState::window = window ;
+	GameState::renderer = renderer ;
 	graphicsAreInit = true ;
 }
 
@@ -56,6 +58,16 @@ const GameMap<GameObject> * GameState::getMap()  {
 		throw exception() ;
 	}
 	return map ;
+}
+
+SDL_Window * GameState::getMainWindow() {
+	if (graphicsAreInit == false) {
+		stringstream ss ;
+		ss << "GameState::initGraphics() must be called before reading GameState::getMainRenderer() \n" ;
+		cerr << ss.rdbuf() ;
+		throw exception() ;
+	}
+	return window ;
 }
 
 SDL_Renderer * GameState::getMainRenderer() {
