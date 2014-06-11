@@ -44,6 +44,10 @@ public:
 	Size(N w_, N h_, float modifier) :
 		Position<N>(w_, h_, 0),
 		sizeModifier(modifier) {}
+    
+    Size(N w_, N h_) :
+        Position<N>(w_, h_, 0),
+        sizeModifier(1) {}
 
 	Size(const Size<N> & other) :
 		Position<N>(other),
@@ -78,5 +82,6 @@ public:
 	N getHeight() const { return (*(this->h) * sizeModifier) ; }
 
 } ;
+
 
 #endif /* defined(__GameWorld__Size__) */

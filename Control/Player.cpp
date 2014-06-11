@@ -13,7 +13,7 @@ using namespace std ;
 Player::Player() :
 	name("Player 1")
 {
-	playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), 1.0, Pos2<float>(randPosSetter<float>, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_256x256_Alt_02_002.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(randPosSetter<float>, defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
 								500, 100) ;
 	
 	registerForCallbacks() ;

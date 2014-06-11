@@ -11,12 +11,14 @@
 
 #include <iostream>
 
+
 /**
  * Helps with checking validity of Position objects
  * Used in Position's checkBounds()
  */
 template<typename N>
 struct BoundsCheck {
+    
 	const N min_X ;
 	const N max_X ;
 	const N min_Y ;

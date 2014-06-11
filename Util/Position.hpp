@@ -38,7 +38,6 @@ enum Direction {
 } ;
 
 
-
 /**
  * Position<> is a simple vector type with the useful feature of storing all its previous states,
  * back through time. Thus an object using Position to store location information will be able to
@@ -414,9 +413,9 @@ public:
 	}
 
 
-	void checkBounds(const BoundsCheck<N> & check) {
+	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
 		
-		if (this->x >= check.max_X) {
+		if ((this->x + objWidth) >= check.max_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
@@ -432,7 +431,7 @@ public:
 			}
 			this->x = check.min_X ;
 		}
-		if (this->y >= check.max_Y) {
+		if ((this->y + objHeight) >= check.max_Y) {
 			{
 			/* Debug code */
 			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
@@ -450,8 +449,8 @@ public:
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> & check) {
-		if ((this->x >= check.max_X) || (this->y >= check.max_Y)) {
+	bool overBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
+		if (((this->x + objWidth) >= check.max_X) || ((this->y + objHeight) >= check.max_Y)) {
 			return true ;
 		}
 		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {

@@ -48,8 +48,8 @@ public:
 	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; }
 	
 	inline void jump() {
+        playerCharacter.jump() ;
 		playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
-		playerCharacter.jump() ;
 	}
 	
 	
