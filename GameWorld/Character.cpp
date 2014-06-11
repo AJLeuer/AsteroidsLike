@@ -47,8 +47,8 @@ Character::Character(FastRand<int> rand) :
 	reaction((Reaction)rand.nextValue(-2, 2)), 
 	alive(DoA::alive),
 	state(CharacterState::normal),
-	health{new Health(goRand.nextValue(0, 500))},
-	damage{new Damage(goRand.nextValue(0, 50))}
+	health(new Health(goRand.nextValue(0, 500))),
+	damage(new Damage(goRand.nextValue(0, 50)))
 {
 	type = AssetType::block ;
 	name = generateName(goRand.nextValue(0, 11) + 5) ;
