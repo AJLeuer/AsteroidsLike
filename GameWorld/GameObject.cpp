@@ -43,6 +43,8 @@ GameObject::GameObject() :
 	}
 
 	allGameObjects->push_back(this) ;
+    
+    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
@@ -74,6 +76,7 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
+    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	
@@ -146,6 +149,8 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	}
 	
 	allGameObjects->push_back(this) ;
+    
+    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false, sizeModifier) ;
@@ -166,6 +171,8 @@ GameObject::GameObject(FastRand<int> rand) :
 		map_is_init = true ;
 	}
 	allGameObjects->push_back(this) ;
+    
+    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	
@@ -395,7 +402,10 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(Position<float> * to) {
+    
 	map->erase<float>(getPosition()) ;
+    
+    to->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	loc->setAll(*to) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
@@ -412,7 +422,10 @@ void GameObject::moveTo(Position<float> * to) {
 }
 
 void GameObject::moveTo(Position<float> to) {
+    
 	map->erase<float>(getPosition()) ;
+    
+    to.checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	loc->setAll(to) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
