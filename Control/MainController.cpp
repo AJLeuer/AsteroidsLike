@@ -31,7 +31,8 @@ void MainController::init() {
 	GLOBAL_CONTINUE_SIGNAL = true ;
 	
 	//do initializations
-	initCoordinateSystems() ;
+    Configuration::init() ;
+	
 	
 	int sdlinit_error = SDL_Init(0) ;
 	

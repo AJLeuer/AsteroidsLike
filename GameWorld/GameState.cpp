@@ -84,33 +84,7 @@ SDL_Renderer * GameState::getMainRenderer() {
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
-template<typename N>
-CoordinateSystem<N> * worldCoordinateSystem = nullptr ;
 
-template<typename N>
-CoordinateSystem<N> * screenCoordinateSystem = nullptr ;
-
-template<typename N>
-CoordinateSystem2<N> * worldCoordsAsScreenCoords = nullptr ;
-
-template<typename N>
-CoordinateSystem2<N> * screenCoordsAsWorldCoords = nullptr ;
-
-void initCoordinateSystems() {
-    worldCoordinateSystem<float> = new CoordinateSystem<float>(GLOBAL_MAX_X, GLOBAL_MAX_X) ;
-    screenCoordinateSystem<float> = new CoordinateSystem<float>(WINDOW_MAX_X, WINDOW_MAX_Y) ;
-    
-    float originX = 0.5 * (GLOBAL_MAX_X - WINDOW_MAX_X) ;
-    float originY = 0.5 * (GLOBAL_MAX_Y - WINDOW_MAX_Y) ;
-    
-    screenCoordsAsWorldCoords<float> = new CoordinateSystem2<float>(*screenCoordinateSystem<float>, worldCoordinateSystem<float>,
-																	{originX, originY}) ;
-	float originX2 = 0.5 * (WINDOW_MAX_X - GLOBAL_MAX_X) ;
-	float originY2 = 0.5 * (WINDOW_MAX_Y - GLOBAL_MAX_Y) ;
-	
-	worldCoordsAsScreenCoords<float> = new CoordinateSystem2<float>(*worldCoordinateSystem<float>, screenCoordinateSystem<float>,
-																	{originX2, originY2}) ;
-}
 
 
 //static bool GLOBAL_CONTINUE_SIGNAL = true ;

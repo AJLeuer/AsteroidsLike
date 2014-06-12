@@ -94,7 +94,9 @@ void GraphicalOutput::render(const GameObject * object) {
 		if (object->isVisible()) {
 			
 			/* translate from world coordinates to screen coordinates */
-			auto objScreenPosition = translateCoordinates(object->getPosition(), /* trans to: */ worldCoordsAsScreenCoords<float>) ;
+			auto objScreenPosition(*object->getPosition()) ;
+            
+            objScreenPosition.modify(-worldCoordsOffsetX, -worldCoordsOffsetY, 0) ;
 			
 			/* render to output */
 			render(object->getTexture(), objScreenPosition, object->getSize()) ;

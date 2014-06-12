@@ -11,3 +11,12 @@
 using namespace std ;
 
 ifstream Configuration::configFile("/Settings/Setting.cfg") ;
+
+void Configuration::init() {
+    doOverrides() ;
+}
+
+void Configuration::doOverrides() {
+    //todo
+    /* make any user requested changes from values in default config */
+}

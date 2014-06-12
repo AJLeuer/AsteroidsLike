@@ -46,11 +46,23 @@
 
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
+/**
+ * The the offset between the x value for the screen coordinates (0, 0),
+ * and the x value of world coordinates (0, 0). Subtracting this value from any
+ * world coordinate x will give you its screen x equivalent.
+ */
+const int worldCoordsOffsetX = 0 ;
 
+/**
+ * The the offset between the y value for the screen coordinates (0, 0),
+ * and the y value of world coordinates (0, 0). Subtracting this value from any
+ * world coordinate y will give you its screen y equivalent.
+ */
+const int worldCoordsOffsetY = 0 ;
 
-constexpr int GLOBAL_MAX_X = (MAX_X /* worldToWindowRatio*/) ; /* To give us buffer space outside the window margins */
+constexpr int GLOBAL_MAX_X = (MAX_X + worldCoordsOffsetX) ; /* To give us buffer space outside the window margins */
 constexpr int GLOBAL_MIN_X =  MIN_X ;
-constexpr int GLOBAL_MAX_Y = (MAX_Y /* worldToWindowRatio*/) ;
+constexpr int GLOBAL_MAX_Y = (MAX_Y + worldCoordsOffsetY) ;
 constexpr int GLOBAL_MIN_Y =  MIN_Y ;
 
 constexpr auto refreshTime = eight_milliseconds ;

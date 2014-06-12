@@ -347,42 +347,6 @@ SomeEnum randomEnumeration(N max) {
 	return SomeEnum(num) ;
 }
 
-template<typename N>
-struct CoordinateSystem {
-    
-    /* A pair of values representing the origin */
-    vector<N> origin = {0, 0} ;
-    
-    N maxX ;
-    N maxY ;
-    
-    CoordinateSystem(N x, N y) :
-        maxX(x), maxY(y) {}
-    
-} ;
-
-template<typename N>
-struct CoordinateSystem2 : public CoordinateSystem<N> {
-    
-    const CoordinateSystem<N> * other ;
-    
-    /* A pair of values representing the value of this coordinate system's origin
-     * within coordinate system other
-     */
-    vector<N> originInOther ;
-    
-    CoordinateSystem2(CoordinateSystem<N> local, CoordinateSystem<N> * other, vector<N> originInOther) :
-        CoordinateSystem<N>(local.maxX, local.maxY),
-        other(other),
-        originInOther(originInOther) {}
-    
-} ;
-
-
-
-
-
-
 inline unsigned termWidth() {
 	unsigned r = atoi(getenv("COLUMNS")) ;
 	return r ;

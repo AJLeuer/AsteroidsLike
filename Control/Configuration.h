@@ -26,16 +26,32 @@ class Configuration {
 private:
 
 	static ifstream configFile ;
+    
+    static void doOverrides() ;
 
 public:
+    
+    static void init() ;
 
 	template <class Value>
-	Value getValue(string key) ;
+	static Value getValue(string key) ;
 
 	template <class Value>
-	void writeValue(string key, Value value) ;
+	static void writeValue(string key, Value value) ;
 
 } ;
+
+template <class Value>
+Value Configuration::getValue(string key) {
+    //todo
+}
+
+template <class Value>
+void Configuration::writeValue(string key, Value value) {
+    //todo
+}
+
+
 
 
 

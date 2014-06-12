@@ -34,14 +34,5 @@ Position<N> * convert(const Position<M> * converted) {
     return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
 }
 
-template<typename N>
-Position<N> translateCoordinates(const Position<N> * coords, const CoordinateSystem2<N> * toCoordinateSystem) {
-    N tempX = coords->getX() + toCoordinateSystem->originInOther.at(0) ; /* at() = x coord */
-    N tempY = coords->getY() + toCoordinateSystem->originInOther.at(1) ;
-    return Position<N>(tempX, tempY, 0) ;
-}
-
-
-
 
 #endif /* defined(__GameWorld__Util2__) */
