@@ -330,6 +330,8 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 	return std::move(shape) ;
 }
 
+
+
 /**
  * Returns a random enumeration of enum type
  * SomeEnum. SomeEnum should ideally use integer values starting

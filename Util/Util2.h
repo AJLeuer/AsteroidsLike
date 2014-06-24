@@ -34,5 +34,8 @@ Position<N> * convert(const Position<M> * converted) {
     return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
 }
 
+template<typename N>
+Position<N> {
+
 
 #endif /* defined(__GameWorld__Util2__) */

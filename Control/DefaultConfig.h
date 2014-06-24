@@ -11,6 +11,8 @@
 
 #include <chrono>
 
+using namespace std ;
+
 
 /**
  * This header holds important data and definitions used throughout the program
@@ -26,38 +28,26 @@
 #define HIGH_DPI
 
 #ifdef  HIGH_DPI
-#define WINDOW_SIZE_X (MAX_X / 2)
-#define WINDOW_SIZE_Y (MAX_Y / 2)
+#define W_SIZE_X (MAX_X / 2)
+#define W_SIZE_Y (MAX_Y / 2)
 #define WINDOW_ARGS (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN)
 
 #else
-#define WINDOW_SIZE_X MAX_X
-#define WINDOW_SIZE_Y MAX_Y
+#define W_SIZE_X MAX_X
+#define W_SIZE_Y MAX_Y
 #define WINDOW_ARGS (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN)
 #endif
 
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
-/**
- * The the offset between the x value for the screen coordinates (0, 0),
- * and the x value of world coordinates (0, 0). Subtracting this value from any
- * world coordinate x will give you its screen x equivalent.
- */
-const int worldCoordsOffsetX = 0 ;
 
-/**
- * The the offset between the y value for the screen coordinates (0, 0),
- * and the y value of world coordinates (0, 0). Subtracting this value from any
- * world coordinate y will give you its screen y equivalent.
- */
-const int worldCoordsOffsetY = 0 ;
+constexpr unsigned GLOBAL_MAX_X = MAX_X ; /* To give us buffer space outside the window margins */
+constexpr unsigned GLOBAL_MAX_Y = MAX_Y ;
 
-constexpr int GLOBAL_MAX_X = (MAX_X + worldCoordsOffsetX) ; /* To give us buffer space outside the window margins */
-constexpr int GLOBAL_MIN_X =  MIN_X ;
-constexpr int GLOBAL_MAX_Y = (MAX_Y + worldCoordsOffsetY) ;
-constexpr int GLOBAL_MIN_Y =  MIN_Y ;
+extern unsigned WINDOW_SIZE_X ;
+extern unsigned WINDOW_SIZE_Y ;
 
-constexpr auto refreshTime = eight_milliseconds ;
+extern chrono::nanoseconds refreshTime ;
 
 extern char * MOVE_UP ;
 extern char * MOVE_DOWN ;
