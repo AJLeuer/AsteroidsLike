@@ -16,9 +16,8 @@
  * This header holds important data and definitions used throughout the program
  */
 #define MAX_X 1920
-#define MIN_X 0
 #define MAX_Y 1080
-#define MIN_Y 0
+
 
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
@@ -27,22 +26,15 @@
 #define HIGH_DPI
 
 #ifdef  HIGH_DPI
-#define WINDOW_MAX_X (MAX_X / 2)
-#define WINDOW_MIN_X (MIN_X / 2)
-#define WINDOW_MAX_Y (MAX_Y / 2)
-#define WINDOW_MIN_Y (MIN_Y / 2)
+#define WINDOW_SIZE_X (MAX_X / 2)
+#define WINDOW_SIZE_Y (MAX_Y / 2)
 #define WINDOW_ARGS (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN)
 
 #else
-#define WINDOW_MAX_X MAX_X
-#define WINDOW_MIN_X MIN_X
-#define WINDOW_MAX_Y MAX_Y
-#define WINDOW_MIN_Y MIN_Y
+#define WINDOW_SIZE_X MAX_X
+#define WINDOW_SIZE_Y MAX_Y
 #define WINDOW_ARGS (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN)
 #endif
-
-#define WINDOW_SIZE_X WINDOW_MAX_X
-#define WINDOW_SIZE_Y WINDOW_MAX_Y
 
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
