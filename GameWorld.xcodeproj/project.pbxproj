@@ -18,7 +18,9 @@
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
 		664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB01939E6BE008F4CD1 /* Player.cpp */; };
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
-		66CF9F2D1945BC050083F7DB /* DefaultConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66CF9F2C1945BC050083F7DB /* DefaultConfig.cpp */; };
+		66776630195AE22600212190 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6677662F195AE22600212190 /* Util.mm */; };
+		66776634195AE63400212190 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776633195AE63400212190 /* AppKit.framework */; };
+		66776636195AE90C00212190 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776635195AE90C00212190 /* Foundation.framework */; };
 		66E3235B19327C28005A1144 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E3235A19327C28005A1144 /* Configuration.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
@@ -57,6 +59,9 @@
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Navigator.hpp; sourceTree = "<group>"; };
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util2.h; sourceTree = "<group>"; };
+		6677662F195AE22600212190 /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
+		66776633195AE63400212190 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		66776635195AE90C00212190 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Util.hpp; sourceTree = "<group>"; };
 		6678790118DAE25E00618712 /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 		667BD13A190D5484001319AD /* PixelArtA.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = PixelArtA.bmp; sourceTree = "<group>"; };
@@ -192,7 +197,6 @@
 		66B908FE190D6F4B005B3E86 /* Blocks_01_64x64_Alt_05_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks_01_64x64_Alt_05_007.png; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDecl.h; sourceTree = "<group>"; };
 		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Size.hpp; sourceTree = "<group>"; };
-		66CF9F2C1945BC050083F7DB /* DefaultConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultConfig.cpp; sourceTree = "<group>"; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		66E323541932765D005A1144 /* Settings.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.cfg; sourceTree = "<group>"; };
 		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66776636195AE90C00212190 /* Foundation.framework in Frameworks */,
+				66776634195AE63400212190 /* AppKit.framework in Frameworks */,
 				1E64D2D8193145D700A3B7C5 /* SDL2.framework in Frameworks */,
 				1E64D2DA193145E300A3B7C5 /* SDL2_image.framework in Frameworks */,
 			);
@@ -255,7 +261,6 @@
 				664BFFB11939E6BE008F4CD1 /* Player.h */,
 				664BFFAF1939E559008F4CD1 /* Input.hpp */,
 				662D9E6F18FF90C7003A6EE0 /* MainController.h */,
-				66CF9F2C1945BC050083F7DB /* DefaultConfig.cpp */,
 				66E3235A19327C28005A1144 /* Configuration.cpp */,
 				664BFFB01939E6BE008F4CD1 /* Player.cpp */,
 				664BFFB7193A0730008F4CD1 /* Input.cpp */,
@@ -279,6 +284,7 @@
 				6617B185190D725C004B442B /* AssetFileIO.h */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
+				6677662F195AE22600212190 /* Util.mm */,
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
 			);
 			path = Util;
@@ -448,6 +454,8 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
+				66776635195AE90C00212190 /* Foundation.framework */,
+				66776633195AE63400212190 /* AppKit.framework */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
 				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
 				664BFFB31939F713008F4CD1 /* Licenses */,
@@ -557,7 +565,7 @@
 				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
-				66CF9F2D1945BC050083F7DB /* DefaultConfig.cpp in Sources */,
+				66776630195AE22600212190 /* Util.mm in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				66E3235B19327C28005A1144 /* Configuration.cpp in Sources */,
 				662FA07918F609B2009E87BE /* Debug.cpp in Sources */,

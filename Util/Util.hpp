@@ -349,6 +349,13 @@ SomeEnum randomEnumeration(N max) {
 	return SomeEnum(num) ;
 }
 
+/**
+ * Checks if we're running in retina mode
+ */
+#ifdef __APPLE__
+bool checkHiDPI() ;
+#endif
+
 inline unsigned termWidth() {
 	unsigned r = atoi(getenv("COLUMNS")) ;
 	return r ;
