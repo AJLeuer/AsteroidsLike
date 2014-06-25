@@ -9,9 +9,12 @@
 #ifndef __GameWorld__Configuration__
 #define __GameWorld__Configuration__
 
+#include <SDL2/SDL_video.h>
+
 #include <iostream>
 #include <fstream>
 
+#include "../Util/Util.hpp"
 #include "DefaultConfig.h"
 
 
@@ -27,7 +30,7 @@ private:
 
 	static ifstream configFile ;
     
-    static void doOverrides() ;
+    static void doUserOverrides() ;
 
 public:
     

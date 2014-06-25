@@ -48,7 +48,7 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	array< array< T *, GLOBAL_MAX_Y+1>*, GLOBAL_MAX_X+1> * getMapVect() { return this->intern_map ; } ;
+	vector< vector< T *>*> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
@@ -106,9 +106,9 @@ GameMap<T>::GameMap(N maxX, N maxY) :
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->at(i) = new vector< T *>() ;
+		intern_map->push_back(new vector< T *>()) ;
 		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->at(j) = nullptr ;
+			intern_map->at(i)->push_back(nullptr) ;
 		}
 	}
 }
