@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Output/GraphicalOutput.cpp"
-            timestampString = "424196099.24097"
+            filePath = "Control/main.cpp"
+            timestampString = "425388601.256769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "GraphicalOutput::render(const GameObject * object)"
-            landmarkType = "5">
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "main(int argc, char ** argv)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

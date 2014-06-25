@@ -36,6 +36,8 @@ int main(int argc, char ** argv) {
    
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
+	
+	bool b = checkHiDPI() ;
 
 	Debug::init(true) ;
 	

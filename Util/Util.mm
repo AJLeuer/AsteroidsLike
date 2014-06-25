@@ -19,6 +19,8 @@ bool checkHiDPI() {
         }
     }
 	
-	return true ;
+	bool hidpi = (displayScale == 2.0) ? true : false ;
+	
+	return hidpi ;
 }
 #endif
