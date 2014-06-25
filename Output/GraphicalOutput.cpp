@@ -36,8 +36,8 @@ void GraphicalOutput::init() {
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
 							  SDL_WINDOWPOS_CENTERED,   // y position, centered
-							  WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
-							  WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
+							  *WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
+							  *WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
 							  WINDOW_ARGS) ;
 	
 	{

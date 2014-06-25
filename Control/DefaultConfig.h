@@ -30,19 +30,19 @@ using namespace std ;
 
 extern bool HIGH_DPI ;
 
-extern unsigned GLOBAL_MAX_X ;
-extern unsigned GLOBAL_MAX_Y ;
+extern unsigned  * GLOBAL_MAX_X ;
+extern unsigned  * GLOBAL_MAX_Y ;
 
-extern unsigned WINDOW_SIZE_X ;
-extern unsigned WINDOW_SIZE_Y ;
+extern unsigned * WINDOW_SIZE_X ;
+extern unsigned * WINDOW_SIZE_Y ;
 
 extern int WINDOW_ARGS ;
 
 extern chrono::nanoseconds refreshTime ;
 
-constexpr char * MOVE_UP    = (char *)"W" ;
-constexpr char * MOVE_DOWN  = (char *)"S" ;
-constexpr char * MOVE_LEFT  = (char *)"A" ;
-constexpr char * MOVE_RIGHT = (char *)"D" ;
+extern char * MOVE_UP ;
+extern char * MOVE_DOWN ;
+extern char * MOVE_LEFT ;
+extern char * MOVE_RIGHT ;
 
 #endif

@@ -19,15 +19,20 @@ bool HIGH_DPI = checkHiDPI() ;
 bool HIGH_DPI = false ; //todo: add checking on windows and linux
 #endif
 
-unsigned GLOBAL_MAX_X = MAX_X ; /* To give us buffer space outside the window margins */
-unsigned GLOBAL_MAX_Y = MAX_Y ;
+unsigned * GLOBAL_MAX_X = nullptr ; /* To give us buffer space outside the window margins */
+unsigned * GLOBAL_MAX_Y = nullptr ;
 
-unsigned WINDOW_SIZE_X = MAX_X ; /* Default values, will most likely be changed by Configuration::init() */
-unsigned WINDOW_SIZE_Y = MAX_Y ;
+unsigned * WINDOW_SIZE_X = nullptr ; /* Default values, will most likely be changed by Configuration::init() */
+unsigned * WINDOW_SIZE_Y = nullptr ;
 
 int WINDOW_ARGS = 0 ; /* will always need to be initialized */
 
 chrono::nanoseconds refreshTime = eight_milliseconds ;
+
+char * MOVE_UP    = (char *)"W" ;
+char * MOVE_DOWN  = (char *)"S" ;
+char * MOVE_LEFT  = (char *)"A" ;
+char * MOVE_RIGHT = (char *)"D" ;
 
 ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 
@@ -35,13 +40,19 @@ ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 void Configuration::init() {
 	
 	if (HIGH_DPI) {
-		WINDOW_SIZE_X = (MAX_X) ;
-		WINDOW_SIZE_Y = (MAX_Y) ;
+		GLOBAL_MAX_X = new unsigned(MAX_X / 2) ;
+		GLOBAL_MAX_Y = new unsigned(MAX_Y / 2) ;
+		
+		WINDOW_SIZE_X = new unsigned(MAX_X / 2) ;
+		WINDOW_SIZE_Y = new unsigned(MAX_Y / 2) ;
 		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {
-		WINDOW_SIZE_X  = MAX_X ;
-		WINDOW_SIZE_Y = MAX_Y ;
+		GLOBAL_MAX_X = new unsigned(MAX_X) ;
+		GLOBAL_MAX_Y = new unsigned(MAX_Y) ;
+		
+		WINDOW_SIZE_X  = new unsigned(MAX_X) ;
+		WINDOW_SIZE_Y = new unsigned(MAX_Y) ;
 		WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	

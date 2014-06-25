@@ -115,10 +115,10 @@ template<typename N = float>
 N defaultOffset = 4 ;
 
 template<typename N>
-FastRand<N> randPosSetter(0, findLargest<N>({GLOBAL_MAX_X, GLOBAL_MAX_Y})) ;
+FastRand<N> randPosSetter(0, findLargest<N>({*GLOBAL_MAX_X, *GLOBAL_MAX_Y})) ;
 
 template<typename N>
-const BoundsCheck<N> defaultCheck(0, GLOBAL_MAX_X, 0, GLOBAL_MAX_Y) ;
+const BoundsCheck<N> defaultCheck(0, *GLOBAL_MAX_X, 0, *GLOBAL_MAX_Y) ;
 
 
 #define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL

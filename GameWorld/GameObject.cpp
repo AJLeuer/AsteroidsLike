@@ -20,7 +20,7 @@ vector<pair <thread *, GameObject*> > * GameObject::allThreads  = new vector<pai
 vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
 
-GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(GLOBAL_MAX_X, GLOBAL_MAX_Y) ;
+GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(*GLOBAL_MAX_X, *GLOBAL_MAX_Y) ;
 
 FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
@@ -38,7 +38,7 @@ GameObject::GameObject() :
 	IDs++ ;
 
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
+		map = new GameMap<GameObject>(*GLOBAL_MAX_X+1, *GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 
@@ -72,7 +72,7 @@ GameObject::GameObject(const GameObject & other) :
 	IDs++ ;
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
+		map = new GameMap<GameObject>(*GLOBAL_MAX_X+1, *GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -117,7 +117,7 @@ GameObject::GameObject(GameObject && other) :
 	/* don't need to incr IDs */
 	
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
+		map = new GameMap<GameObject>(*GLOBAL_MAX_X+1, *GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -144,7 +144,7 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	IDs++ ;
 
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
+		map = new GameMap<GameObject>(*GLOBAL_MAX_X+1, *GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	
@@ -167,7 +167,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	IDs++ ;
 
 	if (!map_is_init) {
-		map = new GameMap<GameObject>(GLOBAL_MAX_X+1, GLOBAL_MAX_Y+1) ;
+		map = new GameMap<GameObject>(*GLOBAL_MAX_X+1, *GLOBAL_MAX_Y+1) ;
 		map_is_init = true ;
 	}
 	allGameObjects->push_back(this) ;

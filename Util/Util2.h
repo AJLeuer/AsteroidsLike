@@ -40,11 +40,11 @@ Position<N> * convert(const Position<M> * converted) {
  */
 template<typename N>
 Position<N> translateToWindowCoords(const Position<N> & coords) {
-    float x_ratio = (coords.getX() / GLOBAL_MAX_X) ;
-    float y_ratio = (coords.getY() / GLOBAL_MAX_Y) ;
+    float x_ratio = (coords.getX() / *GLOBAL_MAX_X) ;
+    float y_ratio = (coords.getY() / *GLOBAL_MAX_Y) ;
     
-    N x_pos = WINDOW_SIZE_X * x_ratio ;
-    N y_pos = WINDOW_SIZE_Y * y_ratio ;
+    N x_pos = *WINDOW_SIZE_X * x_ratio ;
+    N y_pos = *WINDOW_SIZE_Y * y_ratio ;
     
     return Position<N>(x_pos, y_pos, 0) ;
 }

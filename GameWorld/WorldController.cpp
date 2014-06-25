@@ -29,8 +29,8 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	float startingYAreaHi = (GLOBAL_MAX_Y * 0.75) ;
-	float startingYAreaLo = (GLOBAL_MAX_Y * 0.25) ;
+	float startingYAreaHi = (*GLOBAL_MAX_Y * 0.75) ;
+	float startingYAreaLo = (*GLOBAL_MAX_Y * 0.25) ;
 	
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
@@ -38,10 +38,10 @@ void WorldController::init() {
 	/* Init enemies */
 	/*
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
+              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
 
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
+              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
 	*/
 	/* Init obstacles */
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
