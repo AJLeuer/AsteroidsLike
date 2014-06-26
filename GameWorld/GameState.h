@@ -22,6 +22,7 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/Debug.h"
+#include "../Util/Position.hpp"
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Time.hpp"
 
@@ -96,6 +97,7 @@ public:
     
 	static SDL_Renderer * getMainRenderer() ;
 	
+	
 } ;
 
 /* Globals */
@@ -109,6 +111,25 @@ extern unsigned mainGameLoopCount ;
  * Loop managed by WorldController
  */
 extern unsigned worldLoopCount ;
+
+/**
+ * Returns the window origin coordinates (i.e. {0, 0, 0}
+ * within the window's own coordinate system), but represented
+ * as coordinates within the game world. Useful for translating
+ * between the two coordinate systems.
+ *
+ * @return The window origin as world coordinates
+ *
+ */
+template<typename N>
+Position<N> getWindowOriginAsWorldCoord() {
+	
+	/* center the game window frame (i.e. what is visible) inside the world */
+	unsigned leftX = (GLOBAL_MAX_X - *WINDOW_SIZE_X) / 2 ;
+	unsigned topY = (GLOBAL_MAX_Y - *WINDOW_SIZE_Y) / 2 ;
+	
+	return Position<N>(leftX, topY, 0) ;
+}
 
 
 

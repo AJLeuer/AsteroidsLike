@@ -19,6 +19,8 @@
 #include "Position.hpp"
 #include "Size.hpp"
 
+#include "../GameWorld/GameState.h"
+
 #include "../Control/DefaultConfig.h"
 
 /* Creating a second header for utility functions since we ran into some trouble 
@@ -39,14 +41,38 @@ Position<N> * convert(const Position<M> * converted) {
  * This function translates between coordinate systems.
  */
 template<typename N>
-Position<N> translateToWindowCoords(const Position<N> & coords) {
-    float x_ratio = (coords.getX() / *GLOBAL_MAX_X) ;
-    float y_ratio = (coords.getY() / *GLOBAL_MAX_Y) ;
-    
-    N x_pos = *WINDOW_SIZE_X * x_ratio ;
-    N y_pos = *WINDOW_SIZE_Y * y_ratio ;
-    
-    return Position<N>(x_pos, y_pos, 0) ;
+Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
+	
+	Position<N> origin = getWindowOriginAsWorldCoord<N>() ;
+	
+	auto windowCoords = translateCoords(worldCoords, {0, 0, 0}, origin) ;
+	
+	return windowCoords ;
+}
+
+/**
+ * Translates the Position coords from a source coordinate system to coordinates
+ * in the destination coordinate system. To work properly, this function an additonal
+ * pair of coordinates: first coordinates from the source coordinate system, followed by
+ * equivalent coordinates from the destination coordinate system. "Equivalent" implies that if these two
+ * coordinate systems were overlaid on top of each other, then these two coordinates would be
+ * in the same spot. The simplest way to do this is to simply give the origin ({0, 0, 0}) from the source
+ * coordinate system, and its equivalent from the destination coordinate system.
+ *
+ * @param coords The coordinate to translate
+ * @param sourceCoords Sample coordinates from the source coordinate system
+ * @param equivalentDestinationCoords Coordinates from the destination coordinate system that are equivalent to sourceCoords
+ */
+template<typename N>
+Position<N> translateCoords(const Position<N> & coords, const Position<N> & sourceCoords, const Position<N> & equivalentDestinationCoords) {
+	
+	/* using a position to store, not an actual position, but the difference between a position from the source coordinate system and
+	 a position form the destination coordinate system. you could also view differential as a vector */
+	auto differential = sourceCoords - equivalentDestinationCoords ;
+	
+	auto coordsAsDestCoordSystemCoords = (coords - differential) ;
+	
+	return coordsAsDestCoordSystemCoords ;
 }
 
 

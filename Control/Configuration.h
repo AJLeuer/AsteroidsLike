@@ -31,6 +31,8 @@ private:
 	static ifstream configFile ;
     
     static void doUserOverrides() ;
+	
+	static void adjustForHiDPI() ;
 
 public:
     

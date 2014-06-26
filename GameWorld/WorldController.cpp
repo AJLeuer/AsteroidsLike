@@ -29,8 +29,8 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	float startingYAreaHi = (*GLOBAL_MAX_Y * 0.75) ;
-	float startingYAreaLo = (*GLOBAL_MAX_Y * 0.25) ;
+	float startingYAreaHi = (GLOBAL_MAX_Y * 0.75) ;
+	float startingYAreaLo = (GLOBAL_MAX_Y * 0.25) ;
 	
 
 	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;

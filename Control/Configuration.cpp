@@ -19,15 +19,13 @@ bool HIGH_DPI = checkHiDPI() ;
 bool HIGH_DPI = false ; //todo: add checking on windows and linux
 #endif
 
-unsigned * GLOBAL_MAX_X = nullptr ; /* To give us buffer space outside the window margins */
-unsigned * GLOBAL_MAX_Y = nullptr ;
+unsigned GLOBAL_MAX_X = 10000 ; /* To give us buffer space outside the window margins */
+unsigned GLOBAL_MAX_Y = 4000 ;
 
-unsigned * WINDOW_SIZE_X = nullptr ; /* Default values, will most likely be changed by Configuration::init() */
-unsigned * WINDOW_SIZE_Y = nullptr ;
+unsigned * WINDOW_SIZE_X = new unsigned(DEFAULT_W_SZ_X) ; /* Default values, will most likely be changed by Configuration::init() */
+unsigned * WINDOW_SIZE_Y = new unsigned(DEFAULT_W_SZ_Y) ;
 
 int WINDOW_ARGS = 0 ; /* will always need to be initialized */
-
-
 
 chrono::nanoseconds refreshTime = eight_milliseconds ;
 
@@ -41,31 +39,29 @@ ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 
 void Configuration::init() {
 	
-	if (HIGH_DPI) {
-		GLOBAL_MAX_X = new unsigned(MAX_X / 2) ;
-		GLOBAL_MAX_Y = new unsigned(MAX_Y / 2) ;
-		
-		WINDOW_SIZE_X = new unsigned(MAX_X / 2) ;
-		WINDOW_SIZE_Y = new unsigned(MAX_Y / 2) ;
-		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
-	}
-	else {
-		GLOBAL_MAX_X = new unsigned(MAX_X) ;
-		GLOBAL_MAX_Y = new unsigned(MAX_Y) ;
-		
-		WINDOW_SIZE_X  = new unsigned(MAX_X) ;
-		WINDOW_SIZE_Y = new unsigned(MAX_Y) ;
-		WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
-	}
-	
-    //todos
-    
-   
+	BoundsCheck<int> * bc = defaultCheck<int> ;
 	
 	/* make any user requested changes from values in default config */
     doUserOverrides() ;
+	
+	adjustForHiDPI() ;
 }
 
 void Configuration::doUserOverrides() {
-
+	//todo
 }
+
+
+void Configuration::adjustForHiDPI() {
+	if (HIGH_DPI) {
+		*WINDOW_SIZE_X = (*WINDOW_SIZE_X / 2) ;
+		*WINDOW_SIZE_Y = (*WINDOW_SIZE_Y / 2) ;
+		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
+	}
+	else {
+		/* No change to window size */
+		WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
+	}
+}
+
+

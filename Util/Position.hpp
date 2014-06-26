@@ -21,7 +21,6 @@
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
 
-#include "../GameWorld/GameState.h"
 
 #include "../Control/Configuration.h"
 
@@ -422,13 +421,6 @@ public:
 
 
 	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
-		
-		int x_(0) ;
-		int y_(0) ;
-		int * x = &x_ ;
-		int * y = &y_ ;
-		
-		SDL_GetWindowSize(GameState::getMainWindow(), x, y) ;
 		
 		if ((this->x /*+ objWidth*/) >= check.max_X) {
 			{
@@ -1136,8 +1128,8 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, 
 template<typename T>
 extern Position<T> transPosition(const Position<T> & inGameWorld) {
 
-	auto worldXSize = *GLOBAL_MAX_X /*- GameObject::GLOBAL_min_X*/ ;
-	auto worldYSize = *GLOBAL_MAX_Y /*- GameObject::GLOBAL_min_Y*/ ;
+	auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_min_X*/ ;
+	auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_min_Y*/ ;
 	
 	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
 	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
