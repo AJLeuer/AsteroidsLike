@@ -9,6 +9,8 @@
 #ifndef GameWorld_DefaultConfig_h
 #define GameWorld_DefaultConfig_h
 
+#include "../Util/BoundsCheck.hpp"
+
 #include <chrono>
 
 using namespace std ;
@@ -37,6 +39,15 @@ extern unsigned * WINDOW_SIZE_X ;
 extern unsigned * WINDOW_SIZE_Y ;
 
 extern int WINDOW_ARGS ;
+
+template<typename N>
+N defaultOffset = 4 ;
+
+template<typename N>
+FastRand<N> * randPosSetter = new FastRand<N>(0, findLargest<N>({*GLOBAL_MAX_X, *GLOBAL_MAX_Y})) ;
+
+template<typename N>
+BoundsCheck<N> * defaultCheck = new BoundsCheck<N>(0, *GLOBAL_MAX_X, 0, *GLOBAL_MAX_Y) ;
 
 extern chrono::nanoseconds refreshTime ;
 

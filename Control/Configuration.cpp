@@ -27,6 +27,8 @@ unsigned * WINDOW_SIZE_Y = nullptr ;
 
 int WINDOW_ARGS = 0 ; /* will always need to be initialized */
 
+
+
 chrono::nanoseconds refreshTime = eight_milliseconds ;
 
 char * MOVE_UP    = (char *)"W" ;
@@ -56,6 +58,9 @@ void Configuration::init() {
 		WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	
+    //todos
+    
+   
 	
 	/* make any user requested changes from values in default config */
     doUserOverrides() ;

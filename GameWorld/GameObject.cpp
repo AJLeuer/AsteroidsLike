@@ -32,7 +32,7 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	type(),
 	visible(true),
-	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>)),
+	loc(new Pos2<float>(0.0, 0.0, 0.0, *defaultCheck<float>)),
 	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
@@ -76,8 +76,8 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, defaultCheck<float>, true) ;
+    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, *defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
@@ -150,7 +150,7 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	
 	allGameObjects->push_back(this) ;
     
-    loc->checkBounds(defaultCheck<float>, size.getWidth(), size.getHeight()) ;
+    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
 	map->place<float>(loc, this, defaultCheck<float>, true) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false, sizeModifier) ;
