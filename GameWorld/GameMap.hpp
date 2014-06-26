@@ -192,25 +192,25 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 			case 0:
 			{
 				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() + 1, where->getIntZ(), check) ;
-				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
+				return placeAtNearestFree(here, mapObj, *defaultCheck<N>) ;
 			}
 
 			case 1:
 			{
 				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() - 1, where->getIntZ(), check) ;
-				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
+				return placeAtNearestFree(here, mapObj, *defaultCheck<N>) ;
 			}
 				
 			case 2:
 			{
 				Position<N> * here = new Position<N>(where->getIntX() + 1, where->getIntY(), where->getIntZ(), check) ;
-				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
+				return placeAtNearestFree(here, mapObj, *defaultCheck<N>) ;
 			}
 				
 			case 3:
 			{
 				Position<N> * here = new Position<N>(where->getIntX() - 1, where->getIntY(), where->getIntZ(), check);
-				return placeAtNearestFree(here, mapObj, defaultCheck<N>) ;
+				return placeAtNearestFree(here, mapObj, *defaultCheck<N>) ;
 			}
 			default:
 			{
