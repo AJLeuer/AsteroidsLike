@@ -32,8 +32,8 @@ using namespace std ;
 
 extern bool HIGH_DPI ;
 
-extern unsigned  * GLOBAL_MAX_X ;
-extern unsigned  * GLOBAL_MAX_Y ;
+extern unsigned  * GLOBAL_MAX_X = 10000 ;
+extern unsigned  * GLOBAL_MAX_Y = 4000 ;
 
 extern unsigned * WINDOW_SIZE_X ;
 extern unsigned * WINDOW_SIZE_Y ;
