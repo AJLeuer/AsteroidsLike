@@ -70,7 +70,7 @@ Position<N> translateCoords(const Position<N> & coords, const Position<N> & sour
 	 a position form the destination coordinate system. you could also view differential as a vector */
 	auto differential = sourceCoords - equivalentDestinationCoords ;
 	
-	auto coordsAsDestCoordSystemCoords = (coords - differential) ;
+	auto coordsAsDestCoordSystemCoords = (coords + differential) ;
 	
 	return coordsAsDestCoordSystemCoords ;
 }

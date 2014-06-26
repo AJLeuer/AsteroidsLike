@@ -100,7 +100,9 @@ void WorldController::exit() {
 	GameObject::joinThreads() ;
 	
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		delete gameObjects->at(i) ;
+		if (gameObjects->at(i) != nullptr) {
+			delete gameObjects->at(i) ;
+		}
 	}
 
 	delete gameObjects ;

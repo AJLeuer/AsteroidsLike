@@ -251,6 +251,11 @@ public:
 		os << "Position: X = " << pos->x << ", Y = " << pos->y << ", Z = " << pos->z << '\n' ;
 		return os ;
 	}
+	
+	friend ostream & operator<<(std::ostream & os, const Position<N> & pos) {
+		os << "Position: X = " << pos.x << ", Y = " << pos.y << ", Z = " << pos.z << '\n' ;
+		return os ;
+	}
 
 
 	/**

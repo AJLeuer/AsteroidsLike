@@ -13,7 +13,7 @@ using namespace std ;
 Player::Player() :
 	name("Player 1")
 {
-	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_64x64_Alt_02_005.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(0, 0, 0, *defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_64x64_Alt_02_005.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(*randPosSetter<float>, *defaultCheck<float>), name, Reaction::friendly, DoA::alive, CharacterState::normal,
 								500, 100) ;
 	
 	registerForCallbacks() ;
@@ -29,7 +29,10 @@ Player::Player(const string & name, const string & imageFile) :
 
 void Player::printPositition() {
 	stringstream ss ;
-	ss << "Player's current position is: " << playerCharacter.getPosition() << '\n' ;
+	ss << this->name << "'s current world position is: " << playerCharacter.getPosition() ;
+	auto screenPosition = translateToWindowCoords(*playerCharacter.getPosition()) ;
+	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
+	
 	DebugOutput << ss.rdbuf() ;
 }
 
@@ -54,7 +57,7 @@ void Player::jump() {
 	playerCharacter.jump() ;
 	playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	
-	/* Debug */
+	#ifdef DEBUG_MODE
 	printPositition() ;
-	/* end debug */
+	#endif
 }

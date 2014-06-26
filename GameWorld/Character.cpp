@@ -13,7 +13,7 @@ Character::Character() :
 	GameObject(),
 	name("noName"), reaction(Reaction::noreact),
 	alive(DoA(0)),state(),
-	health(),damage()
+	health(), damage()
 {
 }
 
@@ -29,9 +29,11 @@ Character::Character(Character && other) :
 	GameObject(std::move(other)),
 	name(std::move(other.name)), reaction(std::move(other.reaction)),
 	alive(std::move(other.alive)),
-	state(std::move(other.state)), health(std::move(other.health)),
-	damage(std::move(other.damage))
+	state(std::move(other.state)), health(other.health),
+	damage(other.damage)
 {
+	other.health = nullptr ;
+	other.damage = nullptr ;
 }
 
 
@@ -55,8 +57,12 @@ Character::Character(FastRand<int> rand) :
 }
 
 Character::~Character() {
-	delete health ;
-	delete damage ;
+	if (health != nullptr) {
+		delete health ;
+	}
+	if (damage != nullptr) {
+		delete damage ;
+	}
 }
 
 Character & Character::operator=(const Character &rhs) {
@@ -79,8 +85,11 @@ Character & Character::operator=(Character && rhs) {
 		this->reaction = std::move(rhs.reaction) ;
 		this->alive = std::move(rhs.alive) ;
 		this->state = std::move(rhs.state) ;
-		this->health = std::move(rhs.health) ;
-		this->damage = std::move(rhs.damage) ;
+		this->health = rhs.health ;
+		this->damage = rhs.damage ;
+		
+		rhs.health = nullptr ;
+		rhs.damage = nullptr ;
 	}
 	return *this ;
 }

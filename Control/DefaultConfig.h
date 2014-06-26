@@ -22,7 +22,6 @@ using namespace std ;
  */
 
 
-
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
 
@@ -46,11 +45,14 @@ extern int WINDOW_ARGS ;
 template<typename N>
 N defaultOffset = 4 ;
 
+/**
+ * Useful for setting random positions. Call Position(FastRand<N>) with this.
+ */
 template<typename N>
-FastRand<N> * randPosSetter = new FastRand<N>(0, findLargest<N>({GLOBAL_MAX_X, GLOBAL_MAX_Y})) ;
+FastRand<N> * randPosSetter = new FastRand<N>(0, findLargest<N>({static_cast<N>(GLOBAL_MAX_X), static_cast<N>(GLOBAL_MAX_Y)})) ;
 
 template<typename N>
-BoundsCheck<N> * defaultCheck = new BoundsCheck<N>(0, GLOBAL_MAX_X, 0, GLOBAL_MAX_Y) ;
+BoundsCheck<N> * defaultCheck = new BoundsCheck<N>(0, static_cast<N>(GLOBAL_MAX_X), 0, static_cast<N>(GLOBAL_MAX_Y)) ;
 
 extern chrono::nanoseconds refreshTime ;
 

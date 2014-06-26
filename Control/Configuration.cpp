@@ -19,8 +19,8 @@ bool HIGH_DPI = checkHiDPI() ;
 bool HIGH_DPI = false ; //todo: add checking on windows and linux
 #endif
 
-unsigned GLOBAL_MAX_X = 10000 ; /* To give us buffer space outside the window margins */
-unsigned GLOBAL_MAX_Y = 4000 ;
+unsigned GLOBAL_MAX_X = 960 ; /* To give us buffer space outside the window margins */
+unsigned GLOBAL_MAX_Y = 540 ;
 
 unsigned * WINDOW_SIZE_X = new unsigned(DEFAULT_W_SZ_X) ; /* Default values, will most likely be changed by Configuration::init() */
 unsigned * WINDOW_SIZE_Y = new unsigned(DEFAULT_W_SZ_Y) ;
