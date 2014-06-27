@@ -43,8 +43,6 @@ Position<N> * convert(const Position<M> * converted) {
 template<typename N>
 Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
 	
-	doNothing() ;
-	
 	Position<N> origin = getWindowOriginAsWorldCoord<N>() ;
 	
 	auto windowCoords = translateCoords(worldCoords, {0, 0, 0}, origin) ;
