@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66E97F2D18CF009E002EFA00"
-               BuildableName = "GameWorld"
-               BlueprintName = "GameWorld"
-               ReferencedContainer = "container:GameWorld.xcodeproj">
+               BuildableName = "SpriteFight"
+               BlueprintName = "SpriteFight"
+               ReferencedContainer = "container:SpriteFight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66E97F2D18CF009E002EFA00"
-            BuildableName = "GameWorld"
-            BlueprintName = "GameWorld"
-            ReferencedContainer = "container:GameWorld.xcodeproj">
+            BuildableName = "SpriteFight"
+            BlueprintName = "SpriteFight"
+            ReferencedContainer = "container:SpriteFight.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66E97F2D18CF009E002EFA00"
-            BuildableName = "GameWorld"
-            BlueprintName = "GameWorld"
-            ReferencedContainer = "container:GameWorld.xcodeproj">
+            BuildableName = "SpriteFight"
+            BlueprintName = "SpriteFight"
+            ReferencedContainer = "container:SpriteFight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66E97F2D18CF009E002EFA00"
-            BuildableName = "GameWorld"
-            BlueprintName = "GameWorld"
-            ReferencedContainer = "container:GameWorld.xcodeproj">
+            BuildableName = "SpriteFight"
+            BlueprintName = "SpriteFight"
+            ReferencedContainer = "container:SpriteFight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
