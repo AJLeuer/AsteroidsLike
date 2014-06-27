@@ -1133,8 +1133,8 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, 
 template<typename T>
 extern Position<T> transPosition(const Position<T> & inGameWorld) {
 
-	auto worldXSize = GLOBAL_MAX_X /*- GameObject::GLOBAL_min_X*/ ;
-	auto worldYSize = GLOBAL_MAX_Y /*- GameObject::GLOBAL_min_Y*/ ;
+	auto worldXSize = globalMaxX() /*- GameObject::GLOBAL_min_X*/ ;
+	auto worldYSize = globalMaxY() /*- GameObject::GLOBAL_min_Y*/ ;
 	
 	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
 	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;

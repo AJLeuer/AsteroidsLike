@@ -6,9 +6,8 @@
 
 #include "Util.hpp"
 
-
-bool checkHiDPI() {
-	float displayScale = 1 ;
+float displayScalingFactorOSX() {
+    float displayScale = 1.0 ;
 	
     if ([[NSScreen mainScreen] respondsToSelector:@selector(backingScaleFactor)]) {
         NSArray *screens = [NSScreen screens];
@@ -18,9 +17,16 @@ bool checkHiDPI() {
                 displayScale = s;
         }
     }
-	
-	bool hidpi = (displayScale == 2.0) ? true : false ;
+    return displayScale ;
+}
+
+bool checkHiDPIOSX() {
+
+	bool hidpi = (displayScalingFactorOSX() == 2.0) ? true : false ;
 	
 	return hidpi ;
 }
+
+
+
 #endif

@@ -353,7 +353,8 @@ SomeEnum randomEnumeration(N max) {
  * Checks if we're running in retina mode
  */
 #ifdef __APPLE__
-bool checkHiDPI() ;
+float displayScalingFactorOSX() ;
+bool checkHiDPIOSX() ;
 #endif
 
 inline unsigned termWidth() {

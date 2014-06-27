@@ -14,21 +14,30 @@ using namespace std ;
 
 //define extern values from DefaultConfig.h as well
 #ifdef __APPLE__
-bool HIGH_DPI = checkHiDPI() ;
+bool HIGH_DPI = checkHiDPIOSX() ;
+float displayScalingFactor() { return displayScalingFactorOSX() ; }
 #else
 bool HIGH_DPI = false ; //todo: add checking on windows and linux
+float displayScalingFactor() { return 1.0 ; }
 #endif
 
-unsigned GLOBAL_MAX_X = 4000 ; /* To give us buffer space outside the window margins */
-unsigned GLOBAL_MAX_Y = 2500 ;
+/* May be larger than window size to give us buffer space outside the window margins */
+unsigned globalMaxX() { return GLOBAL_MAX_X_BASE_VALUE * displayScalingFactor() ; }
+unsigned globalMaxY()   { return GLOBAL_MAX_Y_BASE_VALUE * displayScalingFactor() ; }
 
-unsigned INP_WINDOW_SIZE_X = DEFAULT_W_MAX_X ;
-unsigned INP_WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
+unsigned LOGICAL_WINDOW_SIZE_X = DEFAULT_W_MAX_X ;
+unsigned LOGICAL_WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
 
-unsigned WINDOW_SIZE_X = DEFAULT_W_MAX_X ; /* Default values, will most likely be changed by Configuration::init() */
-unsigned WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
+/* Default values, will most likely be changed by Configuration::init() */
+unsigned windowSizeX() {
+    return (LOGICAL_WINDOW_SIZE_X * displayScalingFactor()) ;
+}
 
-int WINDOW_ARGS = 0 ; /* will always need to be initialized */
+unsigned windowSizeY() {
+    return (LOGICAL_WINDOW_SIZE_Y * displayScalingFactor()) ;
+}
+
+int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need proper initialization to check for DPI changes */
 
 chrono::nanoseconds refreshTime = eight_milliseconds ;
 
@@ -55,11 +64,7 @@ void Configuration::doUserOverrides() {
 
 void Configuration::adjustForHiDPI() {
 	if (HIGH_DPI) {
-		GLOBAL_MAX_X = (GLOBAL_MAX_X * 2) ;
-		GLOBAL_MAX_Y = (GLOBAL_MAX_Y * 2) ;
-		WINDOW_SIZE_X = (INP_WINDOW_SIZE_X * 2) ;
-		WINDOW_SIZE_Y = (INP_WINDOW_SIZE_Y * 2) ;
-		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
+		WINDOW_ARGS = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {
 		/* No change to window size */

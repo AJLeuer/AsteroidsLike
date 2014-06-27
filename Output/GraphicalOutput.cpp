@@ -29,15 +29,15 @@ void GraphicalOutput::init() {
 	}
 	
 	/* debug code - delete */
-	auto winX = WINDOW_SIZE_X ;
-	auto winY = WINDOW_SIZE_Y ;
+	auto winX = windowSizeX() ;
+	auto winY = windowSizeY() ;
 	/* end debug code */
 
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
 							  SDL_WINDOWPOS_CENTERED,   // y position, centered
-							  INP_WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
-							  INP_WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
+							  LOGICAL_WINDOW_SIZE_X,			// width, in logical (but not necessarily actual) pixels
+							  LOGICAL_WINDOW_SIZE_Y,			// height, in logical (but not necessarily actual) pixels
 							  WINDOW_ARGS) ;
 	
 	{

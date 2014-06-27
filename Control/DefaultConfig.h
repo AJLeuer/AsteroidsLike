@@ -29,41 +29,55 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
+constexpr unsigned GLOBAL_MAX_X_BASE_VALUE = 4000 ;
+constexpr unsigned GLOBAL_MAX_Y_BASE_VALUE = 2500 ;
+
 constexpr unsigned DEFAULT_W_MAX_X = 960 ;
 constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
 
 extern bool HIGH_DPI ;
+extern float displayScalingFactor() ;
 
-extern unsigned GLOBAL_MAX_X ; /* To give us buffer space outside the window margins */
-extern unsigned GLOBAL_MAX_Y ;
-
-/**
- * Refer to INP_WINDOW_SIZE_X and INP_WINDOW_SIZE_Y only for telling the OS
- * or renderer how large our window should be. Everything else should refer
- * to WINDOW_SIZE_X and WINDOW_SIZE_Y
- */
-extern unsigned INP_WINDOW_SIZE_X ;
+extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */
+extern unsigned globalMaxY() ;
 
 /**
- * Refer to INP_WINDOW_SIZE_X and INP_WINDOW_SIZE_Y only for telling the OS
+ * Refer to LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y only for telling the OS
  * or renderer how large our window should be. Everything else should refer
- * to WINDOW_SIZE_X and WINDOW_SIZE_Y
+ * to windowSizeX() and windowSizeY().
+ * LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y give only the number of LOGICAL
+ * pixels, which can be represented by a varying number of physical pixels, depending
+ * on DPI settings.
  */
-extern unsigned INP_WINDOW_SIZE_Y ;
+extern unsigned LOGICAL_WINDOW_SIZE_X ;
+
+/**
+ * Refer to LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y only for telling the OS
+ * or renderer how large our window should be. Everything else should refer
+ * to windowSizeX() and windowSizeY().
+ * LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y give only the number of LOGICAL
+ * pixels, which can be represented by a varying number of physical pixels, depending
+ * on DPI settings.
+ */
+extern unsigned LOGICAL_WINDOW_SIZE_Y ;
 
 /**
  * Any function that needs information about the size of the window should
- * refer to WINDOW_SIZE_X or WINDOW_SIZE_Y. Unlike INP_WINDOW_SIZE_X and
- * INP_WINDOW_SIZE_Y, these values will vary depending on our DPI settings
+ * refer to windowSizeX() or windowSizeY(). Unlike LOGICAL_WINDOW_SIZE_X and
+ * LOGICAL_WINDOW_SIZE_Y, these values will vary depending on our DPI settings.
+ * windowSizeX() and windowSizeY() always give the ACTUAL number of pixels,
+ * regardless of DPI settings.
  */
-extern unsigned WINDOW_SIZE_X ;
+extern unsigned windowSizeX() ;
 
 /**
  * Any function that needs information about the size of the window should
- * refer to WINDOW_SIZE_X or WINDOW_SIZE_Y. Unlike INP_WINDOW_SIZE_X and
- * INP_WINDOW_SIZE_Y, these values will vary depending on our DPI settings
+ * refer to windowSizeX() or windowSizeY(). Unlike LOGICAL_WINDOW_SIZE_X and
+ * LOGICAL_WINDOW_SIZE_Y, these values will vary depending on our DPI settings.
+ * windowSizeX() and windowSizeY() always give the ACTUAL number of pixels,
+ * regardless of DPI settings.
  */
-extern unsigned WINDOW_SIZE_Y ;
+extern unsigned windowSizeY() ;
 
 extern int WINDOW_ARGS ;
 
@@ -75,12 +89,12 @@ N defaultOffset = 4 ;
  */
 template<typename N>
 FastRand<N> randPositionSetter() {
-	return FastRand<N>(0, findLargest<N>({static_cast<N>(GLOBAL_MAX_X), static_cast<N>(GLOBAL_MAX_Y)})) ;
+	return FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
 }
 
 template<typename N>
 BoundsCheck<N> defaultCheck() {
-	return BoundsCheck<N>(0, static_cast<N>(GLOBAL_MAX_X), 0, static_cast<N>(GLOBAL_MAX_Y)) ;
+	return BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
 }
 
 extern chrono::nanoseconds refreshTime ;
