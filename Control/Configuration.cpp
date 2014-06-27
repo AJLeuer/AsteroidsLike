@@ -39,8 +39,6 @@ ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 
 void Configuration::init() {
 	
-	BoundsCheck<int> bc = defaultCheck<int>() ;
-	
 	/* make any user requested changes from values in default config */
     doUserOverrides() ;
 	
@@ -54,6 +52,8 @@ void Configuration::doUserOverrides() {
 
 void Configuration::adjustForHiDPI() {
 	if (HIGH_DPI) {
+		GLOBAL_MAX_X = (GLOBAL_MAX_X * 2) ;
+		GLOBAL_MAX_Y = (GLOBAL_MAX_Y * 2) ;
 		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {

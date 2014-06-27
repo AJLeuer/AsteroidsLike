@@ -99,8 +99,8 @@ void GraphicalOutput::render(const GameObject * object) {
             
             /* important: don't forget to translate position from world coords to display coords! */
 			
-            auto objScreenPosition = translateToWindowCoords(objWorldPosition) ;  // <-DEBUG: uncomment this
-			//auto objScreenPosition = objWorldPosition ;   // <-DEBUG: remove this
+            /* auto objScreenPosition = translateToWindowCoords(objWorldPosition) ; */  // <-DEBUG: uncomment this
+			auto objScreenPosition = objWorldPosition ;   // <-DEBUG: remove this
 			
 			/* render to output */
 			render(object->getTexture(), objScreenPosition, object->getSize()) ;
