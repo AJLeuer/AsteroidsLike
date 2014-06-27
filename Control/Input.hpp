@@ -1,6 +1,6 @@
 //
 //  Input.h
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 4/24/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
@@ -19,8 +19,8 @@
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_video.h>
 
-#include "../GameWorld/GameState.h"
-#include "../GameWorld/GameInterface.h"
+#include "../World/GameState.h"
+#include "../World/GameInterface.h"
 
 #include "../Control/Configuration.h"
 

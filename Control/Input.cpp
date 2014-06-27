@@ -1,6 +1,6 @@
 //
 //  Input.cpp
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 5/31/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.

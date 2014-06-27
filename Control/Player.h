@@ -1,6 +1,6 @@
 //
 //  Player.h
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 5/31/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
@@ -15,9 +15,9 @@
 
 #include "../Util/Util2.h"
 
-#include "../GameWorld/GameInterface.h"
-#include "../GameWorld/Character.h"
-#include "../GameWorld/GameState.h"
+#include "../World/GameInterface.h"
+#include "../World/Character.h"
+#include "../World/GameState.h"
 
 #include "../Control/DefaultConfig.h"
 #include "../Control/Input.hpp"

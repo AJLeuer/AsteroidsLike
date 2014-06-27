@@ -1,6 +1,6 @@
 //
 //  WindowOutput.h
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 4/26/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
@@ -26,8 +26,8 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
-#include "../GameWorld/GameState.h"
-#include "../GameWorld/GameObject.h"
+#include "../World/GameState.h"
+#include "../World/GameObject.h"
 
 
 /**

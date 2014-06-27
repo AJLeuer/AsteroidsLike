@@ -1,6 +1,6 @@
 //
 //  Header.h
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 3/11/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
@@ -45,7 +45,7 @@ enum Direction {
  * back through time. Thus an object using Position to store location information will be able to
  * retrace its steps.
  * Note: Classes with a Position data member will typically want to have a pointer,
- * instead of holding the Position locally. This is because many objects in the GameWorld
+ * instead of holding the Position locally. This is because many objects in the World
  * may not actually have a physcical Position in space, in which case they can just hold a
  * null pointer.
  */
@@ -1123,12 +1123,12 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, 
 
 
 /**
- * Translates a Position from within the GameWorld to a Position
+ * Translates a Position from within the World to a Position
  * equivelent within the boundaries of the current screen.
  * Gets the current GLOBAL_max_Position (and min) from World
  * to calculate the ratio
  *
- * @param inGameWorld The Position from within the GameWorld
+ * @param inGameWorld The Position from within the World
  */
 template<typename T>
 extern Position<T> transPosition(const Position<T> & inGameWorld) {

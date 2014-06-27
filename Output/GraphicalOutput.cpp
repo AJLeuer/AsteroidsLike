@@ -1,6 +1,6 @@
 //
 //  GraphicalOutput.cpp
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 4/26/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.

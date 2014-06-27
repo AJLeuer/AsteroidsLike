@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  GameWorld
+//  World
 //
 //  Created by Adam James Leuer on 3/11/14.
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
@@ -21,10 +21,10 @@
 #include "../Util/Time.hpp"
 #include "../Util/AssetFileIO.h"
 
-#include "../GameWorld/GameState.h"
-#include "../GameWorld/GameObject.h"
-#include "../GameWorld/NPC.h"
-#include "../GameWorld/WorldController.h"
+#include "../World/GameState.h"
+#include "../World/GameObject.h"
+#include "../World/NPC.h"
+#include "../World/WorldController.h"
 
 #include "../Control/Configuration.h"
 #include "../Control/Input.hpp"
