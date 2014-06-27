@@ -19,11 +19,14 @@ bool HIGH_DPI = checkHiDPI() ;
 bool HIGH_DPI = false ; //todo: add checking on windows and linux
 #endif
 
-unsigned GLOBAL_MAX_X = DEFAULT_MAX_X ; /* To give us buffer space outside the window margins */
-unsigned GLOBAL_MAX_Y = DEFAULT_MAX_Y ;
+unsigned GLOBAL_MAX_X = 4000 ; /* To give us buffer space outside the window margins */
+unsigned GLOBAL_MAX_Y = 2500 ;
 
-unsigned WINDOW_SIZE_X = DEFAULT_MAX_X ; /* Default values, will most likely be changed by Configuration::init() */
-unsigned WINDOW_SIZE_Y = DEFAULT_MAX_Y ;
+unsigned INP_WINDOW_SIZE_X = DEFAULT_W_MAX_X ;
+unsigned INP_WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
+
+unsigned WINDOW_SIZE_X = DEFAULT_W_MAX_X ; /* Default values, will most likely be changed by Configuration::init() */
+unsigned WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
 
 int WINDOW_ARGS = 0 ; /* will always need to be initialized */
 
@@ -54,6 +57,8 @@ void Configuration::adjustForHiDPI() {
 	if (HIGH_DPI) {
 		GLOBAL_MAX_X = (GLOBAL_MAX_X * 2) ;
 		GLOBAL_MAX_Y = (GLOBAL_MAX_Y * 2) ;
+		WINDOW_SIZE_X = (INP_WINDOW_SIZE_X * 2) ;
+		WINDOW_SIZE_Y = (INP_WINDOW_SIZE_Y * 2) ;
 		WINDOW_ARGS  = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {

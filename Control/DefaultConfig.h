@@ -29,15 +29,40 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
-constexpr unsigned DEFAULT_MAX_X = 960 ;
-constexpr unsigned DEFAULT_MAX_Y = 540 ;
+constexpr unsigned DEFAULT_W_MAX_X = 960 ;
+constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
 
 extern bool HIGH_DPI ;
 
 extern unsigned GLOBAL_MAX_X ; /* To give us buffer space outside the window margins */
 extern unsigned GLOBAL_MAX_Y ;
 
+/**
+ * Refer to INP_WINDOW_SIZE_X and INP_WINDOW_SIZE_Y only for telling the OS
+ * or renderer how large our window should be. Everything else should refer
+ * to WINDOW_SIZE_X and WINDOW_SIZE_Y
+ */
+extern unsigned INP_WINDOW_SIZE_X ;
+
+/**
+ * Refer to INP_WINDOW_SIZE_X and INP_WINDOW_SIZE_Y only for telling the OS
+ * or renderer how large our window should be. Everything else should refer
+ * to WINDOW_SIZE_X and WINDOW_SIZE_Y
+ */
+extern unsigned INP_WINDOW_SIZE_Y ;
+
+/**
+ * Any function that needs information about the size of the window should
+ * refer to WINDOW_SIZE_X or WINDOW_SIZE_Y. Unlike INP_WINDOW_SIZE_X and
+ * INP_WINDOW_SIZE_Y, these values will vary depending on our DPI settings
+ */
 extern unsigned WINDOW_SIZE_X ;
+
+/**
+ * Any function that needs information about the size of the window should
+ * refer to WINDOW_SIZE_X or WINDOW_SIZE_Y. Unlike INP_WINDOW_SIZE_X and
+ * INP_WINDOW_SIZE_Y, these values will vary depending on our DPI settings
+ */
 extern unsigned WINDOW_SIZE_Y ;
 
 extern int WINDOW_ARGS ;
