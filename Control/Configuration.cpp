@@ -39,7 +39,7 @@ ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 
 void Configuration::init() {
 	
-	BoundsCheck<int> * bc = defaultCheck<int> ;
+	BoundsCheck<int> bc = defaultCheck<int>() ;
 	
 	/* make any user requested changes from values in default config */
     doUserOverrides() ;
@@ -62,10 +62,6 @@ void Configuration::adjustForHiDPI() {
 	}
 }
 
-/* debug function to check state of other values in this compilation unit,
- delete this */
-void doNothing() {
-	;
-}
+
 
 

@@ -29,8 +29,8 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
-constexpr unsigned DEFAULT_MAX_X = 1024 ;
-constexpr unsigned DEFAULT_MAX_Y = 768 ;
+constexpr unsigned DEFAULT_MAX_X = 960 ;
+constexpr unsigned DEFAULT_MAX_Y = 540 ;
 
 extern bool HIGH_DPI ;
 
@@ -49,10 +49,14 @@ N defaultOffset = 4 ;
  * Useful for setting random positions. Call Position(FastRand<N>) with this.
  */
 template<typename N>
-FastRand<N> * randPosSetter = new FastRand<N>(0, findLargest<N>({static_cast<N>(GLOBAL_MAX_X), static_cast<N>(GLOBAL_MAX_Y)})) ;
+FastRand<N> randPositionSetter() {
+	return FastRand<N>(0, findLargest<N>({static_cast<N>(GLOBAL_MAX_X), static_cast<N>(GLOBAL_MAX_Y)})) ;
+}
 
 template<typename N>
-BoundsCheck<N> * defaultCheck = new BoundsCheck<N>(0, static_cast<N>(GLOBAL_MAX_X), 0, static_cast<N>(GLOBAL_MAX_Y)) ;
+BoundsCheck<N> defaultCheck() {
+	return BoundsCheck<N>(0, static_cast<N>(GLOBAL_MAX_X), 0, static_cast<N>(GLOBAL_MAX_Y)) ;
+}
 
 extern chrono::nanoseconds refreshTime ;
 
@@ -61,8 +65,6 @@ extern char * MOVE_DOWN ;
 extern char * MOVE_LEFT ;
 extern char * MOVE_RIGHT ;
 
-/* debug function to check other values in this header,
- delete this */
-void doNothing() ;
+
 
 #endif

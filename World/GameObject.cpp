@@ -32,7 +32,7 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	type(),
 	visible(true),
-	loc(new Pos2<float>(0.0, 0.0, 0.0, *defaultCheck<float>)),
+	loc(new Pos2<float>(0.0, 0.0, 0.0, defaultCheck<float>())),
 	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
@@ -44,8 +44,8 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
     
-    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+    loc->checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
 }
@@ -57,7 +57,7 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	type(other.type),
 	visible(other.visible),
-	loc(new Pos2<float>(*(other.loc), *defaultCheck<float>)),
+	loc(new Pos2<float>(*(other.loc), defaultCheck<float>())),
 	vectr(DirectionVector<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
 	{
@@ -76,8 +76,8 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+    loc->checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
@@ -138,7 +138,7 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	size(Size<int>()),
 	type(type),
 	visible(true),
-	loc(new Pos2<float>(loc_, *defaultCheck<float>)),
+	loc(new Pos2<float>(loc_, defaultCheck<float>())),
 	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
@@ -150,8 +150,8 @@ GameObject::GameObject(AssetType type, const string & imageFilename, float sizeM
 	
 	allGameObjects->push_back(this) ;
     
-    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+    loc->checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false, sizeModifier) ;
 }
@@ -161,7 +161,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
 	visible(true),
 	size(Size<int>()),
-	loc(new Pos2<float>(rand, *defaultCheck<float>)),
+	loc(new Pos2<float>(rand, defaultCheck<float>())),
 	vectr(DirectionVector<float>(loc))
 {
 	IDs++ ;
@@ -172,8 +172,8 @@ GameObject::GameObject(FastRand<int> rand) :
 	}
 	allGameObjects->push_back(this) ;
     
-    loc->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+    loc->checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	
 	textureImageFile = AssetFileIO::getRandomImageFilename(type) ;
@@ -228,7 +228,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
         loc = std::move(new Pos2<float>(*rhs.loc)) ;
 		vectr = DirectionVector<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
-		map->place<float>(loc, this, *defaultCheck<float>, true) ;
+		map->place<float>(loc, this, defaultCheck<float>(), true) ;
 		vectr.updateAndNormalize() ;
 
 		allGameObjects->push_back(this) ;
@@ -405,9 +405,9 @@ void GameObject::moveTo(Position<float> * to) {
     
 	map->erase<float>(getPosition()) ;
     
-    to->checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
+    to->checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
 	loc->setAll(*to) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	
 	{
@@ -425,9 +425,9 @@ void GameObject::moveTo(Position<float> to) {
     
 	map->erase<float>(getPosition()) ;
     
-    to.checkBounds(*defaultCheck<float>, size.getWidth(), size.getHeight()) ;
+    to.checkBounds(defaultCheck<float>(), size.getWidth(), size.getHeight()) ;
 	loc->setAll(to) ;
-	map->place<float>(loc, this, *defaultCheck<float>, true) ;
+	map->place<float>(loc, this, defaultCheck<float>(), true) ;
 	vectr.updateAndNormalize() ;
 	
 	{
@@ -452,11 +452,11 @@ void GameObject::moveSameDirection() {
 	vectr.normalize() ;
 	Position<float> next = DirectionVector<float>::calculateNextPosition(vectr, 1.0) ;
 
-	if (next.overXBounds(*defaultCheck<float>)) {
-		next = DirectionVector<float>::calculateReverseXPosition(vectr, 1.0, *defaultCheck<float>) ;
+	if (next.overXBounds(defaultCheck<float>())) {
+		next = DirectionVector<float>::calculateReverseXPosition(vectr, 1.0, defaultCheck<float>()) ;
 	}
-	if (next.overYBounds(*defaultCheck<float>)) {
-		next = DirectionVector<float>::calculateReverseYPosition(vectr, 1.0, *defaultCheck<float>) ;
+	if (next.overYBounds(defaultCheck<float>())) {
+		next = DirectionVector<float>::calculateReverseYPosition(vectr, 1.0, defaultCheck<float>()) ;
 	}
 
 	moveTo(std::move(next)) ;
@@ -465,7 +465,7 @@ void GameObject::moveSameDirection() {
 void GameObject::moveNewDirection(DirectionVector<float> & newDirection) {
 
 	newDirection.normalize() ;
-	auto next = DirectionVector<float>::calculateNextPosition(newDirection, loc, 1.0, *defaultCheck<float>) ;
+	auto next = DirectionVector<float>::calculateNextPosition(newDirection, loc, 1.0, defaultCheck<float>()) ;
 	moveTo(std::move(next)) ;
 }
 

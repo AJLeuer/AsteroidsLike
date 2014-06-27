@@ -38,17 +38,17 @@ void WorldController::init() {
 	/* Init enemies */
 	/*
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>)) ;
+              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>())) ;
 
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>)) ;
+              0.50, Pos2<float>(*GLOBAL_MAX_X - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
 	*/
 	/* Init obstacles */
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
 	
 	for (auto i = 0 ; i < 7 ; i++) {
 		//new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
-		//Pos2<float>(randPosSetter<float>, defaultCheck<float>)) ;
+			//Pos2<float>(defaultCheck<float>(), defaultCheck<float>())) ;
 	}
 	
 	/* Init game state */

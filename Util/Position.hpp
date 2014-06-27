@@ -213,7 +213,7 @@ public:
 		temp.y = temp.y + rhs.y ;
 		temp.z = temp.z + rhs.z ;
 		
-		return std::move(temp) ;
+		return temp ;
 	}
 	
 	Position operator-(const Position & rhs) const {
@@ -224,7 +224,7 @@ public:
 		temp.y = temp.y - rhs.y ;
 		temp.z = temp.z - rhs.z ;
 		
-		return std::move(temp) ;
+		return temp ;
 	}
     
 	template<typename O, typename P>
@@ -949,19 +949,19 @@ public:
 	static Position<N> calculateNextPosition(DirectionVector<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
+	static Position<N> calculateNextPositionCh(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseNextPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
+	static Position<N> calculateReverseNextPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseXPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
+	static Position<N> calculateReverseXPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseYPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>) ;
+	static Position<N> calculateReverseYPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>) ;
+	static Position<N> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>()) ;
 
 } ;
 

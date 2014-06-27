@@ -69,7 +69,7 @@ template<typename N>
 Position<N> translateCoords(const Position<N> & coords, const Position<N> & sourceCoords, const Position<N> & equivalentDestinationCoords) {
 	
 	/* using a position to store, not an actual position, but the difference between a position from the source coordinate system and
-	 a position form the destination coordinate system. you could also view differential as a vector */
+	 a position from the destination coordinate system (i.e. a vector) */
 	auto differential = sourceCoords - equivalentDestinationCoords ;
 	
 	auto coordsAsDestCoordSystemCoords = (coords + differential) ;
