@@ -29,16 +29,16 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
-constexpr unsigned DEFAULT_W_SZ_X = 960 ;
-constexpr unsigned DEFAULT_W_SZ_Y = 540 ;
+constexpr unsigned DEFAULT_MAX_X = 1024 ;
+constexpr unsigned DEFAULT_MAX_Y = 768 ;
 
 extern bool HIGH_DPI ;
 
 extern unsigned GLOBAL_MAX_X ; /* To give us buffer space outside the window margins */
 extern unsigned GLOBAL_MAX_Y ;
 
-extern unsigned * WINDOW_SIZE_X ;
-extern unsigned * WINDOW_SIZE_Y ;
+extern unsigned WINDOW_SIZE_X ;
+extern unsigned WINDOW_SIZE_Y ;
 
 extern int WINDOW_ARGS ;
 
@@ -61,6 +61,8 @@ extern char * MOVE_DOWN ;
 extern char * MOVE_LEFT ;
 extern char * MOVE_RIGHT ;
 
-
+/* debug function to check other values in this header,
+ delete this */
+void doNothing() ;
 
 #endif

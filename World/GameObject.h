@@ -372,12 +372,15 @@ public:
 	
 	//void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
-	/** 
-	 * @return This GameObject's textureImageFile
+	/**
+	 * @return This GameObject's textureImageFile, i.e. the file path of its texture (usually in png format)
 	 */
 	string getImageFile() const ;
 	
-	SDL_Texture * getTexture() const { return texture ; }
+	/**
+	 * @return This GameObject's texture, or nullptr if this isVisible() is false
+	 */
+	SDL_Texture * getTexture() const ;
 	
 	const Size<int> * getSize() const { const Size<int> * rtnSize = & size ; return rtnSize ; }
 	

@@ -78,7 +78,14 @@ template<typename N>
 void GraphicalOutput::render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) {
 	
 	auto tempShape = convertToSDL_Rect(pos, size) ;
-	int sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
+	
+	int sdlrend_error = 0 ;
+	
+	/* texture will sometimes be null, e.g. when game objects are invisible their
+	   getTexture() method returns a nullptr */
+	if (texture != nullptr) {
+		sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
+	}
 	
 	if (sdlrend_error == -1) {
 		stringstream ss ;

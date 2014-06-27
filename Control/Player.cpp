@@ -31,8 +31,7 @@ void Player::printPositition() {
 	stringstream ss ;
 	ss << this->name << "'s current world position is: " << playerCharacter.getPosition() ;
 	auto screenPosition = translateToWindowCoords(*playerCharacter.getPosition()) ;
-	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
-	
+	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;  	
 	DebugOutput << ss.rdbuf() ;
 }
 

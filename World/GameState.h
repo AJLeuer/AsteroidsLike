@@ -125,8 +125,8 @@ Position<N> getWindowOriginAsWorldCoord() {
 	
 	/* center the game window frame (i.e. what is visible) inside the world */
 	
-	N leftX = (GLOBAL_MAX_X - *WINDOW_SIZE_X) / 2 ;
-	N topY = (GLOBAL_MAX_Y - *WINDOW_SIZE_Y) / 2 ;
+	N leftX = (GLOBAL_MAX_X - WINDOW_SIZE_X) / 2 ;
+	N topY = (GLOBAL_MAX_Y - WINDOW_SIZE_Y) / 2 ;
 	
 	return Position<N>(leftX, topY, 0) ;
 }

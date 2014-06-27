@@ -36,11 +36,12 @@ void GraphicalOutput::init() {
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
 							  SDL_WINDOWPOS_CENTERED,   // y position, centered
-							  *WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
-							  *WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
+							  WINDOW_SIZE_X,			// width, in pixels (/2 for highdpi)
+							  WINDOW_SIZE_Y,			// height, in pixels (/2 for highdpi)
 							  WINDOW_ARGS) ;
 	
 	{
+		
 	/* debug code */
 	stringstream ab ;
 	ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;
@@ -97,8 +98,9 @@ void GraphicalOutput::render(const GameObject * object) {
 			auto objWorldPosition(*object->getPosition()) ;
             
             /* important: don't forget to translate position from world coords to display coords! */
-            
-            auto objScreenPosition = translateToWindowCoords(objWorldPosition) ;
+			
+            auto objScreenPosition = translateToWindowCoords(objWorldPosition) ;  // <-DEBUG: uncomment this
+			//auto objScreenPosition = objWorldPosition ;   // <-DEBUG: remove this
 			
 			/* render to output */
 			render(object->getTexture(), objScreenPosition, object->getSize()) ;

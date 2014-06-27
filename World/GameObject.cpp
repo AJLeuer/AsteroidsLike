@@ -553,6 +553,15 @@ string GameObject::getImageFile() const {
 	return this->textureImageFile ;
 }
 
+SDL_Texture * GameObject::getTexture() const {
+	if (visible) {
+		return texture ;
+	}
+	else {
+		return nullptr ;
+	}
+}
+
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
 	visible = false ;
