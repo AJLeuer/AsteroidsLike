@@ -1,4 +1,4 @@
 GameWorld
 =========
 
-Implementing a few ideas for simple classes with a game, plus some message passing ideas
+A simple 2D sprite game.

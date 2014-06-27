@@ -198,6 +198,7 @@
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Size.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CharacterData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		66E2BC51195DA7E600287A08 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		66E323541932765D005A1144 /* Settings.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.cfg; sourceTree = "<group>"; };
 		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Configuration.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E3235A19327C28005A1144 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Configuration.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -454,6 +455,7 @@
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
+				66E2BC51195DA7E600287A08 /* README.md */,
 				66776635195AE90C00212190 /* Foundation.framework */,
 				66776633195AE63400212190 /* AppKit.framework */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
