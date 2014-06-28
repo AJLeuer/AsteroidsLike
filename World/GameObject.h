@@ -153,6 +153,9 @@ public:
 	//static const vector<GameObject*>::iterator start() { return GameObject::allGameObjects->begin() ; }
 	//static const vector<GameObject*>::iterator end() { return GameObject::allGameObjects->end() ; }
 	
+    /**
+     * @return The current map of GameObjects 
+     */
 	static const GameMap<GameObject> * getMap() { return GameObject::map ; }
 	
 	
@@ -238,11 +241,12 @@ public:
 	 * this function will be handled by inheriting classes.
 	 *
 	 * @param sentObject A reference to another GameObject
+     * @return whether this GameObject ID is equal to ID of other
 	 */
 	bool operator==(GameObject & other) const ;
 	
 	/**
-	 * Returns this ID
+	 * @return this ID
 	 */
 	unsigned getID() { return this->ID ; }
 	

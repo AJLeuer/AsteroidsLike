@@ -35,7 +35,7 @@ constexpr unsigned GLOBAL_MAX_Y_BASE_VALUE = 2500 ;
 constexpr unsigned DEFAULT_W_MAX_X = 960 ;
 constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
 
-extern bool HIGH_DPI ;
+extern bool hiDPI() ;
 extern float displayScalingFactor() ;
 
 extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */

@@ -14,7 +14,7 @@ Player::Player() :
 	name("Player 1")
 {
 	playerCharacter = Character(pcAssetType, "/Assets/Blocks/Blocks_01_64x64_Alt_02_005.png" /* AssetFileIO::getRandomImageFilename(pcAssetType) */, 1.0, Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()), name, Reaction::friendly, DoA::alive, CharacterState::normal,
-								500, 100) ;
+        500, 100) ;
 	
 	registerForCallbacks() ;
 }

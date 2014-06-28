@@ -14,10 +14,10 @@ using namespace std ;
 
 //define extern values from DefaultConfig.h as well
 #ifdef __APPLE__
-bool HIGH_DPI = checkHiDPIOSX() ;
+bool hiDPI() { return checkHiDPIOSX() ; } ;
 float displayScalingFactor() { return displayScalingFactorOSX() ; }
 #else
-bool HIGH_DPI = false ; //todo: add checking on windows and linux
+bool hiDPI() { return false ; } //todo: add checking on windows and linux
 float displayScalingFactor() { return 1.0 ; }
 #endif
 
@@ -63,7 +63,7 @@ void Configuration::doUserOverrides() {
 
 
 void Configuration::adjustForHiDPI() {
-	if (HIGH_DPI) {
+	if (hiDPI()) {
 		WINDOW_ARGS = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {
