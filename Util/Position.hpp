@@ -927,6 +927,11 @@ struct DirectionVector : public Position<float> {
 protected:
 	Position<N> last ;
 	const Position<N> * current ;
+    
+    /**
+     * The non-normalized distance between the current Position and last
+     */
+    N absDistanceMoved = 0 ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
 	DirectionVector(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
@@ -1033,9 +1038,9 @@ void DirectionVector<N>::update() {
 
 	if (last != *current) { //only if we've moved...
         
-		Position<N> temp = ((*current) - last) ;               /*uses Location's operator+() overload to add
-															   our x, y, and z (which are offset values) to those
-															   stored in current, giving our new location*/
+		Position<N> temp = ((*current) - last) ;               /*  uses Location's operator+() overload to add
+															       our x, y, and z (which are offset values) to those
+															       stored in current, giving our new location  */
 		this->setAll(temp.getX(), temp.getY(), temp.getZ()) ;
 		this->last = std::move((Position<N>(*this->current))) ;
 	}
@@ -1074,7 +1079,7 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, 
 	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
 
 	Position<N> next(nx, ny, nz) ;
-	return std::move(next) ;
+	return next ;
 }
 
 template<typename N>
@@ -1091,7 +1096,7 @@ Position<N> DirectionVector<N>::calculateNextPositionCh(DirectionVector<N> & vec
 	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
 
 	Position<N> next(nx, ny, nz, check) ;
-	return std::move(next) ;
+	return next ;
 }
 
 template<typename N>
