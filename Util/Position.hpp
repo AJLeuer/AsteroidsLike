@@ -925,11 +925,24 @@ template<typename N>
 struct DirectionVector : public Position<float> {
 	
 protected:
-	Position<N> last ;
+    
+    /**
+     * The Position preceding the most recent Position
+     */
+    Position<N> last ;
+    
+    /**
+     * The Position most recently visited
+     */
+	Position<N> mostRecent ;
+    
+    /**
+     * A pointer to the current Position
+     */
 	const Position<N> * current ;
     
     /**
-     * The non-normalized distance between the current Position and last
+     * The non-normalized distance between the current Position and mostRecent Position
      */
     N absDistanceMoved = 0 ;
 	
@@ -939,7 +952,7 @@ protected:
 	
 public:
 	DirectionVector(float headingX, float headingY, float headingZ, Position<N> * current_) ;
-	DirectionVector(const Position<N> & last_, Position<N> * current_) ;
+	DirectionVector(const Position<N> & mostRecent_, Position<N> * current_) ;
 	DirectionVector(const Position<N> * current_) ;
 	DirectionVector(const DirectionVector<N> & other) ;
 	DirectionVector(DirectionVector<N> && other) ;
@@ -981,27 +994,24 @@ DirectionVector<N>::DirectionVector(const Position<float> & overrideCurrData, co
 	current(current_) {}
 
 template<typename N>
-DirectionVector<N>::DirectionVector(const Position<N> & last_, Position<N> * current_) :
-	Position<float>(),
-	last(last_), current(current_)
-{
-	update() ;
-}
-
-template<typename N>
 DirectionVector<N>::DirectionVector(const Position<N> * current_) :
 	Position<float>(),
-	last(*current_), current(current_) {}
+    last(*current_),
+	mostRecent(*current_), current(current_) {}
 
 template<typename N>
 DirectionVector<N>::DirectionVector(const DirectionVector<N> & other) :
 	Position<float>(other),
-	last(Position<N>(other.last)) {}
+    last(Position<N>(other.last)),
+	mostRecent(Position<N>(other.mostRecent)),
+    absDistanceMoved(other.absDistanceMoved) {}
 
 template<typename N>
 DirectionVector<N>::DirectionVector(DirectionVector<N> && other) :
 	Position<float>(std::move(other)),
-	last(std::move(other.last)), current(other.current)
+    last(std::move(other.last)),
+	mostRecent(std::move(other.mostRecent)), current(other.current),
+    absDistanceMoved(other.absDistanceMoved)
 {
 	other.current = nullptr ;
 }
@@ -1016,8 +1026,10 @@ template<typename N>
 DirectionVector<N> & DirectionVector<N>::operator=(const DirectionVector<N> & rhs) {
 	if (this != &rhs) {
 		this->Position<float>::operator=(rhs) ;
-		this->last = Position<N>(rhs.last) ;
+        this->last = Position<N>(rhs.last) ;
+		this->mostRecent = Position<N>(rhs.mostRecent) ;
 		this->current = rhs.current ;
+        this->absDistanceMoved = rhs.absDistanceMoved ;
 	}
 	return *this ;
 }
@@ -1026,8 +1038,10 @@ template<typename N>
 DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
 	if (this != &rhs) {
 		this->Position<float>::operator=(std::move(rhs)) ;
-		this->last = Position<N>(rhs.last) ;
+        this->last = Position<N>(rhs.last) ;
+		this->mostRecent = Position<N>(rhs.mostRecent) ;
 		this->current = rhs.current ;
+        this->absDistanceMoved = rhs.absDistanceMoved ;
 		rhs.current = nullptr ;
 	}
 	return *this ;
@@ -1036,13 +1050,16 @@ DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
 template<typename N>
 void DirectionVector<N>::update() {
 
-	if (last != *current) { //only if we've moved...
+	if (mostRecent != *current) { //only if we've moved...
         
-		Position<N> temp = ((*current) - last) ;               /*  uses Location's operator+() overload to add
+        this->absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
+        
+		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator+() overload to add
 															       our x, y, and z (which are offset values) to those
 															       stored in current, giving our new location  */
 		this->setAll(temp.getX(), temp.getY(), temp.getZ()) ;
-		this->last = std::move((Position<N>(*this->current))) ;
+        this->last = mostRecent ;
+		this->mostRecent = std::move((Position<N>(*this->current))) ;
 	}
 
 }

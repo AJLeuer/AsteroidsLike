@@ -77,15 +77,15 @@ Position<N> translateCoords(const Position<N> & coords, const Position<N> & sour
 
 /**
  * An implementation of the formula for finding the distance between two points
- * in Euclidian space, as given at @link http://en.wikipedia.org/wiki/Euclidean_distance @endlink
+ * in Euclidian space, as given at http://en.wikipedia.org/wiki/Euclidean_distance
  *
  * @param p The first point
  * @param q The second point
  */
 template<typename N>
-Position<N> calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
-    auto sum = pow<N>((q.x - p.x), 2) + pow<N>((q.y - p.y), 2) + pow<N>((q.z - p.z), 2) ;
-    auto sqRoot = sqrt<N>(sum) ;
+N calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
+    auto sum = pow<N>((q.getX() - p.getX()), 2) + pow<N>((q.getY() - p.getY()), 2) + pow<N>((q.getZ() - p.getZ()), 2) ;
+    auto sqRoot = sqrt(sum) ;
     return sqRoot ;
 }
 
