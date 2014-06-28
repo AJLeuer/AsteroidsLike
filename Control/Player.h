@@ -32,7 +32,7 @@ protected:
 	Character playerCharacter ;
 	
 	/* just for initializing playerCharacter */
-	AssetType pcAssetType = AssetType::character ; /* change if needed */
+	AssetType pcAssetType = AssetType::playerShip ; /* change if needed */
 	
 
 	void registerForCallbacks() ;

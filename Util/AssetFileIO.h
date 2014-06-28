@@ -29,7 +29,6 @@ using namespace std ;
 enum class AssetType {
 	asteroid,
 	block,
-	character,
 	misc,
     playerShip,
 	enemyShip,
@@ -47,7 +46,6 @@ class AssetFileIO {
 	
 	static vector<string> * asteroidImageFilenames ;
 	static vector<string> * blockImageFilenames ;
-	static vector<string> * characterImageFilenames ;
 	static vector<string> * miscImageFilenames ;
 	static vector<string> * playerShipImageFilenames ;
 	static vector<string> * enemyShipImageFilenames ;
