@@ -34,6 +34,8 @@ protected:
 	/* just for initializing playerCharacter */
 	AssetType pcAssetType = AssetType::playerShip ; /* change if needed */
 	
+	float size = 0.5 ;
+	
 
 	void registerForCallbacks() ;
 

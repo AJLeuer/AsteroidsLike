@@ -566,7 +566,7 @@ void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
 	visible = false ;
 	
-	auto invisTimer = [&] {
+	auto invisTimer = [=] {
 		this_thread::sleep_for(nano) ;
 		this->setVisible() ;
 	} ;

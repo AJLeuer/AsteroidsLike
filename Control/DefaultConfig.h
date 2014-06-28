@@ -29,8 +29,8 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
-constexpr unsigned GLOBAL_MAX_X_BASE_VALUE = 4000 ;
-constexpr unsigned GLOBAL_MAX_Y_BASE_VALUE = 2500 ;
+constexpr unsigned GLOBAL_MAX_X_BASE_VALUE = 960 ;
+constexpr unsigned GLOBAL_MAX_Y_BASE_VALUE = 540 ;
 
 constexpr unsigned DEFAULT_W_MAX_X = 960 ;
 constexpr unsigned DEFAULT_W_MAX_Y = 540 ;

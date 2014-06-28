@@ -13,8 +13,8 @@
 using namespace std ;
 
 void EventRegisterBase::callBack() {
-	if ((memberToCallOn != nullptr) || (member_callBackFunction != nullptr)) { //if this is an instance member function (we'll know by checking that member_callOn isn't null,
-																			   //then call it on that object
+	if ((memberToCallOn != nullptr) || (member_callBackFunction != nullptr)) { /* if this is an instance member function (we'll know by checking that member_callOn isn't null,
+																			   then call it on that object */
         (memberToCallOn->*member_callBackFunction)();
     }
     else if (memberToCallOn == nullptr) { //else this is a global or static function, just call it
@@ -46,24 +46,6 @@ void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) 
 			callBack() ;
 		}
 	}
-	
-	/*
-	switch (keyIDMethod) {
-		case KeyIdenMethod::keyChar:
-		{
-			scanCode = getScanCodeFor(requestedKeyboardChar.c_str()) ;
-		}
-		case KeyIdenMethod::keyCode:
-		{
-			scanCode = getScanCodeFor(requestedKeyCode) ;
-		}
-		break ;
-	}
-	
-	if (keyboardState[scanCode]) {
-		callBack() ;
-	}
-	*/
 }
 
 vector<EventRegister *> * InputController::eventListenerRegistry = new vector<EventRegister *>() ;

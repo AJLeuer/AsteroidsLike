@@ -47,7 +47,7 @@ void MainController::init() {
 	GraphicalOutput::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
-	player = new Player() ;
+	player = new Player("Player 0", "/Assets/Ships/Ship2_Blue.png") ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
