@@ -39,6 +39,8 @@
 		1E683B10193ECDA4000F3045 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GameState.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		1E683B11193ECDA4000F3045 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameState.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1E683B13193ECDC4000F3045 /* DefaultConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DefaultConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1E768E32195E42750056AACA /* Credits.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Credits.txt; sourceTree = "<group>"; };
+		1E768F97195E60E20056AACA /* Space Shooter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Space Shooter"; sourceTree = "<group>"; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GraphicalOutput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GraphicalOutput.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6617B184190D725C004B442B /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = AssetFileIO.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -53,8 +55,8 @@
 		664BFFB01939E6BE008F4CD1 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Player.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		664BFFB11939E6BE008F4CD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Player.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		664BFFB41939F747008F4CD1 /* BOOST LICENSE 1_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BOOST LICENSE 1_0.txt"; sourceTree = "<group>"; };
-		664BFFB51939F747008F4CD1 /* SDL 2_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SDL 2_0.txt"; sourceTree = "<group>"; };
-		664BFFB61939F747008F4CD1 /* SDL_IMAGE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SDL_IMAGE.txt; sourceTree = "<group>"; };
+		664BFFB51939F747008F4CD1 /* SDL 2_0 LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SDL 2_0 LICENSE.txt"; sourceTree = "<group>"; };
+		664BFFB61939F747008F4CD1 /* SDL_IMAGE LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SDL_IMAGE LICENSE.txt"; sourceTree = "<group>"; };
 		664BFFB7193A0730008F4CD1 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Input.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Navigator.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -235,14 +237,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		664BFFB31939F713008F4CD1 /* Licenses */ = {
+		664BFFB31939F713008F4CD1 /* About */ = {
 			isa = PBXGroup;
 			children = (
 				664BFFB41939F747008F4CD1 /* BOOST LICENSE 1_0.txt */,
-				664BFFB51939F747008F4CD1 /* SDL 2_0.txt */,
-				664BFFB61939F747008F4CD1 /* SDL_IMAGE.txt */,
+				664BFFB51939F747008F4CD1 /* SDL 2_0 LICENSE.txt */,
+				664BFFB61939F747008F4CD1 /* SDL_IMAGE LICENSE.txt */,
+				1E768E32195E42750056AACA /* Credits.txt */,
 			);
-			path = Licenses;
+			path = About;
 			sourceTree = "<group>";
 		};
 		666D354919022C3000A615D5 /* Output */ = {
@@ -294,6 +297,7 @@
 		667BD139190D5484001319AD /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1E768F97195E60E20056AACA /* Space Shooter */,
 				66B9087E190D6F4B005B3E86 /* Blocks */,
 				667BD13A190D5484001319AD /* PixelArtA.bmp */,
 				667BD13B190D5484001319AD /* PixelArtB.bmp */,
@@ -460,7 +464,7 @@
 				66776633195AE63400212190 /* AppKit.framework */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
 				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
-				664BFFB31939F713008F4CD1 /* Licenses */,
+				664BFFB31939F713008F4CD1 /* About */,
 				66E3234619326E2C005A1144 /* User Configuration */,
 				667BD139190D5484001319AD /* Assets */,
 				6678790018DAE21200618712 /* Util */,
@@ -477,7 +481,7 @@
 				66E97F2E18CF009E002EFA00 /* SpriteFight */,
 			);
 			name = Products;
-			path = "/Users/aleuer2/Library/Developer/Xcode/DerivedData/GameWorld-gcxsudqabmccaocrydxsnwqnvoym/Build/Products/Debug";
+			path = "/Users/aleuer2/Library/Developer/Xcode/DerivedData/SpriteFight-cluzsmcncqefdkgvozqdpflcfkea/Build/Products/Debug";
 			sourceTree = "<absolute>";
 		};
 		66E97F3018CF009E002EFA00 /* World */ = {

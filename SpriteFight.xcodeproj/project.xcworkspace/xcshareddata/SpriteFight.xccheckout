@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>588144D6-9F91-4406-9432-DF65FB4DFAC4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SpriteFight</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>71ED0BE2-4203-47C1-8ECD-1B6F4220930F</key>
+		<string>https://github.com/AJLeuer/SpriteFight.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SpriteFight.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>71ED0BE2-4203-47C1-8ECD-1B6F4220930F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AJLeuer/SpriteFight.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>71ED0BE2-4203-47C1-8ECD-1B6F4220930F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>71ED0BE2-4203-47C1-8ECD-1B6F4220930F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SpriteFight</string>
+		</dict>
+	</array>
+</dict>
+</plist>
