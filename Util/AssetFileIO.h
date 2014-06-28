@@ -27,10 +27,14 @@
 using namespace std ;
 
 enum class AssetType {
-	character = 0,
-	block = 1,
-    ship = 2
-	//scenery? what else do we need?
+	asteroid,
+	block,
+	character,
+	misc,
+    ship,
+	UI,
+	weapon
+	//what else do we need?
 	//add more here
 } ;
 
@@ -40,9 +44,13 @@ enum class AssetType {
  */
 class AssetFileIO {
 	
-	static vector<std::string> * characterImageFilenames ;
+	static vector<std::string> * asteroidImageFilenames ;
 	static vector<std::string> * blockImageFilenames ;
-	static vector<string> * shipImageFilenames ;   //todo add more
+	static vector<std::string> * characterImageFilenames ;
+	static vector<std::string> * miscImageFilenames ;
+	static vector<string> * shipImageFilenames ;
+	static vector<string> * UIImageFilenames ;
+	static vector<string> * weaponImageFilenames ;
 	
 public:
 	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;
@@ -57,7 +65,7 @@ public:
 	 *
 	 * @return The AssetType corresponding to imageFilename
 	 */
-	static AssetType getAssetTypeFrom(const string & imageFilename) ;
+	static AssetType getAssetTypeFromImageFile(const string & imageFilename) ;
 };
 
 
