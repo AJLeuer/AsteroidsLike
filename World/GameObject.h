@@ -111,7 +111,7 @@ protected:
 
 	Size<int> size ;
 	Pos2<float> * loc ;
-	DirectionVector<float> vectr ;
+	Vectr<float> vectr ;
 
 	AssetType type ;
 	bool visible ;
@@ -312,17 +312,17 @@ public:
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
-	 * DirectionVector of its last move
+	 * Vectr of its last move
 	 */
 	void moveSameDirection() ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
-	 * DirectionVector
+	 * Vectr
 	 *
 	 * @param newDirection The new vectorDirection specifying the direction of travel
 	 */
-	void moveNewDirection(DirectionVector<float> & newDirection) ;
+	void moveNewDirection(Vectr<float> & newDirection) ;
 	
 	
 	/**
@@ -363,7 +363,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const DirectionVector<float> getVector() const { return this->vectr ; }
+	const Vectr<float> getVector() const { return this->vectr ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

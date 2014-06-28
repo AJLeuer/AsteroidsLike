@@ -29,7 +29,7 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
+	Vectr<float> test(-11, 1.5, 0, nullptr) ;
 	
 	/* Init enemies */
 	/*

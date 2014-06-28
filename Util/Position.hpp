@@ -918,11 +918,15 @@ public:
 } ;
 
 /**
- * Gives a representation a vector or direction in 3 dimensions
+ * This class provides facilities for calculating an object's current trajectory,
+ * predicting its next Position, monitoring its speed, maintaining a record of its
+ * last two Positions (for more detailed record keeping of past Positions, see Pos2),
+ * and more.
+ *
  * Note: do not use with unsigned ints
  */
 template<typename N>
-struct DirectionVector : public Position<float> {
+struct Vectr : public Position<float> {
 	
 protected:
     
@@ -947,67 +951,67 @@ protected:
     N absDistanceMoved = 0 ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	DirectionVector(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
+	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
 	void update() ;
 	
 public:
-	DirectionVector(float headingX, float headingY, float headingZ, Position<N> * current_) ;
-	DirectionVector(const Position<N> & mostRecent_, Position<N> * current_) ;
-	DirectionVector(const Position<N> * current_) ;
-	DirectionVector(const DirectionVector<N> & other) ;
-	DirectionVector(DirectionVector<N> && other) ;
-	~DirectionVector() ;
-	DirectionVector & operator=(const DirectionVector<N> & rhs) ;
-	DirectionVector & operator=(DirectionVector<N> && rhs) ;
+	Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) ;
+	Vectr(const Position<N> & mostRecent_, Position<N> * current_) ;
+	Vectr(const Position<N> * current_) ;
+	Vectr(const Vectr<N> & other) ;
+	Vectr(Vectr<N> && other) ;
+	~Vectr() ;
+	Vectr & operator=(const Vectr<N> & rhs) ;
+	Vectr & operator=(Vectr<N> && rhs) ;
 	
 	void normalize() ;
 	void updateAndNormalize() ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> &, float modifier = 1.0) ;
+	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseNextPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseXPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateReverseYPosition(DirectionVector<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
 
 	
-	static Position<N> calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>()) ;
+	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>()) ;
 
 } ;
 
 template<typename N>
-DirectionVector<N>::DirectionVector(float headingX, float headingY, float headingZ, Position<N> * current_) :
+Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
 	Position<float>(headingX, headingY, headingZ),
 	current(current_) {}
 
 template<typename N>
-DirectionVector<N>::DirectionVector(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
+Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_) {}
 
 template<typename N>
-DirectionVector<N>::DirectionVector(const Position<N> * current_) :
+Vectr<N>::Vectr(const Position<N> * current_) :
 	Position<float>(),
     last(*current_),
 	mostRecent(*current_), current(current_) {}
 
 template<typename N>
-DirectionVector<N>::DirectionVector(const DirectionVector<N> & other) :
+Vectr<N>::Vectr(const Vectr<N> & other) :
 	Position<float>(other),
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
     absDistanceMoved(other.absDistanceMoved) {}
 
 template<typename N>
-DirectionVector<N>::DirectionVector(DirectionVector<N> && other) :
+Vectr<N>::Vectr(Vectr<N> && other) :
 	Position<float>(std::move(other)),
     last(std::move(other.last)),
 	mostRecent(std::move(other.mostRecent)), current(other.current),
@@ -1017,13 +1021,13 @@ DirectionVector<N>::DirectionVector(DirectionVector<N> && other) :
 }
 
 template<typename N>
-DirectionVector<N>::~DirectionVector()
+Vectr<N>::~Vectr()
 {
 	this->current = nullptr ;
 }
 
 template<typename N>
-DirectionVector<N> & DirectionVector<N>::operator=(const DirectionVector<N> & rhs) {
+Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 	if (this != &rhs) {
 		this->Position<float>::operator=(rhs) ;
         this->last = Position<N>(rhs.last) ;
@@ -1035,7 +1039,7 @@ DirectionVector<N> & DirectionVector<N>::operator=(const DirectionVector<N> & rh
 }
 
 template<typename N>
-DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
+Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 	if (this != &rhs) {
 		this->Position<float>::operator=(std::move(rhs)) ;
         this->last = Position<N>(rhs.last) ;
@@ -1048,7 +1052,7 @@ DirectionVector<N> & DirectionVector<N>::operator=(DirectionVector<N> && rhs) {
 }
 
 template<typename N>
-void DirectionVector<N>::update() {
+void Vectr<N>::update() {
 
 	if (mostRecent != *current) { //only if we've moved...
         
@@ -1065,7 +1069,7 @@ void DirectionVector<N>::update() {
 }
 
 template<typename N>
-void DirectionVector<N>::normalize() {
+void Vectr<N>::normalize() {
 	auto distance = pythag<float>(x, y) ;
 	if (x != 0) {
 		x = (x / distance) ;
@@ -1077,13 +1081,13 @@ void DirectionVector<N>::normalize() {
 }
 
 template<typename N>
-void DirectionVector<N>::updateAndNormalize() {
+void Vectr<N>::updateAndNormalize() {
 	update() ;
 	normalize() ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, float modifier) {
+Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
 	
 	vec.normalize() ;
 
@@ -1100,7 +1104,7 @@ Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & vec, 
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPositionCh(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateNextPositionCh(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 
 	vec.normalize() ;
 
@@ -1117,7 +1121,7 @@ Position<N> DirectionVector<N>::calculateNextPositionCh(DirectionVector<N> & vec
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseNextPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateReverseNextPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.x = (vec.x * -1) ;
 	vec.y = (vec.y * -1) ;
 	vec.z = (vec.z * -1) ;
@@ -1125,21 +1129,21 @@ Position<N> DirectionVector<N>::calculateReverseNextPosition(DirectionVector<N> 
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseXPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateReverseXPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.x = (vec.x * -1) ;
 	return calculateNextPositionCh(vec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateReverseYPosition(DirectionVector<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.y = (vec.y * -1) ;
 	return calculateNextPositionCh(vec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> DirectionVector<N>::calculateNextPosition(DirectionVector<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
 	Position<float> direc(dir.x, dir.y, dir.z) ;
-	DirectionVector<N> calc = DirectionVector<N>(direc, current, true) ;
+	Vectr<N> calc = Vectr<N>(direc, current, true) ;
 	return calculateNextPositionCh(calc, modifier, check) ;
 }
 
