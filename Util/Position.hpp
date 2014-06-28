@@ -494,6 +494,14 @@ public:
 } ;
 
 /**
+ * Useful for setting random positions. Call Position(FastRand<N>) with this.
+ */
+template<typename N>
+static FastRand<N> randPositionSetter() {
+    return FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
+}
+
+/**
  * Similar to Position, but also holds copies of each of its previous states.
  */
 template<typename N>
@@ -971,7 +979,7 @@ public:
 	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck::defaultCheck<float>()) ;
 
 	
 	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;

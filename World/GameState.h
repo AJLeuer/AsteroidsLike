@@ -135,6 +135,8 @@ Position<N> getWindowOriginAsWorldCoord() {
 
 
 
+
+
 #define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL
 
 #endif /* defined(__GameWorld__GameState__) */

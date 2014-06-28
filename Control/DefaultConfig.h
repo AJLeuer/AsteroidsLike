@@ -10,7 +10,6 @@
 #define GameWorld_DefaultConfig_h
 
 #include "../Util/Util.hpp"
-#include "../Util/BoundsCheck.hpp"
 
 #include <chrono>
 
@@ -84,18 +83,7 @@ extern int WINDOW_ARGS ;
 template<typename N>
 N defaultOffset = 4 ;
 
-/**
- * Useful for setting random positions. Call Position(FastRand<N>) with this.
- */
-template<typename N>
-FastRand<N> randPositionSetter() {
-	return FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
-}
 
-template<typename N>
-BoundsCheck<N> defaultCheck() {
-	return BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
-}
 
 extern chrono::nanoseconds refreshTime ;
 

@@ -320,7 +320,7 @@ public:
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
 	 * Vectr
 	 *
-	 * @param newDirection The new vectorDirection specifying the direction of travel
+	 * @param newDirection The new vector specifying the direction of travel
 	 */
 	void moveNewDirection(Vectr<float> & newDirection) ;
 	
