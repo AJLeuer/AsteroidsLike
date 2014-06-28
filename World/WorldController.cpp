@@ -83,9 +83,9 @@ void WorldController::main() {
 		this_thread::sleep_for(sleepTime) ;
         
        /* Sync loops */
-       while (worldLoopCount > mainGameLoopCount) {
+		while (worldLoopCount > mainGameLoopCount) {
            /* wait */
-       }
+		}
 	}
 }
 
