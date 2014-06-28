@@ -31,7 +31,8 @@ enum class AssetType {
 	block,
 	character,
 	misc,
-    ship,
+    playerShip,
+	enemyShip,
 	UI,
 	weapon
 	//what else do we need?
@@ -44,11 +45,12 @@ enum class AssetType {
  */
 class AssetFileIO {
 	
-	static vector<std::string> * asteroidImageFilenames ;
-	static vector<std::string> * blockImageFilenames ;
-	static vector<std::string> * characterImageFilenames ;
-	static vector<std::string> * miscImageFilenames ;
-	static vector<string> * shipImageFilenames ;
+	static vector<string> * asteroidImageFilenames ;
+	static vector<string> * blockImageFilenames ;
+	static vector<string> * characterImageFilenames ;
+	static vector<string> * miscImageFilenames ;
+	static vector<string> * playerShipImageFilenames ;
+	static vector<string> * enemyShipImageFilenames ;
 	static vector<string> * UIImageFilenames ;
 	static vector<string> * weaponImageFilenames ;
 	

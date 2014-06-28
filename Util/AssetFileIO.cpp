@@ -15,7 +15,6 @@ vector<std::string> * AssetFileIO::asteroidImageFilenames = new vector<string> {
 																					"/Assets/Asteroids/Asteroid0_Gray.png"   } ;
 
 
-
 vector<std::string> * AssetFileIO::blockImageFilenames = new vector<string> {
 																					"/Assets/Blocks/Blocks_01_64x64_Alt_03_001.png",
 																					"/Assets/Blocks/Blocks_01_64x64_Alt_03_002.png",
@@ -55,12 +54,7 @@ vector<std::string> * AssetFileIO::miscImageFilenames = new vector<string> {
 																					"/Assets/Misc/Pill_Green.png",
 																					"/Assets/Misc/Shield_Silver.png" } ;
 
-
-vector<std::string> * AssetFileIO::shipImageFilenames = new vector<string> {
-																					"/Assets/Ships/Enemy_Ship0_Blue.png",
-																					"/Assets/Ships/Enemy_Ship0_Orange.png",
-																					"/Assets/Ships/Enemy_Ship2_Blue.png",
-																					"/Assets/Ships/Enemy_Ship2_Green.png",
+vector<std::string> * AssetFileIO::playerShipImageFilenames = new vector<string> {
 																					"/Assets/Ships/EngineThrust0.png",
 																					"/Assets/Ships/Saucer_Red.png",
 																					"/Assets/Ships/Ship0_Blue.png",
@@ -77,6 +71,13 @@ vector<std::string> * AssetFileIO::shipImageFilenames = new vector<string> {
 																					"/Assets/Ships/Ship2_Damage1.png",
 																					"/Assets/Ships/Ship2_Damage2.png"  } ;
 
+
+vector<std::string> * AssetFileIO::enemyShipImageFilenames = new vector<string> {
+																					"/Assets/Ships/Enemy_Ship0_Blue.png",
+																					"/Assets/Ships/Enemy_Ship0_Orange.png",
+																					"/Assets/Ships/Enemy_Ship2_Blue.png",
+																					"/Assets/Ships/Enemy_Ship2_Green.png", } ;
+
 vector<string> * AssetFileIO::UIImageFilenames = new vector<string> {
 	
 																					"/Assets/UI/Button_Blue.png",
@@ -85,7 +86,6 @@ vector<string> * AssetFileIO::UIImageFilenames = new vector<string> {
 																					"/Assets/UI/Button_Red.png"      } ;
 
 vector<string> * AssetFileIO::weaponImageFilenames = new vector<string> {
-	
 																					"/Assets/Weapons/Explosion0_Blue.png",
 																					"/Assets/Weapons/Explosion0_Green.png",
 																					"/Assets/Weapons/Explosion0_Red.png",
@@ -149,11 +149,22 @@ SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const
 			}
 			break ;
 		}
-		case AssetType::ship:
+		case AssetType::playerShip:
 		{
 			//check the string given to make sure it's a match
-			for (auto i = 0 ; i < shipImageFilenames->size() ; i++) {
-				if (str == shipImageFilenames->at(i)) {
+			for (auto i = 0 ; i < playerShipImageFilenames->size() ; i++) {
+				if (str == playerShipImageFilenames->at(i)) {
+					noMatch = false ;
+					break ;
+				}
+			}
+			break ;
+		}
+		case AssetType::enemyShip:
+		{
+			//check the string given to make sure it's a match
+			for (auto i = 0 ; i < enemyShipImageFilenames->size() ; i++) {
+				if (str == enemyShipImageFilenames->at(i)) {
 					noMatch = false ;
 					break ;
 				}
@@ -234,11 +245,18 @@ string & AssetFileIO::getImageFilename(vector<string>::size_type index, AssetTyp
 			return miscImageFilenames->at(index) ;
 			break ;
 		}
-		case AssetType::ship:
+		case AssetType::playerShip:
 		{
-			BoundsCheck<vector<string>::size_type> bc = BoundsCheck<vector<string>::size_type>(0, shipImageFilenames->size()-1, /*rest of vals don't matter*/ 0, 0) ;
+			BoundsCheck<vector<string>::size_type> bc = BoundsCheck<vector<string>::size_type>(0, playerShipImageFilenames->size()-1, /*rest of vals don't matter*/ 0, 0) ;
 			bc.checkAgainst(&index) ;
-			return shipImageFilenames->at(index) ;
+			return playerShipImageFilenames->at(index) ;
+			break ;
+		}
+		case AssetType::enemyShip:
+		{
+			BoundsCheck<vector<string>::size_type> bc = BoundsCheck<vector<string>::size_type>(0, enemyShipImageFilenames->size()-1, /*rest of vals don't matter*/ 0, 0) ;
+			bc.checkAgainst(&index) ;
+			return enemyShipImageFilenames->at(index) ;
 			break ;
 		}
 		case AssetType::UI:
@@ -282,9 +300,14 @@ std::string & AssetFileIO::getRandomImageFilename(AssetType type) {
 			rnd = FastRand<vector<string>::size_type>(0, miscImageFilenames->size() -1) ;
 			break ;
 		}
-		case AssetType::ship:
+		case AssetType::playerShip:
 		{
-			rnd = FastRand<vector<string>::size_type>(0, shipImageFilenames->size() -1) ;
+			rnd = FastRand<vector<string>::size_type>(0, playerShipImageFilenames->size() -1) ;
+			break ;
+		}
+		case AssetType::enemyShip:
+		{
+			rnd = FastRand<vector<string>::size_type>(0, enemyShipImageFilenames->size() -1) ;
 			break ;
 		}
 		case AssetType::UI:
@@ -322,9 +345,14 @@ AssetType AssetFileIO::getAssetTypeFromImageFile(const string & imageFilename) {
 			return AssetType::misc ;
 		}
 	}
-	for (auto i = 0 ; i < shipImageFilenames->size() ; i++) {
-		if (imageFilename == shipImageFilenames->at(i)) {
-			return AssetType::ship ;
+	for (auto i = 0 ; i < playerShipImageFilenames->size() ; i++) {
+		if (imageFilename == playerShipImageFilenames->at(i)) {
+			return AssetType::playerShip ;
+		}
+	}
+	for (auto i = 0 ; i < enemyShipImageFilenames->size() ; i++) {
+		if (imageFilename == enemyShipImageFilenames->at(i)) {
+			return AssetType::enemyShip ;
 		}
 	}
 	for (auto i = 0 ; i < UIImageFilenames->size() ; i++) {
