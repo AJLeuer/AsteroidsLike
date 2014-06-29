@@ -22,13 +22,17 @@ template<typename N>
 struct BoundsCheck {
     
 protected:
-    static BoundsCheck * defaultCheck_value ;
-    
+	
+    static BoundsCheck * initDefaultCheck() ;
+	
 public:
+	
 	const N min_X ;
 	const N max_X ;
 	const N min_Y ;
 	const N max_Y ;
+	
+	static BoundsCheck * defaultCheck ;
 	
 	BoundsCheck<N>(N min_X_, N max_X_, N min_Y_, N max_Y_) :
 		max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
@@ -57,34 +61,15 @@ public:
 		}
 	}
     
-    /**
-     * A useful default BoundsCheck, included for convenience
-     */
-    static BoundsCheck<N> * defaultCheck() {
-        
-        /* During initialization of static vars and globals, we have to call this
-         * function instead of returning a reference to defaultCheck_value
-         */
-        if (Configuration::isInit == false) {
-            return new BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
-        }
-        /* One time this is called config will have finished initialization and defaultCheck_value will still be null. We'll
-         use that opportunity to init defaultCheck_value */
-        else if ((Configuration::isInit) && (defaultCheck_value == nullptr)) {
-            defaultCheck_value = new BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
-            return defaultCheck_value ;
-        }
-        /* Here we know we already have an initialized defaultCheck_value that we can just pass to the caller */
-        else {
-            return defaultCheck_value ;
-        }
-    }
-
 } ;
 
 template<typename N>
-BoundsCheck<N> * BoundsCheck<N>::defaultCheck_value = nullptr ;
+BoundsCheck<N> * BoundsCheck<N>::defaultCheck = initDefaultCheck() ;
 
+template<typename N>
+BoundsCheck<N> * BoundsCheck<N>::initDefaultCheck() {
+	return new BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
+}
 
 
 #endif /* defined(__GameWorld__BoundsCheck__) */

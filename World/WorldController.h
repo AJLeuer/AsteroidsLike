@@ -19,6 +19,7 @@
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
+#include "../Util/GameRandom.hpp"
 #include "../Util/Time.hpp"
 
 #include "GameState.h"

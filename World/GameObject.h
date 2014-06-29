@@ -18,10 +18,11 @@
 #include <SDL2/SDL_surface.h>
 
 #include "../Util/Debug.h"
-#include "../Util/Size.hpp"
-#include "../Util/Time.hpp"
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
+#include "../Util/Size.hpp"
+#include "../Util/GameRandom.hpp"
+#include "../Util/Time.hpp"
 #include "../Util/AssetFileIO.h"
 
 #include "ForwardDecl.h"

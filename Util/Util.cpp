@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Util.hpp"
+#include "GameRandom.hpp"
 
 using namespace std ;
 

@@ -20,6 +20,7 @@
 #include "Debug.h"
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
+#include "GameRandom.hpp"
 
 
 #include "../Control/Configuration.h"
@@ -269,7 +270,7 @@ public:
 
 	virtual void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
 		setAll(x, y, z) ;
-		checkBounds(check) ;
+		checkBounds(&check) ;
 	}
 
 	virtual void setAll(const Position<N> & other) {
@@ -278,7 +279,7 @@ public:
 
 	virtual void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
 		setAll(other.x, other.y, other.z) ;
-		checkBounds(check) ;
+		checkBounds(&check) ;
 	}
 
 	virtual void setAll(const N n) { setAll(n, n, n) ; }
@@ -425,56 +426,83 @@ public:
 	}
 
 
-	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
+	void checkBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) {
 		
-		if ((this->x /*+ objWidth*/) >= check.max_X) {
+		if ((this->x /*+ objWidth*/) >= check->max_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
 			/* End Debug code */
 			}
-			this->x = check.max_X /*- objWidth*/ - 1 ;
+			this->x = check->max_X /*- objWidth*/ - 1 ;
 		}
-		if (this->x /*- objWidth*/ < check.min_X) {
+		if (this->x /*- objWidth*/ < check->min_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
 			/* End Debug code */
 			}
-			this->x = check.min_X /*+ objWidth*/ ;
+			this->x = check->min_X /*+ objWidth*/ ;
 		}
-		if ((this->y /*+ objHeight*/) >= check.max_Y) {
+		if ((this->y /*+ objHeight*/) >= check->max_Y) {
 			{
 			/* Debug code */
 			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
 			/* End Debug code */
 			}
-			this->y = check.max_Y /*- objHeight*/ - 1 ;
+			this->y = check->max_Y /*- objHeight*/ - 1 ;
 		}
-		if (this->y < check.min_Y) {
+		if (this->y < check->min_Y) {
 			{
 			/* Debug code */
 			DebugOutput << "A Y value was under the global minimum. Increasing value... \n" ;
 			/* End Debug code */
 			}
+			this->y = check->min_Y ;
+		}
+	}
+	
+	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
+		
+		if ((this->x /*+ objWidth*/) >= check.max_X) {
+			{
+				/* Debug code */
+				DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
+				/* End Debug code */
+			}
+			this->x = check.max_X /*- objWidth*/ - 1 ;
+		}
+		if (this->x /*- objWidth*/ < check.min_X) {
+			{
+				/* Debug code */
+				DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
+				/* End Debug code */
+			}
+			this->x = check.min_X /*+ objWidth*/ ;
+		}
+		if ((this->y /*+ objHeight*/) >= check.max_Y) {
+			{
+				/* Debug code */
+				DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
+				/* End Debug code */
+			}
+			this->y = check.max_Y /*- objHeight*/ - 1 ;
+		}
+		if (this->y < check.min_Y) {
+			{
+				/* Debug code */
+				DebugOutput << "A Y value was under the global minimum. Increasing value... \n" ;
+				/* End Debug code */
+			}
 			this->y = check.min_Y ;
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
-		if (((this->x + objWidth) >= check.max_X) || ((this->y + objHeight) >= check.max_Y)) {
+	bool overBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) {
+		if (((this->x + objWidth) >= check->max_X) || ((this->y + objHeight) >= check->max_Y)) {
 			return true ;
 		}
-		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {
-			return true ;
-		}
-		else {
-			return false ;
-		}
-	}
-
-	bool overXBounds(const BoundsCheck<N> & check) {
-		if ((this->x >= check.max_X) || (this->x < check.min_X)) {
+		else if	((this->x < check->min_X) || (this->y < check->min_Y)) {
 			return true ;
 		}
 		else {
@@ -482,8 +510,17 @@ public:
 		}
 	}
 
-	bool overYBounds(const BoundsCheck<N> & check) {
-		if ((this->y >= check.max_Y) || (this->y < check.min_Y)) {
+	bool overXBounds(const BoundsCheck<N> * check) {
+		if ((this->x >= check->max_X) || (this->x < check->min_X)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+
+	bool overYBounds(const BoundsCheck<N> * check) {
+		if ((this->y >= check->max_Y) || (this->y < check->min_Y)) {
 			return true ;
 		}
 		else {
@@ -493,13 +530,7 @@ public:
 
 } ;
 
-/**
- * Useful for setting random positions. Call Position(FastRand<N>) with this.
- */
-template<typename N>
-static FastRand<N> randPositionSetter() {
-    return FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
-}
+
 
 /**
  * Similar to Position, but also holds copies of each of its previous states.
@@ -554,7 +585,7 @@ public:
      * Creates a Pos2 all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Pos2(FastRand<R> rand) :
+	Pos2(FastRand<R> & rand) :
 		Position<N>(rand),
 		pastPositions(new queue<Position<N>>) {}
 
@@ -562,7 +593,7 @@ public:
      * Creates a Pos2 all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Pos2(FastRand<R> rand, const BoundsCheck<N> & check) :
+	Pos2(FastRand<R> & rand, const BoundsCheck<N> & check) :
 		Position<N>(rand, check),
 		pastPositions(new queue<Position<N>>) {}
 
@@ -979,19 +1010,19 @@ public:
 	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck::defaultCheck<float>()) ;
+	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = defaultCheck<float>()) ;
+	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & check = defaultCheck<float>()) ;
+	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 } ;
 

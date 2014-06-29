@@ -21,7 +21,7 @@
 
 #include "../World/GameState.h"
 
-#include "../Control/DefaultConfig.h"
+#include "../Control/Configuration.h"
 
 /* Creating a second header for utility functions since we ran into some trouble 
    with includes */
