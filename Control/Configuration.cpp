@@ -16,14 +16,10 @@ using namespace std ;
 
 //define extern values from DefaultConfig.h as well
 
-//unsigned RESOLUTION_X_BASE_VALUE = 960 ;
-//unsigned RESOLUTION_Y_BASE_VALUE = 540 ;
-
-
 
 /* May be larger than window size to give us buffer space outside the window margins */
-unsigned globalMaxX() { return /*RESOLUTION_X_BASE_VALUE */ DisplayData::getDisplayScalingFactor() ; }
-unsigned globalMaxY()   { return /*RESOLUTION_Y_BASE_VALUE */ DisplayData::getDisplayScalingFactor() ; }
+unsigned globalMaxX() { return RESOLUTION_X_BASE_VALUE * DisplayData::getDisplayScalingFactor() ; }
+unsigned globalMaxY()   { return RESOLUTION_Y_BASE_VALUE * DisplayData::getDisplayScalingFactor() ; }
 
 unsigned RESOLUTION_X_BASE_VALUE = DEFAULT_W_MAX_X ;
 unsigned RESOLUTION_Y_BASE_VALUE = DEFAULT_W_MAX_Y ;
@@ -38,6 +34,8 @@ unsigned windowSizeY() {
 }
 
 Resolution<unsigned> * currentResolution() { return new Resolution<unsigned>(windowSizeX(), windowSizeY()) ; }
+
+Resolution<unsigned> * currentResolutionBaseValue() { return new Resolution<unsigned>(RESOLUTION_X_BASE_VALUE, RESOLUTION_Y_BASE_VALUE) ; }
 
 int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need proper initialization to check for DPI changes */
 
@@ -88,9 +86,9 @@ double Configuration::globalScalingValue() {
 	/* calculate the factor that when multiplied by our base resolution
 	 gives the current resolution - everything else needs to be multiplied
 	 by that same factor */
-	Resolution<unsigned> baseResolution(DEFAULT_W_MAX_X, DEFAULT_W_MAX_Y) ;
-	auto currentRes = currentResolution() ;
-	double factor = *currentRes / baseResolution ;
+	Resolution<unsigned> initialResolution(DEFAULT_W_MAX_X, DEFAULT_W_MAX_Y) ;
+	auto currentRes = currentResolutionBaseValue() ;
+	double factor = *currentRes / initialResolution ;
 	delete currentRes ;
 	
 	

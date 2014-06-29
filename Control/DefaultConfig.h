@@ -79,10 +79,15 @@ extern unsigned windowSizeX() ;
 extern unsigned windowSizeY() ;
 
 /**
- * Returns the current resolution. Delete when
- * done using
+ * Returns the current resolution. Delete when done using.
  */
 extern Resolution<unsigned> * currentResolution() ;
+
+/**
+ * Returns the current resolution, with no adjustments made for DPI. Use with
+ * caution. Delete when done using.
+ */
+extern Resolution<unsigned> * currentResolutionBaseValue() ;
 
 extern int WINDOW_ARGS ;
 
