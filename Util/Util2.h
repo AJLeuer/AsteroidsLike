@@ -75,5 +75,26 @@ Position<N> translateCoords(const Position<N> & coords, const Position<N> & sour
 	return coordsAsDestCoordSystemCoords ;
 }
 
+/**
+ * An implementation of the formula for finding the distance between two points
+ * in Euclidian space, as given at http://en.wikipedia.org/wiki/Euclidean_distance
+ *
+ * @param p The first point
+ * @param q The second point
+ */
+template<typename N>
+N calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
+    auto sum = pow<N>((q.getX() - p.getX()), 2) + pow<N>((q.getY() - p.getY()), 2) + pow<N>((q.getZ() - p.getZ()), 2) ;
+    auto sqRoot = sqrt(sum) ;
+    return sqRoot ;
+}
+
+
+
+
+
+
+
+
 
 #endif /* defined(__GameWorld__Util2__) */

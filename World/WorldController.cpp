@@ -29,11 +29,7 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	float startingYAreaHi = (globalMaxY() * 0.75) ;
-	float startingYAreaLo = (globalMaxY() * 0.25) ;
-	
-
-	DirectionVector<float> test(-11, 1.5, 0, nullptr) ;
+	Vectr<float> test(-11, 1.5, 0, nullptr) ;
 	
 	/* Init enemies */
 	/*

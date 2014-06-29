@@ -27,7 +27,7 @@ using namespace std ;
 class Configuration {
 
 private:
-
+    
 	static ifstream configFile ;
     
     static void doUserOverrides() ;
@@ -35,6 +35,8 @@ private:
 	static void adjustForHiDPI() ;
 
 public:
+    
+    static bool isInit ;
     
     static void init() ;
 

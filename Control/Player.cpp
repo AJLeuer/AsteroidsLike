@@ -13,7 +13,9 @@ using namespace std ;
 Player::Player() :
 	name("Player 1")
 {
-	playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), size, Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()), name, Reaction::friendly, DoA::alive, CharacterState::normal,
+    auto x = (globalMaxX() / 2) ;
+    auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
+	playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), size, Pos2<float>(x, y, 0), /* Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()) */ name, Reaction::friendly, DoA::alive, CharacterState::normal,
         500, 100) ;
 	
 	registerForCallbacks() ;
@@ -22,8 +24,10 @@ Player::Player() :
 Player::Player(const string & name, const string & imageFile) :
 	name(name)
 {
+    auto x = (globalMaxX() / 2) ;
+    auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
 	playerCharacter = Character(pcAssetType, imageFile, size,
-								Pos2<float>(50, 650, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
+								Pos2<float>(x, y, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
 	registerForCallbacks() ;
 }
 

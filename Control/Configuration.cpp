@@ -46,6 +46,8 @@ char * MOVE_DOWN  = (char *)"S" ;
 char * MOVE_LEFT  = (char *)"A" ;
 char * MOVE_RIGHT = (char *)"D" ;
 
+bool Configuration::isInit = false ;
+
 ifstream Configuration::configFile("/Settings/Setting.cfg") ;
 
 
@@ -55,6 +57,8 @@ void Configuration::init() {
     doUserOverrides() ;
 	
 	adjustForHiDPI() ;
+    
+    isInit = true ;
 }
 
 void Configuration::doUserOverrides() {
