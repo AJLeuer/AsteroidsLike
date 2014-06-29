@@ -9,12 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Util/Util.mm"
-            timestampString = "425703318.369278"
+            filePath = "Util/BoundsCheck.hpp"
+            timestampString = "425704838.063839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "initDefaultCheck()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -23,12 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Util/Util.mm"
-            timestampString = "425703326.99314"
+            filePath = "Control/Configuration.cpp"
+            timestampString = "425707260.336199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "10"
-            endingLineNumber = "10">
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "displayScalingFactor()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -37,12 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Util/Util.mm"
-            timestampString = "425703398.477815"
+            filePath = "Control/Configuration.cpp"
+            timestampString = "425707256.307451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12">
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "hiDPI()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

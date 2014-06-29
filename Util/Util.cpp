@@ -11,22 +11,19 @@
 #include "Util.hpp"
 #include "GameRandom.hpp"
 
+
 using namespace std ;
 
-/* The Apple version is defined in Util.mm */
+/* Apple-specific DPI-checking is implemented in Util.mm,
+   Linux and Windows (both todo) are implemented here  */
+
 #ifdef __linux__
 
 //todo implement display scaling checking on linux
-bool hiDPI_Linux = getDisplayScalingFactor_Linux() ;
-float displayScalingFactor_Linux = 1.0 ;
-float getDisplayScalingFactor_Linux() { return false ; }
 
 #elif defined _WIN64
 
 //todo implement display scaling checking on windows
-bool hiDPI_Windows = getDisplayScalingFactor_Windows() ;
-float displayScalingFactor_Windows = 1.0 ;
-float getDisplayScalingFactor_Windows() { return false ; }
 
 #endif
 

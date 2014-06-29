@@ -223,44 +223,6 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 }
 
 
-#ifdef __APPLE__
-
-/**
- * Check if we're running in Retina mode
- */
-extern bool hiDPI_OSX ;
-
-/**
- * The display scaling factor on OS X.
- * For example, if the system is running in Retina mode,
- * this value will be 2.0
- */
-extern float displayScalingFactor_OSX ;
-
-/**
- * Used once to initialize displayScalingFactor_OSX
- * For the sake of efficiency, reference displayScalingFactor_OSX
- * instead of calling this.
- */
-float getDisplayScalingFactor_OSX() ; /* should only call this once ideally, just reference displayScalingFactor_OSX afterwards */
-
-#elif defined __linux__
-
-//todo implement display scaling checking on linux
-extern bool hiDPI_Linux ;
-extern float displayScalingFactor_Linux ;
-float getDisplayScalingFactor_Linux() ;
-
-#elif defined _WIN64
-
-//todo implement display scaling checking on windows
-extern bool hiDPI_Windows;
-extern float displayScalingFactor_Windows ;
-float getDisplayScalingFactor_Windows() ;
-
-#endif
-
-
 inline unsigned termWidth() {
 	unsigned r = atoi(getenv("COLUMNS")) ;
 	return r ;
@@ -276,7 +238,6 @@ inline unsigned termHeight() {
 extern char * basicAlphabet ;
 
 const string generateName(unsigned int length) ;
-
 
 
 
