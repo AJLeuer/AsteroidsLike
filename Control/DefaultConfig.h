@@ -30,6 +30,7 @@ struct Resolution ;
 #define one_millisecond std::chrono::nanoseconds(1000000)
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
+#define sixfour_milliseconds std::chrono::nanoseconds(64000000)
 
 /* Don't change */
 constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;

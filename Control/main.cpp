@@ -20,6 +20,7 @@
 #include "../Util/Position.hpp"
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
+#include "../Util/Velocity.hpp"
 
 #include "../World/GameState.h"
 #include "../World/GameObject.h"
@@ -33,12 +34,9 @@
 
 int main(int argc, char ** argv) {
     
-   
-	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 	
-
 	Debug::init(true) ;
 	
 	MainController::init() ;

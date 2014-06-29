@@ -60,7 +60,7 @@ public:
 	inline std::chrono::nanoseconds checkTimeElapsed() {
 		//returns in micro or nanoseconds
 		if (!timerStarted) {
-			cerr << "stopTimer() can only be called after startTimer() has been called once \n" ;
+			cerr << "checkTimeElapsed() can only be called after startTimer() has been called once \n" ;
 			throw exception() ;
 		}
 		auto duration = chrono::steady_clock::now() - start ;
