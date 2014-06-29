@@ -86,15 +86,12 @@ double Configuration::globalScalingValue() {
 	/* calculate the factor that when multiplied by our base resolution
 	 gives the current resolution - everything else needs to be multiplied
 	 by that same factor */
-	Resolution<unsigned> initialResolution(DEFAULT_W_MAX_X, DEFAULT_W_MAX_Y) ;
+	Resolution<unsigned> refResolution(MAX_X_REFERENCE_VAL, MAX_Y_REFERENCE_VAL) ;
 	auto currentRes = currentResolutionBaseValue() ;
-	double factor = *currentRes / initialResolution ;
+	double factor = *currentRes / refResolution ;
 	delete currentRes ;
 	
-	
-	double val = (1 / factor) ;
-	
-	return val ;
+	return factor ;
 }
 
 

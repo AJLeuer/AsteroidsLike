@@ -30,8 +30,8 @@ using namespace std ;
 template<typename N>
 inline N average(N first, N second) {
 	N sum = (first + second) ;
-	N result = (sum / 2) ;
-	return result ;
+	double result = (static_cast<double>(sum) / static_cast<double>(2)) ;
+	return static_cast<N>(result) ;
 }
 
 

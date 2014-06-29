@@ -79,8 +79,8 @@ public:
 	}
 	
 	float getModifier() const { return sizeModifier ; }
-	N getWidth() const { return ((*(this->w) * sizeModifier) * Configuration::globalScalingValue()) ; }
-	N getHeight() const { return ((*(this->h) * sizeModifier) * Configuration::globalScalingValue()) ; }
+	N getWidth() const { return (*(this->w) * sizeModifier) ; }
+	N getHeight() const { return (*(this->h) * sizeModifier)  ; }
 
 } ;
 

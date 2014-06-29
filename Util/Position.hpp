@@ -1256,16 +1256,16 @@ public:
 	
 	Resolution operator*(const N n) const {
 		
-        auto x_product = (this->x / n) ;
-		auto y_product = (this->y / n) ;
+        auto x_product = (this->x * n) ;
+		auto y_product = (this->y * n) ;
 		
 		return Resolution<N>(x_product, y_product) ;
 	}
 	
 	double operator/(const Resolution & rhs) const {
 		
-        double x_quotient = (this->getX() / rhs.getX()) ;
-		double y_quotient = (this->getY() / rhs.getY()) ;
+        double x_quotient = (static_cast<double>(this->getX()) / static_cast<double>(rhs.getX())) ;
+		double y_quotient = (static_cast<double>(this->getY()) / static_cast<double>(rhs.getY())) ;
 		
 		double avrg = average<double>(x_quotient, y_quotient) ;
 		
