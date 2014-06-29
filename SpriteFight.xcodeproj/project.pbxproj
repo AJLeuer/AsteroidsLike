@@ -64,6 +64,7 @@
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; lineEnding = 0; path = Util.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6678790118DAE25E00618712 /* Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 		6684DDA6195FA6C300E6B997 /* GameRandom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRandom.hpp; sourceTree = "<group>"; };
+		6684DDA7195FAF7C00E6B997 /* Decl_Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decl_Apple.h; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Size.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -136,6 +137,7 @@
 			children = (
 				662FA07718F609B2009E87BE /* Debug.h */,
 				667878FF18DACE9000618712 /* Util.hpp */,
+				6684DDA7195FAF7C00E6B997 /* Decl_Apple.h */,
 				665E4730192FC38800738F85 /* Util2.h */,
 				665DBB5718F4F44F006F2026 /* Position.hpp */,
 				66BE1FBD19226A3A0099FD97 /* Size.hpp */,

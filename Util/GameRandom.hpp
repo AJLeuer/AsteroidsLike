@@ -21,6 +21,7 @@ template<typename T>
 class FastRand {
 	
 private:
+	
 	std::random_device dev ;
 	std::uniform_int_distribution<T> dist ;
 	std::default_random_engine rndm{dev()} ;
@@ -107,20 +108,18 @@ R FastRand<T>::nextValue(R _min, R _max) {
 	return dif_dist(rndm) ;
 }
 
-
-template<typename N>
-FastRand<N> * FastRand<N>::initRandPosSetter() {
-    return FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
-}
-
 template<typename N>
 FastRand<N> * FastRand<N>::randPositionSetter = initRandPosSetter() ;
 
+template<typename N>
+FastRand<N> * FastRand<N>::initRandPosSetter() {
+    return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
+}
 
 /* more useful random functions: */
 
-template<typename T>
-T randSignFlip(T n) {
+template<typename N>
+N randSignFlip(N n) {
 	FastRand<unsigned long> rand(0, 1) ;
 	bool pos = rand.nextValue() % 2 ;
 	if (pos) {

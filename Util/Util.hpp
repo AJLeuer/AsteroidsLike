@@ -9,12 +9,15 @@
 #ifndef GameWorld_Util_h
 #define GameWorld_Util_h
 
+
 #include <iostream>
 #include <thread>
 #include <vector>
 #include <cmath>
 
 #include <SDL2/SDL_rect.h>
+
+
 
 using namespace std ;
 
@@ -220,16 +223,43 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 }
 
 
-
-
+#ifdef __APPLE__
 
 /**
- * Checks if we're running in retina mode
+ * Check if we're running in Retina mode
  */
-#ifdef __APPLE__
-float displayScalingFactorOSX() ;
-bool checkHiDPIOSX() ;
+extern bool hiDPI_OSX ;
+
+/**
+ * The display scaling factor on OS X.
+ * For example, if the system is running in Retina mode,
+ * this value will be 2.0
+ */
+extern float displayScalingFactor_OSX ;
+
+/**
+ * Used once to initialize displayScalingFactor_OSX
+ * For the sake of efficiency, reference displayScalingFactor_OSX
+ * instead of calling this.
+ */
+float getDisplayScalingFactor_OSX() ; /* should only call this once ideally, just reference displayScalingFactor_OSX afterwards */
+
+#elif defined __linux__
+
+//todo implement display scaling checking on linux
+extern bool hiDPI_Linux ;
+extern float displayScalingFactor_Linux ;
+float getDisplayScalingFactor_Linux() ;
+
+#elif defined _WIN64
+
+//todo implement display scaling checking on windows
+extern bool hiDPI_Windows;
+extern float displayScalingFactor_Windows ;
+float getDisplayScalingFactor_Windows() ;
+
 #endif
+
 
 inline unsigned termWidth() {
 	unsigned r = atoi(getenv("COLUMNS")) ;

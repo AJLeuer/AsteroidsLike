@@ -14,11 +14,20 @@ using namespace std ;
 
 //define extern values from DefaultConfig.h as well
 #ifdef __APPLE__
-bool hiDPI() { return checkHiDPIOSX() ; } ;
-float displayScalingFactor() { return displayScalingFactorOSX() ; }
-#else
-bool hiDPI() { return false ; } //todo: add checking on windows and linux
-float displayScalingFactor() { return 1.0 ; }
+
+bool hiDPI() { return hiDPI_OSX ; } ;
+float displayScalingFactor() { return displayScalingFactor_OSX ; }
+
+#elif defined __linux__
+
+bool hiDPI() { return hiDPI_Linux ; } ;
+float displayScalingFactor() { return displayScalingFactor_Linux ; }
+
+#elif defined _WIN64
+
+bool hiDPI() { return hiDPI_Windows ; } ;
+float displayScalingFactor() { return displayScalingFactor_Windows ; }
+
 #endif
 
 /* May be larger than window size to give us buffer space outside the window margins */
