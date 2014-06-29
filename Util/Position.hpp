@@ -22,7 +22,9 @@
 #include "Debug.h"
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
+#include "Speed.hpp"
 #include "GameRandom.hpp"
+
 
 
 //#include "../Control/Configuration.h"
@@ -1007,6 +1009,8 @@ public:
 	
 	void normalize() ;
 	void updateAndNormalize() ;
+	
+	Speed<N> calculateSpeed() ;
 
 	
 	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;

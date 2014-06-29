@@ -24,7 +24,7 @@
 #include "../Util/Debug.h"
 #include "../Util/Position.hpp"
 #include "../Util/BoundsCheck.hpp"
-#include "../Util/Time.hpp"
+#include "../Util/Timer.hpp"
 
 #include "ForwardDecl.h"
 
@@ -68,7 +68,7 @@ public:
 	
 	static bool GLOBAL_CONTINUE_SIGNAL ;
 	
-	static Time * mainGameClock ;
+	static Timer * mainGameClock ;
 	
 	static std::mutex sharedMutex ;
 	

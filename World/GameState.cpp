@@ -20,7 +20,7 @@ SDL_Window * GameState::window = nullptr ;
 SDL_Renderer * GameState::renderer = nullptr ;
 
 bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;
-Time * GameState::mainGameClock = new Time() ;
+Timer * GameState::mainGameClock = new Timer() ;
 std::mutex GameState::sharedMutex ;
 string GameState::currentDirectory ;
 

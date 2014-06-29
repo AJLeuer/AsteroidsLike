@@ -22,7 +22,7 @@
 #include "../Util/Util2.h"
 #include "../Util/Size.hpp"
 #include "../Util/GameRandom.hpp"
-#include "../Util/Time.hpp"
+#include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
 
 #include "ForwardDecl.h"

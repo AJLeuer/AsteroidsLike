@@ -27,9 +27,10 @@ struct Resolution ;
 
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
-
+#define one_millisecond std::chrono::nanoseconds(1000000)
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
+
 /* Don't change */
 constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;

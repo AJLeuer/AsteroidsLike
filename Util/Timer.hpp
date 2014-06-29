@@ -18,7 +18,7 @@ using namespace std ;
 
 
 
-class Time {
+class Timer {
 	
 private:
 	
@@ -29,13 +29,13 @@ private:
 	
 public:
 	
-	inline Time() : timerStarted(false) {}
+	inline Timer() : timerStarted(false) {}
 	
-	inline Time(Time && other) : timerStarted(std::move(other.timerStarted)), start(std::move(other.start)) {}
+	inline Timer(Timer && other) : timerStarted(std::move(other.timerStarted)), start(std::move(other.start)) {}
 	
-	inline ~Time() {}
+	inline ~Timer() {}
 	
-	inline Time & operator=(Time && rhs) {
+	inline Timer & operator=(Timer && rhs) {
 		if (this != &rhs) {
 			timerStarted = rhs.timerStarted ;
 			start = std::move(rhs.start) ;
@@ -45,7 +45,7 @@ public:
 	
 	inline void startTimer() {
 		if (timerStarted) {
-			cerr << "stopTimer() must be called before startTimer() can be called again for this Time object \n" ;
+			cerr << "stopTimer() must be called before startTimer() can be called again for this Timer object \n" ;
 			throw exception() ;
 		}
 		timerStarted = true ;

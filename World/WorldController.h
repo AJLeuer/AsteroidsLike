@@ -20,7 +20,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/GameRandom.hpp"
-#include "../Util/Time.hpp"
+#include "../Util/Timer.hpp"
 
 #include "GameState.h"
 #include "GameMap.hpp"
