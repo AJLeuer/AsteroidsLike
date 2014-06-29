@@ -8,38 +8,36 @@
 
 #include "Configuration.h"
 
+#include "../Util/Position.hpp"
+
 using namespace std ;
 
 /* Many of these values will be overridden */
 
 //define extern values from DefaultConfig.h as well
 
-bool hiDPI() {
-	bool dpi = *(DisplayData::hiDPI) ;
-	return dpi ;
-} ;
+//unsigned RESOLUTION_X_BASE_VALUE = 960 ;
+//unsigned RESOLUTION_Y_BASE_VALUE = 540 ;
 
-float displayScalingFactor() {
-	float factor = DisplayData::displayScalingFactor ;
-	return factor ;
-}
 
 
 /* May be larger than window size to give us buffer space outside the window margins */
-unsigned globalMaxX() { return GLOBAL_MAX_X_BASE_VALUE * displayScalingFactor() ; }
-unsigned globalMaxY()   { return GLOBAL_MAX_Y_BASE_VALUE * displayScalingFactor() ; }
+unsigned globalMaxX() { return /*RESOLUTION_X_BASE_VALUE */ DisplayData::getDisplayScalingFactor() ; }
+unsigned globalMaxY()   { return /*RESOLUTION_Y_BASE_VALUE */ DisplayData::getDisplayScalingFactor() ; }
 
-unsigned LOGICAL_WINDOW_SIZE_X = DEFAULT_W_MAX_X ;
-unsigned LOGICAL_WINDOW_SIZE_Y = DEFAULT_W_MAX_Y ;
+unsigned RESOLUTION_X_BASE_VALUE = DEFAULT_W_MAX_X ;
+unsigned RESOLUTION_Y_BASE_VALUE = DEFAULT_W_MAX_Y ;
 
 /* Default values, will most likely be changed by Configuration::init() */
 unsigned windowSizeX() {
-    return (LOGICAL_WINDOW_SIZE_X * displayScalingFactor()) ;
+    return (RESOLUTION_X_BASE_VALUE * DisplayData::getDisplayScalingFactor()) ;
 }
 
 unsigned windowSizeY() {
-    return (LOGICAL_WINDOW_SIZE_Y * displayScalingFactor()) ;
+    return (RESOLUTION_Y_BASE_VALUE * DisplayData::getDisplayScalingFactor()) ;
 }
+
+Resolution<unsigned> * currentResolution() { return new Resolution<unsigned>(windowSizeX(), windowSizeY()) ; }
 
 int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need proper initialization to check for DPI changes */
 
@@ -61,17 +59,18 @@ void Configuration::init() {
     doUserOverrides() ;
 	
 	adjustForHiDPI() ;
-    
+	
     isInit = true ;
 }
 
 void Configuration::doUserOverrides() {
 	//todo
+	//e.g. user may want to change LOGICAL_WINDOW_SIZE
 }
 
 
 void Configuration::adjustForHiDPI() {
-	if (hiDPI()) {
+	if (DisplayData::hiDPI()) {
 		WINDOW_ARGS = (SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ;
 	}
 	else {
@@ -80,6 +79,24 @@ void Configuration::adjustForHiDPI() {
 	}
 }
 
+double Configuration::globalScalingValue() {
+	
+	if (isInit == false) {
+		init() ;
+	}
 
+	/* calculate the factor that when multiplied by our base resolution
+	 gives the current resolution - everything else needs to be multiplied
+	 by that same factor */
+	Resolution<unsigned> baseResolution(DEFAULT_W_MAX_X, DEFAULT_W_MAX_Y) ;
+	auto currentRes = currentResolution() ;
+	double factor = *currentRes / baseResolution ;
+	delete currentRes ;
+	
+	
+	double val = (1 / factor) ;
+	
+	return val ;
+}
 
 

@@ -10,6 +10,8 @@
 #ifndef GameWorld_Position_h
 #define GameWorld_Position_h
 
+
+#include <cmath>
 #include <iostream>
 #include <ostream>
 #include <sstream>
@@ -23,7 +25,7 @@
 #include "GameRandom.hpp"
 
 
-#include "../Control/Configuration.h"
+//#include "../Control/Configuration.h"
 
 
 using namespace std ;
@@ -1212,6 +1214,91 @@ extern Position<T> transPosition(const Position<T> & inGameWorld) {
 	
 	return Position<T>(x, y, 0) ;
 }
+
+template<typename N>
+struct Resolution : public Position<N> {
+	
+private:
+	
+	N getZ() const { return 0 ; }
+	
+	virtual void setZ(const N z) {}
+	
+public:
+	
+	Resolution() :
+		Position<N>(0, 0 , 0) {}
+	
+	Resolution(N x, N y) :
+		Position<N>(x, y, 0) {}
+	
+	Resolution(const Resolution & other) :
+		Position<N>(other) {}
+	
+	Resolution(Resolution && other) :
+		Position<N>(std::move(other)) {}
+	
+	Resolution & operator=(const Resolution & rhs) {
+		if (this != &rhs) {
+			this->Position<N>::operator=(rhs) ;
+		}
+		return *this ;
+	}
+	
+	~Resolution() {}
+	
+	Resolution & operator=(Resolution && rhs) {
+		if (this != &rhs) {
+			this->Position<N>::operator=(std::move(rhs)) ;
+		}
+		return *this ;
+	}
+	
+	Resolution operator*(const N n) const {
+		
+        auto x_product = (this->x / n) ;
+		auto y_product = (this->y / n) ;
+		
+		return Resolution<N>(x_product, y_product) ;
+	}
+	
+	double operator/(const Resolution & rhs) const {
+		
+        double x_quotient = (this->getX() / rhs.getX()) ;
+		double y_quotient = (this->getY() / rhs.getY()) ;
+		
+		double avrg = average<double>(x_quotient, y_quotient) ;
+		
+		return avrg ;
+	}
+	
+	friend ostream & operator<<(std::ostream & os, const Resolution<N> * pos) {
+		os << pos->x << "x" << pos->y << '\n' ;
+		return os ;
+	}
+	
+	friend ostream & operator<<(std::ostream & os, const Resolution<N> & pos) {
+		os << pos.x << "x" << pos.y << '\n' ;
+		return os ;
+	}
+	
+} ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

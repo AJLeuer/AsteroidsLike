@@ -14,7 +14,7 @@
 #include <AppKit/NSScreen.h>
 #include <Foundation/NSArray.h>
 
-extern NSArray * screens ;
+NSArray * screens ;
 
 #endif
 

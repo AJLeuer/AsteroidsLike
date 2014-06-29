@@ -42,7 +42,9 @@ private:
 	 */
 	static void calculateDisplayScalingFactor() ; /* should only call this once ideally, just reference displayScalingFactor afterwards */
 	
+	
 public:
+	
 	
 	/**
 	 * Check if we're running in Retina mode
@@ -57,6 +59,8 @@ public:
 	static float getDisplayScalingFactor() ;
 	
 } ;
+
+
 
 
 #endif

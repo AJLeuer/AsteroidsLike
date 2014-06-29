@@ -15,6 +15,10 @@
 
 using namespace std ;
 
+/* Forward declaring... */
+template<typename N>
+struct Resolution ;
+
 
 /**
  * This header holds important data and definitions used throughout the program
@@ -28,42 +32,38 @@ using namespace std ;
 													         etc., instead of nano. */
 
 /* Default value for window height and width, will almost always be overridden */
-constexpr unsigned GLOBAL_MAX_X_BASE_VALUE = 960 ;
-constexpr unsigned GLOBAL_MAX_Y_BASE_VALUE = 540 ;
+
 
 constexpr unsigned DEFAULT_W_MAX_X = 960 ;
 constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
-
-extern bool hiDPI() ;
-extern float displayScalingFactor() ;
 
 extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */
 extern unsigned globalMaxY() ;
 
 /**
- * Refer to LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y only for telling the OS
+ * Refer to RESOLUTION_X_BASE_VALUE and RESOLUTION_Y_BASE_VALUE only for telling the OS
  * or renderer how large our window should be. Everything else should refer
  * to windowSizeX() and windowSizeY().
- * LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y give only the number of LOGICAL
+ * RESOLUTION_X_BASE_VALUE and RESOLUTION_Y_BASE_VALUE give only the number of LOGICAL
  * pixels, which can be represented by a varying number of physical pixels, depending
  * on DPI settings.
  */
-extern unsigned LOGICAL_WINDOW_SIZE_X ;
+extern unsigned RESOLUTION_X_BASE_VALUE ;
 
 /**
- * Refer to LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y only for telling the OS
+ * Refer to RESOLUTION_X_BASE_VALUE and RESOLUTION_Y_BASE_VALUE only for telling the OS
  * or renderer how large our window should be. Everything else should refer
  * to windowSizeX() and windowSizeY().
- * LOGICAL_WINDOW_SIZE_X and LOGICAL_WINDOW_SIZE_Y give only the number of LOGICAL
+ * RESOLUTION_X_BASE_VALUE and RESOLUTION_Y_BASE_VALUE give only the number of LOGICAL
  * pixels, which can be represented by a varying number of physical pixels, depending
  * on DPI settings.
  */
-extern unsigned LOGICAL_WINDOW_SIZE_Y ;
+extern unsigned RESOLUTION_Y_BASE_VALUE ;
 
 /**
  * Any function that needs information about the size of the window should
- * refer to windowSizeX() or windowSizeY(). Unlike LOGICAL_WINDOW_SIZE_X and
- * LOGICAL_WINDOW_SIZE_Y, these values will vary depending on our DPI settings.
+ * refer to windowSizeX() or windowSizeY(). Unlike RESOLUTION_X_BASE_VALUE and
+ * RESOLUTION_Y_BASE_VALUE, these values will vary depending on our DPI settings.
  * windowSizeX() and windowSizeY() always give the ACTUAL number of pixels,
  * regardless of DPI settings.
  */
@@ -71,12 +71,18 @@ extern unsigned windowSizeX() ;
 
 /**
  * Any function that needs information about the size of the window should
- * refer to windowSizeX() or windowSizeY(). Unlike LOGICAL_WINDOW_SIZE_X and
- * LOGICAL_WINDOW_SIZE_Y, these values will vary depending on our DPI settings.
+ * refer to windowSizeX() or windowSizeY(). Unlike RESOLUTION_X_BASE_VALUE and
+ * RESOLUTION_Y_BASE_VALUE, these values will vary depending on our DPI settings.
  * windowSizeX() and windowSizeY() always give the ACTUAL number of pixels,
  * regardless of DPI settings.
  */
 extern unsigned windowSizeY() ;
+
+/**
+ * Returns the current resolution. Delete when
+ * done using
+ */
+extern Resolution<unsigned> * currentResolution() ;
 
 extern int WINDOW_ARGS ;
 

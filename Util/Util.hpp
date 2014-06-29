@@ -21,6 +21,20 @@
 
 using namespace std ;
 
+/**
+ * @param first The first value to average
+ * @param second The second value to average
+ *
+ * @return The average of the two values
+ */
+template<typename N>
+inline N average(N first, N second) {
+	N sum = (first + second) ;
+	N result = (sum / 2) ;
+	return result ;
+}
+
+
 
 template<typename T>
 T setUnsigned(T n) {
@@ -29,7 +43,6 @@ T setUnsigned(T n) {
 	}
 	return n ;
 }
-
 
 
 template<typename T>

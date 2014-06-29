@@ -13,6 +13,7 @@
 #include <sstream>
 
 #include "Position.hpp"
+#include "../Control/Configuration.h"
 
 template<typename N>
 struct Size : public Position<N> {
@@ -78,8 +79,8 @@ public:
 	}
 	
 	float getModifier() const { return sizeModifier ; }
-	N getWidth() const { return (*(this->w) * sizeModifier) ; }
-	N getHeight() const { return (*(this->h) * sizeModifier) ; }
+	N getWidth() const { return ((*(this->w) * sizeModifier) * Configuration::globalScalingValue()) ; }
+	N getHeight() const { return ((*(this->h) * sizeModifier) * Configuration::globalScalingValue()) ; }
 
 } ;
 

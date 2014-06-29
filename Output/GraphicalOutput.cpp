@@ -32,12 +32,12 @@ void GraphicalOutput::init() {
 	auto winX = windowSizeX() ;
 	auto winY = windowSizeY() ;
 	/* end debug code */
-
+	
 	window = SDL_CreateWindow("T^2",
 							  SDL_WINDOWPOS_CENTERED,   // x position, centered
 							  SDL_WINDOWPOS_CENTERED,   // y position, centered
-							  LOGICAL_WINDOW_SIZE_X,			// width, in logical (but not necessarily actual) pixels
-							  LOGICAL_WINDOW_SIZE_Y,			// height, in logical (but not necessarily actual) pixels
+							  RESOLUTION_X_BASE_VALUE,			// width, in logical (but not necessarily actual) pixels
+							  RESOLUTION_Y_BASE_VALUE,			// height, in logical (but not necessarily actual) pixels
 							  WINDOW_ARGS) ;
 	
 	{
@@ -74,7 +74,6 @@ void GraphicalOutput::init() {
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
-
 	GameState::initGraphics(window, renderer) ;
 }
 
