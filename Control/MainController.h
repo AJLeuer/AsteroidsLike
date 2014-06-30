@@ -14,6 +14,7 @@
 #include <SDL2/SDL.h>
 
 #include "../Util/Debug.h"
+#include "../Util/Velocity.hpp"
 #include "../Util/Timer.hpp"
 
 #include "../Output/GraphicalOutput.h"

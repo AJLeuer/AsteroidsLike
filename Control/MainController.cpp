@@ -83,7 +83,9 @@ void MainController::main() {
 
 void MainController::exit() {
 
-	GLOBAL_CONTINUE_SIGNAL = false ; 
+	GLOBAL_CONTINUE_SIGNAL = false ;
+	velocityMonitorContinueSignal = false ;
+	/* other signals to define false here? */
 
 	WorldController::exit() ;
 	GraphicalOutput::exit() ;

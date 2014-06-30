@@ -1045,20 +1045,14 @@ Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * cu
 	Position<float>(headingX, headingY, headingZ),
 	current(current_),
 	totalDistanceMoved(new N),
-	velocity(new Velocity<N>(totalDistanceMoved))
-{
-	velocity->monitorVelocity() ;
-}
+	velocity(new Velocity<N>(totalDistanceMoved)) {}
 
 template<typename N>
 Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_),
 	totalDistanceMoved(new N),
-	velocity(new Velocity<N>(totalDistanceMoved))
-{
-	velocity->monitorVelocity() ;
-}
+	velocity(new Velocity<N>(totalDistanceMoved)) {}
 
 
 template<typename N>
@@ -1067,10 +1061,7 @@ Vectr<N>::Vectr(const Position<N> * current_) :
     last(*current_),
 	mostRecent(*current_), current(current_),
 	totalDistanceMoved(new N),
-	velocity(new Velocity<N>(totalDistanceMoved))
-{
-	velocity->monitorVelocity() ;
-}
+	velocity(new Velocity<N>(totalDistanceMoved)) {}
 
 
 template<typename N>
@@ -1080,10 +1071,7 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	mostRecent(Position<N>(other.mostRecent)),
     absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(new N(*other.totalDistanceMoved)),
-	velocity(new Velocity<N>(totalDistanceMoved))
-{
-	velocity->monitorVelocity() ;
-}
+	velocity(new Velocity<N>(totalDistanceMoved)) {}
 
 
 template<typename N>
@@ -1130,7 +1118,6 @@ Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 		this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
 		this->velocity = new Velocity<N>(totalDistanceMoved) ;
 		
-		velocity->monitorVelocity() ;
 	}
 	return *this ;
 }
