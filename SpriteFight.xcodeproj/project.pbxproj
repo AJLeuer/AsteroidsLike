@@ -18,6 +18,7 @@
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
 		664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB01939E6BE008F4CD1 /* Player.cpp */; };
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
+		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
 		66776634195AE63400212190 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776633195AE63400212190 /* AppKit.framework */; };
 		66776636195AE90C00212190 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776635195AE90C00212190 /* Foundation.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
@@ -54,6 +55,7 @@
 		664BFFB01939E6BE008F4CD1 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Player.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		664BFFB11939E6BE008F4CD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Player.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		664BFFB7193A0730008F4CD1 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Input.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		6652B7F019610BE700243106 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Navigator.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Util2.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -156,6 +158,7 @@
 				6617B185190D725C004B442B /* AssetFileIO.h */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
+				6652B7F019610BE700243106 /* Timer.cpp */,
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
 			);
 			path = Util;
@@ -278,6 +281,7 @@
 				66E97F5518CF1892002EFA00 /* Ability.cpp in Sources */,
 				66E97F5218CF17F6002EFA00 /* GameEvent.cpp in Sources */,
 				6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */,
+				6652B7F119610BE700243106 /* Timer.cpp in Sources */,
 				664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */,
 				66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */,
 				1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */,

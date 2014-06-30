@@ -13,6 +13,7 @@
 #include <thread>
 #include <mutex>
 
+
 #include "Timer.hpp"
 #include "../Control/Configuration.h"
 
@@ -31,13 +32,13 @@ protected:
 	
 	/**
 	 * The unit of time that will function as the denominator
-	 * for this Velocity object. By default it is one millisecond.
+	 * for this Velocity object. By default it is 64 milliseconds.
 	 */
 	chrono::nanoseconds baseTimeUnit = sixfour_milliseconds ;
 	
 	double lastVelocity = 0 ;
 	
-	bool cont = true ;
+	bool * cont = new bool(true) ;
 	
 	void calculateVelocity() ;
 	
@@ -49,7 +50,7 @@ public:
 	 * Velocity detects that distance has changed from its initial value,
 	 * it will begin monitoring speed.
 	 * 
-	 * @param distance A pointer to the distance covered by the client class, which should change over time
+	 * @param distance A pointer to the distance covered by the client class, which Velocity expects to change over time
 	 */
 	Velocity(const Distance * distance) :
 		distance(distance),
@@ -59,88 +60,117 @@ public:
 		timer->startTimer() ;
 	}
 	
-	Velocity(const Distance * distance, chrono::nanoseconds newbaseTimeUnit) :
+	Velocity(const Distance * distance, chrono::nanoseconds baseTimeUnitOverride) :
 		distance(distance),
 		timer(new Timer()),
 		velMutex(new mutex()),
-		baseTimeUnit(newbaseTimeUnit)
+		baseTimeUnit(baseTimeUnitOverride)
 	{
 		timer->startTimer() ;
 	}
 	
-	
 	Velocity(const Velocity & other) :
 		distance(other.distance),
-		timer(other.timer),
-		velMutex(other.velMutex),
-		baseTimeUnit(other.baseTimeUnit) {}
-	 
-	
+		timer(new Timer),
+		velMutex(new mutex),
+		cont(new bool(other.cont)),
+		baseTimeUnit(other.baseTimeUnit)
+	{
+		timer->startTimer() ;
+	}
+
 	Velocity(Velocity && other) :
 		distance(other.distance),
 		timer(other.timer),
 		velMutex(other.velMutex),
+		cont(other.cont),
 		baseTimeUnit(other.baseTimeUnit)
 	{
 		other.distance = nullptr ;
 		other.timer = nullptr ;
 		other.velMutex = nullptr ;
+		other.cont = nullptr ;
 	}
-	
+
 	~Velocity() {
-		distance = nullptr ;
-		delete timer ;
-		delete velMutex ;
+	
+		if (cont != nullptr) {
+			
+			*cont = false ;
+		
+			velMutex->lock() ;
+		
+			distance = nullptr ;
+			
+			if (timer != nullptr) {
+				delete timer ;
+				timer = nullptr ;
+			}
+			
+			delete cont ;
+		
+			velMutex->unlock() ;
+			delete velMutex ;
+		}
 	}
 	
-	
+
 	Velocity & operator=(const Velocity & rhs) {
+		
 		if (this != &rhs) {
+			delete timer ;
+			delete velMutex ;
+			delete cont ;
+			
 			this->distance = rhs.distance ;
-			this->timer = rhs.timer ;
-			this->velMutex = rhs.velMutex ;
+			this->timer = new Timer ;
+			this->velMutex = new mutex ;
+			this->cont = new bool(rhs.cont) ;
 			baseTimeUnit = rhs.baseTimeUnit ;
+			
+			timer->startTimer() ;
 		}
 		return *this ;
 	}
-	 
+
 	
+
 	Velocity & operator=(Velocity && rhs) {
+		
 		if (this != &rhs) {
+			delete timer ;
+			delete velMutex ;
+			
 			this->distance = rhs.distance ;
 			this->timer = rhs.timer ;
 			this->velMutex = rhs.velMutex ;
+			this->cont = rhs.cont ;
 			baseTimeUnit = rhs.baseTimeUnit ;
+			
 			rhs.distance = nullptr ;
 			rhs.timer = nullptr ;
 			rhs.velMutex = nullptr ;
+			rhs.cont = nullptr ;
 		}
 		return *this ;
 	}
-	
-	void selfDestruct() {
-		cont = false ;
-		delete this ;
-	}
-	
-	const double * operator()() {
-		return &lastVelocity ;
-	}
-	
+
 	const double * getValue() {
 		return &lastVelocity ;
 	}
 	 
-	/* Should only be called on its own thread */
+	
 	void monitorVelocity() {
 		
-		auto velocityMonitor = [&] {
-			while(cont) {
+		auto velocityMonitorLambda = [this] () -> void {
+			while((cont != nullptr) && (timer != nullptr) && (*cont)) {
+				velMutex->lock() ;
 				this->calculateVelocity() ;
+				velMutex->unlock() ;
 			}
 		} ;
 		
-		std::thread thr(velocityMonitor) ;
+		std::thread thr(velocityMonitorLambda) ;
 		thr.detach() ;
 	}
 	
@@ -151,33 +181,27 @@ public:
 	and only on its own thread */
 template<typename N>
 void Velocity<N>::calculateVelocity() {
-		
-	const auto time0 = timer->checkTimeElapsed() ;
+	
 	const N dist0 = *distance ;
+	const auto time0 = timer->checkTimeElapsed() ;
 	
-	long long check = 0 ;
-	while (check < this->baseTimeUnit.count()) {
-		/* wait */
-		auto chTime0 = timer->checkTimeElapsed() ;
-		check += (chTime0 - time0).count() ;
-	}
+	this_thread::sleep_for(baseTimeUnit) ;
 	
-	auto time1 = timer->checkTimeElapsed() ;
 	const N dist1 = *distance ;
+	auto time1 = timer->checkTimeElapsed() ;
 	
-	auto timeDiff = time1 - time0 ;
-	const N dist = dist1 - dist0 ;
-	auto ttime = timeDiff.count() ;
-	
-	double vel = (dist / ttime) ;
+	const N totalDistance = dist1 - dist0 ;
+	auto totalTime = time1 - time0 ;
+
+	double velocity = (totalDistance / totalTime.count()) ;
 	
 	/* debug */
-	if (vel > 0) {
+	if (velocity > 0) {
 		;
 	}
 	/* end debug */
 	
-	lastVelocity = vel ;
+	lastVelocity = velocity ;
 }
 
 #endif

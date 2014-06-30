@@ -14,8 +14,8 @@
 
 #include "Debug.h"
 
-using namespace std ;
 
+using namespace std ;
 
 
 class Timer {
@@ -29,43 +29,25 @@ private:
 	
 public:
 	
-	inline Timer() : timerStarted(false) {}
+	Timer() ;
 	
-	inline Timer(Timer && other) : timerStarted(std::move(other.timerStarted)), start(std::move(other.start)) {}
+	Timer(Timer && other) ;
 	
-	inline ~Timer() {}
+	~Timer() ;
 	
-	inline Timer & operator=(Timer && rhs) {
-		if (this != &rhs) {
-			timerStarted = rhs.timerStarted ;
-			start = std::move(rhs.start) ;
-		}
-		return *this ;
-	}
+	Timer & operator=(Timer && rhs) ;
 	
-	inline void startTimer() {
-		if (timerStarted) {
-			cerr << "stopTimer() must be called before startTimer() can be called again for this Timer object \n" ;
-			throw exception() ;
-		}
-		timerStarted = true ;
-		start = chrono::steady_clock::now() ;
-	}
+	/**
+	 * Starts the timer
+	 */
+	void startTimer() ;
 	
 	/**
 	 * 1 millisecond = 1000000 nanoseconds
 	 *
 	 * @return The time elapsed in nanoseconds.
 	 */
-	inline std::chrono::nanoseconds checkTimeElapsed() {
-		//returns in micro or nanoseconds
-		if (!timerStarted) {
-			cerr << "checkTimeElapsed() can only be called after startTimer() has been called once \n" ;
-			throw exception() ;
-		}
-		auto duration = chrono::steady_clock::now() - start ;
-		return duration ;
-	}
+	std::chrono::nanoseconds checkTimeElapsed() ;
 	
 	/**
 	 * Stops timer and returns the time elapsed.
@@ -74,16 +56,7 @@ public:
 	 *
 	 * @return The time elapsed in nanoseconds.
 	 */
-	inline std::chrono::nanoseconds stopTimer() {
-		
-		if (!timerStarted) {
-			cerr << "stopTimer() can only be called after startTimer() has been called once \n" ;
-			throw exception() ;
-		}
-		auto duration = chrono::steady_clock::now() - start ;
-		timerStarted = false ;
-		return duration ;
-	}
+	std::chrono::nanoseconds stopTimer() ;
 } ;
 
 

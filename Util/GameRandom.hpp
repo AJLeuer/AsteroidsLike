@@ -50,8 +50,8 @@ public:
 
 template<typename T>
 FastRand<T>::FastRand(T _min, T _max) :
-min(_min),
-max(_max)
+	min(_min),
+	max(_max)
 {
 	//dev ;
 	dist = uniform_int_distribution<T>(min, max) ;

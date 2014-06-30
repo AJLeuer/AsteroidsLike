@@ -993,7 +993,7 @@ protected:
      */
     N absDistanceMoved = 0 ;
 	
-	N totalDistanceMoved = 0 ;
+	N * totalDistanceMoved ;
 	
 	/**
 	 * Monitors velocity
@@ -1044,7 +1044,8 @@ template<typename N>
 Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
 	Position<float>(headingX, headingY, headingZ),
 	current(current_),
-	velocity(new Velocity<N>(&totalDistanceMoved))
+	totalDistanceMoved(new N),
+	velocity(new Velocity<N>(totalDistanceMoved))
 {
 	velocity->monitorVelocity() ;
 }
@@ -1053,20 +1054,24 @@ template<typename N>
 Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_),
-	velocity(new Velocity<N>(&totalDistanceMoved))
+	totalDistanceMoved(new N),
+	velocity(new Velocity<N>(totalDistanceMoved))
 {
 	velocity->monitorVelocity() ;
 }
+
 
 template<typename N>
 Vectr<N>::Vectr(const Position<N> * current_) :
 	Position<float>(),
     last(*current_),
 	mostRecent(*current_), current(current_),
-	velocity(new Velocity<N>(&totalDistanceMoved))
+	totalDistanceMoved(new N),
+	velocity(new Velocity<N>(totalDistanceMoved))
 {
 	velocity->monitorVelocity() ;
 }
+
 
 template<typename N>
 Vectr<N>::Vectr(const Vectr<N> & other) :
@@ -1074,8 +1079,12 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
     absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(other.totalDistanceMoved),
-	velocity(other.velocity) {}
+	totalDistanceMoved(new N(*other.totalDistanceMoved)),
+	velocity(new Velocity<N>(totalDistanceMoved))
+{
+	velocity->monitorVelocity() ;
+}
+
 
 template<typename N>
 Vectr<N>::Vectr(Vectr<N> && other) :
@@ -1087,6 +1096,7 @@ Vectr<N>::Vectr(Vectr<N> && other) :
 	velocity(other.velocity)
 {
 	other.current = nullptr ;
+	other.totalDistanceMoved = nullptr ;
 	other.velocity = nullptr ;
 }
 
@@ -1094,19 +1104,33 @@ template<typename N>
 Vectr<N>::~Vectr()
 {
 	this->current = nullptr ;
-	velocity->selfDestruct() ;
+	
+	if (totalDistanceMoved != nullptr) {
+		delete totalDistanceMoved ;
+	}
+	
+	if (velocity != nullptr) {
+		delete velocity;
+	}
 }
 
 template<typename N>
 Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 	if (this != &rhs) {
+		
+		delete current ;
+		delete totalDistanceMoved ;
+		velocity->selfDestruct() ;
+		
 		this->Position<float>::operator=(rhs) ;
         this->last = Position<N>(rhs.last) ;
 		this->mostRecent = Position<N>(rhs.mostRecent) ;
 		this->current = rhs.current ;
         this->absDistanceMoved = rhs.absDistanceMoved ;
-		this->totalDistanceMoved = rhs.totalDistanceMoved ;
-		this->velocity = rhs.velocity ;
+		this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
+		this->velocity = new Velocity<N>(totalDistanceMoved) ;
+		
+		velocity->monitorVelocity() ;
 	}
 	return *this ;
 }
@@ -1114,6 +1138,7 @@ Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 template<typename N>
 Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 	if (this != &rhs) {
+		
 		this->Position<float>::operator=(std::move(rhs)) ;
         this->last = Position<N>(rhs.last) ;
 		this->mostRecent = Position<N>(rhs.mostRecent) ;
@@ -1121,7 +1146,9 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
         this->absDistanceMoved = rhs.absDistanceMoved ;
 		this->totalDistanceMoved = rhs.totalDistanceMoved ;
 		this->velocity = rhs.velocity ;
+		
 		rhs.current = nullptr ;
+		rhs.totalDistanceMoved = nullptr ;
 		rhs.velocity = nullptr ;
 	}
 	return *this ;
@@ -1133,7 +1160,7 @@ void Vectr<N>::update() {
 	if (mostRecent != *current) { //only if we've moved...
         
         absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
-		totalDistanceMoved += absDistanceMoved ;
+		*totalDistanceMoved += absDistanceMoved ;
         
 		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator+() overload to add
 															       our x, y, and z (which are offset values) to those
