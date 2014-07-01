@@ -37,14 +37,7 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
     
-    float a = 5 ;
-    Velocity<float> a1(&a) ;
-    
-    Velocity<float> b2 = std::move(a1) ;
-    
-    Velocity<float> c3 = b2 ;
-    
-    Velocity<float> d4(c3) ;
+
     
 	
 	

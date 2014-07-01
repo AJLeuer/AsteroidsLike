@@ -120,7 +120,7 @@ FastRand<N> * FastRand<N>::initRandPosSetter() {
 
 template<typename N>
 N randSignFlip(N n) {
-	FastRand<unsigned long> rand(0, 1) ;
+	FastRand<unsigned short> rand(0, 1) ;
 	bool pos = rand.nextValue() % 2 ;
 	if (pos) {
 		return n ;

@@ -268,8 +268,10 @@ void Velocity<N>::monitorVelocity() {
 template<typename N>
 void Velocity<N>::calculateVelocity() {
 	
+    /* debug var */
 	auto * vs = &velocityStorage ;
-	
+	/* end debug */
+    
 	for (auto i = 0 ; i < velocityStorage.size() ; i++) {
 		
 		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1)) {

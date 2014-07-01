@@ -441,6 +441,56 @@ void GameObject::moveTo(Position<float> to) {
 	}
 }
 
+void GameObject::moveRandomDirection() {
+    
+    FastRand<unsigned> randm(0, 7) ;
+    
+    unsigned r = randm() ;
+    
+    switch (r) {
+        case 0:
+        {
+            moveUp() ;
+            break;
+        }
+        case 1:
+        {
+            moveDown() ;
+            break;
+        }
+        case 2:
+        {
+            moveRight() ;
+            break;
+        }
+        case 3:
+        {
+            moveLeft() ;
+            break;
+        }
+        case 4:
+        {
+            moveUpRight() ;
+            break;
+        }
+        case 5:
+        {
+            moveUpLeft() ;
+            break;
+        }
+        case 6:
+        {
+            moveDownRight() ;
+            break;
+        }
+        case 7:
+        {
+            moveDownLeft() ;
+            break;
+        }
+    }
+}
+
 void GameObject::jump() {
 	vectr.normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(vectr, 10.0) ;
@@ -476,7 +526,7 @@ void GameObject::defaultBehaviors_threaded() {
 }
 
 void GameObject::defaultBehaviors() {
-	wander() ;
+	moveSameDirection() ;
 }
 
 void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {

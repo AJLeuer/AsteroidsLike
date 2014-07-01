@@ -60,6 +60,13 @@ void WorldController::begin_main() {
 void WorldController::main() {
 	
 	auto rt = refreshTime ; //debug symbol
+    
+    /* start the gameobjects moving */
+    for (auto i = 0 ; i < gameObjects->size() ; i++) {
+        if (gameObjects->at(i) != nullptr) {
+            gameObjects->at(i)->moveRandomDirection();
+        }
+    }
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
