@@ -15,7 +15,7 @@ Player::Player() :
 {
     auto x = (globalMaxX() / 2) ;
     auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
-	playerCharacter = Character(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), size, Pos2<float>(x, y, 0), /* Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()) */ name, Reaction::friendly, DoA::alive, CharacterState::normal,
+	playerCharacter = PlayerCharacter(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), size, Pos2<float>(x, y, 0), /* Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()) */ name, Reaction::friendly, DoA::alive, CharacterState::normal,
         500, 100) ;
 	
 	registerForCallbacks() ;
@@ -26,7 +26,7 @@ Player::Player(const string & name, const string & imageFile) :
 {
     auto x = (globalMaxX() / 2) ;
     auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
-	playerCharacter = Character(pcAssetType, imageFile, size,
+	playerCharacter = PlayerCharacter(pcAssetType, imageFile, size,
 								Pos2<float>(x, y, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
 	registerForCallbacks() ;
 }

@@ -104,7 +104,7 @@ public:
 	 *
 	 * @param otherCharacter A reference to another PlayerCharacter
 	 */
-	void operator()(GameObject & other) ;
+	void operator()(GameObject * other) ;
 	
 
 	/**

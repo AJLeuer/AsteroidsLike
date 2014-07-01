@@ -40,7 +40,7 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
+PlayerCharacter::PlayerCharacter(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
     Character(type, imageFilename, size, loc, name, reaction, alive, state, health, damage) {}
 
 
@@ -50,14 +50,14 @@ PlayerCharacter(AssetType type, const string & imageFilename, float size, const 
  *
  * @param randSeed A seed to initialize the random number generator
  */
-PlayerCharacter(FastRand<int> rand) :
+PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand) {}
 
 
 /**
  * Destructor for PlayerCharacter
  */
-~PlayerCharacter() {}
+PlayerCharacter::~PlayerCharacter() {}
 
 
 /**
@@ -65,9 +65,9 @@ PlayerCharacter(FastRand<int> rand) :
  *
  * @param rhs The right hand side argument (which will be copied)
  */
-PlayerCharacter & operator=(const PlayerCharacter & rhs) {
+PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
     if (this != &rhs) {
-        this->Character::operator=(other) ;
+        this->Character::operator=(rhs) ;
     }
     return *this ;
     
@@ -78,9 +78,9 @@ PlayerCharacter & operator=(const PlayerCharacter & rhs) {
  *
  * @param rhs The right hand side argument (which will be moved)
  */
-PlayerCharacter & operator=(PlayerCharacter && rhs) {
+PlayerCharacter & PlayerCharacter::operator=(PlayerCharacter && rhs) {
     if (this != &rhs) {
-        this->Character::operator=(std::move(other)) ;
+        this->Character::operator=(std::move(rhs)) ;
     }
     return *this ;
 }
@@ -90,7 +90,7 @@ PlayerCharacter & operator=(PlayerCharacter && rhs) {
  * Overloads operator() for PlayerCharacter. Possibly will be used to
  * call notify(). TBD.
  */
-void operator()() {
+void PlayerCharacter::operator()() {
     //todo
 }
 
@@ -101,7 +101,7 @@ void operator()() {
  *
  * @param otherCharacter A reference to another PlayerCharacter
  */
-void operator()(GameObject * other) {
+void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
@@ -109,12 +109,12 @@ void operator()(GameObject * other) {
 /**
  * Writes a formatted text description of this PlayerCharacter into the desired output stream
  */
-void textDescription(ostream * writeTo) const {
+void PlayerCharacter::textDescription(ostream * writeTo) const {
     this->Character::textDescription(writeTo) ;
 }
 
 //using GameObject's implementation for now, may change later
-void defaultBehaviors() {
+void PlayerCharacter::defaultBehaviors() {
     //todo
 }
 
@@ -123,6 +123,6 @@ void defaultBehaviors() {
  *
  * @param enemy The enemy to attack
  */
-void attack(PlayerCharacter * enemy) {
+void PlayerCharacter::attack(PlayerCharacter * enemy) {
     //todo
 }
