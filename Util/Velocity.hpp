@@ -138,7 +138,9 @@ public:
 		other.velMutex = nullptr ;
 		other.cont = nullptr ;
 		
+        velocityStorage.at(id) = this ;
 		assert(velocityStorage.at(id)->id == id) ;
+        
 		
 		if (velocityMonitorInit == false) {
 			monitorVelocity() ;
@@ -220,6 +222,7 @@ public:
 			this->cont = rhs.cont ;
 			baseTimeUnit = rhs.baseTimeUnit ;
 			
+            velocityStorage.at(id) = this ;
 			assert(velocityStorage.at(id)->id == id) ;
 			
 			rhs.id = -1 ;
