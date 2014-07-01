@@ -132,7 +132,7 @@ public:
 	 *
 	 * @param otherCharacter A reference to another Character
 	 */
-	virtual void operator()(GameObject & other) ;
+	virtual void operator()(GameObject * other) ;
 	
 	
 	/**

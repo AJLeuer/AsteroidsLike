@@ -235,7 +235,7 @@ public:
 	 *
 	 * @param sentObject A reference to another GameObject
 	 */
-	virtual void operator()(GameObject & other) ;
+	virtual void operator()(GameObject * other) ;
 	
 	/**
 	 * Overloads the overload of operator(). For the most part the details of

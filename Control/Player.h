@@ -16,7 +16,7 @@
 #include "../Util/Util2.h"
 
 #include "../World/GameInterface.h"
-#include "../World/Character.h"
+#include "../World/PlayerCharacter.h"
 #include "../World/GameState.h"
 
 #include "../Control/DefaultConfig.h"
@@ -29,7 +29,7 @@ class Player : public GameInterface {
 protected:
 
 	string name ;
-	Character playerCharacter ;
+	PlayerCharacter playerCharacter ;
 	
 	/* just for initializing playerCharacter */
 	AssetType pcAssetType = AssetType::playerShip ; /* change if needed */

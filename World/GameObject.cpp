@@ -284,7 +284,7 @@ void GameObject::operator()() {
 	defaultBehaviors() ;
 }
 
-void GameObject::operator()(GameObject & sentObject) {
+void GameObject::operator()(GameObject * sentObject) {
 
 }
 
@@ -476,7 +476,7 @@ void GameObject::defaultBehaviors_threaded() {
 }
 
 void GameObject::defaultBehaviors() {
-	//we can change this to whatever we want
+	wander() ;
 }
 
 void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {

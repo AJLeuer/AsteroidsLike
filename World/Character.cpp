@@ -98,7 +98,7 @@ void Character::operator()() {
 	//todo
 }
 
-void Character::operator()(GameObject & other) {
+void Character::operator()(GameObject * other) {
 	//todo
 }
 
@@ -122,7 +122,7 @@ void Character::textDescription(ostream * writeTo) const {
 
 //using GameObject's implementation for now, may change
 void Character::defaultBehaviors() {
-	this->GameObject::defaultBehaviors() ;
+	/* Player controlled  */
 }
 
 

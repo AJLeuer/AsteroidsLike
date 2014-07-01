@@ -42,7 +42,7 @@ void WorldController::init() {
 	/* Init obstacles */
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
 	
-	for (auto i = 0 ; i < 1 ; i++) {
+	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
 					   Pos2<float>(*FastRand<float>::randPositionSetter, *BoundsCheck<float>::defaultCheck)) ;
 	}
