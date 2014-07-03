@@ -35,18 +35,12 @@ void Player::update() {
 	//todo
 }
 
-void Player::printPositition() {
-	stringstream ss ;
-	ss << this->name << "'s current world position is: " << playerCharacter.getPosition() ;
-	auto screenPosition = translateToWindowCoords(*playerCharacter.getPosition()) ;
-	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
-	DebugOutput << ss.rdbuf() ;
-}
+
 
 void Player::registerForCallbacks() {
 	
 	KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), MOVE_UP, SDLK_UP) ;
-	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), MOVE_UP, SDLK_DOWN) ;
+	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), MOVE_DOWN, SDLK_DOWN) ;
 	KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), MOVE_LEFT, SDLK_LEFT) ;
 	KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), MOVE_RIGHT, SDLK_RIGHT) ;
 	
@@ -60,11 +54,3 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(jumpKey) ;
 }
 
-void Player::jump() {
-	playerCharacter.jump() ;
-	playerCharacter.timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
-	
-	#ifdef DEBUG_MODE
-	printPositition() ;
-	#endif
-}

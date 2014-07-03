@@ -129,12 +129,14 @@ public:
 	
 } ;
 
+
+
 /**
  * An implementation of EventRegisterBase specialized for handling keyboard input.
  */
 class KeyInputRegister : public EventRegisterBase {
 	
-private:
+protected:
 	
 	/**
 	 * The string representing the keyboard key
@@ -201,7 +203,7 @@ public:
 	
 	~KeyInputRegister() {}
     
-    void handleKeyboardInput(const unsigned char * keyboardState) ;
+    virtual void handleKeyboardInput(const unsigned char * keyboardState) ;
 	
 	static ScanCode getScanCodeFor(const char* c) { return SDL_GetScancodeFromName(c) ; } /* wrapper (just in case
 																							   I forget how to get scancodes!) */
@@ -209,6 +211,17 @@ public:
 	
 } ;
 
+
+/**
+ * SwitchableKeyInputRegister is a variant of EventRegister that can hold multiple callback functions
+ * (and members to call those functions on), as well as several different keyboard keys at the same time.
+ * This is in contrast to the single function pointer held in any EventRegister. The real advantage of SwitchableKeyInputRegister
+ * is its ability to choose different callbacks based on a descending order of priority that is set when the SwitchableKeyInputRegister
+ * is created
+ */
+class SwitchableKeyInputRegister : public KeyInputRegister {
+    
+} ;
 
 
 class InputController {

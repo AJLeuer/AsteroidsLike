@@ -126,3 +126,23 @@ void PlayerCharacter::defaultBehaviors() {
 void PlayerCharacter::attack(PlayerCharacter * enemy) {
     //todo
 }
+
+void Player::jump() {
+	jump() ;
+	timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
+	
+    #ifdef DEBUG_MODE
+    printPositition() ;
+    #endif
+}
+
+void PlayerCharacter::printPositition() {
+	stringstream ss ;
+	ss << this->name << "'s current world position is: " << getPosition() ;
+	auto screenPosition = translateToWindowCoords(*getPosition()) ;
+	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
+	DebugOutput << ss.rdbuf() ;
+}
+
+
+

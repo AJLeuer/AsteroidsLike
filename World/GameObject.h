@@ -296,15 +296,20 @@ public:
 	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
 	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
 	
-	void moveUp() { moveTo(loc->getX(), (loc->getY()-defaultOffset<float>), loc->getZ()) ; }
-	void moveDown() { moveTo(loc->getX(), (loc->getY()+defaultOffset<float>), loc->getZ()) ; }
-	void moveRight() { moveTo((loc->getX()+defaultOffset<float>), loc->getY(), loc->getZ()) ; }
-	void moveLeft() { moveTo((loc->getX()-defaultOffset<float>), loc->getY(), loc->getZ()) ; }
+	virtual void moveUp() { moveTo(loc->getX(), (loc->getY()-defaultOffset<float>), loc->getZ()) ; }
+	virtual void moveDown() { moveTo(loc->getX(), (loc->getY()+defaultOffset<float>), loc->getZ()) ; }
+	virtual void moveRight() { moveTo((loc->getX()+defaultOffset<float>), loc->getY(), loc->getZ()) ; }
+	virtual void moveLeft() { moveTo((loc->getX()-defaultOffset<float>), loc->getY(), loc->getZ()) ; }
 	
-	void moveUp(float offset) { moveTo(loc->getX(), (loc->getY()-offset), loc->getZ()) ; }
-	void moveDown(float offset) { moveTo(loc->getX(), (loc->getY()+offset), loc->getZ()) ; }
-	void moveRight(float offset) { moveTo((loc->getX()+offset), loc->getY(), loc->getZ()) ; }
-	void moveLeft(float offset) { moveTo((loc->getX()-offset), loc->getY(), loc->getZ()) ; }
+	virtual void moveUp(float offset) { moveTo(loc->getX(), (loc->getY()-offset), loc->getZ()) ; }
+	virtual void moveDown(float offset) { moveTo(loc->getX(), (loc->getY()+offset), loc->getZ()) ; }
+	virtual void moveRight(float offset) { moveTo((loc->getX()+offset), loc->getY(), loc->getZ()) ; }
+	virtual void moveLeft(float offset) { moveTo((loc->getX()-offset), loc->getY(), loc->getZ()) ; }
+    
+    void moveUpRight() { moveUpRight(defaultOffset<float>) ; }
+	void moveUpLeft() { moveUpLeft(defaultOffset<float>) ; }
+	void moveDownRight() { moveDownRight(defaultOffset<float>); }
+	void moveDownLeft() { moveDownLeft(defaultOffset<float>) ; }
 
 	void moveUpRight(float offset = defaultOffset<float>) { moveTo((loc->getX()+offset), (loc->getY()-offset), loc->getZ()) ; }
 	void moveUpLeft(float offset = defaultOffset<float>) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }

@@ -121,8 +121,20 @@ public:
 	 * @param enemy The enemy to attack
 	 */
 	void attack(PlayerCharacter * enemy) ;
+    
+    void moveUp() override { GameObject::moveUp(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveDown() override { GameObject::moveDown(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveRight() override { GameObject::moveRight(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveLeft() override { GameObject::moveLeft(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
 	
-
+	void moveUp(float offset) override { GameObject::moveUp(offset) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveDown(float offset) override { GameObject::moveDown(offset) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveRight(float offset) override { GameObject::moveRight(offset) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveLeft(float offset) override { GameObject::moveLeft(offset) ; /* Debug */ printPositition() ; /* end debug */ }
+    
+    void jump() ;
+    
+    void printPositition() ;
 	
 	
 } ;

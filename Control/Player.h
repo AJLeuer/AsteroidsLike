@@ -24,7 +24,7 @@
 
 using namespace std ;
 
-class Player : public GameInterface {
+class Player /*: public GameInterface*/ {
 
 protected:
 
@@ -50,14 +50,14 @@ public:
 	
 	void update() ;
 	
-	void moveUp() { playerCharacter.moveUp(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveDown() { playerCharacter.moveDown(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveLeft() { playerCharacter.moveLeft(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
+	void moveUp() {  }
+	void moveDown() {  }
+	void moveRight() {  }
+	void moveLeft() {  }
 	
-	void printPositition() ;
 	
-	void jump() ;
+	
+	
 	
 	
 	
