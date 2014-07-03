@@ -28,24 +28,34 @@ void EventRegister::handleEvent(const Event * currentEvent) {
 	}
 }
 
+bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, vector<ScanCode>::iterator scanCode) {
+	if (scanCode == scanCodes.end()) {
+		if (keyboardState[*scanCode]) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+	else {
+		if (requestedKeyEvalMethod == KeypressEvaluationMethod::all) {
+			return ((keyboardState[*scanCode]) && (checkForPressedKeys(keyboardState, scanCode++))) ;
+		}
+		else { // if (requestedKeyEvalMethod == KeypressEvaluationMethod::any)
+			return ((keyboardState[*scanCode]) || (checkForPressedKeys(keyboardState, scanCode++))) ;
+		}
+		
+	}
+	
+}
+
 
 void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) {
-	
-	ScanCode scanCode ;
-	
-	if ((keyIDMethod == KeyIdenMethod::keyChar) || (keyIDMethod == KeyIdenMethod::both)) {
-		scanCode = getScanCodeFor(requestedKeyboardChar.c_str()) ;
-		if (keyboardState[scanCode]) {
-			callBack() ;
-		}
+	auto scanCode = scanCodes.begin() ;
+	if (checkForPressedKeys(keyboardState, scanCode)) {
+		callBack() ;
 	}
 	
-	if ((keyIDMethod == KeyIdenMethod::keyCode) || (keyIDMethod == KeyIdenMethod::both)) {
-		scanCode = getScanCodeFor(requestedKeyCode) ;
-		if (keyboardState[scanCode]) {
-			callBack() ;
-		}
-	}
 }
 
 vector<EventRegister *> * InputController::eventListenerRegistry = new vector<EventRegister *>() ;

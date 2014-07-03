@@ -39,17 +39,22 @@ void Player::update() {
 
 void Player::registerForCallbacks() {
 	
-	KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), MOVE_UP, SDLK_UP) ;
-	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), MOVE_DOWN, SDLK_DOWN) ;
-	KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), MOVE_LEFT, SDLK_LEFT) ;
-	KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), MOVE_RIGHT, SDLK_RIGHT) ;
+	KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveUpLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft), {"Q"}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveUpRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight), {"E"}, KeypressEvaluationMethod::any) ;
 	
-	KeyInputRegister * jumpKey = new KeyInputRegister(this, (&GameInterface::jump), SDLK_SPACE) ;
-
+	KeyInputRegister * jumpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::jump), {SDLK_SPACE}, KeypressEvaluationMethod::any) ;
+	
+	
 	InputController::registerForKeypress(moveUpKey) ;
 	InputController::registerForKeypress(moveDownKey) ;
 	InputController::registerForKeypress(moveLeftKey) ;
 	InputController::registerForKeypress(moveRightKey) ;
+	InputController::registerForKeypress(moveUpLeftKey) ;
+	InputController::registerForKeypress(moveUpRightKey) ;
 	
 	InputController::registerForKeypress(jumpKey) ;
 }

@@ -311,10 +311,10 @@ public:
 	void moveDownRight() { moveDownRight(defaultOffset<float>); }
 	void moveDownLeft() { moveDownLeft(defaultOffset<float>) ; }
 
-	void moveUpRight(float offset = defaultOffset<float>) { moveTo((loc->getX()+offset), (loc->getY()-offset), loc->getZ()) ; }
-	void moveUpLeft(float offset = defaultOffset<float>) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }
-	void moveDownRight(float offset = defaultOffset<float>) { moveTo((loc->getX()+offset), (loc->getY()+offset), loc->getZ()) ; }
-	void moveDownLeft(float offset = defaultOffset<float>) { moveTo((loc->getX()-offset), (loc->getY()+offset), loc->getZ()) ; }
+	void moveUpRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()-offset), loc->getZ()) ; }
+	void moveUpLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }
+	void moveDownRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()+offset), loc->getZ()) ; }
+	void moveDownLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()+offset), loc->getZ()) ; }
     
     void moveRandomDirection() ;
 	

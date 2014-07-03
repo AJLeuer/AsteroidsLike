@@ -127,7 +127,7 @@ void PlayerCharacter::attack(PlayerCharacter * enemy) {
     //todo
 }
 
-void Player::jump() {
+void PlayerCharacter::jump() {
 	jump() ;
 	timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	
