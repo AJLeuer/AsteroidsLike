@@ -42,8 +42,10 @@ void WorldController::init() {
 	/* Init obstacles */
 	FastRand<float>randomSizeModifier(0.75, 3.0) ;
 	
+	AssetType atype = AssetType::asteroid ;
+	
 	for (auto i = 0 ; i < 10 ; i++) {
-		new GameObject(AssetType::block, AssetFileIO::getRandomImageFilename(AssetType::block), randomSizeModifier(),
+		new GameObject(atype, AssetFileIO::getRandomImageFilename(atype), randomSizeModifier(),
 					   Pos2<float>(*FastRand<float>::randPositionSetter, *BoundsCheck<float>::defaultCheck)) ;
 	}
 	

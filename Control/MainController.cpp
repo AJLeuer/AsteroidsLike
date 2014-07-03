@@ -13,7 +13,8 @@
 using namespace std ;
 
 /* not safe to initialize this yet */
-Player * MainController::player = nullptr ;
+Player * MainController::player0 = nullptr ;
+Player * MainController::player1 = nullptr ;
 
 const unsigned * MainController::loopCount = &mainGameLoopCount ; //Debug symbol, delete
 
@@ -47,7 +48,8 @@ void MainController::init() {
 	GraphicalOutput::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
-	player = new Player("Player 0", "/Assets/Ships/Ship1_Green.png") ;
+	player0 = new Player("Player 0", "/Assets/Ships/Ship1_Green.png", PlayerDefaults::playerDefaults0) ;
+	player1 = new Player("Player 0", "/Assets/Ships/Ship2_Blue.png", PlayerDefaults::playerDefaults1) ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;

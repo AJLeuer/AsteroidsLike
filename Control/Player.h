@@ -24,6 +24,12 @@
 
 using namespace std ;
 
+enum class PlayerDefaults {
+	playerDefaults0 = 0,
+	playerDefaults1 = 1
+	//etc
+};
+
 class Player /*: public GameInterface*/ {
 
 protected:
@@ -36,6 +42,8 @@ protected:
 	
 	float size = 1.00 ;
 	
+	PlayerDefaults playerDefaults ;
+	
 
 	void registerForCallbacks() ;
 
@@ -43,18 +51,13 @@ public:
 	
 	Player() ;
 	
-	Player(const string & name, const string & imageFile) ;
+	Player(const string & name, const string & imageFile, PlayerDefaults playerDefaults) ;
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
 	
 	void update() ;
-	
-	void moveUp() {  }
-	void moveDown() {  }
-	void moveRight() {  }
-	void moveLeft() {  }
-	
+
 	
 	
 	

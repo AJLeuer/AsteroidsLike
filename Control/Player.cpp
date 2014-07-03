@@ -11,7 +11,8 @@
 using namespace std ;
 
 Player::Player() :
-	name("Player 1")
+	name("Player 1"),
+	playerDefaults(PlayerDefaults::playerDefaults0)
 {
     auto x = (globalMaxX() / 2) ;
     auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
@@ -21,8 +22,9 @@ Player::Player() :
 	registerForCallbacks() ;
 }
 
-Player::Player(const string & name, const string & imageFile) :
-	name(name)
+Player::Player(const string & name, const string & imageFile, PlayerDefaults playerDefaults) :
+	name(name),
+	playerDefaults(playerDefaults)
 {
     auto x = (globalMaxX() / 2) ;
     auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
@@ -39,22 +41,28 @@ void Player::update() {
 
 void Player::registerForCallbacks() {
 	
-	KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
+	if (playerDefaults == PlayerDefaults::playerDefaults0) {
+		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
+		InputController::registerForKeypress(moveUpKey) ;
+		InputController::registerForKeypress(moveLeftKey) ;
+		InputController::registerForKeypress(moveRightKey) ;
+	}
+	if (playerDefaults == PlayerDefaults::playerDefaults1) {
+		KeyInputRegister * moveUpLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft), {"Q"}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveUpRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight), {"E"}, KeypressEvaluationMethod::any) ;
+		InputController::registerForKeypress(moveUpLeftKey) ;
+		InputController::registerForKeypress(moveUpRightKey) ;
+	}
+	
 	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
-	KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
-	KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
-	KeyInputRegister * moveUpLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft), {"Q"}, KeypressEvaluationMethod::any) ;
-	KeyInputRegister * moveUpRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight), {"E"}, KeypressEvaluationMethod::any) ;
 	
 	KeyInputRegister * jumpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::jump), {SDLK_SPACE}, KeypressEvaluationMethod::any) ;
 	
 	
-	InputController::registerForKeypress(moveUpKey) ;
+	
 	InputController::registerForKeypress(moveDownKey) ;
-	InputController::registerForKeypress(moveLeftKey) ;
-	InputController::registerForKeypress(moveRightKey) ;
-	InputController::registerForKeypress(moveUpLeftKey) ;
-	InputController::registerForKeypress(moveUpRightKey) ;
 	
 	InputController::registerForKeypress(jumpKey) ;
 }

@@ -29,7 +29,7 @@ void EventRegister::handleEvent(const Event * currentEvent) {
 }
 
 bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, vector<ScanCode>::iterator scanCode) {
-	if (scanCode == scanCodes.end()) {
+	if (*scanCode == scanCodes.back()) {
 		if (keyboardState[*scanCode]) {
 			return true ;
 		}
@@ -38,11 +38,13 @@ bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, 
 		}
 	}
 	else {
+		auto current = scanCode ;
+		auto next = scanCode + 1 ;
 		if (requestedKeyEvalMethod == KeypressEvaluationMethod::all) {
-			return ((keyboardState[*scanCode]) && (checkForPressedKeys(keyboardState, scanCode++))) ;
+			return ((keyboardState[*current]) && (checkForPressedKeys(keyboardState, next))) ;
 		}
 		else { // if (requestedKeyEvalMethod == KeypressEvaluationMethod::any)
-			return ((keyboardState[*scanCode]) || (checkForPressedKeys(keyboardState, scanCode++))) ;
+			return ((keyboardState[*current]) || (checkForPressedKeys(keyboardState, next))) ;
 		}
 		
 	}

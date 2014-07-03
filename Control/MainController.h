@@ -34,7 +34,8 @@ class MainController {
 	
 private:
 	
-	static Player * player ;
+	static Player * player0 ;
+	static Player * player1 ;
 	static const unsigned * loopCount ; //Debug symbol, delete
 	
 	static void exit() ;

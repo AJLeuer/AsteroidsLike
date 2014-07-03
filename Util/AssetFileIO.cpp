@@ -244,7 +244,7 @@ string & AssetFileIO::getImageFilename(vector<string>::size_type index, AssetTyp
 
 
 std::string & AssetFileIO::getRandomImageFilename(AssetType type) {
-    FastRand<vector<string>::size_type> rnd(1000, 1000) ; //not used
+    FastRand<vector<string>::size_type> rnd(0, 1000) ; //not used
 	switch (type) {
 		case AssetType::asteroid:
 		{
