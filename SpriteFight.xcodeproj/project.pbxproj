@@ -12,6 +12,7 @@
 		1E683B0F193ECB71000F3045 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E683B0D193ECB71000F3045 /* Enemy.cpp */; };
 		1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E683B10193ECDA4000F3045 /* GameState.cpp */; };
 		6603FD74190C902800A5F41A /* GraphicalOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6603FD73190C902800A5F41A /* GraphicalOutput.cpp */; };
+		6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6605EE101964D38E0028013B /* PlayerCharacter.cpp */; };
 		6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6617B184190D725C004B442B /* AssetFileIO.cpp */; };
 		662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6C18FF763A003A6EE0 /* Util.cpp */; };
 		662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6E18FF90C7003A6EE0 /* MainController.cpp */; };
@@ -44,6 +45,8 @@
 		1E683B13193ECDC4000F3045 /* DefaultConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DefaultConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GraphicalOutput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GraphicalOutput.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		6605EE0F1964D37B0028013B /* PlayerCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCharacter.h; sourceTree = "<group>"; };
+		6605EE101964D38E0028013B /* PlayerCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCharacter.cpp; sourceTree = "<group>"; };
 		6617B184190D725C004B442B /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = AssetFileIO.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6617B185190D725C004B442B /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AssetFileIO.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662D9E6C18FF763A003A6EE0 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Util.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -216,6 +219,7 @@
 				66934EA018F3699100BE3714 /* GameMap.hpp */,
 				66E97F3E18CF02B8002EFA00 /* GameObject.h */,
 				66E97F4818CF109A002EFA00 /* Character.h */,
+				6605EE0F1964D37B0028013B /* PlayerCharacter.h */,
 				1E683B0E193ECB71000F3045 /* Enemy.h */,
 				66E97F4E18CF149F002EFA00 /* NPC.h */,
 				66E97F4118CF032B002EFA00 /* WorldController.h */,
@@ -224,6 +228,7 @@
 				66E97F5318CF1892002EFA00 /* Ability.cpp */,
 				66E97F3D18CF02B8002EFA00 /* GameObject.cpp */,
 				66E97F4718CF109A002EFA00 /* Character.cpp */,
+				6605EE101964D38E0028013B /* PlayerCharacter.cpp */,
 				1E683B0D193ECB71000F3045 /* Enemy.cpp */,
 				66E97F4D18CF149F002EFA00 /* NPC.cpp */,
 				66E97F4018CF032B002EFA00 /* WorldController.cpp */,
@@ -291,6 +296,7 @@
 				1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */,
 				6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */,
 				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,
+				6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,

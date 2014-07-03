@@ -17,6 +17,5 @@ void Enemy::defaultBehaviors() {
     else if ((this->getPosition()->getX()) <= -1) {
         
     }
-
 	
 }

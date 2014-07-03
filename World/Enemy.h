@@ -11,18 +11,18 @@
 
 #include <iostream>
 
-#include "GameObject.h"
+#include "NPC.h"
 
-class Enemy : public GameObject {
+class Enemy : public NPC {
   
 
 public:
     
     
-    Enemy() : GameObject() {}
+    Enemy() : NPC() {}
 	
-	Enemy(AssetType type, const string & imageFileName, float sizeModifier, const Pos2<float> & loc_) :
-		GameObject(type, imageFileName, sizeModifier, loc_) {}
+	Enemy(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) :
+		NPC(type, imageFilename, size, loc, name, alive, state, health, damage, reaction) {}
     
     void defaultBehaviors() override ;
     
