@@ -323,6 +323,10 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifie
 	size.setSize(tempW, tempH, sizeModifier) ; //assign new size to this GameObject
 }
 
+void GameObject::update() {
+	
+}
+
 void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {

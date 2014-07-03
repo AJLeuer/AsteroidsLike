@@ -17,7 +17,7 @@ void EventRegisterBase::callBack() {
 																			   then call it on that object */
         (memberToCallOn->*member_callBackFunction)();
     }
-    else if (memberToCallOn == nullptr) { //else this is a global or static function, just call it
+    else { //if (memberToCallOn == nullptr) //else this is a global or static function, just call it
         (*callBackFunction)() ;
     }
 }

@@ -48,6 +48,8 @@ public:
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
 	
+	void update() ;
+	
 	void moveUp() { playerCharacter.moveUp(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
 	void moveDown() { playerCharacter.moveDown(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
 	void moveRight() { playerCharacter.moveRight(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
@@ -56,6 +58,7 @@ public:
 	void printPositition() ;
 	
 	void jump() ;
+	
 	
 	
 } ;

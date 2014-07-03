@@ -33,6 +33,8 @@ public:
 	 */
 	virtual void operator()() = 0 ;
 	
+	virtual void update() = 0 ;
+	
 	virtual void moveUp() = 0 ;
 	virtual void moveDown() = 0 ;
 	virtual void moveRight() = 0 ;
@@ -40,6 +42,8 @@ public:
 
 	
 	virtual void jump() = 0 ;
+	
+	
 	
 };
 

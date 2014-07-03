@@ -274,6 +274,9 @@ void Velocity<N>::calculateVelocity() {
     
 	for (auto i = 0 ; i < velocityStorage.size() ; i++) {
 		
+		/* Debug var */
+		auto vs = Velocity::getVelocityStorage() ;
+		
 		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1)) {
 			
 			auto current = velocityStorage.at(i) ;

@@ -127,6 +127,8 @@ protected:
 	
 	static FastRand<int> goRand ;
 	
+	void update() ;
+	
 	void markForDeletion() { markedForDeletion = true ; }
 	
 	static void checkForMarkedDeletions() ;
