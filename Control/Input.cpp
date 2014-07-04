@@ -73,7 +73,9 @@ int InputController::keyArraySize = 1 ; //initializing to 1 only because SDL_Get
 void InputController::listenForEvents() {
 	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_SIGNAL == true)) {
 		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_SIGNAL == true)) ; i++) {
-			eventListenerRegistry->at(i)->handleEvent(event) ;
+			if (eventListenerRegistry->at(i) != nullptr) {
+				eventListenerRegistry->at(i)->handleEvent(event) ;
+			}
 		}
 	}
 }
@@ -81,8 +83,10 @@ void InputController::listenForEvents() {
 
 void InputController::listenForKeypress() {
 	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_SIGNAL == true) && (i < keyInputRegistry->size())) ; i++) {
-		SDL_PumpEvents() ;
-		keyInputRegistry->at(i)->handleKeyboardInput(keys) ;
+		if (keyInputRegistry->at(i) != nullptr) {
+			SDL_PumpEvents() ;
+			keyInputRegistry->at(i)->handleKeyboardInput(keys) ;
+		}
 	}
 }
 
@@ -108,6 +112,27 @@ void InputController::registerForEvent(EventRegister *reg) {
 
 void InputController::registerForKeypress(KeyInputRegister * reg) {
 	keyInputRegistry->push_back(reg) ;
+}
+
+/*
+ * Deregisters any KeyInputRegistries and EventRegistries registered with the object registeredObject
+ * as the memberToCallOn
+ *
+ * @param registeredObject A pointer to the object whose KeyInputRegister(s) and EventRegistries should be deleted
+ */
+void InputController::deregister(GameInterface * registeredObject) {
+	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
+		if (keyInputRegistry->at(i)->memberToCallOn == registeredObject) {
+			delete keyInputRegistry->at(i) ;
+			keyInputRegistry->at(i) = nullptr ;
+		}
+	}
+	for (auto i = 0 ; i < eventListenerRegistry->size() ; i++) {
+		if (eventListenerRegistry->at(i)->memberToCallOn == registeredObject) {
+			delete eventListenerRegistry->at(i) ;
+			eventListenerRegistry->at(i) = nullptr ;
+		}
+	}
 }
 
 void InputController::update() {

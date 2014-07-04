@@ -10,6 +10,7 @@
 
 using namespace std ;
 
+unsigned Player::IDs = 0 ;
 Pos2<float> Player::defaultStartingPosition = Pos2<float>((globalMaxX() / 2) + FastRand<int>::defaultRandom(-20, 20), (globalMaxY() - (globalMaxY() * 0.25)), 0) ;
 AssetType Player::defaultPCAssetType = AssetType::playerShip ; /* change if needed */
 float Player::defaultSize = 1.00 ;
@@ -18,17 +19,19 @@ Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "/Assets/Ships/Ship1_Green.png", Color::green, defaultSize, defaultStartingPosition, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", Color::green, defaultSize, defaultStartingPosition, "Green",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 	
-	defaultPlayer1 = new Player("Player 1", "/Assets/Ships/Ship2_Blue.png", Color::blue, defaultSize, defaultStartingPosition, "Blue",
+	defaultPlayer1 = new Player("Player 1", "Ship2_Blue.png", Color::blue, defaultSize, defaultStartingPosition, "Blue",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 }
 
 Player::Player() :
-	name("Player 0"),
-	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFilename(defaultPCAssetType), defaultSize, defaultStartingPosition,"Player 0's Character", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
+	ID(IDs),
+	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize, defaultStartingPosition,"Player 0's Character", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
 {
+	IDs++ ;
+	name = "Player" + to_string(ID) ;
 	registerForCallbacks() ;
 }
 
@@ -37,11 +40,13 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage) :
 
+	ID(IDs),
 	name(name),
 	playerCharacter(playerCharacter_color, defaultPCAssetType, playerCharacter_imageFilename, playerCharacter_size,
 		playerCharacter_loc, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
 		playerCharacter_health, playerCharacter_damage)
 {
+	IDs++ ;
 	registerForCallbacks() ;
 }
 
@@ -53,6 +58,7 @@ void Player::update() {
 
 void Player::registerForCallbacks() {
 	
+	//todo make more generic
 	if (playerCharacter.getColor() == Color::blue) {
 		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
@@ -69,13 +75,9 @@ void Player::registerForCallbacks() {
 	}
 	
 	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
-	
 	KeyInputRegister * jumpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::jump), {SDLK_SPACE}, KeypressEvaluationMethod::any) ;
 	
-	
-	
 	InputController::registerForKeypress(moveDownKey) ;
-	
 	InputController::registerForKeypress(jumpKey) ;
 }
 

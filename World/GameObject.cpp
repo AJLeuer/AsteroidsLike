@@ -10,7 +10,7 @@
 #include "GameObject.h"
 
 /* starts at 1 (0 is a special case */
-unsigned GameObject::IDs = 1 ;
+unsigned GameObject::IDs = 0 ;
 
 
 bool GameObject::map_is_init = false ;
@@ -27,6 +27,7 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
+	color(Color::blue),
 	textureImageFile(""),
 	texture(nullptr),
 	size(Size<int>()),
@@ -52,7 +53,8 @@ GameObject::GameObject() :
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
-	textureImageFile(string(other.textureImageFile)),
+	color(other.color),
+	textureImageFile(other.textureImageFile),
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
 	type(other.type),
@@ -100,6 +102,7 @@ GameObject::GameObject(GameObject && other) :
 	hasThread(other.hasThread),
 	gthread(other.gthread),
 	ID(other.ID),
+	color(other.color),
 	textureImageFile(std::move(other.textureImageFile)),
 	texture(other.texture), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
@@ -126,16 +129,17 @@ GameObject::GameObject(GameObject && other) :
 	
 	other.hasThread = nullptr ;
 	other.gthread = nullptr ;
-	other.ID = 0 ;
+	other.ID = -1 ;
 	other.textureImageFile = "" ;
 	other.texture = nullptr ;
 	other.loc = nullptr ;
 }
 
-GameObject::GameObject(Color color,AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc_) :
-	color(color),
+
+GameObject::GameObject(Color color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
 	ID(IDs),
-	textureImageFile(imageFilename),
+	color(color),
+	textureImageFile(imageFile),
 	size(Size<int>()),
 	type(type),
 	visible(true),
@@ -143,7 +147,7 @@ GameObject::GameObject(Color color,AssetType type, const string & imageFilename,
 	vectr(Vectr<float>(loc))
 {
 	IDs++ ;
-
+	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
@@ -159,7 +163,9 @@ GameObject::GameObject(Color color,AssetType type, const string & imageFilename,
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
+	color(static_cast<Color>(FastRand<unsigned>::defaultRandom(0, 5))),
 	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
+	textureImageFile(nullptr),
 	visible(true),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, BoundsCheck<float>::defaultCheck)),
@@ -177,7 +183,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
 	vectr.updateAndNormalize() ;
 	
-	textureImageFile = AssetFileIO::getRandomImageFilename(type) ;
+	textureImageFile = AssetFileIO::getRandomImageFile(type) ;
 	FastRand<float> randSizeMod(0.5, 1.0) ;
 	initGraphicsData(false, randSizeMod()) ;
 }
@@ -187,7 +193,7 @@ GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 
-	if ((hasThread == nullptr) || (*hasThread == false)) {
+	if ((hasThread != nullptr) && (*hasThread == false)) {
 		delete hasThread ;
 		SDL_DestroyTexture(texture) ;
 		if (gthread != nullptr) {
@@ -218,6 +224,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		}
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
+		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
@@ -261,6 +268,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->textureImageFile = std::move(rhs.textureImageFile) ;
 		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
+		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
 		if (this->loc != nullptr) {
@@ -273,7 +281,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		rhs.hasThread = nullptr ;
 		rhs.gthread = nullptr ;
-		rhs.ID = 0 ;
+		rhs.ID = -1 ;
 		rhs.textureImageFile = "" ;
 		rhs.texture = nullptr ;
 		rhs.loc = nullptr ;
@@ -303,7 +311,7 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifie
 	//set texture
 	if ((texture == nullptr) || (overrideCurrentTexture)) {
 		SDL_Texture * tex = nullptr ;
-		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), getImageFile(), getType()) ;
+		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->textureImageFile, getType()) ;
 
 		if (tex == nullptr) {
 			stringstream ss ;
@@ -604,8 +612,8 @@ void GameObject::setImageFile(string imageFileName) {
 	this->textureImageFile = imageFileName ;
 }
 
-string GameObject::getImageFile() const {
-	return this->textureImageFile ;
+const AssetFile * GameObject::getImageFile() const {
+	return &(this->textureImageFile) ;
 }
 
 SDL_Texture * GameObject::getTexture() const {

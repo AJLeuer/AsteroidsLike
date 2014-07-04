@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <thread>
+#include <string>
 #include <vector>
 #include <cmath>
 
@@ -244,6 +245,20 @@ inline unsigned termWidth() {
 inline unsigned termHeight() {
 	unsigned r = atoi(getenv("LINES")) ;
 	return r ;
+}
+
+/**
+ * Overloads operator + for std::string to allow
+ * appending any type T
+ *
+ * @param append The text to append
+ */
+template<class T>
+string operator +(const string & str, const T & rhs) {
+	string app = to_string(rhs) ;
+	string ret = str ;
+	ret += app ;
+	return ret ;
 }
 
 

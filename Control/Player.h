@@ -10,9 +10,11 @@
 #define __GameWorld__Player__
 
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <chrono>
 
+#include "../Util/Util.hpp"
 #include "../Util/Util2.h"
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/GameRandom.hpp"
@@ -31,10 +33,12 @@ class Player /*: public GameInterface*/ {
 
 protected:
 	
+	static unsigned IDs ;
 	static Pos2<float> defaultStartingPosition ;
 	static AssetType defaultPCAssetType ; /* change if needed */
 	static float defaultSize ;
 	
+	unsigned ID ;
 	string name ;
 	PlayerCharacter playerCharacter ;
 	
@@ -58,6 +62,8 @@ public:
 		   Color playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
 		   Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 		   unsigned playerCharacter_health, unsigned playerCharacter_damage) ;
+	
+	~Player() { InputController::deregister(&playerCharacter) ; }
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}

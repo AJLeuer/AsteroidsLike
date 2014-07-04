@@ -51,6 +51,8 @@ void MainController::init() {
 	Player::initDefaultPlayers() ;
 	player0 = Player::defaultPlayer0 ;
 	player1 = Player::defaultPlayer1 ;
+	
+	/* debug code */ Player player3 ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;

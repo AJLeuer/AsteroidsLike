@@ -45,7 +45,7 @@ void WorldController::init() {
 	AssetType atype = AssetType::asteroid ;
 	
 	for (auto i = 0 ; i < 10 ; i++) {
-		new GameObject(Color::blue, atype, AssetFileIO::getRandomImageFilename(atype), randomSizeModifier(),
+		new GameObject(Color::blue, atype, AssetFileIO::getRandomImageFile(atype), randomSizeModifier(),
 					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ;
 	}
 	
@@ -106,7 +106,7 @@ void WorldController::exit() {
 	
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		if (gameObjects->at(i) != nullptr) {
-			delete gameObjects->at(i) ;
+			//delete gameObjects->at(i) ;
 		}
 	}
 

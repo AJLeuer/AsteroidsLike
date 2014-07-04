@@ -39,6 +39,7 @@ protected:
 	const Distance * distance ;
 	Timer * timer ;
 	mutex * velMutex ;
+	bool * localContinueSignal ;
 	
 	Distance lastDistance = 0 ;
 	
@@ -52,7 +53,6 @@ protected:
 	
 	static void calculateVelocity() ;
 	
-	bool * cont = new bool(true) ;
 	
 
 	
@@ -69,12 +69,14 @@ public:
 	 * it will begin monitoring speed.
 	 * 
 	 * @param distance A pointer to the distance covered by the client class, which Velocity expects to change over time
+	 * @param mut A mutex shared with Velocity that should be locked when this velocity or distance is about to be deleted
 	 */
-	Velocity(const Distance * distance) :
+	Velocity(const Distance * distance, mutex * mut, bool * localContinueSignal) :
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
-		velMutex(new mutex())
+		velMutex(mut),
+		localContinueSignal(localContinueSignal)
 	{
 		IDs++ ;
 		timer->startTimer() ;
@@ -87,11 +89,12 @@ public:
 		}
 	}
 	
-	Velocity(const Distance * distance, chrono::nanoseconds baseTimeUnitOverride) :
+	Velocity(const Distance * distance, mutex * mut, bool * localContinueSignal, chrono::nanoseconds baseTimeUnitOverride) :
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
-		velMutex(new mutex()),
+		velMutex(mut),
+		localContinueSignal(localContinueSignal),
 		baseTimeUnit(baseTimeUnitOverride)
 	{
 		IDs++ ;
@@ -105,134 +108,27 @@ public:
 		}
 	}
 	
-	Velocity(const Velocity & other) :
-		id(IDs),
-		distance(other.distance),
-		timer(new Timer),
-		velMutex(new mutex),
-		cont(new bool(other.cont)),
-		baseTimeUnit(other.baseTimeUnit)
-	{
-		IDs++ ;
-		timer->startTimer() ;
-		
-		velocityStorage.push_back(this) ;
-		assert(velocityStorage.at(id)->id == id) ;
-		
-		if (velocityMonitorInit == false) {
-			monitorVelocity() ;
-		}
-	}
-
-	Velocity(Velocity && other) :
-		id(other.id),
-		distance(other.distance),
-		timer(other.timer),
-		velMutex(other.velMutex),
-		cont(other.cont),
-		baseTimeUnit(other.baseTimeUnit)
-	{
-		other.id = -1 ;
-		other.distance = nullptr ;
-		other.timer = nullptr ;
-		other.velMutex = nullptr ;
-		other.cont = nullptr ;
-		
-        velocityStorage.at(id) = this ;
-		assert(velocityStorage.at(id)->id == id) ;
-        
-		
-		if (velocityMonitorInit == false) {
-			monitorVelocity() ;
-		}
-	}
+	Velocity(const Velocity & other) = delete ;
+	Velocity(Velocity && other) = delete ;
 
 	~Velocity() {
 	
-		if (cont != nullptr) {
-			
-			if (id != -1) {
-				velocityStorage.at(id) = nullptr ;
-			}
-			
-			id = -1 ;
-			
-			*cont = false ;
-		
-			velMutex->lock() ;
-			
-			std::thread thrd ;
-		
-			distance = nullptr ;
-			
-			if (timer != nullptr) {
-				delete timer ;
-				timer = nullptr ;
-			}
-			
-			delete cont ;
-		
-			velMutex->unlock() ;
-			delete velMutex ;
-		}
-	}
-	
-
-	Velocity & operator=(const Velocity & rhs) {
-		
-		if (this != &rhs) {
-			
+		if (id != -1) {
 			velocityStorage.at(id) = nullptr ;
-			
-			delete timer ;
-			delete velMutex ;
-			delete cont ;
-			
-			this->id = IDs ;
-			IDs++ ;
-			
-			this->distance = rhs.distance ;
-			this->timer = new Timer ;
-			this->velMutex = new mutex ;
-			this->cont = new bool(rhs.cont) ;
-			baseTimeUnit = rhs.baseTimeUnit ;
-			
-			velocityStorage.push_back(this) ;
-			assert(velocityStorage.at(id)->id == id) ;
-			
-			timer->startTimer() ;
 		}
-		return *this ;
-	}
-
-	
-
-	Velocity & operator=(Velocity && rhs) {
 		
-		if (this != &rhs) {
+		id = -1 ;
+		
+		distance = nullptr ;
 			
+		if (timer != nullptr) {
 			delete timer ;
-			delete velMutex ;
-			delete cont ;
-			
-			this->id = rhs.id ;
-			this->distance = rhs.distance ;
-			this->timer = rhs.timer ;
-			this->velMutex = rhs.velMutex ;
-			this->cont = rhs.cont ;
-			baseTimeUnit = rhs.baseTimeUnit ;
-			
-            velocityStorage.at(id) = this ;
-			assert(velocityStorage.at(id)->id == id) ;
-			
-			rhs.id = -1 ;
-			rhs.distance = nullptr ;
-			rhs.timer = nullptr ;
-			rhs.velMutex = nullptr ;
-			rhs.cont = nullptr ;
+			timer = nullptr ;
 		}
-		return *this ;
 	}
+	
+	Velocity & operator=(const Velocity & rhs) = delete ;
+	Velocity & operator=(Velocity && rhs)  = delete ;
 
 	const double * getValue() {
 		return &lastVelocity ;
@@ -261,8 +157,7 @@ void Velocity<N>::monitorVelocity() {
 	
 	std::thread thr(velocityMonitorLambda) ;
 	velocityMonitorInit = true ;
-	thr.detach() ;
-	
+	thr.detach() ;	
 }
 
 template<typename N>
@@ -272,26 +167,32 @@ void Velocity<N>::calculateVelocity() {
 	auto * vs = &velocityStorage ;
 	/* end debug */
     
-	for (auto i = 0 ; i < velocityStorage.size() ; i++) {
+	for (auto i = 0 ; (i < velocityStorage.size()) && (velocityMonitorContinueSignal) ; i++) {
 		
 		/* Debug var */
 		auto vs = Velocity::getVelocityStorage() ;
 		
-		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1)) {
+		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1) && (velocityStorage.at(i)->localContinueSignal)) {
 			
-			auto current = velocityStorage.at(i) ;
 			
-			if (current->lastDistance != *(current->distance)) {
+			if (velocityStorage.at(i)->velMutex != nullptr) {
+				if (velocityStorage.at(i)->velMutex->try_lock() == false) {
+					continue ;
+				}
+			}
+			else {
+				continue ;
+			}
+			
+			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->lastDistance != *velocityStorage.at(i)->distance)) {
 				
-				current->velMutex->lock() ;
+				const N dist0 = *velocityStorage.at(i)->distance ;
+				const auto time0 = velocityStorage.at(i)->timer->checkTimeElapsed() ;
 				
-				const N dist0 = *current->distance ;
-				const auto time0 = current->timer->checkTimeElapsed() ;
+				this_thread::sleep_for(velocityStorage.at(i)->baseTimeUnit) ;
 				
-				this_thread::sleep_for(current->baseTimeUnit) ;
-				
-				const N dist1 = *current->distance ;
-				auto time1 = current->timer->checkTimeElapsed() ;
+				const N dist1 = *velocityStorage.at(i)->distance ;
+				auto time1 = velocityStorage.at(i)->timer->checkTimeElapsed() ;
 				
 				const N totalDistance = dist1 - dist0 ;
 				auto totalTime = time1 - time0 ;
@@ -304,10 +205,12 @@ void Velocity<N>::calculateVelocity() {
 				}
 				/* end debug */
 				
-				current->lastVelocity = velocity ;
-				current->lastDistance = *current->distance ;
-				
-				current->velMutex->unlock() ;
+				velocityStorage.at(i)->lastVelocity = velocity ;
+				velocityStorage.at(i)->lastDistance = *velocityStorage.at(i)->distance ;
+			
+			}
+			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->velMutex != nullptr)) {
+				velocityStorage.at(i)->velMutex->unlock() ;
 			}
 		}
 	}

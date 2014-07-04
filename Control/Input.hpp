@@ -37,6 +37,7 @@ class EventRegisterBase {
 	
 protected:
 	
+	
 	/**
 	 * See member_callBackFunction.
 	 */
@@ -57,6 +58,8 @@ protected:
 	 * EventRegisterBase where a callBackFn, and not a member_callBackFn, is held)
 	 */
 	void (*callBackFunction)() ;
+	
+	friend class InputController ;
 	
 	EventRegisterBase() {}
 	
@@ -97,14 +100,15 @@ public:
  */
 class EventRegister : public EventRegisterBase {
 	
-private:
+protected:
 	/**
 	 * The string representing the keyboard key
 	 * the client wishes to listen for
 	 */
 	EventType eventType ;
 	
-
+	friend class InputController ;
+	
 public:
 	
 	EventRegister() {}
@@ -361,6 +365,7 @@ public:
 	
 	static void registerForEvent(EventRegister * reg) ;
 	static void registerForKeypress(KeyInputRegister * reg) ;
+	static void deregister(GameInterface * registeredObject) ;
 	
 	static void init() ;
 	static void update() ;

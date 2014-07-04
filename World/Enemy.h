@@ -21,8 +21,8 @@ public:
     
     Enemy() : NPC() {}
 	
-	Enemy(Color color, AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) :
-		NPC(color, type, imageFilename, size, loc, name, alive, state, health, damage, reaction) {}
+	Enemy(Color color, AssetType type, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) :
+		NPC(color, type, imageFile, size, loc, name, alive, state, health, damage, reaction) {}
     
     void defaultBehaviors() override ;
     

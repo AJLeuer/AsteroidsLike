@@ -40,18 +40,8 @@ enum class AssetType {
 } ;
 
 struct AssetFile {
-	string fileName ;
-	string filePath ;
-	AssetType type ;
-	Color color ;
-	//other fields?
-} ;
-
-/**
- * This class will store the names and directory info of all file assets used in the program. 
- * Add the names of any new files added to AssetFileIO.cpp
- */
-class AssetFileIO {
+	
+protected:
 	
 	static vector<AssetFile> * asteroidImageFiles ;
 	static vector<AssetFile> * miscImageFilenames ;
@@ -60,10 +50,49 @@ class AssetFileIO {
 	static vector<AssetFile> * UIImageFilenames ;
 	static vector<AssetFile> * weaponImageFilenames ;
 	
+	static vector< vector<AssetFile> * > * allAssetFiles ;
+	
+	friend class AssetFileIO ;
+	
+	string filePath ;
+	
 public:
-	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;
+	
+	string fileName ;
+	AssetType type ;
+	Color color ;
+	//other fields?
+	
+	AssetFile(string fileName, string filePath, AssetType type, Color color) :
+		fileName(fileName), filePath(filePath), type(type), color(color) {}
+	
+	AssetFile(const AssetFile & other) :
+		fileName(other.fileName), filePath(other.filePath), type(other.type), color(other.color) {}
+	
+	AssetFile(const string & existingFilename) ;
+	
+	~AssetFile() {}
+	
+	AssetFile & operator = (const AssetFile & rhs) ;
+	
+	AssetFile & operator = (const string & str) ;
+	
+} ;
+
+/**
+ * This class will store the names and directory info of all file assets used in the program. 
+ * Add the names of any new files added to AssetFileIO.cpp
+ */
+class AssetFileIO {
+	
+	
+	
+public:
+	
+	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const AssetFile & file, AssetType type) ;
 	static string & getImageFilename(vector<AssetFile>::size_type index, AssetType type) ;
-	static string & getRandomImageFilename(AssetType type) ;
+	
+	static AssetFile getRandomImageFile(AssetType type) ;
 	
 	/**
 	 * In addition to finding the AssetType corresponding to the given string,

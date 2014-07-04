@@ -101,14 +101,14 @@ private:
 	
 protected:
 	
-	unsigned ID ;
+	int ID ;
 	
 	Color color ;
 
 	/**
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
 	 */
-	string textureImageFile ;
+	AssetFile textureImageFile ;
 	
 	SDL_Texture * texture = nullptr ;
 
@@ -183,15 +183,16 @@ public:
 	 */
 	GameObject(GameObject && other) ;
 	
+	
 	/**
 	 * Creates an object with the given UTF-8 symbol (preferably just
 	 * one character) as its icon
 	 *
 	 * @param type The type of image file associated with this GameObject (character, scenery, etc)
-	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
+	 * @param imageFilen The file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(Color color, AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc) ;
+	GameObject(Color color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -396,7 +397,7 @@ public:
 	/**
 	 * @return This GameObject's textureImageFile, i.e. the file path of its texture (usually in png format)
 	 */
-	string getImageFile() const ;
+	const AssetFile * getImageFile() const ;
 	
 	/**
 	 * @return This GameObject's texture, or nullptr if this isVisible() is false
