@@ -102,6 +102,8 @@ private:
 protected:
 	
 	unsigned ID ;
+	
+	Color color ;
 
 	/**
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
@@ -189,7 +191,7 @@ public:
 	 * @param imageFilename The name of the file to be used as the SDL_Surface for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc) ;
+	GameObject(Color color, AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -359,6 +361,11 @@ public:
 	 *
 	 */
 	virtual void wander() ;
+	
+	/**
+	 * @return This GameObject's Color
+	 */
+	Color getColor() const { return color ; }
 	
 	/**
 	 * @return This GameObject's Position<float>

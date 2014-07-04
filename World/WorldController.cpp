@@ -40,13 +40,13 @@ void WorldController::init() {
               0.50, Pos2<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
 	*/
 	/* Init obstacles */
-	FastRand<float>randomSizeModifier(0.75, 3.0) ;
+	FastRand<float>randomSizeModifier(0.25, 1.0) ;
 	
 	AssetType atype = AssetType::asteroid ;
 	
 	for (auto i = 0 ; i < 10 ; i++) {
-		new GameObject(atype, AssetFileIO::getRandomImageFilename(atype), randomSizeModifier(),
-					   Pos2<float>(*FastRand<float>::randPositionSetter, *BoundsCheck<float>::defaultCheck)) ;
+		new GameObject(Color::blue, atype, AssetFileIO::getRandomImageFilename(atype), randomSizeModifier(),
+					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ;
 	}
 	
 	/* Init game state */

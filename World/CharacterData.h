@@ -14,6 +14,7 @@
 #include <ostream>
 
 #include "../Util/BoundsCheck.hpp"
+#include "../Util/GameRandom.hpp"
 
 using namespace std ;
 
@@ -195,6 +196,29 @@ public:
 /* Below are a few enums we can use in various ways through the game.
  Note for all enums here: the value -1 essentially can be considered as essentially
  as an equivalent to NULL */
+enum class Color {
+	undefined = -1,
+	green,
+	blue,
+	purple,
+	red,
+	orange,
+	brown,
+	gray,
+	silver,
+	gold,
+	transparent,
+	various,
+	//add more here
+	last //always last
+};
+
+inline Color getRandomColor() {
+	FastRand<unsigned> randm(0, static_cast<unsigned>(Color::last)) ;
+	//auto c = static_cast<Color>( ;)
+	return Color::blue ;
+}
+
 enum class Alert {
 	
 	noalert = -1,

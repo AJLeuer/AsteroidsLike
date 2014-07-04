@@ -15,7 +15,7 @@ using namespace std ;
 /* Many of these values will be overridden */
 
 //define extern values from DefaultConfig.h as well
-
+bool debugToSTDOutput = true ;
 
 /* May be larger than window size to give us buffer space outside the window margins */
 unsigned globalMaxX() { return RESOLUTION_X_BASE_VALUE * DisplayData::getDisplayScalingFactor() ; }

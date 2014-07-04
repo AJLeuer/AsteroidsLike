@@ -50,6 +50,7 @@ public:
 	/**
 	 * Constructs an NPC based on the arguments given
 	 *
+	 * @param color The color of this NPC
 	 * @param symbol The icon to be used by this NPC
 	 * @param name The name of this NPC
 	 * @param alive Whether this NPC is dead or alive
@@ -58,7 +59,8 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(AssetType type, const string & imageFilename, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) ;
+	NPC(Color color, AssetType type, const string & imageFilename, float size, const Pos2<float> & loc,
+		string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) ;
 	
 	
 	/**

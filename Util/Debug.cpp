@@ -15,11 +15,11 @@ unsigned Debug::debugCounter = 0 ;
 
 Debug * Debug::debugOutput = nullptr ;
 
-void Debug::init(bool stdoutput) {
-	if (stdoutput) {
-		Debug::debugOutput = new Debug(&cout) ;
+void Debug::init() {
+	if (debugToSTDOutput) {
+		debugOutput = new Debug(&cout) ;
 	}
 	else {
-		Debug::debugOutput = new Debug(new ofstream("Debug.txt")) ;
+		debugOutput = new Debug(new ofstream("Debug.txt")) ;
 	}
 }

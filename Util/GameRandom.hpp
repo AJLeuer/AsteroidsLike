@@ -10,6 +10,7 @@
 #define SpriteFight_GameRandom_hpp
 
 #include <iostream>
+#include <limits>
 #include <random>
 #include <cmath>
 
@@ -17,44 +18,51 @@
 
 using namespace std ;
 
-template<typename T>
+template<typename N>
 class FastRand {
 	
 private:
 	
 	std::random_device dev ;
-	std::uniform_int_distribution<T> dist ;
+	std::uniform_int_distribution<N> dist ;
 	std::default_random_engine rndm{dev()} ;
 	
-	T min ;
-	T max ;
+	N minimum ;
+	N maximum ;
 	
 	static FastRand * initRandPosSetter() ;
 	
+	/* A conveniance random object that won't require initialization.
+	 * Especially useful in constructors and initializing static values.
+	 * A superior replacement for calling rand() 
+	 */
+	
+	
 public:
 	
+	static FastRand defaultRandom ;
 	static FastRand * randPositionSetter ;
 	
-	FastRand(T _min, T _max) ;
-	FastRand(const FastRand<T> & other) ;
-	FastRand<T> & operator=(const FastRand<T> & rhs) ;
+	FastRand(N _min, N _max) ;
+	FastRand(const FastRand<N> & other) ;
+	FastRand<N> & operator=(const FastRand<N> & rhs) ;
 	~FastRand() ;
-	T nextValue() ;
-	T nextValue(T min, T max) ;
+	N nextValue() ;
+	N nextValue(N minimum, N maximum) ;
 	template<typename R> R nextValue(R _min, R _max) ;
-	T operator()() ;
-	T operator()(T min, T max) ;
+	N operator()() ;
+	N operator()(N minimum, N maximum) ;
 	
 } ;
 
 
 template<typename T>
 FastRand<T>::FastRand(T _min, T _max) :
-	min(_min),
-	max(_max)
+	minimum(_min),
+	maximum(_max)
 {
 	//dev ;
-	dist = uniform_int_distribution<T>(min, max) ;
+	dist = uniform_int_distribution<T>(minimum, maximum) ;
 	rndm.seed(dev()) ;
 }
 
@@ -62,7 +70,7 @@ template<typename T>
 FastRand<T>::FastRand(const FastRand<T> & other)
 {
 	std::random_device dev2 ;
-	dist = uniform_int_distribution<T>(other.min, other.max) ;
+	dist = uniform_int_distribution<T>(other.minimum, other.maximum) ;
 	rndm.seed(dev2()) ;
 }
 
@@ -74,7 +82,7 @@ FastRand<T> & FastRand<T>::operator=(const FastRand<T> & rhs)
 {
 	if (this != &rhs) {
 		std::random_device dev2 ;
-		dist = uniform_int_distribution<T>(rhs.min, rhs.max) ;
+		dist = uniform_int_distribution<T>(rhs.minimum, rhs.maximum) ;
 		rndm.seed(dev2()) ;
 	}
 	return *this ;
@@ -86,8 +94,8 @@ T FastRand<T>::nextValue() {
 }
 
 template<typename T>
-T FastRand<T>::nextValue(T min, T max) {
-	std::uniform_int_distribution<T> dif_dist{min, max} ;
+T FastRand<T>::nextValue(T minimum, T maximum) {
+	std::uniform_int_distribution<T> dif_dist{minimum, maximum} ;
 	return dif_dist(rndm) ;
 }
 
@@ -97,8 +105,8 @@ T FastRand<T>::operator()() {
 }
 
 template<typename T>
-T FastRand<T>::operator()(T min, T max) {
-	return nextValue(min, max) ;
+T FastRand<T>::operator()(T minimum, T maximum) {
+	return nextValue(minimum, maximum) ;
 }
 
 template<typename T>
@@ -116,6 +124,8 @@ FastRand<N> * FastRand<N>::initRandPosSetter() {
     return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
 }
 
+template<typename N>
+FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
 /* more useful random functions: */
 
 template<typename N>
@@ -149,12 +159,12 @@ T chooseAtRand(T n1, T n2) {
  *
  * @param SomeEnum An enumeration type
  * @param N Some integer or floating point type
- * @param max The numerical value of the maximum enum of type SomeEnum
+ * @param maximum The numerical value of the maximum enum of type SomeEnum
  */
 template<typename SomeEnum, typename N>
-SomeEnum randomEnumeration(N max) {
+SomeEnum randomEnumeration(N maximum) {
 	
-	FastRand<N> randm(0, max) ;
+	FastRand<N> randm(0, maximum) ;
 	N num = randm() ;
 	return SomeEnum(num) ;
 }

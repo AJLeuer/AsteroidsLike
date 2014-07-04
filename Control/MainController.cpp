@@ -33,7 +33,7 @@ void MainController::init() {
 	
 	//do initializations
     Configuration::init() ;
-	
+	Debug::init() ;
 	
 	int sdlinit_error = SDL_Init(0) ;
 	
@@ -48,8 +48,9 @@ void MainController::init() {
 	GraphicalOutput::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
-	player0 = new Player("Player 0", "/Assets/Ships/Ship1_Green.png", PlayerDefaults::playerDefaults0) ;
-	player1 = new Player("Player 0", "/Assets/Ships/Ship2_Blue.png", PlayerDefaults::playerDefaults1) ;
+	Player::initDefaultPlayers() ;
+	player0 = Player::defaultPlayer0 ;
+	player1 = Player::defaultPlayer1 ;
 
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;

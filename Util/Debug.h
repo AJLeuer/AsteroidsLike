@@ -21,6 +21,7 @@ using namespace std ;
 class Debug : public ostream {
 	
 private:
+	
 	ostream * out ;
 	bool file_output ;
 	mutex dbgMutex ;
@@ -63,7 +64,7 @@ public:
 	
 	static Debug * debugOutput ;
 	
-	static void init(bool stdoutput) ;
+	static void init() ;
 	
 	/* Use for whatever */
 	static unsigned debugCounter ;

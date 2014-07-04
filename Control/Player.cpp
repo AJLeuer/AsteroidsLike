@@ -10,26 +10,38 @@
 
 using namespace std ;
 
-Player::Player() :
-	name("Player 1"),
-	playerDefaults(PlayerDefaults::playerDefaults0)
-{
-    auto x = (globalMaxX() / 2) ;
-    auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
-	playerCharacter = PlayerCharacter(pcAssetType, AssetFileIO::getRandomImageFilename(pcAssetType), size, Pos2<float>(x, y, 0), /* Pos2<float>(randPositionSetter<float>(), defaultCheck<float>()) */ name, Reaction::friendly, DoA::alive, CharacterState::normal,
-        500, 100) ;
+Pos2<float> Player::defaultStartingPosition = Pos2<float>((globalMaxX() / 2) + FastRand<int>::defaultRandom(-20, 20), (globalMaxY() - (globalMaxY() * 0.25)), 0) ;
+AssetType Player::defaultPCAssetType = AssetType::playerShip ; /* change if needed */
+float Player::defaultSize = 1.00 ;
+
+Player * Player::defaultPlayer0 = nullptr ;
+Player * Player::defaultPlayer1 = nullptr ;
+
+void Player::initDefaultPlayers() {
+	defaultPlayer0 = new Player("Player 0", "/Assets/Ships/Ship1_Green.png", Color::green, defaultSize, defaultStartingPosition, "Green",
+									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 	
+	defaultPlayer1 = new Player("Player 1", "/Assets/Ships/Ship2_Blue.png", Color::blue, defaultSize, defaultStartingPosition, "Blue",
+									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
+}
+
+Player::Player() :
+	name("Player 0"),
+	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFilename(defaultPCAssetType), defaultSize, defaultStartingPosition,"Player 0's Character", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
+{
 	registerForCallbacks() ;
 }
 
-Player::Player(const string & name, const string & imageFile, PlayerDefaults playerDefaults) :
+Player::Player(const string & name, const string & playerCharacter_imageFilename,
+	Color playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
+	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
+	unsigned playerCharacter_health, unsigned playerCharacter_damage) :
+
 	name(name),
-	playerDefaults(playerDefaults)
+	playerCharacter(playerCharacter_color, defaultPCAssetType, playerCharacter_imageFilename, playerCharacter_size,
+		playerCharacter_loc, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
+		playerCharacter_health, playerCharacter_damage)
 {
-    auto x = (globalMaxX() / 2) ;
-    auto y = (globalMaxY() - (globalMaxY() * 0.25)) ;
-	playerCharacter = PlayerCharacter(pcAssetType, imageFile, size,
-								Pos2<float>(x, y, 0), name, Reaction::friendly, DoA::alive, CharacterState::normal, 500, 100) ;
 	registerForCallbacks() ;
 }
 
@@ -41,7 +53,7 @@ void Player::update() {
 
 void Player::registerForCallbacks() {
 	
-	if (playerDefaults == PlayerDefaults::playerDefaults0) {
+	if (playerCharacter.getColor() == Color::blue) {
 		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
 		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
@@ -49,7 +61,7 @@ void Player::registerForCallbacks() {
 		InputController::registerForKeypress(moveLeftKey) ;
 		InputController::registerForKeypress(moveRightKey) ;
 	}
-	if (playerDefaults == PlayerDefaults::playerDefaults1) {
+	else if (playerCharacter.getColor() == Color::green) {
 		KeyInputRegister * moveUpLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft), {"Q"}, KeypressEvaluationMethod::any) ;
 		KeyInputRegister * moveUpRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight), {"E"}, KeypressEvaluationMethod::any) ;
 		InputController::registerForKeypress(moveUpLeftKey) ;

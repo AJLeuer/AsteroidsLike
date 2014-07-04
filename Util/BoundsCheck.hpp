@@ -23,7 +23,7 @@ struct BoundsCheck {
     
 protected:
 	
-    static BoundsCheck * initDefaultCheck() ;
+    //static BoundsCheck * initDefaultCheck() ;
 	
 public:
 	
@@ -32,7 +32,7 @@ public:
 	const N min_Y ;
 	const N max_Y ;
 	
-	static BoundsCheck * defaultCheck ;
+	static BoundsCheck defaultCheck ;
 	
 	BoundsCheck<N>(N min_X_, N max_X_, N min_Y_, N max_Y_) :
 		max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
@@ -64,12 +64,9 @@ public:
 } ;
 
 template<typename N>
-BoundsCheck<N> * BoundsCheck<N>::defaultCheck = initDefaultCheck() ;
+BoundsCheck<N> BoundsCheck<N>::defaultCheck(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
 
-template<typename N>
-BoundsCheck<N> * BoundsCheck<N>::initDefaultCheck() {
-	return new BoundsCheck<N>(0, static_cast<N>(globalMaxX()), 0, static_cast<N>(globalMaxY())) ;
-}
+
 
 
 #endif /* defined(__GameWorld__BoundsCheck__) */

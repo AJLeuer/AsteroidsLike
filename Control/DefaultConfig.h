@@ -32,6 +32,8 @@ struct Resolution ;
 													         etc., instead of nano. */
 #define sixfour_milliseconds std::chrono::nanoseconds(64000000)
 
+extern bool debugToSTDOutput ;
+
 /* Don't change */
 constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;

@@ -20,6 +20,7 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/BoundsCheck.hpp"
+#include "../World/CharacterData.h"
 #include "../World/GameState.h"
 
 #include "../Control/Configuration.h"
@@ -28,8 +29,8 @@ using namespace std ;
 
 enum class AssetType {
 	asteroid,
-	block,
 	misc,
+	powerup = misc,
     playerShip,
 	enemyShip,
 	UI,
@@ -38,23 +39,30 @@ enum class AssetType {
 	//add more here
 } ;
 
+struct AssetFile {
+	string fileName ;
+	string filePath ;
+	AssetType type ;
+	Color color ;
+	//other fields?
+} ;
+
 /**
  * This class will store the names and directory info of all file assets used in the program. 
  * Add the names of any new files added to AssetFileIO.cpp
  */
 class AssetFileIO {
 	
-	static vector<string> * asteroidImageFilenames ;
-	static vector<string> * blockImageFilenames ;
-	static vector<string> * miscImageFilenames ;
-	static vector<string> * playerShipImageFilenames ;
-	static vector<string> * enemyShipImageFilenames ;
-	static vector<string> * UIImageFilenames ;
-	static vector<string> * weaponImageFilenames ;
+	static vector<AssetFile> * asteroidImageFiles ;
+	static vector<AssetFile> * miscImageFilenames ;
+	static vector<AssetFile> * playerShipImageFilenames ;
+	static vector<AssetFile> * enemyShipImageFilenames ;
+	static vector<AssetFile> * UIImageFilenames ;
+	static vector<AssetFile> * weaponImageFilenames ;
 	
 public:
 	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const string & str, AssetType type) ;
-	static string & getImageFilename(vector<string>::size_type index, AssetType type) ;
+	static string & getImageFilename(vector<AssetFile>::size_type index, AssetType type) ;
 	static string & getRandomImageFilename(AssetType type) ;
 	
 	/**

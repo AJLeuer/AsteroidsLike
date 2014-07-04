@@ -37,8 +37,8 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
-	GameObject(type, imageFilename, sizeModifier, loc),
+Character::Character(Color color, AssetType type, const string & imageFilename, float sizeModifier, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
+	GameObject(color, type, imageFilename, sizeModifier, loc),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(new Health(health)), damage(new Damage(damage))
 {
@@ -52,7 +52,7 @@ Character::Character(FastRand<int> rand) :
 	health(new Health(goRand.nextValue(0, 500))),
 	damage(new Damage(goRand.nextValue(0, 50)))
 {
-	type = AssetType::block ;
+	type = AssetType::misc ;
 	name = generateName(goRand.nextValue(0, 11) + 5) ;
 }
 
