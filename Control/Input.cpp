@@ -41,7 +41,14 @@ bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, 
 	else {
 		auto current = scanCode ;
 		auto next = scanCode + 1 ;
-		if (requestedKeyEvalMethod == KeypressEvaluationMethod::all) {
+		if (requestedKeyEvalMethod == KeypressEvaluationMethod::exactlyOne) {
+			stringstream ss ;
+			ss << "Error: KeyInputRegistry with KeypressEvaluationMethod::exactlyOne has more than one keypress registered" << '\n' ;
+			ss << "Set a breakpoint in checkForPressedKeys() to debug" << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+			return false ;
+		}
+		else if (requestedKeyEvalMethod == KeypressEvaluationMethod::all) {
 			return ((keyboardState[*current]) && (checkForPressedKeys(keyboardState, next))) ;
 		}
 		else { // if (requestedKeyEvalMethod == KeypressEvaluationMethod::any)
@@ -49,7 +56,6 @@ bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, 
 		}
 		
 	}
-	
 }
 
 

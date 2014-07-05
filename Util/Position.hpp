@@ -1022,6 +1022,9 @@ public:
 	Vectr & operator=(const Vectr<N> & rhs) ;
 	Vectr & operator=(Vectr<N> && rhs) ;
 	
+	const Position * getCurrent() const { return this->current ; }
+	const Position getLast() const { return this->last ; }
+	
 	void normalize() ;
 	void updateAndNormalize() ;
 	

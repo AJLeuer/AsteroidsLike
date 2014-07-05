@@ -72,11 +72,7 @@ public:
 	void update() ;
 
 	
-	
-	
-	
-	
-	
+
 } ;
 
 #endif /* defined(__GameWorld__Player__) */

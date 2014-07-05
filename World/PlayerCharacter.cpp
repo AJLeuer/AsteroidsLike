@@ -137,11 +137,13 @@ void PlayerCharacter::jump() {
 }
 
 void PlayerCharacter::printPositition() {
-	stringstream ss ;
-	ss << this->name << "'s current world position is: " << getPosition() ;
-	auto screenPosition = translateToWindowCoords(*getPosition()) ;
-	ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
-	DebugOutput << ss.rdbuf() ;
+	if (*vectr.getCurrent() != vectr.getLast()) {
+		stringstream ss ;
+		ss << this->name << "'s current world position is: " << getPosition() ;
+		auto screenPosition = translateToWindowCoords(*getPosition()) ;
+		ss << this->name << "'s current screen position is: " << screenPosition << '\n' ;
+		DebugOutput << ss.rdbuf() ;
+	}
 }
 
 

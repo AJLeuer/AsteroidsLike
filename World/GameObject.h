@@ -317,6 +317,7 @@ public:
 	void moveDownLeft() { moveDownLeft(defaultOffset<float>) ; }
 
 	void moveUpRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()-offset), loc->getZ()) ; }
+	
 	void moveUpLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }
 	void moveDownRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()+offset), loc->getZ()) ; }
 	void moveDownLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()+offset), loc->getZ()) ; }

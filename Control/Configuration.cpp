@@ -21,8 +21,8 @@ bool debugToSTDOutput = true ;
 unsigned globalMaxX() { return RESOLUTION_X_BASE_VALUE * DisplayData::getDisplayScalingFactor() ; }
 unsigned globalMaxY()   { return RESOLUTION_Y_BASE_VALUE * DisplayData::getDisplayScalingFactor() ; }
 
-unsigned RESOLUTION_X_BASE_VALUE = DEFAULT_W_MAX_X ;
-unsigned RESOLUTION_Y_BASE_VALUE = DEFAULT_W_MAX_Y ;
+unsigned RESOLUTION_X_BASE_VALUE = DEFAULT_W_MAX_X  ;
+unsigned RESOLUTION_Y_BASE_VALUE = DEFAULT_W_MAX_Y  ;
 
 /* Default values, will most likely be changed by Configuration::init() */
 unsigned windowSizeX() {

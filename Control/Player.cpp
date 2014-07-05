@@ -29,7 +29,8 @@ void Player::initDefaultPlayers() {
 Player::Player() :
 	ID(IDs),
 	name(""),
-	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize, defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
+	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
+					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
 {
 	IDs++ ;
 	setNames() ;
@@ -68,25 +69,50 @@ void Player::setNames() {
 void Player::registerForCallbacks() {
 	
 	//todo make more generic
-	if (playerCharacter.getColor() == Color::blue) {
-		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp), {MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft), {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight), {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
+	if (playerCharacter.getColor() != Color::green) {
+		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
+															{MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
+															{MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+															  {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
+		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+															   {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
 		InputController::registerForKeypress(moveUpKey) ;
+		InputController::registerForKeypress(moveDownKey) ;
 		InputController::registerForKeypress(moveLeftKey) ;
 		InputController::registerForKeypress(moveRightKey) ;
 	}
-	else if (playerCharacter.getColor() == Color::green) {
-		KeyInputRegister * moveUpLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft), {"Q"}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveUpRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight), {"E"}, KeypressEvaluationMethod::any) ;
-		InputController::registerForKeypress(moveUpLeftKey) ;
-		InputController::registerForKeypress(moveUpRightKey) ;
+	else if (playerCharacter.getColor() != Color::blue) {
+		
+		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
+															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;
+		KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
+															  {SDLK_KP_2}, KeypressEvaluationMethod::exactlyOne) ;
+		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+															  {SDLK_KP_4}, KeypressEvaluationMethod::exactlyOne) ;
+		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
+		
+		/*
+		KeyInputRegister * moveUpRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight),
+															{SDLK_KP_8, SDLK_KP_6}, KeypressEvaluationMethod::all) ;
+		KeyInputRegister * moveDownRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownRight),
+															  {SDLK_KP_2, SDLK_KP_6}, KeypressEvaluationMethod::all) ;
+		KeyInputRegister * moveUpLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft),
+															  {SDLK_KP_8, SDLK_KP_4}, KeypressEvaluationMethod::all) ;
+		KeyInputRegister * moveDownLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownLeft),
+															   {SDLK_KP_2, SDLK_KP_4}, KeypressEvaluationMethod::all) ;  */
+		InputController::registerForKeypress(moveUpKey) ;
+		InputController::registerForKeypress(moveDownKey) ;
+		InputController::registerForKeypress(moveLeftKey) ;
+		InputController::registerForKeypress(moveRightKey) ;
+		
+		/*
+		InputController::registerForKeypress(moveUpRightKeys) ;
+		InputController::registerForKeypress(moveDownRightKeys) ;
+		InputController::registerForKeypress(moveUpLeftKeys) ;
+		InputController::registerForKeypress(moveDownLeftKeys) ; */
 	}
-	
-	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_KP_2}, KeypressEvaluationMethod::any) ;
-	KeyInputRegister * jumpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::jump), {SDLK_SPACE}, KeypressEvaluationMethod::any) ;
-	
-	InputController::registerForKeypress(moveDownKey) ;
-	InputController::registerForKeypress(jumpKey) ;
 }
 

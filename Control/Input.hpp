@@ -145,8 +145,9 @@ public:
  * function called when *all* of those keys are used at once, they should use EvaluationMethod::all.
  */
 enum class KeypressEvaluationMethod {
-	any = 0,
-	all = 1
+	exactlyOne,
+	all,
+	any
 } ;
 
 /**
