@@ -7,3 +7,11 @@
 //
 
 #include "TextOutput.h"
+
+void TextOutput::init() {
+	
+}
+
+void TextOutput::output() {
+	
+}

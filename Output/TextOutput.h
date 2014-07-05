@@ -10,11 +10,18 @@
 #define __SpriteFight__TextOutput__
 
 #include <iostream>
-#include <SDL_ttf/SDL_ttf.h>
 
 #include "GraphicalOutput.h"
 
 class TextOutput : public GraphicalOutput {
+	
+protected:
+	
+public:
+	
+	static void init() ;
+	
+	static void output() ;
 	
 } ;
 
