@@ -116,7 +116,7 @@ protected:
 
 	Size<int> size ;
 	Pos2<float> * loc ;
-	Vectr<float> vectr ;
+	VectrVel<float> vectr ;
 
 	AssetType type ;
 	bool visible ;
@@ -301,26 +301,25 @@ public:
 	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
 	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
 	
-	virtual void moveUp() { Vectr<float> up(0, 1, 0) ; moveNewDirection(up) ;}
-	virtual void moveDown() { moveTo(loc->getX(), (loc->getY()+defaultOffset<float>), loc->getZ()) ; }
-	virtual void moveRight() { moveTo((loc->getX()+defaultOffset<float>), loc->getY(), loc->getZ()) ; }
-	virtual void moveLeft() { moveTo((loc->getX()-defaultOffset<float>), loc->getY(), loc->getZ()) ; }
+	virtual void moveUp() { Vectr<float> up(UP) ; moveNewDirection(up) ; }
+	virtual void moveDown() { Vectr<float> down(DOWN) ; moveNewDirection(down) ; }
+	virtual void moveRight() { Vectr<float> right(RIGHT) ; moveNewDirection(right) ; }
+	virtual void moveLeft() { Vectr<float> left(LEFT) ; moveNewDirection(left) ; }
 	
-	virtual void moveUp(float offset) { moveTo(loc->getX(), (loc->getY()-offset), loc->getZ()) ; }
-	virtual void moveDown(float offset) { moveTo(loc->getX(), (loc->getY()+offset), loc->getZ()) ; }
-	virtual void moveRight(float offset) { moveTo((loc->getX()+offset), loc->getY(), loc->getZ()) ; }
-	virtual void moveLeft(float offset) { moveTo((loc->getX()-offset), loc->getY(), loc->getZ()) ; }
+	virtual void moveUp(float offset) { Vectr<float> up(UP) ; moveNewDirection(up, offset) ; }
+	virtual void moveDown(float offset) { Vectr<float> down(DOWN) ; moveNewDirection(down, offset) ; }
+	virtual void moveRight(float offset) { Vectr<float> right(RIGHT) ; moveNewDirection(right, offset) ; }
+	virtual void moveLeft(float offset) { Vectr<float> left(LEFT) ; moveNewDirection(left, offset) ; }
     
-    void moveUpRight() { Vectr<float> upright(1, 1, 0) ; moveNewDirection(upright) ; }
-	void moveUpLeft() { moveUpLeft(defaultOffset<float>) ; }
-	void moveDownRight() { moveDownRight(defaultOffset<float>); }
-	void moveDownLeft() { moveDownLeft(defaultOffset<float>) ; }
+    void moveUpRight() { Vectr<float> upright(UPRIGHT) ; moveNewDirection(upright) ; }
+	void moveUpLeft() { Vectr<float> upleft(UPLEFT) ; moveNewDirection(upleft) ;}
+	void moveDownRight() { Vectr<float> downright(DOWNRIGHT) ; moveNewDirection(downright) ; }
+	void moveDownLeft() { Vectr<float> downleft(DOWNLEFT) ; moveNewDirection(downleft) ; }
 
-	void moveUpRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()-offset), loc->getZ()) ; }
-	
-	void moveUpLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()-offset), loc->getZ()) ; }
-	void moveDownRight(float offset) { moveTo((loc->getX()+offset), (loc->getY()+offset), loc->getZ()) ; }
-	void moveDownLeft(float offset) { moveTo((loc->getX()-offset), (loc->getY()+offset), loc->getZ()) ; }
+	void moveUpRight(float offset) { Vectr<float> upright(UPRIGHT) ; moveNewDirection(upright, offset) ; }
+	void moveUpLeft(float offset) { Vectr<float> upleft(UPLEFT) ; moveNewDirection(upleft, offset) ;  }
+	void moveDownRight(float offset) { Vectr<float> downright(DOWNRIGHT) ; moveNewDirection(downright, offset) ; }
+	void moveDownLeft(float offset) { Vectr<float> downleft(DOWNLEFT) ; moveNewDirection(downleft, offset) ; }
     
     void moveRandomDirection() ;
 	
@@ -328,17 +327,17 @@ public:
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
-	 * Vectr of its last move
+	 * VectrVel of its last move
 	 */
 	void moveSameDirection() ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
-	 * Vectr
+	 * VectrVel
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	void moveNewDirection(Vectr<float> & newDirection) ;
+	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = 1) ;
 	
 	
 	/**
@@ -384,7 +383,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const Vectr<float> getVector() const { return this->vectr ; }
+	const VectrVel<float> getVector() const { return this->vectr ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

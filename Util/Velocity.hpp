@@ -53,7 +53,7 @@ protected:
 	
 	static void calculateVelocity() ;
 	
-	//friend class Vectr ;
+	//friend class VectrVel ;
 
 
 public:
@@ -183,7 +183,7 @@ void Velocity<N>::calculateVelocity() {
 		
 		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1) && (velocityStorage.at(i)->localContinueSignal)) {
 
-			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->lastDistance != *velocityStorage.at(i)->distance)) {
+			if ((velocityStorage.at(i) != nullptr) && ((velocityStorage.at(i)->lastDistance != *velocityStorage.at(i)->distance) || (velocityStorage.at(i)->lastVelocity != 0))) {
 				
 				const N dist0 = *velocityStorage.at(i)->distance ;
 				const auto time0 = velocityStorage.at(i)->timer->checkTimeElapsed() ;

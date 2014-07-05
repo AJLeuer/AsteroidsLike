@@ -26,7 +26,15 @@
 #include "GameRandom.hpp"
 #include "BasicConcurrency.h"
 
+#define UP 0, -1, 0
+#define DOWN 0, 1, 0
+#define LEFT -1, 0, 0
+#define RIGHT 1, 0, 0
 
+#define UPLEFT -1, -1, 0
+#define UPRIGHT 1, -1, 0
+#define DOWNRIGHT 1, 1, 0
+#define DOWNLEFT -1, 1, 0
 
 //#include "../Control/Configuration.h"
 
@@ -229,6 +237,28 @@ public:
 		temp.x = temp.x - rhs.x ;
 		temp.y = temp.y - rhs.y ;
 		temp.z = temp.z - rhs.z ;
+		
+		return temp ;
+	}
+	
+	Position operator*(const N n) const {
+        
+        Position temp = Position(x, y, z) ;
+        
+		temp.x = temp.x * n ;
+		temp.y = temp.y * n ;
+		temp.z = temp.z * n ;
+		
+		return temp ;
+	}
+	
+	Position operator/(const N n) const {
+        
+        Position temp = Position(x, y, z) ;
+        
+		temp.x = temp.x / n ;
+		temp.y = temp.y / n ;
+		temp.z = temp.z / n ;
 		
 		return temp ;
 	}
@@ -962,6 +992,291 @@ public:
 } ;
 
 /**
+ * A simplified version of the VectrVel class that does not provide Velocity information
+ *
+ * Note: do not use with unsigned ints
+ */
+template<typename N>
+struct Vectr : public Position<float> {
+	
+protected:
+	
+    /**
+     * The Position preceding the most recent Position
+     */
+    Position<N> last ;
+    
+    /**
+     * The Position most recently visited
+     */
+	Position<N> mostRecent ;
+    
+    /**
+     * A pointer to the current Position
+     */
+	const Position<N> * current ;
+    
+    /**
+     * The non-normalized distance between the current Position and mostRecent Position
+     */
+    N absDistanceMoved = 0 ;
+	
+	N * totalDistanceMoved ;
+	
+	void update() ;
+	
+public:
+	
+	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
+	/* Special case constructor, don't use in other classes */
+	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
+	
+	Vectr(float headingX, float headingY, float headingZ) ;
+	Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) ;
+	Vectr(const Position<N> & mostRecent_, Position<N> * current_) ;
+	Vectr(const Position<N> * current_) ;
+	Vectr(const Vectr<N> & other) ;
+	Vectr(Vectr<N> && other) ;
+	~Vectr() ;
+	Vectr & operator=(const Vectr<N> & rhs) ;
+	Vectr & operator=(Vectr<N> && rhs) ;
+	
+	const Position * getCurrent() const { return this->current ; }
+	const Position getLast() const { return this->last ; }
+	
+	void setLast(const Position & pos) { this->last = pos ; }
+	void setMostRecent(const Position & pos) { this->mostRecent = pos ; }
+	void setCurrent(const Position * pos) { this->current = pos ; }
+	void setAbsDistance(const N dist) { this->absDistanceMoved = dist ; }
+	void setTotalDistance(const N dist) { *this->totalDistanceMoved = dist ; }
+	
+	void normalize() ;
+	
+	void updateAndNormalize() ;
+	
+	Velocity<N> & calculateVelocity() ;
+	
+	
+	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
+	
+	
+	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	
+	
+	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	
+	
+	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	
+	
+	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	
+	
+	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	
+} ;
+
+
+template<typename N>
+Vectr<N>::Vectr(float headingX, float headingY, float headingZ) :
+	Position<float>(headingX, headingY, headingZ),
+	totalDistanceMoved(new N) {}
+
+template<typename N>
+Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
+	Position<float>(headingX, headingY, headingZ),
+	current(current_),
+	totalDistanceMoved(new N) {}
+
+template<typename N>
+Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
+	Position<float>(overrideCurrData),
+	current(current_),
+	totalDistanceMoved(new N) {}
+
+
+template<typename N>
+Vectr<N>::Vectr(const Position<N> * current_) :
+	Position<float>(),
+	last(*current_),
+	mostRecent(*current_), current(current_),
+	totalDistanceMoved(new N) {}
+
+
+template<typename N>
+Vectr<N>::Vectr(const Vectr<N> & other) :
+	Position<float>(other),
+	last(Position<N>(other.last)),
+	mostRecent(Position<N>(other.mostRecent)),
+	absDistanceMoved(other.absDistanceMoved),
+	totalDistanceMoved(new N(*other.totalDistanceMoved)) {}
+
+
+template<typename N>
+Vectr<N>::Vectr(Vectr<N> && other) :
+	Position<float>(std::move(other)),
+	last(std::move(other.last)),
+	mostRecent(std::move(other.mostRecent)), current(other.current),
+	absDistanceMoved(other.absDistanceMoved),
+	totalDistanceMoved(other.totalDistanceMoved)
+{
+	other.current = nullptr ;
+	other.totalDistanceMoved = nullptr ;
+}
+
+template<typename N>
+Vectr<N>::~Vectr() {
+	
+	this->current = nullptr ;
+	
+	if (totalDistanceMoved != nullptr) {
+		delete totalDistanceMoved ;
+	}
+}
+
+template<typename N>
+Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
+	if (this != &rhs) {
+		
+		delete current ;
+		delete totalDistanceMoved ;
+		
+		this->Position<float>::operator=(rhs) ;
+        this->last = Position<N>(rhs.last) ;
+		this->mostRecent = Position<N>(rhs.mostRecent) ;
+		this->current = rhs.current ;
+        this->absDistanceMoved = rhs.absDistanceMoved ;
+		this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
+		
+	}
+	return *this ;
+}
+
+template<typename N>
+Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
+	if (this != &rhs) {
+		
+		this->Position<float>::operator=(std::move(rhs)) ;
+        this->last = Position<N>(rhs.last) ;
+		this->mostRecent = Position<N>(rhs.mostRecent) ;
+		this->current = rhs.current ;
+        this->absDistanceMoved = rhs.absDistanceMoved ;
+		this->totalDistanceMoved = rhs.totalDistanceMoved ;
+		
+		rhs.current = nullptr ;
+		rhs.totalDistanceMoved = nullptr ;
+	}
+	return *this ;
+}
+
+template<typename N>
+void Vectr<N>::update() {
+	
+	if (mostRecent != *current) { //only if we've moved...
+        
+        absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
+		*totalDistanceMoved += absDistanceMoved ;
+        
+		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator+() overload to add
+																	  our x, y, and z (which are offset values) to those
+																	  stored in current, giving our new location  */
+		setAll(temp.getX(), temp.getY(), temp.getZ()) ;
+        last = mostRecent ;
+		mostRecent = std::move((Position<N>(*this->current))) ;
+	}
+	
+}
+
+template<typename N>
+void Vectr<N>::normalize() {
+	auto distance = pythag<float>(x, y) ;
+	if ((x != 0) && (distance != 0)) {
+		x = (x / distance) ;
+	}
+	if ((y != 0) && (distance != 0)) {
+		y = (y / distance) ;
+	}
+	z = 0 ;
+}
+
+template<typename N>
+void Vectr<N>::updateAndNormalize() {
+	update() ;
+	normalize() ;
+}
+
+template<typename N>
+Velocity<N> & Vectr<N>::calculateVelocity() {
+	return this->velocity ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
+	
+	vec.normalize() ;
+	
+	auto stor = vec * modifier ;
+	
+	N nx ;
+	N ny ;
+	N nz ;
+	
+	nx = (vec.current)->getX() + stor.getX() ;
+	ny = (vec.current)->getY() + stor.getY() ;
+	nz = (vec.current)->getZ() + stor.getZ() ;
+	
+	Position<N> next(nx, ny, nz) ;
+	return next ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateNextPositionCh(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	
+	vec.normalize() ;
+	
+	auto stor = vec * modifier ;
+	
+	N nx ;
+	N ny ;
+	N nz ;
+	
+	nx = (vec.current)->getX() + stor.getX() ;
+	ny = (vec.current)->getY() + stor.getY() ;
+	
+	Position<N> next(nx, ny, nz, check) ;
+	
+	return next ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateReverseNextPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	vec.x = (vec.x * -1) ;
+	vec.y = (vec.y * -1) ;
+	vec.z = (vec.z * -1) ;
+	return calculateNextPosition(vec, modifier, check) ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateReverseXPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	vec.x = (vec.x * -1) ;
+	return calculateNextPositionCh(vec, modifier, check) ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	vec.y = (vec.y * -1) ;
+	return calculateNextPositionCh(vec, modifier, check) ;
+}
+
+template<typename N>
+Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
+	Position<float> direc(dir.x, dir.y, dir.z) ;
+	Vectr<N> calc = Vectr<N>(direc, current, true) ;
+	return calculateNextPositionCh(calc, modifier, check) ;
+}
+
+
+/**
  * This class provides facilities for calculating an object's current trajectory,
  * predicting its next Position, monitoring its speed, maintaining a record of its
  * last two Positions (for more detailed record keeping of past Positions, see Pos2),
@@ -970,7 +1285,7 @@ public:
  * Note: do not use with unsigned ints
  */
 template<typename N>
-struct Vectr : public Position<float> {
+struct VectrVel : public Position<float> {
 	
 protected:
     
@@ -1007,21 +1322,25 @@ protected:
 	bool sharedVelBool = true ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
+	VectrVel(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
 	void update() ;
 
 	
 public:
 	
-	Vectr(float headingX, float headingY, float headingZ) ;
-	Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) ;
-	Vectr(const Position<N> & mostRecent_, Position<N> * current_) ;
-	Vectr(const Position<N> * current_) ;
-	Vectr(const Vectr<N> & other) ;
-	Vectr(Vectr<N> && other) ;
-	~Vectr() ;
-	Vectr & operator=(const Vectr<N> & rhs) ;
-	Vectr & operator=(Vectr<N> && rhs) ;
+	VectrVel(float headingX, float headingY, float headingZ) ;
+	VectrVel(float headingX, float headingY, float headingZ, Position<N> * current_) ;
+	VectrVel(const Position<N> & mostRecent_, Position<N> * current_) ;
+	VectrVel(const Position<N> * current_) ;
+	VectrVel(const VectrVel<N> & other) ;
+	VectrVel(VectrVel<N> && other) ;
+	~VectrVel() ;
+	VectrVel & operator=(const VectrVel<N> & rhs) ;
+	VectrVel & operator=(VectrVel<N> && rhs) ;
+	
+
+	static Vectr<N> convertToVectr(const VectrVel &) ;
+
 	
 	const Position * getCurrent() const { return this->current ; }
 	const Position getLast() const { return this->last ; }
@@ -1032,30 +1351,30 @@ public:
 	Velocity<N> & calculateVelocity() ;
 
 	
-	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
+	static Position<N> calculateNextPosition(VectrVel<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateNextPositionCh(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateReverseNextPosition(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateReverseXPosition(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateReverseYPosition(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateNextPosition(VectrVel<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 } ;
 
 template<typename N>
-BasicMutex * Vectr<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
+BasicMutex * VectrVel<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, float headingZ) :
+VectrVel<N>::VectrVel(float headingX, float headingY, float headingZ) :
 	Position<float>(headingX, headingY, headingZ),
 	totalDistanceMoved(new N)
 {
@@ -1063,7 +1382,7 @@ Vectr<N>::Vectr(float headingX, float headingY, float headingZ) :
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
+VectrVel<N>::VectrVel(float headingX, float headingY, float headingZ, Position<N> * current_) :
 	Position<float>(headingX, headingY, headingZ),
 	current(current_),
 	totalDistanceMoved(new N)
@@ -1072,7 +1391,7 @@ Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * cu
 }
 
 template<typename N>
-Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
+VectrVel<N>::VectrVel(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_),
 	totalDistanceMoved(new N)
@@ -1082,7 +1401,7 @@ Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * cu
 
 
 template<typename N>
-Vectr<N>::Vectr(const Position<N> * current_) :
+VectrVel<N>::VectrVel(const Position<N> * current_) :
 	Position<float>(),
     last(*current_),
 	mostRecent(*current_), current(current_),
@@ -1093,7 +1412,7 @@ Vectr<N>::Vectr(const Position<N> * current_) :
 
 
 template<typename N>
-Vectr<N>::Vectr(const Vectr<N> & other) :
+VectrVel<N>::VectrVel(const VectrVel<N> & other) :
 	Position<float>(other),
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
@@ -1105,7 +1424,7 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 
 
 template<typename N>
-Vectr<N>::Vectr(Vectr<N> && other) :
+VectrVel<N>::VectrVel(VectrVel<N> && other) :
 	Position<float>(std::move(other)),
     last(std::move(other.last)),
 	mostRecent(std::move(other.mostRecent)), current(other.current),
@@ -1119,7 +1438,7 @@ Vectr<N>::Vectr(Vectr<N> && other) :
 }
 
 template<typename N>
-Vectr<N>::~Vectr()
+VectrVel<N>::~VectrVel()
 {
 	
 	sharedVelMutex->lock() ;
@@ -1140,7 +1459,7 @@ Vectr<N>::~Vectr()
 }
 
 template<typename N>
-Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
+VectrVel<N> & VectrVel<N>::operator=(const VectrVel<N> & rhs) {
 	if (this != &rhs) {
 		
 		delete current ;
@@ -1160,7 +1479,7 @@ Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 }
 
 template<typename N>
-Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
+VectrVel<N> & VectrVel<N>::operator=(VectrVel<N> && rhs) {
 	if (this != &rhs) {
 		
 		this->Position<float>::operator=(std::move(rhs)) ;
@@ -1179,7 +1498,20 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 }
 
 template<typename N>
-void Vectr<N>::update() {
+Vectr<N> VectrVel<N>::convertToVectr(const VectrVel & other) {
+	Vectr<N> vec(other.x, other.y, other.z) ;
+	
+	vec.setLast(other.last) ;
+	vec.setMostRecent(other.mostRecent) ;
+	vec.setCurrent(other.current) ;
+	vec.setAbsDistance(other.absDistanceMoved) ;
+	vec.setTotalDistance(*other.totalDistanceMoved) ;
+	
+	return vec ;
+}
+
+template<typename N>
+void VectrVel<N>::update() {
 
 	if (mostRecent != *current) { //only if we've moved...
         
@@ -1197,87 +1529,64 @@ void Vectr<N>::update() {
 }
 
 template<typename N>
-void Vectr<N>::normalize() {
+void VectrVel<N>::normalize() {
 	auto distance = pythag<float>(x, y) ;
-	if (x != 0) {
+	if ((x != 0) && (distance != 0)) {
 		x = (x / distance) ;
 	}
-	if (y != 0) {
+	if ((y != 0) && (distance != 0)) {
 		y = (y / distance) ;
 	}
 	z = 0 ;
 }
 
 template<typename N>
-void Vectr<N>::updateAndNormalize() {
+void VectrVel<N>::updateAndNormalize() {
 	update() ;
 	normalize() ;
 }
 
 template<typename N>
-Velocity<N> & Vectr<N>::calculateVelocity() {
+Velocity<N> & VectrVel<N>::calculateVelocity() {
 	return this->velocity ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
+Position<N> VectrVel<N>::calculateNextPosition(VectrVel<N> & vec, float modifier) {
 	
-	vec.normalize() ;
-
-	N nx ;
-	N ny ;
-	N nz ;
-
-	nx = (vec.current)->getX() + (vec.getX() * modifier) ;
-	ny = (vec.current)->getY() + (vec.getY() * modifier) ;
-	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
-
-	Position<N> next(nx, ny, nz) ;
-	return next ;
+	Vectr<N> equivVec = convertToVectr(vec) ;
+	return Vectr<N>::calculateNextPosition(equivVec, modifier) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPositionCh(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-
-	vec.normalize() ;
-
-	N nx ;
-	N ny ;
-	N nz ;
-
-	nx = (vec.current)->getX() + (vec.getX() * modifier) ;
-	ny = (vec.current)->getY() + (vec.getY() * modifier) ;
-	nz = (vec.current)->getZ() + (vec.getZ() * modifier) ;
-
-	Position<N> next(nx, ny, nz, check) ;
-	return next ;
+Position<N> VectrVel<N>::calculateNextPositionCh(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	
+	Vectr<N> equivVec = convertToVectr(vec) ;
+	return Vectr<N>::calculateNextPositionCh(equivVec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseNextPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.x = (vec.x * -1) ;
-	vec.y = (vec.y * -1) ;
-	vec.z = (vec.z * -1) ;
-	return calculateNextPosition(vec, modifier, check) ;
+Position<N> VectrVel<N>::calculateReverseNextPosition(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	Vectr<N> equivVec = convertToVectr(vec) ;
+	return Vectr<N>::calculateReverseNextPosition(equivVec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseXPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.x = (vec.x * -1) ;
-	return calculateNextPositionCh(vec, modifier, check) ;
+Position<N> VectrVel<N>::calculateReverseXPosition(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	Vectr<N> equivVec = convertToVectr(vec) ;
+	return Vectr<N>::calculateReverseXPosition(equivVec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.y = (vec.y * -1) ;
-	return calculateNextPositionCh(vec, modifier, check) ;
+Position<N> VectrVel<N>::calculateReverseYPosition(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
+	Vectr<N> equivVec = convertToVectr(vec) ;
+	return Vectr<N>::calculateReverseYPosition(equivVec, modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
-	Position<float> direc(dir.x, dir.y, dir.z) ;
-	Vectr<N> calc = Vectr<N>(direc, current, true) ;
-	return calculateNextPositionCh(calc, modifier, check) ;
+Position<N> VectrVel<N>::calculateNextPosition(VectrVel<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
+	Vectr<N> equivVec = convertToVectr(dir) ;
+	return Vectr<N>::calculateNextPosition(equivVec, current, modifier, check) ;
 }
 
 

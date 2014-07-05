@@ -9,30 +9,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Control/Input.cpp"
-            timestampString = "426228670.063151"
+            filePath = "Util/Position.hpp"
+            timestampString = "426273117.167531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "World/GameObject.h"
-            timestampString = "426262198.349242"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "class GameObject"
-            landmarkType = "3">
+            startingLineNumber = "245"
+            endingLineNumber = "245">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
