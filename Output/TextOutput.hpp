@@ -22,6 +22,7 @@
 
 #include "../Util/Size.hpp"
 
+#include "OutputData.hpp"
 #include "GameColor.h"
 
 using namespace std ;
@@ -42,10 +43,31 @@ public:
     
     static Size<unsigned> getSizeOfText(string str) ;
     
-    static void outputText(const string & text, GameColor foreground, GameColor background) ;
+    template<typename N>
+    static void outputText(const string & text, GameColor foreground, GameColor background, const Position<N> pos,
+                           const Size<int> * size) ;
+    
+    static void render() ;
 	
 	static void exit() ;
 	
 } ;
+
+template<typename N>
+void TextOutput::outputText(const string & text, GameColor foreground, GameColor background, const Position<N> pos,
+                            const Size<int> * size)
+
+{
+    
+    Surface * surface ;
+
+    surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
+    
+}
+
+
+
+
+
 
 #endif /* defined(__SpriteFight__TextOutput__) */

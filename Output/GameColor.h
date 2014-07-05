@@ -53,6 +53,6 @@ struct GameColor {
     }
     
     
-};
+} ;
 
 #endif /* defined(__SpriteFight__GameColor__) */

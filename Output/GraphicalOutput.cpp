@@ -41,13 +41,11 @@ void GraphicalOutput::init() {
 		throw exception() ;
 	}
     
-    /* init sdl_ttf... */
-    TextOutput::init() ;
-	
+
 	/* debug code - delete */
     auto winX = windowSizeX() ;
     auto winY = windowSizeY() ;
-    auto sz = TextOutput::getSizeOfText("HAI!") ;
+  
 	/* end debug code */
 	
 	window = SDL_CreateWindow("T^2",
@@ -135,7 +133,6 @@ void GraphicalOutput::exit() {
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
     
-    TextOutput::exit() ; /* quits() sdl_ttf */
     IMG_Quit() ;
     
 	SDL_QuitSubSystem(SDL_INIT_VIDEO) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */

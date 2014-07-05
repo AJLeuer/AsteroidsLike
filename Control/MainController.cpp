@@ -54,6 +54,7 @@ void MainController::init() {
 	}
 	
 	GraphicalOutput::init() ;
+    TextOutput::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
 	Player::initDefaultPlayers() ;
@@ -106,7 +107,8 @@ void MainController::exit(int sig) {
 		
 		GLOBAL_CONTINUE_SIGNAL = false ;
 		/* other signals to define false here? */
-	
+        
+        TextOutput::exit() ; /* quits() sdl_ttf */
 		GraphicalOutput::exit() ;
 		WorldController::exit() ;
 		InputController::exit() ;

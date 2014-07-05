@@ -21,6 +21,7 @@
 #include "../Util/BasicConcurrency.h"
 
 #include "../Output/GraphicalOutput.h"
+#include "../Output/TextOutput.hpp"
 
 #include "../World/GameState.h"
 #include "../World/WorldController.h"
