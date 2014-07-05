@@ -13,12 +13,13 @@
 using namespace std ;
 
 void EventRegisterBase::callBack() {
-	if ((memberToCallOn != nullptr) || (member_callBackFunction != nullptr)) { /* if this is an instance member function (we'll know by checking that member_callOn isn't null,
+	if ((memberToCallOn != nullptr) && (member_callBackFunction != nullptr)) { /* if this is an instance member function (we'll know by checking that member_callOn isn't null,
 																			   then call it on that object */
         (memberToCallOn->*member_callBackFunction)();
     }
     else { //if (memberToCallOn == nullptr) //else this is a global or static function, just call it
-        (*callBackFunction)() ;
+		   //(callBackFunction)() ;
+		callBackFunction() ;
     }
 }
 
@@ -57,7 +58,6 @@ void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) 
 	if (checkForPressedKeys(keyboardState, scanCode)) {
 		callBack() ;
 	}
-	
 }
 
 vector<EventRegister *> * InputController::eventListenerRegistry = new vector<EventRegister *>() ;
@@ -93,11 +93,13 @@ void InputController::listenForKeypress() {
 
 void InputController::init() {
 	//keyInputRegistry is already initialized. add anything else here.
-	int sdlinit_error = SDL_InitSubSystem(SDL_INIT_EVENTS) ;
+	
+	/* SDL automatically inits events */
+	int sdlinit_error = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER|SDL_INIT_JOYSTICK) ;
 
 	if (sdlinit_error != 0) {
 		stringstream ss ;
-		ss << "SDL_InitSubSystem(SDL_INIT_EVENTS) failed." << '\n' ;
+		ss << "SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER|SDL_INIT_JOYSTICK) failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
 		cerr << ss.rdbuf() ;
 		throw exception() ;
@@ -149,6 +151,6 @@ void InputController::exit() {
 	}
 	delete keyInputRegistry ;
 	delete event ;
-	SDL_QuitSubSystem(SDL_INIT_EVENTS) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
+	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER|SDL_INIT_JOYSTICK) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
 }
 

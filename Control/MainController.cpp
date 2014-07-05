@@ -18,11 +18,19 @@ Player * MainController::player1 = nullptr ;
 
 const unsigned * MainController::loopCount = &mainGameLoopCount ; //Debug symbol, delete
 
+void MainController::begin_exit() {
+	GLOBAL_CONTINUE_SIGNAL = false ;
+}
+
 void MainController::setupMainContrExit() {
+	
+	/* Signal handling */
+	signal(SIGQUIT, &MainController::exit) ;
+	signal(SIGABRT, &MainController::exit) ;
 	
 	/* Register for MainController::exit() to be called if a quit event is initiated (i.e. user clicks
 	  window close button, presses ⌘Q, etc */
-	EventRegister * quitEvent = new EventRegister(&MainController::exit, EventType::SDL_QUIT) ;
+	EventRegister * quitEvent = new EventRegister(&MainController::begin_exit, EventType::SDL_QUIT) ;
 	InputController::registerForEvent(quitEvent) ;
 }
 
@@ -44,6 +52,8 @@ void MainController::init() {
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
+	
+	IMG_Init(IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_JPG) ;
 
 	GraphicalOutput::init() ;
 	InputController::init() ;
@@ -53,7 +63,7 @@ void MainController::init() {
 	player1 = Player::defaultPlayer1 ;
 	
 	/* debug code */ Player player3 ;
-
+	
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
 }
@@ -67,6 +77,9 @@ void MainController::main() {
 	auto rt = refreshTime ; //debug symbol
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
+		
+		/* Will need to lock the mutex when shutting down */
+		
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
 		GraphicalOutput::update() ;
@@ -84,19 +97,29 @@ void MainController::main() {
             /* wait */
         }
 	}
+
+	/* exit signaled GLOBAL_CONTINUE_SIGNAL_FALSE. We're outta here! Handing off to MainController::exit() */
+	exit() ;
 }
 
-void MainController::exit() {
-
-	GLOBAL_CONTINUE_SIGNAL = false ;
-	velocityMonitorContinueSignal = false ;
-	/* other signals to define false here? */
-
-	WorldController::exit() ;
-	GraphicalOutput::exit() ;
-	InputController::exit() ;
-	SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
-	GameState::mainGameClock->stopTimer() ;
+void MainController::exit(int sig) {
+	
+	if (GLOBAL_CONTINUE_SIGNAL == true) {
+		
+		GLOBAL_CONTINUE_SIGNAL = false ;
+		/* other signals to define false here? */
+	
+		GraphicalOutput::exit() ;
+		WorldController::exit() ;
+		InputController::exit() ;
+	
+		IMG_Quit() ;
+		SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
+	
+		GameState::mainGameClock->stopTimer() ;
+	}
+	
+	/* And we're done! Returning now... */
 }
 
 

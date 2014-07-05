@@ -17,11 +17,12 @@
 #include <assert.h>
 
 #include "Timer.hpp"
+#include "BasicConcurrency.h"
 #include "../Control/Configuration.h"
 
 using namespace std ;
 
-extern bool velocityMonitorContinueSignal ;
+extern bool * velocityMonitorContinueSignal ;
 
 template<typename N>
 struct Velocity {
@@ -38,7 +39,6 @@ protected:
 	int id ;
 	const Distance * distance ;
 	Timer * timer ;
-	mutex * velMutex ;
 	bool * localContinueSignal ;
 	
 	Distance lastDistance = 0 ;
@@ -53,10 +53,12 @@ protected:
 	
 	static void calculateVelocity() ;
 	
-	
+	//friend class Vectr ;
 
-	
+
 public:
+	
+	static BasicMutex * sharedVelMutex ;
 	
 	static const vector<Velocity *> * getVelocityStorage() { return & velocityStorage ; }
 	
@@ -75,7 +77,6 @@ public:
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
-		velMutex(mut),
 		localContinueSignal(localContinueSignal)
 	{
 		IDs++ ;
@@ -93,7 +94,6 @@ public:
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
-		velMutex(mut),
 		localContinueSignal(localContinueSignal),
 		baseTimeUnit(baseTimeUnitOverride)
 	{
@@ -136,7 +136,6 @@ public:
 	 
 } ;
 
-
 template<typename N>
 bool Velocity<N>::velocityMonitorInit = false ;
 
@@ -147,10 +146,13 @@ template<typename N>
 vector<Velocity<N> *> Velocity<N>::velocityStorage = vector<Velocity<N> *>() ;
 
 template<typename N>
+BasicMutex * Velocity<N>::sharedVelMutex = new BasicMutex() ;
+
+template<typename N>
 void Velocity<N>::monitorVelocity() {
 	
 	auto velocityMonitorLambda = [&] () -> void {
-		while(velocityMonitorContinueSignal) {
+		while(*velocityMonitorContinueSignal) {
 			calculateVelocity() ;
 		}
 	} ;
@@ -167,23 +169,17 @@ void Velocity<N>::calculateVelocity() {
 	auto * vs = &velocityStorage ;
 	/* end debug */
     
-	for (auto i = 0 ; (i < velocityStorage.size()) && (velocityMonitorContinueSignal) ; i++) {
+	for (auto i = 0 ; (i < velocityStorage.size()) && (*velocityMonitorContinueSignal) ; i++) {
 		
 		/* Debug var */
 		auto vs = Velocity::getVelocityStorage() ;
 		
 		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1) && (velocityStorage.at(i)->localContinueSignal)) {
-			
-			
-			if (velocityStorage.at(i)->velMutex != nullptr) {
-				if (velocityStorage.at(i)->velMutex->try_lock() == false) {
-					continue ;
-				}
-			}
-			else {
+		
+			if (sharedVelMutex->try_lock() == false) {
 				continue ;
 			}
-			
+
 			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->lastDistance != *velocityStorage.at(i)->distance)) {
 				
 				const N dist0 = *velocityStorage.at(i)->distance ;
@@ -209,9 +205,7 @@ void Velocity<N>::calculateVelocity() {
 				velocityStorage.at(i)->lastDistance = *velocityStorage.at(i)->distance ;
 			
 			}
-			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->velMutex != nullptr)) {
-				velocityStorage.at(i)->velMutex->unlock() ;
-			}
+			sharedVelMutex->unlock() ;
 		}
 	}
 }

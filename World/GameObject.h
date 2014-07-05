@@ -37,8 +37,10 @@
 using namespace::std ;
 
 /**
- * The base class from which all other classes in the world
+ *  The base class from which all other classes in the world
  *  will inherit. This class will handle the assignment of a unique ID to each GameObject.
+ *
+ * @sa Character
  */
 class GameObject : public GameInterface {
 	

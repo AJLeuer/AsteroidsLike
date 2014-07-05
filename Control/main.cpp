@@ -34,14 +34,13 @@
 
 
 int main(int argc, char ** argv) {
+	
+	
     
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 	
-	auto a = std::numeric_limits<int>::max() ;
-	auto c = static_cast<unsigned>(Color::last) ;
-	
-	
+
 	MainController::init() ;
 	MainController::main() ;
      

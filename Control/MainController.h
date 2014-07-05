@@ -10,12 +10,15 @@
 #define __GameWorld__MainController__
 
 #include <iostream>
+#include <csignal>
 
 #include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
 
 #include "../Util/Debug.h"
 #include "../Util/Velocity.hpp"
 #include "../Util/Timer.hpp"
+#include "../Util/BasicConcurrency.h"
 
 #include "../Output/GraphicalOutput.h"
 
@@ -31,25 +34,27 @@ using namespace std ;
 
 
 class MainController {
-	
-private:
+
+protected:
 	
 	static Player * player0 ;
 	static Player * player1 ;
 	static const unsigned * loopCount ; //Debug symbol, delete
 	
-	static void exit() ;
-	
-public:
+	static void begin_exit() ;
 	
 	/**
 	 * This function will call exit at some predetermined point, or when
 	 * some criterion is met (TBD - see implementation).
-	 * This is neccesary since InputController, which depends on SDL, needs to run on the main thread, 
+	 * This is neccesary since InputController, which depends on SDL, needs to run on the main thread,
 	 * and since each controller runs a while loop, it will not return until the bool* it checks changes.
-	*/
+	 */
 	static void setupMainContrExit() ;
-
+	
+	static void exit(int sig = 0) ;
+	
+public:
+	
 	static void init() ;
 	static void main() ;
 

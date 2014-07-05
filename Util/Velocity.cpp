@@ -7,5 +7,6 @@
 //
 
 #include "Velocity.hpp"
+#include "../World/GameState.h"
 
-bool velocityMonitorContinueSignal = true ;
+bool * velocityMonitorContinueSignal = &GLOBAL_CONTINUE_SIGNAL ;

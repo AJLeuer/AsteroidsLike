@@ -24,6 +24,7 @@
 #include "BoundsCheck.hpp"
 #include "Velocity.hpp"
 #include "GameRandom.hpp"
+#include "BasicConcurrency.h"
 
 
 
@@ -973,6 +974,8 @@ struct Vectr : public Position<float> {
 	
 protected:
     
+	static BasicMutex * sharedVelMutex ;
+	
     /**
      * The Position preceding the most recent Position
      */
@@ -1000,14 +1003,13 @@ protected:
 	 */
 	Velocity<N> * velocity ;
 	
-	mutex * sharedVelMutex  ;
+	
 	bool sharedVelBool = true ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
 	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) ;
 	void update() ;
-	
-	friend class Vectr ;
+
 	
 public:
 	
@@ -1046,11 +1048,13 @@ public:
 } ;
 
 template<typename N>
+BasicMutex * Vectr<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
+
+template<typename N>
 Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
 	Position<float>(headingX, headingY, headingZ),
 	current(current_),
-	totalDistanceMoved(new N),
-	sharedVelMutex(new mutex())
+	totalDistanceMoved(new N)
 {
 	velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 }
@@ -1059,8 +1063,7 @@ template<typename N>
 Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool b) :
 	Position<float>(overrideCurrData),
 	current(current_),
-	totalDistanceMoved(new N),
-	sharedVelMutex(new mutex())
+	totalDistanceMoved(new N)
 {
 	velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 }
@@ -1071,8 +1074,7 @@ Vectr<N>::Vectr(const Position<N> * current_) :
 	Position<float>(),
     last(*current_),
 	mostRecent(*current_), current(current_),
-	totalDistanceMoved(new N),
-	sharedVelMutex(new mutex())
+	totalDistanceMoved(new N)
 {
 	velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 }
@@ -1084,9 +1086,7 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
     absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(new N(*other.totalDistanceMoved)),
-	sharedVelMutex(new mutex())
-
+	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
 	velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 }
@@ -1099,7 +1099,6 @@ Vectr<N>::Vectr(Vectr<N> && other) :
 	mostRecent(std::move(other.mostRecent)), current(other.current),
     absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(other.totalDistanceMoved),
-	sharedVelMutex(other.sharedVelMutex),
 	velocity(other.velocity)
 {
 	other.current = nullptr ;
@@ -1110,8 +1109,10 @@ Vectr<N>::Vectr(Vectr<N> && other) :
 template<typename N>
 Vectr<N>::~Vectr()
 {
-	sharedVelBool = false ;
+	
 	sharedVelMutex->lock() ;
+	
+	sharedVelBool = false ;
 	
 	this->current = nullptr ;
 	
@@ -1124,7 +1125,6 @@ Vectr<N>::~Vectr()
 	}
 	
 	sharedVelMutex->unlock() ;
-	delete sharedVelMutex ;
 }
 
 template<typename N>

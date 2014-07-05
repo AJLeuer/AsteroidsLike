@@ -45,6 +45,7 @@ protected:
 	
 	/* just for initializing playerCharacter */
 	
+	void setNames() ;
 	
 	void registerForCallbacks() ;
 

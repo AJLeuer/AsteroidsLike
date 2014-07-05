@@ -17,6 +17,7 @@
 		662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6C18FF763A003A6EE0 /* Util.cpp */; };
 		662D9E7018FF90C7003A6EE0 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662D9E6E18FF90C7003A6EE0 /* MainController.cpp */; };
 		662FA07918F609B2009E87BE /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662FA07818F609B2009E87BE /* Debug.cpp */; };
+		6648C98F1967620D0052E27E /* BasicConcurrency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6648C98D1967620D0052E27E /* BasicConcurrency.cpp */; };
 		664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB01939E6BE008F4CD1 /* Player.cpp */; };
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
@@ -55,6 +56,8 @@
 		662FA07718F609B2009E87BE /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Debug.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662FA07818F609B2009E87BE /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Debug.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66403B761907C8AB00EAFFE4 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = BoundsCheck.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		6648C98D1967620D0052E27E /* BasicConcurrency.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicConcurrency.cpp; sourceTree = "<group>"; };
+		6648C98E1967620D0052E27E /* BasicConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicConcurrency.h; sourceTree = "<group>"; };
 		664BFFAF1939E559008F4CD1 /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Input.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		664BFFB01939E6BE008F4CD1 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Player.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		664BFFB11939E6BE008F4CD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Player.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -161,11 +164,13 @@
 				6684DDA6195FA6C300E6B997 /* GameRandom.hpp */,
 				6678790118DAE25E00618712 /* Timer.hpp */,
 				6617B185190D725C004B442B /* AssetFileIO.h */,
+				6648C98E1967620D0052E27E /* BasicConcurrency.h */,
 				662FA07818F609B2009E87BE /* Debug.cpp */,
 				662D9E6C18FF763A003A6EE0 /* Util.cpp */,
 				6652B7F419615A0600243106 /* Velocity.cpp */,
 				6652B7F019610BE700243106 /* Timer.cpp */,
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
+				6648C98D1967620D0052E27E /* BasicConcurrency.cpp */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
+				6648C98F1967620D0052E27E /* BasicConcurrency.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */,
 				66E3235B19327C28005A1144 /* Configuration.cpp in Sources */,
@@ -474,6 +480,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/chrono/build/darwin-4.2.1/release/threading-multi",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRELINK_LIBS = Yes;
 				PRODUCT_NAME = SpriteFight;
 			};
@@ -494,6 +501,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Boost/bin.v2/libs/chrono/build/darwin-4.2.1/release/threading-multi",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRELINK_LIBS = Yes;
 				PRODUCT_NAME = SpriteFight;
 			};

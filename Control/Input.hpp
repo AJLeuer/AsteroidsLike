@@ -12,6 +12,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <functional>
 #include <initializer_list>
 #include <list>
 
@@ -50,14 +51,16 @@ protected:
 	 */
 	void (GameInterface::*member_callBackFunction)() ;
 	
-	
 	/**
 	 * A pointer to the function to be called
 	 * when the requested keyboard input is detected. This variable points
 	 * to static or global functions (member_callOn should be a nullptr in any
 	 * EventRegisterBase where a callBackFn, and not a member_callBackFn, is held)
 	 */
-	void (*callBackFunction)() ;
+	
+	/* void (*callBackFunction)() ; */ //old version
+	
+	function<void (void)> callBackFunction ;
 	
 	friend class InputController ;
 	
@@ -84,7 +87,7 @@ protected:
 		member_callBackFunction(cb),
 		callBackFunction(nullptr) {}
 	
-	EventRegisterBase(void (*cb)()) :
+	EventRegisterBase(function<void (void)> cb) :
 		memberToCallOn(nullptr),
 		member_callBackFunction(nullptr),
 		callBackFunction(cb) {}
@@ -125,7 +128,7 @@ public:
 		EventRegisterBase(callOn, cb),
 		eventType(eventType) {}
 	
-	EventRegister(void (*cb)(), EventType eventType) :
+	EventRegister(function<void (void)> cb, EventType eventType) :
 		EventRegisterBase(cb),
 		eventType(eventType) {}
 	
@@ -230,7 +233,7 @@ public:
 		}
 	}
 	
-	KeyInputRegister(void (*cb)(), initializer_list<string> keyChar, KeypressEvaluationMethod m) :
+	KeyInputRegister(function<void (void)> cb, initializer_list<string> keyChar, KeypressEvaluationMethod m) :
 		EventRegisterBase(cb),
 		scanCodes(vector<ScanCode>()),
 		requestedKeyboardChars(keyChar),
@@ -256,7 +259,7 @@ public:
 		}
 	}
 	
-	KeyInputRegister(void (*cb)(), initializer_list<KeyCode> keyCode) :
+	KeyInputRegister(function<void (void)> cb, initializer_list<KeyCode> keyCode) :
 		EventRegisterBase(cb),
 		scanCodes(vector<ScanCode>()),
 		requestedKeyCodes(keyCode),
@@ -288,7 +291,7 @@ public:
 		}
 	}
 	
-	KeyInputRegister(void (*cb)(), initializer_list<string> keyChar, initializer_list<KeyCode> keyCode, KeypressEvaluationMethod m) :
+	KeyInputRegister(function<void (void)> cb, initializer_list<string> keyChar, initializer_list<KeyCode> keyCode, KeypressEvaluationMethod m) :
 		EventRegisterBase(cb),
 		scanCodes(vector<ScanCode>()),
 		requestedKeyboardChars(keyChar),

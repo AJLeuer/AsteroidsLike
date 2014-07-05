@@ -176,7 +176,7 @@ public:
 	 *
 	 * @param s The Character's new name
 	 */
-	void setName(string & s) { this->name = s ; }
+	void setName(string s) { this->name = s ; }
 	
 	/**
 	 * @return This character's current state

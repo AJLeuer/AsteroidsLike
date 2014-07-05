@@ -261,6 +261,12 @@ string operator +(const string & str, const T & rhs) {
 	return ret ;
 }
 
+inline string operator +(const string & str, const char * rhs) {
+	string app(rhs) ;
+	string ret = str ;
+	ret += app ;
+	return ret ;
+}
 
 /* misc. other */
 extern char * basicAlphabet ;

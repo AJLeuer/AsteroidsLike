@@ -70,6 +70,8 @@ void WorldController::main() {
         }
     }
 	
+	bool * cont = &GLOBAL_CONTINUE_SIGNAL ; //debug variable - rm
+	
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		

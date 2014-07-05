@@ -28,10 +28,11 @@ void Player::initDefaultPlayers() {
 
 Player::Player() :
 	ID(IDs),
-	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize, defaultStartingPosition,"Player 0's Character", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
+	name(""),
+	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize, defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
 {
 	IDs++ ;
-	name = "Player" + to_string(ID) ;
+	setNames() ;
 	registerForCallbacks() ;
 }
 
@@ -47,6 +48,7 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 		playerCharacter_health, playerCharacter_damage)
 {
 	IDs++ ;
+	setNames() ;
 	registerForCallbacks() ;
 }
 
@@ -54,7 +56,14 @@ void Player::update() {
 	//todo
 }
 
-
+void Player::setNames() {
+	if (name == "") {
+		name = "Player " + to_string(ID) ;
+	}
+	if (playerCharacter.getName() == "") {
+		playerCharacter.setName(name + "'s Character") ;
+	}
+}
 
 void Player::registerForCallbacks() {
 	
@@ -74,7 +83,7 @@ void Player::registerForCallbacks() {
 		InputController::registerForKeypress(moveUpRightKey) ;
 	}
 	
-	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown), {MOVE_DOWN}, {SDLK_KP_2}, KeypressEvaluationMethod::any) ;
 	KeyInputRegister * jumpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::jump), {SDLK_SPACE}, KeypressEvaluationMethod::any) ;
 	
 	InputController::registerForKeypress(moveDownKey) ;
