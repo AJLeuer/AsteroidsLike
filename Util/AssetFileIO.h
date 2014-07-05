@@ -89,7 +89,7 @@ class AssetFileIO {
 	
 public:
 	
-	static SDL_Texture * getTextureFromFilename(SDL_Renderer * renderer, const AssetFile & file, AssetType type) ;
+	static Texture * getTextureFromFilename(Renderer * renderer, const AssetFile & file, AssetType type) ;
 	static string & getImageFilename(vector<AssetFile>::size_type index, AssetType type) ;
 	
 	static AssetFile getRandomImageFile(AssetType type) ;

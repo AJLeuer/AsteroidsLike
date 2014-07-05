@@ -10,10 +10,12 @@
 
 #include "GraphicalOutput.h"
 
+using namespace std ;
 
-SDL_Window * GraphicalOutput::window = NULL ;
 
-SDL_Renderer * GraphicalOutput::renderer = NULL ;
+Window * GraphicalOutput::window = NULL ;
+
+Renderer * GraphicalOutput::renderer = NULL ;
 
 
 void GraphicalOutput::init() {
@@ -29,16 +31,6 @@ void GraphicalOutput::init() {
 		throw exception() ;
 	}
 	
-	sdlinit_error = TTF_Init() ;
-	
-	if (sdlinit_error == -1) {
-		stringstream ss ;
-		ss << "TTF_Init() failed. Outputting error:" << '\n' ;
-		ss << TTF_GetError() << '\n' ;
-		cerr << ss.rdbuf() ;
-		throw exception() ;
-	}
-	
 	sdlinit_error = IMG_Init(IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_JPG) ;
 	
 	if (sdlinit_error == 0) {
@@ -48,10 +40,14 @@ void GraphicalOutput::init() {
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
+    
+    /* init sdl_ttf... */
+    TextOutput::init() ;
 	
 	/* debug code - delete */
-	auto winX = windowSizeX() ;
-	auto winY = windowSizeY() ;
+    auto winX = windowSizeX() ;
+    auto winY = windowSizeY() ;
+    auto sz = TextOutput::getSizeOfText("HAI!") ;
 	/* end debug code */
 	
 	window = SDL_CreateWindow("T^2",
@@ -135,9 +131,13 @@ void GraphicalOutput::update() {
 }
 
 void GraphicalOutput::exit() {
-	//textures were destroyed already by WorldController::exit()
+    
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+    
+    TextOutput::exit() ; /* quits() sdl_ttf */
+    IMG_Quit() ;
+    
 	SDL_QuitSubSystem(SDL_INIT_VIDEO) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
 }
 

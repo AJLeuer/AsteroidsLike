@@ -8,10 +8,46 @@
 
 #include "TextOutput.h"
 
+using namespace std ;
+
+TTF_Font * TextOutput::gameFont = nullptr ;
+
+vector<Texture *> TextOutput::allText = vector<Texture *>() ;
+
 void TextOutput::init() {
+	int sdlinit_error = TTF_Init() ;
 	
+	if (sdlinit_error == -1) {
+		stringstream ss ;
+		ss << "TTF_Init() failed. Outputting error:" << '\n' ;
+		ss << TTF_GetError() << '\n' ;
+		cerr << ss.rdbuf() ;
+		throw exception() ;
+	}
+    
+    gameFont = TTF_OpenFont("/Assets/Fonts/Roboto-Regular.ttf", 18) ;
 }
 
-void TextOutput::output() {
-	
+Size<unsigned> TextOutput::getSizeOfText(string str) {
+    
+    int w, h ;
+    
+    TTF_SizeUTF8(gameFont, str.c_str(), &w, &h) ;
+    
+    Size<unsigned> textSize(w, h) ;
+    
+    return textSize ;
 }
+
+void TextOutput::outputText(const string & text) {
+   
+    Surface * surface ;
+    //TTF_RenderUTF8_Shaded()
+}
+
+void TextOutput::exit() {
+    TTF_CloseFont(gameFont) ;
+	TTF_Quit();
+}
+
+

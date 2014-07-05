@@ -21,15 +21,18 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_rect.h>
 #include <SDL2_image/SDL_image.h>
-#include <SDL_ttf/SDL_ttf.h>
+#include <SDL2_ttf/SDL_ttf.h>
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
+#include "TextOutput.h"
+
 #include "../World/GameState.h"
 #include "../World/GameObject.h"
 
+using namespace std ;
 
 /**
  * Controller class for all graphics output.
@@ -38,8 +41,8 @@ class GraphicalOutput {
 	
 protected:
 	
-	static SDL_Window * window ;
-	static SDL_Renderer * renderer ;
+	static Window * window ;
+	static Renderer * renderer ;
 
 	
 	/**
@@ -49,7 +52,7 @@ protected:
 	
 	/** 
 	 * A convenience function for rendering GameObjects.
-	 * For more info, see render(SDL_Texture *, const Position<N> &, const Size<int> *)
+	 * For more info, see render(Texture *, const Position<N> &, const Size<int> *)
 	 *
 	 * @param object The object to be rendered
 	 */
@@ -58,12 +61,12 @@ protected:
 	/**
 	 * Renders the given texture at the desired position and size.
 	 *
-	 * @param texture The SDL_Texture to render
+	 * @param texture The Texture to render
 	 * @param size The desired size of the texture on the screen
 	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename N>
-	static void render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) ;
+	static void render(Texture * texture, const Position<N> & pos, const Size<int> * size) ;
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	
@@ -76,7 +79,7 @@ public:
 } ;
 
 template<typename N>
-void GraphicalOutput::render(SDL_Texture * texture, const Position<N> & pos, const Size<int> * size) {
+void GraphicalOutput::render(Texture * texture, const Position<N> & pos, const Size<int> * size) {
 	
 	auto tempShape = convertToSDL_Rect(pos, size) ;
 	

@@ -16,8 +16,8 @@ bool GameState::dataIsInit = false ;
 bool GameState::graphicsAreInit = false ;
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 const GameMap<GameObject> * GameState::map ;
-SDL_Window * GameState::window = nullptr ;
-SDL_Renderer * GameState::renderer = nullptr ;
+Window * GameState::window = nullptr ;
+Renderer * GameState::renderer = nullptr ;
 
 bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;
 Timer * GameState::mainGameClock = new Timer() ;
@@ -32,7 +32,7 @@ void GameState::initData(vector<GameObject *> * gobs, const GameMap<GameObject> 
 	dataIsInit = true ;
 }
 
-void GameState::initGraphics(SDL_Window * window, SDL_Renderer * renderer) {
+void GameState::initGraphics(Window * window, Renderer * renderer) {
 	GameState::window = window ;
 	GameState::renderer = renderer ;
 	graphicsAreInit = true ;
@@ -60,7 +60,7 @@ const GameMap<GameObject> * GameState::getMap()  {
 	return map ;
 }
 
-SDL_Window * GameState::getMainWindow() {
+Window * GameState::getMainWindow() {
 	if (graphicsAreInit == false) {
 		stringstream ss ;
 		ss << "GameState::initGraphics() must be called before reading GameState::getMainRenderer() \n" ;
@@ -70,7 +70,7 @@ SDL_Window * GameState::getMainWindow() {
 	return window ;
 }
 
-SDL_Renderer * GameState::getMainRenderer() {
+Renderer * GameState::getMainRenderer() {
 	if (graphicsAreInit == false) {
 		stringstream ss ;
 		ss << "GameState::initGraphics() must be called before reading GameState::getMainRenderer() \n" ;

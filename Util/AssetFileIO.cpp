@@ -116,7 +116,7 @@ AssetFile & AssetFile::operator = (const string & str) {
 	return *this ;
 }
 
-SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const AssetFile & file, AssetType type)  {
+Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFile & file, AssetType type)  {
 	bool noMatch = true ;
 	switch (type) {
 		case AssetType::asteroid:
@@ -192,7 +192,7 @@ SDL_Texture * AssetFileIO::getTextureFromFilename(SDL_Renderer * renderer, const
 		throw exception() ;
 	}
 	//otherwise, return the requested surface
-	SDL_Texture * img = IMG_LoadTexture(renderer, file.filePath.c_str()) ;
+	Texture * img = IMG_LoadTexture(renderer, file.filePath.c_str()) ;
 	
 	{
 		/* debug code */

@@ -70,49 +70,49 @@ void Player::registerForCallbacks() {
 	
 	//todo make more generic
 	if (playerCharacter.getColor() != Color::green) {
-		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
+		KeyInputRegister * onMoveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
+		KeyInputRegister * onMoveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
 															{MOVE_DOWN}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+		KeyInputRegister * onMoveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
 															  {MOVE_LEFT}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
-		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+		KeyInputRegister * onMoveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {MOVE_RIGHT}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
-		InputController::registerForKeypress(moveUpKey) ;
-		InputController::registerForKeypress(moveDownKey) ;
-		InputController::registerForKeypress(moveLeftKey) ;
-		InputController::registerForKeypress(moveRightKey) ;
+		InputController::registerForKeypress(onMoveUpKey) ;
+		InputController::registerForKeypress(onMoveDownKey) ;
+		InputController::registerForKeypress(onMoveLeftKey) ;
+		InputController::registerForKeypress(onMoveRightKey) ;
 	}
 	else if (playerCharacter.getColor() != Color::blue) {
 		
-		KeyInputRegister * moveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
+		KeyInputRegister * onMoveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;
-		KeyInputRegister * moveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
+		KeyInputRegister * onMoveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
 															  {SDLK_KP_2}, KeypressEvaluationMethod::exactlyOne) ;
-		KeyInputRegister * moveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+		KeyInputRegister * onMoveLeftKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
 															  {SDLK_KP_4}, KeypressEvaluationMethod::exactlyOne) ;
-		KeyInputRegister * moveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+		KeyInputRegister * onMoveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
 		
 		/*
-		KeyInputRegister * moveUpRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight),
+		KeyInputRegister * onMoveUpRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight),
 															{SDLK_KP_8, SDLK_KP_6}, KeypressEvaluationMethod::all) ;
-		KeyInputRegister * moveDownRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownRight),
+		KeyInputRegister * onMoveDownRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownRight),
 															  {SDLK_KP_2, SDLK_KP_6}, KeypressEvaluationMethod::all) ;
-		KeyInputRegister * moveUpLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft),
+		KeyInputRegister * onMoveUpLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft),
 															  {SDLK_KP_8, SDLK_KP_4}, KeypressEvaluationMethod::all) ;
-		KeyInputRegister * moveDownLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownLeft),
+		KeyInputRegister * onMoveDownLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownLeft),
 															   {SDLK_KP_2, SDLK_KP_4}, KeypressEvaluationMethod::all) ;  */
-		InputController::registerForKeypress(moveUpKey) ;
-		InputController::registerForKeypress(moveDownKey) ;
-		InputController::registerForKeypress(moveLeftKey) ;
-		InputController::registerForKeypress(moveRightKey) ;
+		InputController::registerForKeypress(onMoveUpKey) ;
+		InputController::registerForKeypress(onMoveDownKey) ;
+		InputController::registerForKeypress(onMoveLeftKey) ;
+		InputController::registerForKeypress(onMoveRightKey) ;
 		
 		/*
-		InputController::registerForKeypress(moveUpRightKeys) ;
-		InputController::registerForKeypress(moveDownRightKeys) ;
-		InputController::registerForKeypress(moveUpLeftKeys) ;
-		InputController::registerForKeypress(moveDownLeftKeys) ; */
+		InputController::registerForKeypress(onMoveUpRightKeys) ;
+		InputController::registerForKeypress(onMoveDownRightKeys) ;
+		InputController::registerForKeypress(onMoveUpLeftKeys) ;
+		InputController::registerForKeypress(onMoveDownLeftKeys) ; */
 	}
 }
 

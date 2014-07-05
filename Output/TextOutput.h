@@ -10,18 +10,39 @@
 #define __SpriteFight__TextOutput__
 
 #include <iostream>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <sstream>
+#include <exception>
 
-#include "GraphicalOutput.h"
+#include <cstdlib>
 
-class TextOutput : public GraphicalOutput {
+#include <SDL2_ttf/SDL_ttf.h>
+
+#include "../Util/Size.hpp"
+
+using namespace std ;
+
+class TextOutput {
 	
 protected:
-	
+    
+	friend class GraphicalOutput ;
+    
+    static TTF_Font * gameFont ;
+    
+    static vector<Texture *> allText ;
+    
 public:
 	
 	static void init() ;
+    
+    static Size<unsigned> getSizeOfText(string str) ;
+    
+    static void outputText(const string & text) ;
 	
-	static void output() ;
+	static void exit() ;
 	
 } ;
 

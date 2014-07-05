@@ -54,10 +54,10 @@ private:
 	 */
 	static const GameMap<GameObject> * map ;
     
-	static SDL_Window * window ;
+	static Window * window ;
 	
 	//this will allow GameObjects to initialize their own textures
-	static SDL_Renderer * renderer ;
+	static Renderer * renderer ;
     
 	static bool dataIsInit ;
 	static bool graphicsAreInit ;
@@ -78,7 +78,7 @@ public:
 	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
-	static void initGraphics(SDL_Window *, SDL_Renderer *) ;
+	static void initGraphics(Window *, Renderer *) ;
 	
 	/**
 	 * A container holding most objects in the game world.
@@ -93,9 +93,9 @@ public:
 	 */
 	static const GameMap<GameObject> * getMap() ;
 	
-	static SDL_Window * getMainWindow() ;
+	static Window * getMainWindow() ;
     
-	static SDL_Renderer * getMainRenderer() ;
+	static Renderer * getMainRenderer() ;
 	
 	
 } ;

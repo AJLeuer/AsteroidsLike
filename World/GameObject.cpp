@@ -310,7 +310,7 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifie
 
 	//set texture
 	if ((texture == nullptr) || (overrideCurrentTexture)) {
-		SDL_Texture * tex = nullptr ;
+		Texture * tex = nullptr ;
 		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->textureImageFile, getType()) ;
 
 		if (tex == nullptr) {
@@ -616,7 +616,7 @@ const AssetFile * GameObject::getImageFile() const {
 	return &(this->textureImageFile) ;
 }
 
-SDL_Texture * GameObject::getTexture() const {
+Texture * GameObject::getTexture() const {
 	if (visible) {
 		return texture ;
 	}

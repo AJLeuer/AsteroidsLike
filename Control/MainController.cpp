@@ -111,7 +111,7 @@ void MainController::exit(int sig) {
 		WorldController::exit() ;
 		InputController::exit() ;
 	
-		IMG_Quit() ;
+		
 		SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
 	
 		GameState::mainGameClock->stopTimer() ;

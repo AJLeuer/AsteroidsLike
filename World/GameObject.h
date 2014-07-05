@@ -112,7 +112,7 @@ protected:
 	 */
 	AssetFile textureImageFile ;
 	
-	SDL_Texture * texture = nullptr ;
+	Texture * texture = nullptr ;
 
 	Size<int> size ;
 	Pos2<float> * loc ;
@@ -191,7 +191,7 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param type The type of image file associated with this GameObject (character, scenery, etc)
-	 * @param imageFilen The file to be used as the SDL_Surface for this GameObject
+	 * @param imageFilen The file to be used as the Texture for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
 	GameObject(Color color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc) ;
@@ -392,7 +392,7 @@ public:
 	 */
 	void setImageFile(string imageFileName) ;
 	
-	void setTexture(SDL_Texture * texture) { this->texture = texture ; }
+	void setTexture(Texture * texture) { this->texture = texture ; }
 	
 	//void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
@@ -404,7 +404,7 @@ public:
 	/**
 	 * @return This GameObject's texture, or nullptr if this isVisible() is false
 	 */
-	SDL_Texture * getTexture() const ;
+	Texture * getTexture() const ;
 	
 	const Size<int> * getSize() const { const Size<int> * rtnSize = & size ; return rtnSize ; }
 	
