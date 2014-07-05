@@ -174,11 +174,14 @@ void Velocity<N>::calculateVelocity() {
 		/* Debug var */
 		auto vs = Velocity::getVelocityStorage() ;
 		
-		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1) && (velocityStorage.at(i)->localContinueSignal)) {
+		if (sharedVelMutex->isLocked() == true) {
+			continue ;
+		}
+		else {
+			sharedVelMutex->lock() ;
+		}
 		
-			if (sharedVelMutex->try_lock() == false) {
-				continue ;
-			}
+		if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->id != -1) && (velocityStorage.at(i)->localContinueSignal)) {
 
 			if ((velocityStorage.at(i) != nullptr) && (velocityStorage.at(i)->lastDistance != *velocityStorage.at(i)->distance)) {
 				
@@ -205,8 +208,8 @@ void Velocity<N>::calculateVelocity() {
 				velocityStorage.at(i)->lastDistance = *velocityStorage.at(i)->distance ;
 			
 			}
-			sharedVelMutex->unlock() ;
 		}
+		sharedVelMutex->unlock() ;
 	}
 }
 

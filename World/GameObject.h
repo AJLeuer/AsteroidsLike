@@ -301,7 +301,7 @@ public:
 	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
 	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
 	
-	virtual void moveUp() { moveTo(loc->getX(), (loc->getY()-defaultOffset<float>), loc->getZ()) ; }
+	virtual void moveUp() { Vectr<float> up(0, 1, 0) ; moveNewDirection(up) ;}
 	virtual void moveDown() { moveTo(loc->getX(), (loc->getY()+defaultOffset<float>), loc->getZ()) ; }
 	virtual void moveRight() { moveTo((loc->getX()+defaultOffset<float>), loc->getY(), loc->getZ()) ; }
 	virtual void moveLeft() { moveTo((loc->getX()-defaultOffset<float>), loc->getY(), loc->getZ()) ; }
@@ -311,7 +311,7 @@ public:
 	virtual void moveRight(float offset) { moveTo((loc->getX()+offset), loc->getY(), loc->getZ()) ; }
 	virtual void moveLeft(float offset) { moveTo((loc->getX()-offset), loc->getY(), loc->getZ()) ; }
     
-    void moveUpRight() { moveUpRight(defaultOffset<float>) ; }
+    void moveUpRight() { Vectr<float> upright(1, 1, 0) ; moveNewDirection(upright) ; }
 	void moveUpLeft() { moveUpLeft(defaultOffset<float>) ; }
 	void moveDownRight() { moveDownRight(defaultOffset<float>); }
 	void moveDownLeft() { moveDownLeft(defaultOffset<float>) ; }

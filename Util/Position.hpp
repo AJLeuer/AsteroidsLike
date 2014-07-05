@@ -1013,6 +1013,7 @@ protected:
 	
 public:
 	
+	Vectr(float headingX, float headingY, float headingZ) ;
 	Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) ;
 	Vectr(const Position<N> & mostRecent_, Position<N> * current_) ;
 	Vectr(const Position<N> * current_) ;
@@ -1052,6 +1053,14 @@ public:
 
 template<typename N>
 BasicMutex * Vectr<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
+
+template<typename N>
+Vectr<N>::Vectr(float headingX, float headingY, float headingZ) :
+	Position<float>(headingX, headingY, headingZ),
+	totalDistanceMoved(new N)
+{
+	velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+}
 
 template<typename N>
 Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_) :
