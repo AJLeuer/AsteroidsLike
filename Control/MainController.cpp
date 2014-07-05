@@ -53,8 +53,6 @@ void MainController::init() {
 		throw exception() ;
 	}
 	
-	IMG_Init(IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_JPG) ;
-
 	GraphicalOutput::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well

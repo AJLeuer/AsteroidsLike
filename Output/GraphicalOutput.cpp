@@ -20,10 +20,31 @@ void GraphicalOutput::init() {
     
 	int sdlinit_error = SDL_InitSubSystem(SDL_INIT_VIDEO) ;
 	
+	
 	if (sdlinit_error != 0) {
 		stringstream ss ;
 		ss << "SDL_InitSubSystem(SDL_INIT_VIDEO) failed." << '\n' ;
 		ss << SDL_GetError() << '\n' ;
+		cerr << ss.rdbuf() ;
+		throw exception() ;
+	}
+	
+	sdlinit_error = TTF_Init() ;
+	
+	if (sdlinit_error == -1) {
+		stringstream ss ;
+		ss << "TTF_Init() failed. Outputting error:" << '\n' ;
+		ss << TTF_GetError() << '\n' ;
+		cerr << ss.rdbuf() ;
+		throw exception() ;
+	}
+	
+	sdlinit_error = IMG_Init(IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_JPG) ;
+	
+	if (sdlinit_error == 0) {
+		stringstream ss ;
+		ss << "IMG_Init() failed. Outputting error:" << '\n' ;
+		ss << IMG_GetError() << '\n' ;
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
