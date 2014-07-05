@@ -22,6 +22,8 @@
 
 #include "../Util/Size.hpp"
 
+#include "GameColor.h"
+
 using namespace std ;
 
 class TextOutput {

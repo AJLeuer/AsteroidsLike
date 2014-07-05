@@ -27,6 +27,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
+#include "GameColor.h"
 #include "TextOutput.h"
 
 #include "../World/GameState.h"

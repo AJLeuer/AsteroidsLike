@@ -17,7 +17,7 @@
 
 #include "../Control/Configuration.h"
 
-struct GameColor : public Colors {
+struct GameColor {
     
     Byte red ;
     Byte green ;
@@ -47,9 +47,11 @@ struct GameColor : public Colors {
         return *this ;
     }
     
-    inline void foo() {
-        Colors color ;
+    inline Color * convertToSDL_Color() {
+        Color * color = new Color({red, green, blue, alpha}) ;
+        return color ;
     }
+    
     
 };
 
