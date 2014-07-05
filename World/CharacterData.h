@@ -196,7 +196,7 @@ public:
 /* Below are a few enums we can use in various ways through the game.
  Note for all enums here: the value -1 essentially can be considered as essentially
  as an equivalent to NULL */
-enum class Color {
+enum class Colors {
 	undefined = -1,
 	green,
 	blue,
@@ -213,10 +213,10 @@ enum class Color {
 	last //always last
 };
 
-inline Color getRandomColor() {
-	FastRand<unsigned> randm(0, static_cast<unsigned>(Color::last)) ;
-	//auto c = static_cast<Color>( ;)
-	return Color::blue ;
+inline Colors getRandomColor() {
+	FastRand<unsigned> randm(0, static_cast<unsigned>(Colors::last)) ;
+	//auto c = static_cast<Colors>( ;)
+	return Colors::blue ;
 }
 
 enum class Alert {

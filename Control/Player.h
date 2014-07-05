@@ -60,7 +60,7 @@ public:
 	Player() ;
 	
 	Player(const string & name, const string & playerCharacter_imageFilename,
-		   Color playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
+		   Colors playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
 		   Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 		   unsigned playerCharacter_health, unsigned playerCharacter_damage) ;
 	

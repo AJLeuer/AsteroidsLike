@@ -19,17 +19,17 @@ Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", Color::green, defaultSize, defaultStartingPosition, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", Colors::green, defaultSize, defaultStartingPosition, "Green",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship2_Blue.png", Color::blue, defaultSize, defaultStartingPosition, "Blue",
+	defaultPlayer1 = new Player("Player 1", "Ship2_Blue.png", Colors::blue, defaultSize, defaultStartingPosition, "Blue",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 }
 
 Player::Player() :
 	ID(IDs),
 	name(""),
-	playerCharacter(Color::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
+	playerCharacter(Colors::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
 					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
 {
 	IDs++ ;
@@ -38,7 +38,7 @@ Player::Player() :
 }
 
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
-	Color playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
+	Colors playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage) :
 
@@ -69,7 +69,7 @@ void Player::setNames() {
 void Player::registerForCallbacks() {
 	
 	//todo make more generic
-	if (playerCharacter.getColor() != Color::green) {
+	if (playerCharacter.getColor() != Colors::green) {
 		KeyInputRegister * onMoveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{MOVE_UP}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		KeyInputRegister * onMoveDownKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
@@ -83,7 +83,7 @@ void Player::registerForCallbacks() {
 		InputController::registerForKeypress(onMoveLeftKey) ;
 		InputController::registerForKeypress(onMoveRightKey) ;
 	}
-	else if (playerCharacter.getColor() != Color::blue) {
+	else if (playerCharacter.getColor() != Colors::blue) {
 		
 		KeyInputRegister * onMoveUpKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;

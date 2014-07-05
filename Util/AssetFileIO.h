@@ -60,10 +60,10 @@ public:
 	
 	string fileName ;
 	AssetType type ;
-	Color color ;
+	Colors color ;
 	//other fields?
 	
-	AssetFile(string fileName, string filePath, AssetType type, Color color) :
+	AssetFile(string fileName, string filePath, AssetType type, Colors color) :
 		fileName(fileName), filePath(filePath), type(type), color(color) {}
 	
 	AssetFile(const AssetFile & other) :

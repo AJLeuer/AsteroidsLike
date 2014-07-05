@@ -11,64 +11,64 @@
 using namespace std ;
 
 vector<AssetFile> * AssetFile::asteroidImageFiles = new vector<AssetFile> {
-	{"Asteroid0_Brown.png", "/Assets/Asteroids/Asteroid0_Brown.png", AssetType::asteroid, Color::brown},
-	{"Asteroid0_Gray.png",  "/Assets/Asteroids/Asteroid0_Gray.png",	 AssetType::asteroid, Color::brown}
+	{"Asteroid0_Brown.png", "/Assets/Asteroids/Asteroid0_Brown.png", AssetType::asteroid, Colors::brown},
+	{"Asteroid0_Gray.png",  "/Assets/Asteroids/Asteroid0_Gray.png",	 AssetType::asteroid, Colors::brown}
 } ;
 
 vector<AssetFile> * AssetFile::miscImageFilenames = new vector<AssetFile> {
-	{"Ship0_Damage0.png", "/Assets/Misc/Ship0_Damage0.png", AssetType::misc, Color::transparent},
-	{"Ship0_Damage1.png", "/Assets/Misc/Ship0_Damage1.png", AssetType::misc, Color::transparent},
-	{"Ship0_Damage2.png", "/Assets/Misc/Ship0_Damage2.png", AssetType::misc, Color::transparent},
-	{"Ship1_Damage1.png", "/Assets/Misc/Ship1_Damage1.png", AssetType::misc, Color::transparent},
-	{"Ship1_Damage2.png", "/Assets/Misc/Ship1_Damage2.png", AssetType::misc, Color::transparent},
-	{"Ship2_Damage0.png", "/Assets/Misc/Ship2_Damage0.png", AssetType::misc, Color::transparent},
-	{"Ship2_Damage1.png", "/Assets/Misc/Ship2_Damage1.png", AssetType::misc, Color::transparent},
-	{"Ship2_Damage2.png", "/Assets/Misc/Ship2_Damage2.png", AssetType::misc, Color::transparent},
-	{"EngineThrust0.png", "/Assets/Misc/EngineThrust0.png", AssetType::misc, Color::transparent},
-	{"Bolt_Gold.png",     "/Assets/Misc/Bolt_Gold.png",     AssetType::powerup, Color::gold},
-	{"Pill_Blue.png",     "/Assets/Misc/Pill_Blue.png",		AssetType::powerup, Color::blue},
-	{"Pill_Green.png",    "/Assets/Misc/Pill_Green.png",	AssetType::powerup, Color::blue},
-	{"Shield_Silver.png", "/Assets/Misc/Shield_Silver.png", AssetType::powerup, Color::silver}
+	{"Ship0_Damage0.png", "/Assets/Misc/Ship0_Damage0.png", AssetType::misc, Colors::transparent},
+	{"Ship0_Damage1.png", "/Assets/Misc/Ship0_Damage1.png", AssetType::misc, Colors::transparent},
+	{"Ship0_Damage2.png", "/Assets/Misc/Ship0_Damage2.png", AssetType::misc, Colors::transparent},
+	{"Ship1_Damage1.png", "/Assets/Misc/Ship1_Damage1.png", AssetType::misc, Colors::transparent},
+	{"Ship1_Damage2.png", "/Assets/Misc/Ship1_Damage2.png", AssetType::misc, Colors::transparent},
+	{"Ship2_Damage0.png", "/Assets/Misc/Ship2_Damage0.png", AssetType::misc, Colors::transparent},
+	{"Ship2_Damage1.png", "/Assets/Misc/Ship2_Damage1.png", AssetType::misc, Colors::transparent},
+	{"Ship2_Damage2.png", "/Assets/Misc/Ship2_Damage2.png", AssetType::misc, Colors::transparent},
+	{"EngineThrust0.png", "/Assets/Misc/EngineThrust0.png", AssetType::misc, Colors::transparent},
+	{"Bolt_Gold.png",     "/Assets/Misc/Bolt_Gold.png",     AssetType::powerup, Colors::gold},
+	{"Pill_Blue.png",     "/Assets/Misc/Pill_Blue.png",		AssetType::powerup, Colors::blue},
+	{"Pill_Green.png",    "/Assets/Misc/Pill_Green.png",	AssetType::powerup, Colors::blue},
+	{"Shield_Silver.png", "/Assets/Misc/Shield_Silver.png", AssetType::powerup, Colors::silver}
 } ;
 
 vector<AssetFile> * AssetFile::playerShipImageFilenames = new vector<AssetFile> {
-	{"Saucer_Red.png",  "/Assets/Ships/Saucer_Red.png",  AssetType::playerShip, Color::red},
-	{"Ship0_Blue.png",  "/Assets/Ships/Ship0_Blue.png",  AssetType::playerShip, Color::blue},
-	{"Ship0_Red.png",   "/Assets/Ships/Ship0_Red.png",	 AssetType::playerShip, Color::red},
-	{"Ship1_Green.png", "/Assets/Ships/Ship1_Green.png", AssetType::playerShip, Color::green},
-	{"Ship2_Blue.png",  "/Assets/Ships/Ship2_Blue.png",	 AssetType::playerShip, Color::blue}
+	{"Saucer_Red.png",  "/Assets/Ships/Saucer_Red.png",  AssetType::playerShip, Colors::red},
+	{"Ship0_Blue.png",  "/Assets/Ships/Ship0_Blue.png",  AssetType::playerShip, Colors::blue},
+	{"Ship0_Red.png",   "/Assets/Ships/Ship0_Red.png",	 AssetType::playerShip, Colors::red},
+	{"Ship1_Green.png", "/Assets/Ships/Ship1_Green.png", AssetType::playerShip, Colors::green},
+	{"Ship2_Blue.png",  "/Assets/Ships/Ship2_Blue.png",	 AssetType::playerShip, Colors::blue}
 
 } ;
 
 
 vector<AssetFile> * AssetFile::enemyShipImageFilenames = new vector<AssetFile> {
-	{"Enemy_Ship0_Blue.png",   "/Assets/Ships/Enemy_Ship0_Blue.png",	AssetType::enemyShip, Color::blue},
-	{"Enemy_Ship0_Orange.png", "/Assets/Ships/Enemy_Ship0_Orange.png",  AssetType::enemyShip, Color::orange},
-	{"Enemy_Ship2_Blue.png",   "/Assets/Ships/Enemy_Ship2_Blue.png",	AssetType::enemyShip, Color::blue},
-	{"Enemy_Ship2_Green.png",  "/Assets/Ships/Enemy_Ship2_Green.png",	AssetType::enemyShip, Color::green}
+	{"Enemy_Ship0_Blue.png",   "/Assets/Ships/Enemy_Ship0_Blue.png",	AssetType::enemyShip, Colors::blue},
+	{"Enemy_Ship0_Orange.png", "/Assets/Ships/Enemy_Ship0_Orange.png",  AssetType::enemyShip, Colors::orange},
+	{"Enemy_Ship2_Blue.png",   "/Assets/Ships/Enemy_Ship2_Blue.png",	AssetType::enemyShip, Colors::blue},
+	{"Enemy_Ship2_Green.png",  "/Assets/Ships/Enemy_Ship2_Green.png",	AssetType::enemyShip, Colors::green}
 } ;
 
 vector<AssetFile> * AssetFile::UIImageFilenames = new vector<AssetFile> {
-	{"Button_Blue.png",		"/Assets/UI/Button_Blue.png",	AssetType::UI, Color::blue},
-	{"Button_Green.png",	"/Assets/UI/Button_Green.png",	AssetType::UI, Color::green},
-	{"Button_Purple.png",	"/Assets/UI/Button_Purple.png",	AssetType::UI, Color::purple},
-	{"Button_Red.png",		"/Assets/UI/Button_Red.png",	AssetType::UI, Color::red}
+	{"Button_Blue.png",		"/Assets/UI/Button_Blue.png",	AssetType::UI, Colors::blue},
+	{"Button_Green.png",	"/Assets/UI/Button_Green.png",	AssetType::UI, Colors::green},
+	{"Button_Purple.png",	"/Assets/UI/Button_Purple.png",	AssetType::UI, Colors::purple},
+	{"Button_Red.png",		"/Assets/UI/Button_Red.png",	AssetType::UI, Colors::red}
 } ;
 
 vector<AssetFile> * AssetFile::weaponImageFilenames = new vector<AssetFile> {
-	{"Explosion0_Blue.png",		"/Assets/Weapons/Explosion0_Blue.png",		AssetType::weapon, Color::blue},
-	{"Explosion0_Green.png",	"/Assets/Weapons/Explosion0_Green.png",		AssetType::weapon, Color::green},
-	{"Explosion0_Red.png",		"/Assets/Weapons/Explosion0_Red.png",		AssetType::weapon, Color::red},
-	{"LaserBlast0_Green.png",   "/Assets/Weapons/LaserBlast0_Green.png",	AssetType::weapon, Color::green},
-	{"LaserBlast0_Red.png",		"/Assets/Weapons/LaserBlast0_Red.png",		AssetType::weapon, Color::red},
-	{"LaserBlast1_Blue.png",	"/Assets/Weapons/LaserBlast1_Blue.png",		AssetType::weapon, Color::blue},
-	{"LaserBlast1_Green.png",	"/Assets/Weapons/LaserBlast1_Green.png",	AssetType::weapon, Color::green},
-	{"LaserBlast2_Blue.png",	"/Assets/Weapons/LaserBlast2_Blue.png",		AssetType::weapon, Color::blue},
-	{"LaserBlast2_Red.png",		"/Assets/Weapons/LaserBlast2_Red.png",		AssetType::weapon, Color::red},
-	{"MuzzleFlare0_Blue.png",	"/Assets/Weapons/MuzzleFlare0_Blue.png",	AssetType::weapon, Color::blue},
-	{"Shield_Hi.png",			"/Assets/Weapons/Shield_Hi.png",			AssetType::weapon, Color::transparent},
-	{"Shield_Low.png",			"/Assets/Weapons/Shield_Low.png",			AssetType::weapon, Color::transparent},
-	{"Shield_Med.png",			"/Assets/Weapons/Shield_Med.png",			AssetType::weapon, Color::transparent}
+	{"Explosion0_Blue.png",		"/Assets/Weapons/Explosion0_Blue.png",		AssetType::weapon, Colors::blue},
+	{"Explosion0_Green.png",	"/Assets/Weapons/Explosion0_Green.png",		AssetType::weapon, Colors::green},
+	{"Explosion0_Red.png",		"/Assets/Weapons/Explosion0_Red.png",		AssetType::weapon, Colors::red},
+	{"LaserBlast0_Green.png",   "/Assets/Weapons/LaserBlast0_Green.png",	AssetType::weapon, Colors::green},
+	{"LaserBlast0_Red.png",		"/Assets/Weapons/LaserBlast0_Red.png",		AssetType::weapon, Colors::red},
+	{"LaserBlast1_Blue.png",	"/Assets/Weapons/LaserBlast1_Blue.png",		AssetType::weapon, Colors::blue},
+	{"LaserBlast1_Green.png",	"/Assets/Weapons/LaserBlast1_Green.png",	AssetType::weapon, Colors::green},
+	{"LaserBlast2_Blue.png",	"/Assets/Weapons/LaserBlast2_Blue.png",		AssetType::weapon, Colors::blue},
+	{"LaserBlast2_Red.png",		"/Assets/Weapons/LaserBlast2_Red.png",		AssetType::weapon, Colors::red},
+	{"MuzzleFlare0_Blue.png",	"/Assets/Weapons/MuzzleFlare0_Blue.png",	AssetType::weapon, Colors::blue},
+	{"Shield_Hi.png",			"/Assets/Weapons/Shield_Hi.png",			AssetType::weapon, Colors::transparent},
+	{"Shield_Low.png",			"/Assets/Weapons/Shield_Low.png",			AssetType::weapon, Colors::transparent},
+	{"Shield_Med.png",			"/Assets/Weapons/Shield_Med.png",			AssetType::weapon, Colors::transparent}
 } ;
 
 vector< vector<AssetFile> * > * AssetFile::allAssetFiles = new vector< vector<AssetFile> * > {

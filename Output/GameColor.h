@@ -13,16 +13,44 @@
 
 #include <iostream>
 
-struct GameColor {
+#include <SDL2/SDL_pixels.h>
+
+#include "../Control/Configuration.h"
+
+struct GameColor : public Colors {
     
-    Byte r ;
-    Byte g ;
-    Byte b ;
-    Byte a ;
+    Byte red ;
+    Byte green ;
+    Byte blue ;
+    Byte alpha ;
     
     GameColor() :
-        r(0x00), g(0x00),
-        b(0x00), a(0x00) {}
+        red(0x00), green(0x00),
+        blue(0x00), alpha(0x00) {}
+    
+    GameColor(Byte r, Byte g, Byte b, Byte a) :
+        red(r), green(g), blue(b), alpha(a)     {}
+    
+    GameColor(const GameColor & other) :
+        red(other.red), green(other.green),
+        blue(other.blue), alpha(other.alpha) {}
+    
+    ~GameColor() {}
+    
+    GameColor & operator=(const GameColor & rhs) {
+        if (this != &rhs) {
+            this->red = rhs.red ;
+            this->green = rhs.green ;
+            this->blue = rhs.blue ;
+            this->alpha = rhs.alpha ;
+        }
+        return *this ;
+    }
+    
+    inline void foo() {
+        Colors color ;
+    }
+    
 };
 
 #endif /* defined(__SpriteFight__GameColor__) */

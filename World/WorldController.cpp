@@ -46,7 +46,7 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		/*
-		new GameObject(Color::blue, atype, AssetFileIO::getRandomImageFile(atype), randomSizeModifier(),
+		new GameObject(Colors::blue, atype, AssetFileIO::getRandomImageFile(atype), randomSizeModifier(),
 					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ; */
 	}
 	

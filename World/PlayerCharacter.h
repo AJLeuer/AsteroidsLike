@@ -58,7 +58,7 @@ public:
 	 * @param health The Health of this PlayerCharacter
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
-	PlayerCharacter(Color color, AssetType type, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
+	PlayerCharacter(Colors color, AssetType type, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
 	
 	
 	/**

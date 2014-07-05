@@ -9,10 +9,11 @@
 #ifndef GameWorld_DefaultConfig_h
 #define GameWorld_DefaultConfig_h
 
-#define Window SDL_Window
+#define Color SDL_Color
 #define Surface SDL_Surface
 #define Texture SDL_Texture
 #define Renderer SDL_Renderer
+#define Window SDL_Window
 
 
 #include "../Util/Util.hpp"

@@ -27,7 +27,7 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	color(Color::blue),
+	color(Colors::blue),
 	textureImageFile(""),
 	texture(nullptr),
 	size(Size<int>()),
@@ -136,7 +136,7 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(Color color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
+GameObject::GameObject(Colors color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
 	ID(IDs),
 	color(color),
 	textureImageFile(imageFile),
@@ -163,7 +163,7 @@ GameObject::GameObject(Color color, AssetType type, const AssetFile & imageFile,
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	color(static_cast<Color>(FastRand<unsigned>::defaultRandom(0, 5))),
+	color(static_cast<Colors>(FastRand<unsigned>::defaultRandom(0, 5))),
 	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
 	textureImageFile(nullptr),
 	visible(true),

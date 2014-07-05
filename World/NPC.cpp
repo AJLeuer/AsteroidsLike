@@ -18,7 +18,7 @@ NPC::NPC(const NPC & other) :
 NPC::NPC(NPC && other) :
 	Character(std::move(other)) {}
 
-NPC::NPC(Color color, AssetType type, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) :
+NPC::NPC(Colors color, AssetType type, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) :
 	Character(color, type, imageFile, size, loc, name, reaction, alive, state, health, damage) {}
 
 NPC::NPC(FastRand<int> rand) :
