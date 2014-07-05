@@ -194,12 +194,15 @@ void Velocity<N>::calculateVelocity() {
 				auto time1 = velocityStorage.at(i)->timer->checkTimeElapsed() ;
 				
 				const N totalDistance = dist1 - dist0 ;
-				auto totalTime = time1 - time0 ;
 				
-				double velocity = (totalDistance / totalTime.count()) ;
+				auto totalTime = chrono::duration_cast<chrono::milliseconds>(time1 - time0) ;
+				
+				auto timePassed = totalTime.count() ;
+				
+				double velocity = (totalDistance / timePassed) ;
 				
 				/* debug */
-				if (velocity > 0) {
+				if (velocity > 0.5) {
 					;
 				}
 				/* end debug */
