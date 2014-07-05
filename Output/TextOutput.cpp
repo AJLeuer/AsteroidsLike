@@ -39,10 +39,11 @@ Size<unsigned> TextOutput::getSizeOfText(string str) {
     return textSize ;
 }
 
-void TextOutput::outputText(const string & text) {
+void TextOutput::outputText(const string & text, GameColor foreground, GameColor background) {
    
     Surface * surface ;
-    //TTF_RenderUTF8_Shaded()
+    
+    surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
 }
 
 void TextOutput::exit() {

@@ -42,7 +42,7 @@ public:
     
     static Size<unsigned> getSizeOfText(string str) ;
     
-    static void outputText(const string & text) ;
+    static void outputText(const string & text, GameColor foreground, GameColor background) ;
 	
 	static void exit() ;
 	
