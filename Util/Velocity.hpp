@@ -130,7 +130,7 @@ public:
 	Velocity & operator=(const Velocity & rhs) = delete ;
 	Velocity & operator=(Velocity && rhs)  = delete ;
 
-	const double * getValue() {
+	double * getValue() {
 		return &lastVelocity ;
 	}
 	 
@@ -202,7 +202,7 @@ void Velocity<N>::calculateVelocity() {
 				double velocity = (totalDistance / timePassed) ;
 				
 				/* debug */
-				if (velocity > 0.5) {
+				if (velocity > 0.4) {
 					;
 				}
 				/* end debug */
@@ -214,6 +214,18 @@ void Velocity<N>::calculateVelocity() {
 		}
 		sharedVelMutex->unlock() ;
 	}
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, Velocity<N> * vel) {
+	os << "Velocity: " << vel->getValue() << '\n' ;
+	return os ;
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, Velocity<N> & vel) {
+	os << "Velocity: " << vel.getValue() << '\n' ;
+	return os ;
 }
 
 

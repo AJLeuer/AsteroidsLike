@@ -13,6 +13,7 @@
 #include <string>
 #include <sstream>
 #include <chrono>
+#include <thread>
 
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
@@ -51,6 +52,8 @@ protected:
 	void setNames() ;
 	
 	void registerForCallbacks() ;
+	
+	void setText() ;
 
 public:
 	

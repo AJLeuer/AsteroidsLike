@@ -14,6 +14,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <initializer_list>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_rect.h>
@@ -34,20 +35,24 @@
 struct OutputData {
 	
     Texture * texture;
-    const Position<float> pos ;
+    const Position<float> * position ;
     const Size<int> * size ;
 	
-	OutputData(Texture * tex, const Position<float> & pos, const Size<int> & sz) :
-		texture(tex), pos(pos), size(new Size<int>(sz)) {}
+	OutputData() {}
 	
-	OutputData(const OutputData & other) :
-		texture(other.texture), pos(Position<float>(other.pos)), size(new Size<int>(*other.size)) {}
+	OutputData(Texture * tex, const Position<float> * pos, const Size<int> * sz) :
+		texture(tex), position(pos), size(sz) {}
 	
-	~OutputData() {
-		delete size ;
+	~OutputData() {}
+	
+	OutputData & operator=(const OutputData & rhs) {
+		if (this != &rhs) {
+			this->texture = rhs.texture ;
+			this->position = rhs.position ;
+			this->size = rhs.size ;
+		}
+		return *this ;
 	}
-	
-	OutputData & operator=(const OutputData & rhs) = delete ;
 	
 } ;
 

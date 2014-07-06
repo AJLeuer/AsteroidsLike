@@ -34,6 +34,7 @@ Player::Player() :
 {
 	IDs++ ;
 	setNames() ;
+	setText() ;
 	registerForCallbacks() ;
 }
 
@@ -50,6 +51,7 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 {
 	IDs++ ;
 	setNames() ;
+	setText() ;
 	registerForCallbacks() ;
 }
 
@@ -115,4 +117,40 @@ void Player::registerForCallbacks() {
 		InputController::registerForKeypress(onMoveDownLeftKeys) ; */
 	}
 }
+
+void Player::setText() {
+	
+	auto textoutp_lambd = [&, this] () -> void {
+		
+		stringstream stream ;
+		stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
+		unsigned x = (globalMaxX() / 10) ;
+		unsigned y = (globalMaxX() * 0.75) ;
+		string str(stream.str()) ;
+		
+		Position<float> * pos = new Position<float>(x, y, 0) ;
+		Size<int> * size = new Size<int>(128, 128) ;
+		GameColor color_fg(0x00, 0x00, 0x00, 0x00) ;
+		GameColor color_bg(0x00, 0x00, 0x00, 0x00) ;
+		
+		TextOutput out(&str, pos, size, &color_fg, &color_bg) ;
+		
+		while (GLOBAL_CONTINUE_SIGNAL) {
+			stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
+			str = stream.str() ;
+			out.update() ;
+			this_thread::sleep_for(chrono::milliseconds(32)) ;
+		}
+		
+	} ;
+	
+	thread thr(textoutp_lambd) ;
+	thr.detach() ;
+}
+
+
+
+
+
+
 

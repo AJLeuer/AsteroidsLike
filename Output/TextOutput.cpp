@@ -12,7 +12,6 @@ using namespace std ;
 
 TTF_Font * TextOutput::gameFont = nullptr ;
 
-vector<Texture *> TextOutput::allText = vector<Texture *>() ;
 
 void TextOutput::init() {
 	int sdlinit_error = TTF_Init() ;
@@ -28,7 +27,7 @@ void TextOutput::init() {
     gameFont = TTF_OpenFont("/Assets/Fonts/Roboto-Regular.ttf", 18) ;
 }
 
-Size<unsigned> TextOutput::getSizeOfText(string str) {
+Size<unsigned> TextOutput::getSizeOfText(const string & str) {
     
     int w, h ;
     
@@ -39,15 +38,38 @@ Size<unsigned> TextOutput::getSizeOfText(string str) {
     return textSize ;
 }
 
-void TextOutput::outputText(const string & text, GameColor foreground, GameColor background,
-											const Position<float> pos, const Size<int> * size) {
-    Surface * surface ;
-    surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
-}
-
 void TextOutput::exit() {
     TTF_CloseFont(gameFont) ;
 	TTF_Quit();
 }
+
+
+TextOutput::TextOutput(const string * text, const Position<float> * pos, const Size<int> * sz, GameColor * foreground, GameColor * background) :
+	data(nullptr, nullptr, nullptr), foreground(foreground), background(background)
+{
+	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text->c_str(), foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+	
+	texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
+	
+	SDL_FreeSurface(surface) ;
+	
+	data = {texture, pos, sz} ;
+	
+	dataListReference = GameState::addlOutputStorage->insert(GameState::addlOutputStorage->begin(), &data) ;
+}
+
+void TextOutput::update() {
+	data.texture = nullptr ;
+	SDL_DestroyTexture(texture) ;
+	
+	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text->c_str(), foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+	texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
+	SDL_FreeSurface(surface) ;
+	
+	data.texture = texture ;
+}
+
+
+
 
 

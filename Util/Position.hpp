@@ -1041,6 +1041,8 @@ public:
 	Vectr & operator=(const Vectr<N> & rhs) ;
 	Vectr & operator=(Vectr<N> && rhs) ;
 	
+	Velocity<N> * getVelocity() { return this->velocity ; }
+	
 	const Position * getCurrent() const { return this->current ; }
 	const Position getLast() const { return this->last ; }
 	
@@ -1167,6 +1169,18 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 		rhs.totalDistanceMoved = nullptr ;
 	}
 	return *this ;
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, const Vectr<N> * vec) {
+	os << "Vector: X = " << vec->x << ", Y = " << vec->y << ", Z = " << vec->z << '\n' ;
+	return os ;
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, const Vectr<N> & vec) {
+	os << "Vector: X = " << vec.x << ", Y = " << vec.y << ", Z = " << vec.z << '\n' ;
+	return os ;
 }
 
 template<typename N>
@@ -1338,7 +1352,8 @@ public:
 	VectrVel & operator=(const VectrVel<N> & rhs) ;
 	VectrVel & operator=(VectrVel<N> && rhs) ;
 	
-
+	Velocity<N> * getVelocity() { return this->velocity ; }
+	
 	static Vectr<N> convertToVectr(const VectrVel &) ;
 
 	
@@ -1495,6 +1510,18 @@ VectrVel<N> & VectrVel<N>::operator=(VectrVel<N> && rhs) {
 		rhs.velocity = nullptr ;
 	}
 	return *this ;
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, const VectrVel<N> * vec) {
+	os << "Vector: X = " << vec->x << ", Y = " << vec->y << ", Z = " << vec->z << '\n' ;
+	return os ;
+}
+
+template<typename N>
+ostream & operator<<(std::ostream & os, const VectrVel<N> & vec) {
+	os << "Vector: X = " << vec.x << ", Y = " << vec.y << ", Z = " << vec.z << '\n' ;
+	return os ;
 }
 
 template<typename N>

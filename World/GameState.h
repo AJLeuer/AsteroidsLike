@@ -16,6 +16,7 @@
 #include <mutex>
 #include <array>
 #include <vector>
+#include <list>
 
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
@@ -50,7 +51,7 @@ private:
 	 */
 	static const vector<GameObject*> * gameObjects ;
 	
-	static vector<OutputData*> * addlOutputStorage ;
+	static list<OutputData*> * addlOutputStorage ;
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -68,6 +69,7 @@ private:
 	
 	GameState() ;
 	
+	friend class TextOutput ;
 	friend class GraphicalOutput ;
 	friend class WorldController ;
 	friend class MainController ;
@@ -139,9 +141,6 @@ Position<N> getWindowOriginAsWorldCoord() {
 	
 	return Position<N>(leftX, topY, 0) ;
 }
-
-
-
 
 
 

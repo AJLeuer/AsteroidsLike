@@ -47,7 +47,7 @@ struct GameColor {
         return *this ;
     }
     
-    inline Color convertToSDL_Color() {
+    inline Color convertToSDL_Color() const {
         Color color({red, green, blue, alpha}) ;
         return color ;
     }

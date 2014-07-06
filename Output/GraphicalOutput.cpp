@@ -94,8 +94,8 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
-	for (auto i = 0 ; i < GameState::addlOutputStorage->size() ; i++) {
-		render(GameState::addlOutputStorage->at(i)) ;
+	for (auto i = GameState::addlOutputStorage->begin() ; i != GameState::addlOutputStorage->end() ; i++) {
+		render(*i) ;
 	}
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;
@@ -127,7 +127,7 @@ void GraphicalOutput::render(const GameObject * object) {
 
 
 void GraphicalOutput::render(OutputData * output) {
-    render(output->texture, output->pos, output->size) ;
+    render(output->texture, *output->position, output->size) ;
 }
 
 void GraphicalOutput::update() {

@@ -383,7 +383,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const VectrVel<float> getVector() const { return this->vectr ; }
+	VectrVel<float> * getVector() { return &(this->vectr) ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
