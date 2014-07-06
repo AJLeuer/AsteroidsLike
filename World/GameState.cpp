@@ -18,8 +18,6 @@ bool GameState::graphicsAreInit = false ;
 
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 
-list<OutputData*> * GameState::addlOutputStorage = new list<OutputData*>() ;
-
 const GameMap<GameObject> * GameState::map ;
 
 Window * GameState::window = nullptr ;

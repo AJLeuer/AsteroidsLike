@@ -38,7 +38,7 @@ struct OutputData {
     const Position<float> * position ;
     const Size<int> * size ;
 	
-	OutputData() {}
+	OutputData() : texture(nullptr), position(nullptr), size(nullptr) {}
 	
 	OutputData(Texture * tex, const Position<float> * pos, const Size<int> * sz) :
 		texture(tex), position(pos), size(sz) {}
@@ -52,6 +52,12 @@ struct OutputData {
 			this->size = rhs.size ;
 		}
 		return *this ;
+	}
+	
+	void setAll(Texture * texture, const Position<float> * position, const Size<int> * size) {
+		this->texture = texture ;
+		this->position = position ;
+		this->size = size ;
 	}
 	
 } ;

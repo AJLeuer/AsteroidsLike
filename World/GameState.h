@@ -51,8 +51,6 @@ private:
 	 */
 	static const vector<GameObject*> * gameObjects ;
 	
-	static list<OutputData*> * addlOutputStorage ;
-	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.

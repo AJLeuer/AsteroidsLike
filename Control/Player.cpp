@@ -124,23 +124,27 @@ void Player::setText() {
 		
 		stringstream stream ;
 		stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
-		unsigned x = (globalMaxX() / 10) ;
-		unsigned y = (globalMaxX() * 0.75) ;
+		unsigned x = (globalMaxX() * 0.15) ;
+		unsigned y = (globalMaxY() * 0.85) ;
+	
 		string str(stream.str()) ;
 		
 		Position<float> * pos = new Position<float>(x, y, 0) ;
 		Size<int> * size = new Size<int>(128, 128) ;
-		GameColor color_fg(0x00, 0x00, 0x00, 0x00) ;
-		GameColor color_bg(0x00, 0x00, 0x00, 0x00) ;
+		GameColor color_fg(0, 0, 0, 128) ;
+		GameColor color_bg(255, 0, 126, 128) ;
 		
 		TextOutput out(&str, pos, size, &color_fg, &color_bg) ;
 		
 		while (GLOBAL_CONTINUE_SIGNAL) {
+			/* out will keep updating as long as it exists */
 			stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
 			str = stream.str() ;
-			out.update() ;
 			this_thread::sleep_for(chrono::milliseconds(32)) ;
 		}
+		
+		delete pos ;
+		delete size ;
 		
 	} ;
 	

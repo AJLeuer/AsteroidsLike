@@ -94,8 +94,9 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
-	for (auto i = GameState::addlOutputStorage->begin() ; i != GameState::addlOutputStorage->end() ; i++) {
-		render(*i) ;
+	for (auto i = 0 ; i < TextOutput::getAllTextOutput()->size() ; i++) {
+		auto stor = TextOutput::getAllTextOutput() ; //debug var
+		render(TextOutput::getAllTextOutput()->at(i)->getOutputData()) ;
 	}
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;

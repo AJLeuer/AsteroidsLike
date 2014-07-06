@@ -10,8 +10,24 @@
 
 using namespace std ;
 
+vector<TextOutput *> TextOutput::allTextOutput ; //= vector<TextOutput *>() ;
+
 TTF_Font * TextOutput::gameFont = nullptr ;
 
+bool TextOutput::hasNulls() {
+	if (text == nullptr) {
+		return true ;
+	}
+	if ((data.position == nullptr) || (data.size == nullptr)) {
+		return true ;
+	}
+	if ((foreground == nullptr) || (background == nullptr)) {
+		return true ;
+	}
+	else {
+		return false ;
+	}
+}
 
 void TextOutput::init() {
 	int sdlinit_error = TTF_Init() ;
@@ -45,28 +61,47 @@ void TextOutput::exit() {
 
 
 TextOutput::TextOutput(const string * text, const Position<float> * pos, const Size<int> * sz, GameColor * foreground, GameColor * background) :
-	data(nullptr, nullptr, nullptr), foreground(foreground), background(background)
+	text(text), data(), foreground(foreground), background(background), texture(nullptr)
 {
-	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text->c_str(), foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+	data.setAll(texture, pos, sz) ;
 	
-	texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
-	
-	SDL_FreeSurface(surface) ;
-	
-	data = {texture, pos, sz} ;
-	
-	dataListReference = GameState::addlOutputStorage->insert(GameState::addlOutputStorage->begin(), &data) ;
+	allTextOutput.push_back(this) ;
 }
 
+//must be called from main thread
 void TextOutput::update() {
+	
 	data.texture = nullptr ;
-	SDL_DestroyTexture(texture) ;
 	
-	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text->c_str(), foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
-	texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
-	SDL_FreeSurface(surface) ;
+	if (texture != nullptr) {
+		//SDL_DestroyTexture(texture) ;
+	}
 	
-	data.texture = texture ;
+	if (hasNulls()) {
+		delete this ;
+	}
+	
+	else {
+		
+		//char * cstr ;
+		//strcpy(cstr, text->c_str()) ;
+		
+		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, "HAI", foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+		
+		/* debug code */
+		if (mainGameLoopCount < 2) {
+			stringstream ss ;
+			ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+		}
+		/* end debug code */
+		
+		texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
+		
+		SDL_FreeSurface(surface) ;
+		
+		data.texture = texture ;
+	}
 }
 
 
