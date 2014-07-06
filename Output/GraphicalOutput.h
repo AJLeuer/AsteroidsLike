@@ -71,7 +71,7 @@ protected:
 	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename N>
-	static void render(Texture * texture, const Position<N> & pos, const Size<int> * size) ;
+	static void render(Texture * texture, const Position<N> * pos, const Size<int> * size) ;
     
 	
 	GraphicalOutput() ; //private to prevent instantiation
@@ -86,9 +86,11 @@ public:
 
 
 template<typename N>
-void GraphicalOutput::render(Texture * texture, const Position<N> & pos, const Size<int> * size) {
+void GraphicalOutput::render(Texture * texture, const Position<N> * pos, const Size<int> * size) {
 	
-	auto tempShape = convertToSDL_Rect(pos, size) ;
+	auto scrnPos = translateToWindowCoords(*pos) ;
+	
+	auto tempShape = convertToSDL_Rect(scrnPos, size) ;
 	
 	int sdlrend_error = 0 ;
 	
@@ -97,6 +99,9 @@ void GraphicalOutput::render(Texture * texture, const Position<N> & pos, const S
 	if (texture != nullptr) {
 		sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
 	}
+	
+	/* Debug code */
+	cerr << "Checking for SDL errors after render... " << SDL_GetError() << endl ;
 	
 	if (sdlrend_error == -1) {
 		stringstream ss ;

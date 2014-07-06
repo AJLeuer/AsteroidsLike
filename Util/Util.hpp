@@ -233,7 +233,7 @@ SDL_Rect convertToSDL_Rect(vec3 position, vec2 size) {
 	shape.w = roundF(size->getWidth()) ;
 	shape.h = roundF(size->getHeight()) ;
 
-	return std::move(shape) ;
+	return shape ;
 }
 
 

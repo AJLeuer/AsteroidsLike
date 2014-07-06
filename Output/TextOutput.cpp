@@ -83,20 +83,28 @@ void TextOutput::update() {
 	
 	else {
 		
-		const char * cstr = text->c_str() ;
+		//const char * cstr { text->c_str() } ;
 		//strcpy(cstr, text->c_str()) ;
+		
+		size_t l = strlen(text->c_str()) ;
+		char * cstr = (char *) malloc(l + 1) ;
+		memmove(cstr, text->c_str(), (l + 1)) ;
 		
 		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, cstr, foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
 		
-		/* debug code */
-		if (mainGameLoopCount < 2) {
-			stringstream ss ;
-			ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
-			DebugOutput << ss.rdbuf() ;
-		}
-		/* end debug code */
+		/* Debug code */
+		stringstream ss ;
+		ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
+		DebugOutput << ss.rdbuf() ;
+		/* End debug code */
 		
 		texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
+		
+		/* Debug code */
+		stringstream st ;
+		ss << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
+		DebugOutput << st.rdbuf() ;
+		/* End debug code */
 		
 		SDL_FreeSurface(surface) ;
 		

@@ -113,22 +113,22 @@ void GraphicalOutput::render(const GameObject * object) {
 		if (object->isVisible()) {
 			
 			/* translate from world coordinates to screen coordinates */
-			auto objWorldPosition(*object->getPosition()) ;
+			auto objPosition(*object->getPosition()) ;
             
             /* important: don't forget to translate position from world coords to display coords! */
 			
-            auto objScreenPosition = translateToWindowCoords(objWorldPosition) ; // <-DEBUG: uncomment this
+             // <-DEBUG: uncomment this
 			//auto objScreenPosition = objWorldPosition ;   // <-DEBUG: remove this
 			
 			/* render to output */
-			render(object->getTexture(), objScreenPosition, object->getSize()) ;
+			render(object->getTexture(), object->getPosition(), object->getSize()) ;
 		}
 	}
 }
 
 
 void GraphicalOutput::render(OutputData * output) {
-    render(output->texture, *output->position, output->size) ;
+    render(output->texture, output->position, output->size) ;
 }
 
 void GraphicalOutput::update() {
