@@ -83,10 +83,10 @@ void TextOutput::update() {
 	
 	else {
 		
-		//char * cstr ;
+		const char * cstr = text->c_str() ;
 		//strcpy(cstr, text->c_str()) ;
 		
-		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, "HAI", foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, cstr, foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
 		
 		/* debug code */
 		if (mainGameLoopCount < 2) {
