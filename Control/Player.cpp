@@ -34,7 +34,6 @@ Player::Player() :
 {
 	IDs++ ;
 	setNames() ;
-	setText() ;
 	registerForCallbacks() ;
 }
 
@@ -51,7 +50,6 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 {
 	IDs++ ;
 	setNames() ;
-	setText() ;
 	registerForCallbacks() ;
 }
 
@@ -118,7 +116,7 @@ void Player::registerForCallbacks() {
 	}
 }
 
-void Player::setText() {
+void Player::displayVelocity() {
 	
 	auto textoutp_lambd = [&, this] () -> void {
 		
@@ -140,8 +138,9 @@ void Player::setText() {
 		while (GLOBAL_CONTINUE_SIGNAL) {
 			/* out will keep updating as long as it exists */
 			stream = stringstream() ; //reset the sstream
-			stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
+			stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 			str = stream.str() ;
+			out.updateText(str) ;
 			this_thread::sleep_for(chrono::milliseconds(32)) ;
 		}
 		

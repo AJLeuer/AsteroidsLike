@@ -53,7 +53,7 @@ protected:
 	
 	void registerForCallbacks() ;
 	
-	void setText() ;
+	
 
 public:
 	
@@ -71,6 +71,8 @@ public:
 		   unsigned playerCharacter_health, unsigned playerCharacter_damage) ;
 	
 	~Player() { InputController::deregister(&playerCharacter) ; }
+	
+	void displayVelocity() ;
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
