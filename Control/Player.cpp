@@ -121,7 +121,7 @@ void Player::displayVelocity() {
 	auto velocityDisplay = [&, this] () -> void {
 		
 		stringstream stream ;
-		stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
+		stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 		unsigned x = (globalMaxX() * 0.15) ;
 		unsigned y = (globalMaxY() * 0.85) ;
 	
