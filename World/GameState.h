@@ -26,6 +26,8 @@
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Timer.hpp"
 
+#include "../Output/OutputData.hpp"
+
 #include "ForwardDecl.h"
 
 #include "../Control/DefaultConfig.h"
@@ -48,6 +50,8 @@ private:
 	 */
 	static const vector<GameObject*> * gameObjects ;
 	
+	static vector<OutputData> * addlOutputStorage ;
+	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
@@ -63,6 +67,10 @@ private:
 	static bool graphicsAreInit ;
 	
 	GameState() ;
+	
+	friend class GraphicalOutput ;
+	friend class WorldController ;
+	friend class MainController ;
 	
 public:
 	
@@ -99,6 +107,7 @@ public:
 	
 	
 } ;
+
 
 /* Globals */
 

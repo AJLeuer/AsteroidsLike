@@ -40,11 +40,6 @@ Size<unsigned> TextOutput::getSizeOfText(string str) {
 }
 
 
-
-void TextOutput::render() {
-    
-}
-
 void TextOutput::exit() {
     TTF_CloseFont(gameFont) ;
 	TTF_Quit();

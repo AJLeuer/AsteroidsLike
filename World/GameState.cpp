@@ -13,10 +13,17 @@
 using namespace std ;
 
 bool GameState::dataIsInit = false ;
+
 bool GameState::graphicsAreInit = false ;
+
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
+
+vector<OutputData> * GameState::addlOutputStorage = new vector<OutputData>() ;
+
 const GameMap<GameObject> * GameState::map ;
+
 Window * GameState::window = nullptr ;
+
 Renderer * GameState::renderer = nullptr ;
 
 bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;

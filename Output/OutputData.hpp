@@ -30,11 +30,25 @@
 
 #include "../Control/Configuration.h"
 
-template<typename N>
+
 struct OutputData {
+	
     Texture * texture;
-    const Position<N> pos ;
+    const Position<float> pos ;
     const Size<int> * size ;
+	
+	OutputData(Texture * tex, const Position<float> & pos, const Size<int> & sz) :
+		texture(tex), pos(pos), size(new Size<int>(sz)) {}
+	
+	OutputData(const OutputData & other) :
+		texture(other.texture), pos(Position<float>(other.pos)), size(new Size<int>(*other.size)) {}
+	
+	~OutputData() {
+		delete size ;
+	}
+	
+	OutputData & operator=(const OutputData & rhs) = delete ;
+	
 } ;
 
 #endif

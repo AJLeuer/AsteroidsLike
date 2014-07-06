@@ -60,8 +60,7 @@ protected:
 	 */
 	static void render(const GameObject * object) ;
 	
-    template<typename N>
-	static void render(OutputData<N> & output) ;
+	static void render(OutputData & output) ;
     
 	/**
 	 * Renders the given texture at the desired position and size.
@@ -84,10 +83,6 @@ public:
 	
 } ;
 
-template<typename N>
-void render(OutputData<N> & output) {
-    render(output.texture, output.pos, output.size) ;
-}
 
 template<typename N>
 void GraphicalOutput::render(Texture * texture, const Position<N> & pos, const Size<int> * size) {

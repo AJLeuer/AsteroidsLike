@@ -94,6 +94,9 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
+	for (auto i = 0 ; i < GameState::addlOutputStorage->size() ; i++) {
+		;
+	}
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;
 		render(temp) ;
@@ -120,6 +123,11 @@ void GraphicalOutput::render(const GameObject * object) {
 			render(object->getTexture(), objScreenPosition, object->getSize()) ;
 		}
 	}
+}
+
+
+void GraphicalOutput::render(OutputData & output) {
+    render(output.texture, output.pos, output.size) ;
 }
 
 void GraphicalOutput::update() {

@@ -22,8 +22,8 @@
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
 		6652B7F519615A0600243106 /* Velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F419615A0600243106 /* Velocity.cpp */; };
-		6659954E196877540070CEAC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6659954D196877540070CEAC /* SDL_ttf.framework */; };
 		6659955119687D120070CEAC /* TextOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6659954F19687D120070CEAC /* TextOutput.cpp */; };
+		665D37111968C2E300FA713B /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665D37101968C2E300FA713B /* SDL2_ttf.framework */; };
 		66776634195AE63400212190 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776633195AE63400212190 /* AppKit.framework */; };
 		66776636195AE90C00212190 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776635195AE90C00212190 /* Foundation.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
@@ -66,9 +66,10 @@
 		664BFFB7193A0730008F4CD1 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Input.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6652B7F019610BE700243106 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		6652B7F419615A0600243106 /* Velocity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Velocity.cpp; sourceTree = "<group>"; };
-		6659954D196877540070CEAC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = ../../../../../../Library/Frameworks/SDL_ttf.framework; sourceTree = "<group>"; };
 		6659954F19687D120070CEAC /* TextOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextOutput.cpp; sourceTree = "<group>"; };
-		6659955019687D120070CEAC /* TextOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOutput.h; sourceTree = "<group>"; };
+		665D370E1968C1CA00FA713B /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextOutput.hpp; sourceTree = "<group>"; };
+		665D370F1968C1E400FA713B /* OutputData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputData.hpp; sourceTree = "<group>"; };
+		665D37101968C2E300FA713B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Navigator.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Util2.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -119,7 +120,7 @@
 				66776634195AE63400212190 /* AppKit.framework in Frameworks */,
 				1E64D2D8193145D700A3B7C5 /* SDL2.framework in Frameworks */,
 				1E64D2DA193145E300A3B7C5 /* SDL2_image.framework in Frameworks */,
-				6659954E196877540070CEAC /* SDL_ttf.framework in Frameworks */,
+				665D37111968C2E300FA713B /* SDL2_ttf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,9 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				6684DDAB195FC98A00E6B997 /* Decl_Apple.h */,
+				665D370F1968C1E400FA713B /* OutputData.hpp */,
 				6684DDAA195FC8DF00E6B997 /* DisplayData.h */,
 				6603FD72190C902800A5F41A /* GraphicalOutput.h */,
-				6659955019687D120070CEAC /* TextOutput.h */,
+				665D370E1968C1CA00FA713B /* TextOutput.hpp */,
 				6684DDAC195FE24000E6B997 /* DisplayData.cpp */,
 				6684DDA8195FC8AA00E6B997 /* DisplayData.mm */,
 				6603FD73190C902800A5F41A /* GraphicalOutput.cpp */,
@@ -199,7 +201,7 @@
 				66776633195AE63400212190 /* AppKit.framework */,
 				1E64D2D7193145D700A3B7C5 /* SDL2.framework */,
 				1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */,
-				6659954D196877540070CEAC /* SDL_ttf.framework */,
+				665D37101968C2E300FA713B /* SDL2_ttf.framework */,
 				665F49BE195EC34C00B21A27 /* About */,
 				665F49BD195E979400B21A27 /* Assets */,
 				66E3234619326E2C005A1144 /* User Configuration */,
