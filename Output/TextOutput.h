@@ -41,23 +41,24 @@ protected:
     static TTF_Font * gameFont ;
 	
 	
-	const string * text ;
+	string text ;
+	
+	Texture * texture ;
+	
+	Position<float> position ;
+	
+	Size<int> size ;
 	
 	OutputData data ;
 	
-	const GameColor * foreground, * background ;
-	
-	Texture * texture ;
-
-	
-	bool hasNulls() ;
+	GameColor foreground, background ;
 	
 	
 public:
 	
 	static void init() ;
     
-    static Size<unsigned> getSizeOfText(const string & str) ;
+    static Size<int> getSizeOfText(const string & str) ;
 	
 	static const vector<TextOutput *> * getAllTextOutput() { return & allTextOutput ; }
 	
@@ -72,15 +73,17 @@ public:
 	 * Creates a TextOutput object which will automatically output the string text to the screen, at the chosen position position, at the
 	 * next output update. TextOutput assumes that all pointers given to it remain valid for calling refresh()
 	 */
-	TextOutput(const string * text, const Position<float> * pos, const Size<int> * size, GameColor * foreground, GameColor * background) ;
+	TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) ;
 	
-	/**
-	 * Updates the main output with new values. TextOutput assumes that all pointers sent as arguments during its construction remain valid.
-	 * Any changing of the values output by TextOutput must be done by changing the objects pointed to by the pointers held by TextOutput (TextOutput
-	 * is unable to alter any of its members). What TextOutput *can* do is change the output onscreen based on new values read from text, or size,
-	 * etc. If TextOutput discovers that any of its values have become null, it will immediately delete itself.
-	 */
 	void update() ;
+	
+	void updateText(const string & newText) ;
+	
+	void updatePosition(const Position<float> & pos) ;
+	
+	void updateForegroundColor(GameColor color) ;
+	
+	void updateBackgroundColor(GameColor color) ;
 	
 	OutputData * getOutputData() { update() ; return &(this->data) ; }
 	

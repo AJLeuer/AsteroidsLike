@@ -14,20 +14,6 @@ vector<TextOutput *> TextOutput::allTextOutput ; //= vector<TextOutput *>() ;
 
 TTF_Font * TextOutput::gameFont = nullptr ;
 
-bool TextOutput::hasNulls() {
-	if (text == nullptr) {
-		return true ;
-	}
-	if ((data.position == nullptr) || (data.size == nullptr)) {
-		return true ;
-	}
-	if ((foreground == nullptr) || (background == nullptr)) {
-		return true ;
-	}
-	else {
-		return false ;
-	}
-}
 
 void TextOutput::init() {
 	int sdlinit_error = TTF_Init() ;
@@ -43,13 +29,13 @@ void TextOutput::init() {
     gameFont = TTF_OpenFont("/Assets/Fonts/Roboto-Regular.ttf", 18) ;
 }
 
-Size<unsigned> TextOutput::getSizeOfText(const string & str) {
+Size<int> TextOutput::getSizeOfText(const string & str) {
     
     int w, h ;
     
     TTF_SizeUTF8(gameFont, str.c_str(), &w, &h) ;
     
-    Size<unsigned> textSize(w, h) ;
+    Size<int> textSize(w, h) ;
     
     return textSize ;
 }
@@ -60,10 +46,12 @@ void TextOutput::exit() {
 }
 
 
-TextOutput::TextOutput(const string * text, const Position<float> * pos, const Size<int> * sz, GameColor * foreground, GameColor * background) :
-	text(text), data(), foreground(foreground), background(background), texture(nullptr)
+TextOutput::TextOutput(const string & text_, const Position<float> & pos, GameColor foreground, GameColor background) :
+	text(text_), position(pos), size(getSizeOfText(text_)), data(), foreground(foreground), background(background), texture(nullptr)
 {
-	data.setAll(texture, pos, sz) ;
+	data.setAll(texture, &position, &size) ;
+	
+	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
 	
 	allTextOutput.push_back(this) ;
 }
@@ -74,23 +62,19 @@ void TextOutput::update() {
 	data.texture = nullptr ;
 	
 	if (texture != nullptr) {
-		//SDL_DestroyTexture(texture) ;
+		SDL_DestroyTexture(texture) ;
 	}
-	
-	if (hasNulls()) {
-		erase() ;
-	}
-	
+
 	else {
 		
 		//const char * cstr { text->c_str() } ;
 		//strcpy(cstr, text->c_str()) ;
 		
-		size_t l = strlen(text->c_str()) ;
+		size_t l = strlen(text.c_str()) ;
 		char * cstr = (char *) malloc(l + 1) ;
-		memmove(cstr, text->c_str(), (l + 1)) ;
+		memmove(cstr, text.c_str(), (l + 1)) ;
 		
-		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, cstr, foreground->convertToSDL_Color(), background->convertToSDL_Color()) ;
+		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, cstr, foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
 		
 		/* Debug code */
 		stringstream ss ;
@@ -107,6 +91,7 @@ void TextOutput::update() {
 		/* End debug code */
 		
 		SDL_FreeSurface(surface) ;
+		free(cstr) ;
 		
 		data.texture = texture ;
 	}

@@ -130,11 +130,12 @@ void Player::setText() {
 		string str(stream.str()) ;
 		
 		Position<float> * pos = new Position<float>(x, y, 0) ;
-		Size<int> * size = new Size<int>(128, 128) ;
+		Size<int> * size = new Size<int>(TextOutput::getSizeOfText(str)) ;
 		GameColor color_fg(0, 0, 0, 128) ;
 		GameColor color_bg(255, 0, 126, 128) ;
 		
 		TextOutput out(&str, pos, size, &color_fg, &color_bg) ;
+		
 		
 		while (GLOBAL_CONTINUE_SIGNAL) {
 			/* out will keep updating as long as it exists */
