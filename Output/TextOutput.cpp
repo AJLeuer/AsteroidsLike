@@ -78,7 +78,7 @@ void TextOutput::update() {
 	}
 	
 	if (hasNulls()) {
-		delete this ;
+		erase() ;
 	}
 	
 	else {

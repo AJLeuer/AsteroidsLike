@@ -84,7 +84,9 @@ public:
 	
 	OutputData * getOutputData() { update() ; return &(this->data) ; }
 	
-	~TextOutput() { SDL_DestroyTexture(texture) ; }
+	void erase() { SDL_DestroyTexture(texture) ; }
+	
+	~TextOutput() { erase() ; }
     
 } ;
 

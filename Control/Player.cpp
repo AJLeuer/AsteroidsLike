@@ -138,6 +138,7 @@ void Player::setText() {
 		
 		while (GLOBAL_CONTINUE_SIGNAL) {
 			/* out will keep updating as long as it exists */
+			stream = stringstream() ; //reset the sstream
 			stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
 			str = stream.str() ;
 			this_thread::sleep_for(chrono::milliseconds(32)) ;
