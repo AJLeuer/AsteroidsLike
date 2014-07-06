@@ -19,11 +19,14 @@
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/GameRandom.hpp"
 
+#include "../Output/OutputData.hpp"
+#include "../Output/TextOutput.h"
+
 #include "../World/GameInterface.h"
 #include "../World/PlayerCharacter.h"
 #include "../World/GameState.h"
 
-#include "../Control/DefaultConfig.h"
+#include "../Control/Configuration.h"
 #include "../Control/Input.hpp"
 
 using namespace std ;

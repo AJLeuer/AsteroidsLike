@@ -67,7 +67,7 @@
 		6652B7F019610BE700243106 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		6652B7F419615A0600243106 /* Velocity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Velocity.cpp; sourceTree = "<group>"; };
 		6659954F19687D120070CEAC /* TextOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextOutput.cpp; sourceTree = "<group>"; };
-		665D370E1968C1CA00FA713B /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextOutput.hpp; sourceTree = "<group>"; };
+		665D370E1968C1CA00FA713B /* TextOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOutput.h; sourceTree = "<group>"; };
 		665D370F1968C1E400FA713B /* OutputData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputData.hpp; sourceTree = "<group>"; };
 		665D37101968C2E300FA713B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -134,7 +134,7 @@
 				665D370F1968C1E400FA713B /* OutputData.hpp */,
 				6684DDAA195FC8DF00E6B997 /* DisplayData.h */,
 				6603FD72190C902800A5F41A /* GraphicalOutput.h */,
-				665D370E1968C1CA00FA713B /* TextOutput.hpp */,
+				665D370E1968C1CA00FA713B /* TextOutput.h */,
 				6684DDAC195FE24000E6B997 /* DisplayData.cpp */,
 				6684DDA8195FC8AA00E6B997 /* DisplayData.mm */,
 				6603FD73190C902800A5F41A /* GraphicalOutput.cpp */,

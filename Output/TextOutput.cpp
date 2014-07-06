@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#include "TextOutput.hpp"
+#include "TextOutput.h"
 
 using namespace std ;
 
@@ -39,6 +39,11 @@ Size<unsigned> TextOutput::getSizeOfText(string str) {
     return textSize ;
 }
 
+void TextOutput::outputText(const string & text, GameColor foreground, GameColor background,
+											const Position<float> pos, const Size<int> * size) {
+    Surface * surface ;
+    surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
+}
 
 void TextOutput::exit() {
     TTF_CloseFont(gameFont) ;

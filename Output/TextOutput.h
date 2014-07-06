@@ -43,27 +43,16 @@ public:
     
     static Size<unsigned> getSizeOfText(string str) ;
     
-    template<typename N>
-    static void outputText(const string & text, GameColor foreground, GameColor background, const Position<N> pos,
+    static void outputText(const string & text, GameColor foreground, GameColor background, const Position<float> pos,
                            const Size<int> * size) ;
     
-    static void render() ;
 	
 	static void exit() ;
 	
 } ;
 
-template<typename N>
-void TextOutput::outputText(const string & text, GameColor foreground, GameColor background, const Position<N> pos,
-                            const Size<int> * size)
 
-{
-    
-    Surface * surface ;
 
-    surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
-    
-}
 
 
 
