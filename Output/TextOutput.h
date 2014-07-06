@@ -10,6 +10,7 @@
 #define __SpriteFight__TextOutput__
 
 #include <iostream>
+#include <iomanip>
 #include <ostream>
 #include <sstream>
 #include <string>

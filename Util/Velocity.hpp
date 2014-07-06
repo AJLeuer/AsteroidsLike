@@ -130,8 +130,8 @@ public:
 	Velocity & operator=(const Velocity & rhs) = delete ;
 	Velocity & operator=(Velocity && rhs)  = delete ;
 
-	double * getValue() {
-		return &lastVelocity ;
+	double getValue() {
+		return lastVelocity ;
 	}
 	 
 } ;
@@ -218,13 +218,13 @@ void Velocity<N>::calculateVelocity() {
 
 template<typename N>
 ostream & operator<<(std::ostream & os, Velocity<N> * vel) {
-	os << "Velocity: " << vel->getValue() << '\n' ;
+	os << "Velocity: " << vel->getValue() ;
 	return os ;
 }
 
 template<typename N>
 ostream & operator<<(std::ostream & os, Velocity<N> & vel) {
-	os << "Velocity: " << vel.getValue() << '\n' ;
+	os << "Velocity: " << vel.getValue() ;
 	return os ;
 }
 

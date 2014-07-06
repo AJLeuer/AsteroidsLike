@@ -10,6 +10,7 @@
 #define __GameWorld__Player__
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <chrono>

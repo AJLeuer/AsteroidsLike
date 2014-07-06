@@ -121,7 +121,7 @@ void Player::displayVelocity() {
 	auto velocityDisplay = [&, this] () -> void {
 		
 		stringstream stream ;
-		stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+		stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
 		unsigned x = (globalMaxX() * 0.15) ;
 		unsigned y = (globalMaxY() * 0.85) ;
 	
@@ -138,7 +138,7 @@ void Player::displayVelocity() {
 		while (GLOBAL_CONTINUE_SIGNAL) {
 			/* out will keep updating as long as it exists */
 			stream = stringstream() ; //reset the sstream
-			stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+			stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
 			str = stream.str() ;
 			out.updateText(str) ;
 			this_thread::sleep_for(chrono::milliseconds(32)) ;

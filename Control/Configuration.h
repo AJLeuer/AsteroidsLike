@@ -51,24 +51,7 @@ public:
 	 */
 	static double globalScalingValue() ;
 
-	template <class Value>
-	static Value getValue(string key) ;
-
-	template <class Value>
-	static void writeValue(string key, Value value) ;
-
 } ;
-
-template <class Value>
-Value Configuration::getValue(string key) {
-    //todo
-}
-
-template <class Value>
-void Configuration::writeValue(string key, Value value) {
-    //todo
-}
-
 
 
 
