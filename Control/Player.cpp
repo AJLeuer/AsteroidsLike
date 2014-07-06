@@ -118,7 +118,7 @@ void Player::registerForCallbacks() {
 
 void Player::displayVelocity() {
 	
-	auto textoutp_lambd = [&, this] () -> void {
+	auto velocityDisplay = [&, this] () -> void {
 		
 		stringstream stream ;
 		stream << "Player " << this->ID << "'s " << playerCharacter.getVector()->getVelocity() ;
@@ -146,7 +146,7 @@ void Player::displayVelocity() {
 		
 	} ;
 	
-	thread thr(textoutp_lambd) ;
+	thread thr(velocityDisplay) ;
 	thr.detach() ;
 }
 
