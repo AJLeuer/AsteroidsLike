@@ -129,12 +129,12 @@ void Player::setText() {
 	
 		string str(stream.str()) ;
 		
-		Position<float> * pos = new Position<float>(x, y, 0) ;
-		Size<int> * size = new Size<int>(TextOutput::getSizeOfText(str)) ;
+		Position<float> pos(x, y, 0) ;
+		Size<int> size(TextOutput::getSizeOfText(str)) ;
 		GameColor color_fg(0, 0, 0, 128) ;
 		GameColor color_bg(255, 0, 126, 128) ;
 		
-		TextOutput out(&str, pos, size, &color_fg, &color_bg) ;
+		TextOutput out(str, pos, color_fg, color_bg) ;
 		
 		
 		while (GLOBAL_CONTINUE_SIGNAL) {
@@ -144,9 +144,6 @@ void Player::setText() {
 			str = stream.str() ;
 			this_thread::sleep_for(chrono::milliseconds(32)) ;
 		}
-		
-		delete pos ;
-		delete size ;
 		
 	} ;
 	

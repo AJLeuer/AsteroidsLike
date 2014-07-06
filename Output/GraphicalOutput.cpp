@@ -128,7 +128,7 @@ void GraphicalOutput::render(const GameObject * object) {
 
 
 void GraphicalOutput::render(OutputData * output) {
-    render(output->texture, output->position, output->size) ;
+    render(*output->texture, output->position, output->size) ;
 }
 
 void GraphicalOutput::update() {

@@ -49,23 +49,26 @@ void TextOutput::exit() {
 TextOutput::TextOutput(const string & text_, const Position<float> & pos, GameColor foreground, GameColor background) :
 	text(text_), position(pos), size(getSizeOfText(text_)), data(), foreground(foreground), background(background), texture(nullptr)
 {
-	data.setAll(texture, &position, &size) ;
-	
-	Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
+	data.setAll(&texture, &position, &size) ;
 	
 	allTextOutput.push_back(this) ;
+	
+	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
+		we'll simply set the updateFlag */
+	
+	updateFlag = true ; /* ensure that update() will run the first time through main loop */
 }
 
 //must be called from main thread
 void TextOutput::update() {
 	
-	data.texture = nullptr ;
-	
-	if (texture != nullptr) {
-		SDL_DestroyTexture(texture) ;
-	}
-
-	else {
+	if (updateFlag) { /* check if we actually need to update anything */
+		
+		if (texture != nullptr) {
+			SDL_DestroyTexture(texture) ;
+		}
+		
+		texture = nullptr ;
 		
 		//const char * cstr { text->c_str() } ;
 		//strcpy(cstr, text->c_str()) ;
@@ -93,8 +96,33 @@ void TextOutput::update() {
 		SDL_FreeSurface(surface) ;
 		free(cstr) ;
 		
-		data.texture = texture ;
+		/* reset the update flag */
+		updateFlag = false ;
 	}
+}
+
+void TextOutput::updateText(const string & newText) {
+	this->text = newText ;
+	/* set updateflag so update() knows to run */
+	updateFlag = true ;
+}
+
+void TextOutput::updatePosition(const Position<float> & pos) {
+	position.setAll(pos) ;
+	/* set updateflag so update() knows to run */
+	updateFlag = true ;
+}
+
+void TextOutput::updateForegroundColor(GameColor color) {
+	foreground = color ;
+	/* set updateflag so update() knows to run */
+	updateFlag = true ;
+}
+
+void TextOutput::updateBackgroundColor(GameColor color) {
+	background = color ;
+	/* set updateflag so update() knows to run */
+	updateFlag = true ;
 }
 
 

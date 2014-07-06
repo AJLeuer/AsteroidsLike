@@ -41,6 +41,8 @@ protected:
     static TTF_Font * gameFont ;
 	
 	
+	bool updateFlag = false ;
+	
 	string text ;
 	
 	Texture * texture ;
@@ -75,6 +77,8 @@ public:
 	 */
 	TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) ;
 	
+	~TextOutput() { erase() ; }
+	
 	void update() ;
 	
 	void updateText(const string & newText) ;
@@ -87,9 +91,9 @@ public:
 	
 	OutputData * getOutputData() { update() ; return &(this->data) ; }
 	
-	void erase() { SDL_DestroyTexture(texture) ; }
+	void erase() { text = "" ; if (texture != nullptr) SDL_DestroyTexture(texture) ; texture = nullptr ;}
 	
-	~TextOutput() { erase() ; }
+	
     
 } ;
 
