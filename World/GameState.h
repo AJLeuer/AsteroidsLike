@@ -50,7 +50,7 @@ private:
 	 */
 	static const vector<GameObject*> * gameObjects ;
 	
-	static vector<OutputData> * addlOutputStorage ;
+	static vector<OutputData*> * addlOutputStorage ;
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
