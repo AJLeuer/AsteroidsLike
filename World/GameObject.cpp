@@ -59,6 +59,7 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	type(other.type),
 	visible(other.visible),
+    hasMovedThisLoop(other.hasMovedThisLoop),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
 	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
@@ -108,6 +109,7 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	type(other.type),
 	visible(other.visible),
+    hasMovedThisLoop(other.hasMovedThisLoop),
 	loc(other.loc),
 	vectr(std::move(other.vectr))
 {
@@ -227,6 +229,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
+        this->hasMovedThisLoop = rhs.hasMovedThisLoop ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
@@ -271,6 +274,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
+        this->hasMovedThisLoop = rhs.hasMovedThisLoop ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
@@ -330,10 +334,6 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifie
 	
 	SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
 	size.setSize(tempW, tempH, sizeModifier) ; //assign new size to this GameObject
-}
-
-void GameObject::update() {
-	
 }
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
@@ -416,12 +416,15 @@ void GameObject::textDescription(ostream * writeTo) const {
 
 void GameObject::moveTo(Position<float> * to) {
     
-	map->erase<float>(getPosition()) ;
-    
-    to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	loc->setAll(*to) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
-	vectr.updateAndNormalize() ;
+    if (hasMovedThisLoop == false) {
+        map->erase<float>(getPosition()) ;
+        
+        to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+        loc->setAll(*to) ;
+        map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+        vectr.updateAndNormalize() ;
+        hasMovedThisLoop = true ;
+    }
 	
 	{
 	/* Debug code */
@@ -436,13 +439,16 @@ void GameObject::moveTo(Position<float> * to) {
 
 void GameObject::moveTo(Position<float> to) {
     
-	map->erase<float>(getPosition()) ;
-    
-    to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	loc->setAll(to) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
-	vectr.updateAndNormalize() ;
-	
+    if (hasMovedThisLoop == false) {
+        map->erase<float>(getPosition()) ;
+        
+        to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+        loc->setAll(to) ;
+        map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+        vectr.updateAndNormalize() ;
+        hasMovedThisLoop = true ;
+    }
+
 	{
 	/* Debug code */
 	/*
@@ -452,6 +458,86 @@ void GameObject::moveTo(Position<float> to) {
 	*/
 	/* end debug */
 	}
+}
+
+void GameObject::moveUp() {
+    Vectr<float> up(UP) ;
+    moveNewDirection(up) ;
+}
+
+ void GameObject::moveDown() {
+    Vectr<float> down(DOWN) ;
+     moveNewDirection(down) ;
+}
+
+ void GameObject::moveRight() {
+    Vectr<float> right(RIGHT) ;
+     moveNewDirection(right) ;
+}
+
+ void GameObject::moveLeft() {
+    Vectr<float> left(LEFT) ;
+     moveNewDirection(left) ;
+}
+
+ void GameObject::moveUp(float offset) {
+    Vectr<float> up(UP) ;
+     moveNewDirection(up, offset) ;
+}
+
+ void GameObject::moveDown(float offset) {
+    Vectr<float> down(DOWN) ;
+     moveNewDirection(down, offset) ;
+}
+
+ void GameObject::moveRight(float offset) {
+    Vectr<float> right(RIGHT) ;
+     moveNewDirection(right, offset) ;
+}
+
+ void GameObject::moveLeft(float offset) {
+    Vectr<float> left(LEFT) ;
+     moveNewDirection(left, offset) ;
+}
+
+void GameObject::moveUpRight() {
+    Vectr<float> upright(UPRIGHT) ;
+    moveNewDirection(upright) ;
+}
+
+void GameObject::moveUpLeft() {
+    Vectr<float> upleft(UPLEFT) ;
+    moveNewDirection(upleft) ;
+}
+
+void GameObject::moveDownRight() {
+    Vectr<float> downright(DOWNRIGHT) ;
+    moveNewDirection(downright) ;
+}
+
+void GameObject::moveDownLeft() {
+    Vectr<float> downleft(DOWNLEFT) ;
+    moveNewDirection(downleft) ;
+}
+
+void GameObject::moveUpRight(float offset) {
+    Vectr<float> upright(UPRIGHT) ;
+    moveNewDirection(upright, offset) ;
+}
+
+void GameObject::moveUpLeft(float offset) {
+    Vectr<float> upleft(UPLEFT) ;
+    moveNewDirection(upleft, offset) ;
+}
+
+void GameObject::moveDownRight(float offset) {
+    Vectr<float> downright(DOWNRIGHT) ;
+    moveNewDirection(downright, offset) ;
+}
+
+void GameObject::moveDownLeft(float offset) {
+    Vectr<float> downleft(DOWNLEFT) ;
+    moveNewDirection(downleft, offset) ;
 }
 
 void GameObject::moveRandomDirection() {

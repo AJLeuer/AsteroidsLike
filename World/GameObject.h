@@ -60,8 +60,7 @@ private:
 	
 	/**
 	 * This holds references to all the new threads spawned by instances of GameObject
-	 * allowing us to join and delete them as needed. Using a list allows us to insert and erase
-	 * elements without invalidating other iterators.
+	 * allowing us to join and delete them as needed.
 	 */
 	static vector< pair<thread *, GameObject*> > * allThreads ;
 	
@@ -120,6 +119,7 @@ protected:
 
 	AssetType type ;
 	bool visible ;
+    bool hasMovedThisLoop = false ; /* GameObjects are only allowed to move once per each cycle through the main game loop */
 	
 	const GameObject * ally = nullptr ;
 	
@@ -131,7 +131,7 @@ protected:
 	
 	static FastRand<int> goRand ;
 	
-	void update() ;
+	void update() { hasMovedThisLoop = false ; /* anything else we need to update? */ }
 	
 	void markForDeletion() { markedForDeletion = true ; }
 	
@@ -301,25 +301,25 @@ public:
 	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
 	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
 	
-	virtual void moveUp() { Vectr<float> up(UP) ; moveNewDirection(up) ; }
-	virtual void moveDown() { Vectr<float> down(DOWN) ; moveNewDirection(down) ; }
-	virtual void moveRight() { Vectr<float> right(RIGHT) ; moveNewDirection(right) ; }
-	virtual void moveLeft() { Vectr<float> left(LEFT) ; moveNewDirection(left) ; }
+	virtual void moveUp() ;
+	virtual void moveDown() ;
+	virtual void moveRight();
+	virtual void moveLeft();
 	
-	virtual void moveUp(float offset) { Vectr<float> up(UP) ; moveNewDirection(up, offset) ; }
-	virtual void moveDown(float offset) { Vectr<float> down(DOWN) ; moveNewDirection(down, offset) ; }
-	virtual void moveRight(float offset) { Vectr<float> right(RIGHT) ; moveNewDirection(right, offset) ; }
-	virtual void moveLeft(float offset) { Vectr<float> left(LEFT) ; moveNewDirection(left, offset) ; }
+	virtual void moveUp(float offset) ;
+	virtual void moveDown(float offset);
+	virtual void moveRight(float offset) ;
+	virtual void moveLeft(float offset);
     
-    void moveUpRight() { Vectr<float> upright(UPRIGHT) ; moveNewDirection(upright) ; }
-	void moveUpLeft() { Vectr<float> upleft(UPLEFT) ; moveNewDirection(upleft) ;}
-	void moveDownRight() { Vectr<float> downright(DOWNRIGHT) ; moveNewDirection(downright) ; }
-	void moveDownLeft() { Vectr<float> downleft(DOWNLEFT) ; moveNewDirection(downleft) ; }
+    void moveUpRight() ;
+	void moveUpLeft()  ;
+	void moveDownRight() ;
+	void moveDownLeft() ;
 
-	void moveUpRight(float offset) { Vectr<float> upright(UPRIGHT) ; moveNewDirection(upright, offset) ; }
-	void moveUpLeft(float offset) { Vectr<float> upleft(UPLEFT) ; moveNewDirection(upleft, offset) ;  }
-	void moveDownRight(float offset) { Vectr<float> downright(DOWNRIGHT) ; moveNewDirection(downright, offset) ; }
-	void moveDownLeft(float offset) { Vectr<float> downleft(DOWNLEFT) ; moveNewDirection(downleft, offset) ; }
+	void moveUpRight(float offset)  ;
+	void moveUpLeft(float offset) ;
+	void moveDownRight(float offset)  ;
+	void moveDownLeft(float offset) ;
     
     void moveRandomDirection() ;
 	

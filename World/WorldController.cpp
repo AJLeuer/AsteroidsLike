@@ -68,6 +68,11 @@ void WorldController::main() {
     for (auto i = 0 ; i < gameObjects->size() ; i++) {
         if (gameObjects->at(i) != nullptr) {
             gameObjects->at(i)->moveRandomDirection();
+            
+            /* do any other stuff with GameObjects */
+            
+            /* always call update at the end */
+            gameObjects->at(i)->update() ;
         }
     }
 	
@@ -80,6 +85,11 @@ void WorldController::main() {
 		for (auto i = 0 ; i < gameObjects->size() ; i++) {
 			if (gameObjects->at(i) != nullptr) {
 				gameObjects->at(i)->defaultBehaviors() ;
+                
+                /* do any stuff with GameObjects */
+                
+                /* always call update at the end */
+                gameObjects->at(i)->update() ;
 			}
 		}
 		
