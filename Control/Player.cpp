@@ -22,7 +22,7 @@ void Player::initDefaultPlayers() {
 	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", Colors::green, defaultSize, defaultStartingPosition, "Green",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship2_Blue.png", Colors::blue, defaultSize, defaultStartingPosition, "Blue",
+	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", Colors::blue, defaultSize, defaultStartingPosition, "Blue",
 									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
 }
 
@@ -116,24 +116,18 @@ void Player::registerForCallbacks() {
 	}
 }
 
-void Player::displayVelocity(Position<float> pos, Size<int> size) {
+void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {
 	
 	auto velocityDisplay = [&, this] () -> void {
 		
 		stringstream stream ;
 		stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
-		unsigned x = (globalMaxX() * 0.15) ;
-		unsigned y = (globalMaxY() * 0.85) ;
 	
 		string str(stream.str()) ;
 		
-		Position<float> pos(x, y, 0) ;
-		Size<int> size(TextOutput::getSizeOfText(str)) ;
-		GameColor color_fg(112, 200, 58, 0) ;
-		GameColor color_bg(0, 0, 0, 0) ;
+		//Size<int> size(TextOutput::getSizeOfText(str)) ;
 		
-		TextOutput out(str, pos, color_fg, color_bg) ;
-		
+		TextOutput out(str, pos, foreground, background) ;
 		
 		while (GLOBAL_CONTINUE_SIGNAL) {
 			/* out will keep updating as long as it exists */

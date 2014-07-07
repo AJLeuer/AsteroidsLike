@@ -30,10 +30,15 @@ void TextOutput::init() {
 }
 
 Size<int> TextOutput::getSizeOfText(const string & str) {
+	
+	size_t l = strlen(str.c_str()) ; /* running into compatibility issues with std::strings */
+	char * cstr = (char *) malloc(l + 1) ;
+	memmove(cstr, str.c_str(), (l + 1)) ;
     
     int w, h ;
     
-    TTF_SizeUTF8(gameFont, str.c_str(), &w, &h) ;
+    TTF_SizeUTF8(gameFont, cstr, &w, &h) ;
+	free(cstr) ;
     
     Size<int> textSize(w, h) ;
     
@@ -46,9 +51,12 @@ void TextOutput::exit() {
 }
 
 
-TextOutput::TextOutput(const string & text_, const Position<float> & pos, GameColor foreground, GameColor background) :
-	text(text_), position(pos), size(getSizeOfText(text_)), data(), foreground(foreground), background(background), texture(nullptr)
+TextOutput::TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) :
+	text(text), position(pos), size(), data(), foreground(foreground), background(background), texture(nullptr)
 {
+
+	size = getSizeOfText(text) ;
+	
 	data.setAll(&texture, &position, &size) ;
 	
 	allTextOutput.push_back(this) ;
