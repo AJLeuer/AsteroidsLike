@@ -116,7 +116,7 @@ void Player::registerForCallbacks() {
 	}
 }
 
-void Player::displayVelocity() {
+void Player::displayVelocity(Position<float> pos, Size<int> size) {
 	
 	auto velocityDisplay = [&, this] () -> void {
 		

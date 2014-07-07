@@ -73,7 +73,7 @@ public:
 	
 	~Player() { InputController::deregister(&playerCharacter) ; }
 	
-	void displayVelocity() ;
+	void displayVelocity(Position<float> pos, Size<int> size) ;
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
