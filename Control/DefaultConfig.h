@@ -46,8 +46,8 @@ constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;
 
 /* Default value for window height and width */
-constexpr unsigned DEFAULT_W_MAX_X =  640 ;
-constexpr unsigned DEFAULT_W_MAX_Y = 480 ;
+constexpr unsigned DEFAULT_W_MAX_X =  1600 ;
+constexpr unsigned DEFAULT_W_MAX_Y = 900 ;
 
 extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */
 extern unsigned globalMaxY() ;

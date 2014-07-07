@@ -129,8 +129,8 @@ void Player::displayVelocity() {
 		
 		Position<float> pos(x, y, 0) ;
 		Size<int> size(TextOutput::getSizeOfText(str)) ;
-		GameColor color_fg(0, 0, 0, 128) ;
-		GameColor color_bg(255, 0, 126, 128) ;
+		GameColor color_fg(112, 200, 58, 0) ;
+		GameColor color_bg(0, 0, 0, 0) ;
 		
 		TextOutput out(str, pos, color_fg, color_bg) ;
 		
