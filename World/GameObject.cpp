@@ -59,7 +59,6 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	type(other.type),
 	visible(other.visible),
-    hasMovedThisLoop(other.hasMovedThisLoop),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
 	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
@@ -109,7 +108,6 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	type(other.type),
 	visible(other.visible),
-    hasMovedThisLoop(other.hasMovedThisLoop),
 	loc(other.loc),
 	vectr(std::move(other.vectr))
 {
@@ -229,7 +227,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
-        this->hasMovedThisLoop = rhs.hasMovedThisLoop ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
@@ -274,7 +271,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
-        this->hasMovedThisLoop = rhs.hasMovedThisLoop ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
@@ -416,15 +412,14 @@ void GameObject::textDescription(ostream * writeTo) const {
 
 void GameObject::moveTo(Position<float> * to) {
     
-    if (hasMovedThisLoop == false) {
-        map->erase<float>(getPosition()) ;
+
+    map->erase<float>(getPosition()) ;
         
-        to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-        loc->setAll(*to) ;
-        map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
-        vectr.updateAndNormalize() ;
-        hasMovedThisLoop = true ;
-    }
+    to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc->setAll(*to) ;
+    map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+    vectr.updateAndNormalize() ;
+
 	
 	{
 	/* Debug code */
@@ -439,15 +434,14 @@ void GameObject::moveTo(Position<float> * to) {
 
 void GameObject::moveTo(Position<float> to) {
     
-    if (hasMovedThisLoop == false) {
-        map->erase<float>(getPosition()) ;
+
+    map->erase<float>(getPosition()) ;
         
-        to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-        loc->setAll(to) ;
-        map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
-        vectr.updateAndNormalize() ;
-        hasMovedThisLoop = true ;
-    }
+    to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc->setAll(to) ;
+    map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+    vectr.updateAndNormalize() ;
+
 
 	{
 	/* Debug code */

@@ -119,7 +119,6 @@ protected:
 
 	AssetType type ;
 	bool visible ;
-    bool hasMovedThisLoop = false ; /* GameObjects are only allowed to move once per each cycle through the main game loop */
 	
 	const GameObject * ally = nullptr ;
 	
@@ -131,7 +130,7 @@ protected:
 	
 	static FastRand<int> goRand ;
 	
-	void update() { hasMovedThisLoop = false ; /* anything else we need to update? */ }
+	void update() { /* anything else we need to update? */ }
 	
 	void markForDeletion() { markedForDeletion = true ; }
 	
