@@ -80,6 +80,8 @@ void MainController::main() {
 	
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		
+		auto * mloop = &mainGameLoopCount ; //debug var, delete this
+		
 		/* Will need to lock the mutex when shutting down */
 		
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;

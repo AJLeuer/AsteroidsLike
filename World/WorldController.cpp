@@ -12,8 +12,6 @@
 using namespace std ;
 
 
-const unsigned * WorldController::loopCount = &worldLoopCount ; //Debug symbol, delete
-
 vector<GameObject*> * WorldController::gameObjects  = nullptr ;
 thread WorldController::mainThread ;
 thread WorldController::checkDelThread ;
@@ -92,6 +90,8 @@ void WorldController::main() {
                 gameObjects->at(i)->update() ;
 			}
 		}
+		
+		auto * wloop = &worldLoopCount ; //debug var, delete
 		
 		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
 		auto timeElapsed = time2 - startTime ;

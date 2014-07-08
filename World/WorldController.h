@@ -50,7 +50,7 @@ using namespace std ;
 class WorldController {
 	
 protected:
-	static const unsigned * loopCount ; //Debug symbol, delete
+
 	
 	/**
 	 * A container holding most objects in the game world

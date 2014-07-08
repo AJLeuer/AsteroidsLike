@@ -40,12 +40,13 @@ Resolution<unsigned> * currentResolutionBaseValue() { return new Resolution<unsi
 
 int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need proper initialization to check for DPI changes */
 
-chrono::nanoseconds refreshTime = eight_milliseconds ;
+chrono::nanoseconds refreshTime = four_milliseconds ;
 
-char * MOVE_UP    = (char *)"W" ;
-char * MOVE_DOWN  = (char *)"S" ;
-char * MOVE_LEFT  = (char *)"A" ;
-char * MOVE_RIGHT = (char *)"D" ;
+char   JUMP_KEY		  =         ' ' ;
+char * MOVE_UP_KEY    = (char *)"W" ;
+char * MOVE_DOWN_KEY  = (char *)"S" ;
+char * MOVE_LEFT_KEY  = (char *)"A" ;
+char * MOVE_RIGHT_KEY = (char *)"D" ;
 
 bool Configuration::isInit = false ;
 

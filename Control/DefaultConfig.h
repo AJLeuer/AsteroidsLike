@@ -35,6 +35,7 @@ struct Resolution ;
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
 #define one_millisecond std::chrono::nanoseconds(1000000)
+#define four_milliseconds std::chrono::nanoseconds(4000000)
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
 #define sixfour_milliseconds std::chrono::nanoseconds(64000000)
@@ -104,16 +105,19 @@ extern Resolution<unsigned> * currentResolutionBaseValue() ;
 extern int WINDOW_ARGS ;
 
 template<typename N>
-N defaultOffset = 4 ;
+N defaultOffset = 8 ;
 
 
 
 extern chrono::nanoseconds refreshTime ;
 
-extern char * MOVE_UP ;
-extern char * MOVE_DOWN ;
-extern char * MOVE_LEFT ;
-extern char * MOVE_RIGHT ;
+/* todo replace at runtime with
+ user-selected values */
+extern char   JUMP_KEY ;
+extern char * MOVE_UP_KEY ;
+extern char * MOVE_DOWN_KEY ;
+extern char * MOVE_LEFT_KEY ;
+extern char * MOVE_RIGHT_KEY ;
 
 
 

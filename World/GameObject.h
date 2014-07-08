@@ -116,6 +116,12 @@ protected:
 	Size<int> size ;
 	Pos2<float> * loc ;
 	VectrVel<float> vectr ;
+	
+	/**
+	 * A std::pair that holds a bool indicating whether this object will move at the next
+	 * update, and (if so) how far it will move
+	 */
+	pair<bool, float> moveRequested = {false, defaultOffset<float>} ;
 
 	AssetType type ;
 	bool visible ;
@@ -130,7 +136,7 @@ protected:
 	
 	static FastRand<int> goRand ;
 	
-	void update() { /* anything else we need to update? */ }
+	void update() ;
 	
 	void markForDeletion() { markedForDeletion = true ; }
 	
@@ -319,7 +325,7 @@ public:
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
 	 * VectrVel of its last move
 	 */
-	void moveSameDirection() ;
+	void move() ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
@@ -327,7 +333,7 @@ public:
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = 1) ;
+	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = defaultOffset<float>) ;
 	
 	/**
 	 * Runs this GameObject's defaultBehaviors on its own thread ;

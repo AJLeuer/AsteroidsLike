@@ -28,6 +28,10 @@
 		66776636195AE90C00212190 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66776635195AE90C00212190 /* Foundation.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
+		669F0B62196BFB12007CF4D4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BD195E979400B21A27 /* Assets */; };
+		669F0B63196BFB39007CF4D4 /* About in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BE195EC34C00B21A27 /* About */; };
+		669F0B64196BFB49007CF4D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66E2BC51195DA7E600287A08 /* README.md */; };
+		669F0B66196BFB6B007CF4D4 /* User Configuration in Resources */ = {isa = PBXBuildFile; fileRef = 669F0B65196BFB6B007CF4D4 /* User Configuration */; };
 		66E3235B19327C28005A1144 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E3235A19327C28005A1144 /* Configuration.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
@@ -39,8 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E64D2D7193145D700A3B7C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		1E64D2D7193145D700A3B7C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		1E64D2D9193145E300A3B7C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		1E683B0D193ECB71000F3045 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Enemy.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		1E683B0E193ECB71000F3045 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Enemy.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1E683B10193ECDA4000F3045 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GameState.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -70,7 +74,7 @@
 		6659954F19687D120070CEAC /* TextOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextOutput.cpp; sourceTree = "<group>"; };
 		665D370E1968C1CA00FA713B /* TextOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOutput.h; sourceTree = "<group>"; };
 		665D370F1968C1E400FA713B /* OutputData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputData.hpp; sourceTree = "<group>"; };
-		665D37101968C2E300FA713B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		665D37101968C2E300FA713B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Navigator.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Util2.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -87,11 +91,11 @@
 		6684DDAC195FE24000E6B997 /* DisplayData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayData.cpp; sourceTree = "<group>"; };
 		6684DDAF1960172100E6B997 /* Velocity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Velocity.hpp; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		669F0B65196BFB6B007CF4D4 /* User Configuration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "User Configuration"; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Size.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CharacterData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E2BC51195DA7E600287A08 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		66E323541932765D005A1144 /* Settings.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.cfg; sourceTree = "<group>"; };
 		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Configuration.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E3235A19327C28005A1144 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Configuration.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66E97F2E18CF009E002EFA00 /* SpriteFight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpriteFight; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,14 +190,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		66E3234619326E2C005A1144 /* User Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				66E323541932765D005A1144 /* Settings.cfg */,
-			);
-			path = "User Configuration";
-			sourceTree = "<group>";
-		};
 		66E97F2518CF009E002EFA00 = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +202,7 @@
 				1EAABA0F196A1A0F00FD932F /* Frameworks */,
 				665F49BE195EC34C00B21A27 /* About */,
 				665F49BD195E979400B21A27 /* Assets */,
-				66E3234619326E2C005A1144 /* User Configuration */,
+				669F0B65196BFB6B007CF4D4 /* User Configuration */,
 				6678790018DAE21200618712 /* Util */,
 				666D354919022C3000A615D5 /* Output */,
 				66E97F3018CF009E002EFA00 /* World */,
@@ -263,6 +259,7 @@
 			buildPhases = (
 				66E97F2A18CF009E002EFA00 /* Sources */,
 				66E97F2B18CF009E002EFA00 /* Frameworks */,
+				669F0B61196BFB01007CF4D4 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -298,6 +295,20 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		669F0B61196BFB01007CF4D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669F0B64196BFB49007CF4D4 /* README.md in Resources */,
+				669F0B66196BFB6B007CF4D4 /* User Configuration in Resources */,
+				669F0B63196BFB39007CF4D4 /* About in Resources */,
+				669F0B62196BFB12007CF4D4 /* Assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66E97F2A18CF009E002EFA00 /* Sources */ = {
@@ -381,7 +392,7 @@
 					"$(inherited)",
 					/Applications/Development/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				KEEP_PRIVATE_EXTERNS = NO;
+				KEEP_PRIVATE_EXTERNS = YES;
 				LD_GENERATE_MAP_FILE = NO;
 				LD_QUOTE_LINKER_ARGUMENTS_FOR_COMPILER_DRIVER = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(Frameworks)";
@@ -428,9 +439,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_IDENTITY = "";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 0.1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_NS_ASSERTIONS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(Frameworks)",
@@ -438,14 +449,15 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_PROFILING_CODE = YES;
+				GENERATE_PROFILING_CODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(BoostHeaders)",
 					"$(inherited)",
@@ -472,10 +484,10 @@
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
-				STRIP_INSTALLED_PRODUCT = NO;
-				STRIP_STYLE = debugging;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = all;
 				SUPPORTED_PLATFORMS = macosx;
-				VALIDATE_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

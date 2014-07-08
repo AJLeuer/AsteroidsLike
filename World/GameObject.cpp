@@ -60,7 +60,8 @@ GameObject::GameObject(const GameObject & other) :
 	type(other.type),
 	visible(other.visible),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
+	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc)),
+	moveRequested(other.moveRequested)
 {
 	{
 	/* debug */
@@ -109,7 +110,8 @@ GameObject::GameObject(GameObject && other) :
 	type(other.type),
 	visible(other.visible),
 	loc(other.loc),
-	vectr(std::move(other.vectr))
+	vectr(std::move(other.vectr)),
+	moveRequested(other.moveRequested)
 {
 	{
 	/* debug */
@@ -227,6 +229,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
+		this->moveRequested = rhs.moveRequested ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
@@ -271,6 +274,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->color = rhs.color ;
 		this->type = rhs.type ;
 		this->visible = rhs.visible ;
+		this->moveRequested = rhs.moveRequested ;
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
@@ -401,6 +405,13 @@ void GameObject::endThreading(bool join) {
 	//this->gthread = nullptr ;
 }
 
+void GameObject::update() {
+	if (moveRequested.first) {
+		move() ;
+		moveRequested = {false, defaultOffset<float>} ;
+	}
+}
+
 void GameObject::textDescription(ostream * writeTo) const {
 	stringstream ss ;
 	ss << "GameObject ID#: " << this->ID << endl ;
@@ -513,10 +524,10 @@ void GameObject::jump() {
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::moveSameDirection() {
+void GameObject::move() {
 
 	vectr.normalize() ;
-	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, 1.0) ;
+	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, moveRequested.second) ;
 
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
 		next = VectrVel<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
@@ -533,7 +544,7 @@ void GameObject::moveNewDirection(Vectr<float> & newDirection, float offsetModif
 	newDirection.normalize() ;
     vectr += newDirection ;
 
-    moveSameDirection() ;
+    moveRequested = {true, offsetModifier} ;
 }
 
 void GameObject::defaultBehaviors_threaded() {
@@ -543,7 +554,7 @@ void GameObject::defaultBehaviors_threaded() {
 }
 
 void GameObject::defaultBehaviors() {
-	moveSameDirection() ;
+	//todo add
 }
 
 
