@@ -36,7 +36,8 @@ Size<int> TextOutput::getSizeOfText(const string & str) {
 	//memmove(cstr, str.c_str(), (l + 1)) ;
     strcpy(cstr, str.c_str()) ;
     
-    int w, h ;
+    int w = 0 ;
+    int h = 0 ;
     
     TTF_SizeUTF8(gameFont, cstr, &w, &h) ;
 	free(cstr) ;
