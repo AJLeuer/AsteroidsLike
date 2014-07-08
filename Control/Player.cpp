@@ -113,9 +113,9 @@ void Player::registerForCallbacks() {
 		
 		
 		InputController::registerForKeypress(onMoveUpRightKeys) ;
-		/* InputController::registerForKeypress(onMoveDownRightKeys) ;
+		InputController::registerForKeypress(onMoveDownRightKeys) ;
 		InputController::registerForKeypress(onMoveUpLeftKeys) ;
-		InputController::registerForKeypress(onMoveDownLeftKeys) ; */
+		InputController::registerForKeypress(onMoveDownLeftKeys) ;
 	}
 }
 

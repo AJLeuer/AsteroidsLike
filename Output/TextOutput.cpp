@@ -26,7 +26,7 @@ void TextOutput::init() {
 		throw exception() ;
 	}
     
-    gameFont = TTF_OpenFont("/Assets/Fonts/Roboto-Regular.ttf", 18) ;
+    gameFont = TTF_OpenFont("/Assets/Fonts/Roboto-Regular.ttf", 24) ;
 }
 
 Size<int> TextOutput::getSizeOfText(const string & str) {
