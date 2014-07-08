@@ -41,6 +41,8 @@ protected:
     
     static TTF_Font * gameFont ;
 	
+	static BasicMutex textMutex ;
+	
 	
 	bool updateFlag = false ;
 	

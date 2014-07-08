@@ -13,6 +13,7 @@ using namespace std ;
 vector<TextOutput *> TextOutput::allTextOutput ; //= vector<TextOutput *>() ;
 
 TTF_Font * TextOutput::gameFont = nullptr ;
+BasicMutex TextOutput::textMutex ;
 
 
 void TextOutput::init() {
@@ -30,17 +31,21 @@ void TextOutput::init() {
 }
 
 Size<int> TextOutput::getSizeOfText(const string & str) {
-	
-	size_t l = strlen(str.c_str()) ; /* running into compatibility issues with std::strings */
+	/*
+	 size_t l = strlen(str.c_str()) ; // running into compatibility issues with std::strings
 	char * cstr = (char *) malloc(l + 1) ;
-	//memmove(cstr, str.c_str(), (l + 1)) ;
-    strcpy(cstr, str.c_str()) ;
+    strcpy(cstr, str.c_str()) ; */
     
-    int w = 0 ;
-    int h = 0 ;
-    
-    TTF_SizeUTF8(gameFont, cstr, &w, &h) ;
-	free(cstr) ;
+	int w ;
+	int h ;
+	
+	textMutex.lock() ;
+	
+    TTF_SizeUTF8(gameFont, str.c_str(), &w, &h) ;
+	
+	textMutex.unlock() ;
+	
+	//free(cstr) ;
     
     Size<int> textSize(w, h) ;
     
