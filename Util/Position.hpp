@@ -1062,7 +1062,7 @@ public:
 	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
 	
 	
-	static Position<N> calculateNextPositionCh(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateNextPositionChecked(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 	
 	
 	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
@@ -1072,9 +1072,6 @@ public:
 	
 	
 	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
-	
-	
-	static Position<N> calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 	
 } ;
 
@@ -1244,7 +1241,7 @@ Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPositionCh(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateNextPositionChecked(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	
 	vec.normalize() ;
 	
@@ -1273,21 +1270,15 @@ Position<N> Vectr<N>::calculateReverseNextPosition(Vectr<N> & vec, float modifie
 template<typename N>
 Position<N> Vectr<N>::calculateReverseXPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.x = (vec.x * -1) ;
-	return calculateNextPositionCh(vec, modifier, check) ;
+	return calculateNextPositionChecked(vec, modifier, check) ;
 }
 
 template<typename N>
 Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	vec.y = (vec.y * -1) ;
-	return calculateNextPositionCh(vec, modifier, check) ;
+	return calculateNextPositionChecked(vec, modifier, check) ;
 }
 
-template<typename N>
-Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
-	Position<float> direc(dir.x, dir.y, dir.z) ;
-	Vectr<N> calc = Vectr<N>(direc, current, true) ;
-	return calculateNextPositionCh(calc, modifier, check) ;
-}
 
 
 /**
@@ -1369,7 +1360,7 @@ public:
 	static Position<N> calculateNextPosition(VectrVel<N> &, float modifier = 1.0) ;
 
 	
-	static Position<N> calculateNextPositionCh(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	static Position<N> calculateNextPositionChecked(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
 	static Position<N> calculateReverseNextPosition(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
@@ -1381,8 +1372,6 @@ public:
 	static Position<N> calculateReverseYPosition(VectrVel<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateNextPosition(VectrVel<N> & dir, const Position<N> * current, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
-
 } ;
 
 template<typename N>
@@ -1586,10 +1575,10 @@ Position<N> VectrVel<N>::calculateNextPosition(VectrVel<N> & vec, float modifier
 }
 
 template<typename N>
-Position<N> VectrVel<N>::calculateNextPositionCh(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> VectrVel<N>::calculateNextPositionChecked(VectrVel<N> & vec, float modifier, const BoundsCheck<N> & check) {
 	
 	Vectr<N> equivVec = convertToVectr(vec) ;
-	return Vectr<N>::calculateNextPositionCh(equivVec, modifier, check) ;
+	return Vectr<N>::calculateNextPositionChecked(equivVec, modifier, check) ;
 }
 
 template<typename N>
@@ -1610,10 +1599,33 @@ Position<N> VectrVel<N>::calculateReverseYPosition(VectrVel<N> & vec, float modi
 	return Vectr<N>::calculateReverseYPosition(equivVec, modifier, check) ;
 }
 
+
 template<typename N>
-Position<N> VectrVel<N>::calculateNextPosition(VectrVel<N> & dir, const Position<N> * current, float modifier, const BoundsCheck<N> & check) {
-	Vectr<N> equivVec = convertToVectr(dir) ;
-	return Vectr<N>::calculateNextPosition(equivVec, current, modifier, check) ;
+VectrVel<N> & operator+=(VectrVel<N> & rhs, Position<N> & lhs) {
+    rhs.setX(rhs.getX() + lhs.getX()) ;
+    rhs.setY(rhs.getY() + lhs.getY()) ;
+    return rhs ;
+}
+
+template<typename N>
+VectrVel<N> & operator-=(VectrVel<N> & rhs, Position<N> & lhs) {
+    rhs.setX(rhs.getX() - lhs.getX()) ;
+    rhs.setY(rhs.getY() - lhs.getY()) ;
+    return rhs ;
+}
+
+template<typename N>
+Vectr<N> & operator+=(Vectr<N> & rhs, Position<N> & lhs) {
+    rhs.setX(rhs.getX() + lhs.getX()) ;
+    rhs.setY(rhs.getY() + lhs.getY()) ;
+    return rhs ;
+}
+
+template<typename N>
+Vectr<N> & operator-=(Vectr<N> & rhs, Position<N> & lhs) {
+    rhs.setX(rhs.getX() - lhs.getX()) ;
+    rhs.setY(rhs.getY() - lhs.getY()) ;
+    return rhs ;
 }
 
 

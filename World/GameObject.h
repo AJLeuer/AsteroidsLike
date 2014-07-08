@@ -339,7 +339,6 @@ public:
 	 */
 	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = 1) ;
 	
-	
 	/**
 	 * Runs this GameObject's defaultBehaviors on its own thread ;
 	 */

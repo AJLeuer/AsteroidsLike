@@ -33,7 +33,8 @@ Size<int> TextOutput::getSizeOfText(const string & str) {
 	
 	size_t l = strlen(str.c_str()) ; /* running into compatibility issues with std::strings */
 	char * cstr = (char *) malloc(l + 1) ;
-	memmove(cstr, str.c_str(), (l + 1)) ;
+	//memmove(cstr, str.c_str(), (l + 1)) ;
+    strcpy(cstr, str.c_str()) ;
     
     int w, h ;
     

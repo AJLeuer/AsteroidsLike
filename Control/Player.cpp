@@ -94,7 +94,7 @@ void Player::registerForCallbacks() {
 		KeyInputRegister * onMoveRightKey = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
 		
-		/*
+		
 		KeyInputRegister * onMoveUpRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpRight),
 															{SDLK_KP_8, SDLK_KP_6}, KeypressEvaluationMethod::all) ;
 		KeyInputRegister * onMoveDownRightKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownRight),
@@ -102,15 +102,18 @@ void Player::registerForCallbacks() {
 		KeyInputRegister * onMoveUpLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUpLeft),
 															  {SDLK_KP_8, SDLK_KP_4}, KeypressEvaluationMethod::all) ;
 		KeyInputRegister * onMoveDownLeftKeys = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDownLeft),
-															   {SDLK_KP_2, SDLK_KP_4}, KeypressEvaluationMethod::all) ;  */
+                                                                     {SDLK_KP_2, SDLK_KP_4}, KeypressEvaluationMethod::all) ;
+        
+        /*
 		InputController::registerForKeypress(onMoveUpKey) ;
 		InputController::registerForKeypress(onMoveDownKey) ;
 		InputController::registerForKeypress(onMoveLeftKey) ;
 		InputController::registerForKeypress(onMoveRightKey) ;
+         */
 		
-		/*
+		
 		InputController::registerForKeypress(onMoveUpRightKeys) ;
-		InputController::registerForKeypress(onMoveDownRightKeys) ;
+		/* InputController::registerForKeypress(onMoveDownRightKeys) ;
 		InputController::registerForKeypress(onMoveUpLeftKeys) ;
 		InputController::registerForKeypress(onMoveDownLeftKeys) ; */
 	}

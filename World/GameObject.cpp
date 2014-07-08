@@ -467,36 +467,36 @@ void GameObject::moveUp() {
 
  void GameObject::moveDown() {
     Vectr<float> down(DOWN) ;
-     moveNewDirection(down) ;
+    moveNewDirection(down) ;
 }
 
  void GameObject::moveRight() {
-    Vectr<float> right(RIGHT) ;
+     Vectr<float> right(RIGHT) ;
      moveNewDirection(right) ;
 }
 
  void GameObject::moveLeft() {
-    Vectr<float> left(LEFT) ;
+     Vectr<float> left(LEFT) ;
      moveNewDirection(left) ;
 }
 
  void GameObject::moveUp(float offset) {
-    Vectr<float> up(UP) ;
+     Vectr<float> up(UP) ;
      moveNewDirection(up, offset) ;
 }
 
  void GameObject::moveDown(float offset) {
-    Vectr<float> down(DOWN) ;
+     Vectr<float> down(DOWN) ;
      moveNewDirection(down, offset) ;
 }
 
  void GameObject::moveRight(float offset) {
-    Vectr<float> right(RIGHT) ;
+     Vectr<float> right(RIGHT) ;
      moveNewDirection(right, offset) ;
 }
 
  void GameObject::moveLeft(float offset) {
-    Vectr<float> left(LEFT) ;
+     Vectr<float> left(LEFT) ;
      moveNewDirection(left, offset) ;
 }
 
@@ -608,14 +608,15 @@ void GameObject::moveSameDirection() {
 		next = VectrVel<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
 	}
 
-	moveTo(std::move(next)) ;
+	moveTo(next) ;
 }
 
 void GameObject::moveNewDirection(Vectr<float> & newDirection, float offsetModifier) {
 
 	newDirection.normalize() ;
-	auto next = Vectr<float>::calculateNextPosition(newDirection, loc, offsetModifier, BoundsCheck<float>::defaultCheck) ;
-	moveTo(std::move(next)) ;
+    vectr += newDirection ;
+
+    moveSameDirection() ;
 }
 
 void GameObject::defaultBehaviors_threaded() {
