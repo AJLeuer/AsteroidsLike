@@ -58,6 +58,11 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "DYLD_INSERT_LIBRARIES"
+            value = "/usr/lib/libgmalloc.dylib"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -80,7 +85,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
