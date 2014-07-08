@@ -31,11 +31,6 @@
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
 
-#define UPLEFT -1, -1, 0
-#define UPRIGHT 1, -1, 0
-#define DOWNRIGHT 1, 1, 0
-#define DOWNLEFT -1, 1, 0
-
 //#include "../Control/Configuration.h"
 
 
@@ -375,15 +370,6 @@ public:
 
 	virtual void y_minus_one(const BoundsCheck<N> & check) { setY(y--) ; checkBounds(check) ; }
 
-	virtual void moveRight() { setAll((this->x+1), this->y, this->z) ; }
-	virtual void moveLeft() { setAll((this->x-1), this->y, this->z) ; }
-	virtual void moveUp() { setAll(this->x, (this->y-1), this->z) ; }
-	virtual void moveDown() { setAll(this->x, (this->y+1), this->z) ; }
-
-	virtual void moveUpRight() { setAll((this->x+1), (this->y-1), this->z) ; }
-	virtual void moveUpLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
-	virtual void moveDownRight() { setAll((this->x+1), (this->y+1), this->z) ; }
-	virtual void moveDownLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
 	
 	/**
 	 * Increments or decrements the x, y and z values according to 

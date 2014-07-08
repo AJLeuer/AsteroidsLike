@@ -309,16 +309,7 @@ public:
 	virtual void moveDown(float offset);
 	virtual void moveRight(float offset) ;
 	virtual void moveLeft(float offset);
-    
-    void moveUpRight() ;
-	void moveUpLeft()  ;
-	void moveDownRight() ;
-	void moveDownLeft() ;
 
-	void moveUpRight(float offset)  ;
-	void moveUpLeft(float offset) ;
-	void moveDownRight(float offset)  ;
-	void moveDownLeft(float offset) ;
     
     void moveRandomDirection() ;
 	
@@ -349,19 +340,11 @@ public:
 	 */
 	virtual void defaultBehaviors() ;
 	
-	virtual void wanderVariedSpeed(FastRand<unsigned> speedVariance = FastRand<unsigned>(8, 40)) ;
-	
 	virtual void attack(GameObject * enemy) ;
 	
 	virtual void findNearbyAlly(int searchDistanceX, int searchDistanceY) ;
 	
 	virtual void allyWith(const GameObject *) ;
-	
-	/**
-	 * Moves this GameObject randomly around the World (calls move() with an RNG) for time in microseconds
-	 *
-	 */
-	virtual void wander() ;
 	
 	/**
 	 * @return This GameObject's Colors

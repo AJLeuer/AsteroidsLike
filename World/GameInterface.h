@@ -40,14 +40,7 @@ public:
 	virtual void moveRight() = 0 ;
 	virtual void moveLeft() = 0 ;
     
-    virtual void moveUpRight() = 0 ;
-	virtual void moveUpLeft() = 0 ;
-	virtual void moveDownRight() = 0 ;
-	virtual void moveDownLeft() = 0 ;
-
-	
 	virtual void jump() = 0 ;
-	
 	
 	
 };

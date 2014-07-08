@@ -494,94 +494,17 @@ void GameObject::moveUp() {
      moveNewDirection(left, offset) ;
 }
 
-void GameObject::moveUpRight() {
-    Vectr<float> upright(UPRIGHT) ;
-    moveNewDirection(upright) ;
-}
-
-void GameObject::moveUpLeft() {
-    Vectr<float> upleft(UPLEFT) ;
-    moveNewDirection(upleft) ;
-}
-
-void GameObject::moveDownRight() {
-    Vectr<float> downright(DOWNRIGHT) ;
-    moveNewDirection(downright) ;
-}
-
-void GameObject::moveDownLeft() {
-    Vectr<float> downleft(DOWNLEFT) ;
-    moveNewDirection(downleft) ;
-}
-
-void GameObject::moveUpRight(float offset) {
-    Vectr<float> upright(UPRIGHT) ;
-    moveNewDirection(upright, offset) ;
-}
-
-void GameObject::moveUpLeft(float offset) {
-    Vectr<float> upleft(UPLEFT) ;
-    moveNewDirection(upleft, offset) ;
-}
-
-void GameObject::moveDownRight(float offset) {
-    Vectr<float> downright(DOWNRIGHT) ;
-    moveNewDirection(downright, offset) ;
-}
-
-void GameObject::moveDownLeft(float offset) {
-    Vectr<float> downleft(DOWNLEFT) ;
-    moveNewDirection(downleft, offset) ;
-}
 
 void GameObject::moveRandomDirection() {
     
-    FastRand<unsigned> randm(0, 7) ;
-    
-    unsigned r = randm() ;
-    
-    switch (r) {
-        case 0:
-        {
-            moveUp() ;
-            break;
-        }
-        case 1:
-        {
-            moveDown() ;
-            break;
-        }
-        case 2:
-        {
-            moveRight() ;
-            break;
-        }
-        case 3:
-        {
-            moveLeft() ;
-            break;
-        }
-        case 4:
-        {
-            moveUpRight() ;
-            break;
-        }
-        case 5:
-        {
-            moveUpLeft() ;
-            break;
-        }
-        case 6:
-        {
-            moveDownRight() ;
-            break;
-        }
-        case 7:
-        {
-            moveDownLeft() ;
-            break;
-        }
-    }
+    FastRand<float> directionalRandomizer(-1, 1) ;
+	
+	float x = directionalRandomizer() ;
+	float y = directionalRandomizer() ;
+	
+	Vectr<float> newVector(x, y, 0) ;
+	
+	moveNewDirection(newVector) ;
 }
 
 void GameObject::jump() {
@@ -623,11 +546,6 @@ void GameObject::defaultBehaviors() {
 	moveSameDirection() ;
 }
 
-void GameObject::wanderVariedSpeed(FastRand<unsigned> speedVariance) {
-	wander() ;
-}
-
-
 
 void GameObject::attack(GameObject * enemy) {
 	
@@ -644,49 +562,6 @@ void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
 
 void GameObject::allyWith(const GameObject * other) {
 	this->ally = other ;
-}
-
-void GameObject::wander() {
-
-	FastRand<int> randm(0, 5) ;
-	int cases = randm() ;
-
-	switch (cases) {
-		case 0 :
-		{
-			moveUp() ;
-			break ;
-		}
-
-		case 1 :
-		{
-			moveDown() ;
-			break;
-		}
-
-		case 2 :
-		{
-			moveUpRight() ;
-			break ;
-		}
-
-		case 3 :
-		{
-			moveUpLeft() ;
-			break ;
-		}
-
-		case 4 :
-		{
-			moveDownRight() ;
-			break ;
-		}
-		case 5 :
-		{
-			moveDownLeft() ;
-			break ;
-		}
-	}
 }
 
 void GameObject::setImageFile(string imageFileName) {
