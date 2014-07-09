@@ -100,9 +100,6 @@ void GraphicalOutput::render(Texture * texture, const Position<N> * pos, const S
 		sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
 	}
 	
-	/* Debug code */
-	cerr << "Checking for SDL errors after render... " << SDL_GetError() << endl ;
-	
 	if (sdlrend_error == -1) {
 		stringstream ss ;
 		ss << "SDL_RenderCopy() failed." << '\n' ;
