@@ -158,7 +158,7 @@ GameObject::GameObject(Colors color, AssetType type, const AssetFile & imageFile
 	allGameObjects->push_back(this) ;
     
     loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
+	map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false, sizeModifier) ;
 }
@@ -194,6 +194,8 @@ GameObject::GameObject(FastRand<int> rand) :
 GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
+	
+	map->erase(loc, this) ;
 
 	if ((hasThread != nullptr) && (*hasThread == false)) {
 		delete hasThread ;
@@ -202,7 +204,6 @@ GameObject::~GameObject() {
 			delete this->gthread ;
 		}
 		if (loc != nullptr) {
-			map->erase(loc, this) ;
 			delete loc ;
 		}
 	}
