@@ -29,7 +29,7 @@ class GameMap {
 	
 private:
 	int mapMembers = 0 ;
-	vector< vector< T *>*> * intern_map ;
+	vector< vector< list<T *> *>*> * intern_map ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
@@ -48,19 +48,20 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	vector< vector< T *>*> * getMapVect() { return this->intern_map ; } ;
+	vector< vector< list<T *>>*> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	void place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) ;
+	void place(Position<N> * where, T * mapObj, const BoundsCheck<N> check) ;
+	
+	/*
+	template<typename N>
+	void placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ; */
 	
 	template<typename N>
-	void placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ;
-	
-	template<typename N>
-	void erase(const Position<N> * currentLoc) ;
+	void erase(const Position<N> * currentLoc, T * pointerToOriginalObject) ;
 	
 	void eraseAll() ;
 	
@@ -69,22 +70,16 @@ public:
 	 * (calls erase()) on its old Position<N>
 	 */
 	template<typename N>
-	void move(Position<N> & currentLoc, Position<N> & toNewLoc) ;
+	void move(Position<N> & currentLoc, Position<N> & toNewLoc, T * pointerToOriginalObject) ;
 	
 	/**
 	 * Returns the first object at this Position<N>
 	 */
 	template<typename N>
-	T * at(const Position<N> * where) ;
+	list<T *> * at(const Position<N> * where) ;
 	
 	template<typename N>
 	Position<N> currentLoc(T* obj) ;
-	
-	/**
-	 * Similar to erase(), but returns a pointer before erasing
-	 */
-	template<typename N>
-	T * remove(Position<N> & currentLoc) ;
 	
 	/**
 	 * Searches within the specified limits for an object of the specified type.
@@ -102,11 +97,11 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector< T *>*>()),
+	intern_map(new vector< vector< list<T *> *> *>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector< T *>()) ;
+		intern_map->push_back(new vector< list<T *> *>()) ;
 		for (auto j = 0 ; j < maxY; j++) {
 			intern_map->at(i)->push_back(nullptr) ;
 		}
@@ -120,6 +115,12 @@ GameMap<T>::~GameMap() {
 	
 	//delete all the vectors inside intern_map
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
+		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
+			if (intern_map->at(i)->at(j) != nullptr) {
+				delete intern_map->at(i)->at(j) ;
+				intern_map->at(i)->at(j) = nullptr ;
+			}
+		}
 		delete intern_map->at(i) ;
 	}
 	
@@ -134,43 +135,23 @@ GameMap<T>::~GameMap() {
  */
 template<class T>
 template<typename N>
-void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check, bool allowMove) {
+void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
 	if (mapObj == nullptr) {
 		cerr << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw exception() ;
 	}
 	where->checkBounds(check) ;
 	if (at(where) == nullptr) {
-		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
+		intern_map->at(where->getIntX())->at(where->getIntY()) = new list<T *>{mapObj} ;
 		mapMembers++ ;
-		return ;
 	}
-	else if (allowMove) {
-		{
-        /* Debug code */
-		stringstream ss ;
-		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
-		ss << "Call rerouted to placeAtNearestFree(). Some objects may be in the wrong spot." << '\n' ;
-		*(Debug::debugOutput) << ss.rdbuf() ;
-        /* End Debug code */
-		}
-		placeAtNearestFree(where, mapObj, check) ;
-	}
-	else {
-		{
-        /* Debug code */
-		stringstream ss ;
-		ss << "Warning: Call to GameMap::place() unsucessful. That Position was already taken." << '\n' ;
-		ss << "The given position was not changed, nor was it moved on the GameMap" << '\n' ;
-		*(Debug::debugOutput) << ss.rdbuf() ;
-        DebugOutput << " ...  \n" ;
-        /* End Debug code */
-		}
-		
+	else { // if there's already a list here, with other members...
+		intern_map->at(where->getIntX())->at(where->getIntY())->emplace_back(mapObj) ;
+		mapMembers++ ;
 	}
 }
 
-
+/*
 template<class T>
 template<typename N>
 void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
@@ -179,7 +160,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		throw exception() ;
 	}
 	if (at(where) == nullptr) {
-		intern_map->at(where->getIntX())->at(where->getIntY()) = mapObj ;
+		intern_map->at(where->getIntX())->at(where->getIntY()) = {mapObj} ;
 		mapMembers++ ;
 		return ;
 	}
@@ -223,37 +204,20 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 	cerr << "No empty positions found on map. placeAtNearestFree() threw exception \n" ;
 	throw exception() ;
 }
+ */
+
 
 template<class T>
 template<typename N>
-void GameMap<T>::erase(const Position<N> * currentLoc) {
-	if (at(currentLoc) != nullptr) {
-		mapMembers-- ;
-	}
-	intern_map->at(currentLoc->getIntX())->at(currentLoc->getIntY()) = nullptr ;
-}
-
-template<class T>
-void GameMap<T>::eraseAll() {
-	for (auto i = 0 ; i < intern_map->size() ; i++) {
-		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
-			intern_map->at(i)->at(j) = nullptr ;
-		}
-	}
-	mapMembers = 0 ;
+void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc, T * pointerToOriginalObject) {
+	list<T *> * temp = at(currentLoc) ;
+	erase(currentLoc, pointerToOriginalObject) ;
+	place(toNewLoc, pointerToOriginalObject, temp) ;
 }
 
 template<class T>
 template<typename N>
-void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc) {
-	T * temp = at(currentLoc) ;
-	erase(currentLoc) ;
-	place(toNewLoc, temp) ;
-}
-
-template<class T>
-template<typename N>
-T * GameMap<T>::at(const Position<N> * where) {
+list<T *> * GameMap<T>::at(const Position<N> * where) {
 	auto x = where->getIntX() ;
 	auto y = where->getIntY() ;
 	return intern_map->at(x)->at(y) ;
@@ -261,12 +225,22 @@ T * GameMap<T>::at(const Position<N> * where) {
 
 template<class T>
 template<typename N>
-Position<N> GameMap<T>::currentLoc(T *obj) {
+Position<N> GameMap<T>::currentLoc(T * obj) {
+	
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
+		
 		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
-			if ((intern_map->at(i)->at(j) != nullptr) && ((*(intern_map->at(i)->at(j)) == *obj))) {
-				Position<N> l = (Position<N>(i, j, 0)) ;
-				return l ;
+			
+			if (intern_map->at(i)->at(j) != nullptr) {
+				
+				auto containingList = intern_map->at(i)->at(j) ;
+				
+				for (auto k = containingList->begin(); k < containingList->end() ; k++) {
+					
+					if (*(*k) == *obj) {
+						return Position<N>(i, j, 0) ;
+					}
+				}
 			}
 		}
 	}
@@ -276,14 +250,41 @@ Position<N> GameMap<T>::currentLoc(T *obj) {
 
 template<class T>
 template<typename N>
-T* GameMap<T>::remove(Position<N> & currentLoc) {
-	T * temp = at(currentLoc) ;
-	if (temp != nullptr) {
-		mapMembers-- ;
+void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObject) {
+	
+	list<T *> * containingList = at(currentLoc) ;
+	
+	if (containingList != nullptr) {
+		
+		bool badpos = true ;
+		
+		for (auto i = containingList->begin() ; i != containingList->end() ; i++) {
+			if (*(*i) == *pointerToOriginalObject) {
+				containingList->erase(i) ;
+				mapMembers-- ;
+			}
+		}
+		if (badpos) {
+			/* Debug code */
+			stringstream ss ;
+			ss << "GameMap::erase() called with a bad position. Debug." << '\n' ;
+			DebugOutput << ss.rdbuf() ;
+			/* End debug code */
+		}
 	}
-	this->erase(currentLoc) ;
-	return temp ;
 }
+
+template<class T>
+void GameMap<T>::eraseAll() {
+	for (auto i = 0 ; i < intern_map->size() ; i++) {
+		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
+			delete intern_map->at(i)->at(j) ;
+			intern_map->at(i)->at(j) = nullptr ;
+		}
+	}
+	mapMembers = 0 ;
+}
+
 
 template<class T>
 template<typename N>
@@ -304,9 +305,18 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, co
 	
 	//Debug::debugCounter++ ;
 	
-	if ((at(&(nav.current)) != nullptr) && (nav.current != *(nav.start))) {
+	if ((at(&(nav.current) ) != nullptr) && (nav.current != *(nav.start))) {
+		
 		searchSuccess = true ;
-		store->push_back(at(&(nav.current))) ;
+		//store->push_back(at(&(nav.current))) ;
+		list<T *> * templist = at(&nav.current) ;
+		
+		for	(auto i = templist->begin() ; i != templist->end() ; i++) {
+			if (*i != nullptr) {
+				store->push_back(*i) ;
+			}
+		}
+		
 	}
 
 	switch (nav.dir) {
@@ -315,7 +325,6 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, co
 				nav.current.y_plus_one() ;
 				findAllNearby_helper(store, nav, x_lim, y_lim) ;
 			}
-			
 		}
 		break ;
 			
