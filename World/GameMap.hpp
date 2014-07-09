@@ -102,9 +102,6 @@ GameMap<T>::GameMap(N maxX, N maxY) :
 {
 	for (auto i = 0 ; i < maxX ; i++) {
 		intern_map->push_back(new vector< list<T *> *>()) ;
-		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->push_back(nullptr) ;
-		}
 	}
 }
 
@@ -123,6 +120,7 @@ GameMap<T>::~GameMap() {
 		}
 		delete intern_map->at(i) ;
 	}
+	delete intern_map ;
 	
 	if (gmDebug != nullptr) {
 		delete gmDebug ;
@@ -237,7 +235,7 @@ Position<N> GameMap<T>::currentLoc(T * obj) {
 				
 				for (auto k = containingList->begin(); k < containingList->end() ; k++) {
 					
-					if (*(*k) == *obj) {
+					if ((*k != nullptr) && (*(*k) == *obj)) {
 						return Position<N>(i, j, 0) ;
 					}
 				}
@@ -259,9 +257,10 @@ void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObje
 		bool badpos = true ;
 		
 		for (auto i = containingList->begin() ; i != containingList->end() ; i++) {
-			if (*(*i) == *pointerToOriginalObject) {
+			if (**i == *pointerToOriginalObject) {
 				containingList->erase(i) ;
 				mapMembers-- ;
+				badpos = false ;
 			}
 		}
 		if (badpos) {
@@ -312,9 +311,7 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, co
 		list<T *> * templist = at(&nav.current) ;
 		
 		for	(auto i = templist->begin() ; i != templist->end() ; i++) {
-			if (*i != nullptr) {
-				store->push_back(*i) ;
-			}
+			store->push_back(*i) ;
 		}
 		
 	}
