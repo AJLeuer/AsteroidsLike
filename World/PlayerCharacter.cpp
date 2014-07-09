@@ -128,8 +128,8 @@ void PlayerCharacter::attack(PlayerCharacter * enemy) {
 }
 
 void PlayerCharacter::jump() {
-	jump() ;
-	timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
+    GameObject::jump() ;
+	
 	
     #ifdef DEBUG_MODE
     printPositition() ;

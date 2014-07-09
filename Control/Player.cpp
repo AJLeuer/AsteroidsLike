@@ -70,16 +70,14 @@ void Player::registerForCallbacks() {
 	
 	//todo make more generic
 	
-	KeyInputRegister * onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
-														{JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying
-																										value of SDL keycode for space */
-	
+	KeyInputRegister * onKeyJump ;
 	KeyInputRegister * onKeyMoveUp ;
 	KeyInputRegister * onKeyMoveDown ;
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
 	
 	if (playerCharacter.getColor() != Colors::green) {
+        
 		onKeyMoveUp = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{MOVE_UP_KEY}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		onKeyMoveDown = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
@@ -88,6 +86,9 @@ void Player::registerForCallbacks() {
 															  {MOVE_LEFT_KEY}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
+        
+        onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
+                                                            {JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying value of SDL keycode for space */
 
 	}
 	else if (playerCharacter.getColor() != Colors::blue) {
@@ -100,6 +101,8 @@ void Player::registerForCallbacks() {
 															  {SDLK_KP_4}, KeypressEvaluationMethod::exactlyOne) ;
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
+        onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
+                                                            {SDLK_KP_0}, KeypressEvaluationMethod::exactlyOne) ;
 		
 	}
 	

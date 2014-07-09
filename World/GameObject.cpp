@@ -521,6 +521,7 @@ void GameObject::moveRandomDirection() {
 void GameObject::jump() {
 	vectr.normalize() ;
 	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, 10.0) ;
+    timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
 }
 
@@ -530,10 +531,10 @@ void GameObject::move() {
 	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, moveRequested.second) ;
 
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = VectrVel<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next.setX(loc->getX()) ;
 	}
 	if (next.overYBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = VectrVel<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next.setY(loc->getY()) ;
 	}
 
 	moveTo(next) ;
@@ -596,7 +597,7 @@ void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
 	visible = false ;
 	
-	auto invisTimer = [=] {
+	auto invisTimer = [&] {
 		this_thread::sleep_for(nano) ;
 		this->setVisible() ;
 	} ;
