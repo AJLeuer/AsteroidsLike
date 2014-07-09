@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Character__
-#define __GameWorld__Character__
+#ifndef __Util__Character__
+#define __Util__Character__
 
 #include <iostream>
 #include <sstream>
@@ -217,4 +217,4 @@ public:
 	
 } ;
 
-#endif /* defined(__GameWorld__Character__) */
+#endif /* defined(__Util__Character__) */

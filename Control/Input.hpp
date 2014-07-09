@@ -140,7 +140,7 @@ public:
 
 /**
  * Whether a KeyInputRegister should evaluate all requested key presses inclusively, or exclusively.
- * In other words, if the client wishes to call a given function when either "G", or SDL_SCANCODE_KP_PLUS, or
+ * In other words, if the client wishes to call a given function when, say, either "G", or SDL_SCANCODE_KP_PLUS, or
  * "T" are pressed, but not neccessarily all of them, they should use KeypressEvaluationMethod::any. If they want a certain
  * function called when *all* of those keys are used at once, they should use EvaluationMethod::all.
  */

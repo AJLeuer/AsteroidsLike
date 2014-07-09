@@ -99,8 +99,11 @@ void WorldController::main() {
 		auto sleepTime = refreshTime - timeElapsed ;
 		worldLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
+		
         
-       /* Sync loops */
+		cout << "World loop count: " << *wloop << endl ; //debug code, remove
+		
+		/* Sync loops */
 		while (worldLoopCount > mainGameLoopCount) {
            /* wait */
 		}

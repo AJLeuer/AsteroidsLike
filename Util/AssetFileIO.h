@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__AssetFileIO__
-#define __GameWorld__AssetFileIO__
+#ifndef __Util__AssetFileIO__
+#define __Util__AssetFileIO__
 
 
 #include <iostream>
@@ -115,4 +115,4 @@ public:
 
 
 
-#endif /* defined(__GameWorld__AssetFileIO__) */
+#endif /* defined(__Util__AssetFileIO__) */

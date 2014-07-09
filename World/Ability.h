@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Ability__
-#define __GameWorld__Ability__
+#ifndef __Util__Ability__
+#define __Util__Ability__
 
 #include <iostream>
 
@@ -30,4 +30,4 @@ public:
   
 };
 
-#endif /* defined(__GameWorld__Ability__) */
+#endif /* defined(__Util__Ability__) */
