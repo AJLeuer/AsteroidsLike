@@ -46,7 +46,7 @@ GameObject::GameObject() :
 	allGameObjects->push_back(this) ;
     
     loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
 }
@@ -80,7 +80,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
     loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
@@ -158,7 +158,7 @@ GameObject::GameObject(Colors color, AssetType type, const AssetFile & imageFile
 	allGameObjects->push_back(this) ;
     
     loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	initGraphicsData(false, sizeModifier) ;
 }
@@ -182,7 +182,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	allGameObjects->push_back(this) ;
     
     loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	
 	textureImageFile = AssetFileIO::getRandomImageFile(type) ;
@@ -202,7 +202,7 @@ GameObject::~GameObject() {
 			delete this->gthread ;
 		}
 		if (loc != nullptr) {
-			map->erase(loc) ;
+			map->erase(loc, this) ;
 			delete loc ;
 		}
 	}
@@ -233,13 +233,13 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
-			map->erase<float>(loc) ;
+			map->erase(loc, this) ;
 			delete loc ;
 		}
 
         loc = std::move(new Pos2<float>(*rhs.loc)) ;
 		vectr = VectrVel<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
-		map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+		map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 		vectr.updateAndNormalize() ;
 
 		allGameObjects->push_back(this) ;
@@ -424,11 +424,11 @@ void GameObject::textDescription(ostream * writeTo) const {
 void GameObject::moveTo(Position<float> * to) {
     
 
-    map->erase<float>(getPosition()) ;
+    map->erase(loc, this) ;
         
     to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
     loc->setAll(*to) ;
-    map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+    map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
     vectr.updateAndNormalize() ;
 
 	
@@ -446,11 +446,11 @@ void GameObject::moveTo(Position<float> * to) {
 void GameObject::moveTo(Position<float> to) {
     
 
-    map->erase<float>(getPosition()) ;
+    map->erase(loc, this) ;
         
     to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
     loc->setAll(to) ;
-    map->place<float>(loc, this, BoundsCheck<float>::defaultCheck, true) ;
+    map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
     vectr.updateAndNormalize() ;
 
 

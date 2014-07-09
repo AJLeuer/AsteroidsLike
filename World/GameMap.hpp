@@ -54,7 +54,7 @@ public:
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
 	
 	template<typename N>
-	void place(Position<N> * where, T * mapObj, const BoundsCheck<N> check) ;
+	void place(Position<N> * where, T * pointerToOriginalObject, const BoundsCheck<N> check) ;
 	
 	/*
 	template<typename N>
@@ -135,18 +135,18 @@ GameMap<T>::~GameMap() {
  */
 template<class T>
 template<typename N>
-void GameMap<T>::place(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
-	if (mapObj == nullptr) {
+void GameMap<T>::place(Position<N> * where, T * pointerToOriginalObject, const BoundsCheck<N> check) {
+	if (pointerToOriginalObject == nullptr) {
 		cerr << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw exception() ;
 	}
 	where->checkBounds(check) ;
 	if (at(where) == nullptr) {
-		intern_map->at(where->getIntX())->at(where->getIntY()) = new list<T *>{mapObj} ;
+		intern_map->at(where->getIntX())->at(where->getIntY()) = new list<T *>{pointerToOriginalObject} ;
 		mapMembers++ ;
 	}
 	else { // if there's already a list here, with other members...
-		intern_map->at(where->getIntX())->at(where->getIntY())->emplace_back(mapObj) ;
+		intern_map->at(where->getIntX())->at(where->getIntY())->emplace_back(pointerToOriginalObject) ;
 		mapMembers++ ;
 	}
 }
