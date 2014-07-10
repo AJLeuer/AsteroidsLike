@@ -37,11 +37,14 @@ class TextOutput {
 	
 protected:
 	
-	static vector<TextOutput *> allTextOutput ;
-    
+
     static TTF_Font * gameFont ;
 	
 	static BasicMutex textMutex ;
+	
+	static vector<TextOutput *> allTextOutput ;
+	
+	static const vector<OutputData *> * viewOutputData ; /* debug variable, remove this */
 	
 	
 	bool updateFlag = false ;
@@ -58,6 +61,8 @@ protected:
 	
 	GameColor foreground, background ;
 	
+	friend class GraphicalOutput ;
+	
 	
 public:
 	
@@ -65,12 +70,11 @@ public:
     
     static Size<int> getSizeOfText(const string & str) ;
 	
-	static const vector<TextOutput *> * getAllTextOutput() { return & allTextOutput ; }
+	static void updateAll() ;
 	
 	static void exit() ;
 	
 
-    
     //static void outputText(const string & text, GameColor foreground, GameColor background, const Position<float> pos,
 	// const Size<int> * size) ;
 	

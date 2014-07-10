@@ -27,6 +27,7 @@
 		666B6AB6196D14FE00135433 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666B6AB5196D14FE00135433 /* AppKit.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
+		668F564E196E74F6006EB2F1 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 668F564C196E74F6006EB2F1 /* Weapon.cpp */; };
 		669F0B62196BFB12007CF4D4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BD195E979400B21A27 /* Assets */; };
 		669F0B63196BFB39007CF4D4 /* About in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BE195EC34C00B21A27 /* About */; };
 		669F0B64196BFB49007CF4D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66E2BC51195DA7E600287A08 /* README.md */; };
@@ -88,6 +89,8 @@
 		6684DDAB195FC98A00E6B997 /* Decl_Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decl_Apple.h; sourceTree = "<group>"; };
 		6684DDAC195FE24000E6B997 /* DisplayData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayData.cpp; sourceTree = "<group>"; };
 		6684DDAF1960172100E6B997 /* Velocity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Velocity.hpp; sourceTree = "<group>"; };
+		668F564C196E74F6006EB2F1 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		668F564D196E74F6006EB2F1 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		669F0B65196BFB6B007CF4D4 /* User Configuration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "User Configuration"; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -232,6 +235,7 @@
 				6605EE0F1964D37B0028013B /* PlayerCharacter.h */,
 				66E97F4E18CF149F002EFA00 /* NPC.h */,
 				1E683B0E193ECB71000F3045 /* Enemy.h */,
+				668F564D196E74F6006EB2F1 /* Weapon.h */,
 				66E97F4118CF032B002EFA00 /* WorldController.h */,
 				1E683B10193ECDA4000F3045 /* GameState.cpp */,
 				66E97F5018CF17F6002EFA00 /* GameEvent.cpp */,
@@ -241,6 +245,7 @@
 				6605EE101964D38E0028013B /* PlayerCharacter.cpp */,
 				66E97F4D18CF149F002EFA00 /* NPC.cpp */,
 				1E683B0D193ECB71000F3045 /* Enemy.cpp */,
+				668F564C196E74F6006EB2F1 /* Weapon.cpp */,
 				66E97F4018CF032B002EFA00 /* WorldController.cpp */,
 			);
 			path = World;
@@ -318,6 +323,7 @@
 				6652B7F119610BE700243106 /* Timer.cpp in Sources */,
 				664BFFB21939E6BE008F4CD1 /* Player.cpp in Sources */,
 				66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */,
+				668F564E196E74F6006EB2F1 /* Weapon.cpp in Sources */,
 				1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */,
 				6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */,
 				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,

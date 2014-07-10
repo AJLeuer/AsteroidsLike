@@ -19,7 +19,7 @@ Player * MainController::player1 = nullptr ;
 const unsigned * MainController::loopCount = &mainGameLoopCount ; //Debug symbol, delete
 
 void MainController::begin_exit() {
-	GLOBAL_CONTINUE_SIGNAL = false ;
+	GLOBAL_CONTINUE_FLAG = false ;
 }
 
 void MainController::setupMainContrExit() {
@@ -37,7 +37,7 @@ void MainController::setupMainContrExit() {
 void MainController::init() {
 	
 	GameState::mainGameClock->startTimer() ;
-	GLOBAL_CONTINUE_SIGNAL = true ;
+	GLOBAL_CONTINUE_FLAG = true ;
 	
 	//do initializations
     Configuration::init() ;
@@ -79,7 +79,7 @@ void MainController::main() {
 	
 	auto rt = refreshTime ; //debug symbol
 	
-	while (GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_FLAG) {
 		
 		auto * mloop = &mainGameLoopCount ; //debug var, delete this
 		
@@ -112,9 +112,9 @@ void MainController::main() {
 
 void MainController::exit(int sig) {
 	
-	if (GLOBAL_CONTINUE_SIGNAL == true) {
+	if (GLOBAL_CONTINUE_FLAG == true) {
 		
-		GLOBAL_CONTINUE_SIGNAL = false ;
+		GLOBAL_CONTINUE_FLAG = false ;
 		/* other signals to define false here? */
         
         TextOutput::exit() ; /* quits() sdl_ttf */

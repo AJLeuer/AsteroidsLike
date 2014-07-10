@@ -77,8 +77,8 @@ int InputController::keyArraySize = 1 ; //initializing to 1 only because SDL_Get
 
 
 void InputController::listenForEvents() {
-	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_SIGNAL == true)) {
-		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_SIGNAL == true)) ; i++) {
+	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_FLAG == true)) {
+		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_FLAG == true)) ; i++) {
 			if (eventListenerRegistry->at(i) != nullptr) {
 				eventListenerRegistry->at(i)->handleEvent(event) ;
 			}
@@ -88,7 +88,7 @@ void InputController::listenForEvents() {
 
 
 void InputController::listenForKeypress() {
-	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_SIGNAL == true) && (i < keyInputRegistry->size())) ; i++) {
+	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_FLAG == true) && (i < keyInputRegistry->size())) ; i++) {
 		if (keyInputRegistry->at(i) != nullptr) {
 			SDL_PumpEvents() ;
 			keyInputRegistry->at(i)->handleKeyboardInput(keys) ;

@@ -51,24 +51,6 @@ void WorldController::init() {
 	/* Init game state */
 	GameState::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
     
-    
-    /*debug code */
-    GameObject a(FastRand<int>::defaultRandom) ;
-    
-    Character * b = new Character() ;
-    
-    GameObject * c = new GameObject(FastRand<int>::defaultRandom) ;
-    
-    delete b ;
-    
-    a = *c ;
-    
-    delete c ;
-    
-    NPC * d = new NPC(FastRand<int>::defaultRandom) ;
-    
-    delete d ;
-    
 }
 
 void WorldController::begin_main() {
@@ -92,9 +74,9 @@ void WorldController::main() {
         }
     }
 	
-	bool * cont = &GLOBAL_CONTINUE_SIGNAL ; //debug variable - rm
+	bool * cont = &GLOBAL_CONTINUE_FLAG ; //debug variable - rm
 	
-	while (GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_FLAG) {
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
 		/* Do stuff */

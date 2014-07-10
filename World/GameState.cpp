@@ -18,13 +18,15 @@ bool GameState::graphicsAreInit = false ;
 
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 
+vector<OutputData *> GameState::additionalGraphicalOutputData = vector<OutputData *>() ;
+
 const GameMap<GameObject> * GameState::map ;
 
 Window * GameState::window = nullptr ;
 
 Renderer * GameState::renderer = nullptr ;
 
-bool GameState::GLOBAL_CONTINUE_SIGNAL = true ;
+bool GameState::CONTINUE_FLAG = true ;
 Timer * GameState::mainGameClock = new Timer() ;
 std::mutex GameState::sharedMutex ;
 string GameState::currentDirectory ;
@@ -92,5 +94,5 @@ unsigned worldLoopCount = 0 ;
 
 
 
-//static bool GLOBAL_CONTINUE_SIGNAL = true ;
+//static bool GLOBAL_CONTINUE_FLAG = true ;
 

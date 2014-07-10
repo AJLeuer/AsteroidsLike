@@ -214,6 +214,10 @@ public:
 	 */
 	void modDamage(Damage *) ;
 	
+	/*
+	 * Fire's the Character's weapon
+	 */
+	
 	
 } ;
 

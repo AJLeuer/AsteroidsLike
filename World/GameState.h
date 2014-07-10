@@ -52,6 +52,12 @@ private:
 	static const vector<GameObject*> * gameObjects ;
 	
 	/**
+	 * Other visual output that isn't contained in 
+	 * GameObjects
+	 */
+	static vector<OutputData *> additionalGraphicalOutputData ;
+	
+	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
 	 */
@@ -74,7 +80,7 @@ private:
 	
 public:
 	
-	static bool GLOBAL_CONTINUE_SIGNAL ;
+	static bool CONTINUE_FLAG ;
 	
 	static Timer * mainGameClock ;
 	
@@ -83,7 +89,6 @@ public:
 	static string currentDirectory ;
     
     
-	
 	static void initData(vector<GameObject*> *, const GameMap<GameObject> *) ;
     
 	static void initGraphics(Window *, Renderer *) ;
@@ -95,6 +100,8 @@ public:
 	 */
 	static const vector<GameObject*> * getGameObjects() ;
 	
+	static const vector<OutputData *> * getAdditionalGraphicalOutputData() { return & additionalGraphicalOutputData ; }
+	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
@@ -104,6 +111,8 @@ public:
 	static Window * getMainWindow() ;
     
 	static Renderer * getMainRenderer() ;
+	
+	static void addAdditionalGraphicalOutputData(OutputData * data)	{ additionalGraphicalOutputData.push_back(data) ; }
 	
 	
 } ;
@@ -143,6 +152,6 @@ Position<N> getWindowOriginAsWorldCoord() {
 
 
 
-#define GLOBAL_CONTINUE_SIGNAL GameState::GLOBAL_CONTINUE_SIGNAL
+#define GLOBAL_CONTINUE_FLAG GameState::CONTINUE_FLAG
 
 #endif /* defined(__GameWorld__GameState__) */

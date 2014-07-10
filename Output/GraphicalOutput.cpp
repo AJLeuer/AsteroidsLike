@@ -94,9 +94,9 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
-	for (auto i = 0 ; i < TextOutput::getAllTextOutput()->size() ; i++) {
-		auto stor = TextOutput::getAllTextOutput() ; //debug var
-		render(TextOutput::getAllTextOutput()->at(i)->getOutputData()) ;
+	for (auto i = 0 ; i < GameState::getAdditionalGraphicalOutputData()->size() ; i++) {
+		auto cont = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
+		render(GameState::getAdditionalGraphicalOutputData()->at(i)) ;
 	}
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;
@@ -117,8 +117,7 @@ void GraphicalOutput::render(const GameObject * object) {
             
             /* important: don't forget to translate position from world coords to display coords! */
 			
-             // <-DEBUG: uncomment this
-			//auto objScreenPosition = objWorldPosition ;   // <-DEBUG: remove this
+			auto objScreenPosition = translateToWindowCoords(*object->getPosition()) ;
 			
 			/* render to output */
 			render(object->getTexture(), object->getPosition(), object->getSize()) ;
@@ -128,11 +127,14 @@ void GraphicalOutput::render(const GameObject * object) {
 
 
 void GraphicalOutput::render(OutputData * output) {
-    render(*output->texture, output->position, output->size) ;
+	if (output != nullptr) {
+		render(*output->texture, output->position, output->size) ;
+	}
 }
 
 void GraphicalOutput::update() {
 	SDL_RenderClear(renderer);
+	TextOutput::updateAll() ;
 	render() ;
 	SDL_RenderPresent(renderer) ;
 }

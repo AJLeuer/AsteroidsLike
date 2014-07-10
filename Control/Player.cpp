@@ -124,7 +124,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 		
 		TextOutput out(str, pos, foreground, background) ;
 		
-		while (GLOBAL_CONTINUE_SIGNAL) {
+		while (GLOBAL_CONTINUE_FLAG) {
 			/* out will keep updating as long as it exists */
 			stream = stringstream() ; //reset the sstream
 			stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;

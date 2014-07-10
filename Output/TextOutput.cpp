@@ -10,10 +10,13 @@
 
 using namespace std ;
 
-vector<TextOutput *> TextOutput::allTextOutput ; //= vector<TextOutput *>() ;
-
 TTF_Font * TextOutput::gameFont = nullptr ;
+
 BasicMutex TextOutput::textMutex ;
+
+vector<TextOutput *> TextOutput::allTextOutput = vector<TextOutput *>() ;
+
+const vector<OutputData *> * TextOutput::viewOutputData = GameState::getAdditionalGraphicalOutputData() ; /* debug variable, remove this */
 
 
 void TextOutput::init() {
@@ -52,6 +55,14 @@ Size<int> TextOutput::getSizeOfText(const string & str) {
     return textSize ;
 }
 
+void TextOutput::updateAll() {
+	for (auto i = 0 ; i < allTextOutput.size() ; i++) {
+		if (allTextOutput.at(i) != nullptr) {
+			allTextOutput.at(i)->update() ;
+		}
+	}
+}
+
 void TextOutput::exit() {
     TTF_CloseFont(gameFont) ;
 	TTF_Quit();
@@ -61,17 +72,21 @@ void TextOutput::exit() {
 TextOutput::TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) :
 	text(text), position(pos), size(), data(), foreground(foreground), background(background), texture(nullptr)
 {
-
+	
 	size = getSizeOfText(text) ;
 	
 	data.setAll(&texture, &position, &size) ;
 	
-	allTextOutput.push_back(this) ;
+	
+	GameState::addAdditionalGraphicalOutputData(&data) ;
+	
 	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
 		we'll simply set the updateFlag */
 	
 	updateFlag = true ; /* ensure that update() will run the first time through main loop */
+	
+	allTextOutput.push_back(this) ;
 }
 
 //must be called from main thread
@@ -85,14 +100,7 @@ void TextOutput::update() {
 		
 		texture = nullptr ;
 		
-		//const char * cstr { text->c_str() } ;
-		//strcpy(cstr, text->c_str()) ;
-		
-		size_t l = strlen(text.c_str()) ;
-		char * cstr = (char *) malloc(l + 1) ;
-		memmove(cstr, text.c_str(), (l + 1)) ;
-		
-		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, cstr, foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
+		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
 		
 		/* Debug code */
 		stringstream ss ;
@@ -109,7 +117,6 @@ void TextOutput::update() {
 		/* End debug code */
 		
 		SDL_FreeSurface(surface) ;
-		free(cstr) ;
 		
 		/* reset the update flag */
 		updateFlag = false ;

@@ -306,7 +306,7 @@ void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifie
 }
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
-	while (GLOBAL_CONTINUE_SIGNAL) {
+	while (GLOBAL_CONTINUE_FLAG) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->markedForDeletion)) {
 				delete allGameObjects->at(i) ;
