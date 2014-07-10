@@ -115,14 +115,12 @@ void Player::registerForCallbacks() {
 
 void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {
 	
-	auto velocityDisplay = [&, this] () -> void {
+	auto velocityDisplay = [=] () -> void {
 		
 		stringstream stream ;
 		stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
 	
 		string str(stream.str()) ;
-		
-		//Size<int> size(TextOutput::getSizeOfText(str)) ;
 		
 		TextOutput out(str, pos, foreground, background) ;
 		
