@@ -29,7 +29,7 @@ void Player::initDefaultPlayers() {
 Player::Player() :
 	ID(IDs),
 	name(""),
-	playerCharacter(Colors::blue, defaultPCAssetType, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
+	playerCharacter(Colors::blue, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
 					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
 {
 	IDs++ ;
@@ -44,7 +44,7 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 
 	ID(IDs),
 	name(name),
-	playerCharacter(playerCharacter_color, defaultPCAssetType, playerCharacter_imageFilename, playerCharacter_size,
+	playerCharacter(playerCharacter_color, playerCharacter_imageFilename, playerCharacter_size,
 		playerCharacter_loc, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
 		playerCharacter_health, playerCharacter_damage)
 {

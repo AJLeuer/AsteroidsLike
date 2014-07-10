@@ -123,7 +123,6 @@ protected:
 	 */
 	pair<bool, float> moveRequested = {false, defaultOffset<float>} ;
 
-	AssetType type ;
 	bool visible ;
 	
 	const GameObject * ally = nullptr ;
@@ -199,7 +198,7 @@ public:
 	 * @param imageFilen The file to be used as the Texture for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(Colors color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc) ;
+	GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -398,7 +397,7 @@ public:
 	/**
 	 * @return This GameObject's asset type
 	 */
-	AssetType getType() { return type ; }
+	AssetType getType() { return textureImageFile.type ; }
 	
 	void setVisible() { visible = true ; }
 	bool isVisible() const { return visible ; }

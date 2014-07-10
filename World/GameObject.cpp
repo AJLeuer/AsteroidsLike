@@ -28,10 +28,9 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	color(Colors::blue),
-	textureImageFile(""),
+    textureImageFile(AssetFile(FastRand<int>::defaultRandom)),
 	texture(nullptr),
 	size(Size<int>()),
-	type(),
 	visible(true),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)),
 	vectr(VectrVel<float>(loc))
@@ -57,7 +56,6 @@ GameObject::GameObject(const GameObject & other) :
 	textureImageFile(other.textureImageFile),
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
-	type(other.type),
 	visible(other.visible),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
 	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc)),
@@ -107,7 +105,6 @@ GameObject::GameObject(GameObject && other) :
 	textureImageFile(std::move(other.textureImageFile)),
 	texture(other.texture), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
-	type(other.type),
 	visible(other.visible),
 	loc(other.loc),
 	vectr(std::move(other.vectr)),
@@ -138,12 +135,11 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(Colors color, AssetType type, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
+GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
 	ID(IDs),
 	color(color),
 	textureImageFile(imageFile),
 	size(Size<int>()),
-	type(type),
 	visible(true),
 	loc(new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck)),
 	vectr(VectrVel<float>(loc))
@@ -166,7 +162,6 @@ GameObject::GameObject(Colors color, AssetType type, const AssetFile & imageFile
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
 	color(static_cast<Colors>(FastRand<unsigned>::defaultRandom(0, 5))),
-	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
 	textureImageFile(AssetFile(rand)),
 	visible(true),
 	size(Size<int>()),
@@ -185,7 +180,6 @@ GameObject::GameObject(FastRand<int> rand) :
 	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	
-	textureImageFile = AssetFileIO::getRandomImageFile(type) ;
 	FastRand<float> randSizeMod(0.5, 1.0) ;
 	initGraphicsData(false, randSizeMod()) ;
 }
@@ -228,7 +222,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
 		this->color = rhs.color ;
-		this->type = rhs.type ;
 		this->visible = rhs.visible ;
 		this->moveRequested = rhs.moveRequested ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
@@ -273,7 +266,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		this->color = rhs.color ;
-		this->type = rhs.type ;
 		this->visible = rhs.visible ;
 		this->moveRequested = rhs.moveRequested ;
 		if (this->loc != nullptr) {
