@@ -20,6 +20,8 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/BoundsCheck.hpp"
+#include "../Util/GameRandom.hpp"
+
 #include "../World/CharacterData.h"
 #include "../World/GameState.h"
 
@@ -70,6 +72,8 @@ public:
 		fileName(other.fileName), filePath(other.filePath), type(other.type), color(other.color) {}
 	
 	AssetFile(const string & existingFilename) ;
+    
+    AssetFile(FastRand<int> randm) ;
 	
 	~AssetFile() {}
 	

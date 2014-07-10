@@ -167,7 +167,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
 	color(static_cast<Colors>(FastRand<unsigned>::defaultRandom(0, 5))),
 	type(randomEnumeration<AssetType>(2)), /* TODO change 2 to the maximum value within AssetType if more are added */
-	textureImageFile(nullptr),
+	textureImageFile(AssetFile(rand)),
 	visible(true),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, BoundsCheck<float>::defaultCheck)),

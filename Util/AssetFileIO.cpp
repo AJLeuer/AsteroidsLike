@@ -98,6 +98,15 @@ AssetFile::AssetFile(const string & existingFilename) {
 	}
 }
 
+AssetFile::AssetFile(FastRand<int> randm) {
+    unsigned i = (unsigned)randm(0, (allAssetFiles->size() - 1)) ;
+    unsigned j = (unsigned)randm(0, (allAssetFiles->at(i)->size() - 1)) ;
+    
+    AssetFile * file = &(allAssetFiles->at(i)->at(j)) ;
+    
+    *this = *file ;
+}
+
 AssetFile & AssetFile::operator = (const AssetFile & rhs) {
 	if (this != &rhs) {
 		this->fileName = rhs.fileName ;

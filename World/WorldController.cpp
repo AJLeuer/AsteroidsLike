@@ -50,7 +50,27 @@ void WorldController::init() {
 	
 	/* Init game state */
 	GameState::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
-	
+    
+    
+    /*debug code */
+    GameObject a(FastRand<int>::defaultRandom) ;
+    
+    Character * c = new Character() ;
+    
+    GameObject * b = new GameObject(FastRand<int>::defaultRandom) ;
+    
+    delete b ;
+    
+    a = *c ;
+    
+    delete c ;
+    
+    NPC * d = new NPC(FastRand<int>::defaultRandom) ;
+    
+    b = d ;
+    
+    delete b ;
+    
 }
 
 void WorldController::begin_main() {
