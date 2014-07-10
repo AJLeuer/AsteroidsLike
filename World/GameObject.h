@@ -397,7 +397,7 @@ public:
 	/**
 	 * @return This GameObject's asset type
 	 */
-	AssetType getType() { return textureImageFile.type ; }
+	AssetType getType() const { return textureImageFile.type ; }
 	
 	void setVisible() { visible = true ; }
 	bool isVisible() const { return visible ; }

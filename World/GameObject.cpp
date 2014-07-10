@@ -221,6 +221,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		}
 		this->ID = IDs ;
 		this->textureImageFile = rhs.textureImageFile ;
+        this->texture = nullptr ;
 		this->color = rhs.color ;
 		this->visible = rhs.visible ;
 		this->moveRequested = rhs.moveRequested ;
