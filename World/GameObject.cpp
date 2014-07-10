@@ -12,10 +12,7 @@
 /* starts at 1 (0 is a special case */
 unsigned GameObject::IDs = 0 ;
 
-
 bool GameObject::map_is_init = false ;
-
-vector<pair <thread *, GameObject*> > * GameObject::allThreads  = new vector<pair <thread *, GameObject*> >() ;
 
 vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
@@ -98,8 +95,6 @@ GameObject::GameObject(const GameObject & other) :
 }
 
 GameObject::GameObject(GameObject && other) :
-	hasThread(other.hasThread),
-	gthread(other.gthread),
 	ID(other.ID),
 	color(other.color),
 	textureImageFile(std::move(other.textureImageFile)),
@@ -126,8 +121,6 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
-	other.hasThread = nullptr ;
-	other.gthread = nullptr ;
 	other.ID = -1 ;
 	other.textureImageFile = "" ;
 	other.texture = nullptr ;
@@ -191,15 +184,10 @@ GameObject::~GameObject() {
 	
 	map->erase(loc, this) ;
 
-	if ((hasThread != nullptr) && (*hasThread == false)) {
-		delete hasThread ;
-		SDL_DestroyTexture(texture) ;
-		if (gthread != nullptr) {
-			delete this->gthread ;
-		}
-		if (loc != nullptr) {
-			delete loc ;
-		}
+	SDL_DestroyTexture(texture) ;
+	
+	if (loc != nullptr) {
+		delete loc ;
 	}
 }
 
@@ -214,13 +202,10 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	}
 
 	if (this != &rhs) {
-		*(this->hasThread) = false ;
-		if (this->gthread != nullptr) {
-			delete this->gthread ;
-			this->gthread = nullptr ;
-		}
-		this->ID = IDs ;
+
+		/* Keep ID the same */
 		this->textureImageFile = rhs.textureImageFile ;
+		SDL_DestroyTexture(texture) ;
         this->texture = nullptr ;
 		this->color = rhs.color ;
 		this->visible = rhs.visible ;
@@ -237,9 +222,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 		vectr.updateAndNormalize() ;
 
-		allGameObjects->push_back(this) ;
-
-		IDs++ ;
 	}
 	return *this ;
 }
@@ -255,30 +237,23 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 	}
 
 	if (this != &rhs) {
-		if (this->gthread != nullptr) { 
-			delete this->gthread ;
-		}
-		delete this->hasThread ;
 		
-		this->hasThread = rhs.hasThread ;
-		this->gthread = rhs.gthread ;
-		
+		this->ID = rhs.ID ;
 		this->textureImageFile = std::move(rhs.textureImageFile) ;
+		SDL_DestroyTexture(texture) ;
 		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		this->color = rhs.color ;
 		this->visible = rhs.visible ;
 		this->moveRequested = rhs.moveRequested ;
+		
 		if (this->loc != nullptr) {
 			delete this->loc ;
 		}
+		
         this->loc = rhs.loc ;
 		this->vectr = std::move(rhs.vectr) ;
 		
-		this->ID = rhs.ID ;
-		
-		rhs.hasThread = nullptr ;
-		rhs.gthread = nullptr ;
 		rhs.ID = -1 ;
 		rhs.textureImageFile = "" ;
 		rhs.texture = nullptr ;
@@ -334,7 +309,6 @@ void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_SIGNAL) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->markedForDeletion)) {
-				allGameObjects->at(i)->endThreading(false) ;
 				delete allGameObjects->at(i) ;
 				allGameObjects->at(i) = nullptr ;
 			}
@@ -357,46 +331,12 @@ void GameObject::eraseByID(unsigned ID) {
 	}
 }
 
-void GameObject::joinThreads() {
-	for (auto i = allThreads->begin() ; i != allThreads->end() ; i++) {
-		get<0>(*i)->join() ;
-		*(get<1>(*i)->hasThread) = false ;
-	}
-}
-
 void GameObject::notify() {
 	//todo
 }
 
 void GameObject::passMessage(Message * message, GameObject & recipient) {
 	//todo
-}
-
-void GameObject::startThreading(void (GameObject::*functionPointer)(), bool wait) {
-	this->gthread = new thread(functionPointer, this) ;
-	*(this->hasThread) = true ;
-	pair<thread *, GameObject *> threadPair = pair<thread *, GameObject *>(this->gthread, this) ;
-	GameObject::allThreads->push_back(threadPair) ;
-	if (wait) {
-		gthread->join() ;
-		allThreads->pop_back() ;
-		delete this->gthread ;
-		this->gthread = nullptr ;
-	}
-}
-
-void GameObject::endThreading(bool join) {
-	*(this->hasThread) = false ;
-	if (join) {
-		gthread->join() ;
-	}
-	for (auto i = 0 ; i < allThreads->size() ; i++) {
-		if (get<0>(allThreads->at(i)) == this->gthread) {
-			get<0>(allThreads->at(i)) = nullptr ;
-		}
-	}
-	//delete this->gthread ;
-	//this->gthread = nullptr ;
 }
 
 void GameObject::update() {
@@ -540,12 +480,6 @@ void GameObject::moveNewDirection(Vectr<float> & newDirection, float offsetModif
     vectr += newDirection ;
 
     moveRequested = {true, offsetModifier} ;
-}
-
-void GameObject::defaultBehaviors_threaded() {
-
-	void (GameObject::*behaviorsPtr)() = &GameObject::defaultBehaviors ;
-	startThreading(behaviorsPtr, false) ;
 }
 
 void GameObject::defaultBehaviors() {

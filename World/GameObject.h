@@ -58,21 +58,6 @@ private:
 	 */
 	static vector<GameObject*> * allGameObjects ;
 	
-	/**
-	 * This holds references to all the new threads spawned by instances of GameObject
-	 * allowing us to join and delete them as needed.
-	 */
-	static vector< pair<thread *, GameObject*> > * allThreads ;
-	
-	/**
-	 * For more processor intensive or repetitive operations, a GameObject member function will be put into its own thread.
-	 * gthread is provided for that purpose. When the function is handed off to the thread, that member's gthread pointer should
-	 * be pushed back onto GameObject::allThreads.
-	 */
-	std::thread * gthread = nullptr ;
-	
-	bool * hasThread = new bool(false) ;
-	
 	bool markedForDeletion = false ;
 
 	/**
@@ -146,11 +131,7 @@ protected:
 	 */
 	static void eraseByID(unsigned ID) ;
 	
-	/**
-	 * Waits for this GameObjects thread (gthread) to finish execution, then joins the threads
-	 */
-	static void joinThreads() ;
-	
+
 public:
 	
 	/**
@@ -333,11 +314,6 @@ public:
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
 	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = defaultOffset<float>) ;
-	
-	/**
-	 * Runs this GameObject's defaultBehaviors on its own thread ;
-	 */
-	void defaultBehaviors_threaded() ;
 	
 	/**
 	 * Each GameObject can implement this to enable its default behaviors to run 

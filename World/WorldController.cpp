@@ -55,9 +55,9 @@ void WorldController::init() {
     /*debug code */
     GameObject a(FastRand<int>::defaultRandom) ;
     
-    Character * c = new Character() ;
+    Character * b = new Character() ;
     
-    GameObject * b = new GameObject(FastRand<int>::defaultRandom) ;
+    GameObject * c = new GameObject(FastRand<int>::defaultRandom) ;
     
     delete b ;
     
@@ -67,9 +67,7 @@ void WorldController::init() {
     
     NPC * d = new NPC(FastRand<int>::defaultRandom) ;
     
-    b = d ;
-    
-    delete b ;
+    delete d ;
     
 }
 
@@ -138,7 +136,7 @@ void WorldController::exit() {
 	
 	checkDelThread.join() ;
 	
-	GameObject::joinThreads() ;
+	mainThread.join() ;
 	
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
 		if (gameObjects->at(i) != nullptr) {
