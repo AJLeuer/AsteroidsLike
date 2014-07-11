@@ -130,6 +130,7 @@ FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numer
 
 template<typename N>
 N randSignFlip(N n) {
+	
 	FastRand<unsigned short> rand(0, 1) ;
 	bool pos = rand.nextValue() % 2 ;
 	if (pos) {
@@ -138,6 +139,7 @@ N randSignFlip(N n) {
 	else {
 		return (n * -1) ;
 	}
+	
 }
 
 template <typename T>

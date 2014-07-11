@@ -434,11 +434,10 @@ void GameObject::moveUp() {
 
 
 void GameObject::moveRandomDirection() {
-    
-    FastRand<float> directionalRandomizer(-1, 1) ;
 	
-	float x = directionalRandomizer() ;
-	float y = directionalRandomizer() ;
+	float x = chooseAtRand(1.0, -1.0) ;
+	
+	float y = chooseAtRand(1.0, -1.0) ;
 	
 	Vectr<float> newVector(x, y, 0) ;
 	
