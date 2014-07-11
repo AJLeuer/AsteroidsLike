@@ -63,9 +63,8 @@ void MainController::init() {
 	player0->displayVelocity( { static_cast<float>((globalMaxX() * 0.70)), static_cast<float>((globalMaxY() * 0.85)), 0 },
 						     {142, 255, 8, 0}, {0, 0, 0, 0}) ;
 	
-	player1->displayVelocity({ static_cast<float>((globalMaxX() * 0.15)), static_cast<float>((globalMaxY() * 0.85)), 0 },
-							 {251, 0, 107, 0}, {0, 0, 0
-								 , 0}) ;
+	player1->displayVelocity( { static_cast<float>((globalMaxX() * 0.15)), static_cast<float>((globalMaxY() * 0.85)), 0 },
+							 {251, 0, 107, 0}, {0, 0, 0, 0}) ;
 	
 	//setup MainController to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
@@ -96,7 +95,6 @@ void MainController::main() {
 		auto sleepTime = (refreshTime - timeElapsed) ;
 		mainGameLoopCount++ ;
 		this_thread::sleep_for(sleepTime) ;
-		
 		
 		cout << "Main loop count: " << *mloop << endl ; //debug code, remove
         

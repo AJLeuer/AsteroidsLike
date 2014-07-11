@@ -10,12 +10,5 @@
 
 
 void Enemy::defaultBehaviors() {
-  
-    if (this->getPosition()->getX() > 0) {
-        moveLeft(defaultOffset<float>) ;
-    }
-    else if ((this->getPosition()->getX()) <= -1) {
-        
-    }
 	
 }

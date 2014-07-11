@@ -157,7 +157,9 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 	
 	//using GameObject's implementation for now, may change later
-	virtual void defaultBehaviors() ;
+	virtual void defaultBehaviors() override ;
+	
+	virtual void aiBehaviors() override ;
 	
 	/**
 	 * Attacks a hostile Character

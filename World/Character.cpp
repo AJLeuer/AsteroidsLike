@@ -121,7 +121,11 @@ void Character::textDescription(ostream * writeTo) const {
 
 //using GameObject's implementation for now, may change
 void Character::defaultBehaviors() {
-	/* Player controlled  */
+	aiBehaviors() ;
+}
+
+void Character::aiBehaviors() {
+	
 }
 
 

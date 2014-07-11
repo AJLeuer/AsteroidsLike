@@ -24,8 +24,12 @@ class PlayerCharacter : public Character  {
     
 protected:
 	
-
-    
+	/**
+	 * A std::pair that holds a bool indicating whether this object will move at the next
+	 * update, and (if so) how far it will move
+	 */
+	pair<bool, float> moveInfo = {false, defaultOffset<float> * 8} ;
+	
 public:
 	
 	/**
@@ -106,14 +110,18 @@ public:
 	 */
 	void operator()(GameObject * other) ;
 	
-
 	/**
-	 * Writes a formatted text description of this PlayerCharacter into the desired output stream
+	 * Similar in function to @GameObject::moveNewDirection(),
+	 * but overridden to ensure the player cannot move more than once
+	 * each time through the game loop
 	 */
-	void textDescription(ostream * writeTo) const ;
+	void moveNewDirection(Vectr<float> & newDirection) override ;
 	
 	//using GameObject's implementation for now, may change later
-	void defaultBehaviors() ;
+	void defaultBehaviors() override ;
+	
+	/* no AI behaviors, for obvious reasons */
+	void aiBehaviors() override { /* nothing */ }
 	
 	/**
 	 * Attacks a hostile PlayerCharacter
@@ -121,21 +129,18 @@ public:
 	 * @param enemy The enemy to attack
 	 */
 	void attack(PlayerCharacter * enemy) ;
-    
-    void moveUp() override { GameObject::moveUp(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveDown() override { GameObject::moveDown(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveRight() override { GameObject::moveRight(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveLeft() override { GameObject::moveLeft(defaultOffset<float>) ; /* Debug */ printPositition() ; /* end debug */ }
 	
-	void moveUp(float offset) override { GameObject::moveUp(offset) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveDown(float offset) override { GameObject::moveDown(offset) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveRight(float offset) override { GameObject::moveRight(offset) ; /* Debug */ printPositition() ; /* end debug */ }
-	void moveLeft(float offset) override { GameObject::moveLeft(offset) ; /* Debug */ printPositition() ; /* end debug */ }
     
     void jump() ;
+	
+	void update() override ;
+	
+	/**
+	 * Writes a formatted text description of this PlayerCharacter into the desired output stream
+	 */
+	void textDescription(ostream * writeTo) const ;
     
     void printPositition() ;
-	
 	
 } ;
 

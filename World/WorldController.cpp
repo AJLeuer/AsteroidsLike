@@ -40,12 +40,12 @@ void WorldController::init() {
 	/* Init obstacles */
 	FastRand<float>randomSizeModifier(0.25, 1.0) ;
 	
-	AssetType atype = AssetType::asteroid ;
-	
 	for (auto i = 0 ; i < 10 ; i++) {
-		/*
-		new GameObject(Colors::blue, atype, AssetFileIO::getRandomImageFile(atype), randomSizeModifier(),
-					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ; */
+		
+		auto g = new GameObject(Colors::blue, AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
+					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ;
+		
+		g->moveRandomDirection() ;
 	}
 	
 	/* Init game state */
@@ -60,7 +60,7 @@ void WorldController::begin_main() {
 
 void WorldController::main() {
 	
-	auto rt = refreshTime ; //debug symbol
+	auto * rt = &refreshTime ; //debug symbol
     
     /* start the gameobjects moving */
     for (auto i = 0 ; i < gameObjects->size() ; i++) {

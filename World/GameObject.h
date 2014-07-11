@@ -101,12 +101,6 @@ protected:
 	Size<int> size ;
 	Pos2<float> * loc ;
 	VectrVel<float> vectr ;
-	
-	/**
-	 * A std::pair that holds a bool indicating whether this object will move at the next
-	 * update, and (if so) how far it will move
-	 */
-	pair<bool, float> moveRequested = {false, defaultOffset<float>} ;
 
 	bool visible ;
 	
@@ -305,7 +299,7 @@ public:
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
 	 * VectrVel of its last move
 	 */
-	void move() ;
+	void move(float distanceModifier = 1.0) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
@@ -313,13 +307,17 @@ public:
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	void moveNewDirection(Vectr<float> & newDirection, float offsetModifier = defaultOffset<float>) ;
+	virtual void moveNewDirection(Vectr<float> & newDirection) ;
+	
+	void wander() ;
 	
 	/**
 	 * Each GameObject can implement this to enable its default behaviors to run 
 	 * on a loop on a separate thread
 	 */
 	virtual void defaultBehaviors() ;
+	
+	virtual void aiBehaviors() ;
 	
 	virtual void attack(GameObject * enemy) ;
 	

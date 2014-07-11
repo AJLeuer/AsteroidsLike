@@ -21,7 +21,7 @@ PlayerCharacter::PlayerCharacter() :
  * @param The PlayerCharacter to be copied
  */
 PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
-    Character(other) {}
+    Character(other), moveInfo(other.moveInfo) {}
 
 /**
  * Move constructor for PlayerCharacter
@@ -29,7 +29,7 @@ PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
  * @param The PlayerCharacter to be moved
  */
 PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
-    Character(other) {}
+	Character(other), moveInfo(std::move(other.moveInfo)) {}
 
 /**
  * Constructs a PlayerCharacter based on the arguments given
@@ -68,6 +68,7 @@ PlayerCharacter::~PlayerCharacter() {}
 PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
     if (this != &rhs) {
         this->Character::operator=(rhs) ;
+		this->moveInfo = rhs.moveInfo ;
     }
     return *this ;
     
@@ -81,6 +82,7 @@ PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
 PlayerCharacter & PlayerCharacter::operator=(PlayerCharacter && rhs) {
     if (this != &rhs) {
         this->Character::operator=(std::move(rhs)) ;
+		this->moveInfo = std::move(rhs.moveInfo) ;
     }
     return *this ;
 }
@@ -105,17 +107,19 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-
-/**
- * Writes a formatted text description of this PlayerCharacter into the desired output stream
- */
-void PlayerCharacter::textDescription(ostream * writeTo) const {
-    this->Character::textDescription(writeTo) ;
+void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection) {
+	
+	newDirection.normalize() ;
+	vectr += newDirection ;
+	
+	printPositition() ;
+	
+	moveInfo.first = true ;
 }
 
 //using GameObject's implementation for now, may change later
 void PlayerCharacter::defaultBehaviors() {
-    //todo
+   /* Overriding this with nothing, since we are player-controlled, not AI-controlled */
 }
 
 /**
@@ -130,10 +134,26 @@ void PlayerCharacter::attack(PlayerCharacter * enemy) {
 void PlayerCharacter::jump() {
     GameObject::jump() ;
 	
-	
     #ifdef DEBUG_MODE
     printPositition() ;
     #endif
+}
+
+/* PlayerCharacter relies heavily on 
+	update() to make sure that the player's
+	character updates smoothly, not sporadically */
+void PlayerCharacter::update() {
+	if (moveInfo.first) {
+		move(moveInfo.second) ;
+		moveInfo = {false, defaultOffset<float>} ;
+	}
+}
+
+/**
+ * Writes a formatted text description of this PlayerCharacter into the desired output stream
+ */
+void PlayerCharacter::textDescription(ostream * writeTo) const {
+	this->Character::textDescription(writeTo) ;
 }
 
 void PlayerCharacter::printPositition() {

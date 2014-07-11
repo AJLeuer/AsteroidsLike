@@ -55,8 +55,7 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	visible(other.visible),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc)),
-	moveRequested(other.moveRequested)
+	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
 {
 	{
 	/* debug */
@@ -102,8 +101,7 @@ GameObject::GameObject(GameObject && other) :
 	size(std::move(other.size)),
 	visible(other.visible),
 	loc(other.loc),
-	vectr(std::move(other.vectr)),
-	moveRequested(other.moveRequested)
+	vectr(std::move(other.vectr))
 {
 	{
 	/* debug */
@@ -209,7 +207,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         this->texture = nullptr ;
 		this->color = rhs.color ;
 		this->visible = rhs.visible ;
-		this->moveRequested = rhs.moveRequested ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
 		if (this->loc != nullptr) {
@@ -245,7 +242,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->size = std::move(rhs.size) ;
 		this->color = rhs.color ;
 		this->visible = rhs.visible ;
-		this->moveRequested = rhs.moveRequested ;
 		
 		if (this->loc != nullptr) {
 			delete this->loc ;
@@ -340,10 +336,7 @@ void GameObject::passMessage(Message * message, GameObject & recipient) {
 }
 
 void GameObject::update() {
-	if (moveRequested.first) {
-		move() ;
-		moveRequested = {false, defaultOffset<float>} ;
-	}
+	//mainly used by inheriting classes, see their implementations
 }
 
 void GameObject::textDescription(ostream * writeTo) const {
@@ -421,22 +414,22 @@ void GameObject::moveUp() {
 
  void GameObject::moveUp(float offset) {
      Vectr<float> up(UP) ;
-     moveNewDirection(up, offset) ;
+     moveNewDirection(up) ;
 }
 
  void GameObject::moveDown(float offset) {
      Vectr<float> down(DOWN) ;
-     moveNewDirection(down, offset) ;
+     moveNewDirection(down) ;
 }
 
  void GameObject::moveRight(float offset) {
      Vectr<float> right(RIGHT) ;
-     moveNewDirection(right, offset) ;
+     moveNewDirection(right) ;
 }
 
  void GameObject::moveLeft(float offset) {
      Vectr<float> left(LEFT) ;
-     moveNewDirection(left, offset) ;
+     moveNewDirection(left) ;
 }
 
 
@@ -459,10 +452,10 @@ void GameObject::jump() {
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::move() {
+void GameObject::move(float distanceModifier) {
 
 	vectr.normalize() ;
-	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, moveRequested.second) ;
+	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, distanceModifier) ;
 
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
 		next.setX(loc->getX()) ;
@@ -474,16 +467,37 @@ void GameObject::move() {
 	moveTo(next) ;
 }
 
-void GameObject::moveNewDirection(Vectr<float> & newDirection, float offsetModifier) {
+void GameObject::moveNewDirection(Vectr<float> & newDirection) {
 
 	newDirection.normalize() ;
     vectr += newDirection ;
+	
+	move() ;
+}
 
-    moveRequested = {true, offsetModifier} ;
+void GameObject::wander() {
+	
+	vectr.normalize() ;
+	
+	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, defaultOffset<float>) ;
+	
+	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
+		next = VectrVel<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+	}
+	if (next.overYBounds(&BoundsCheck<float>::defaultCheck)) {
+		next = VectrVel<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+	}
+	
+	moveTo(std::move(next)) ;
 }
 
 void GameObject::defaultBehaviors() {
-	//todo add
+	aiBehaviors() ;
+}
+
+void GameObject::aiBehaviors() {
+	wander() ;
+	//todo
 }
 
 

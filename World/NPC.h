@@ -83,14 +83,14 @@ public:
 	 *
 	 * @param rhs The right hand side argument (which will be copied)
 	 */
-	NPC & operator=(const NPC & rhs) ;
+	virtual NPC & operator=(const NPC & rhs) ;
 	
 	/**
 	 * Assignment operator overload (move)
 	 *
 	 * @param rhs The right hand side argument (which will be moved)
 	 */
-	NPC & operator=(NPC && rhs) ;
+	virtual NPC & operator=(NPC && rhs) ;
 	
 	
 	/**
