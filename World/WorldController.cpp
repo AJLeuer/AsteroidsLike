@@ -27,7 +27,7 @@ void WorldController::init() {
 
 	FastRand<int> posModifier(-100, 100) ;
 
-	VectrVel<float> test(-11, 1.5, 0, nullptr) ;
+	Vectr<float> test(-11, 1.5, 0, nullptr) ;
 	
 	/* Init enemies */
 	/*
@@ -42,10 +42,8 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		
-		auto g = new GameObject(Colors::blue, AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
-					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ;
-		
-		g->moveRandomDirection() ;
+		new GameObject(Colors::blue, AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
+			Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck)) ;
 	}
 	
 	/* Init game state */

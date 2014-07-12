@@ -8,4 +8,8 @@
 
 #include "Weapon.h"
 
+void Weapon::fire() {
+	projectile.fire() ;
+}
+
 

@@ -11,14 +11,25 @@
 
 #include <iostream>
 
+#include "GameObject.h"
+#include "Projectile.h"
+
 #include "../Util/AssetFileIO.h"
 
-class Weapon {
+class Weapon : public GameObject {
 	
 protected:
-	AssetFile projectile ;
+	
+	Projectile projectile ;
 	
 public:
+	
+	Weapon(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_,
+		   const AssetFile & projectileImageFile) :
+		GameObject(color, imageFile, sizeModifier, loc_),
+		projectile(color, projectileImageFile, sizeModifier / 2, loc_) {}
+	
+	void fire() ;
 	
 };
 

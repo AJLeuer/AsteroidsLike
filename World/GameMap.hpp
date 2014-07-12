@@ -126,8 +126,7 @@ GameMap<T>::~GameMap() {
 }
 
 /**
- * Places mapObj at Position where. If this Position is taken, places at the nearest Position that is free, and updates the
- * Position object pointed by where to reflect the new Position.
+ * Places pointerToOriginalObject at Position where.
  */
 template<class T>
 template<typename N>
@@ -208,8 +207,8 @@ void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc, T * poin
 template<class T>
 template<typename N>
 list<T *> * GameMap<T>::at(const Position<N> * where) {
-	auto x = where->getIntX() ;
-	auto y = where->getIntY() ;
+	unsigned x = where->getIntX() ;
+	unsigned y = where->getIntY() ;
 	return intern_map->at(x)->at(y) ;
 }
 

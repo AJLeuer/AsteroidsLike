@@ -30,7 +30,7 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	visible(true),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(loc))
+	vectr(loc, true)
 {
 	IDs++ ;
 
@@ -55,7 +55,7 @@ GameObject::GameObject(const GameObject & other) :
 	size(Size<int>()),
 	visible(other.visible),
 	loc(new Pos2<float>(*(other.loc),BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(other.vectr.getX(), other.vectr.getY(), other.vectr.getZ(), loc))
+	vectr(other.vectr)
 {
 	{
 	/* debug */
@@ -133,7 +133,7 @@ GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModi
 	size(Size<int>()),
 	visible(true),
 	loc(new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(loc))
+	vectr(loc, true)
 {
 	IDs++ ;
 	
@@ -157,7 +157,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	visible(true),
 	size(Size<int>()),
 	loc(new Pos2<float>(rand, BoundsCheck<float>::defaultCheck)),
-	vectr(VectrVel<float>(loc))
+	vectr(loc, true)
 {
 	IDs++ ;
 
@@ -215,7 +215,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		}
 
         loc = std::move(new Pos2<float>(*rhs.loc)) ;
-		vectr = VectrVel<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
+		vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), loc) ;
 		map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 		vectr.updateAndNormalize() ;
 
@@ -381,54 +381,50 @@ void GameObject::moveTo(Position<float> to) {
     vectr.updateAndNormalize() ;
 
 
-	{
 	/* Debug code */
-	/*
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	*/
 	/* end debug */
-	}
 }
 
 void GameObject::moveUp() {
-    Vectr<float> up(UP) ;
+    Vectr<float> up(UP, false) ;
     moveNewDirection(up) ;
 }
 
  void GameObject::moveDown() {
-    Vectr<float> down(DOWN) ;
+    Vectr<float> down(DOWN, false) ;
     moveNewDirection(down) ;
 }
 
  void GameObject::moveRight() {
-     Vectr<float> right(RIGHT) ;
+     Vectr<float> right(RIGHT, false) ;
      moveNewDirection(right) ;
 }
 
  void GameObject::moveLeft() {
-     Vectr<float> left(LEFT) ;
+     Vectr<float> left(LEFT, false) ;
      moveNewDirection(left) ;
 }
 
  void GameObject::moveUp(float offset) {
-     Vectr<float> up(UP) ;
+     Vectr<float> up(UP, false) ;
      moveNewDirection(up) ;
 }
 
  void GameObject::moveDown(float offset) {
-     Vectr<float> down(DOWN) ;
+     Vectr<float> down(DOWN, false) ;
      moveNewDirection(down) ;
 }
 
  void GameObject::moveRight(float offset) {
-     Vectr<float> right(RIGHT) ;
+     Vectr<float> right(RIGHT, false) ;
      moveNewDirection(right) ;
 }
 
  void GameObject::moveLeft(float offset) {
-     Vectr<float> left(LEFT) ;
+     Vectr<float> left(LEFT, false) ;
      moveNewDirection(left) ;
 }
 
@@ -439,14 +435,14 @@ void GameObject::moveRandomDirection() {
 	
 	float y = chooseAtRand(1.0, -1.0) ;
 	
-	Vectr<float> newVector(x, y, 0) ;
+	Vectr<float> newVector(x, y, 0, false) ;
 	
 	moveNewDirection(newVector) ;
 }
 
 void GameObject::jump() {
 	vectr.normalize() ;
-	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, 10.0) ;
+	Position<float> next = Vectr<float>::calculateNextPosition(vectr, 10.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
 }
@@ -454,7 +450,7 @@ void GameObject::jump() {
 void GameObject::move(float distanceModifier) {
 
 	vectr.normalize() ;
-	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, distanceModifier) ;
+	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
 
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
 		next.setX(loc->getX()) ;
@@ -478,13 +474,15 @@ void GameObject::wander() {
 	
 	vectr.normalize() ;
 	
-	Position<float> next = VectrVel<float>::calculateNextPosition(vectr, defaultOffset<float>) ;
+	auto dist = vectr.getLastMoveDistance() ;
+	
+	Position<float> next = Vectr<float>::calculateNextPosition(vectr, defaultMoveDistance<float>) ;
 	
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = VectrVel<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next = Vectr<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
 	}
 	if (next.overYBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = VectrVel<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next = Vectr<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
 	}
 	
 	moveTo(std::move(next)) ;
@@ -496,7 +494,7 @@ void GameObject::defaultBehaviors() {
 
 void GameObject::aiBehaviors() {
 	wander() ;
-	//todo
+	//todo add more behaviors
 }
 
 

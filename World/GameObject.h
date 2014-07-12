@@ -100,7 +100,7 @@ protected:
 
 	Size<int> size ;
 	Pos2<float> * loc ;
-	VectrVel<float> vectr ;
+	Vectr<float> vectr ;
 
 	bool visible ;
 	
@@ -297,18 +297,22 @@ public:
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
-	 * VectrVel of its last move
+	 * Vectr of its last move
 	 */
 	void move(float distanceModifier = 1.0) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
-	 * VectrVel
+	 * Vectr
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
 	virtual void moveNewDirection(Vectr<float> & newDirection) ;
 	
+	/**
+	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,
+	 * the GameObject reverses course
+	 */
 	void wander() ;
 	
 	/**
@@ -343,7 +347,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	VectrVel<float> * getVector() { return &(this->vectr) ; }
+	Vectr<float> * getVector() { return &(this->vectr) ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

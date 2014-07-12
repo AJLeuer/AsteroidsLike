@@ -53,7 +53,7 @@ protected:
 	
 	static void calculateVelocity() ;
 	
-	//friend class VectrVel ;
+	//friend class Vectr ;
 
 
 public:

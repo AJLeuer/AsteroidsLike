@@ -145,7 +145,7 @@ void PlayerCharacter::jump() {
 void PlayerCharacter::update() {
 	if (moveInfo.first) {
 		move(moveInfo.second) ;
-		moveInfo = {false, defaultOffset<float>} ;
+		moveInfo = {false, defaultMoveDistance<float>} ;
 	}
 }
 

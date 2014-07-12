@@ -14,6 +14,7 @@
 
 #include "../Util/AssetFileIO.h"
 #include "Character.h"
+#include "Weapon.h"
 #include "../Control/Input.hpp"
 
 /**
@@ -28,7 +29,9 @@ protected:
 	 * A std::pair that holds a bool indicating whether this object will move at the next
 	 * update, and (if so) how far it will move
 	 */
-	pair<bool, float> moveInfo = {false, defaultOffset<float> * 8} ;
+	pair<bool, float> moveInfo = {false, defaultMoveDistance<float> * 8} ;
+	
+	Weapon weapon ;
 	
 public:
 	
