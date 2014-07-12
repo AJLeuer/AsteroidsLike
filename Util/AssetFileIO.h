@@ -31,12 +31,14 @@ using namespace std ;
 
 enum class AssetType {
 	asteroid,
-	misc,
-	powerup = misc,
+    explosion,
+	powerup,
+    projectile,
+    shield,
     playerShip,
 	enemyShip,
-	UI,
-	weapon
+    shipDamage,
+	UI
 	//what else do we need?
 	//add more here
 } ;
@@ -45,20 +47,23 @@ struct AssetFile {
 	
 protected:
 	
-	static vector<AssetFile> * asteroidImageFiles ;
-	static vector<AssetFile> * miscImageFilenames ;
-	static vector<AssetFile> * playerShipImageFilenames ;
-	static vector<AssetFile> * enemyShipImageFilenames ;
-	static vector<AssetFile> * UIImageFilenames ;
-	static vector<AssetFile> * weaponImageFilenames ;
-	
-	static vector< vector<AssetFile> * > * allAssetFiles ;
-	
 	friend class AssetFileIO ;
 	
 	string filePath ;
 	
 public:
+    
+    static vector<AssetFile> * asteroidImageFilenames ;
+    static vector<AssetFile> * explosionImageFilenames ;
+	static vector<AssetFile> * powerupImageFilenames ;
+    static vector<AssetFile> * projectileImageFilenames ;
+    static vector<AssetFile> * shieldImageFilenames ;
+	static vector<AssetFile> * playerShipImageFilenames ;
+	static vector<AssetFile> * enemyShipImageFilenames ;
+    static vector<AssetFile> * shipDamageImageFilenames ;
+	static vector<AssetFile> * UIImageFilenames ;
+    
+    static vector< vector<AssetFile> * > * allAssetFiles ;
 	
 	string fileName ;
 	AssetType type ;

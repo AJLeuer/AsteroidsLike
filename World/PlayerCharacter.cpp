@@ -12,7 +12,8 @@
  * Constructs a default PlayerCharacter.
  */
 PlayerCharacter::PlayerCharacter() :
-    Character() {}
+    Character(),
+    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(3), size.getModifier(), {loc->getX()/2, loc->getY(), loc->getZ()}){}
 
 
 /**
@@ -21,7 +22,8 @@ PlayerCharacter::PlayerCharacter() :
  * @param The PlayerCharacter to be copied
  */
 PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
-    Character(other), moveInfo(other.moveInfo) {}
+    Character(other), weapon(other.weapon),
+    moveInfo(other.moveInfo) {}
 
 /**
  * Move constructor for PlayerCharacter
@@ -29,7 +31,8 @@ PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
  * @param The PlayerCharacter to be moved
  */
 PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
-	Character(other), moveInfo(std::move(other.moveInfo)) {}
+    Character(other), weapon(std::move(other.weapon)),
+    moveInfo(std::move(other.moveInfo)) {}
 
 /**
  * Constructs a PlayerCharacter based on the arguments given
@@ -40,8 +43,9 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(Colors color, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
-    Character(color, imageFile, size, loc, name, reaction, alive, state, health, damage) {}
+PlayerCharacter::PlayerCharacter(Colors color, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, const AssetFile & projectileImageFile) :
+    Character(color, imageFile, size, loc, name, reaction, alive, state, health, damage),
+    weapon(color, projectileImageFile, size, {loc.getX()/2, loc.getY(), loc.getZ()}) {}
 
 
 /**

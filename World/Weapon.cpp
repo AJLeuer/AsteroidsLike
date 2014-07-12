@@ -8,8 +8,26 @@
 
 #include "Weapon.h"
 
+Weapon::Weapon(FastRand<int> & randm) {
+    
+}
+
+Weapon & Weapon::operator=(const Weapon & rhs) {
+    if (this != &rhs) {
+        projectile = rhs.projectile ;
+    }
+    return *this ;
+}
+
+Weapon & Weapon::operator=(Weapon && rhs) {
+    if (this != &rhs) {
+        projectile = std::move(rhs.projectile) ;
+    }
+    return *this ;
+}
+
 void Weapon::fire() {
-	projectile.fire() ;
+	
 }
 
 

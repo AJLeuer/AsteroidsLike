@@ -20,17 +20,17 @@ Player * Player::defaultPlayer1 = nullptr ;
 
 void Player::initDefaultPlayers() {
 	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", Colors::green, defaultSize, defaultStartingPosition, "Green",
-									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
+                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
 	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", Colors::blue, defaultSize, defaultStartingPosition, "Blue",
-									Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100) ;
+                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(2)) ;
 }
 
 Player::Player() :
 	ID(IDs),
 	name(""),
 	playerCharacter(Colors::blue, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
-					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100)
+					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(3))
 {
 	IDs++ ;
 	setNames() ;
@@ -40,13 +40,13 @@ Player::Player() :
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
 	Colors playerCharacter_color, float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const string & playerCharacter_name,
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
-	unsigned playerCharacter_health, unsigned playerCharacter_damage) :
+	unsigned playerCharacter_health, unsigned playerCharacter_damage, const AssetFile & projectileImageFile) :
 
 	ID(IDs),
 	name(name),
 	playerCharacter(playerCharacter_color, playerCharacter_imageFilename, playerCharacter_size,
 		playerCharacter_loc, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
-		playerCharacter_health, playerCharacter_damage)
+		playerCharacter_health, playerCharacter_damage, projectileImageFile)
 {
 	IDs++ ;
 	setNames() ;

@@ -10,25 +10,39 @@
 
 using namespace std ;
 
-vector<AssetFile> * AssetFile::asteroidImageFiles = new vector<AssetFile> {
+vector<AssetFile> * AssetFile::asteroidImageFilenames = new vector<AssetFile> {
 	{"Asteroid0_Brown.png", "/Assets/Asteroids/Asteroid0_Brown.png", AssetType::asteroid, Colors::brown},
 	{"Asteroid0_Gray.png",  "/Assets/Asteroids/Asteroid0_Gray.png",	 AssetType::asteroid, Colors::brown}
 } ;
 
-vector<AssetFile> * AssetFile::miscImageFilenames = new vector<AssetFile> {
-	{"Ship0_Damage0.png", "/Assets/Misc/Ship0_Damage0.png", AssetType::misc, Colors::transparent},
-	{"Ship0_Damage1.png", "/Assets/Misc/Ship0_Damage1.png", AssetType::misc, Colors::transparent},
-	{"Ship0_Damage2.png", "/Assets/Misc/Ship0_Damage2.png", AssetType::misc, Colors::transparent},
-	{"Ship1_Damage1.png", "/Assets/Misc/Ship1_Damage1.png", AssetType::misc, Colors::transparent},
-	{"Ship1_Damage2.png", "/Assets/Misc/Ship1_Damage2.png", AssetType::misc, Colors::transparent},
-	{"Ship2_Damage0.png", "/Assets/Misc/Ship2_Damage0.png", AssetType::misc, Colors::transparent},
-	{"Ship2_Damage1.png", "/Assets/Misc/Ship2_Damage1.png", AssetType::misc, Colors::transparent},
-	{"Ship2_Damage2.png", "/Assets/Misc/Ship2_Damage2.png", AssetType::misc, Colors::transparent},
-	{"EngineThrust0.png", "/Assets/Misc/EngineThrust0.png", AssetType::misc, Colors::transparent},
-	{"Bolt_Gold.png",     "/Assets/Misc/Bolt_Gold.png",     AssetType::powerup, Colors::gold},
-	{"Pill_Blue.png",     "/Assets/Misc/Pill_Blue.png",		AssetType::powerup, Colors::blue},
-	{"Pill_Green.png",    "/Assets/Misc/Pill_Green.png",	AssetType::powerup, Colors::blue},
-	{"Shield_Silver.png", "/Assets/Misc/Shield_Silver.png", AssetType::powerup, Colors::silver}
+vector<AssetFile> * AssetFile::explosionImageFilenames = new vector<AssetFile> {
+    {"Explosion0_Blue.png",		"/Assets/Explosions/Explosion0_Blue.png",		AssetType::explosion, Colors::blue},
+	{"Explosion0_Green.png",	"/Assets/Explosions/Explosion0_Green.png",		AssetType::explosion, Colors::green},
+	{"Explosion0_Red.png",		"/Assets/Explosions/Explosion0_Red.png",		AssetType::explosion, Colors::red}
+} ;
+
+vector<AssetFile> * AssetFile::powerupImageFilenames = new vector<AssetFile> {
+
+	{"EngineThrust0.png", "/Assets/Powerups/EngineThrust0.png", AssetType::powerup, Colors::transparent},
+	{"Bolt_Gold.png",     "/Assets/Powerups/Bolt_Gold.png",     AssetType::powerup, Colors::gold},
+	{"Pill_Blue.png",     "/Assets/Powerups/Pill_Blue.png",		AssetType::powerup, Colors::blue},
+	{"Pill_Green.png",    "/Assets/Powerups/Pill_Green.png",	AssetType::powerup, Colors::blue},
+	{"Shield_Silver.png", "/Assets/Powerups/Shield_Silver.png", AssetType::powerup, Colors::silver}
+} ;
+
+vector<AssetFile> * AssetFile::projectileImageFilenames = new vector<AssetFile> {
+    {"LaserBlast0_Green.png",   "/Assets/Weapons/LaserBlast0_Green.png",	AssetType::projectile, Colors::green},
+	{"LaserBlast0_Red.png",		"/Assets/Weapons/LaserBlast0_Red.png",		AssetType::projectile, Colors::red},
+	{"LaserBlast1_Blue.png",	"/Assets/Weapons/LaserBlast1_Blue.png",		AssetType::projectile, Colors::blue},
+	{"LaserBlast1_Green.png",	"/Assets/Weapons/LaserBlast1_Green.png",	AssetType::projectile, Colors::green},
+	{"LaserBlast2_Blue.png",	"/Assets/Weapons/LaserBlast2_Blue.png",		AssetType::projectile, Colors::blue},
+	{"LaserBlast2_Red.png",		"/Assets/Weapons/LaserBlast2_Red.png",		AssetType::projectile, Colors::red}
+} ;
+
+vector<AssetFile> * AssetFile::shieldImageFilenames = new vector<AssetFile> {
+    {"Shield_Hi.png",			"/Assets/Shields/Shield_Hi.png",			AssetType::shield, Colors::transparent},
+	{"Shield_Low.png",			"/Assets/Shields/Shield_Low.png",			AssetType::shield, Colors::transparent},
+	{"Shield_Med.png",			"/Assets/Shields/Shield_Med.png",			AssetType::shield, Colors::transparent}
 } ;
 
 vector<AssetFile> * AssetFile::playerShipImageFilenames = new vector<AssetFile> {
@@ -48,6 +62,18 @@ vector<AssetFile> * AssetFile::enemyShipImageFilenames = new vector<AssetFile> {
 	{"Enemy_Ship2_Green.png",  "/Assets/Ships/Enemy_Ship2_Green.png",	AssetType::enemyShip, Colors::green}
 } ;
 
+vector<AssetFile> * AssetFile::shipDamageImageFilenames = new vector<AssetFile> {
+    {"Ship0_Damage0.png", "/Assets/Ship Damage/Ship0_Damage0.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship0_Damage1.png", "/Assets/Ship Damage/Ship0_Damage1.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship0_Damage2.png", "/Assets/Ship Damage/Ship0_Damage2.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship1_Damage1.png", "/Assets/Ship Damage/Ship1_Damage1.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship1_Damage2.png", "/Assets/Ship Damage/Ship1_Damage2.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship2_Damage0.png", "/Assets/Ship Damage/Ship2_Damage0.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship2_Damage1.png", "/Assets/Ship Damage/Ship2_Damage1.png", AssetType::shipDamage, Colors::transparent},
+	{"Ship2_Damage2.png", "/Assets/Ship Damage/Ship2_Damage2.png", AssetType::shipDamage, Colors::transparent},
+    //todo add the rest
+} ;
+
 vector<AssetFile> * AssetFile::UIImageFilenames = new vector<AssetFile> {
 	{"Button_Blue.png",		"/Assets/UI/Button_Blue.png",	AssetType::UI, Colors::blue},
 	{"Button_Green.png",	"/Assets/UI/Button_Green.png",	AssetType::UI, Colors::green},
@@ -55,29 +81,17 @@ vector<AssetFile> * AssetFile::UIImageFilenames = new vector<AssetFile> {
 	{"Button_Red.png",		"/Assets/UI/Button_Red.png",	AssetType::UI, Colors::red}
 } ;
 
-vector<AssetFile> * AssetFile::weaponImageFilenames = new vector<AssetFile> {
-	{"Explosion0_Blue.png",		"/Assets/Weapons/Explosion0_Blue.png",		AssetType::weapon, Colors::blue},
-	{"Explosion0_Green.png",	"/Assets/Weapons/Explosion0_Green.png",		AssetType::weapon, Colors::green},
-	{"Explosion0_Red.png",		"/Assets/Weapons/Explosion0_Red.png",		AssetType::weapon, Colors::red},
-	{"LaserBlast0_Green.png",   "/Assets/Weapons/LaserBlast0_Green.png",	AssetType::weapon, Colors::green},
-	{"LaserBlast0_Red.png",		"/Assets/Weapons/LaserBlast0_Red.png",		AssetType::weapon, Colors::red},
-	{"LaserBlast1_Blue.png",	"/Assets/Weapons/LaserBlast1_Blue.png",		AssetType::weapon, Colors::blue},
-	{"LaserBlast1_Green.png",	"/Assets/Weapons/LaserBlast1_Green.png",	AssetType::weapon, Colors::green},
-	{"LaserBlast2_Blue.png",	"/Assets/Weapons/LaserBlast2_Blue.png",		AssetType::weapon, Colors::blue},
-	{"LaserBlast2_Red.png",		"/Assets/Weapons/LaserBlast2_Red.png",		AssetType::weapon, Colors::red},
-	{"MuzzleFlare0_Blue.png",	"/Assets/Weapons/MuzzleFlare0_Blue.png",	AssetType::weapon, Colors::blue},
-	{"Shield_Hi.png",			"/Assets/Weapons/Shield_Hi.png",			AssetType::weapon, Colors::transparent},
-	{"Shield_Low.png",			"/Assets/Weapons/Shield_Low.png",			AssetType::weapon, Colors::transparent},
-	{"Shield_Med.png",			"/Assets/Weapons/Shield_Med.png",			AssetType::weapon, Colors::transparent}
-} ;
 
 vector< vector<AssetFile> * > * AssetFile::allAssetFiles = new vector< vector<AssetFile> * > {
-	asteroidImageFiles ,
-	miscImageFilenames ,
+    asteroidImageFilenames,
+    explosionImageFilenames,
+	powerupImageFilenames,
+    projectileImageFilenames,
+    shieldImageFilenames,
 	playerShipImageFilenames,
 	enemyShipImageFilenames,
-	UIImageFilenames,
-	weaponImageFilenames
+    shipDamageImageFilenames,
+	UIImageFilenames
 	/* Add any more here */
 } ;
 
@@ -131,25 +145,58 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 		case AssetType::asteroid:
 		{
 			//check the string given to make sure it's a match
-			for (auto i = 0 ; i < AssetFile::asteroidImageFiles->size() ; i++) {
-				if (file.fileName == AssetFile::asteroidImageFiles->at(i).fileName) {
+			for (auto i = 0 ; i < AssetFile::asteroidImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::asteroidImageFilenames->at(i).fileName) {
 					noMatch = false ;
 					break ;
 				}
 			}
 			break ;
 		}
-		case AssetType::misc:
+        case AssetType::explosion:
+        {
+			//check the string given to make sure it's a match
+			for (auto i = 0 ; i < AssetFile::explosionImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::explosionImageFilenames->at(i).fileName) {
+					noMatch = false ;
+					break ;
+				}
+			}
+			break ;
+        }
+		case AssetType::powerup:
 		{
 			//check the string given to make sure it's a match
-			for (auto i = 0 ; i < AssetFile::miscImageFilenames->size() ; i++) {
-				if (file.fileName == AssetFile::miscImageFilenames->at(i).fileName) {
+			for (auto i = 0 ; i < AssetFile::powerupImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::powerupImageFilenames->at(i).fileName) {
 					noMatch = false ;
 					break ;
 				}
 			}
 			break ;
 		}
+        case AssetType::projectile:
+        {
+			//check the string given to make sure it's a match
+			for (auto i = 0 ; i < AssetFile::projectileImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::projectileImageFilenames->at(i).fileName) {
+					noMatch = false ;
+					break ;
+				}
+			}
+			break ;
+        }
+        case AssetType::shield:
+        {
+			//check the string given to make sure it's a match
+			for (auto i = 0 ; i < AssetFile::shieldImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::shieldImageFilenames->at(i).fileName) {
+					noMatch = false ;
+					break ;
+				}
+			}
+			break ;
+        }
 		case AssetType::playerShip:
 		{
 			//check the string given to make sure it's a match
@@ -172,22 +219,22 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 			}
 			break ;
 		}
-		case AssetType::UI:
-		{
+        case AssetType::shipDamage:
+        {
 			//check the string given to make sure it's a match
-			for (auto i = 0 ; i < AssetFile::UIImageFilenames->size() ; i++) {
-				if (file.fileName == AssetFile::UIImageFilenames->at(i).fileName) {
+			for (auto i = 0 ; i < AssetFile::shipDamageImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::shipDamageImageFilenames->at(i).fileName) {
 					noMatch = false ;
 					break ;
 				}
 			}
 			break ;
-		}
-		case AssetType::weapon:
+        }
+		case AssetType::UI:
 		{
 			//check the string given to make sure it's a match
-			for (auto i = 0 ; i < AssetFile::weaponImageFilenames->size() ; i++) {
-				if (file.fileName == AssetFile::weaponImageFilenames->at(i).fileName) {
+			for (auto i = 0 ; i < AssetFile::UIImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::UIImageFilenames->at(i).fileName) {
 					noMatch = false ;
 					break ;
 				}
@@ -214,71 +261,36 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 	return img ;
 }
 
-
-/* Add other vectors of filename strings here */ /*
-string & AssetFileIO::getImageFilename(vector<AssetFile>::size_type index, AssetType type) {
-	switch (type) {
-		case AssetType::asteroid:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFiles->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::asteroidImageFiles->at(index).fileName ;
-			break ;
-		}
-		case AssetType::misc:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::miscImageFilenames->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::miscImageFilenames->at(index).fileName ;
-			break ;
-		}
-		case AssetType::playerShip:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::playerShipImageFilenames->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::playerShipImageFilenames->at(index).fileName ;
-			break ;
-		}
-		case AssetType::enemyShip:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::enemyShipImageFilenames->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::enemyShipImageFilenames->at(index).fileName ;
-			break ;
-		}
-		case AssetType::UI:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::UIImageFilenames->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::UIImageFilenames->at(index).fileName ;
-			break ;
-		}
-		case AssetType::weapon:
-		{
-			BoundsCheck<vector<AssetFile>::size_type> bc = BoundsCheck<vector<AssetFile>::size_type>(0, AssetFile::weaponImageFilenames->size()-1, 0, 0) ;
-			bc.checkAgainst(&index) ;
-			return AssetFile::weaponImageFilenames->at(index).fileName ;
-			break ;
-		}
-	}
-}
-*/
-
 AssetFile AssetFileIO::getRandomImageFile(AssetType type) {
 	
-    FastRand<vector<AssetFile>::size_type> rnd(0, 1000) ; //not used
+    FastRand<vector<AssetFile>::size_type> rnd(0, AssetFile::allAssetFiles->size()-1) ; //not used
 	
 	switch (type) {
 		case AssetType::asteroid:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFiles->size() -1) ;
-			return AssetFile::asteroidImageFiles->at(rnd()) ;
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFilenames->size() -1) ;
+			return AssetFile::asteroidImageFilenames->at(rnd()) ;
 		}
-		case AssetType::misc:
+        case AssetType::explosion:
+        {
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::explosionImageFilenames->size() -1) ;
+			return AssetFile::explosionImageFilenames->at(rnd()) ;
+        }
+		case AssetType::powerup:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::miscImageFilenames->size() -1) ;
-			return AssetFile::miscImageFilenames->at(rnd()) ;
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::powerupImageFilenames->size() -1) ;
+			return AssetFile::powerupImageFilenames->at(rnd()) ;
 		}
+        case AssetType::projectile:
+        {
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::projectileImageFilenames->size() -1) ;
+			return AssetFile::projectileImageFilenames->at(rnd()) ;
+        }
+        case AssetType::shield:
+        {
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::shieldImageFilenames->size() -1) ;
+			return AssetFile::shieldImageFilenames->at(rnd()) ;
+        }
 		case AssetType::playerShip:
 		{
 			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::playerShipImageFilenames->size() -1) ;
@@ -289,15 +301,15 @@ AssetFile AssetFileIO::getRandomImageFile(AssetType type) {
 			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::enemyShipImageFilenames->size() -1) ;
 			return AssetFile::enemyShipImageFilenames->at(rnd()) ;
 		}
+        case AssetType::shipDamage:
+        {
+            rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::shipDamageImageFilenames->size() -1) ;
+			return AssetFile::shipDamageImageFilenames->at(rnd()) ;
+        }
 		case AssetType::UI:
 		{
 			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::UIImageFilenames->size() -1) ;
 			return AssetFile::UIImageFilenames->at(rnd()) ;
-		}
-		case AssetType::weapon:
-		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::weaponImageFilenames->size() -1) ;
-			return AssetFile::weaponImageFilenames->at(rnd()) ;
 		}
 	}
 }

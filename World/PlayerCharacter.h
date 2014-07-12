@@ -24,14 +24,16 @@
 class PlayerCharacter : public Character  {
     
 protected:
-	
+    
+	Weapon weapon ;
+    
+    
 	/**
 	 * A std::pair that holds a bool indicating whether this object will move at the next
 	 * update, and (if so) how far it will move
 	 */
 	pair<bool, float> moveInfo = {false, defaultMoveDistance<float> * 8} ;
 	
-	Weapon weapon ;
 	
 public:
 	
@@ -65,7 +67,7 @@ public:
 	 * @param health The Health of this PlayerCharacter
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
-	PlayerCharacter(Colors color, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
+	PlayerCharacter(Colors color, const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, const AssetFile & projectileImageFile) ;
 	
 	
 	/**

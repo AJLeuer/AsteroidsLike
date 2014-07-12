@@ -12,22 +12,34 @@
 #include <iostream>
 
 #include "GameObject.h"
-#include "Projectile.h"
 
-#include "../Util/AssetFileIO.h"
 
-class Weapon : public GameObject {
+class Weapon {
 	
 protected:
 	
-	Projectile projectile ;
+    /**
+     * A simple GameObject that will only be drawn onscreen immediately after the
+     * weapon fires
+     */
+	GameObject projectile ;
 	
 public:
 	
-	Weapon(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_,
-		   const AssetFile & projectileImageFile) :
-		GameObject(color, imageFile, sizeModifier, loc_),
-		projectile(color, projectileImageFile, sizeModifier / 2, loc_) {}
+	Weapon(Colors color, const AssetFile & projectileImageFile, float sizeModifier, const Pos2<float> & loc_) :
+		projectile(color, projectileImageFile, sizeModifier, loc_, false) {}
+    
+    Weapon(FastRand<int> & randm) ;
+    
+    Weapon(const Weapon & other) :
+        projectile(other.projectile) {}
+    
+    Weapon(Weapon && other) :
+        projectile(std::move(other.projectile)) {}
+    
+    Weapon & operator=(const Weapon & rhs) ;
+    
+    Weapon & operator=(Weapon && rhs) ;
 	
 	void fire() ;
 	

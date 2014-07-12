@@ -126,12 +126,12 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_) :
+GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_, bool visible) :
 	ID(IDs),
 	color(color),
 	textureImageFile(imageFile),
 	size(Size<int>()),
-	visible(true),
+	visible(visible),
 	loc(new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck)),
 	vectr(loc, true)
 {

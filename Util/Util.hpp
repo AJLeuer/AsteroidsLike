@@ -268,7 +268,7 @@ inline string operator +(const string & str, const char * rhs) {
 	return ret ;
 }
 
-/* misc. other */
+/* powerup. other */
 extern char * basicAlphabet ;
 
 const string generateName(unsigned int length) ;
