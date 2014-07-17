@@ -586,6 +586,10 @@ public:
      * Creates a Pos2 with all coordinates initialized to 0
      */
 	Pos2() : Position<N>(0, 0, 0), pastPositions(new queue<Position<N>>) {}
+	
+	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new queue<Position<N>>) {}
+	
+	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new queue<Position<N>>) {}
 
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
