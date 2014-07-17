@@ -29,7 +29,7 @@ GameObject::GameObject() :
 	size(Size<int>()),
 	visible(true),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)),
-	vectr(loc, true)
+	vectr(loc, false)
 {
 	IDs++ ;
     
@@ -123,13 +123,13 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
 	textureImageFile(imageFile),
 	size(Size<int>()),
 	visible(visible),
 	loc(new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck)),
-	vectr(loc, true)
+	vectr(loc, monitorVelocity)
 {
 	IDs++ ;
 	

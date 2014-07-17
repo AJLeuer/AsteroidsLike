@@ -18,8 +18,8 @@ NPC::NPC(const NPC & other) :
 NPC::NPC(NPC && other) :
 	Character(std::move(other)) {}
 
-NPC::NPC(const AssetFile & imageFile, float size, const Position<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction):
-	Character(imageFile, size, loc, name, reaction, alive, state, health, damage) {}
+NPC::NPC(const AssetFile & imageFile, float size, const Position<float> & loc, string name, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, Reaction reaction):
+	Character(imageFile, size, loc, name, reaction, alive, state, health, damage, monitorVelocity) {}
 
 NPC::NPC(FastRand<int> rand) :
 	Character(rand)

@@ -29,7 +29,7 @@ protected:
 public:
 	
 	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Position<float> * ownerPosition) :
-		projectile(projectileImageFile, sizeModifier, *ownerPosition, false) {}
+		projectile(projectileImageFile, sizeModifier, *ownerPosition, false, false) {}
     
     Weapon(FastRand<int> & randm, const Position<float> * ownerPosition) ;
     

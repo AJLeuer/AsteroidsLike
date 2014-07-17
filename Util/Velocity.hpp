@@ -47,7 +47,7 @@ protected:
 	 * The unit of time that will function as the denominator
 	 * for this Velocity object. By default it is 64 milliseconds.
 	 */
-	chrono::nanoseconds baseTimeUnit = sixfour_milliseconds ;
+	chrono::nanoseconds baseTimeUnit = twoforty_milliseconds ;
 	
 	double lastVelocity = 0 ;
 	
@@ -168,6 +168,8 @@ void Velocity<N>::calculateVelocity() {
     /* debug var */
 	auto * vs = &velocityStorage ;
 	/* end debug */
+	
+	auto defaultSleepTime = chrono::milliseconds(240) ;
     
 	for (auto i = 0 ; (i < velocityStorage.size()) && (*velocityMonitorContinueSignal) ; i++) {
 		
@@ -175,6 +177,7 @@ void Velocity<N>::calculateVelocity() {
 		auto vs = Velocity::getVelocityStorage() ;
 		
 		if (sharedVelMutex->isLocked() == true) {
+			this_thread::sleep_for(defaultSleepTime) ;
 			continue ;
 		}
 		else {
@@ -211,6 +214,12 @@ void Velocity<N>::calculateVelocity() {
 				velocityStorage.at(i)->lastDistance = *velocityStorage.at(i)->distance ;
 			
 			}
+			else {
+				this_thread::sleep_for(defaultSleepTime) ;
+			}
+		}
+		else {
+			this_thread::sleep_for(defaultSleepTime) ;
 		}
 		sharedVelMutex->unlock() ;
 	}

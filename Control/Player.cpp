@@ -45,7 +45,7 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 	name(name),
 	playerCharacter(playerCharacter_imageFilename, playerCharacter_size,
 		playerCharacter_loc, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
-		playerCharacter_health, playerCharacter_damage, projectileImageFile)
+		playerCharacter_health, playerCharacter_damage, true, projectileImageFile)
 {
 	IDs++ ;
 	setNames() ;

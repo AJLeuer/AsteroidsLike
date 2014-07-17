@@ -39,6 +39,7 @@ struct Resolution ;
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
 #define sixfour_milliseconds std::chrono::nanoseconds(64000000)
+#define twoforty_milliseconds std::chrono::nanoseconds(240000000)
 
 extern bool debugToSTDOutput ;
 
@@ -47,8 +48,8 @@ constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;
 
 /* Default value for window height and width */
-constexpr unsigned DEFAULT_W_MAX_X = 1600 ;
-constexpr unsigned DEFAULT_W_MAX_Y = 900 ;
+constexpr unsigned DEFAULT_W_MAX_X = 960 ;
+constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
 
 extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */
 extern unsigned globalMaxY() ;

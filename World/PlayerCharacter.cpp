@@ -43,8 +43,8 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, const AssetFile & projectileImageFile) :
-    Character(imageFile, size, loc, name, reaction, alive, state, health, damage),
+PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
+    Character(imageFile, size, loc, name, reaction, alive, state, health, damage, monitorVelocity),
     weapon(projectileImageFile, size, &loc) {}
 
 
