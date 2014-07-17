@@ -398,26 +398,6 @@ void GameObject::moveUp() {
      moveNewDirection(left) ;
 }
 
- void GameObject::moveUp(float offset) {
-     Vectr<float> up(UP, false) ;
-     moveNewDirection(up) ;
-}
-
- void GameObject::moveDown(float offset) {
-     Vectr<float> down(DOWN, false) ;
-     moveNewDirection(down) ;
-}
-
- void GameObject::moveRight(float offset) {
-     Vectr<float> right(RIGHT, false) ;
-     moveNewDirection(right) ;
-}
-
- void GameObject::moveLeft(float offset) {
-     Vectr<float> left(LEFT, false) ;
-     moveNewDirection(left) ;
-}
-
 
 void GameObject::moveRandomDirection() {
 	

@@ -283,12 +283,6 @@ public:
 	virtual void moveRight();
 	virtual void moveLeft();
 	
-	virtual void moveUp(float offset) ;
-	virtual void moveDown(float offset);
-	virtual void moveRight(float offset) ;
-	virtual void moveLeft(float offset);
-
-    
     void moveRandomDirection() ;
 	
 	void jump() ;
