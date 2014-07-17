@@ -94,13 +94,13 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
-	for (auto i = 0 ; i < GameState::getAdditionalGraphicalOutputData()->size() ; i++) {
-		auto cont = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
-		render(GameState::getAdditionalGraphicalOutputData()->at(i)) ;
-	}
 	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
 		GameObject * temp = GameState::getGameObjects()->at(i) ;
 		render(temp) ;
+	}
+	for (auto i = 0 ; i < GameState::getAdditionalGraphicalOutputData()->size() ; i++) {
+		auto cont = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
+		render(GameState::getAdditionalGraphicalOutputData()->at(i)) ;
 	}
 }
 
