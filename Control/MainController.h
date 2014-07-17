@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <csignal>
+#include <mutex>      
+#include <condition_variable>
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>

@@ -96,6 +96,19 @@ void MainController::main() {
 		mainGameLoopCount++ ;
 		
 		this_thread::sleep_for(sleepTime) ;
+		
+		auto checkThreadCountDifferencePred = [&]() -> bool {
+			if (mainGameLoopCount > worldLoopCount) {
+				return false ;
+			}
+			else {
+				return true ;
+			}
+		} ;
+		
+		unique_lock<mutex> locked(syncMutex) ;
+		
+		conditionalWait.wait(locked, checkThreadCountDifferencePred) ;
 	}
 
 	/* exit signaled GLOBAL_CONTINUE_SIGNAL_FALSE. We're outta here! Handing off to MainController::exit() */

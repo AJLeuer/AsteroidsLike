@@ -98,6 +98,19 @@ void WorldController::main() {
 		worldLoopCount++ ;
 		
 		this_thread::sleep_for(sleepTime) ;
+		
+		auto checkThreadCountDifferencePred = [&]() -> bool {
+			if (worldLoopCount > mainGameLoopCount) {
+				return false ;
+			}
+			else {
+				return true ;
+			}
+		} ;
+		
+		unique_lock<mutex> locked(syncMutex) ;
+		
+		conditionalWait.wait(locked, checkThreadCountDifferencePred) ;
 	}
 }
 

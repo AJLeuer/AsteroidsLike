@@ -91,6 +91,9 @@ Renderer * GameState::getMainRenderer() {
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
+mutex syncMutex ;
+condition_variable conditionalWait ;
+
 
 
 

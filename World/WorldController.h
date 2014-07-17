@@ -15,6 +15,8 @@
 #include <ostream>
 #include <vector>
 #include <thread>
+#include <mutex>     
+#include <condition_variable>
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"

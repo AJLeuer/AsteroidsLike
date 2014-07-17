@@ -17,6 +17,7 @@
 #include <array>
 #include <vector>
 #include <list>
+#include <condition_variable>
 
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
@@ -129,6 +130,9 @@ extern unsigned mainGameLoopCount ;
  * Loop managed by WorldController
  */
 extern unsigned worldLoopCount ;
+
+extern std::mutex syncMutex ;
+extern condition_variable conditionalWait ;
 
 /**
  * Returns the window origin coordinates (i.e. {0, 0, 0}
