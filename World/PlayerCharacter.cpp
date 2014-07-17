@@ -13,7 +13,7 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), {loc->getX()/2, loc->getY(), loc->getZ()}){}
+    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), loc){}
 
 
 /**
@@ -43,9 +43,9 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, const AssetFile & projectileImageFile) :
+PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, const AssetFile & projectileImageFile) :
     Character(imageFile, size, loc, name, reaction, alive, state, health, damage),
-    weapon(projectileImageFile, size, {loc.getX()/2, loc.getY(), loc.getZ()}) {}
+    weapon(projectileImageFile, size, &loc) {}
 
 
 /**
@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand),
-    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, {loc->getX()/2, loc->getY(), loc->getZ()}){}
+    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, loc){}
 
 
 /**

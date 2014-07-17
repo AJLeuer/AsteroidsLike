@@ -171,7 +171,7 @@ public:
 	 * @param imageFilen The file to be used as the Texture for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc, bool visible) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, bool visible) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as

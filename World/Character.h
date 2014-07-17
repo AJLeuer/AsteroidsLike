@@ -87,7 +87,7 @@ public:
 	 * @param damage The Damage capability of this Character
 	 */
 	Character(const AssetFile & imageFile, float sizeModifier,
-			  const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
+			  const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) ;
 	
 	
 	/**

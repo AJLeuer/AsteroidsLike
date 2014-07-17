@@ -37,7 +37,7 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
+Character::Character(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage) :
 	GameObject(imageFile, sizeModifier, loc, true),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(new Health(health)), damage(new Damage(damage))

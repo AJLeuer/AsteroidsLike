@@ -23,13 +23,15 @@ protected:
      * weapon fires
      */
 	GameObject projectile ;
+    
+    const Position<float> * ownerPosition ;
 	
 public:
 	
-	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Pos2<float> & loc_) :
-		projectile(projectileImageFile, sizeModifier, loc_, false) {}
+	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Position<float> * ownerPosition) :
+		projectile(projectileImageFile, sizeModifier, *ownerPosition, false) {}
     
-    Weapon(FastRand<int> & randm) ;
+    Weapon(FastRand<int> & randm, const Position<float> * ownerPosition) ;
     
     Weapon(const Weapon & other) :
         projectile(other.projectile) {}

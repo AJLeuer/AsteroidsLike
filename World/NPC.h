@@ -59,7 +59,7 @@ public:
 	 * @param damage The Damage capability of this NPC
 	 * @param reaction The reaction of this NPC to the player
 	 */
-	NPC(const AssetFile & imageFile, float size, const Pos2<float> & loc,
+	NPC(const AssetFile & imageFile, float size, const Position<float> & loc,
 		string name, DoA alive, CharacterState state, unsigned health, unsigned damage, Reaction reaction) ;
 	
 	

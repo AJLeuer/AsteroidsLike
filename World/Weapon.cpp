@@ -8,7 +8,7 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(FastRand<int> & randm) {
+Weapon::Weapon(FastRand<int> & randm, const Position<float> * ownerPosition) {
     
 }
 

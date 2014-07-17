@@ -123,7 +123,7 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_, bool visible) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible) :
 	ID(IDs),
 	textureImageFile(imageFile),
 	size(Size<int>()),
