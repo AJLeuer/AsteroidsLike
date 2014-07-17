@@ -24,7 +24,6 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	color(Colors::blue),
     textureImageFile(AssetFile(FastRand<int>::defaultRandom)),
 	texture(nullptr),
 	size(Size<int>()),
@@ -33,7 +32,7 @@ GameObject::GameObject() :
 	vectr(loc, true)
 {
 	IDs++ ;
-
+    
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
@@ -49,7 +48,6 @@ GameObject::GameObject() :
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
-	color(other.color),
 	textureImageFile(other.textureImageFile),
 	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
 	size(Size<int>()),
@@ -95,7 +93,6 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
-	color(other.color),
 	textureImageFile(std::move(other.textureImageFile)),
 	texture(other.texture), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
@@ -126,9 +123,8 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_, bool visible) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc_, bool visible) :
 	ID(IDs),
-	color(color),
 	textureImageFile(imageFile),
 	size(Size<int>()),
 	visible(visible),
@@ -152,7 +148,6 @@ GameObject::GameObject(Colors color, const AssetFile & imageFile, float sizeModi
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	color(static_cast<Colors>(FastRand<unsigned>::defaultRandom(0, 5))),
 	textureImageFile(AssetFile(rand)),
 	visible(true),
 	size(Size<int>()),
@@ -205,7 +200,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->textureImageFile = rhs.textureImageFile ;
 		SDL_DestroyTexture(texture) ;
         this->texture = nullptr ;
-		this->color = rhs.color ;
 		this->visible = rhs.visible ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
@@ -240,7 +234,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		SDL_DestroyTexture(texture) ;
 		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
-		this->color = rhs.color ;
 		this->visible = rhs.visible ;
 		
 		if (this->loc != nullptr) {

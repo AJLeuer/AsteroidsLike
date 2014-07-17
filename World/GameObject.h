@@ -88,8 +88,6 @@ private:
 protected:
 	
 	int ID ;
-	
-	Colors color ;
 
 	/**
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
@@ -173,7 +171,7 @@ public:
 	 * @param imageFilen The file to be used as the Texture for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(Colors color, const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc, bool visible) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Pos2<float> & loc, bool visible) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -332,7 +330,7 @@ public:
 	/**
 	 * @return This GameObject's Colors
 	 */
-	Colors getColor() const { return color ; }
+	Colors getColor() const { return textureImageFile.color ; }
 	
 	/**
 	 * @return This GameObject's Position<float>

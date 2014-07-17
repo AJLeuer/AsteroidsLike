@@ -26,8 +26,8 @@ protected:
 	
 public:
 	
-	Weapon(Colors color, const AssetFile & projectileImageFile, float sizeModifier, const Pos2<float> & loc_) :
-		projectile(color, projectileImageFile, sizeModifier, loc_, false) {}
+	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Pos2<float> & loc_) :
+		projectile(projectileImageFile, sizeModifier, loc_, false) {}
     
     Weapon(FastRand<int> & randm) ;
     

@@ -42,7 +42,7 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		
-		new GameObject(Colors::blue, AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
+		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
 			Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), true) ;
 	}
 	
