@@ -32,7 +32,7 @@ protected:
 	 * A std::pair that holds a bool indicating whether this object will move at the next
 	 * update, and (if so) how far it will move
 	 */
-	pair<bool, float> moveInfo = {false, defaultMoveDistance<float> * 8} ;
+	pair<bool, float> moveInfo = {false, defaultMoveDistance<float>} ;
 	
 	
 public:

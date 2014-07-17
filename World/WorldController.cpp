@@ -89,6 +89,7 @@ void WorldController::main() {
 			}
 		}
 		
+		auto * mloop = &mainGameLoopCount ; //debug var, delete this
 		auto * wloop = &worldLoopCount ; //debug var, delete
 		
 		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
@@ -99,18 +100,13 @@ void WorldController::main() {
 		
 		this_thread::sleep_for(sleepTime) ;
 		
-		auto checkThreadCountDifferencePred = [&]() -> bool {
-			if (worldLoopCount > mainGameLoopCount) {
-				return false ;
-			}
-			else {
-				return true ;
-			}
-		} ;
+		if (worldLoopCount > mainGameLoopCount) {
+			unique_lock<mutex> locked(syncMutex) ;
+			
+			conditionalWait.wait(locked) ;
+		}
 		
-		unique_lock<mutex> locked(syncMutex) ;
-		
-		conditionalWait.wait(locked, checkThreadCountDifferencePred) ;
+		conditionalWait.notify_all() ;
 	}
 }
 

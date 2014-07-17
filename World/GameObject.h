@@ -291,7 +291,7 @@ public:
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
 	 * Vectr of its last move
 	 */
-	void move(float distanceModifier = 1.0) ;
+	void move(float distanceModifier = defaultMoveDistance<float>) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given

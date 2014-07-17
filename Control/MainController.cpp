@@ -81,6 +81,7 @@ void MainController::main() {
 	while (GLOBAL_CONTINUE_FLAG) {
 		
 		auto * mloop = &mainGameLoopCount ; //debug var, delete this
+		auto * wloop = &worldLoopCount ; //debug var, delete
 		
 		/* Will need to lock the mutex when shutting down */
 		
@@ -97,18 +98,13 @@ void MainController::main() {
 		
 		this_thread::sleep_for(sleepTime) ;
 		
-		auto checkThreadCountDifferencePred = [&]() -> bool {
-			if (mainGameLoopCount > worldLoopCount) {
-				return false ;
-			}
-			else {
-				return true ;
-			}
-		} ;
-		
-		unique_lock<mutex> locked(syncMutex) ;
-		
-		conditionalWait.wait(locked, checkThreadCountDifferencePred) ;
+		if (mainGameLoopCount > worldLoopCount) {
+			unique_lock<mutex> locked(syncMutex) ;
+			
+			conditionalWait.wait(locked) ;
+		}
+
+		conditionalWait.notify_all() ;
 	}
 
 	/* exit signaled GLOBAL_CONTINUE_SIGNAL_FALSE. We're outta here! Handing off to MainController::exit() */

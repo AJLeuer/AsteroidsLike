@@ -106,7 +106,7 @@ extern Resolution<unsigned> * currentResolutionBaseValue() ;
 extern int WINDOW_ARGS ;
 
 template<typename N>
-N defaultMoveDistance = 2 ;
+N defaultMoveDistance = 1 ;
 
 
 
