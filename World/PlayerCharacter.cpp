@@ -55,7 +55,8 @@ PlayerCharacter::PlayerCharacter(Colors color, const AssetFile & imageFile, floa
  * @param randSeed A seed to initialize the random number generator
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
-    Character(rand) {}
+    Character(rand),
+    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(2), 1.0, {0, 0, 0}){}
 
 
 /**

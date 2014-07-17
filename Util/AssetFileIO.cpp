@@ -31,12 +31,12 @@ vector<AssetFile> * AssetFile::powerupImageFilenames = new vector<AssetFile> {
 } ;
 
 vector<AssetFile> * AssetFile::projectileImageFilenames = new vector<AssetFile> {
-    {"LaserBlast0_Green.png",   "/Assets/Weapons/LaserBlast0_Green.png",	AssetType::projectile, Colors::green},
-	{"LaserBlast0_Red.png",		"/Assets/Weapons/LaserBlast0_Red.png",		AssetType::projectile, Colors::red},
-	{"LaserBlast1_Blue.png",	"/Assets/Weapons/LaserBlast1_Blue.png",		AssetType::projectile, Colors::blue},
-	{"LaserBlast1_Green.png",	"/Assets/Weapons/LaserBlast1_Green.png",	AssetType::projectile, Colors::green},
-	{"LaserBlast2_Blue.png",	"/Assets/Weapons/LaserBlast2_Blue.png",		AssetType::projectile, Colors::blue},
-	{"LaserBlast2_Red.png",		"/Assets/Weapons/LaserBlast2_Red.png",		AssetType::projectile, Colors::red}
+    {"LaserBlast0_Green.png",   "/Assets/Projectiles/LaserBlast0_Green.png",	AssetType::projectile, Colors::green},
+	{"LaserBlast0_Red.png",		"/Assets/Projectiles/LaserBlast0_Red.png",		AssetType::projectile, Colors::red},
+	{"LaserBlast1_Blue.png",	"/Assets/Projectiles/LaserBlast1_Blue.png",		AssetType::projectile, Colors::blue},
+	{"LaserBlast1_Green.png",	"/Assets/Projectiles/LaserBlast1_Green.png",	AssetType::projectile, Colors::green},
+	{"LaserBlast2_Blue.png",	"/Assets/Projectiles/LaserBlast2_Blue.png",		AssetType::projectile, Colors::blue},
+	{"LaserBlast2_Red.png",		"/Assets/Projectiles/LaserBlast2_Red.png",		AssetType::projectile, Colors::red}
 } ;
 
 vector<AssetFile> * AssetFile::shieldImageFilenames = new vector<AssetFile> {
