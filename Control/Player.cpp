@@ -29,8 +29,7 @@ void Player::initDefaultPlayers() {
 Player::Player() :
 	ID(IDs),
 	name(""),
-	playerCharacter(Colors::blue, AssetFileIO::getRandomImageFile(defaultPCAssetType).fileName, defaultSize,
-					defaultStartingPosition,"", Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(3))
+	playerCharacter()
 {
 	IDs++ ;
 	setNames() ;

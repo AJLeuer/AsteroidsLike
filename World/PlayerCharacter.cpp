@@ -13,7 +13,7 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(3), size.getModifier(), {loc->getX()/2, loc->getY(), loc->getZ()}){}
+    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(2), size.getModifier(), {loc->getX()/2, loc->getY(), loc->getZ()}){}
 
 
 /**
@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(Colors color, const AssetFile & imageFile, floa
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand),
-    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(2), 1.0, {0, 0, 0}){}
+    weapon(Colors::blue, AssetFile::projectileImageFilenames->at(2), 1.0, {loc->getX()/2, loc->getY(), loc->getZ()}){}
 
 
 /**
