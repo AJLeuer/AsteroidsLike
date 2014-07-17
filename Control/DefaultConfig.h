@@ -112,6 +112,8 @@ N defaultMoveDistance = 8 ;
 
 extern chrono::nanoseconds refreshTime ;
 
+extern chrono::milliseconds defaultSleepTime ;
+
 /* todo replace at runtime with
  user-selected values */
 extern char   JUMP_KEY ;

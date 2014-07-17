@@ -42,6 +42,8 @@ int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need pro
 
 chrono::nanoseconds refreshTime = four_milliseconds ;
 
+chrono::milliseconds defaultSleepTime = chrono::milliseconds(240) ;
+
 char   JUMP_KEY		  =         ' ' ;
 char * MOVE_UP_KEY    = (char *)"W" ;
 char * MOVE_DOWN_KEY  = (char *)"S" ;

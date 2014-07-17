@@ -151,13 +151,13 @@ BasicMutex * Velocity<N>::sharedVelMutex = new BasicMutex() ;
 template<typename N>
 void Velocity<N>::monitorVelocity() {
 	
-	auto velocityMonitorLambda = [&] () -> void {
+	auto velocityMonitor = [&] () -> void {
 		while(*velocityMonitorContinueSignal) {
 			calculateVelocity() ;
 		}
 	} ;
 	
-	std::thread thr(velocityMonitorLambda) ;
+	std::thread thr(velocityMonitor) ;
 	velocityMonitorInit = true ;
 	thr.detach() ;	
 }
@@ -169,7 +169,7 @@ void Velocity<N>::calculateVelocity() {
 	auto * vs = &velocityStorage ;
 	/* end debug */
 	
-	auto defaultSleepTime = chrono::milliseconds(240) ;
+	
     
 	for (auto i = 0 ; (i < velocityStorage.size()) && (*velocityMonitorContinueSignal) ; i++) {
 		
@@ -203,12 +203,6 @@ void Velocity<N>::calculateVelocity() {
 				auto timePassed = totalTime.count() ;
 				
 				double velocity = (totalDistance / timePassed) ;
-				
-				/* debug */
-				if (velocity > 0.4) {
-					;
-				}
-				/* end debug */
 				
 				velocityStorage.at(i)->lastVelocity = velocity ;
 				velocityStorage.at(i)->lastDistance = *velocityStorage.at(i)->distance ;
