@@ -93,18 +93,11 @@ void WorldController::main() {
 		
 		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
 		auto timeElapsed = time2 - startTime ;
-		
 		auto sleepTime = refreshTime - timeElapsed ;
+		
 		worldLoopCount++ ;
+		
 		this_thread::sleep_for(sleepTime) ;
-		
-        
-		cout << "World loop count: " << *wloop << endl ; //debug code, remove
-		
-		/* Sync loops */
-		while (worldLoopCount > mainGameLoopCount) {
-           /* wait */
-		}
 	}
 }
 

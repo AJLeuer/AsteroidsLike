@@ -55,7 +55,7 @@ Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
  * in the destination coordinate system. To work properly, this function an additonal
  * pair of coordinates: first coordinates from the source coordinate system, followed by
  * equivalent coordinates from the destination coordinate system. "Equivalent" implies that if these two
- * coordinate systems were overlaid on top of each other, then these two coordinates would be
+ * coordinate systems were overlaid one on top of the other, then these two coordinates would be
  * in the same spot. The simplest way to do this is to simply give the origin ({0, 0, 0}) from the source
  * coordinate system, and its equivalent from the destination coordinate system.
  *

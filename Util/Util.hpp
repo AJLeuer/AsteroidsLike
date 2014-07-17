@@ -29,12 +29,23 @@ using namespace std ;
  * @return The average of the two values
  */
 template<typename N>
-inline N average(N first, N second) {
+N average(N first, N second) {
 	N sum = (first + second) ;
 	double result = (static_cast<double>(sum) / static_cast<double>(2)) ;
 	return static_cast<N>(result) ;
 }
 
+template<typename N>
+N average(const vector<N> & numbers) {
+	unsigned i = 0 ;
+	N sum = 0 ;
+	while(i < numbers.size()) {
+		sum += numbers.at(i) ;
+		i++ ;
+	}
+	N result = sum/i ;
+	return result ;
+}
 
 
 template<typename T>

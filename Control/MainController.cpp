@@ -91,17 +91,11 @@ void MainController::main() {
 		
 		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
 		auto timeElapsed = time2 - startTime ;
-		
 		auto sleepTime = (refreshTime - timeElapsed) ;
-		mainGameLoopCount++ ;
-		this_thread::sleep_for(sleepTime) ;
 		
-		cout << "Main loop count: " << *mloop << endl ; //debug code, remove
-        
-        /* Sync loops */
-        while (mainGameLoopCount > worldLoopCount) {
-            /* wait */
-        }
+		mainGameLoopCount++ ;
+		
+		this_thread::sleep_for(sleepTime) ;
 	}
 
 	/* exit signaled GLOBAL_CONTINUE_SIGNAL_FALSE. We're outta here! Handing off to MainController::exit() */

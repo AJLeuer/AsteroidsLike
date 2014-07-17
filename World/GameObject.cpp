@@ -302,6 +302,7 @@ void GameObject::checkForMarkedDeletions() { //will run on own thread
 				allGameObjects->at(i) = nullptr ;
 			}
 		}
+		this_thread::sleep_for(defaultSleepTime) ;
 	}
 }
 
@@ -342,8 +343,7 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(Position<float> * to) {
-    
-
+	
     map->erase(loc, this) ;
         
     to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
@@ -354,18 +354,15 @@ void GameObject::moveTo(Position<float> * to) {
 	
 	{
 	/* Debug code */
-	/*
 	stringstream ss ;
 	ss << "Current size of loc archive: " << loc->getHistory()->size() << '\n' ;
 	DebugOutput << ss.rdbuf() ;
-	*/
 	/* end debug */
 	}
 }
 
 void GameObject::moveTo(Position<float> to) {
-    
-
+	
     map->erase(loc, this) ;
         
     to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
