@@ -23,7 +23,7 @@ PlayerCharacter::PlayerCharacter() :
  */
 PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
     Character(other), weapon(other.weapon),
-    moveInfo(other.moveInfo) {}
+    moveFlag(other.moveFlag) {}
 
 /**
  * Move constructor for PlayerCharacter
@@ -32,7 +32,7 @@ PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
  */
 PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
     Character(other), weapon(std::move(other.weapon)),
-    moveInfo(std::move(other.moveInfo)) {}
+    moveFlag(other.moveFlag) {}
 
 /**
  * Constructs a PlayerCharacter based on the arguments given
@@ -73,7 +73,7 @@ PlayerCharacter::~PlayerCharacter() {}
 PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
     if (this != &rhs) {
         this->Character::operator=(rhs) ;
-		this->moveInfo = rhs.moveInfo ;
+		this->moveFlag = rhs.moveFlag ;
     }
     return *this ;
     
@@ -87,7 +87,7 @@ PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
 PlayerCharacter & PlayerCharacter::operator=(PlayerCharacter && rhs) {
     if (this != &rhs) {
         this->Character::operator=(std::move(rhs)) ;
-		this->moveInfo = std::move(rhs.moveInfo) ;
+		this->moveFlag = rhs.moveFlag ;
     }
     return *this ;
 }
@@ -119,7 +119,7 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection) {
 	
 	printPositition() ;
 	
-	moveInfo.first = true ;
+	moveFlag = true ;
 }
 
 //using GameObject's implementation for now, may change later
@@ -138,7 +138,6 @@ void PlayerCharacter::attack(PlayerCharacter * enemy) {
 
 void PlayerCharacter::jump() {
     GameObject::jump() ;
-	
     #ifdef DEBUG_MODE
     printPositition() ;
     #endif
@@ -148,9 +147,9 @@ void PlayerCharacter::jump() {
 	update() to make sure that the player's
 	character updates smoothly, not sporadically */
 void PlayerCharacter::update() {
-	if (moveInfo.first) {
-		move(moveInfo.second) ;
-		moveInfo = {false, defaultMoveDistance<float>} ;
+	if (moveFlag) {
+		move() ;
+		moveFlag = false ;
 	}
 }
 

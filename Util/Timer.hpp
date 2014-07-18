@@ -17,7 +17,9 @@
 
 using namespace std ;
 
-
+/**
+ * @brief A class providing simple nanosecond-precision timing facilities
+ */
 class Timer {
 	
 private:
@@ -38,21 +40,24 @@ public:
 	Timer & operator=(Timer && rhs) ;
 	
 	/**
-	 * Starts the timer
+	 * @brief Starts the timer.
 	 */
 	void startTimer() ;
 	
 	/**
-	 * 1 millisecond = 1000000 nanoseconds
+	 * @brief Checks the time elapsed since startTimer() was called. 
+	 *		  Unlike stopTimer(), this function will not stop the timer.
+	 *
+	 * @note 1 millisecond = 1000000 nanoseconds
 	 *
 	 * @return The time elapsed in nanoseconds.
 	 */
 	std::chrono::nanoseconds checkTimeElapsed() ;
 	
 	/**
-	 * Stops timer and returns the time elapsed.
+	 * @brief Stops timer and returns the time elapsed since startTimer() was called.
 	 *
-	 * 1 millisecond = 1000000 nanoseconds
+	 * @note 1 millisecond = 1000000 nanoseconds
 	 *
 	 * @return The time elapsed in nanoseconds.
 	 */

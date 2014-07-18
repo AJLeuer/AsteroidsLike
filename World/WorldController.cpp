@@ -98,7 +98,7 @@ void WorldController::main() {
 		
 		worldLoopCount++ ;
 		
-		this_thread::sleep_for(sleepTime) ;
+		//this_thread::sleep_for(sleepTime) ;
 		
 		if (worldLoopCount > mainGameLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;

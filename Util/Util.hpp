@@ -265,7 +265,7 @@ inline unsigned termHeight() {
  * @param append The text to append
  */
 template<class T>
-string operator +(const string & str, const T & rhs) {
+string operator+(const string & str, const T & rhs) {
 	string app = to_string(rhs) ;
 	string ret = str ;
 	ret += app ;

@@ -40,7 +40,7 @@ Resolution<unsigned> * currentResolutionBaseValue() { return new Resolution<unsi
 
 int WINDOW_ARGS = (SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN) ; /* will always need proper initialization to check for DPI changes */
 
-chrono::nanoseconds refreshTime = four_milliseconds ;
+chrono::nanoseconds refreshTime = one_millisecond ;
 
 chrono::milliseconds defaultSleepTime = chrono::milliseconds(240) ;
 

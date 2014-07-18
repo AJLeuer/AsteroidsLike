@@ -29,10 +29,10 @@ protected:
     
     
 	/**
-	 * A std::pair that holds a bool indicating whether this object will move at the next
-	 * update, and (if so) how far it will move
+	 * @brief A boolean flag which, when set to true, indicated that this PlayerCharacter should move()
+	 *		  on the next call to update
 	 */
-	pair<bool, float> moveInfo = {false, defaultMoveDistance<float>} ;
+	bool moveFlag = false ;
 	
 	
 public:

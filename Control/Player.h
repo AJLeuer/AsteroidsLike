@@ -73,6 +73,13 @@ public:
 	
 	~Player() { InputController::deregister(&playerCharacter) ; }
 	
+	/**
+	 * @brief Creates a text display of the Player's velocity onscreen.
+	 *
+	 * @param pos The position (x, y) onscreen where the text will be shown
+	 * @param foreground The color of the text
+	 * @param background The color of the background
+	 */
 	void displayVelocity(Position<float> pos, GameColor foreground, GameColor background) ;
 
 	/* implementing these just so we're not considered an abstract class */

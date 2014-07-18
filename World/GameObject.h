@@ -37,10 +37,10 @@
 using namespace::std ;
 
 /**
- *  The base class from which all other classes in the world
- *  will inherit. This class will handle the assignment of a unique ID to each GameObject.
+ * @brief The base class from which all other classes in the world
+ *		  will inherit. This class will handle the assignment of a unique ID to each GameObject.
  *
- * @sa Character
+ * @see Character
  */
 class GameObject : public GameInterface {
 	
@@ -127,15 +127,13 @@ protected:
 public:
 	
 	/**
-	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
+	 * @note Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
 	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same.
 	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
 	 * GameState::getGameObjects().
 	 */
 	static vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
 	
-	//static const vector<GameObject*>::iterator start() { return GameObject::allGameObjects->begin() ; }
-	//static const vector<GameObject*>::iterator end() { return GameObject::allGameObjects->end() ; }
 	
     /**
      * @return The current map of GameObjects 

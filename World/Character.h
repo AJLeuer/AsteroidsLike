@@ -174,7 +174,7 @@ public:
 	const string & getName() const { return this->name ; }
 	
 	/**
-	 * Setter for name
+	 * @brief Setter for name
 	 *
 	 * @param s The Character's new name
 	 */

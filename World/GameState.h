@@ -81,6 +81,10 @@ private:
 	
 public:
 	
+	/**
+	 * Used by loops throughout the program the signal whether to continue
+	 * or end execution
+	 */
 	static bool CONTINUE_FLAG ;
 	
 	static Timer * mainGameClock ;
@@ -155,7 +159,10 @@ Position<N> getWindowOriginAsWorldCoord() {
 
 
 
-
+/**
+ * Used by loops throughout the program the signal whether to continue
+ * or end execution
+ */
 #define GLOBAL_CONTINUE_FLAG GameState::CONTINUE_FLAG
 
 #endif /* defined(__GameWorld__GameState__) */

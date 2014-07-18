@@ -96,7 +96,7 @@ void MainController::main() {
 		
 		mainGameLoopCount++ ;
 		
-		this_thread::sleep_for(sleepTime) ;
+		//this_thread::sleep_for(sleepTime) ;
 		
 		if (mainGameLoopCount > worldLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;
@@ -107,7 +107,7 @@ void MainController::main() {
 		conditionalWait.notify_all() ;
 	}
 
-	/* exit signaled GLOBAL_CONTINUE_SIGNAL_FALSE. We're outta here! Handing off to MainController::exit() */
+	/* exit signaled GLOBAL_CONTINUE_FLAG. We're outta here! Handing off to MainController::exit() */
 	exit() ;
 }
 
