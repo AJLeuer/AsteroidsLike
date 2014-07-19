@@ -13,13 +13,13 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), loc){}
+    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), &loc){}
 
 
 /**
  * Copy constructor for PlayerCharacter
  *
- * @param The PlayerCharacter to be copied
+ * @param other The PlayerCharacter to be copied
  */
 PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
     Character(other), weapon(other.weapon),
@@ -28,7 +28,7 @@ PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
 /**
  * Move constructor for PlayerCharacter
  *
- * @param The PlayerCharacter to be moved
+ * @param other The PlayerCharacter to be moved
  */
 PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
     Character(other), weapon(std::move(other.weapon)),
@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand),
-    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, loc){}
+    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, & loc){}
 
 
 /**

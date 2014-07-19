@@ -95,11 +95,14 @@ protected:
 	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
 	 */
 	AssetFile textureImageFile ;
+    
+    //OutputData<float, int>
 	
 	Texture * texture = nullptr ;
 
 	Size<int> size ;
-	Pos2<float> * loc ;
+	Pos2<float> loc ;
+    
 	Vectr<float> vectr ;
 
 	bool visible ;
@@ -274,8 +277,8 @@ public:
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y, z)) ; }
 
-	void moveX(float x) { moveTo(x, loc->getY(), loc->getZ()) ; }
-	void moveY(float y) { moveTo(loc->getX(), y, loc->getZ()) ; }
+	void moveX(float x) { moveTo(x, loc.getY(), loc.getZ()) ; }
+	void moveY(float y) { moveTo(loc.getX(), y, loc.getZ()) ; }
 	
 	virtual void moveUp() ;
 	virtual void moveDown() ;
@@ -328,12 +331,12 @@ public:
 	/**
 	 * @return This GameObject's Position<float>
 	 */
-	const Position<float> * getPosition() const { return this->loc ; }
+	const Position<float> * getPosition() const { return & this->loc ; }
 
 	/**
 	 * @return This GameObject's Position history (Pos2)
 	 */
-	const Pos2<float> * getPositionHistory() const { return this->loc ; }
+	const Pos2<float> * getPositionHistory() const { return & this->loc ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space

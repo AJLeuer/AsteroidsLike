@@ -16,6 +16,7 @@
 #include <ostream>
 #include <sstream>
 #include <queue>
+#include <deque>
 
 #include <SDL2/SDL_video.h>
 
@@ -566,7 +567,7 @@ protected:
 	 * with the most recent positions at the end of the vector, and the initial position at
 	 * the front. See archive().
 	 */
-	queue<Position<N>> * pastPositions ;
+	deque<Position<N>> * pastPositions ;
 
 	/**
 	 * Saves our current state
@@ -575,9 +576,9 @@ protected:
 		Position<N> archived(this->x, this->y, this->z) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
 
 		if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
-			pastPositions->pop() ;
+			pastPositions->pop_front() ;
 		}
-		pastPositions->push(archived) ;
+		pastPositions->push_back(archived) ;
 	}
 
 public:
@@ -585,11 +586,11 @@ public:
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
      */
-	Pos2() : Position<N>(0, 0, 0), pastPositions(new queue<Position<N>>) {}
+	Pos2() : Position<N>(0, 0, 0), pastPositions(new deque<Position<N>>) {}
 	
-	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new queue<Position<N>>) {}
+	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<Position<N>>) {}
 	
-	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new queue<Position<N>>) {}
+	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
@@ -620,14 +621,14 @@ public:
     template<typename R>
 	Pos2(FastRand<R> & rand, const BoundsCheck<N> & check) :
 		Position<N>(rand, check),
-		pastPositions(new queue<Position<N>>) {}
+		pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Copy constructor for Pos2
      */
     Pos2(const Pos2 & other) : Position<N>(other)  {
 		if (other.pastPositions != nullptr) {
-			this->pastPositions = new queue<Position<N>>(*other.pastPositions) ;
+			this->pastPositions = new deque<Position<N>>(*other.pastPositions) ;
 		}
 	}
 
@@ -636,7 +637,7 @@ public:
      */
     Pos2(const Pos2 & other, const BoundsCheck<N> & check) : Position<N>(other, check)  {
 		if (other.pastPositions != nullptr) {
-			this->pastPositions = new queue<Position<N>>(*other.pastPositions) ;
+			this->pastPositions = new deque<Position<N>>(*other.pastPositions) ;
 		}
 	}
 
@@ -680,7 +681,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y, N z) : Position<N>(x, y, z), pastPositions(new queue<Position<N>>) {}
+	Pos2(N x, N y, N z) : Position<N>(x, y, z), pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Creates a Pos2 with coordinates initialized to the
@@ -690,7 +691,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y, N z, const BoundsCheck<N> & check) : Position<N>(x, y, z, check), pastPositions(new queue<Position<N>>) {}
+	Pos2(N x, N y, N z, const BoundsCheck<N> & check) : Position<N>(x, y, z, check), pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Destructor for Position
@@ -728,10 +729,10 @@ public:
 
 	    this->Position<N>::operator=(std::move(rhs)) ;
 
-        pastPositions = new queue<Position<N>>() ;
+        pastPositions = new deque<Position<N>>() ;
 
-		for (auto i = rhs.pastPositions->begin() ; i != rhs.pastPositions.end() ; i++) {
-			this->pastPositions->push(Position<N>(*i)) ; //push_back()
+		for (auto i = rhs.pastPositions->begin() ; i != rhs.pastPositions->end() ; i++) {
+			this->pastPositions->push_back(Position<N>(*i)) ; //push_back()
 		}
 
         return *this;
@@ -842,7 +843,7 @@ public:
 		return (Position<N>)(this) ;
 	}
 	
-	const queue<Position<N>> * getHistory() {
+	const deque<Position<N>> * getHistory() {
 		return pastPositions ;
 	}
 

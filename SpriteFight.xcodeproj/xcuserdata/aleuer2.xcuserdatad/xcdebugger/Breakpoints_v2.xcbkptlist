@@ -6,32 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "World/PlayerCharacter.cpp"
-            timestampString = "426891544.003257"
+            filePath = "Output/TextOutput.cpp"
+            timestampString = "427421322.888321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "PlayerCharacter::PlayerCharacter()"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "TextOutput::update()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "World/PlayerCharacter.cpp"
-            timestampString = "426891907.177885"
+            filePath = "Control/Player.cpp"
+            timestampString = "427421672.618614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "PlayerCharacter::PlayerCharacter(PlayerCharacter &amp;&amp; other)"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "Player::displayVelocity(Position&lt;float&gt; pos, GameColor foreground, GameColor background)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

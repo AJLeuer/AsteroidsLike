@@ -31,6 +31,7 @@
 
 #include "../Control/Configuration.h"
 
+
 template<typename POSUTYPE, typename SIZEUTYPE>
 struct OutputData {
 	
