@@ -117,7 +117,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 	auto velocityDisplay = [=] () -> void {
 		
 		stringstream stream ;
-		stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
+		stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 	
 		string str(stream.str()) ;
 		
@@ -131,7 +131,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 			
 			if (currVelocity != lastVelocity) {
 				stream = stringstream() ; //reset the sstream
-				stream << "Player " << this->ID << "'s " << setprecision(2) << std::fixed << *playerCharacter.getVector()->getVelocity() ;
+				stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 				str = stream.str() ;
 				out.updateText(str) ;
 			}

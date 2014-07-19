@@ -54,6 +54,11 @@ protected:
 	 */
 	static void setupMainContrExit() ;
 	
+	/**
+	 * @brief Exits the game
+	 * 
+	 * @see init()
+	 */
 	static void exit(int sig = 0) ;
 	
 public:

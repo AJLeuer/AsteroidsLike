@@ -56,7 +56,6 @@ void GraphicalOutput::init() {
 							  WINDOW_ARGS) ;
 	
 	{
-		
 	/* debug code */
 	stringstream ab ;
 	ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;

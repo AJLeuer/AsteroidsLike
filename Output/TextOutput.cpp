@@ -88,7 +88,7 @@ void TextOutput::update() {
 	
 	if (updateFlag) { /* check if we actually need to update anything */
 		
-		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
+		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
 		/* Debug code */
 		stringstream ss ;
@@ -113,6 +113,7 @@ void TextOutput::update() {
 
 void TextOutput::updateText(const string & newText) {
 	this->text = newText ;
+	size = getSizeOfText(text) ;
 	/* set updateflag so update() knows to run */
 	updateFlag = true ;
 }

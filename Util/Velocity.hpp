@@ -13,6 +13,10 @@
 #include <thread>
 #include <mutex>
 #include <vector>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
 
 #include <assert.h>
 
@@ -131,7 +135,7 @@ public:
 	Velocity & operator=(Velocity && rhs)  = delete ;
 
 	double getValue() {
-		return lastVelocity ;
+		return lastVelocity * 100 ;
 	}
 	 
 } ;
@@ -221,13 +225,13 @@ void Velocity<N>::calculateVelocity() {
 
 template<typename N>
 ostream & operator<<(std::ostream & os, Velocity<N> * vel) {
-	os << "Velocity: " << vel->getValue() ;
+	os << "Velocity: " << setprecision(3) << std::fixed << vel->getValue() ;
 	return os ;
 }
 
 template<typename N>
 ostream & operator<<(std::ostream & os, Velocity<N> & vel) {
-	os << "Velocity: " << vel.getValue() ;
+	os << "Velocity: " << setprecision(3) << std::fixed << vel.getValue() ;
 	return os ;
 }
 
