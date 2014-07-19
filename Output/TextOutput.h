@@ -51,8 +51,6 @@ protected:
 	
 	string text ;
 	
-	Texture * texture ;
-	
 	Position<float> position ;
 	
 	Size<int> size ;
@@ -98,7 +96,7 @@ public:
 	
 	OutputData<float, int> * getOutputData() { update() ; return &(this->data) ; }
 	
-	void erase() { text = "" ; if (texture != nullptr) SDL_DestroyTexture(texture) ; texture = nullptr ;}
+	void erase() { text = "" ;}
 	
 	
     

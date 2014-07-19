@@ -24,8 +24,7 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-    textureImageFile(AssetFile(FastRand<int>::defaultRandom)),
-	texture(nullptr),
+    outputData(FastRand<int>::defaultRandom, & loc, & size),
 	size(Size<int>()),
 	visible(true),
 	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
@@ -48,8 +47,7 @@ GameObject::GameObject() :
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
-	textureImageFile(other.textureImageFile),
-	texture(nullptr), //this GameObject willfigure out what it's own texture and size via initGraphicsData()
+    outputData(other.outputData),
 	size(Size<int>()),
 	visible(other.visible),
 	loc(other.loc),
@@ -93,8 +91,7 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
-	textureImageFile(std::move(other.textureImageFile)),
-	texture(other.texture), /* No initGraphicsData() for move operations, just steal from other */
+    outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
 	visible(other.visible),
     loc(std::move(other.loc)),
@@ -117,14 +114,12 @@ GameObject::GameObject(GameObject && other) :
 	 allGameObjects, don't need to add us again */
 	
 	other.ID = -1 ;
-	other.textureImageFile = "" ;
-	other.texture = nullptr ;
 }
 
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
-	textureImageFile(imageFile),
+	outputData(imageFile, &loc, &size),
 	size(Size<int>()),
 	visible(visible),
 	loc(loc_, BoundsCheck<float>::defaultCheck),
@@ -147,7 +142,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	textureImageFile(AssetFile(rand)),
+	outputData(rand, &loc, &size),
 	visible(true),
 	size(Size<int>()),
 	loc(rand, BoundsCheck<float>::defaultCheck),
@@ -176,8 +171,6 @@ GameObject::~GameObject() {
 	
 	map->erase(& loc, this) ;
 
-	SDL_DestroyTexture(texture) ;
-	
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
@@ -193,9 +186,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
 
 		/* Keep ID the same */
-		this->textureImageFile = rhs.textureImageFile ;
-		SDL_DestroyTexture(texture) ;
-        this->texture = nullptr ;
+        this->outputData = rhs.outputData ;
 		this->visible = rhs.visible ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
@@ -223,9 +214,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 	if (this != &rhs) {
 		
 		this->ID = rhs.ID ;
-		this->textureImageFile = std::move(rhs.textureImageFile) ;
-		SDL_DestroyTexture(texture) ;
-		this->texture = rhs.texture ; /* No initGraphicsData() for move operations, just steal from other */
+		this->outputData = std::move(rhs.outputData) ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		this->visible = rhs.visible ;
 		
@@ -233,8 +222,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->vectr = std::move(rhs.vectr) ;
 		
 		rhs.ID = -1 ;
-		rhs.textureImageFile = "" ;
-		rhs.texture = nullptr ;
 	}
 	return *this ;
 }
@@ -258,27 +245,14 @@ bool GameObject::operator==(GameObject & other) const {
 
 void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifier) {
 
-	//set texture
-	if ((texture == nullptr) || (overrideCurrentTexture)) {
-		Texture * tex = nullptr ;
-		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->textureImageFile, getType()) ;
-
-		if (tex == nullptr) {
-			stringstream ss ;
-			ss << "Load texture failed." << '\n' ;
-			ss << SDL_GetError() << '\n' ;
-			cerr << ss.rdbuf() ;
-			throw exception() ;
-		}
-
-		this->setTexture(tex) ;
-	}
+    /* texture should be initialized already */
 
 	//set size
 	int tempW  ; 
 	int tempH  ;
 	
-	SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
+	SDL_QueryTexture(outputData.getTexture(), NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
+    
 	size.setSize(tempW, tempH, sizeModifier) ; //assign new size to this GameObject
 }
 
@@ -342,9 +316,9 @@ void GameObject::moveTo(Position<float> * to) {
 	
 	{
 	/* Debug code */
-	stringstream ss ;
-	ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
-	DebugOutput << ss.rdbuf() ;
+	//stringstream ss ;
+	//ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
+	//DebugOutput << ss.rdbuf() ;
 	/* end debug */
 	}
 }
@@ -360,9 +334,9 @@ void GameObject::moveTo(Position<float> to) {
 
 
 	/* Debug code */
-	stringstream ss ;
-	ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
-	DebugOutput << ss.rdbuf() ;
+	//stringstream ss ;
+	//ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
+	//DebugOutput << ss.rdbuf() ;
 	/* end debug */
 }
 
@@ -474,16 +448,16 @@ void GameObject::allyWith(const GameObject * other) {
 }
 
 void GameObject::setImageFile(string imageFileName) {
-	this->textureImageFile = imageFileName ;
+	outputData.setAssetFile(imageFileName) ;
 }
 
 const AssetFile * GameObject::getImageFile() const {
-	return &(this->textureImageFile) ;
+	return outputData.getAssetFile() ;
 }
 
 Texture * GameObject::getTexture() const {
 	if (visible) {
-		return texture ;
+		return outputData.getTexture() ;
 	}
 	else {
 		return nullptr ;

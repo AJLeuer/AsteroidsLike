@@ -262,7 +262,7 @@ inline unsigned termHeight() {
  * Overloads operator + for std::string to allow
  * appending any type T
  *
- * @param append The text to append
+ * @param rhs The text to append
  */
 template<class T>
 string operator+(const string & str, const T & rhs) {

@@ -66,12 +66,10 @@ void TextOutput::exit() {
 
 
 TextOutput::TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) :
-	text(text), position(pos), size(), data(), foreground(foreground), background(background), texture(nullptr)
+	text(text), position(pos), size(), data(&pos, &size), foreground(foreground), background(background)
 {
 	
 	size = getSizeOfText(text) ;
-	
-	data.setAll(&texture, &position, &size) ;
 	
 	
 	GameState::addAdditionalGraphicalOutputData(&data) ;
@@ -90,12 +88,6 @@ void TextOutput::update() {
 	
 	if (updateFlag) { /* check if we actually need to update anything */
 		
-		if (texture != nullptr) {
-			SDL_DestroyTexture(texture) ;
-		}
-		
-		texture = nullptr ;
-		
 		Surface * surface = TTF_RenderUTF8_Shaded(gameFont, text.c_str(), foreground.convertToSDL_Color(), background.convertToSDL_Color()) ;
 		
 		/* Debug code */
@@ -104,7 +96,7 @@ void TextOutput::update() {
 		DebugOutput << ss.rdbuf() ;
 		/* End debug code */
 		
-		texture = SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface) ;
+		data.setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
 		
 		/* Debug code */
 		stringstream st ;

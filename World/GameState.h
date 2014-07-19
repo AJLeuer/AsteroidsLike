@@ -28,13 +28,15 @@
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Timer.hpp"
 
-#include "../Output/OutputData.hpp"
-
 #include "ForwardDecl.h"
 
 #include "../Control/DefaultConfig.h"
 
 using namespace std ;
+
+/* Forward-declaring */
+template<typename POSUTYPE, typename SIZEUTYPE>
+struct OutputData ;
 
 /**
  * A singleton class that will be used purely for shared storage and retrieval.

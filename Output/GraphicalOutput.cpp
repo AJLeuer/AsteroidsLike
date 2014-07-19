@@ -128,7 +128,7 @@ void GraphicalOutput::render(const GameObject * object) {
 
 void GraphicalOutput::render(OutputData<float, int> * output) {
 	if (output != nullptr) {
-		render(*output->texture, output->position, output->size) ;
+		render(output->texture, output->position, output->size) ;
 	}
 }  
 

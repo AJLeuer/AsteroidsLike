@@ -90,18 +90,14 @@ private:
 protected:
 	
 	int ID ;
-
-	/**
-	 * String containing path to and filename of file that holds the sprite image that will represent this GameObject
-	 */
-	AssetFile textureImageFile ;
     
-    //OutputData<float, int>
+    OutputData<float, int> outputData ;
 	
-	Texture * texture = nullptr ;
-
+    
+    Pos2<float> loc ;
+    
 	Size<int> size ;
-	Pos2<float> loc ;
+	
     
 	Vectr<float> vectr ;
 
@@ -326,7 +322,7 @@ public:
 	/**
 	 * @return This GameObject's Colors
 	 */
-	Colors getColor() const { return textureImageFile.color ; }
+	Colors getColor() const { return outputData.getAssetFile()->color ; }
 	
 	/**
 	 * @return This GameObject's Position<float>
@@ -350,7 +346,7 @@ public:
 	 */
 	void setImageFile(string imageFileName) ;
 	
-	void setTexture(Texture * texture) { this->texture = texture ; }
+	//void setTexture(Texture * texture) { this->outputData.setTexture(texture) ; }
 	
 	//void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
@@ -369,7 +365,7 @@ public:
 	/**
 	 * @return This GameObject's asset type
 	 */
-	AssetType getType() const { return textureImageFile.type ; }
+	AssetType getType() const { return outputData.getAssetFile()->type ; }
 	
 	void setVisible() { visible = true ; }
 	bool isVisible() const { return visible ; }

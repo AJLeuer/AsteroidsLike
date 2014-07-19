@@ -70,6 +70,9 @@ public:
 	Colors color ;
 	//other fields?
 	
+    AssetFile() :
+        AssetFile(UIImageFilenames->at(0)) {}
+
 	AssetFile(string fileName, string filePath, AssetType type, Colors color) :
 		fileName(fileName), filePath(filePath), type(type), color(color) {}
 	

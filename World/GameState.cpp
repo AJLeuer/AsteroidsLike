@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include "../Output/OutputData.hpp"
+
 #include "GameState.h"
 
 using namespace std ;
