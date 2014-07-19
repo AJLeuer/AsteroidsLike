@@ -56,7 +56,7 @@ private:
 	 * Other visual output that isn't contained in 
 	 * GameObjects
 	 */
-	static vector<OutputData *> additionalGraphicalOutputData ;
+	static vector<OutputData<float, int> *> additionalGraphicalOutputData ;
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -105,7 +105,7 @@ public:
 	 */
 	static const vector<GameObject*> * getGameObjects() ;
 	
-	static const vector<OutputData *> * getAdditionalGraphicalOutputData() { return & additionalGraphicalOutputData ; }
+	static const vector<OutputData<float, int> *> * getAdditionalGraphicalOutputData() { return & additionalGraphicalOutputData ; }
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -117,7 +117,7 @@ public:
     
 	static Renderer * getMainRenderer() ;
 	
-	static void addAdditionalGraphicalOutputData(OutputData * data)	{ additionalGraphicalOutputData.push_back(data) ; }
+	static void addAdditionalGraphicalOutputData(OutputData<float, int> * data)	{ additionalGraphicalOutputData.push_back(data) ; }
 	
 	
 } ;

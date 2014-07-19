@@ -44,7 +44,7 @@ protected:
 	
 	static vector<TextOutput *> allTextOutput ;
 	
-	static const vector<OutputData *> * viewOutputData ; /* debug variable, remove this */
+	static const vector<OutputData<float, int> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
 	bool updateFlag = false ;
@@ -57,7 +57,7 @@ protected:
 	
 	Size<int> size ;
 	
-	OutputData data ;
+	OutputData<float, int> data ;
 	
 	GameColor foreground, background ;
 	
@@ -96,7 +96,7 @@ public:
 	
 	void updateBackgroundColor(GameColor color) ;
 	
-	OutputData * getOutputData() { update() ; return &(this->data) ; }
+	OutputData<float, int> * getOutputData() { update() ; return &(this->data) ; }
 	
 	void erase() { text = "" ; if (texture != nullptr) SDL_DestroyTexture(texture) ; texture = nullptr ;}
 	

@@ -18,7 +18,7 @@ bool GameState::graphicsAreInit = false ;
 
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 
-vector<OutputData *> GameState::additionalGraphicalOutputData = vector<OutputData *>() ;
+vector<OutputData<float, int> *> GameState::additionalGraphicalOutputData = vector<OutputData<float, int> *>() ;
 
 const GameMap<GameObject> * GameState::map ;
 

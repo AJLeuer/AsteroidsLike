@@ -25,6 +25,8 @@
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
 
+#include "../Output/OutputData.hpp"
+
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"

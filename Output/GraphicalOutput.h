@@ -61,7 +61,7 @@ protected:
 	 */
 	static void render(const GameObject * object) ;
 	
-	static void render(OutputData * output) ;
+	static void render(OutputData<float, int> * output) ;
     
 	/**
 	 * Renders the given texture at the desired position and size.

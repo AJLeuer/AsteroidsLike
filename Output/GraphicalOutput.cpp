@@ -99,7 +99,7 @@ void GraphicalOutput::render() {
 		render(temp) ;
 	}
 	for (auto i = 0 ; i < GameState::getAdditionalGraphicalOutputData()->size() ; i++) {
-		auto cont = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
+		auto outputData = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
 		render(GameState::getAdditionalGraphicalOutputData()->at(i)) ;
 	}
 }
@@ -126,7 +126,7 @@ void GraphicalOutput::render(const GameObject * object) {
 }
 
 
-void GraphicalOutput::render(OutputData * output) {
+void GraphicalOutput::render(OutputData<float, int> * output) {
 	if (output != nullptr) {
 		render(*output->texture, output->position, output->size) ;
 	}
