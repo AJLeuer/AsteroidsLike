@@ -130,11 +130,11 @@ void GraphicalOutput::render(OutputData * output) {
 	if (output != nullptr) {
 		render(*output->texture, output->position, output->size) ;
 	}
-}
+}  
 
 void GraphicalOutput::update() {
-	SDL_RenderClear(renderer);
-	TextOutput::updateAll() ;
+    TextOutput::updateAll() ;
+	SDL_RenderClear(renderer) ;
 	render() ;
 	SDL_RenderPresent(renderer) ;
 }

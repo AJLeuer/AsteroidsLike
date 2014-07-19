@@ -35,14 +35,14 @@ public:
 	/**
 	 * Copy constructor for NPC
 	 *
-	 * @param The NPC to be copied
+	 * @param other The NPC to be copied
 	 */
 	NPC(const NPC & other) ;
 	
 	/**
 	 * Move constructor for NPC
 	 *
-	 * @param The NPC to be moved
+	 * @param other The NPC to be moved
 	 */
 	NPC(NPC && other) ;
 	
@@ -50,8 +50,6 @@ public:
 	/**
 	 * Constructs an NPC based on the arguments given
 	 *
-	 * @param color The color of this NPC
-	 * @param symbol The icon to be used by this NPC
 	 * @param name The name of this NPC
 	 * @param alive Whether this NPC is dead or alive
 	 * @param state The CharacterState of this NPC
@@ -67,7 +65,7 @@ public:
 	 * Constructs a randomized NPC. The client has to option to simply leave the argument randSeed as
 	 * 0, in which case the constructor will generate its own random number.
 	 *
-	 * @param randSeed A seed to initialize the random number generator
+	 * @param rand A seed to initialize the random number generator
 	 */
 	NPC(FastRand<int> rand) ;
 	
@@ -104,7 +102,7 @@ public:
 	 * Overloads the overload of operator(). The actual implementation
 	 * and uses for this are still undecided.
 	 *
-	 * @param otherNPC A reference to another NPC
+	 * @param other A reference to another NPC
 	 */
 	void operator()(Character & other) ;
 	

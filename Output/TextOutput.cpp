@@ -34,10 +34,6 @@ void TextOutput::init() {
 }
 
 Size<int> TextOutput::getSizeOfText(const string & str) {
-	/*
-	 size_t l = strlen(str.c_str()) ; // running into compatibility issues with std::strings
-	char * cstr = (char *) malloc(l + 1) ;
-    strcpy(cstr, str.c_str()) ; */
     
 	int w ;
 	int h ;
@@ -112,7 +108,7 @@ void TextOutput::update() {
 		
 		/* Debug code */
 		stringstream st ;
-		ss << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
+		st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
 		DebugOutput << st.rdbuf() ;
 		/* End debug code */
 		

@@ -46,14 +46,14 @@ public:
 	/**
 	 * Copy constructor for PlayerCharacter
 	 *
-	 * @param The PlayerCharacter to be copied
+	 * @param other PlayerCharacter to be copied
 	 */
 	PlayerCharacter(const PlayerCharacter & other) ;
 	
 	/**
 	 * Move constructor for PlayerCharacter
 	 *
-	 * @param The PlayerCharacter to be moved
+	 * @param other The PlayerCharacter to be moved
 	 */
 	PlayerCharacter(PlayerCharacter && other) ;
 	
@@ -74,7 +74,7 @@ public:
 	 * Constructs a randomized PlayerCharacter. The client has to option to simply leave the argument randSeed as
 	 * 0, in which case the constructor will generate its own random number.
 	 *
-	 * @param randSeed A seed to initialize the random number generator
+	 * @param rand A seed to initialize the random number generator
 	 */
 	PlayerCharacter(FastRand<int> rand) ;
 	
@@ -111,7 +111,7 @@ public:
 	 * Overloads the overload of operator(). The actual implementation
 	 * and uses for this are still undecided.
 	 *
-	 * @param otherCharacter A reference to another PlayerCharacter
+	 * @param other A reference to another PlayerCharacter
 	 */
 	void operator()(GameObject * other) ;
 	

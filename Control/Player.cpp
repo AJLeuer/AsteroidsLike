@@ -22,7 +22,7 @@ void Player::initDefaultPlayers() {
 	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, defaultStartingPosition, "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, defaultStartingPosition, "Blue",
+	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, defaultStartingPosition, "Red",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(2)) ;
 }
 

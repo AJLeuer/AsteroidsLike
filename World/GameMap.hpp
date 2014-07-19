@@ -84,8 +84,8 @@ public:
 	 * Returns a nullptr if none found
 	 * 
 	 * @param start The Position<N> of the object that wants to search for nearby objects
-	 * @param maxDistX The maximum distance to search longtitudinally
-	 * @param maxDistY The maximum distance to search latitudinally
+	 * @param x_lim The maximum distance to search longtitudinally
+	 * @param y_lim The maximum distance to search latitudinally
 	 */
 	template<typename N>
 	vector<T*> * findNearby(const Position<N> * start, const N x_lim, const N y_lim) ;

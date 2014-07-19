@@ -45,7 +45,7 @@ public:
 	void startTimer() ;
 	
 	/**
-	 * @brief Checks the time elapsed since startTimer() was called. 
+	 * @brief Checks the time elapsed since startTimer() was called.
 	 *		  Unlike stopTimer(), this function will not stop the timer.
 	 *
 	 * @note 1 millisecond = 1000000 nanoseconds
@@ -58,7 +58,7 @@ public:
 	 * @brief Stops timer and returns the time elapsed since startTimer() was called.
 	 *
 	 * @note 1 millisecond = 1000000 nanoseconds
-	 *
+     *
 	 * @return The time elapsed in nanoseconds.
 	 */
 	std::chrono::nanoseconds stopTimer() ;

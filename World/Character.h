@@ -17,8 +17,8 @@
 #include "../Control/Input.hpp"
 
 /**
- * A class which serves as the basic template for just about any person in the game world, whether player 
- * or npc.
+ * @brief A class which serves as the basic template for just about any person in the game world, whether player
+ *        or npc.
  */
 class Character : public GameObject {
 
@@ -57,7 +57,7 @@ protected:
 public:
 	
 	/**
-	 * Constructs a default Character.
+	 * @brief Constructs a default Character.
 	 */
 	Character() ;
 	
@@ -65,14 +65,14 @@ public:
 	/**
 	 * Copy constructor for Character
 	 *
-	 * @param The Character to be copied
+	 * @param other Character to be copied
 	 */
 	Character(const Character & other) ;
 	
 	/**
 	 * Move constructor for Character
 	 *
-	 * @param The Character to be moved
+	 * @param other Character to be moved
 	 */
 	Character(Character && other) ;
 	
@@ -94,7 +94,7 @@ public:
 	 * Constructs a randomized Character. The client has to option to simply leave the argument randSeed as
 	 * 0, in which case the constructor will generate its own random number.
 	 *
-	 * @param randSeed A seed to initialize the random number generator
+	 * @param rand A seed to initialize the random number generator
 	 */
 	Character(FastRand<int> rand) ;
 	
@@ -131,7 +131,7 @@ public:
 	 * Overloads the overload of operator(). The actual implementation
 	 * and uses for this are still undecided.
 	 *
-	 * @param otherCharacter A reference to another Character
+	 * @param other A reference to another Character
 	 */
 	virtual void operator()(GameObject * other) ;
 	
