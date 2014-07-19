@@ -17,6 +17,7 @@
 #include <sstream>
 #include <exception>
 #include <vector>
+#include <functional>
 
 #include <cstdlib>
 #include <cstring>
@@ -96,7 +97,27 @@ public:
 	
 	OutputData<float, int> * getOutputData() { update() ; return &(this->data) ; }
 	
+	const string * viewText() { return & text ; }
+	
 	void erase() { text = "" ;}
+	
+	/**
+	 * @brief Draws a continuously updating text representation of 
+	 *		  updatingText, overriding this->text. When using this function
+	 *		  there is no need to call updateText().
+	 * 
+	 * @param updatingText The text to draw
+	 */
+	static void displayContinuousText(const string * updatingText, const Position<float> & pos, GameColor foreground, GameColor background) ;
+	
+	/**
+	 * @brief Draws a continuously updating text representation of the string returned
+	 *		  by stringUpdatingFunction, overriding this->text. When using this function
+	 *		  there is no need to call updateText().
+	 *
+	 * @param stringUpdatingFunction A function that returns the text to draw
+	 */
+	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const Position<float> & pos, GameColor foreground, GameColor background) ;
 	
 	
     

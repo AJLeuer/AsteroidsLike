@@ -136,6 +136,45 @@ void TextOutput::updateBackgroundColor(GameColor color) {
 	updateFlag = true ;
 }
 
+void TextOutput::displayContinuousText(const string * updatingText, const Position<float> & pos, GameColor foreground, GameColor background) {
+	
+	TextOutput * output = new TextOutput(*updatingText, pos, foreground, background) ;
+	
+	auto continuousTextDisplay = [=] () -> void {
+		
+		while (GLOBAL_CONTINUE_FLAG) {
+			if (*updatingText != output->text) {
+				output->updateText(*updatingText) ;
+			}
+			
+			this_thread::sleep_for(defaultSleepTime) ;
+		}
+		
+	} ;
+	
+	thread thr(continuousTextDisplay) ;
+	thr.detach() ;
+}
+
+void TextOutput::displayContinuousText(function<const string (void)> stringUpdatingFunction, const Position<float> & pos, GameColor foreground, GameColor background) {
+	
+	TextOutput * output = new TextOutput(stringUpdatingFunction(), pos, foreground, background) ;
+	
+	auto continuousTextDisplay = [=] () -> void {
+		
+		while (GLOBAL_CONTINUE_FLAG) {
+			if (stringUpdatingFunction() != *output->viewText()) {
+				output->updateText(stringUpdatingFunction()) ;
+			}
+			
+			this_thread::sleep_for(defaultSleepTime) ;
+		}
+		
+	} ;
+	
+	thread thr(continuousTextDisplay) ;
+	thr.detach() ;
+}
 
 
 

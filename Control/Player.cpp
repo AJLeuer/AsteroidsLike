@@ -114,37 +114,37 @@ void Player::registerForCallbacks() {
 
 void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {
 	
-	auto velocityDisplay = [=] () -> void {
-		
-		stringstream stream ;
-		stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+	stringstream stream0 ;
 	
-		string str(stream.str()) ;
+	auto lastVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
+	
+	stream0 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+	
+	string str(stream0.str()) ;
+	
+	
+	auto velocityTextDisplayUpdater = [=] () mutable -> const string {
 		
-		TextOutput out(str, pos, foreground, background) ;
+		stringstream stream1 ;
 		
-		auto lastVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
+		auto currentVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
 		
-		while (GLOBAL_CONTINUE_FLAG) {
-			/* out will keep updating as long as it exists */
-			auto currVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
+		if (currentVelocity != lastVelocity) {
 			
-			if (currVelocity != lastVelocity) {
-				stream = stringstream() ; //reset the sstream
-				stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
-				str = stream.str() ;
-				out.updateText(str) ;
-			}
+			stream1 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 			
-			lastVelocity = currVelocity ;
-
-			this_thread::sleep_for(chrono::milliseconds(32)) ;
+			str = stream1.str() ;
+			
+			lastVelocity = currentVelocity ;
+			
+			return str ;
 		}
-		
+		else { //just return TextOutput's own string back to it
+			return str ;
+		}
 	} ;
 	
-	thread thr(velocityDisplay) ;
-	thr.detach() ;
+	TextOutput::displayContinuousText(velocityTextDisplayUpdater, pos, foreground, background) ;
 }
 
 
