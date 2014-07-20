@@ -102,7 +102,6 @@ void GraphicalOutput::render() {
 
 
 void GraphicalOutput::update() {
-    TextOutput::updateAll() ;
 	SDL_RenderClear(renderer) ;
 	render() ;
 	SDL_RenderPresent(renderer) ;

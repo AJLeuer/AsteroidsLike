@@ -93,11 +93,9 @@ protected:
     
     OutputData<float, int> outputData ;
 	
-    
     Pos2<float> loc ;
     
 	Size<int> size ;
-	
     
 	Vectr<float> vectr ;
 	

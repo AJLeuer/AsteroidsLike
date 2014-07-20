@@ -87,6 +87,7 @@ void MainController::main() {
 		
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
+		TextOutput::updateAll() ;
 		GraphicalOutput::update() ;
 		InputController::update() ;
 		

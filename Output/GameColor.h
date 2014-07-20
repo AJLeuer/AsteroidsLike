@@ -46,6 +46,19 @@ struct GameColor {
         }
         return *this ;
     }
+	
+	inline bool operator==(const GameColor & rhs) const {
+		if ( (this->red == rhs.red) && (this->green == rhs.green) && (this->blue == rhs.blue) && (this->alpha == rhs.alpha)) {
+			return true ;
+		}
+		else {
+			return false ;
+		}
+	}
+	
+	inline bool operator!=(const GameColor & rhs) const {
+		return !(operator==(rhs)) ;
+	}
     
     inline Color convertToSDL_Color() const {
         Color color({red, green, blue, alpha}) ;

@@ -45,9 +45,10 @@ protected:
 	
 	static vector<TextOutput *> allTextOutput ;
 	
-	static const vector<const OutputData<float, int> *> * viewOutputData ; /* debug variable, remove this */
+	static const vector<OutputData<float, int> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
+
 	bool updateFlag = false ;
 	
 	string text ;
@@ -56,7 +57,7 @@ protected:
 	
 	Size<int> size ;
 	
-	OutputData<float, int> data ;
+	OutputData<float, int> outputData ;
 	
 	GameColor foreground, background ;
 	
@@ -95,7 +96,7 @@ public:
 	
 	void updateBackgroundColor(GameColor color) ;
 	
-	OutputData<float, int> * getOutputData() { update() ; return &(this->data) ; }
+	const OutputData<float, int> * getOutputData() { update() ; return &(this->outputData) ; }
 	
 	const string * viewText() { return & text ; }
 	

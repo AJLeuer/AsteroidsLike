@@ -16,7 +16,7 @@ BasicMutex TextOutput::textMutex ;
 
 vector<TextOutput *> TextOutput::allTextOutput = vector<TextOutput *>() ;
 
-const vector<const OutputData<float, int> *> * TextOutput::viewOutputData = OutputData<float, int>::getOutputData() ; /* debug variable, remove this */
+const vector<OutputData<float, int> *> * TextOutput::viewOutputData = OutputData<float, int>::getOutputData() ; /* debug variable, remove this */
 
 
 void TextOutput::init() {
@@ -66,7 +66,7 @@ void TextOutput::exit() {
 
 
 TextOutput::TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) :
-	text(text), position(pos), size(), data(&position, &size, PositionType::screenPosition), foreground(foreground), background(background)
+	text(text), position(pos), size(), outputData(&position, &size, PositionType::screenPosition), foreground(foreground), background(background)
 {
 	
 	size = getSizeOfText(text) ;
@@ -93,7 +93,7 @@ void TextOutput::update() {
 		DebugOutput << ss.rdbuf() ;
 		/* End debug code */
 		
-		data.setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
+		outputData.setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
 		
 		/* Debug code */
 		stringstream st ;
@@ -109,43 +109,54 @@ void TextOutput::update() {
 }
 
 void TextOutput::updateText(const string & newText) {
-	this->text = newText ;
-	size = getSizeOfText(text) ;
-	/* set updateflag so update() knows to run */
-	updateFlag = true ;
+	if (this->text != newText) {
+		this->text = newText ;
+		size = getSizeOfText(text) ;
+		/* set updateflag so update() knows to run */
+		updateFlag = true ;
+	}
+	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 void TextOutput::updatePosition(const Position<float> & pos) {
-	position.setAll(pos) ;
-	/* set updateflag so update() knows to run */
-	updateFlag = true ;
+	if (this->position != pos) {
+		position.setAll(pos) ;
+		/* set updateflag so update() knows to run */
+		updateFlag = true ;
+	}
+	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 void TextOutput::updateForegroundColor(GameColor color) {
-	foreground = color ;
-	/* set updateflag so update() knows to run */
-	updateFlag = true ;
+	if (this->foreground != color) {
+		foreground = color ;
+		/* set updateflag so update() knows to run */
+		updateFlag = true ;
+	}
+	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 void TextOutput::updateBackgroundColor(GameColor color) {
-	background = color ;
-	/* set updateflag so update() knows to run */
-	updateFlag = true ;
+	if (this->background != color) {
+		background = color ;
+		/* set updateflag so update() knows to run */
+		updateFlag = true ;
+	}
+	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 void TextOutput::displayContinuousText(const string * updatingText, const Position<float> & pos, GameColor foreground, GameColor background) {
 	
-	TextOutput * output = new TextOutput(*updatingText, pos, foreground, background) ;
+	TextOutput * textoutput = new TextOutput(*updatingText, pos, foreground, background) ;
 	
 	auto continuousTextDisplay = [=] () -> void {
 		
 		while (GLOBAL_CONTINUE_FLAG) {
-			if (*updatingText != output->text) {
-				output->updateText(*updatingText) ;
-			}
-			
+			textoutput->updateText(*updatingText) ;
 			this_thread::sleep_for(defaultSleepTime) ;
 		}
+		
+		delete textoutput ;
 		
 	} ;
 	
@@ -155,17 +166,16 @@ void TextOutput::displayContinuousText(const string * updatingText, const Positi
 
 void TextOutput::displayContinuousText(function<const string (void)> stringUpdatingFunction, const Position<float> & pos, GameColor foreground, GameColor background) {
 	
-	TextOutput * output = new TextOutput(stringUpdatingFunction(), pos, foreground, background) ;
+	TextOutput * textoutput = new TextOutput(stringUpdatingFunction(), pos, foreground, background) ;
 	
 	auto continuousTextDisplay = [=] () -> void {
 		
 		while (GLOBAL_CONTINUE_FLAG) {
-			if (stringUpdatingFunction() != *output->viewText()) {
-				output->updateText(stringUpdatingFunction()) ;
-			}
-			
+			textoutput->updateText(stringUpdatingFunction()) ;
 			this_thread::sleep_for(defaultSleepTime) ;
 		}
+		
+		delete textoutput ;
 		
 	} ;
 	

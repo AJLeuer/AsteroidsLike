@@ -54,7 +54,7 @@ protected:
 	static void render() ;
 	
 	template<typename M, typename N>
-	static void render(const OutputData<M, N> * output) ;
+	static void render(OutputData<M, N> * output) ;
     
 	/**
 	 * Renders the given texture at the desired position and size.
@@ -80,8 +80,8 @@ public:
 
 
 template<typename M, typename N>
-void GraphicalOutput::render(const OutputData<M, N> * output) {
-	if ((output != nullptr) && (output->isVisible())) {
+void GraphicalOutput::render(OutputData<M, N> * output) {
+	if ((output != nullptr) && (output->eligibleForRender())) {
 		render(output->getTexture(), output->getPosition(), output->getSize()) ;
 	}
 }
