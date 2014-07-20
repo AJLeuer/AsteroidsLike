@@ -27,28 +27,52 @@
 #include "../Util/GameRandom.hpp"
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
+#include "../Util/Util2.h"
 #include "../Util/Position.hpp"
 #include "../Util/Size.hpp"
 #include "../Util/AssetFileIO.h"
 
 #include "../Control/Configuration.h"
 
+enum class PositionType {
+	worldPosition,
+	screenPosition
+};
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 struct OutputData {
 	
-public:
+protected:
+	
+	static vector<const OutputData *> allOutputData ;
     
     bool updateFlag = false ;
+	
+	PositionType positionType ;
     
     AssetFile textureImageFile ;
-    
-    /**
-     * @brief A texture
-     *
-     * @note In most cases, the class owning this OutputData object should never need to deal with texture directly
-     */
-    Texture * texture ;
+	
+	bool visible = true ;
+	
+	/**
+	 * @brief A texture
+	 *
+	 * @note In most cases, the class owning this OutputData object should never need to deal with texture directly
+	 */
+	Texture * texture ;
+	
+	/**
+	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
+	 *        this OutputData object
+	 */
+	const Position<POSUTYPE> * position ;
+	
+	/**
+	 * @brief A pointer to a Size object, which in most cases is owned by the class that owns
+	 *        this OutputData object
+	 */
+	const Size<SIZEUTYPE> * size ;
+	
     
     void initTexture () {
         if ((texture == nullptr) || (updateFlag == true)) {
@@ -69,61 +93,66 @@ public:
     }
     
 public:
-    
-    /**
-     * @brief A pointer to a Position object, which in most cases is owned by the class that owns
-     *        this OutputData object
-     */
-    const Position<POSUTYPE> * position ;
-    
-    /**
-     * @brief A pointer to a Size object, which in most cases is owned by the class that owns
-     *        this OutputData object
-     */
-    const Size<SIZEUTYPE> * size ;
 	
-	OutputData(const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz) :
+	static vector<const OutputData *> * getOutputData() ;
+	
+	OutputData(const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
-        size(sz) {}
+        size(sz),
+		positionType(type)
+	{
+		allOutputData.push_back(this) ;
+	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz) :
+	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
-        size(sz)
+        size(sz),
+		positionType(type)
     {
         initTexture() ;
+		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz) :
+    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
         textureImageFile(AssetFile(randm)),
         texture(nullptr),
         position(pos),
-        size(sz)
+        size(sz),
+		positionType(type)
     {
         initTexture() ;
+		allOutputData.push_back(this) ;
     }
     
     OutputData(const OutputData & other) :
         textureImageFile(other.textureImageFile),
         texture(nullptr),
         position(other.position),
-        size(other.size)
+        size(other.size),
+		positionType(other.positionType),
+		visible(other.visible)
     {
         initTexture() ;
+		allOutputData.push_back(this) ;
     }
     
     OutputData(OutputData && other) :
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         position(other.position),
-        size(other.size)
+        size(other.size),
+		positionType(other.positionType),
+		visible(other.visible)
     {
         other.texture = nullptr ;
         other.position = nullptr ;
         other.size = nullptr ;
+		
+		allOutputData.push_back(this) ;
     }
     
 	
@@ -141,6 +170,8 @@ public:
 			this->texture = nullptr ;
 			this->position = rhs.position ;
 			this->size = rhs.size ;
+			this->positionType = rhs.positionType ;
+			this->visible = rhs.visible ;
             
             initTexture() ;
 		}
@@ -153,6 +184,8 @@ public:
             this->texture = rhs.texture ;
             this->position = rhs.position ;
 			this->size = rhs.size ;
+			this->positionType = rhs.positionType ;
+			this->visible = rhs.visible ;
             
             rhs.texture = nullptr ;
             rhs.position = nullptr ;
@@ -162,19 +195,54 @@ public:
     }
     
     void setAssetFile(string imageFileName) { textureImageFile = imageFileName ; }
-    
     const AssetFile * getAssetFile() const { return & textureImageFile ; }
     
     /**
      * @note Use only when absolutely neccessary
      */
-    void setTexture(Texture * texture) {
-        SDL_DestroyTexture(this->texture) ;
-        this->texture = texture ;
-    }
-    
+    void setTexture(Texture * texture) { SDL_DestroyTexture(this->texture) ; this->texture = texture ; }
     Texture * getTexture() const { return texture ; }
 	
+	const Position<POSUTYPE> getPosition() const ;
+	
+	const Size<SIZEUTYPE> getSize() const { return *size ; }
+	
+	void setVisibility(bool visible) { this->visible = visible ; }
+	bool isVisible() const { return visible ; }
+	
 } ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+vector<const OutputData<POSUTYPE, SIZEUTYPE> *> OutputData<POSUTYPE, SIZEUTYPE>::allOutputData ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+vector<const OutputData<POSUTYPE, SIZEUTYPE> *> * OutputData<POSUTYPE, SIZEUTYPE>::getOutputData() {
+	return & allOutputData ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+const Position<POSUTYPE> OutputData<POSUTYPE, SIZEUTYPE>::getPosition() const {
+	if (this->positionType == PositionType::worldPosition) {
+		return translateToWindowCoords(*this->position) ;
+	}
+	else if (this->positionType == PositionType::screenPosition) {
+		return *this->position ;
+	}
+	return *this->position ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif

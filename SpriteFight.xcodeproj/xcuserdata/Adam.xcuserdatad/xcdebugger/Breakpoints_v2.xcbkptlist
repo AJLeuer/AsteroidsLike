@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/TextOutput.cpp"
-            timestampString = "427469385.02836"
+            timestampString = "427514617.375823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "TextOutput::displayContinuousText(function&lt;const string (void)&gt; stringUpdatingFunction, const Position&lt;float&gt; &amp; pos, GameColor foreground, GameColor background)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/TextOutput.cpp"
-            timestampString = "427469523.95987"
+            timestampString = "427514617.375823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "TextOutput::displayContinuousText(const string * updatingText, const Position&lt;float&gt; &amp; pos, GameColor foreground, GameColor background)"
             landmarkType = "5">
          </BreakpointContent>

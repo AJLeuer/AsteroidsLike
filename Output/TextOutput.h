@@ -45,7 +45,7 @@ protected:
 	
 	static vector<TextOutput *> allTextOutput ;
 	
-	static const vector<OutputData<float, int> *> * viewOutputData ; /* debug variable, remove this */
+	static const vector<const OutputData<float, int> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
 	bool updateFlag = false ;

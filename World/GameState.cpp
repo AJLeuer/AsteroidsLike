@@ -20,8 +20,6 @@ bool GameState::graphicsAreInit = false ;
 
 const vector<GameObject *> * GameState::gameObjects = nullptr ;
 
-vector<OutputData<float, int> *> GameState::additionalGraphicalOutputData = vector<OutputData<float, int> *>() ;
-
 const GameMap<GameObject> * GameState::map ;
 
 Window * GameState::window = nullptr ;

@@ -16,7 +16,7 @@ BasicMutex TextOutput::textMutex ;
 
 vector<TextOutput *> TextOutput::allTextOutput = vector<TextOutput *>() ;
 
-const vector<OutputData<float, int> *> * TextOutput::viewOutputData = GameState::getAdditionalGraphicalOutputData() ; /* debug variable, remove this */
+const vector<const OutputData<float, int> *> * TextOutput::viewOutputData = GameState::getGraphicalOutputData<float, int>() ; /* debug variable, remove this */
 
 
 void TextOutput::init() {
@@ -66,15 +66,12 @@ void TextOutput::exit() {
 
 
 TextOutput::TextOutput(const string & text, const Position<float> & pos, GameColor foreground, GameColor background) :
-	text(text), position(pos), size(), data(&pos, &size), foreground(foreground), background(background)
+	text(text), position(pos), size(), data(&position, &size, PositionType::screenPosition), foreground(foreground), background(background)
 {
 	
 	size = getSizeOfText(text) ;
 	
-	
-	GameState::addAdditionalGraphicalOutputData(&data) ;
-	
-	
+
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
 		we'll simply set the updateFlag */
 	

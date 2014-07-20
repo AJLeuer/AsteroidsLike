@@ -53,15 +53,8 @@ protected:
 	 */
 	static void render() ;
 	
-	/** 
-	 * A convenience function for rendering GameObjects.
-	 * For more info, see render(Texture *, const Position<N> &, const Size<int> *)
-	 *
-	 * @param object The object to be rendered
-	 */
-	static void render(const GameObject * object) ;
-	
-	static void render(OutputData<float, int> * output) ;
+	template<typename M, typename N>
+	static void render(const OutputData<M, N> * output) ;
     
 	/**
 	 * Renders the given texture at the desired position and size.
@@ -70,8 +63,8 @@ protected:
 	 * @param size The desired size of the texture on the screen
 	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
-	template<typename N>
-	static void render(Texture * texture, const Position<N> * pos, const Size<int> * size) ;
+	template<typename M, typename N>
+	static void render(Texture * texture, const Position<M> pos, const Size<N> size) ;
     
 	
 	GraphicalOutput() ; //private to prevent instantiation
@@ -85,12 +78,19 @@ public:
 } ;
 
 
-template<typename N>
-void GraphicalOutput::render(Texture * texture, const Position<N> * pos, const Size<int> * size) {
+
+template<typename M, typename N>
+void GraphicalOutput::render(const OutputData<M, N> * output) {
+	if ((output != nullptr) && (output->isVisible())) {
+		render(output->getTexture(), output->getPosition(), output->getSize()) ;
+	}
+}
+
+
+template<typename M, typename N>
+void GraphicalOutput::render(Texture * texture, const Position<M> pos, const Size<N> size) {
 	
-	auto scrnPos = translateToWindowCoords(*pos) ;
-	
-	auto tempShape = convertToSDL_Rect(scrnPos, size) ;
+	auto tempShape = convertToSDL_Rect(pos, size) ;
 	
 	int sdlrend_error = 0 ;
 	

@@ -24,9 +24,8 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-    outputData(FastRand<int>::defaultRandom, & loc, & size),
+	outputData(FastRand<int>::defaultRandom, & loc, & size, PositionType::worldPosition),
 	size(Size<int>()),
-	visible(true),
 	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
 	vectr(&loc, false)
 {
@@ -49,7 +48,6 @@ GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     outputData(other.outputData),
 	size(Size<int>()),
-	visible(other.visible),
 	loc(other.loc),
 	vectr(other.vectr)
 {
@@ -93,7 +91,6 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
-	visible(other.visible),
     loc(std::move(other.loc)),
 	vectr(std::move(other.vectr))
 {
@@ -119,9 +116,8 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
-	outputData(imageFile, &loc, &size),
+	outputData(imageFile, &loc, &size, PositionType::worldPosition),
 	size(Size<int>()),
-	visible(visible),
 	loc(loc_, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, monitorVelocity)
 {
@@ -137,13 +133,13 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
     loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
 	map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
+	setVisibility(visible) ;
 	initGraphicsData(false, sizeModifier) ;
 }
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	outputData(rand, &loc, &size),
-	visible(true),
+	outputData(rand, &loc, &size, PositionType::worldPosition),
 	size(Size<int>()),
 	loc(rand, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, true)
@@ -187,7 +183,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
 		/* Keep ID the same */
         this->outputData = rhs.outputData ;
-		this->visible = rhs.visible ;
 		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
         map->erase(& loc, this) ;
@@ -216,7 +211,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->ID = rhs.ID ;
 		this->outputData = std::move(rhs.outputData) ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
-		this->visible = rhs.visible ;
 		
         this->loc = std::move(rhs.loc) ;
 		this->vectr = std::move(rhs.vectr) ;
@@ -456,21 +450,16 @@ const AssetFile * GameObject::getImageFile() const {
 }
 
 Texture * GameObject::getTexture() const {
-	if (visible) {
-		return outputData.getTexture() ;
-	}
-	else {
-		return nullptr ;
-	}
+	return outputData.getTexture() ;
 }
 
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
-	visible = false ;
+	this->setVisibility(false) ;
 	
 	auto invisTimer = [=] {
 		this_thread::sleep_for(nano) ;
-		this->setVisible() ;
+		this->setVisibility(true) ;
 	} ;
 	
 	std::thread thr(invisTimer) ;

@@ -93,43 +93,13 @@ void GraphicalOutput::init() {
 
 
 void GraphicalOutput::render() {
-	for (auto i = 0 ; i < GameState::getGameObjects()->size() ; i++) {
-		GameObject * temp = GameState::getGameObjects()->at(i) ;
-		render(temp) ;
-	}
-	for (auto i = 0 ; i < GameState::getAdditionalGraphicalOutputData()->size() ; i++) {
-		auto outputData = GameState::getAdditionalGraphicalOutputData() ; //debug variable, delete this
-		render(GameState::getAdditionalGraphicalOutputData()->at(i)) ;
+	for (auto i = 0 ; i < OutputData<float, int>::getOutputData()->size() ; i++) {
+		auto outputData = OutputData<float, int>::getOutputData() ; //debug variable, delete this
+		render(OutputData<float, int>::getOutputData()->at(i)) ;
 	}
 }
 
-void GraphicalOutput::render(const GameObject * object) {
-	
-	/* we will occasionally get null pointers */
-	if (object != nullptr) {
-		
-		/* Don't render if invisible */
-		if (object->isVisible()) {
-			
-			/* translate from world coordinates to screen coordinates */
-			auto objPosition(*object->getPosition()) ;
-            
-            /* important: don't forget to translate position from world coords to display coords! */
-			
-			auto objScreenPosition = translateToWindowCoords(*object->getPosition()) ;
-			
-			/* render to output */
-			render(object->getTexture(), object->getPosition(), object->getSize()) ;
-		}
-	}
-}
-
-
-void GraphicalOutput::render(OutputData<float, int> * output) {
-	if (output != nullptr) {
-		render(output->texture, output->position, output->size) ;
-	}
-}  
+ 
 
 void GraphicalOutput::update() {
     TextOutput::updateAll() ;

@@ -100,8 +100,6 @@ protected:
 	
     
 	Vectr<float> vectr ;
-
-	bool visible ;
 	
 	const GameObject * ally = nullptr ;
 	
@@ -367,8 +365,8 @@ public:
 	 */
 	AssetType getType() const { return outputData.getAssetFile()->type ; }
 	
-	void setVisible() { visible = true ; }
-	bool isVisible() const { return visible ; }
+	void setVisibility(bool visible) { this->outputData.setVisibility(visible) ; }
+	bool isVisible() const { return this->outputData.isVisible() ; }
 	
 	/**
 	 * Turns this GameObject invisible for nano nanoseconds
