@@ -100,7 +100,7 @@ protected:
 	 * initFlag set (each object should only have it's init flag set once in it's lifetime, unless it was the recipient of a 
 	 * copy operation). What the constructor can and should do, then, is to set the initFlag.
 	 */
-	void initGraphicsData() ;
+	virtual void initGraphicsData() ;
 	
 	void updateLastRecordedValues() ;
 	
@@ -241,7 +241,7 @@ public:
     /**
      * @note Use only when absolutely neccessary
      */
-	virtual void setTexture(Texture * texture) ;
+	void setTexture(Texture * texture) ;
 	
     Texture * getTexture() const { return texture ; }
 	

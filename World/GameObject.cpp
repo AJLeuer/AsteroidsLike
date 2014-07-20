@@ -24,10 +24,10 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	outputData(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition),
+	outputData(FastRand<int>::defaultRandom, loc, 1.0, PositionType::worldPosition),
 	size(Size<int>()),
-	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
-	vectr(&loc, false)
+	loc(new Pos2<float>(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)),
+	vectr(loc, false)
 {
 	IDs++ ;
     
@@ -38,8 +38,8 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(&loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
 }
@@ -48,7 +48,7 @@ GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     outputData(other.outputData),
 	size(Size<int>()),
-	loc(other.loc),
+	loc(new Pos2<float>(*other.loc)),
 	vectr(other.vectr)
 {
 	{
@@ -67,8 +67,8 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(& loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
@@ -90,7 +90,7 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
 	size(std::move(other.size)),
-    loc(std::move(other.loc)),
+    loc(other.loc),
 	vectr(std::move(other.vectr))
 {
 	{
@@ -109,16 +109,17 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
+	other.loc = nullptr ;
 	other.ID = -1 ;
 }
 
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
-	outputData(imageFile, &loc, sizeModifier, PositionType::worldPosition),
+	outputData(imageFile, loc, sizeModifier, PositionType::worldPosition),
 	size(Size<int>()),
-	loc(loc_, BoundsCheck<float>::defaultCheck),
-	vectr(& loc, monitorVelocity)
+	loc(new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck)),
+	vectr(loc, monitorVelocity)
 {
 	IDs++ ;
 	
@@ -129,18 +130,18 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+	map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	setVisibility(visible) ;
 }
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	outputData(rand, &loc, 1.0, PositionType::worldPosition),
+	outputData(rand, loc, 1.0, PositionType::worldPosition),
 	size(Size<int>()),
-	loc(rand, BoundsCheck<float>::defaultCheck),
-	vectr(& loc, true)
+	loc(new Pos2<float>(rand, BoundsCheck<float>::defaultCheck)),
+	vectr(loc, true)
 {
 	IDs++ ;
 
@@ -150,8 +151,8 @@ GameObject::GameObject(FastRand<int> rand) :
 	}
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(& loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
@@ -162,7 +163,9 @@ GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 	
-	map->erase(& loc, this) ;
+	map->erase(loc, this) ;
+	
+	delete loc ;
 
 }
 
@@ -181,12 +184,12 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		/* Keep ID the same */
         this->outputData = rhs.outputData ;
 
-        map->erase(& loc, this) ;
+        map->erase(loc, this) ;
 
         loc = rhs.loc ;
 		vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), &loc) ;
         
-		map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+		map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
 		vectr.updateAndNormalize() ;
 	}
 	return *this ;
@@ -208,9 +211,10 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->outputData = std::move(rhs.outputData) ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		
-        this->loc = std::move(rhs.loc) ;
+        this->loc = rhs.loc ;
 		this->vectr = std::move(rhs.vectr) ;
 		
+		rhs.loc = nullptr ;
 		rhs.ID = -1 ;
 	}
 	return *this ;
@@ -277,18 +281,18 @@ void GameObject::textDescription(ostream * writeTo) const {
 	stringstream ss ;
 	ss << "GameObject ID#: " << this->ID << endl ;
 
-    ss << "Current Position: " << loc.toString() << endl ;
+    ss << "Current Position: " << loc->toString() << endl ;
 
 	*writeTo << ss.rdbuf() ;
 }
 
 void GameObject::moveTo(Position<float> * to) {
 	
-    map->erase(& loc, this) ;
+    map->erase(loc, this) ;
         
     to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-    loc.setAll(*to) ;
-    map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->setAll(*to) ;
+    map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
     vectr.updateAndNormalize() ;
 
 	
@@ -303,11 +307,11 @@ void GameObject::moveTo(Position<float> * to) {
 
 void GameObject::moveTo(Position<float> to) {
 	
-    map->erase(& loc, this) ;
+    map->erase(loc, this) ;
         
     to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-    loc.setAll(to) ;
-    map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc->setAll(to) ;
+    map->place(loc, this, BoundsCheck<float>::defaultCheck) ;
     vectr.updateAndNormalize() ;
 
 
@@ -363,10 +367,10 @@ void GameObject::move(float distanceModifier) {
 	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
 
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
-		next.setX(loc.getX()) ;
+		next.setX(loc->getX()) ;
 	}
 	if (next.overYBounds(&BoundsCheck<float>::defaultCheck)) {
-		next.setY(loc.getY()) ;
+		next.setY(loc->getY()) ;
 	}
 
 	moveTo(next) ;
@@ -414,7 +418,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<GameObject *> * nearby = map->findNearby<float>(& loc, searchDistanceX, searchDistanceY) ;
+	vector<GameObject *> * nearby = map->findNearby<float>(loc, searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;

@@ -49,9 +49,6 @@ protected:
 	static const vector<OutputData<POSUTYPE, SIZEUTYPE> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
-
-	bool updateFlag = false ;
-	
 	string text ;
 	
 	//Position<POSUTYPE> position ;
@@ -64,6 +61,7 @@ protected:
 	
 	friend class GraphicalOutput ;
 	
+	void initGraphicsData() ;
 	
 public:
 	
@@ -87,8 +85,6 @@ public:
 	
 	~TextOutput() { erase() ; }
 	
-	void update() ;
-	
 	void updateText(const string & newText) ;
 	
 	void updatePosition(const Position<POSUTYPE> & pos) ;
@@ -99,7 +95,7 @@ public:
 	
 	//void setTexture(Texture * texture) ;
 	
-	const OutputData<POSUTYPE, SIZEUTYPE> * getOutputData() { update() ; return this ; }
+	const OutputData<POSUTYPE, SIZEUTYPE> * getOutputData() { return this ; }
 	
 	const string * viewText() { return & text ; }
 	
@@ -132,9 +128,6 @@ TTF_Font * TextOutput<POSUTYPE, SIZEUTYPE>::gameFont = nullptr ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 BasicMutex TextOutput<POSUTYPE, SIZEUTYPE>::textMutex ;
-
-template<typename POSUTYPE, typename SIZEUTYPE>
-vector<TextOutput<POSUTYPE, SIZEUTYPE> *> TextOutput<POSUTYPE, SIZEUTYPE>::allTextOutput = vector<TextOutput<POSUTYPE, SIZEUTYPE> *>() ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 const vector<OutputData<POSUTYPE, SIZEUTYPE> *> * TextOutput<POSUTYPE, SIZEUTYPE>::viewOutputData = OutputData<POSUTYPE, SIZEUTYPE>::getOutputData() ; /* debug variable, remove this */
@@ -194,22 +187,20 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<
 	text(text), size(), foreground(foreground), background(background)
 {
 	
-	size = getSizeOfText(text) ;
-	
-	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
-		we'll simply set the updateFlag */
+		OutputData simply sets the updateFlag */
 	
-	updateFlag = true ; /* ensure that update() will run the first time through main loop */
+	/* initFlag = true */
 	
 	allTextOutput.push_back(this) ;
 }
 
+
 //must be called from main thread
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
+void TextOutput<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 	
-	if (updateFlag) { /* check if we actually need to update anything */
+	if (this->initFlag) { /* check if we actually need to update anything */
 		
 		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
@@ -229,8 +220,10 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
 		
 		SDL_FreeSurface(surface) ;
 		
+		size = getSizeOfText(text) ;
+		
 		/* reset the update flag */
-		updateFlag = false ;
+		this->initFlag = false ;
 	}
 }
 
@@ -240,7 +233,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateText(const string & newText) {
 		this->text = newText ;
 		size = getSizeOfText(text) ;
 		/* set updateflag so update() knows to run */
-		updateFlag = true ;
+		this->updateFlag = true ;
 	}
 	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
@@ -250,7 +243,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Position<POSUTYPE> & 
 	if (*this->position != pos) {
 		this->position->setAll(pos) ;
 		/* set updateflag so update() knows to run */
-		updateFlag = true ;
+		this->updateFlag = true ;
 	}
 	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
@@ -260,7 +253,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateForegroundColor(GameColor color) {
 	if (this->foreground != color) {
 		foreground = color ;
 		/* set updateflag so update() knows to run */
-		updateFlag = true ;
+		this->updateFlag = true ;
 	}
 	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
@@ -270,19 +263,10 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateBackgroundColor(GameColor color) {
 	if (this->background != color) {
 		background = color ;
 		/* set updateflag so update() knows to run */
-		updateFlag = true ;
+		this->updateFlag = true ;
 	}
 	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
-
-/*
-template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
-	SDL_DestroyTexture(this->texture) ;
-	this->texture = texture ;
-	updateFlag = true ;
-}
-*/
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updatingText, const Position<POSUTYPE> & pos, GameColor foreground, GameColor background) {
