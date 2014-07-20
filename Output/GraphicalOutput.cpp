@@ -102,6 +102,7 @@ void GraphicalOutput::render() {
 
 
 void GraphicalOutput::update() {
+	OutputData<float, int>::updateAll() ;
 	SDL_RenderClear(renderer) ;
 	render() ;
 	SDL_RenderPresent(renderer) ;

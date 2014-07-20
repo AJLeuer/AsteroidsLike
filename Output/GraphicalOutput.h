@@ -81,7 +81,7 @@ public:
 
 template<typename M, typename N>
 void GraphicalOutput::render(OutputData<M, N> * output) {
-	if ((output != nullptr) && (output->eligibleForRender())) {
+	if ((output != nullptr) && (output->isVisible())) {
 		render(output->getTexture(), output->getPosition(), output->getSize()) ;
 	}
 }

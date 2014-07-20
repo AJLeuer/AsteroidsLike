@@ -242,8 +242,6 @@ public:
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
 	
-	bool eligibleForRender() { return (visible && checkIfUpdated()) ; }
-	
 } ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -286,7 +284,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::initTexture() {
 			throw exception() ;
 		}
 		
-		this->setTexture(tex) ;
+		this->texture = tex ;
 		textureInitFlag = false ;
 	}
 }
