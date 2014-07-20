@@ -23,7 +23,7 @@
 #include "../Util/BasicConcurrency.h"
 
 #include "../Output/GraphicalOutput.h"
-#include "../Output/TextOutput.h"
+#include "../Output/TextOutput.hpp"
 
 #include "../World/GameState.hpp"
 #include "../World/WorldController.h"

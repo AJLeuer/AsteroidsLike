@@ -31,7 +31,6 @@ private:
 	 */
 	float sizeModifier ;
 	
-	void setModifier(float modifier) { this->sizeModifier = modifier ; }
 	void setWidth(N w) { *(this->w) = w ; }
 	void setHeight(N h) { *(this->h) = h ; }
 
@@ -70,6 +69,13 @@ public:
 		this->Position<N>::operator=(std::move(rhs)) ;
 		sizeModifier = rhs.sizeModifier ;
 		return *this ;
+	}
+	
+	void setModifier(const float modifier) { this->sizeModifier = modifier ; }
+	
+	void setSize(N w, N h) {
+		setWidth(w) ;
+		setHeight(h) ;
 	}
 	
 	void setSize(N w, N h, float modifier) {

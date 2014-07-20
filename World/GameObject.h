@@ -61,11 +61,6 @@ private:
 	static vector<GameObject*> * allGameObjects ;
 	
 	bool markedForDeletion = false ;
-
-	/**
-	 * @brief Initializes texture and size information for this GameObject
-	 */
-	void initGraphicsData(bool overrideCurrentTexture, float sizeModifier) ;
 	
 	/**
 	 * @brief Handles thread starting duties. Should always be called by the function that calls
@@ -356,7 +351,7 @@ public:
 	 */
 	Texture * getTexture() const ;
 	
-	const Size<int> * getSize() const { const Size<int> * rtnSize = & size ; return rtnSize ; }
+	const Size<int> * getSize() const { return & size ; }
 	
 	/**
 	 * @return This GameObject's asset type

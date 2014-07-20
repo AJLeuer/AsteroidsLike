@@ -24,7 +24,7 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	outputData(FastRand<int>::defaultRandom, & loc, & size, PositionType::worldPosition),
+	outputData(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition),
 	size(Size<int>()),
 	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
 	vectr(&loc, false)
@@ -73,7 +73,6 @@ GameObject::GameObject(const GameObject & other) :
 	
 	allGameObjects->push_back(this) ;
 
-	initGraphicsData(true, other.getSize()->getModifier()) ;
 	
 	/* Don't copy gthread or goIterator */
 
@@ -116,7 +115,7 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
-	outputData(imageFile, &loc, &size, PositionType::worldPosition),
+	outputData(imageFile, &loc, sizeModifier, PositionType::worldPosition),
 	size(Size<int>()),
 	loc(loc_, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, monitorVelocity)
@@ -134,12 +133,11 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	setVisibility(visible) ;
-	initGraphicsData(false, sizeModifier) ;
 }
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	outputData(rand, &loc, &size, PositionType::worldPosition),
+	outputData(rand, &loc, 1.0, PositionType::worldPosition),
 	size(Size<int>()),
 	loc(rand, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, true)
@@ -157,7 +155,6 @@ GameObject::GameObject(FastRand<int> rand) :
 	vectr.updateAndNormalize() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
-	initGraphicsData(false, randSizeMod()) ;
 }
 
 
@@ -183,7 +180,6 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
 		/* Keep ID the same */
         this->outputData = rhs.outputData ;
-		initGraphicsData(true, rhs.getSize()->getModifier()) ;
 
         map->erase(& loc, this) ;
 
@@ -237,18 +233,6 @@ bool GameObject::operator==(GameObject & other) const {
 	}
 }
 
-void GameObject::initGraphicsData(bool overrideCurrentTexture, float sizeModifier) {
-
-    /* texture should be initialized already */
-
-	//set size
-	int tempW  ; 
-	int tempH  ;
-	
-	SDL_QueryTexture(outputData.getTexture(), NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
-    
-	size.setSize(tempW, tempH, sizeModifier) ; //assign new size to this GameObject
-}
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_FLAG) {

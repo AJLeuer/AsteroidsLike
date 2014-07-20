@@ -22,7 +22,7 @@
 #include "../Util/GameRandom.hpp"
 
 #include "../Output/OutputData.hpp"
-#include "../Output/TextOutput.h"
+#include "../Output/TextOutput.hpp"
 
 #include "../World/GameInterface.h"
 #include "../World/PlayerCharacter.h"

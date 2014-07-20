@@ -72,7 +72,7 @@ private:
 	
 	GameState() ;
 	
-	friend class TextOutput ;
+	//friend class TextOutput<float, int> ;
 	friend class GraphicalOutput ;
 	friend class WorldController ;
 	friend class MainController ;

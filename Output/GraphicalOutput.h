@@ -28,7 +28,7 @@
 #include "../Util/Position.hpp"
 
 #include "OutputData.hpp"
-#include "TextOutput.h"
+#include "TextOutput.hpp"
 #include "GameColor.h"
 
 

@@ -23,7 +23,6 @@
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
 		6652B7F519615A0600243106 /* Velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F419615A0600243106 /* Velocity.cpp */; };
-		6659955119687D120070CEAC /* TextOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6659954F19687D120070CEAC /* TextOutput.cpp */; };
 		666B6AB6196D14FE00135433 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666B6AB5196D14FE00135433 /* AppKit.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
@@ -72,8 +71,7 @@
 		664BFFB7193A0730008F4CD1 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Input.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6652B7F019610BE700243106 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		6652B7F419615A0600243106 /* Velocity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Velocity.cpp; sourceTree = "<group>"; };
-		6659954F19687D120070CEAC /* TextOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextOutput.cpp; sourceTree = "<group>"; };
-		665D370E1968C1CA00FA713B /* TextOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOutput.h; sourceTree = "<group>"; };
+		665D370E1968C1CA00FA713B /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextOutput.hpp; sourceTree = "<group>"; };
 		665D370F1968C1E400FA713B /* OutputData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputData.hpp; sourceTree = "<group>"; };
 		665DBB5718F4F44F006F2026 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Position.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		665DBB5918F4F4F2006F2026 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Navigator.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -139,11 +137,10 @@
 				665D370F1968C1E400FA713B /* OutputData.hpp */,
 				6684DDAA195FC8DF00E6B997 /* DisplayData.h */,
 				6603FD72190C902800A5F41A /* GraphicalOutput.h */,
-				665D370E1968C1CA00FA713B /* TextOutput.h */,
+				665D370E1968C1CA00FA713B /* TextOutput.hpp */,
 				6684DDAC195FE24000E6B997 /* DisplayData.cpp */,
 				6684DDA8195FC8AA00E6B997 /* DisplayData.mm */,
 				6603FD73190C902800A5F41A /* GraphicalOutput.cpp */,
-				6659954F19687D120070CEAC /* TextOutput.cpp */,
 			);
 			path = Output;
 			sourceTree = "<group>";
@@ -330,7 +327,6 @@
 				6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
-				6659955119687D120070CEAC /* TextOutput.cpp in Sources */,
 				6648C98F1967620D0052E27E /* BasicConcurrency.cpp in Sources */,
 				66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */,
 				6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */,

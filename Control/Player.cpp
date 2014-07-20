@@ -144,7 +144,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 		}
 	} ;
 	
-	TextOutput::displayContinuousText(velocityTextDisplayUpdater, pos, foreground, background) ;
+	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, foreground, background) ;
 }
 
 

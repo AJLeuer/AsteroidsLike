@@ -54,7 +54,7 @@ void MainController::init() {
 	}
 	
 	GraphicalOutput::init() ;
-    TextOutput::init() ;
+    TextOutput<float, int>::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
 	Player::initDefaultPlayers() ;
@@ -87,7 +87,7 @@ void MainController::main() {
 		
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
-		TextOutput::updateAll() ;
+		TextOutput<float, int>::updateAll() ;
 		GraphicalOutput::update() ;
 		InputController::update() ;
 		
@@ -119,7 +119,7 @@ void MainController::exit(int sig) {
 		GLOBAL_CONTINUE_FLAG = false ;
 		/* other signals to define false here? */
         
-        TextOutput::exit() ; /* quits() sdl_ttf */
+        TextOutput<float, int>::exit() ; /* quits() sdl_ttf */
 		GraphicalOutput::exit() ;
 		WorldController::exit() ;
 		InputController::exit() ;

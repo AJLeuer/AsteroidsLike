@@ -48,7 +48,7 @@ protected:
 	
 	
 	
-	bool textureInitFlag = true ;
+	bool initFlag = true ;
 	
 	/**
 	 * @brief Whether the OutputData has been recently updated. Don't refer to this value
@@ -84,16 +84,23 @@ protected:
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
 	 *        this OutputData object
 	 */
-	const Position<POSUTYPE> * position ;
+	Position<POSUTYPE> * position ;
 	
 	/**
-	 * @brief A pointer to a Size object, which in most cases is owned by the class that owns
-	 *        this OutputData object
+	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
+	 *
 	 */
-	const Size<SIZEUTYPE> * size ;
+	Size<SIZEUTYPE> size ;
 	
-	
-	void initTexture() ;
+	/**
+	 * @note This function's functionality cannot be part of the constructor, nor can it even be called from 
+	 * the constructor itself, the reason being that we can never be sure if the constructor is run on the main
+	 * thread (SDL requires graphics operations to be on the main thread). Therefore, this function is only called
+	 * by updateAll() (which is always run on the main thread), and updateAll() only calls this on objects that have their
+	 * initFlag set (each object should only have it's init flag set once in it's lifetime, unless it was the recipient of a 
+	 * copy operation). What the constructor can and should do, then, is to set the initFlag.
+	 */
+	void initGraphicsData() ;
 	
 	void updateLastRecordedValues() ;
 	
@@ -107,37 +114,40 @@ public:
 	 */
 	static void updateAll() ;
 	
-	OutputData(const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
+	OutputData(Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
-        size(sz),
+        size(), /* can't be initialized yet */
 		positionType(type)
 	{
-		/* texinit flag is true */
+		/* init flag is true */
+		size.setModifier(sizeModifier) ;
 		updateLastRecordedValues() ;
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
+	OutputData(const AssetFile & file, Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
-        size(sz),
+        size(),
 		positionType(type)
     {
-        /* texinit flag is true */
+        /* init flag is true */
+		size.setModifier(sizeModifier) ;
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const Size<SIZEUTYPE> * sz, PositionType type) :
+    OutputData(FastRand<int> & randm, Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
         textureImageFile(AssetFile(randm)),
         texture(nullptr),
         position(pos),
-        size(sz),
+        size(),
 		positionType(type)
     {
-        /* texinit flag is true */
+        /* init flag is true */
+		size.setModifier(sizeModifier) ;
 		updateLastRecordedValues() ;
 		allOutputData.push_back(this) ;
     }
@@ -152,24 +162,24 @@ public:
 		positionType(other.positionType),
 		visible(other.visible)
     {
-        /* texinit flag is true */
+        /* init flag is true */
 		allOutputData.push_back(this) ;
     }
     
     OutputData(OutputData && other) :
-		textureInitFlag(false), //no need to init
+		initFlag(false),
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         position(other.position),
-        size(other.size),
+		size(std::move(other.size)),
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),
 		positionType(other.positionType),
 		visible(other.visible)
     {
+		//no need to init
         other.texture = nullptr ;
         other.position = nullptr ;
-        other.size = nullptr ;
 		
 		allOutputData.push_back(this) ;
     }
@@ -194,7 +204,7 @@ public:
 			this->positionType = rhs.positionType ;
 			this->visible = rhs.visible ;
             
-            textureInitFlag = true ;
+            initFlag = true ;
 		}
 		return *this ;
 	}
@@ -204,17 +214,16 @@ public:
             this->textureImageFile = rhs.textureImageFile ;
             this->texture = rhs.texture ;
             this->position = rhs.position ;
-			this->size = rhs.size ;
+			this->size = std::move(rhs.size) ;
 			this->position_lastRecordedValue = std::move(rhs.position_lastRecordedValue) ;
 			this->size_lastRecordedValue = std::move(rhs.size_lastRecordedValue) ;
 			this->positionType = rhs.positionType ;
 			this->visible = rhs.visible ;
 			
-			textureInitFlag = false ;
+			initFlag = false ;
 			
             rhs.texture = nullptr ;
             rhs.position = nullptr ;
-            rhs.size = nullptr ;
         }
         return *this ;
     }
@@ -232,12 +241,13 @@ public:
     /**
      * @note Use only when absolutely neccessary
      */
-	void setTexture(Texture * texture) { SDL_DestroyTexture(this->texture) ; this->texture = texture ; updateFlag = true ; }
+	virtual void setTexture(Texture * texture) ;
+	
     Texture * getTexture() const { return texture ; }
 	
 	const Position<POSUTYPE> getPosition() const ;
 	
-	const Size<SIZEUTYPE> getSize() const { return *size ; }
+	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
@@ -259,8 +269,8 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 		
 		OutputData * out = allOutputData.at(i) ;
 		
-		if (out->textureInitFlag) {
-			out->initTexture() ;
+		if (out->initFlag) {
+			out->initGraphicsData() ;
 		}
 
 		out->updateLastRecordedValues() ;
@@ -269,9 +279,9 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::initTexture() {
+void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 	
-	if (textureInitFlag) {
+	if (initFlag) {
 		
 		Texture * tex = nullptr ;
 		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->textureImageFile, textureImageFile.type) ;
@@ -285,14 +295,24 @@ void OutputData<POSUTYPE, SIZEUTYPE>::initTexture() {
 		}
 		
 		this->texture = tex ;
-		textureInitFlag = false ;
+		
+		/* texture must be initialized before we can set Size */
+		
+		//set size
+		int tempW  ;
+		int tempH  ;
+		
+		SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
+		
+		size.setSize(tempW, tempH) ; //assign new size to this GameObject
+		initFlag = false ;
 	}
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void OutputData<POSUTYPE, SIZEUTYPE>::updateLastRecordedValues() {
 	position_lastRecordedValue = *position ;
-	size_lastRecordedValue = *size ;
+	size_lastRecordedValue = size ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -313,6 +333,13 @@ bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 		}
 		return changed ;
 	}
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void OutputData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
+	SDL_DestroyTexture(this->texture) ;
+	this->texture = texture ;
+	updateFlag = true ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

@@ -235,7 +235,7 @@ SDL_Rect & operator*(N n, SDL_Rect & rhs) {
 }
 
 template<class vec3, class vec2>
-SDL_Rect convertToSDL_Rect(vec3 & position, vec2 & size) {
+SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 
 	SDL_Rect shape ;
 	shape.x = roundF(position.getX()) ;
