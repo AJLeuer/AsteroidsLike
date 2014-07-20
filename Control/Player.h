@@ -26,7 +26,7 @@
 
 #include "../World/GameInterface.h"
 #include "../World/PlayerCharacter.h"
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 
 #include "../Control/Configuration.h"
 #include "../Control/Input.hpp"

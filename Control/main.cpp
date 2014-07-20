@@ -23,7 +23,7 @@
 #include "../Util/AssetFileIO.h"
 #include "../Util/Velocity.hpp"
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 #include "../World/GameObject.h"
 #include "../World/NPC.h"
 #include "../World/WorldController.h"

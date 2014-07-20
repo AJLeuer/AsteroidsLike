@@ -22,7 +22,7 @@
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_video.h>
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 #include "../World/GameInterface.h"
 
 #include "../Control/Configuration.h"

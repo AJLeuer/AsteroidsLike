@@ -32,7 +32,7 @@
 #include "GameColor.h"
 
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 #include "../World/GameObject.h"
 
 using namespace std ;

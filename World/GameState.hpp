@@ -1,5 +1,5 @@
 //
-//  GameState.h
+//  GameState.hpp
 //  World
 //
 //  Created by aleuer2 on 6/3/14.
@@ -37,6 +37,7 @@ using namespace std ;
 /* Forward-declaring */
 template<typename POSUTYPE, typename SIZEUTYPE>
 struct OutputData ;
+
 
 /**
  * A singleton class that will be used purely for shared storage and retrieval.
@@ -102,9 +103,6 @@ public:
 	 */
 	static const vector<GameObject*> * getGameObjects() ;
 	
-	template<typename M, typename N>
-	static const vector<const OutputData<M, N> *> * getGraphicalOutputData() ;
-	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
@@ -117,9 +115,6 @@ public:
 	
 	
 } ;
-
-template<typename M, typename N>
-const vector<const OutputData<M, N> *> * GameState::getGraphicalOutputData() { return OutputData<M, N>::getOutputData() ; }
 
 
 /* Globals */

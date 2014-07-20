@@ -10,7 +10,7 @@
 
 #include "../Output/OutputData.hpp"
 
-#include "GameState.h"
+#include "GameState.hpp"
 
 using namespace std ;
 

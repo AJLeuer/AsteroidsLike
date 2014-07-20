@@ -24,7 +24,7 @@
 #include "../Util/GameRandom.hpp"
 #include "../Util/Timer.hpp"
 
-#include "GameState.h"
+#include "GameState.hpp"
 #include "GameMap.hpp"
 #include "GameInterface.h"
 #include "GameEvent.h"

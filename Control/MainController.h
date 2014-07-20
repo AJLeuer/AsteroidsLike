@@ -25,7 +25,7 @@
 #include "../Output/GraphicalOutput.h"
 #include "../Output/TextOutput.h"
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 #include "../World/WorldController.h"
 
 #include "../Control/Configuration.h"

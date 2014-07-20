@@ -19,7 +19,7 @@
 #include "../Util/Position.hpp"
 #include "../Util/Navigator.hpp"
 
-#include "GameState.h"
+#include "GameState.hpp"
 
 #include "../Control/Configuration.h"
 

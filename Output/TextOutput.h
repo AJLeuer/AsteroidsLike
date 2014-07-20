@@ -30,7 +30,7 @@
 #include "OutputData.hpp"
 #include "GameColor.h"
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 
 using namespace std ;
 

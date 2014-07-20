@@ -99,7 +99,7 @@ void GraphicalOutput::render() {
 	}
 }
 
- 
+
 
 void GraphicalOutput::update() {
     TextOutput::updateAll() ;

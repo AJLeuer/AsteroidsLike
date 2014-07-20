@@ -30,7 +30,7 @@
 #include "ForwardDecl.h"
 #include "Position.hpp"
 #include "GameMap.hpp"
-#include "GameState.h"
+#include "GameState.hpp"
 #include "GameInterface.h"
 
 #include "../Control/Configuration.h"

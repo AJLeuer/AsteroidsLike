@@ -16,7 +16,7 @@ BasicMutex TextOutput::textMutex ;
 
 vector<TextOutput *> TextOutput::allTextOutput = vector<TextOutput *>() ;
 
-const vector<const OutputData<float, int> *> * TextOutput::viewOutputData = GameState::getGraphicalOutputData<float, int>() ; /* debug variable, remove this */
+const vector<const OutputData<float, int> *> * TextOutput::viewOutputData = OutputData<float, int>::getOutputData() ; /* debug variable, remove this */
 
 
 void TextOutput::init() {

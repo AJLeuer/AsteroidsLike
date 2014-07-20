@@ -19,7 +19,7 @@
 #include "Position.hpp"
 #include "Size.hpp"
 
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 
 #include "../Control/Configuration.h"
 

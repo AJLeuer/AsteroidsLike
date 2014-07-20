@@ -23,7 +23,7 @@
 #include "../Util/GameRandom.hpp"
 
 #include "../World/CharacterData.h"
-#include "../World/GameState.h"
+#include "../World/GameState.hpp"
 
 #include "../Control/Configuration.h"
 
