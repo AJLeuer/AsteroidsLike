@@ -102,7 +102,7 @@ protected:
 	 */
 	virtual void initGraphicsData() ;
 	
-	void updateLastRecordedValues() ;
+	virtual void update() ;
 	
 	
 public:
@@ -123,7 +123,7 @@ public:
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
-		updateLastRecordedValues() ;
+		update() ;
 		allOutputData.push_back(this) ;
 	}
 	
@@ -148,7 +148,7 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
-		updateLastRecordedValues() ;
+		update() ;
 		allOutputData.push_back(this) ;
     }
     
@@ -273,7 +273,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 			out->initGraphicsData() ;
 		}
 
-		out->updateLastRecordedValues() ;
+		out->update() ;
 	}
 }
 
@@ -310,9 +310,13 @@ void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::updateLastRecordedValues() {
-	position_lastRecordedValue = *position ;
-	size_lastRecordedValue = size ;
+void OutputData<POSUTYPE, SIZEUTYPE>::update() {
+    if (checkIfUpdated()) {
+        position_lastRecordedValue = *position ;
+        size_lastRecordedValue = size ;
+        
+        updateFlag = false ;
+    }
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -328,7 +332,7 @@ bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 		if (*this->position != this->position_lastRecordedValue ) {
 			changed = true ;
 		}
-		else if (*this->size != this->size_lastRecordedValue) {
+		else if (this->size != this->size_lastRecordedValue) {
 			changed = true ;
 		}
 		return changed ;

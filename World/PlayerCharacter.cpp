@@ -13,7 +13,7 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), &loc){}
+    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), loc){}
 
 
 /**
@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand),
-    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, & loc){}
+    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, loc){}
 
 
 /**

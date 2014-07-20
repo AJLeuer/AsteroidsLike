@@ -44,8 +44,6 @@ protected:
 	
 	static BasicMutex textMutex ;
 	
-	static vector<TextOutput *> allTextOutput ;
-	
 	static const vector<OutputData<POSUTYPE, SIZEUTYPE> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
@@ -62,14 +60,14 @@ protected:
 	friend class GraphicalOutput ;
 	
 	void initGraphicsData() ;
+    
+    void update() ;
 	
 public:
 	
 	static void init() ;
     
     static Size<SIZEUTYPE> getSizeOfText(const string & str) ;
-	
-	static void updateAll() ;
 	
 	static void exit() ;
 	
@@ -167,15 +165,6 @@ Size<SIZEUTYPE> TextOutput<POSUTYPE, SIZEUTYPE>::getSizeOfText(const string & st
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::updateAll() {
-	for (auto i = 0 ; i < allTextOutput.size() ; i++) {
-		if (allTextOutput.at(i) != nullptr) {
-			allTextOutput.at(i)->update() ;
-		}
-	}
-}
-
-template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::exit() {
 	TTF_CloseFont(gameFont) ;
 	TTF_Quit();
@@ -191,8 +180,6 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<
 		OutputData simply sets the updateFlag */
 	
 	/* initFlag = true */
-	
-	allTextOutput.push_back(this) ;
 }
 
 
@@ -224,6 +211,38 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 		
 		/* reset the update flag */
 		this->initFlag = false ;
+	}
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
+    
+    if (this->checkIfUpdated()) { /* check if we actually need to update anything */
+		
+        this->OutputData<POSUTYPE, SIZEUTYPE>::update() ;
+        
+		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
+		
+		/* Debug code */
+		stringstream ss ;
+		ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
+		DebugOutput << ss.rdbuf() ;
+		/* End debug code */
+		
+		this->setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
+		
+		/* Debug code */
+		stringstream st ;
+		st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
+		DebugOutput << st.rdbuf() ;
+		/* End debug code */
+		
+		SDL_FreeSurface(surface) ;
+		
+		size = getSizeOfText(text) ;
+		
+		/* reset the update flag */
+		this->updateFlag = false ;
 	}
 }
 
