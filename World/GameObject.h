@@ -88,7 +88,7 @@ protected:
     
     OutputData<float, int> outputData ;
 	
-    Pos2<float> * loc ;
+    Pos2<float> loc ;
     
 	Size<int> size ;
     
