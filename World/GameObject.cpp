@@ -24,15 +24,13 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	outputData(),
 	size(Size<int>()),
-	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
-	vectr()
+	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)
 {
 	IDs++ ;
     
-    outputData = OutputData(FastRand<int>::defaultRandom, loc, 1.0, PositionType::worldPosition) ;
-    vectr = Vectr<float>(loc, false) ;
+    outputData = OutputData<float, int>(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition) ;
+    vectr = Vectr<float>(& loc, false) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -41,8 +39,8 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
     
-    loc->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(loc, this, BoundsCheck<float>::defaultCheck) ;
+    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+	map->place<float>( & loc, this, BoundsCheck<float>::defaultCheck) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
 }
@@ -118,13 +116,14 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
-	outputData(imageFile, &loc, sizeModifier, PositionType::worldPosition),
 	size(Size<int>()),
-	loc(loc_, BoundsCheck<float>::defaultCheck),
-	vectr(& loc, monitorVelocity)
+	loc(loc_, BoundsCheck<float>::defaultCheck)
 {
 	IDs++ ;
-	
+    
+    outputData = OutputData<float, int>(imageFile, &loc, sizeModifier, PositionType::worldPosition) ;
+	vectr = Vectr<float>(& loc, monitorVelocity) ;
+    
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
