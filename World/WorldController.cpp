@@ -38,12 +38,16 @@ void WorldController::init() {
               0.50, Pos2<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
 	*/
 	/* Init obstacles */
+	
 	FastRand<float>randomSizeModifier(0.25, 1.0) ;
 	
+	FastRand<int> randm(0, 100) ;
+	
 	for (auto i = 0 ; i < 10 ; i++) {
-		
+		/*
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), randomSizeModifier(),
-			Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), true, false) ;
+			Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), true, false) ; */
+		new GameObject(randm) ;
 	}
 	
 	/* Init game state */

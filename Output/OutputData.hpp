@@ -47,8 +47,6 @@ protected:
 	
 	static vector<OutputData *> allOutputData ;
 	
-	
-	
 	bool initFlag = true ;
 	
 	/**
@@ -94,12 +92,7 @@ protected:
 	Size<SIZEUTYPE> size ;
 	
 	/**
-	 * @note This function's functionality cannot be part of the constructor, nor can it even be called from 
-	 * the constructor itself, the reason being that we can never be sure if the constructor is run on the main
-	 * thread (SDL requires graphics operations to be on the main thread). Therefore, this function is only called
-	 * by updateAll() (which is always run on the main thread), and updateAll() only calls this on objects that have their
-	 * initFlag set (each object should only have it's init flag set once in it's lifetime, unless it was the recipient of a 
-	 * copy operation). What the constructor can and should do, then, is to set the initFlag.
+	 * @note Can ONLY be run on the main thread
 	 */
 	virtual void initGraphicsData() ;
 	
@@ -134,7 +127,6 @@ public:
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
-		update() ;
 		allOutputData.push_back(this) ;
 	}
 	
@@ -147,7 +139,6 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
-		update() ;
 		allOutputData.push_back(this) ;
     }
     
@@ -160,7 +151,6 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
-		update() ;
 		allOutputData.push_back(this) ;
     }
 	
@@ -376,6 +366,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 	}
 }
 
+/* Can only be called after we complete initialization */
 template<typename POSUTYPE, typename SIZEUTYPE>
 void OutputData<POSUTYPE, SIZEUTYPE>::update() {
     if (checkIfUpdated()) {

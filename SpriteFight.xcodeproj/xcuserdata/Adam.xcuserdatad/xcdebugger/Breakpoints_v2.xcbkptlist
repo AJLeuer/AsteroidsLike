@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
             landmarkName = "checkIfUpdated()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,55 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427586471.15506"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126">
+            startingLineNumber = "119"
+            endingLineNumber = "119">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData()"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.961111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData()"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.961228"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "623">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData()"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.961339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "692">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,11 +116,41 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152">
+            startingLineNumber = "143"
+            endingLineNumber = "143">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData(FastRand&lt;int&gt;&amp;, Position&lt;float&gt; const*, float, PositionType)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.962319"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData(FastRand&lt;int&gt;&amp;, Position&lt;float&gt; const*, float, PositionType)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.962455"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "53">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -86,11 +160,41 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167">
+            startingLineNumber = "157"
+            endingLineNumber = "157">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData(OutputData&lt;float, int&gt; const&amp;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.963441"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutputData&lt;float, int&gt;::OutputData(OutputData&lt;float, int&gt; const&amp;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Output/OutputData.hpp"
+                  timestampString = "427604614.963569"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -100,11 +204,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183">
+            startingLineNumber = "173"
+            endingLineNumber = "173">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -130,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "updateAll()"
             landmarkType = "7">
          </BreakpointContent>
@@ -146,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200">
+            startingLineNumber = "190"
+            endingLineNumber = "190">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -160,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "reinitializeMembers(FastRand&lt;int&gt; &amp; randm, const Position&lt;POSUTYPE&gt; * pos, const float sizeModifier, PositionType type)"
             landmarkType = "7">
          </BreakpointContent>
@@ -176,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Output/OutputData.hpp"
-            timestampString = "427604197.630037"
+            timestampString = "427606052.923068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "initGraphicsData()"
             landmarkType = "7">
          </BreakpointContent>
