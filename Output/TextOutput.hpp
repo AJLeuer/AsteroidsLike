@@ -61,7 +61,7 @@ protected:
 	
 	void initGraphicsData() ;
     
-    void update() ;
+    virtual void update() ;
 	
 public:
 	

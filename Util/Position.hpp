@@ -1011,7 +1011,7 @@ protected:
     /**
      * A pointer to the current Position
      */
-	const Position<N> ** current ;
+	const Position<N> * current ;
     
     /**
      * The non-normalized distance between the current Position and mostRecent Position
@@ -1049,7 +1049,7 @@ public:
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
 	
-	const Position * getCurrent() const { return this->current ; }
+	const Position * getCurrent() const { return current ; }
 	
 	const Position getLast() const { return this->last ; }
 	
@@ -1085,19 +1085,14 @@ BasicMutex * Vectr<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
 template<typename N>
 Vectr<N>::Vectr() :
     Position<float>(),
-    totalDistanceMoved(new N)
-{
-	if (monitorVelocity) {
-		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
-	}
-	else {
-		velocity = nullptr ;
-	}
-}
+	current(nullptr),
+    totalDistanceMoved(nullptr),
+	velocity(nullptr) {}
 
 template<typename N>
 Vectr<N>::Vectr(float headingX, float headingY, float headingZ, bool monitorVelocity) :
 	Position<float>(headingX, headingY, headingZ),
+	current(nullptr),
 	totalDistanceMoved(new N)
 {
 	if (monitorVelocity) {

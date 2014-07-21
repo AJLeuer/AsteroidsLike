@@ -147,6 +147,7 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
+		update() ;
 		allOutputData.push_back(this) ;
     }
     
@@ -162,7 +163,7 @@ public:
 		update() ;
 		allOutputData.push_back(this) ;
     }
-    
+	
     OutputData(const OutputData & other) :
         textureImageFile(other.textureImageFile),
         texture(nullptr),
@@ -173,10 +174,10 @@ public:
 		positionType(other.positionType),
 		visible(other.visible)
     {
-        /* init flag is true */
+		//init flag is true
 		allOutputData.push_back(this) ;
     }
-    
+	
     OutputData(OutputData && other) :
 		initFlag(other.initFlag),
         textureImageFile(other.textureImageFile),
@@ -190,7 +191,7 @@ public:
     {
         other.texture = nullptr ;
         other.position = nullptr ;
-		
+	
 		allOutputData.push_back(this) ;
     }
     
@@ -201,6 +202,9 @@ public:
         }
     }
 	
+	OutputData & operator=(const OutputData & rhs) = delete ;
+	
+	/*
 	OutputData & operator=(const OutputData & rhs) {
 		if (this != &rhs) {
             SDL_DestroyTexture(texture) ;
@@ -219,8 +223,11 @@ public:
             update() ;
 		}
 		return *this ;
-	}
-    
+	} */
+	
+	OutputData & operator=(OutputData && rhs) = delete ;
+	
+	/*
     OutputData & operator=(OutputData && rhs) {
         if (this != &rhs) {
             this->textureImageFile = rhs.textureImageFile ;
@@ -239,7 +246,17 @@ public:
             update() ;
         }
         return *this ;
-    }
+    } */
+	
+	/**
+	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
+	 */
+	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) ;
+	
+	/**
+	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
+	 */
+	void reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) ;
 	
 	/**
 	 * @brief Check whether this OutputData has changed since the last time it was rendered
@@ -259,6 +276,14 @@ public:
     Texture * getTexture() const { return texture ; }
 	
 	const Position<POSUTYPE> getPosition() const ;
+	
+	/**
+	 * @note Only use for making a copy of this OutputData's position,
+	 * not for rendering operations
+	 */
+	const Position<POSUTYPE> * getPosition_raw() const { return position ; }
+	
+	PositionType getPositionType() const { return positionType ; }
 	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
@@ -281,16 +306,42 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	for (auto i = 0 ; i < OutputData::allOutputData.size() ; i++) {
 		
         auto * od =  & allOutputData ; /* temp debug var */
-        
-		OutputData * out = allOutputData.at(i) ;
+		OutputData * out = allOutputData.at(i) ; /* temp debug var */
 		
 		if (out->initFlag) {
-			out->initGraphicsData() ;
+			allOutputData.at(i)->initGraphicsData() ;
 		}
-		out->update() ;
+		allOutputData.at(i)->update() ;
 	}
 }
 
+template<typename POSUTYPE, typename SIZEUTYPE>
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) {
+	
+	textureImageFile = file ;
+	texture = nullptr ;
+	position = pos ;
+	positionType = type ;
+	size.setModifier(sizeModifier) ;
+	
+	update() ;
+	
+	initFlag = true ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) {
+	
+	textureImageFile = AssetFile(randm) ;
+	texture = nullptr ;
+	position = pos ;
+	positionType = type ;
+	size.setModifier(sizeModifier) ;
+	
+	update() ;
+	
+	initFlag = true ;
+}
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
@@ -319,6 +370,8 @@ void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 		SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
 		
 		size.setSize(tempW, tempH) ; //assign new size to this GameObject
+		
+		/* reset the initFlag */
 		initFlag = false ;
 	}
 }

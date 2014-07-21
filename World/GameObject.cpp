@@ -24,12 +24,15 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
+	outputData(), /* can't be properly initialized yet */
 	size(Size<int>()),
-	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)
+	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
+	vectr() /* nor can this */
 {
 	IDs++ ;
     
-    outputData = OutputData<float, int>(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition) ;
+    outputData.reinitializeMembers(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition) ;
+	
     vectr = Vectr<float>(& loc, false) ;
     
 	if (!map_is_init) {
@@ -116,12 +119,14 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
+	outputData(), /* can't be properly initialized yet */
 	size(Size<int>()),
-	loc(loc_, BoundsCheck<float>::defaultCheck)
+	loc(loc_, BoundsCheck<float>::defaultCheck),
+	vectr() /* nor can this */
 {
 	IDs++ ;
     
-    outputData = OutputData<float, int>(imageFile, &loc, sizeModifier, PositionType::worldPosition) ;
+    outputData.reinitializeMembers(imageFile, &loc, sizeModifier, PositionType::worldPosition) ;
 	vectr = Vectr<float>(& loc, monitorVelocity) ;
     
 	if (!map_is_init) {
@@ -181,13 +186,14 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
 
 		/* Keep ID the same */
-        this->outputData = rhs.outputData ;
-
         map->erase(& loc, this) ;
 
         loc = rhs.loc ;
 		vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), &loc) ;
-        
+		
+		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
+											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
+		
 		map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
 		vectr.updateAndNormalize() ;
 	}
@@ -207,11 +213,13 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 	if (this != &rhs) {
 		
 		this->ID = rhs.ID ;
-		this->outputData = std::move(rhs.outputData) ; /* No initGraphicsData() for move operations, just steal from other */
 		this->size = std::move(rhs.size) ;
 		
         this->loc = std::move(rhs.loc) ;
 		this->vectr = std::move(rhs.vectr) ;
+		
+		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
+											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
 		rhs.ID = -1 ;
 	}
