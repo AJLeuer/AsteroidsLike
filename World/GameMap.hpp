@@ -243,10 +243,17 @@ void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObje
 	bool badpos = true ;
 		
 	for (auto i = containingList->begin() ; i != containingList->end() ; i++) {
+		auto sz = containingList->size() ; /* debug var */
+		/* debug */
+		if (sz > 0) {
+			;
+		}
+		/*end debug */
 		if (**i == *pointerToOriginalObject) {
 			containingList->erase(i) ;
 			mapMembers-- ;
 			badpos = false ;
+			break ; //break to avoid errors
 		}
 	}
 	if (badpos) {

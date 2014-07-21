@@ -31,6 +31,7 @@ using namespace std ;
 
 enum class AssetType {
 	asteroid,
+	background,
     explosion,
 	powerup,
     projectile,
@@ -54,6 +55,7 @@ protected:
 public:
     
     static vector<AssetFile> * asteroidImageFilenames ;
+	static vector<AssetFile> * backgroundImageFilenames ;
     static vector<AssetFile> * explosionImageFilenames ;
 	static vector<AssetFile> * powerupImageFilenames ;
     static vector<AssetFile> * projectileImageFilenames ;

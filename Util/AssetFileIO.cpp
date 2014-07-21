@@ -15,6 +15,10 @@ vector<AssetFile> * AssetFile::asteroidImageFilenames = new vector<AssetFile> {
 	{"Asteroid0_Gray.png",  "/Assets/Asteroids/Asteroid0_Gray.png",	 AssetType::asteroid, Colors::brown}
 } ;
 
+vector<AssetFile> * AssetFile::backgroundImageFilenames = new vector<AssetFile> {
+	{"Space 0.png", "/Assets/Backgrounds/Space 0.png", AssetType::background, Colors::various}
+} ;
+
 vector<AssetFile> * AssetFile::explosionImageFilenames = new vector<AssetFile> {
     {"Explosion0_Blue.png",		"/Assets/Explosions/Explosion0_Blue.png",		AssetType::explosion, Colors::blue},
 	{"Explosion0_Green.png",	"/Assets/Explosions/Explosion0_Green.png",		AssetType::explosion, Colors::green},
@@ -84,6 +88,7 @@ vector<AssetFile> * AssetFile::UIImageFilenames = new vector<AssetFile> {
 
 vector< vector<AssetFile> * > * AssetFile::allAssetFiles = new vector< vector<AssetFile> * > {
     asteroidImageFilenames,
+	backgroundImageFilenames,
     explosionImageFilenames,
 	powerupImageFilenames,
     projectileImageFilenames,
@@ -147,6 +152,17 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 			//check the string given to make sure it's a match
 			for (auto i = 0 ; i < AssetFile::asteroidImageFilenames->size() ; i++) {
 				if (file.fileName == AssetFile::asteroidImageFilenames->at(i).fileName) {
+					noMatch = false ;
+					break ;
+				}
+			}
+			break ;
+		}
+		case AssetType::background:
+		{
+			//check the string given to make sure it's a match
+			for (auto i = 0 ; i < AssetFile::backgroundImageFilenames->size() ; i++) {
+				if (file.fileName == AssetFile::backgroundImageFilenames->at(i).fileName) {
 					noMatch = false ;
 					break ;
 				}
@@ -270,6 +286,11 @@ AssetFile AssetFileIO::getRandomImageFile(AssetType type) {
 		{
 			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFilenames->size() -1) ;
 			return AssetFile::asteroidImageFilenames->at(rnd()) ;
+		}
+		case AssetType::background:
+		{
+			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::backgroundImageFilenames->size() -1) ;
+			return AssetFile::backgroundImageFilenames->at(rnd()) ;
 		}
         case AssetType::explosion:
         {

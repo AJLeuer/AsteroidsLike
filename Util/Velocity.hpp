@@ -51,7 +51,7 @@ protected:
 	 * The unit of time that will function as the denominator
 	 * for this Velocity object. By default it is 64 milliseconds.
 	 */
-	chrono::nanoseconds baseTimeUnit = twoforty_milliseconds ;
+	chrono::nanoseconds baseTimeUnit = std::chrono::milliseconds(30) ;
 	
 	double lastVelocity = 0 ;
 	

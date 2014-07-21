@@ -6,33 +6,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Output/GraphicalOutput.cpp"
-            timestampString = "427611052.184359"
+            filePath = "Output/TextOutput.hpp"
+            timestampString = "427620326.975655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "GraphicalOutput::update()"
-            landmarkType = "5">
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "displayContinuousText(function&lt;const string (void)&gt; stringUpdatingFunction, const Position&lt;POSUTYPE&gt; &amp; pos, GameColor foreground, GameColor background)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Output/OutputData.hpp"
-            timestampString = "427611750.589311"
+            filePath = "Control/Player.cpp"
+            timestampString = "427620326.975655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "updateAll()"
-            landmarkType = "7">
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "Player::displayVelocity(Position&lt;float&gt; pos, GameColor foreground, GameColor background)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

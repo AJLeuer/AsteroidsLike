@@ -49,7 +49,16 @@ protected:
 	
 	string text ;
 	
+	bool text_was_updated = false ;
+	
 	GameColor foreground, background ;
+	
+	bool color_was_updated = false ;
+	
+	bool position_was_updated ;
+	
+	
+	void addAdditionalUpdateFlags() ;
 	
 	friend class GraphicalOutput ;
 	
@@ -172,9 +181,20 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<
 {
 	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
-		OutputData simply sets the updateFlag */
+		OutputData simply sets the initFlag */
 	
 	/* initFlag = true */
+	
+	addAdditionalUpdateFlags() ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void TextOutput<POSUTYPE, SIZEUTYPE>::addAdditionalUpdateFlags() {
+	
+	this->updateFlags.push_back(& color_was_updated) ;
+	this->updateFlags.push_back(& text_was_updated) ;
+	this->updateFlags.push_back(& position_was_updated) ;
+	/* add more here... */
 }
 
 
@@ -218,8 +238,6 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		/* reset the update flag */
 		this->initFlag = false ;
 		
-		/* since init() and update() do essentially the same thing for TextOutput, we can just set the updateFlag false, too */
-		this->updateFlag = false ;
 	}
 }
 
@@ -261,8 +279,6 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
 		
 		this->size = getSizeOfText(text) ;
 		
-		/* reset the update flag */
-		this->updateFlag = false ;
 	}
 }
 
@@ -274,7 +290,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateText(const string & newText) {
 		this->size = getSizeOfText(text) ;
 		
 		/* set updateflag so update() knows to run */
-		this->updateFlag = true ;
+		text_was_updated = true ;
 	}
 	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
@@ -286,9 +302,8 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Position<POSUTYPE> & 
 		this->position->setAll(pos) ;
 		
 		/* set updateflag so update() knows to run */
-		this->updateFlag = true ;
+		position_was_updated = true ;
 	}
-	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -298,9 +313,8 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateForegroundColor(GameColor color) {
 		foreground = color ;
 		
 		/* set updateflag so update() knows to run */
-		this->updateFlag = true ;
+		color_was_updated = true ;
 	}
-	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -310,9 +324,8 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateBackgroundColor(GameColor color) {
 		background = color ;
 		
 		/* set updateflag so update() knows to run */
-		this->updateFlag = true ;
+		color_was_updated = true ;
 	}
-	/* else leave updateflag false so we don't waste GPU/CPU resources redrawing */
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -324,7 +337,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updat
 		
 		while (GLOBAL_CONTINUE_FLAG) {
 			textoutput->updateText(*updatingText) ;
-			this_thread::sleep_for(defaultSleepTime) ;
+			this_thread::sleep_for(chrono::nanoseconds(1)) ;
 		}
 		
 		delete textoutput ;
@@ -344,7 +357,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const strin
 		
 		while (GLOBAL_CONTINUE_FLAG) {
 			textoutput->updateText(stringUpdatingFunction()) ;
-			this_thread::sleep_for(defaultSleepTime) ;
+			this_thread::sleep_for(chrono::nanoseconds(1)) ;
 		}
 		
 		delete textoutput ;

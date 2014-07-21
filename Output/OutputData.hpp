@@ -50,13 +50,14 @@ protected:
 	bool initFlag = true ;
 	
 	/**
-	 * @brief Whether the OutputData has been recently updated. Don't refer to this value
+	 * @brief Indicates whether the OutputData has been recently updated. For every member that
+	 *		  changes, it's corresponding boolean within updateFlags should be set true. Don't refer to this
 	 *		  directly, instead call checkIfUpdated()
 	 */
-    bool updateFlag = false ;
+
 	
 	bool visible = true ;
-	
+	bool visibility_was_updated = false ;
 	
 	PositionType positionType ;
 	
@@ -68,16 +69,7 @@ protected:
 	 * @note In most cases, the class owning this OutputData object should never need to deal with texture directly
 	 */
 	Texture * texture ;
-	
-	/**
-	 * @brief A copy of position from the last time this OutputData was updated
-	 */
-	Position<POSUTYPE> position_lastRecordedValue ;
-	
-	/**
-	 * @brief A copy of size from the last time this OutputData was updated
-	 */
-	Size<SIZEUTYPE> size_lastRecordedValue ;
+	bool texture_was_updated ;
 	
 	/**
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
@@ -90,6 +82,18 @@ protected:
 	 *
 	 */
 	Size<SIZEUTYPE> size ;
+	
+	/**
+	 * @brief A copy of position from the last time this OutputData was updated
+	 */
+	Position<POSUTYPE> position_lastRecordedValue ;
+	
+	/**
+	 * @brief A copy of size from the last time this OutputData was updated
+	 */
+	Size<SIZEUTYPE> size_lastRecordedValue ;
+	
+	vector<bool *> updateFlags = { & visibility_was_updated, & texture_was_updated } ; /* add more here */
 	
 	/**
 	 * @brief Does the remaining initialization that could not be done in the constructor (because it does not
@@ -399,8 +403,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::update() {
     if (checkIfUpdated()) {
         position_lastRecordedValue = *position ;
         size_lastRecordedValue = size ;
-        
-        updateFlag = false ;
+
     }
 }
 
@@ -408,19 +411,23 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 	
 	/* if the updateFlag was set directly, this overrides any checking. Just return true immediately */
-	if (updateFlag == true) {
-		return updateFlag ;
-	}
-	else {
-		bool changed = false ;
-		if (*this->position != this->position_lastRecordedValue ) {
-			changed = true ;
+	for (auto i = 0 ; i < updateFlags.size(); i++) {
+		if (*updateFlags.at(i) == true) {
+			*updateFlags.at(i) = false ;
+			return true ;
 		}
-		else if (this->size != this->size_lastRecordedValue) {
-			changed = true ;
-		}
-		return changed ;
 	}
+
+	/* otherwise do any other checking for possible changes... */
+	bool changed = false ;
+	if (*this->position != this->position_lastRecordedValue ) {
+		changed = true ;
+	}
+	else if (this->size != this->size_lastRecordedValue) {
+		changed = true ;
+	}
+	return changed ;
+
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

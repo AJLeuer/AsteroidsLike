@@ -129,19 +129,15 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 		
 		auto currentVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
 		
-		if (currentVelocity != lastVelocity) {
+
+		stream1 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
 			
-			stream1 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+		str = stream1.str() ;
 			
-			str = stream1.str() ;
+		lastVelocity = currentVelocity ;
 			
-			lastVelocity = currentVelocity ;
-			
-			return str ;
-		}
-		else { //just return TextOutput's own string back to it
-			return str ;
-		}
+		return str ;
+
 	} ;
 	
 	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, foreground, background) ;
