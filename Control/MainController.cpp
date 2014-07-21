@@ -38,6 +38,7 @@ void MainController::init() {
 	
 	GameState::mainGameClock->startTimer() ;
 	GLOBAL_CONTINUE_FLAG = true ;
+	mainThreadID = this_thread::get_id() ;
 	
 	//do initializations
     Configuration::init() ;

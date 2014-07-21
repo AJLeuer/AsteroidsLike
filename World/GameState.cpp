@@ -14,6 +14,8 @@
 
 using namespace std ;
 
+
+
 bool GameState::dataIsInit = false ;
 
 bool GameState::graphicsAreInit = false ;
@@ -87,6 +89,7 @@ Renderer * GameState::getMainRenderer() {
 	return renderer ;
 }
 
+thread::id mainThreadID ;
 
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;

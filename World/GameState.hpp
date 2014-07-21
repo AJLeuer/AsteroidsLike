@@ -13,6 +13,7 @@
 #include <iostream>
 #include <ostream>
 #include <sstream>
+#include <thread>
 #include <mutex>
 #include <array>
 #include <vector>
@@ -118,6 +119,8 @@ public:
 
 
 /* Globals */
+
+extern thread::id mainThreadID ;
 
 /**
  * The graphics and input loop, managed together by MainController 

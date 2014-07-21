@@ -92,9 +92,12 @@ protected:
 	Size<SIZEUTYPE> size ;
 	
 	/**
+	 * @brief Does the remaining initialization that could not be done in the constructor (because it does not
+	 * know with certainty that it is on the main thread)
+	 *
 	 * @note Can ONLY be run on the main thread
 	 */
-	virtual void initGraphicsData() ;
+	virtual void completeInitialization() ;
 	
 	virtual void update() ;
 	
@@ -293,14 +296,26 @@ vector<OutputData<POSUTYPE, SIZEUTYPE> *> * OutputData<POSUTYPE, SIZEUTYPE>::get
 template<typename POSUTYPE, typename SIZEUTYPE>
 void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	
+	{
+	/* Debug code */
+	#ifdef DEBUG_MODE
+	if (this_thread::get_id() != mainThreadID) {
+		DebugOutput << "OutputData::updateAll() can only be called on the main thread \n" ;
+		throw exception() ;
+	}
+	#endif
+	/* End Debug code */
+	}
+	
 	for (auto i = 0 ; i < OutputData::allOutputData.size() ; i++) {
 		
         auto * od =  & allOutputData ; /* temp debug var */
 		OutputData * out = allOutputData.at(i) ; /* temp debug var */
 		
 		if (out->initFlag) {
-			allOutputData.at(i)->initGraphicsData() ;
+			allOutputData.at(i)->completeInitialization() ;
 		}
+		
 		allOutputData.at(i)->update() ;
 	}
 }
@@ -334,7 +349,18 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm,
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
+void OutputData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
+	
+	{
+	/* Debug code */
+	#ifdef DEBUG_MODE
+	if (this_thread::get_id() != mainThreadID) {
+		DebugOutput << "OutputData::initGraphicsData() can only be called on the main thread \n" ;
+		throw exception() ;
+	}
+	#endif
+	/* End Debug code */
+	}
 	
 	if (initFlag) {
 		
@@ -382,8 +408,7 @@ bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 	
 	/* if the updateFlag was set directly, this overrides any checking. Just return true immediately */
 	if (updateFlag == true) {
-		updateFlag = false ; //reset updateFlag
-		return true ;
+		return updateFlag ;
 	}
 	else {
 		bool changed = false ;
@@ -401,7 +426,6 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 void OutputData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
 	SDL_DestroyTexture(this->texture) ;
 	this->texture = texture ;
-	updateFlag = true ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

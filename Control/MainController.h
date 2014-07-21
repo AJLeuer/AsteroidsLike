@@ -63,7 +63,13 @@ protected:
 	
 public:
 	
+	/**
+	 * @brief Initializes the game before MainController::main() is called
+	 *
+	 * @note Should be called on the main thread
+	 */
 	static void init() ;
+	
 	static void main() ;
 
 } ;

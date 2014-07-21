@@ -49,17 +49,11 @@ protected:
 	
 	string text ;
 	
-	//Position<POSUTYPE> position ;
-	
-	Size<SIZEUTYPE> size ;
-	
-	//OutputData<POSUTYPE, SIZEUTYPE> outputData ;
-	
 	GameColor foreground, background ;
 	
 	friend class GraphicalOutput ;
 	
-	void initGraphicsData() ;
+	void completeInitialization() ;
     
     virtual void update() ;
 	
@@ -72,16 +66,17 @@ public:
 	static void exit() ;
 	
 
-    //static void outputText(const string & text, GameColor foreground, GameColor background, const Position<POSUTYPE> pos,
-	// const Size<SIZEUTYPE> * size) ;
-	
 	/**
 	 * Creates a TextOutput object which will automatically output the string text to the screen, at the chosen position position, at the
 	 * next output update. TextOutput assumes that all pointers given to it remain valid for calling refresh()
 	 */
 	TextOutput(const string & text, const Position<POSUTYPE> & pos, GameColor foreground, GameColor background) ;
 	
-	~TextOutput() { erase() ; }
+	/* Since TextOutput allocates a new Position for it's superclass's position member, TextOutput will destroy that position as well */
+	/**
+	 * @brief Destructor for TextOutput
+	 */
+	~TextOutput() { erase() ; delete this->position ; }
 	
 	void updateText(const string & newText) ;
 	
@@ -173,7 +168,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::exit() {
 template<typename POSUTYPE, typename SIZEUTYPE>
 TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<POSUTYPE> & pos, GameColor foreground, GameColor background) :
 	OutputData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), 1.0, PositionType::screenPosition),
-	text(text), size(), foreground(foreground), background(background)
+	text(text), foreground(foreground), background(background)
 {
 	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
@@ -185,9 +180,20 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<
 
 //must be called from main thread
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
+void TextOutput<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 	
-	if (this->initFlag) { /* check if we actually need to update anything */
+	{
+	/* Debug code */
+	#ifdef DEBUG_MODE
+	if (this_thread::get_id() != mainThreadID) {
+		DebugOutput << "TextOutput::initGraphicsData() can only be called on the main thread \n" ;
+		throw exception() ;
+	}
+	#endif
+	/* End Debug code */
+	}
+	
+	if (this->initFlag) { /* check if we actually need to init anything */
 		
 		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
@@ -207,15 +213,29 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::initGraphicsData() {
 		
 		SDL_FreeSurface(surface) ;
 		
-		size = getSizeOfText(text) ;
+		this->size = getSizeOfText(text) ;
 		
 		/* reset the update flag */
 		this->initFlag = false ;
+		
+		/* since init() and update() do essentially the same thing for TextOutput, we can just set the updateFlag false, too */
+		this->updateFlag = false ;
 	}
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
+	
+	{
+	/* Debug code */
+	#ifdef DEBUG_MODE
+	if (this_thread::get_id() != mainThreadID) {
+		DebugOutput << "TextOutput::update() can only be called on the main thread \n" ;
+		throw exception() ;
+	}
+	#endif
+	/* End Debug code */
+	}
     
     if (this->checkIfUpdated()) { /* check if we actually need to update anything */
 		
@@ -239,7 +259,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
 		
 		SDL_FreeSurface(surface) ;
 		
-		size = getSizeOfText(text) ;
+		this->size = getSizeOfText(text) ;
 		
 		/* reset the update flag */
 		this->updateFlag = false ;
@@ -249,8 +269,10 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::updateText(const string & newText) {
 	if (this->text != newText) {
+		
 		this->text = newText ;
-		size = getSizeOfText(text) ;
+		this->size = getSizeOfText(text) ;
+		
 		/* set updateflag so update() knows to run */
 		this->updateFlag = true ;
 	}
@@ -260,7 +282,9 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateText(const string & newText) {
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Position<POSUTYPE> & pos) {
 	if (*this->position != pos) {
+		
 		this->position->setAll(pos) ;
+		
 		/* set updateflag so update() knows to run */
 		this->updateFlag = true ;
 	}
@@ -270,7 +294,9 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Position<POSUTYPE> & 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::updateForegroundColor(GameColor color) {
 	if (this->foreground != color) {
+		
 		foreground = color ;
+		
 		/* set updateflag so update() knows to run */
 		this->updateFlag = true ;
 	}
@@ -280,7 +306,9 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateForegroundColor(GameColor color) {
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::updateBackgroundColor(GameColor color) {
 	if (this->background != color) {
+		
 		background = color ;
+		
 		/* set updateflag so update() knows to run */
 		this->updateFlag = true ;
 	}
