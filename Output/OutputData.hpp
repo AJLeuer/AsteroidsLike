@@ -36,7 +36,8 @@
 
 enum class PositionType {
 	worldPosition,
-	screenPosition
+	screenPosition,
+    null
 };
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -84,7 +85,7 @@ protected:
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
 	 *        this OutputData object
 	 */
-	Position<POSUTYPE> * position ;
+	const Position<POSUTYPE> * position ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
@@ -113,6 +114,16 @@ public:
 	 * @note Should only be called from the main thread
 	 */
 	static void updateAll() ;
+    
+    OutputData() :
+        textureImageFile(),
+        texture(nullptr),
+        position(nullptr),
+        size(), /* can't be initialized yet */
+        positionType(PositionType::null)
+    {
+        allOutputData.push_back(this) ;
+    }
 	
 	OutputData(Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
         textureImageFile(),
@@ -127,7 +138,7 @@ public:
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
+	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
@@ -139,7 +150,7 @@ public:
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
+    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
         textureImageFile(AssetFile(randm)),
         texture(nullptr),
         position(pos),
@@ -167,7 +178,7 @@ public:
     }
     
     OutputData(OutputData && other) :
-		initFlag(false),
+		initFlag(other.initFlag),
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         position(other.position),
@@ -177,7 +188,6 @@ public:
 		positionType(other.positionType),
 		visible(other.visible)
     {
-		//no need to init
         other.texture = nullptr ;
         other.position = nullptr ;
 		
@@ -205,6 +215,8 @@ public:
 			this->visible = rhs.visible ;
             
             initFlag = true ;
+            
+            update() ;
 		}
 		return *this ;
 	}
@@ -219,11 +231,12 @@ public:
 			this->size_lastRecordedValue = std::move(rhs.size_lastRecordedValue) ;
 			this->positionType = rhs.positionType ;
 			this->visible = rhs.visible ;
-			
-			initFlag = false ;
+			this->initFlag = rhs.initFlag ;
 			
             rhs.texture = nullptr ;
             rhs.position = nullptr ;
+            
+            update() ;
         }
         return *this ;
     }
@@ -267,12 +280,13 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	
 	for (auto i = 0 ; i < OutputData::allOutputData.size() ; i++) {
 		
+        auto * od =  & allOutputData ; /* temp debug var */
+        
 		OutputData * out = allOutputData.at(i) ;
 		
 		if (out->initFlag) {
 			out->initGraphicsData() ;
 		}
-
 		out->update() ;
 	}
 }

@@ -213,7 +213,7 @@
 				66E97F2E18CF009E002EFA00 /* SpriteFight */,
 			);
 			name = Products;
-			path = "/Users/aleuer2/Library/Developer/Xcode/DerivedData/SpriteFight-gbfwdtwzcifbbeeituucrnhhwwwm/Build/Products/Debug";
+			path = "/Users/aleuer2/Library/Developer/Xcode/DerivedData/SpriteFight-cluzsmcncqefdkgvozqdpflcfkea/Build/Products/Debug";
 			sourceTree = "<absolute>";
 		};
 		66E97F3018CF009E002EFA00 /* World */ = {
@@ -407,7 +407,7 @@
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.8;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;
@@ -477,7 +477,7 @@
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.8;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;

@@ -24,12 +24,15 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	outputData(FastRand<int>::defaultRandom, loc, 1.0, PositionType::worldPosition),
+	outputData(),
 	size(Size<int>()),
 	loc(new Pos2<float>(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck)),
-	vectr(loc, false)
+	vectr()
 {
 	IDs++ ;
+    
+    outputData = OutputData(FastRand<int>::defaultRandom, loc, 1.0, PositionType::worldPosition) ;
+    vectr = Vectr<float>(loc, false) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;

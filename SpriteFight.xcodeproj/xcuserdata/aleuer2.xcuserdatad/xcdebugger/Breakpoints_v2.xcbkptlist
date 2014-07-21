@@ -6,32 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Output/TextOutput.cpp"
-            timestampString = "427421322.888321"
+            filePath = "Output/OutputData.hpp"
+            timestampString = "427594075.495419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "TextOutput::update()"
-            landmarkType = "5">
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "updateAll()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Control/Player.cpp"
-            timestampString = "427421672.618614"
+            filePath = "World/WorldController.cpp"
+            timestampString = "427594656.745361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "Player::displayVelocity(Position&lt;float&gt; pos, GameColor foreground, GameColor background)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "WorldController::init()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
