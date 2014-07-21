@@ -307,12 +307,13 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	/* End Debug code */
 	}
 	
+	auto * od =  & allOutputData ; /* temp debug var */
+	
 	for (auto i = 0 ; i < OutputData::allOutputData.size() ; i++) {
 		
-        auto * od =  & allOutputData ; /* temp debug var */
 		OutputData * out = allOutputData.at(i) ; /* temp debug var */
 		
-		if (out->initFlag) {
+		if (allOutputData.at(i)->initFlag) {
 			allOutputData.at(i)->completeInitialization() ;
 		}
 		
