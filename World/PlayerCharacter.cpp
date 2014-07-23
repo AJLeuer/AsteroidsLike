@@ -127,13 +127,14 @@ void PlayerCharacter::defaultBehaviors() {
    /* Overriding this with nothing, since we are player-controlled, not AI-controlled */
 }
 
-/**
- * Attacks a hostile PlayerCharacter
- *
- * @param enemy The enemy to attack
- */
-void PlayerCharacter::attack(PlayerCharacter * enemy) {
-    //todo
+
+void PlayerCharacter::fire() {
+    weapon.fire() ;
+}
+
+
+void PlayerCharacter::fire(const Character * atEnemy) {
+    
 }
 
 void PlayerCharacter::jump() {

@@ -27,7 +27,7 @@ Weapon & Weapon::operator=(Weapon && rhs) {
 }
 
 void Weapon::fire() {
-	
+	projectile.setVisibility(true) ;
 }
 
 

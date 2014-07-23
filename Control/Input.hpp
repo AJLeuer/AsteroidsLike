@@ -127,6 +127,11 @@ public:
 	EventRegister(GameInterface * callOn, void (GameInterface::*cb)(), EventType eventType) :
 		EventRegisterBase(callOn, cb),
 		eventType(eventType) {}
+    
+    template<class T>
+    EventRegister(T * callOn, void (T::*cb)(), EventType eventType) :
+        EventRegisterBase(callOn, cb),
+        eventType(eventType) {}
 	
 	EventRegister(function<void (void)> cb, EventType eventType) :
 		EventRegisterBase(cb),

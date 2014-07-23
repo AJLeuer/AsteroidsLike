@@ -74,6 +74,9 @@ void Player::registerForCallbacks() {
 	KeyInputRegister * onKeyMoveDown ;
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
+    KeyInputRegister * onKeyFire ;
+    
+    onKeyFire = new KeyInputRegister(&playerCharacter,  SDL_MOUSEBUTTONDOWN
 	
 	if (playerCharacter.getColor() != Colors::green) {
         
