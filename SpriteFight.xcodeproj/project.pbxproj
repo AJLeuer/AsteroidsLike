@@ -31,6 +31,7 @@
 		669F0B63196BFB39007CF4D4 /* About in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BE195EC34C00B21A27 /* About */; };
 		669F0B64196BFB49007CF4D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66E2BC51195DA7E600287A08 /* README.md */; };
 		669F0B66196BFB6B007CF4D4 /* User Configuration in Resources */ = {isa = PBXBuildFile; fileRef = 669F0B65196BFB6B007CF4D4 /* User Configuration */; };
+		66AAC12E197F226700D7C5C4 /* GameRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66AAC12D197F226700D7C5C4 /* GameRandom.cpp */; };
 		66E3235B19327C28005A1144 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E3235A19327C28005A1144 /* Configuration.cpp */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
@@ -91,6 +92,7 @@
 		668F564D196E74F6006EB2F1 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		669F0B65196BFB6B007CF4D4 /* User Configuration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "User Configuration"; sourceTree = "<group>"; };
+		66AAC12D197F226700D7C5C4 /* GameRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRandom.cpp; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66BE1FBD19226A3A0099FD97 /* Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = Size.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66D2E1451910B86A00632C48 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CharacterData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -183,6 +185,7 @@
 				6652B7F019610BE700243106 /* Timer.cpp */,
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
 				6648C98D1967620D0052E27E /* BasicConcurrency.cpp */,
+				66AAC12D197F226700D7C5C4 /* GameRandom.cpp */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */,
 				668F564E196E74F6006EB2F1 /* Weapon.cpp in Sources */,
 				1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */,
+				66AAC12E197F226700D7C5C4 /* GameRandom.cpp in Sources */,
 				6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */,
 				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,
 				6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */,

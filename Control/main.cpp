@@ -8,7 +8,8 @@
 
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdlib.h>
+
+#include <cstdlib>
 #include <cmath>
 #include <limits>
 

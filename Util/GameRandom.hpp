@@ -21,7 +21,7 @@ using namespace std ;
 template<typename N>
 class FastRand {
 	
-private:
+protected:
 	
 	std::random_device dev ;
 	std::uniform_int_distribution<N> dist ;
@@ -45,7 +45,7 @@ public:
 	
 	FastRand(N _min, N _max) ;
 	FastRand(const FastRand<N> & other) ;
-	FastRand<N> & operator=(const FastRand<N> & rhs) ;
+	FastRand & operator=(const FastRand<N> & rhs) ;
 	~FastRand() ;
 	N nextValue() ;
 	N nextValue(N minimum, N maximum) ;
@@ -55,63 +55,95 @@ public:
 	
 } ;
 
+template<>
+class FastRand<float> {
+	
+protected:
+	
+	std::random_device dev ;
+	std::uniform_real_distribution<float> dist ;
+	std::default_random_engine rndm{dev()} ;
+	
+	float minimum ;
+	float maximum ;
+	
+	static FastRand * initRandPosSetter() ;
+	
+public:
+	
+	static FastRand defaultRandom ;
+	static FastRand * randPositionSetter ;
+	
+	FastRand(float _min, float _max) ;
+	FastRand(const FastRand<float> & other) ;
+	FastRand & operator=(const FastRand<float> & rhs) ;
+	~FastRand() ;
+	float nextValue() ;
+	float nextValue(float minimum, float maximum) ;
+	template<typename R> R nextValue(R _min, R _max) ;
+	float operator()() ;
+	float operator()(float minimum, float maximum) ;
+	
+	
+} ;
 
-template<typename T>
-FastRand<T>::FastRand(T _min, T _max) :
+
+template<typename N>
+FastRand<N>::FastRand(N _min, N _max) :
 	minimum(_min),
 	maximum(_max)
 {
 	//dev ;
-	dist = uniform_int_distribution<T>(minimum, maximum) ;
+	dist = uniform_int_distribution<N>(minimum, maximum) ;
 	rndm.seed(dev()) ;
 }
 
-template<typename T>
-FastRand<T>::FastRand(const FastRand<T> & other)
+template<typename N>
+FastRand<N>::FastRand(const FastRand<N> & other)
 {
 	std::random_device dev2 ;
-	dist = uniform_int_distribution<T>(other.minimum, other.maximum) ;
+	dist = uniform_int_distribution<N>(other.minimum, other.maximum) ;
 	rndm.seed(dev2()) ;
 }
 
-template<typename T>
-FastRand<T>::~FastRand(){}
+template<typename N>
+FastRand<N>::~FastRand(){}
 
-template<typename T>
-FastRand<T> & FastRand<T>::operator=(const FastRand<T> & rhs)
+template<typename N>
+FastRand<N> & FastRand<N>::operator=(const FastRand<N> & rhs)
 {
 	if (this != &rhs) {
 		std::random_device dev2 ;
-		dist = uniform_int_distribution<T>(rhs.minimum, rhs.maximum) ;
+		dist = uniform_int_distribution<N>(rhs.minimum, rhs.maximum) ;
 		rndm.seed(dev2()) ;
 	}
 	return *this ;
 }
 
-template<typename T>
-T FastRand<T>::nextValue() {
+template<typename N>
+N FastRand<N>::nextValue() {
 	return dist(rndm) ;
 }
 
-template<typename T>
-T FastRand<T>::nextValue(T minimum, T maximum) {
-	std::uniform_int_distribution<T> dif_dist{minimum, maximum} ;
+template<typename N>
+N FastRand<N>::nextValue(N minimum, N maximum) {
+	std::uniform_int_distribution<N> dif_dist{minimum, maximum} ;
 	return dif_dist(rndm) ;
 }
 
-template<typename T>
-T FastRand<T>::operator()() {
+template<typename N>
+N FastRand<N>::operator()() {
 	return nextValue() ;
 }
 
-template<typename T>
-T FastRand<T>::operator()(T minimum, T maximum) {
+template<typename N>
+N FastRand<N>::operator()(N minimum, N maximum) {
 	return nextValue(minimum, maximum) ;
 }
 
-template<typename T>
+template<typename N>
 template<typename R>
-R FastRand<T>::nextValue(R _min, R _max) {
+R FastRand<N>::nextValue(R _min, R _max) {
 	std::uniform_int_distribution<R> dif_dist{_min, _max} ;
 	return dif_dist(rndm) ;
 }
@@ -126,6 +158,9 @@ FastRand<N> * FastRand<N>::initRandPosSetter() {
 
 template<typename N>
 FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
+
+
+
 /* more useful random functions: */
 
 template<typename N>
@@ -143,14 +178,14 @@ N randSignFlip(N n) {
 }
 
 template <typename T>
-T chooseAtRand(T n1, T n2) {
+T chooseAtRand(T t1, T t2) {
 	FastRand<unsigned long> rand(0, 1) ;
 	bool first = rand.nextValue() ;
 	if (first) {
-		return n1 ;
+		return t1 ;
 	}
 	else {
-		return n2 ;
+		return t2 ;
 	}
 }
 
