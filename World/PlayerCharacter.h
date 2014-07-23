@@ -129,11 +129,17 @@ public:
 	void aiBehaviors() override { /* nothing */ }
 	
 	/**
-	 * Attacks a hostile PlayerCharacter
-	 *
-	 * @param enemy The enemy to attack
+	 * Fires the PlayerCharacter's weapon
+     *
 	 */
-	void attack(PlayerCharacter * enemy) ;
+	void fire() ;
+    
+    /**
+	 * Fires the PlayerCharacter's weapon
+	 *
+	 * @param atEnemy The enemy to attack
+	 */
+	void fire(const Character * atEnemy) ;
 	
     
     void jump() ;
