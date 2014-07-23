@@ -16,10 +16,13 @@
 class Projectile : public GameObject {
 	
 protected:
+
 	
 public:
 	
 	using GameObject::GameObject ;
+	
+	//void setPosition(Position<float> * pos) ;
 	
 	/**
 	 * Overidden to ensure this has no functionality
@@ -51,15 +54,22 @@ protected:
     
     const Position<float> * ownerPosition ;
 	
+	const Vectr<float> * ownerVector ;
+	
 public:
 	
-	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Position<float> * ownerPosition) :
-		projectile(projectileImageFile, sizeModifier, *ownerPosition, false, false) {}
+	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Position<float> * ownerPosition, const Vectr<float> * ownerVector ) :
+		projectile(projectileImageFile, sizeModifier, *ownerPosition, false, false),
+		ownerPosition(ownerPosition),
+		ownerVector(ownerVector) {}
     
-    Weapon(FastRand<int> & randm, const Position<float> * ownerPosition) ;
-    
+	Weapon(FastRand<unsigned long> & randm, const Position<float> * ownerPosition, const Vectr<float> * ownerVector) :
+		projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)), 1.0, *ownerPosition, false, false), /* ie not visible, don't monitor velocity */
+		ownerPosition(ownerPosition),
+		ownerVector(ownerVector) {}
+	
     Weapon(const Weapon & other) :
-        projectile(other.projectile) {}
+		projectile(other.projectile) {}
     
     Weapon(Weapon && other) :
         projectile(std::move(other.projectile)) {}

@@ -8,9 +8,7 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(FastRand<int> & randm, const Position<float> * ownerPosition) {
-    
-}
+
 
 Weapon & Weapon::operator=(const Weapon & rhs) {
     if (this != &rhs) {
@@ -27,7 +25,20 @@ Weapon & Weapon::operator=(Weapon && rhs) {
 }
 
 void Weapon::fire() {
-	projectile.setVisibility(true) ;
+	
+	auto fireL = [this] () -> void {
+		
+		projectile.moveTo(*ownerPosition) ; //projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen
+		projectile.setVisibility(true) ;
+		Vectr<float> tempvec(*this->ownerVector) ;
+		
+		while ((projectile.getPosition()->overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
+			projectile.moveNewDirection(tempvec) ;
+		}
+	} ;
+	
+	thread thr(fireL) ;
+	thr.detach() ;
 }
 
 

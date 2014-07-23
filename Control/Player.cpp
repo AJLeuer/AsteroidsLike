@@ -20,7 +20,7 @@ Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
 Pos2<float> Player::position_in_defaultStartingArea() {
-	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<int>::defaultRandom(-20, 20), (globalMaxY() - (globalMaxY() * 0.25)), 0) ;
+	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2)), 0) ;
 	return ret ;
 }
 
@@ -120,8 +120,7 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(onKeyMoveLeft) ;
 	InputController::registerForKeypress(onKeyMoveRight) ;
 	InputController::registerForEvent(onKeyFire) ;
-	int * i ;
-	//InputController::registerFor(i) ;
+
 }
 
 void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {

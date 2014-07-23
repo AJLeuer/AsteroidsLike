@@ -520,7 +520,7 @@ public:
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) {
+	bool overBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) const {
 		if (((this->x + objWidth) >= check->max_X) || ((this->y + objHeight) >= check->max_Y)) {
 			return true ;
 		}
@@ -532,7 +532,7 @@ public:
 		}
 	}
 
-	bool overXBounds(const BoundsCheck<N> * check) {
+	bool overXBounds(const BoundsCheck<N> * check) const {
 		if ((this->x >= check->max_X) || (this->x < check->min_X)) {
 			return true ;
 		}
@@ -541,7 +541,7 @@ public:
 		}
 	}
 
-	bool overYBounds(const BoundsCheck<N> * check) {
+	bool overYBounds(const BoundsCheck<N> * check) const {
 		if ((this->y >= check->max_Y) || (this->y < check->min_Y)) {
 			return true ;
 		}
@@ -1042,6 +1042,7 @@ public:
 	Vectr(const Position<N> & mostRecent_, Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Vectr<N> & other) ;
+	Vectr(const Vectr<N> & other, bool monitorVelocity) ;
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(const Vectr<N> & rhs) ;
@@ -1157,6 +1158,22 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
 	if (other.velocity != nullptr) {
+		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+	}
+	else {
+		velocity = nullptr ;
+	}
+}
+
+template<typename N>
+Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
+	Position<float>(other),
+	last(Position<N>(other.last)),
+	mostRecent(Position<N>(other.mostRecent)),
+	absDistanceMoved(other.absDistanceMoved),
+	totalDistanceMoved(new N(*other.totalDistanceMoved))
+{
+	if (monitorVelocity && (other.velocity != nullptr)) {
 		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 	}
 	else {
