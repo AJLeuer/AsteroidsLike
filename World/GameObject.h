@@ -272,7 +272,7 @@ public:
 	virtual void moveRight();
 	virtual void moveLeft();
 	
-    void moveRandomDirection() ;
+    virtual void moveRandomDirection() ;
 	
 	void jump() ;
 
@@ -377,6 +377,12 @@ public:
 	 * Similar to textDescription(), but returns a new string instead of writing to one passed to it
 	 */
 	string toString() const ;
+	
+	/**
+	 * @note Provides no functionality. Implemented only to fullfill the requirements of GameInterface
+	 * interface. See PlayerCharacter::fire() for a functional implementation
+	 */
+	virtual void fire() ;
 	
 	
 } ;

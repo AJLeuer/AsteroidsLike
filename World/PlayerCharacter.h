@@ -122,6 +122,13 @@ public:
 	 */
 	void moveNewDirection(Vectr<float> & newDirection) override ;
 	
+	/**
+	 * Overidden to ensure this has no functionality
+	 */
+	void moveRandomDirection() override {
+		;//NOP
+	}
+	
 	//using GameObject's implementation for now, may change later
 	void defaultBehaviors() override ;
 	

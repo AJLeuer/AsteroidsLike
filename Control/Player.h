@@ -39,7 +39,7 @@ class Player /*: public GameInterface*/ {
 protected:
 	
 	static unsigned IDs ;
-	static Pos2<float> defaultStartingPosition ;
+	
 	static AssetType defaultPCAssetType ; /* change if needed */
 	static float defaultSize ;
 	
@@ -49,6 +49,8 @@ protected:
 	
 	
 	/* just for initializing playerCharacter */
+	
+	static Pos2<float> position_in_defaultStartingArea() ;
 	
 	void setNames() ;
 	

@@ -471,6 +471,10 @@ string GameObject::toString() const {
 	return (ss.str()) ;
 }
 
+void GameObject::fire() {
+	//no-op
+}
+
 
 
 

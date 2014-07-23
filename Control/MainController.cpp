@@ -58,9 +58,12 @@ void MainController::init() {
     TextOutput<float, int>::init() ;
 	InputController::init() ;
 	WorldController::init() ;    //must be last, will init GameState as well
+	
 	Player::initDefaultPlayers() ;
+	
 	player0 = Player::defaultPlayer0 ;
 	player1 = Player::defaultPlayer1 ;
+	
 	player0->displayVelocity( { static_cast<float>((globalMaxX() * 0.70)), static_cast<float>((globalMaxY() * 0.85)), 0 },
 						     {142, 255, 8, 0}, {0, 0, 0, 0}) ;
 	

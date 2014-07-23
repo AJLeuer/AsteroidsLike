@@ -62,6 +62,12 @@ protected:
 	
 	function<void (void)> callBackFunction ;
 	
+	/**
+	 * In the rare case that our callback function takes an argument,
+	 * we will use arg to store it
+	 */
+	void * arg = nullptr ; //null except in rare cases
+	
 	friend class InputController ;
 	
 	EventRegisterBase() {}
@@ -85,6 +91,13 @@ protected:
 	EventRegisterBase(GameInterface * callOn, void (GameInterface::*cb)()) :
 		memberToCallOn(callOn),
 		member_callBackFunction(cb),
+		callBackFunction(nullptr) {}
+	
+	template<typename T>
+	EventRegisterBase(GameInterface * callOn, void (GameInterface::*cb)(), T arg0) :
+		memberToCallOn(callOn),
+		member_callBackFunction(cb),
+		arg(arg0),
 		callBackFunction(nullptr) {}
 	
 	EventRegisterBase(function<void (void)> cb) :
@@ -112,6 +125,7 @@ protected:
 	
 	friend class InputController ;
 	
+	
 public:
 	
 	EventRegister() {}
@@ -127,11 +141,11 @@ public:
 	EventRegister(GameInterface * callOn, void (GameInterface::*cb)(), EventType eventType) :
 		EventRegisterBase(callOn, cb),
 		eventType(eventType) {}
-    
-    template<class T>
-    EventRegister(T * callOn, void (T::*cb)(), EventType eventType) :
-        EventRegisterBase(callOn, cb),
-        eventType(eventType) {}
+	
+	template<class T>
+	EventRegister(GameInterface * callOn, void (GameInterface::*cb)(), T * arg0, EventType eventType) :
+		EventRegisterBase(callOn, cb, arg0),
+		eventType(eventType) {}
 	
 	EventRegister(function<void (void)> cb, EventType eventType) :
 		EventRegisterBase(cb),
@@ -228,6 +242,20 @@ public:
     
     KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), initializer_list<string> keyChar, KeypressEvaluationMethod m) :
 		EventRegisterBase(callOn, cb),
+		scanCodes(vector<ScanCode>()),
+		requestedKeyboardChars(keyChar),
+		requestedKeyEvalMethod(m),
+		keyIDMethod(KeyIdenMethod::keyChar)
+	{
+		for (auto i = 0 ; i < requestedKeyboardChars.size() ; i++) {
+			ScanCode scanCode = getScanCodeFor(requestedKeyboardChars.at(i).c_str()) ;
+			scanCodes.push_back(scanCode) ;
+		}
+	}
+	
+	template<class T>
+	KeyInputRegister(GameInterface * callOn, void (GameInterface::*cb)(), T * arg0, initializer_list<string> keyChar, KeypressEvaluationMethod m) :
+		EventRegisterBase(callOn, cb, arg0),
 		scanCodes(vector<ScanCode>()),
 		requestedKeyboardChars(keyChar),
 		requestedKeyEvalMethod(m),
@@ -374,6 +402,8 @@ public:
 	
 	static void registerForEvent(EventRegister * reg) ;
 	static void registerForKeypress(KeyInputRegister * reg) ;
+	template<typename T>
+	static void registerFor(T * event_or_keypress) ; //convenience function
 	static void deregister(GameInterface * registeredObject) ;
 	
 	static void init() ;
@@ -381,5 +411,18 @@ public:
 	static void exit() ;
 	
 } ;
+
+/**
+template<class T>
+void InputController::registerFor(T * event_or_keypress) {
+	static_assert(((typeid(T) == typeid(EventRegister)) || (typeid(T) == typeid(KeyInputRegister))), "Class T must be one of either EventRegister or KeyInputRegister") ;
+	
+	if (typeid(T) == typeid(EventRegister)) {
+		registerForEvent(event_or_keypress) ;
+	}
+	else if (typeid(T) == typeid(KeyInputRegister)) {
+		registerForKeypress(event_or_keypress) ;
+	}
+} */
 
 #endif /* defined(__GameWorld__Input__) */

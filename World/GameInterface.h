@@ -42,6 +42,8 @@ public:
     
 	virtual void jump() = 0 ;
 	
+	virtual void fire() = 0 ;
+	
 	
 };
 

@@ -45,7 +45,7 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  */
 PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
     Character(imageFile, size, loc, name, reaction, alive, state, health, damage, monitorVelocity),
-    weapon(projectileImageFile, size, &loc) {}
+    weapon(projectileImageFile, size, &(this->loc)) {}
 
 
 /**

@@ -11,18 +11,24 @@
 using namespace std ;
 
 unsigned Player::IDs = 0 ;
-Pos2<float> Player::defaultStartingPosition = Pos2<float>((globalMaxX() / 2) + FastRand<int>::defaultRandom(-20, 20), (globalMaxY() - (globalMaxY() * 0.25)), 0) ;
+
+
 AssetType Player::defaultPCAssetType = AssetType::playerShip ; /* change if needed */
 float Player::defaultSize = 1.00 ;
 
 Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
+Pos2<float> Player::position_in_defaultStartingArea() {
+	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<int>::defaultRandom(-20, 20), (globalMaxY() - (globalMaxY() * 0.25)), 0) ;
+	return ret ;
+}
+
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, defaultStartingPosition, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, defaultStartingPosition, "Red",
+	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), "Red",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(2)) ;
 }
 
@@ -74,9 +80,9 @@ void Player::registerForCallbacks() {
 	KeyInputRegister * onKeyMoveDown ;
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
-    KeyInputRegister * onKeyFire ;
+    EventRegister * onKeyFire ;
     
-    onKeyFire = new KeyInputRegister(&playerCharacter,  SDL_MOUSEBUTTONDOWN
+	onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
 	
 	if (playerCharacter.getColor() != Colors::green) {
         
@@ -113,6 +119,9 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(onKeyMoveDown) ;
 	InputController::registerForKeypress(onKeyMoveLeft) ;
 	InputController::registerForKeypress(onKeyMoveRight) ;
+	InputController::registerForEvent(onKeyFire) ;
+	int * i ;
+	//InputController::registerFor(i) ;
 }
 
 void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {

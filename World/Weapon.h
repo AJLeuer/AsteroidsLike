@@ -13,6 +13,31 @@
 
 #include "GameObject.h"
 
+class Projectile : public GameObject {
+	
+protected:
+	
+public:
+	
+	using GameObject::GameObject ;
+	
+	/**
+	 * Overidden to ensure this has no functionality
+	 */
+	void moveRandomDirection() override {
+		; //NOP
+	}
+	
+	/**
+	 * Overidden to ensure this has no functionality
+	 */
+	void defaultBehaviors() override {
+		//NOP
+	}
+	
+	
+};
+
 
 class Weapon {
 	
@@ -22,7 +47,7 @@ protected:
      * A simple GameObject that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	GameObject projectile ;
+	Projectile projectile ;
     
     const Position<float> * ownerPosition ;
 	
