@@ -77,7 +77,7 @@ public:
 	 * @param distance A pointer to the distance covered by the client class, which Velocity expects to change over time
 	 * @param mut A mutex shared with Velocity that should be locked when this velocity or distance is about to be deleted
 	 */
-	Velocity(const Distance * distance, mutex * mut, bool * localContinueSignal) :
+	Velocity(const Distance * distance, bool * localContinueSignal) :
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
@@ -94,7 +94,7 @@ public:
 		}
 	}
 	
-	Velocity(const Distance * distance, mutex * mut, bool * localContinueSignal, chrono::nanoseconds baseTimeUnitOverride) :
+	Velocity(const Distance * distance, bool * localContinueSignal, chrono::nanoseconds baseTimeUnitOverride) :
 		id(IDs),
 		distance(distance),
 		timer(new Timer()),
