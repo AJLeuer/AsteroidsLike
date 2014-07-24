@@ -1045,7 +1045,6 @@ public:
 	Vectr(const Vectr<N> & other, bool monitorVelocity) ;
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
-	Vectr & operator=(const Vectr<N> & rhs) ;
 	Vectr & operator=(Vectr<N> && rhs) ;
     Vectr copyVect(bool copyVelocity) const ;
 	
@@ -1088,7 +1087,7 @@ template<typename N>
 Vectr<N>::Vectr() :
     Position<float>(),
 	current(nullptr),
-    totalDistanceMoved(nullptr),
+    totalDistanceMoved(new N()),
 	velocity(nullptr) {}
 
 template<typename N>
@@ -1155,6 +1154,7 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	Position<float>(other),
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
+	current(other.current),
     absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
@@ -1171,6 +1171,7 @@ Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
 	Position<float>(other),
 	last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
+	current(other.current),
 	absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
@@ -1221,7 +1222,7 @@ Vectr<N>::~Vectr()
 		sharedVelMutex->unlock() ;
 	}
 }
-
+/*
 template<typename N>
 Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 	if (this != &rhs) {
@@ -1250,7 +1251,8 @@ Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 		
 	}
 	return *this ;
-}
+} */
+
 
 template<typename N>
 Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
@@ -1274,19 +1276,16 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 template<typename N>
 Vectr<N> Vectr<N>::copyVect(bool copyVelocity) const {
     
-    Vectr<N> newVect ;
-    
+	Vectr<N> newVect ;
+	
     newVect.Position<float>::operator=(*this) ;
     
     newVect.last = Position<N>(this->last) ;
     newVect.mostRecent = Position<N>(this->mostRecent) ;
     newVect.current = this->current ;
     newVect.absDistanceMoved = this->absDistanceMoved ;
-    
-    if (this->totalDistanceMoved != nullptr) {
-        newVect.totalDistanceMoved = new N(*this->totalDistanceMoved) ;
-    }
-		
+	newVect.totalDistanceMoved = new N(*this->totalDistanceMoved) ;
+
     if ((this->velocity != nullptr) && (copyVelocity == true)) {
         newVect.velocity = new Velocity<N>(newVect.totalDistanceMoved, &newVect.sharedVelBool) ;
     }

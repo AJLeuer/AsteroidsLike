@@ -33,7 +33,7 @@ GameObject::GameObject() :
     
     outputData.reinitializeMembers(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition) ;
 	
-    vectr = Vectr<float>(& loc, false) ;
+	vectr = Vectr<float>(& loc, false) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -382,7 +382,7 @@ void GameObject::move(float distanceModifier) {
 	moveTo(next) ;
 }
 
-void GameObject::moveNewDirection(Vectr<float> newDirection) {
+void GameObject::moveNewDirection(Vectr<float> & newDirection) {
 
 	newDirection.normalize() ;
     vectr += newDirection ;

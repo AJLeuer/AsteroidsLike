@@ -120,7 +120,7 @@ public:
 	 * but overridden to ensure the player cannot move more than once
 	 * each time through the game loop
 	 */
-	void moveNewDirection(Vectr<float> newDirection) override ;
+	void moveNewDirection(Vectr<float> & newDirection) override ;
 	
 	/**
 	 * Overidden to ensure this has no functionality

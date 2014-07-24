@@ -288,7 +288,7 @@ public:
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	virtual void moveNewDirection(Vectr<float> newDirection) ;
+	virtual void moveNewDirection(Vectr<float> & newDirection) ;
 	
 	/**
 	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,
