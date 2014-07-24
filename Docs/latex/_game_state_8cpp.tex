@@ -1,0 +1,57 @@
+\hypertarget{_game_state_8cpp}{\section{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\-Game\-State.cpp File Reference}
+\label{_game_state_8cpp}\index{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\-Game\-State.\-cpp@{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\-Game\-State.\-cpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}../\-Output/\-Output\-Data.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Game\-State.\-hpp\char`\"{}}\\*
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+thread\-::id \hyperlink{_game_state_8cpp_af5a1222f21bd6889d794882a4bdbfceb}{main\-Thread\-I\-D}
+\item 
+unsigned \hyperlink{_game_state_8cpp_afbf04a84d141072dab9bf93db6c9ad29}{main\-Game\-Loop\-Count} = 0
+\item 
+unsigned \hyperlink{_game_state_8cpp_a71a6f1f008418e82f760215f5001d590}{world\-Loop\-Count} = 0
+\item 
+mutex \hyperlink{_game_state_8cpp_a53932405f8863d1ebfcf0479e7f11b12}{sync\-Mutex}
+\item 
+condition\-\_\-variable \hyperlink{_game_state_8cpp_af1b43780933a0562d68e50029e2b4099}{conditional\-Wait}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_game_state_8cpp_af1b43780933a0562d68e50029e2b4099}{\index{Game\-State.\-cpp@{Game\-State.\-cpp}!conditional\-Wait@{conditional\-Wait}}
+\index{conditional\-Wait@{conditional\-Wait}!GameState.cpp@{Game\-State.\-cpp}}
+\subsubsection[{conditional\-Wait}]{\setlength{\rightskip}{0pt plus 5cm}condition\-\_\-variable conditional\-Wait}}\label{_game_state_8cpp_af1b43780933a0562d68e50029e2b4099}
+
+
+Definition at line 98 of file Game\-State.\-cpp.
+
+\hypertarget{_game_state_8cpp_afbf04a84d141072dab9bf93db6c9ad29}{\index{Game\-State.\-cpp@{Game\-State.\-cpp}!main\-Game\-Loop\-Count@{main\-Game\-Loop\-Count}}
+\index{main\-Game\-Loop\-Count@{main\-Game\-Loop\-Count}!GameState.cpp@{Game\-State.\-cpp}}
+\subsubsection[{main\-Game\-Loop\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned main\-Game\-Loop\-Count = 0}}\label{_game_state_8cpp_afbf04a84d141072dab9bf93db6c9ad29}
+The graphics and input loop, managed together by \hyperlink{class_main_controller}{Main\-Controller} 
+
+Definition at line 94 of file Game\-State.\-cpp.
+
+\hypertarget{_game_state_8cpp_af5a1222f21bd6889d794882a4bdbfceb}{\index{Game\-State.\-cpp@{Game\-State.\-cpp}!main\-Thread\-I\-D@{main\-Thread\-I\-D}}
+\index{main\-Thread\-I\-D@{main\-Thread\-I\-D}!GameState.cpp@{Game\-State.\-cpp}}
+\subsubsection[{main\-Thread\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}thread\-::id main\-Thread\-I\-D}}\label{_game_state_8cpp_af5a1222f21bd6889d794882a4bdbfceb}
+
+
+Definition at line 92 of file Game\-State.\-cpp.
+
+\hypertarget{_game_state_8cpp_a53932405f8863d1ebfcf0479e7f11b12}{\index{Game\-State.\-cpp@{Game\-State.\-cpp}!sync\-Mutex@{sync\-Mutex}}
+\index{sync\-Mutex@{sync\-Mutex}!GameState.cpp@{Game\-State.\-cpp}}
+\subsubsection[{sync\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}mutex sync\-Mutex}}\label{_game_state_8cpp_a53932405f8863d1ebfcf0479e7f11b12}
+
+
+Definition at line 97 of file Game\-State.\-cpp.
+
+\hypertarget{_game_state_8cpp_a71a6f1f008418e82f760215f5001d590}{\index{Game\-State.\-cpp@{Game\-State.\-cpp}!world\-Loop\-Count@{world\-Loop\-Count}}
+\index{world\-Loop\-Count@{world\-Loop\-Count}!GameState.cpp@{Game\-State.\-cpp}}
+\subsubsection[{world\-Loop\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned world\-Loop\-Count = 0}}\label{_game_state_8cpp_a71a6f1f008418e82f760215f5001d590}
+Loop managed by \hyperlink{class_world_controller}{World\-Controller} 
+
+Definition at line 95 of file Game\-State.\-cpp.
+

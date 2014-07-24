@@ -1,0 +1,608 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_game_state_8cpp" kind="file">
+    <compoundname>GameState.cpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes refid="_output_data_8hpp" local="yes">../Output/OutputData.hpp</includes>
+    <includes refid="_game_state_8hpp" local="yes">GameState.hpp</includes>
+    <incdepgraph>
+      <node id="2861">
+        <label>list</label>
+      </node>
+      <node id="2853">
+        <label>iomanip</label>
+      </node>
+      <node id="2848">
+        <label>queue</label>
+      </node>
+      <node id="2833">
+        <label>limits</label>
+      </node>
+      <node id="2856">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2857" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2852" relation="include">
+        </childnode>
+      </node>
+      <node id="2854">
+        <label>assert.h</label>
+      </node>
+      <node id="2828">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="2845">
+        <label>../Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2840" relation="include">
+        </childnode>
+        <childnode refid="2834" relation="include">
+        </childnode>
+        <childnode refid="2835" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2846" relation="include">
+        </childnode>
+        <childnode refid="2858" relation="include">
+        </childnode>
+        <childnode refid="2859" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2863">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="2829">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="2858">
+        <label>Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2847" relation="include">
+        </childnode>
+        <childnode refid="2846" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2864">
+        <label>../Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2840" relation="include">
+        </childnode>
+        <childnode refid="2865" relation="include">
+        </childnode>
+        <childnode refid="2829" relation="include">
+        </childnode>
+        <childnode refid="2830" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2850" relation="include">
+        </childnode>
+        <childnode refid="2832" relation="include">
+        </childnode>
+        <childnode refid="2866" relation="include">
+        </childnode>
+        <childnode refid="2859" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2855">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2824" relation="include">
+        </childnode>
+        <childnode refid="2843" relation="include">
+        </childnode>
+      </node>
+      <node id="2835">
+        <label>cmath</label>
+      </node>
+      <node id="2830">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="2839">
+        <label>string</label>
+      </node>
+      <node id="2837">
+        <label>fstream</label>
+      </node>
+      <node id="2844">
+        <label>ostream</label>
+      </node>
+      <node id="2859">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2844" relation="include">
+        </childnode>
+        <childnode refid="2847" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2852" relation="include">
+        </childnode>
+        <childnode refid="2860" relation="include">
+        </childnode>
+        <childnode refid="2840" relation="include">
+        </childnode>
+        <childnode refid="2861" relation="include">
+        </childnode>
+        <childnode refid="2862" relation="include">
+        </childnode>
+        <childnode refid="2828" relation="include">
+        </childnode>
+        <childnode refid="2829" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2843" relation="include">
+        </childnode>
+        <childnode refid="2846" relation="include">
+        </childnode>
+        <childnode refid="2850" relation="include">
+        </childnode>
+        <childnode refid="2855" relation="include">
+        </childnode>
+        <childnode refid="2863" relation="include">
+        </childnode>
+        <childnode refid="2842" relation="include">
+        </childnode>
+      </node>
+      <node id="2832">
+        <label>../Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2833" relation="include">
+        </childnode>
+        <childnode refid="2834" relation="include">
+        </childnode>
+        <childnode refid="2835" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2826">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="2834">
+        <label>random</label>
+      </node>
+      <node id="2862">
+        <label>condition_variable</label>
+      </node>
+      <node id="2822">
+        <label>unistd.h</label>
+      </node>
+      <node id="2840">
+        <label>vector</label>
+      </node>
+      <node id="2819">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp</label>
+        <link refid="GameState.cpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2821" relation="include">
+        </childnode>
+        <childnode refid="2859" relation="include">
+        </childnode>
+      </node>
+      <node id="2860">
+        <label>array</label>
+      </node>
+      <node id="2836">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="2828" relation="include">
+        </childnode>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2837" relation="include">
+        </childnode>
+        <childnode refid="2824" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2841" relation="include">
+        </childnode>
+        <childnode refid="2842" relation="include">
+        </childnode>
+      </node>
+      <node id="2847">
+        <label>sstream</label>
+      </node>
+      <node id="2831">
+        <label>SDL2_ttf/SDL_ttf.h</label>
+      </node>
+      <node id="2851">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="2824" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2852" relation="include">
+        </childnode>
+        <childnode refid="2840" relation="include">
+        </childnode>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2853" relation="include">
+        </childnode>
+        <childnode refid="2839" relation="include">
+        </childnode>
+        <childnode refid="2847" relation="include">
+        </childnode>
+        <childnode refid="2854" relation="include">
+        </childnode>
+        <childnode refid="2855" relation="include">
+        </childnode>
+        <childnode refid="2856" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2838">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2839" relation="include">
+        </childnode>
+        <childnode refid="2840" relation="include">
+        </childnode>
+        <childnode refid="2835" relation="include">
+        </childnode>
+        <childnode refid="2827" relation="include">
+        </childnode>
+      </node>
+      <node id="2820">
+        <label>iostream</label>
+      </node>
+      <node id="2849">
+        <label>deque</label>
+      </node>
+      <node id="2842">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2824" relation="include">
+        </childnode>
+      </node>
+      <node id="2850">
+        <label>BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2852">
+        <label>mutex</label>
+      </node>
+      <node id="2824">
+        <label>chrono</label>
+      </node>
+      <node id="2827">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="2846">
+        <label>Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="2835" relation="include">
+        </childnode>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2844" relation="include">
+        </childnode>
+        <childnode refid="2847" relation="include">
+        </childnode>
+        <childnode refid="2848" relation="include">
+        </childnode>
+        <childnode refid="2849" relation="include">
+        </childnode>
+        <childnode refid="2828" relation="include">
+        </childnode>
+        <childnode refid="2843" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2850" relation="include">
+        </childnode>
+        <childnode refid="2851" relation="include">
+        </childnode>
+        <childnode refid="2832" relation="include">
+        </childnode>
+        <childnode refid="2856" relation="include">
+        </childnode>
+      </node>
+      <node id="2823">
+        <label>thread</label>
+      </node>
+      <node id="2866">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2844" relation="include">
+        </childnode>
+        <childnode refid="2850" relation="include">
+        </childnode>
+        <childnode refid="2832" relation="include">
+        </childnode>
+      </node>
+      <node id="2821">
+        <label>../Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="2822" relation="include">
+        </childnode>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2823" relation="include">
+        </childnode>
+        <childnode refid="2824" relation="include">
+        </childnode>
+        <childnode refid="2825" relation="include">
+        </childnode>
+        <childnode refid="2826" relation="include">
+        </childnode>
+        <childnode refid="2827" relation="include">
+        </childnode>
+        <childnode refid="2828" relation="include">
+        </childnode>
+        <childnode refid="2829" relation="include">
+        </childnode>
+        <childnode refid="2830" relation="include">
+        </childnode>
+        <childnode refid="2831" relation="include">
+        </childnode>
+        <childnode refid="2832" relation="include">
+        </childnode>
+        <childnode refid="2843" relation="include">
+        </childnode>
+        <childnode refid="2838" relation="include">
+        </childnode>
+        <childnode refid="2845" relation="include">
+        </childnode>
+        <childnode refid="2846" relation="include">
+        </childnode>
+        <childnode refid="2858" relation="include">
+        </childnode>
+        <childnode refid="2864" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2843">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="2820" relation="include">
+        </childnode>
+        <childnode refid="2844" relation="include">
+        </childnode>
+        <childnode refid="2837" relation="include">
+        </childnode>
+        <childnode refid="2836" relation="include">
+        </childnode>
+      </node>
+      <node id="2841">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="2857">
+        <label>memory</label>
+      </node>
+      <node id="2825">
+        <label>initializer_list</label>
+      </node>
+      <node id="2865">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_game_state_8cpp_1af5a1222f21bd6889d794882a4bdbfceb" prot="public" static="no" mutable="no">
+        <type>thread::id</type>
+        <definition>thread::id mainThreadID</definition>
+        <argsstring></argsstring>
+        <name>mainThreadID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" line="92" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_game_state_8cpp_1afbf04a84d141072dab9bf93db6c9ad29" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned mainGameLoopCount</definition>
+        <argsstring></argsstring>
+        <name>mainGameLoopCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The graphics and input loop, managed together by <ref refid="class_main_controller" kindref="compound">MainController</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" line="94" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_game_state_8cpp_1a71a6f1f008418e82f760215f5001d590" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned worldLoopCount</definition>
+        <argsstring></argsstring>
+        <name>worldLoopCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Loop managed by <ref refid="class_world_controller" kindref="compound">WorldController</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" line="95" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_game_state_8cpp_1a53932405f8863d1ebfcf0479e7f11b12" prot="public" static="no" mutable="no">
+        <type>mutex</type>
+        <definition>mutex syncMutex</definition>
+        <argsstring></argsstring>
+        <name>syncMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" line="97" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_game_state_8cpp_1af1b43780933a0562d68e50029e2b4099" prot="public" static="no" mutable="no">
+        <type>condition_variable</type>
+        <definition>condition_variable conditionalWait</definition>
+        <argsstring></argsstring>
+        <name>conditionalWait</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" line="98" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>GameState.cpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>4/14/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Output/OutputData.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_game_state_8hpp" kindref="compound">GameState.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std<sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GameState::dataIsInit<sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GameState::graphicsAreInit<sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;GameObject<sp/>*&gt;<sp/>*<sp/>GameState::gameObjects<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_game_map" kindref="compound">GameMap&lt;GameObject&gt;</ref><sp/>*<sp/>GameState::map<sp/>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="_default_config_8h_1a12f0b3ea7a02ede1c5799a956e008406" kindref="member">Window</ref><sp/>*<sp/>GameState::window<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref><sp/>*<sp/>GameState::renderer<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_game_state_1a58ee23ac0938d8499250b971f8e1d2d0" kindref="member">GameState::CONTINUE_FLAG</ref><sp/>=<sp/>true<sp/>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><ref refid="class_timer" kindref="compound">Timer</ref><sp/>*<sp/><ref refid="struct_game_state_1a5e5f91123aacc5e7fa22ddefdb3cd256" kindref="member">GameState::mainGameClock</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_timer" kindref="compound">Timer</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">std::mutex<sp/><ref refid="struct_game_state_1a0d889afebf6eea90f6d3212c29cf7451" kindref="member">GameState::sharedMutex</ref><sp/>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="struct_game_state_1a0aad2a1111325f0345a511fe1665800a" kindref="member">GameState::currentDirectory</ref><sp/>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="struct_game_state_1a8ed9965a2ad3bf68c0555c9669952368" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_game_state_1a8ed9965a2ad3bf68c0555c9669952368" kindref="member">GameState::initData</ref>(vector&lt;GameObject<sp/>*&gt;<sp/>*<sp/>gobs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_game_map" kindref="compound">GameMap&lt;GameObject&gt;</ref><sp/>*<sp/>map)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>GameState::gameObjects<sp/>=<sp/>gobs<sp/>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>GameState::map<sp/>=<sp/>map<sp/>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>dataIsInit<sp/>=<sp/>true<sp/>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="struct_game_state_1afc3662cfa5b520a915d19f050eabb720" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_game_state_1afc3662cfa5b520a915d19f050eabb720" kindref="member">GameState::initGraphics</ref>(<ref refid="_default_config_8h_1a12f0b3ea7a02ede1c5799a956e008406" kindref="member">Window</ref><sp/>*<sp/>window,<sp/><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref><sp/>*<sp/>renderer)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>GameState::window<sp/>=<sp/>window<sp/>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>GameState::renderer<sp/>=<sp/>renderer<sp/>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>graphicsAreInit<sp/>=<sp/>true<sp/>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="struct_game_state_1ae1b4a46f267c8b03a7b4b036d2ba24f5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;GameObject*&gt;<sp/>*<sp/><ref refid="struct_game_state_1ae1b4a46f267c8b03a7b4b036d2ba24f5" kindref="member">GameState::getGameObjects</ref>()<sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dataIsInit<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;GameState::initData()<sp/>must<sp/>be<sp/>called<sp/>before<sp/>reading<sp/>any<sp/>of<sp/>its<sp/>data<sp/>members<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gameObjects<sp/>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="struct_game_state_1af5f38e58dfaedb66f6c4b6b6ce140d1a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_game_map" kindref="compound">GameMap&lt;GameObject&gt;</ref><sp/>*<sp/><ref refid="struct_game_state_1af5f38e58dfaedb66f6c4b6b6ce140d1a" kindref="member">GameState::getMap</ref>()<sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dataIsInit<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;GameState::initData()<sp/>must<sp/>be<sp/>called<sp/>before<sp/>reading<sp/>any<sp/>of<sp/>its<sp/>data<sp/>members<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>map<sp/>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="struct_game_state_1a62430ef1e6a2e0818f7c18071cfea71d" refkind="member"><highlight class="normal"><ref refid="_default_config_8h_1a12f0b3ea7a02ede1c5799a956e008406" kindref="member">Window</ref><sp/>*<sp/><ref refid="struct_game_state_1a62430ef1e6a2e0818f7c18071cfea71d" kindref="member">GameState::getMainWindow</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(graphicsAreInit<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;GameState::initGraphics()<sp/>must<sp/>be<sp/>called<sp/>before<sp/>reading<sp/>GameState::getMainRenderer()<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>window<sp/>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="struct_game_state_1a590988c72da8823ed14b4be284262467" refkind="member"><highlight class="normal"><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref><sp/>*<sp/><ref refid="struct_game_state_1a590988c72da8823ed14b4be284262467" kindref="member">GameState::getMainRenderer</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(graphicsAreInit<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;GameState::initGraphics()<sp/>must<sp/>be<sp/>called<sp/>before<sp/>reading<sp/>GameState::getMainRenderer()<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>renderer<sp/>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="_game_state_8cpp_1af5a1222f21bd6889d794882a4bdbfceb" refkind="member"><highlight class="normal">thread::id<sp/><ref refid="_game_state_8hpp_1af5a1222f21bd6889d794882a4bdbfceb" kindref="member">mainThreadID</ref><sp/>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="_game_state_8cpp_1afbf04a84d141072dab9bf93db6c9ad29" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="_game_state_8hpp_1afbf04a84d141072dab9bf93db6c9ad29" kindref="member">mainGameLoopCount</ref><sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="95" refid="_game_state_8cpp_1a71a6f1f008418e82f760215f5001d590" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="_game_state_8hpp_1a71a6f1f008418e82f760215f5001d590" kindref="member">worldLoopCount</ref><sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="_game_state_8cpp_1a53932405f8863d1ebfcf0479e7f11b12" refkind="member"><highlight class="normal">mutex<sp/><ref refid="_game_state_8hpp_1ab3996537cb5537ae446f6d784c9a7cda" kindref="member">syncMutex</ref><sp/>;</highlight></codeline>
+<codeline lineno="98" refid="_game_state_8cpp_1af1b43780933a0562d68e50029e2b4099" refkind="member"><highlight class="normal">condition_variable<sp/><ref refid="_game_state_8hpp_1af1b43780933a0562d68e50029e2b4099" kindref="member">conditionalWait</ref><sp/>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//static<sp/>bool<sp/>GLOBAL_CONTINUE_FLAG<sp/>=<sp/>true<sp/>;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp"/>
+  </compounddef>
+</doxygen>

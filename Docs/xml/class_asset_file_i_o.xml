@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_asset_file_i_o" kind="class" prot="public">
+    <compoundname>AssetFileIO</compoundname>
+    <includes refid="_asset_file_i_o_8h" local="no">AssetFileIO.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_asset_file_i_o_1a175cb18c4a4fd4387ad54fcc6af4f273" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref> *</type>
+        <definition>Texture * AssetFileIO::getTextureFromFilename</definition>
+        <argsstring>(Renderer *renderer, const AssetFile &amp;file, AssetType type)</argsstring>
+        <name>getTextureFromFilename</name>
+        <param>
+          <type><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref> *</type>
+          <declname>renderer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_asset_file" kindref="compound">AssetFile</ref> &amp;</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="106" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp" bodystart="147" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="class_asset_file_i_o_1a0e751e03e701e2b90cb8a0805f374f80" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string &amp;</type>
+        <definition>static string&amp; AssetFileIO::getImageFilename</definition>
+        <argsstring>(vector&lt; AssetFile &gt;::size_type index, AssetType type)</argsstring>
+        <name>getImageFilename</name>
+        <param>
+          <type>vector&lt; <ref refid="struct_asset_file" kindref="compound">AssetFile</ref> &gt;::size_type</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_asset_file_i_o_1a6aebe3a253eb43bbd40b6c99b801c893" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_asset_file" kindref="compound">AssetFile</ref></type>
+        <definition>AssetFile AssetFileIO::getRandomImageFile</definition>
+        <argsstring>(AssetType type)</argsstring>
+        <name>getRandomImageFile</name>
+        <param>
+          <type><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="109" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp" bodystart="280" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="class_asset_file_i_o_1acc6068934ef606e383388b11fa54654b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref></type>
+        <definition>static AssetType AssetFileIO::getAssetTypeFromImageFile</definition>
+        <argsstring>(const string &amp;imageFilename)</argsstring>
+        <name>getAssetTypeFromImageFile</name>
+        <param>
+          <type>const string &amp;</type>
+          <declname>imageFilename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In addition to finding the AssetType corresponding to the given string, getAssetTypeFrom() also serves to check that the string, which will presumably be used to initialize a <ref refid="class_game_object" kindref="compound">GameObject</ref> or other in-game actor&apos;s texture, is in fact valid. It will throw an exception if it is not.</para><para><simplesect kind="return"><para>The AssetType corresponding to imageFilename </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="119" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This class will store the names and directory info of all file assets used in the program. Add the names of any new files added to <ref refid="_asset_file_i_o_8cpp" kindref="compound">AssetFileIO.cpp</ref> </para>    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="100" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" bodystart="100" bodyend="120"/>
+    <listofallmembers>
+      <member refid="class_asset_file_i_o_1acc6068934ef606e383388b11fa54654b" prot="public" virt="non-virtual"><scope>AssetFileIO</scope><name>getAssetTypeFromImageFile</name></member>
+      <member refid="class_asset_file_i_o_1a0e751e03e701e2b90cb8a0805f374f80" prot="public" virt="non-virtual"><scope>AssetFileIO</scope><name>getImageFilename</name></member>
+      <member refid="class_asset_file_i_o_1a6aebe3a253eb43bbd40b6c99b801c893" prot="public" virt="non-virtual"><scope>AssetFileIO</scope><name>getRandomImageFile</name></member>
+      <member refid="class_asset_file_i_o_1a175cb18c4a4fd4387ad54fcc6af4f273" prot="public" virt="non-virtual"><scope>AssetFileIO</scope><name>getTextureFromFilename</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

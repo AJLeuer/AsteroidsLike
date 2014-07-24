@@ -1,0 +1,100 @@
+\hypertarget{_input_8hpp}{\section{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\-Input.hpp File Reference}
+\label{_input_8hpp}\index{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\-Input.\-hpp@{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\-Input.\-hpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$functional$>$}\\*
+{\ttfamily \#include $<$initializer\-\_\-list$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2/\-S\-D\-L.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2/\-S\-D\-L\-\_\-events.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2/\-S\-D\-L\-\_\-keyboard.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2/\-S\-D\-L\-\_\-video.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../\-World/\-Game\-State.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-World/\-Game\-Interface.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-Control/\-Configuration.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_event_register_base}{Event\-Register\-Base}
+\item 
+class \hyperlink{class_event_register}{Event\-Register}
+\item 
+class \hyperlink{class_key_input_register}{Key\-Input\-Register}
+\item 
+class \hyperlink{class_switchable_key_input_register}{Switchable\-Key\-Input\-Register}
+\item 
+class \hyperlink{class_input_controller}{Input\-Controller}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef S\-D\-L\-\_\-\-Event \hyperlink{_input_8hpp_a968dbade547d18c0fc972caf39d984e8}{Event}
+\item 
+typedef S\-D\-L\-\_\-\-Event\-Type \hyperlink{_input_8hpp_ae5e40304c43dac2b9c0f1a7e2505e0e7}{Event\-Type}
+\item 
+typedef S\-D\-L\-\_\-\-Keycode \hyperlink{_input_8hpp_ad39c2e59d8cf6782d7ab90b73c0d0ada}{Key\-Code}
+\item 
+typedef S\-D\-L\-\_\-\-Scancode \hyperlink{_input_8hpp_ab11de2748648ed8559e324a4b8dfb2da}{Scan\-Code}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91}{Keypress\-Evaluation\-Method} \{ \hyperlink{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a1833e28b1fa85353670f723a1719f49e}{Keypress\-Evaluation\-Method\-::exactly\-One}, 
+\hyperlink{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91aa181a603769c1f98ad927e7367c7aa51}{Keypress\-Evaluation\-Method\-::all}, 
+\hyperlink{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a100b8cad7cf2a56f6df78f171f97a1ec}{Keypress\-Evaluation\-Method\-::any}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{_input_8hpp_a968dbade547d18c0fc972caf39d984e8}{\index{Input.\-hpp@{Input.\-hpp}!Event@{Event}}
+\index{Event@{Event}!Input.hpp@{Input.\-hpp}}
+\subsubsection[{Event}]{\setlength{\rightskip}{0pt plus 5cm}typedef S\-D\-L\-\_\-\-Event {\bf Event}}}\label{_input_8hpp_a968dbade547d18c0fc972caf39d984e8}
+
+
+Definition at line 32 of file Input.\-hpp.
+
+\hypertarget{_input_8hpp_ae5e40304c43dac2b9c0f1a7e2505e0e7}{\index{Input.\-hpp@{Input.\-hpp}!Event\-Type@{Event\-Type}}
+\index{Event\-Type@{Event\-Type}!Input.hpp@{Input.\-hpp}}
+\subsubsection[{Event\-Type}]{\setlength{\rightskip}{0pt plus 5cm}typedef S\-D\-L\-\_\-\-Event\-Type {\bf Event\-Type}}}\label{_input_8hpp_ae5e40304c43dac2b9c0f1a7e2505e0e7}
+
+
+Definition at line 33 of file Input.\-hpp.
+
+\hypertarget{_input_8hpp_ad39c2e59d8cf6782d7ab90b73c0d0ada}{\index{Input.\-hpp@{Input.\-hpp}!Key\-Code@{Key\-Code}}
+\index{Key\-Code@{Key\-Code}!Input.hpp@{Input.\-hpp}}
+\subsubsection[{Key\-Code}]{\setlength{\rightskip}{0pt plus 5cm}typedef S\-D\-L\-\_\-\-Keycode {\bf Key\-Code}}}\label{_input_8hpp_ad39c2e59d8cf6782d7ab90b73c0d0ada}
+
+
+Definition at line 34 of file Input.\-hpp.
+
+\hypertarget{_input_8hpp_ab11de2748648ed8559e324a4b8dfb2da}{\index{Input.\-hpp@{Input.\-hpp}!Scan\-Code@{Scan\-Code}}
+\index{Scan\-Code@{Scan\-Code}!Input.hpp@{Input.\-hpp}}
+\subsubsection[{Scan\-Code}]{\setlength{\rightskip}{0pt plus 5cm}typedef S\-D\-L\-\_\-\-Scancode {\bf Scan\-Code}}}\label{_input_8hpp_ab11de2748648ed8559e324a4b8dfb2da}
+
+
+Definition at line 35 of file Input.\-hpp.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91}{\index{Input.\-hpp@{Input.\-hpp}!Keypress\-Evaluation\-Method@{Keypress\-Evaluation\-Method}}
+\index{Keypress\-Evaluation\-Method@{Keypress\-Evaluation\-Method}!Input.hpp@{Input.\-hpp}}
+\subsubsection[{Keypress\-Evaluation\-Method}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Keypress\-Evaluation\-Method}\hspace{0.3cm}{\ttfamily [strong]}}}\label{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91}
+Whether a \hyperlink{class_key_input_register}{Key\-Input\-Register} should evaluate all requested key presses inclusively, or exclusively. In other words, if the client wishes to call a given function when, say, either \char`\"{}\-G\char`\"{}, or S\-D\-L\-\_\-\-S\-C\-A\-N\-C\-O\-D\-E\-\_\-\-K\-P\-\_\-\-P\-L\-U\-S, or \char`\"{}\-T\char`\"{} are pressed, but not neccessarily all of them, they should use \hyperlink{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a100b8cad7cf2a56f6df78f171f97a1ec}{Keypress\-Evaluation\-Method\-::any}. If they want a certain function called when {\itshape all} of those keys are used at once, they should use Evaluation\-Method\-::all. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{exactly\-One@{exactly\-One}!Input.\-hpp@{Input.\-hpp}}\index{Input.\-hpp@{Input.\-hpp}!exactly\-One@{exactly\-One}}\item[{\em 
+\hypertarget{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a1833e28b1fa85353670f723a1719f49e}{exactly\-One}\label{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a1833e28b1fa85353670f723a1719f49e}
+}]\index{all@{all}!Input.\-hpp@{Input.\-hpp}}\index{Input.\-hpp@{Input.\-hpp}!all@{all}}\item[{\em 
+\hypertarget{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91aa181a603769c1f98ad927e7367c7aa51}{all}\label{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91aa181a603769c1f98ad927e7367c7aa51}
+}]\index{any@{any}!Input.\-hpp@{Input.\-hpp}}\index{Input.\-hpp@{Input.\-hpp}!any@{any}}\item[{\em 
+\hypertarget{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a100b8cad7cf2a56f6df78f171f97a1ec}{any}\label{_input_8hpp_ac32d0351518cb71146a1cd777bc4fc91a100b8cad7cf2a56f6df78f171f97a1ec}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 166 of file Input.\-hpp.
+

@@ -1,0 +1,745 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_asset_file_i_o_8h" kind="file">
+    <compoundname>AssetFileIO.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">dirent.h</includes>
+    <includes local="no">SDL2/SDL_render.h</includes>
+    <includes local="no">SDL2_image/SDL_image.h</includes>
+    <includes refid="_util_8hpp" local="yes">../Util/Util.hpp</includes>
+    <includes refid="_bounds_check_8hpp" local="yes">../Util/BoundsCheck.hpp</includes>
+    <includes refid="_game_random_8hpp" local="yes">../Util/GameRandom.hpp</includes>
+    <includes refid="_character_data_8h" local="yes">../World/CharacterData.h</includes>
+    <includes refid="_game_state_8hpp" local="yes">../World/GameState.hpp</includes>
+    <includes refid="_configuration_8h" local="yes">../Control/Configuration.h</includes>
+    <includedby refid="main_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</includedby>
+    <includedby refid="_game_object_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.h</includedby>
+    <includedby refid="_output_data_8hpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp</includedby>
+    <includedby refid="_character_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.h</includedby>
+    <includedby refid="_player_character_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</includedby>
+    <includedby refid="_asset_file_i_o_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp</includedby>
+    <incdepgraph>
+      <node id="1172">
+        <label>list</label>
+      </node>
+      <node id="1179">
+        <label>iomanip</label>
+      </node>
+      <node id="1176">
+        <label>queue</label>
+      </node>
+      <node id="1164">
+        <label>limits</label>
+      </node>
+      <node id="1182">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1183" relation="include">
+        </childnode>
+        <childnode refid="1152" relation="include">
+        </childnode>
+        <childnode refid="1170" relation="include">
+        </childnode>
+      </node>
+      <node id="1180">
+        <label>assert.h</label>
+      </node>
+      <node id="1158">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="1184">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="1149">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="1145">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h</label>
+        <link refid="AssetFileIO.h"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1147" relation="include">
+        </childnode>
+        <childnode refid="1148" relation="include">
+        </childnode>
+        <childnode refid="1149" relation="include">
+        </childnode>
+        <childnode refid="1150" relation="include">
+        </childnode>
+        <childnode refid="1151" relation="include">
+        </childnode>
+        <childnode refid="1156" relation="include">
+        </childnode>
+        <childnode refid="1163" relation="include">
+        </childnode>
+        <childnode refid="1166" relation="include">
+        </childnode>
+        <childnode refid="1168" relation="include">
+        </childnode>
+        <childnode refid="1157" relation="include">
+        </childnode>
+      </node>
+      <node id="1181">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1160" relation="include">
+        </childnode>
+        <childnode refid="1174" relation="include">
+        </childnode>
+      </node>
+      <node id="1154">
+        <label>cmath</label>
+      </node>
+      <node id="1150">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="1153">
+        <label>string</label>
+      </node>
+      <node id="1159">
+        <label>fstream</label>
+      </node>
+      <node id="1167">
+        <label>ostream</label>
+      </node>
+      <node id="1168">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1167" relation="include">
+        </childnode>
+        <childnode refid="1169" relation="include">
+        </childnode>
+        <childnode refid="1152" relation="include">
+        </childnode>
+        <childnode refid="1170" relation="include">
+        </childnode>
+        <childnode refid="1171" relation="include">
+        </childnode>
+        <childnode refid="1147" relation="include">
+        </childnode>
+        <childnode refid="1172" relation="include">
+        </childnode>
+        <childnode refid="1173" relation="include">
+        </childnode>
+        <childnode refid="1158" relation="include">
+        </childnode>
+        <childnode refid="1149" relation="include">
+        </childnode>
+        <childnode refid="1151" relation="include">
+        </childnode>
+        <childnode refid="1174" relation="include">
+        </childnode>
+        <childnode refid="1175" relation="include">
+        </childnode>
+        <childnode refid="1156" relation="include">
+        </childnode>
+        <childnode refid="1181" relation="include">
+        </childnode>
+        <childnode refid="1184" relation="include">
+        </childnode>
+        <childnode refid="1162" relation="include">
+        </childnode>
+      </node>
+      <node id="1163">
+        <label>../Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1164" relation="include">
+        </childnode>
+        <childnode refid="1165" relation="include">
+        </childnode>
+        <childnode refid="1154" relation="include">
+        </childnode>
+        <childnode refid="1157" relation="include">
+        </childnode>
+      </node>
+      <node id="1165">
+        <label>random</label>
+      </node>
+      <node id="1173">
+        <label>condition_variable</label>
+      </node>
+      <node id="1147">
+        <label>vector</label>
+      </node>
+      <node id="1171">
+        <label>array</label>
+      </node>
+      <node id="1157">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="1158" relation="include">
+        </childnode>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1159" relation="include">
+        </childnode>
+        <childnode refid="1160" relation="include">
+        </childnode>
+        <childnode refid="1151" relation="include">
+        </childnode>
+        <childnode refid="1161" relation="include">
+        </childnode>
+        <childnode refid="1162" relation="include">
+        </childnode>
+      </node>
+      <node id="1169">
+        <label>sstream</label>
+      </node>
+      <node id="1178">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="1160" relation="include">
+        </childnode>
+        <childnode refid="1152" relation="include">
+        </childnode>
+        <childnode refid="1170" relation="include">
+        </childnode>
+        <childnode refid="1147" relation="include">
+        </childnode>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1179" relation="include">
+        </childnode>
+        <childnode refid="1153" relation="include">
+        </childnode>
+        <childnode refid="1169" relation="include">
+        </childnode>
+        <childnode refid="1180" relation="include">
+        </childnode>
+        <childnode refid="1181" relation="include">
+        </childnode>
+        <childnode refid="1182" relation="include">
+        </childnode>
+        <childnode refid="1157" relation="include">
+        </childnode>
+      </node>
+      <node id="1151">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1152" relation="include">
+        </childnode>
+        <childnode refid="1153" relation="include">
+        </childnode>
+        <childnode refid="1147" relation="include">
+        </childnode>
+        <childnode refid="1154" relation="include">
+        </childnode>
+        <childnode refid="1155" relation="include">
+        </childnode>
+      </node>
+      <node id="1146">
+        <label>iostream</label>
+      </node>
+      <node id="1177">
+        <label>deque</label>
+      </node>
+      <node id="1162">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="1151" relation="include">
+        </childnode>
+        <childnode refid="1160" relation="include">
+        </childnode>
+      </node>
+      <node id="1156">
+        <label>../Util/BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1157" relation="include">
+        </childnode>
+      </node>
+      <node id="1170">
+        <label>mutex</label>
+      </node>
+      <node id="1160">
+        <label>chrono</label>
+      </node>
+      <node id="1155">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="1175">
+        <label>../Util/Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="1154" relation="include">
+        </childnode>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1167" relation="include">
+        </childnode>
+        <childnode refid="1169" relation="include">
+        </childnode>
+        <childnode refid="1176" relation="include">
+        </childnode>
+        <childnode refid="1177" relation="include">
+        </childnode>
+        <childnode refid="1158" relation="include">
+        </childnode>
+        <childnode refid="1174" relation="include">
+        </childnode>
+        <childnode refid="1151" relation="include">
+        </childnode>
+        <childnode refid="1156" relation="include">
+        </childnode>
+        <childnode refid="1178" relation="include">
+        </childnode>
+        <childnode refid="1163" relation="include">
+        </childnode>
+        <childnode refid="1182" relation="include">
+        </childnode>
+      </node>
+      <node id="1152">
+        <label>thread</label>
+      </node>
+      <node id="1166">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1167" relation="include">
+        </childnode>
+        <childnode refid="1156" relation="include">
+        </childnode>
+        <childnode refid="1163" relation="include">
+        </childnode>
+      </node>
+      <node id="1174">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="1146" relation="include">
+        </childnode>
+        <childnode refid="1167" relation="include">
+        </childnode>
+        <childnode refid="1159" relation="include">
+        </childnode>
+        <childnode refid="1157" relation="include">
+        </childnode>
+      </node>
+      <node id="1161">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="1183">
+        <label>memory</label>
+      </node>
+      <node id="1148">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1199">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.cpp</label>
+        <link refid="_player_8cpp"/>
+      </node>
+      <node id="1201">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.cpp</label>
+        <link refid="_character_8cpp"/>
+      </node>
+      <node id="1193">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="1185">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h</label>
+        <link refid="AssetFileIO.h"/>
+        <childnode refid="1186" relation="include">
+        </childnode>
+        <childnode refid="1187" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1188" relation="include">
+        </childnode>
+        <childnode refid="1197" relation="include">
+        </childnode>
+        <childnode refid="1210" relation="include">
+        </childnode>
+      </node>
+      <node id="1186">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="1187">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="1186" relation="include">
+        </childnode>
+        <childnode refid="1188" relation="include">
+        </childnode>
+        <childnode refid="1191" relation="include">
+        </childnode>
+        <childnode refid="1202" relation="include">
+        </childnode>
+        <childnode refid="1204" relation="include">
+        </childnode>
+        <childnode refid="1206" relation="include">
+        </childnode>
+      </node>
+      <node id="1204">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h</label>
+        <link refid="_weapon_8h"/>
+        <childnode refid="1197" relation="include">
+        </childnode>
+        <childnode refid="1205" relation="include">
+        </childnode>
+      </node>
+      <node id="1190">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.h</label>
+        <link refid="_enemy_8h"/>
+        <childnode refid="1191" relation="include">
+        </childnode>
+        <childnode refid="1195" relation="include">
+        </childnode>
+      </node>
+      <node id="1200">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.cpp</label>
+        <link refid="_player_character_8cpp"/>
+      </node>
+      <node id="1196">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.cpp</label>
+        <link refid="_n_p_c_8cpp"/>
+      </node>
+      <node id="1197">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</label>
+        <link refid="_player_character_8h"/>
+        <childnode refid="1198" relation="include">
+        </childnode>
+        <childnode refid="1200" relation="include">
+        </childnode>
+      </node>
+      <node id="1194">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.cpp</label>
+        <link refid="_world_controller_8cpp"/>
+      </node>
+      <node id="1210">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp</label>
+        <link refid="_asset_file_i_o_8cpp"/>
+      </node>
+      <node id="1192">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="1186" relation="include">
+        </childnode>
+        <childnode refid="1193" relation="include">
+        </childnode>
+      </node>
+      <node id="1195">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.cpp</label>
+        <link refid="_enemy_8cpp"/>
+      </node>
+      <node id="1189">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h</label>
+        <link refid="_n_p_c_8h"/>
+        <childnode refid="1186" relation="include">
+        </childnode>
+        <childnode refid="1190" relation="include">
+        </childnode>
+        <childnode refid="1191" relation="include">
+        </childnode>
+        <childnode refid="1196" relation="include">
+        </childnode>
+      </node>
+      <node id="1205">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.cpp</label>
+        <link refid="_weapon_8cpp"/>
+      </node>
+      <node id="1209">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp</label>
+        <link refid="_game_state_8cpp"/>
+      </node>
+      <node id="1202">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h</label>
+        <link refid="_graphical_output_8h"/>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1203" relation="include">
+        </childnode>
+      </node>
+      <node id="1206">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.cpp</label>
+        <link refid="_game_object_8cpp"/>
+      </node>
+      <node id="1198">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.h</label>
+        <link refid="_player_8h"/>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1199" relation="include">
+        </childnode>
+      </node>
+      <node id="1208">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/TextOutput.hpp</label>
+        <link refid="_text_output_8hpp"/>
+        <childnode refid="1202" relation="include">
+        </childnode>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1198" relation="include">
+        </childnode>
+      </node>
+      <node id="1207">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="1187" relation="include">
+        </childnode>
+        <childnode refid="1202" relation="include">
+        </childnode>
+        <childnode refid="1208" relation="include">
+        </childnode>
+        <childnode refid="1198" relation="include">
+        </childnode>
+        <childnode refid="1209" relation="include">
+        </childnode>
+      </node>
+      <node id="1203">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp</label>
+        <link refid="_graphical_output_8cpp"/>
+      </node>
+      <node id="1188">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.h</label>
+        <link refid="_character_8h"/>
+        <childnode refid="1189" relation="include">
+        </childnode>
+        <childnode refid="1191" relation="include">
+        </childnode>
+        <childnode refid="1197" relation="include">
+        </childnode>
+        <childnode refid="1201" relation="include">
+        </childnode>
+      </node>
+      <node id="1191">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.h</label>
+        <link refid="_world_controller_8h"/>
+        <childnode refid="1186" relation="include">
+        </childnode>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1194" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_asset_file" prot="public">AssetFile</innerclass>
+    <innerclass refid="class_asset_file_i_o" prot="public">AssetFileIO</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" prot="public" static="no">
+        <name>AssetType</name>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9acd76adfdb0f7227ec28f6dc8d0cb3221" prot="public">
+          <name>asteroid</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9ad229bbf31eaeebc7c88897732d8b932d" prot="public">
+          <name>background</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a0f90cac94bfd7222b85c4114d122c5ac" prot="public">
+          <name>explosion</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9af287c6beccb1f257def546ad6acdd9e4" prot="public">
+          <name>powerup</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9abdb3aea80363d8d4bded1ce9f3cdadf2" prot="public">
+          <name>projectile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a28c69b4cba5681d565d3bd901684dd77" prot="public">
+          <name>shield</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a4c08b14797b28df331a55e03fff1b2e6" prot="public">
+          <name>playerShip</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a7a484b4c7c5ba2d013a34d7b28636ade" prot="public">
+          <name>enemyShip</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a6ea4f9678cf690cec660433e498121df" prot="public">
+          <name>shipDamage</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a71ff71526d15db86eb50fcac245d183b" prot="public">
+          <name>UI</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" line="32" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h" bodystart="32" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>AssetFileIO.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>4/27/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__Util__AssetFileIO__</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__Util__AssetFileIO__</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dirent.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_render.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2_image/SDL_image.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/Util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/BoundsCheck.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/GameRandom.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../World/CharacterData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../World/GameState.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Control/Configuration.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std<sp/>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9acd76adfdb0f7227ec28f6dc8d0cb3221" kindref="member">asteroid</ref>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9ad229bbf31eaeebc7c88897732d8b932d" kindref="member">background</ref>,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a0f90cac94bfd7222b85c4114d122c5ac" kindref="member">explosion</ref>,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9af287c6beccb1f257def546ad6acdd9e4" kindref="member">powerup</ref>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9abdb3aea80363d8d4bded1ce9f3cdadf2" kindref="member">projectile</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a28c69b4cba5681d565d3bd901684dd77" kindref="member">shield</ref>,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a4c08b14797b28df331a55e03fff1b2e6" kindref="member">playerShip</ref>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a7a484b4c7c5ba2d013a34d7b28636ade" kindref="member">enemyShip</ref>,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a6ea4f9678cf690cec660433e498121df" kindref="member">shipDamage</ref>,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9a71ff71526d15db86eb50fcac245d183b" kindref="member">UI</ref></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//what<sp/>else<sp/>do<sp/>we<sp/>need?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>more<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="struct_asset_file" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="struct_asset_file_1a27c2caf7607df43b8f078b2e3d37133e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_asset_file_i_o" kindref="compound">AssetFileIO</ref><sp/>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="struct_asset_file_1a25c3567f452df062ea7dcee79c0aefde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file_1a25c3567f452df062ea7dcee79c0aefde" kindref="member">filePath</ref><sp/>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_asset_file_1a7482e097719d1baa3a15fc3a5a00e15e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a7482e097719d1baa3a15fc3a5a00e15e" kindref="member">asteroidImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="58" refid="struct_asset_file_1a54cd19685e8f404021aeef79eb775430" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a54cd19685e8f404021aeef79eb775430" kindref="member">backgroundImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="59" refid="struct_asset_file_1a71a63898ce62bf0afc9fc1e8736cfb1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a71a63898ce62bf0afc9fc1e8736cfb1d" kindref="member">explosionImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="60" refid="struct_asset_file_1afcf268447c77710c71d5503668e0afb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1afcf268447c77710c71d5503668e0afb7" kindref="member">powerupImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="61" refid="struct_asset_file_1aa4c45964db96750b68dc082ccbd6adb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1aa4c45964db96750b68dc082ccbd6adb3" kindref="member">projectileImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="62" refid="struct_asset_file_1a190e00509710ab08fa4effe17ef443f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a190e00509710ab08fa4effe17ef443f0" kindref="member">shieldImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="63" refid="struct_asset_file_1a2e2753d8110ad1c4726f724e15f5b831" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a2e2753d8110ad1c4726f724e15f5b831" kindref="member">playerShipImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="64" refid="struct_asset_file_1a792cd746ec7903ca9d34a094627bc947" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a792cd746ec7903ca9d34a094627bc947" kindref="member">enemyShipImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="65" refid="struct_asset_file_1a372beb61728cbc13001766c79ab1ee70" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a372beb61728cbc13001766c79ab1ee70" kindref="member">shipDamageImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="66" refid="struct_asset_file_1a453cc790da71efe1ad15a45d1a3cde40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;AssetFile&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a453cc790da71efe1ad15a45d1a3cde40" kindref="member">UIImageFilenames</ref><sp/>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="struct_asset_file_1a9bd02c38dcc2dc973d65b92c80d35570" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>vector&lt;<sp/>vector&lt;AssetFile&gt;<sp/>*<sp/>&gt;<sp/>*<sp/><ref refid="struct_asset_file_1a9bd02c38dcc2dc973d65b92c80d35570" kindref="member">allAssetFiles</ref><sp/>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="struct_asset_file_1a6d2915fb2e781c162752036028bf9b32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file_1a6d2915fb2e781c162752036028bf9b32" kindref="member">fileName</ref><sp/>;</highlight></codeline>
+<codeline lineno="71" refid="struct_asset_file_1ad154debe8690c8bd1c29d091cabea4e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/><ref refid="struct_asset_file_1ad154debe8690c8bd1c29d091cabea4e7" kindref="member">type</ref><sp/>;</highlight></codeline>
+<codeline lineno="72" refid="struct_asset_file_1a9665f3c7769b8cee2106d718de7c297c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" kindref="member">Colors</ref><sp/><ref refid="struct_asset_file_1a9665f3c7769b8cee2106d718de7c297c" kindref="member">color</ref><sp/>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//other<sp/>fields?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_asset_file_1a138aff39a7ba0752bc64f917bde5cfe7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file_1a138aff39a7ba0752bc64f917bde5cfe7" kindref="member">AssetFile</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref>(UIImageFilenames-&gt;at(0))<sp/>{}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="struct_asset_file_1a80c0a491cfcf6ebfb5974d450a6cf3c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file_1a80c0a491cfcf6ebfb5974d450a6cf3c7" kindref="member">AssetFile</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>fileName,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filePath,<sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>type,<sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" kindref="member">Colors</ref><sp/>color)<sp/>:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileName(fileName),<sp/>filePath(filePath),<sp/>type(type),<sp/>color(color)<sp/>{}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="struct_asset_file_1ac60659d896166a29083a443f38f1ef05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file_1ac60659d896166a29083a443f38f1ef05" kindref="member">AssetFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileName(other.fileName),<sp/>filePath(other.filePath),<sp/>type(other.type),<sp/>color(other.color)<sp/>{}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>&amp;<sp/>existingFilename)<sp/>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref>(<ref refid="class_fast_rand" kindref="compound">FastRand&lt;int&gt;</ref><sp/>randm)<sp/>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="struct_asset_file_1a067d33d121eef312ba85bd918dc4ac79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file_1a067d33d121eef312ba85bd918dc4ac79" kindref="member">~AssetFile</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>operator<sp/>=<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>rhs)<sp/>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>operator<sp/>=<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>&amp;<sp/>str)<sp/>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="class_asset_file_i_o" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_asset_file_i_o" kindref="compound">AssetFileIO</ref><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref><sp/>*<sp/>getTextureFromFilename(<ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref><sp/>*<sp/>renderer,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>file,<sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>type)<sp/>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>&amp;<sp/>getImageFilename(vector&lt;AssetFile&gt;::size_type<sp/>index,<sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>type)<sp/>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>getRandomImageFile(<ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>type)<sp/>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="_asset_file_i_o_8h_1a72d924d1cb8e1544b6d5198e98d52ca9" kindref="member">AssetType</ref><sp/>getAssetTypeFromImageFile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>&amp;<sp/>imageFilename)<sp/>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__Util__AssetFileIO__)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h"/>
+  </compounddef>
+</doxygen>

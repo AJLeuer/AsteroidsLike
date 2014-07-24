@@ -1,0 +1,546 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_key_input_register" kind="class" prot="public">
+    <compoundname>KeyInputRegister</compoundname>
+    <basecompoundref refid="class_event_register_base" prot="public" virt="non-virtual">EventRegisterBase</basecompoundref>
+    <derivedcompoundref refid="class_switchable_key_input_register" prot="public" virt="non-virtual">SwitchableKeyInputRegister</derivedcompoundref>
+    <includes refid="_input_8hpp" local="no">Input.hpp</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="enum" id="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5d" prot="protected" static="no">
+        <name>KeyIdenMethod</name>
+        <enumvalue id="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5dacf1e24867419a579f668008e39431010" prot="public">
+          <name>keyChar</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5dab96beb1fb95f7fa45257bb48942aef8a" prot="public">
+          <name>keyCode</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5daf6cb3e816496528d4187db53bc66567f" prot="public">
+          <name>both</name>
+          <initializer>= (keyChar &amp; keyCode)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This enumeration represents whether this <ref refid="class_key_input_register" kindref="compound">KeyInputRegister</ref> references </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="194" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="194" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_key_input_register_1abc2af3b54d196eda9e64fdcd6da118d0" prot="protected" static="no" mutable="no">
+        <type>vector&lt; <ref refid="_input_8hpp_1ab11de2748648ed8559e324a4b8dfb2da" kindref="member">ScanCode</ref> &gt;</type>
+        <definition>vector&lt;ScanCode&gt; KeyInputRegister::scanCodes</definition>
+        <argsstring></argsstring>
+        <name>scanCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="179" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_key_input_register_1a6ff79253202f3106320ed21e9f3eb803" prot="protected" static="no" mutable="no">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt;string&gt; KeyInputRegister::requestedKeyboardChars</definition>
+        <argsstring></argsstring>
+        <name>requestedKeyboardChars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The string representing the keyboard key the client wishes to listen for </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="185" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_key_input_register_1a15cc8379e648634a63e1bedd645d03c3" prot="protected" static="no" mutable="no">
+        <type>vector&lt; <ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref> &gt;</type>
+        <definition>vector&lt;KeyCode&gt; KeyInputRegister::requestedKeyCodes</definition>
+        <argsstring></argsstring>
+        <name>requestedKeyCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="187" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_key_input_register_1a99a156d91abafbd8a1f191d15158d1ba" prot="protected" static="no" mutable="no">
+        <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+        <definition>KeypressEvaluationMethod KeyInputRegister::requestedKeyEvalMethod</definition>
+        <argsstring></argsstring>
+        <name>requestedKeyEvalMethod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="189" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_key_input_register_1adf60b0b21fcd0b52bf3c505528519b47" prot="protected" static="no" mutable="no">
+        <type>enum <ref refid="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5d" kindref="member">KeyInputRegister::KeyIdenMethod</ref></type>
+        <definition>enum KeyInputRegister::KeyIdenMethod  KeyInputRegister::keyIDMethod</definition>
+        <argsstring></argsstring>
+        <name>keyIDMethod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="198" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_key_input_register_1a083d5a8d8c2dd3a28d1f55d2965db0ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class InputController</definition>
+        <argsstring></argsstring>
+        <name>InputController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="208" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_key_input_register_1a0e5993cb2e93f288a4acf7d34da6edad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool KeyInputRegister::checkForPressedKeys</definition>
+        <argsstring>(const unsigned char *keyboardState, vector&lt; ScanCode &gt;::iterator scanCode)</argsstring>
+        <name>checkForPressedKeys</name>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>keyboardState</declname>
+        </param>
+        <param>
+          <type>vector&lt; <ref refid="_input_8hpp_1ab11de2748648ed8559e324a4b8dfb2da" kindref="member">ScanCode</ref> &gt;::iterator</type>
+          <declname>scanCode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Recursively checks the keyboard state against all ScanCodes corresponding to requested keys, and turns true if all are pressed, or false otherwise. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="204" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.cpp" bodystart="32" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a076a886cd83efe7d7aaa11f670d75e61" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void KeyInputRegister::handleKeyboardInput</definition>
+        <argsstring>(const unsigned char *keyboardState)</argsstring>
+        <name>handleKeyboardInput</name>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>keyboardState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="206" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.cpp" bodystart="62" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_key_input_register_1a6a51b43c1ceadda862deed824456434e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>()</argsstring>
+        <name>KeyInputRegister</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="212" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="212" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1ac0c481b0e43fdad2965d547477412a89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(const KeyInputRegister &amp;other)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type>const <ref refid="class_key_input_register" kindref="compound">KeyInputRegister</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="214" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="214" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a965d3c77c5f5edd8a6e376cd8bf0a55f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(KeyInputRegister &amp;&amp;other)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type><ref refid="class_key_input_register" kindref="compound">KeyInputRegister</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="235" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="235" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a19aa82ae77df55f40f3fcbbf37d6e78a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)(), initializer_list&lt; string &gt; keyChar, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; string &gt;</type>
+          <declname>keyChar</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="243" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="243" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1aa4e8032393db889d4835183891b4a4f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)(), T *arg0, initializer_list&lt; string &gt; keyChar, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>arg0</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; string &gt;</type>
+          <declname>keyChar</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="257" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="257" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a2fd8e4aeb3e624f4c6f86ba34481c4ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(function&lt; void(void)&gt; cb, initializer_list&lt; string &gt; keyChar, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type>function&lt; void(void)&gt;</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; string &gt;</type>
+          <declname>keyChar</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="270" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="270" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a261ad3b9948e06fb843459393ee2489f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)(), initializer_list&lt; KeyCode &gt; keyCode, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; <ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref> &gt;</type>
+          <declname>keyCode</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="283" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="283" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a27e34e2fc96aa8b92583c1dca8dcb0e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(function&lt; void(void)&gt; cb, initializer_list&lt; KeyCode &gt; keyCode)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type>function&lt; void(void)&gt;</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; <ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref> &gt;</type>
+          <declname>keyCode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="296" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="296" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1abe0349140084c11d90cdf3f56278407f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)(), initializer_list&lt; string &gt; keyChar, initializer_list&lt; KeyCode &gt; keyCode, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; string &gt;</type>
+          <declname>keyChar</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; <ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref> &gt;</type>
+          <declname>keyCode</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="308" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="308" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a255b4fcfd7ff93d8c81c4963dc77d424" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::KeyInputRegister</definition>
+        <argsstring>(function&lt; void(void)&gt; cb, initializer_list&lt; string &gt; keyChar, initializer_list&lt; KeyCode &gt; keyCode, KeypressEvaluationMethod m)</argsstring>
+        <name>KeyInputRegister</name>
+        <param>
+          <type>function&lt; void(void)&gt;</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; string &gt;</type>
+          <declname>keyChar</declname>
+        </param>
+        <param>
+          <type>initializer_list&lt; <ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref> &gt;</type>
+          <declname>keyCode</declname>
+        </param>
+        <param>
+          <type><ref refid="_input_8hpp_1ac32d0351518cb71146a1cd777bc4fc91" kindref="member">KeypressEvaluationMethod</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="328" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="328" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a5c01a99075e25878f2cb673d6341861b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>KeyInputRegister::~KeyInputRegister</definition>
+        <argsstring>()</argsstring>
+        <name>~KeyInputRegister</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="348" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="348" bodyend="348"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_key_input_register_1a439b37fd3322d8957aa95d9775550db5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_input_8hpp_1ab11de2748648ed8559e324a4b8dfb2da" kindref="member">ScanCode</ref></type>
+        <definition>static ScanCode KeyInputRegister::getScanCodeFor</definition>
+        <argsstring>(const char *c)</argsstring>
+        <name>getScanCodeFor</name>
+        <param>
+          <type>const char *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="350" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="350" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="class_key_input_register_1a4f8b4b7572911432931bf6bd835f52ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_input_8hpp_1ab11de2748648ed8559e324a4b8dfb2da" kindref="member">ScanCode</ref></type>
+        <definition>static ScanCode KeyInputRegister::getScanCodeFor</definition>
+        <argsstring>(KeyCode code)</argsstring>
+        <name>getScanCodeFor</name>
+        <param>
+          <type><ref refid="_input_8hpp_1ad39c2e59d8cf6782d7ab90b73c0d0ada" kindref="member">KeyCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="352" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="352" bodyend="352"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An implementation of <ref refid="class_event_register_base" kindref="compound">EventRegisterBase</ref> specialized for handling keyboard input. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="165">
+        <label>SwitchableKeyInputRegister</label>
+        <link refid="class_switchable_key_input_register"/>
+        <childnode refid="163" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="164">
+        <label>EventRegisterBase</label>
+        <link refid="class_event_register_base"/>
+      </node>
+      <node id="163">
+        <label>KeyInputRegister</label>
+        <link refid="class_key_input_register"/>
+        <childnode refid="164" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="167">
+        <label>EventRegisterBase</label>
+        <link refid="class_event_register_base"/>
+        <childnode refid="168" relation="usage">
+          <edgelabel>memberToCallOn</edgelabel>
+        </childnode>
+      </node>
+      <node id="166">
+        <label>KeyInputRegister</label>
+        <link refid="class_key_input_register"/>
+        <childnode refid="167" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="168">
+        <label>GameInterface</label>
+        <link refid="class_game_interface"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="175" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="175" bodyend="354"/>
+    <listofallmembers>
+      <member refid="class_event_register_base_1ad28e4551bc4710d3a79ff5d5f3f50543" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>arg</name></member>
+      <member refid="class_event_register_base_1a09c3207daecbf7df0da8e9a9c0d9fa46" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>callBack</name></member>
+      <member refid="class_event_register_base_1a8fcbaadc872f483e42426960e159d4b4" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>callBackFunction</name></member>
+      <member refid="class_key_input_register_1a0e5993cb2e93f288a4acf7d34da6edad" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>checkForPressedKeys</name></member>
+      <member refid="class_event_register_base_1ab73e973655dabe4de4d5f261736a9201" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a63f991f6dd36375b4f845711481d0e8e" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1ae5983e78604cc916282577c7ce0edc18" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1ad7b93cb60058b038ba9a5e61a3d1e0b5" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a945b318dc066bd29c758e9bb78645c25" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a85aac264fad1290ad9b4119802401890" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>EventRegisterBase</name></member>
+      <member refid="class_key_input_register_1a439b37fd3322d8957aa95d9775550db5" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>getScanCodeFor</name></member>
+      <member refid="class_key_input_register_1a4f8b4b7572911432931bf6bd835f52ef" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>getScanCodeFor</name></member>
+      <member refid="class_key_input_register_1a076a886cd83efe7d7aaa11f670d75e61" prot="protected" virt="virtual"><scope>KeyInputRegister</scope><name>handleKeyboardInput</name></member>
+      <member refid="class_key_input_register_1a083d5a8d8c2dd3a28d1f55d2965db0ab" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>InputController</name></member>
+      <member refid="class_key_input_register_1a21a7be17fdf11de9736f801ed23b3d5d" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyIdenMethod</name></member>
+      <member refid="class_key_input_register_1adf60b0b21fcd0b52bf3c505528519b47" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>keyIDMethod</name></member>
+      <member refid="class_key_input_register_1a6a51b43c1ceadda862deed824456434e" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1ac0c481b0e43fdad2965d547477412a89" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a965d3c77c5f5edd8a6e376cd8bf0a55f" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a19aa82ae77df55f40f3fcbbf37d6e78a" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1aa4e8032393db889d4835183891b4a4f5" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a2fd8e4aeb3e624f4c6f86ba34481c4ee" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a261ad3b9948e06fb843459393ee2489f" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a27e34e2fc96aa8b92583c1dca8dcb0e7" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1abe0349140084c11d90cdf3f56278407f" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_key_input_register_1a255b4fcfd7ff93d8c81c4963dc77d424" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>KeyInputRegister</name></member>
+      <member refid="class_event_register_base_1ad0d7c12c7c5c7176a48388cec7e74923" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>member_callBackFunction</name></member>
+      <member refid="class_event_register_base_1a4747220b6d3bdaadda3adee1ad621d4e" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>memberToCallOn</name></member>
+      <member refid="class_key_input_register_1a6ff79253202f3106320ed21e9f3eb803" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>requestedKeyboardChars</name></member>
+      <member refid="class_key_input_register_1a15cc8379e648634a63e1bedd645d03c3" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>requestedKeyCodes</name></member>
+      <member refid="class_key_input_register_1a99a156d91abafbd8a1f191d15158d1ba" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>requestedKeyEvalMethod</name></member>
+      <member refid="class_key_input_register_1abc2af3b54d196eda9e64fdcd6da118d0" prot="protected" virt="non-virtual"><scope>KeyInputRegister</scope><name>scanCodes</name></member>
+      <member refid="class_key_input_register_1a5c01a99075e25878f2cb673d6341861b" prot="public" virt="non-virtual"><scope>KeyInputRegister</scope><name>~KeyInputRegister</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

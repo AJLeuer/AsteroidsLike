@@ -1,0 +1,158 @@
+\hypertarget{class_weapon}{\section{Weapon Class Reference}
+\label{class_weapon}\index{Weapon@{Weapon}}
+}
+
+
+{\ttfamily \#include $<$Weapon.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_weapon_a36659b761fc09ceed63bb6643a168211}{Weapon} (const \hyperlink{struct_asset_file}{Asset\-File} \&projectile\-Image\-File, float size\-Modifier, const \hyperlink{struct_position}{Position}$<$ float $>$ $\ast$\hyperlink{class_weapon_a4f23fa5f82c185dbe975f6d005b0f90a}{owner\-Position}, const \hyperlink{struct_vectr}{Vectr}$<$ float $>$ $\ast$\hyperlink{class_weapon_a5aad357adfe3e9bdcebc95ee99202ab4}{owner\-Vector})
+\item 
+\hyperlink{class_weapon_aad2f19173e90be4a0097a67c66887794}{Weapon} (\hyperlink{class_fast_rand}{Fast\-Rand}$<$ unsigned long $>$ \&randm, const \hyperlink{struct_position}{Position}$<$ float $>$ $\ast$\hyperlink{class_weapon_a4f23fa5f82c185dbe975f6d005b0f90a}{owner\-Position}, const \hyperlink{struct_vectr}{Vectr}$<$ float $>$ $\ast$\hyperlink{class_weapon_a5aad357adfe3e9bdcebc95ee99202ab4}{owner\-Vector})
+\item 
+\hyperlink{class_weapon_ac0c75166822c7694cb0410b80a58d475}{Weapon} (const \hyperlink{class_weapon}{Weapon} \&other)
+\item 
+\hyperlink{class_weapon_abbada20225959c54f036cbab506f3d94}{Weapon} (\hyperlink{class_weapon}{Weapon} \&\&other)
+\item 
+\hyperlink{class_weapon}{Weapon} \& \hyperlink{class_weapon_a5995665bd4c14aa5b2a8773b5c631019}{operator=} (const \hyperlink{class_weapon}{Weapon} \&rhs)
+\item 
+\hyperlink{class_weapon}{Weapon} \& \hyperlink{class_weapon_a473db96007a6599273c42c182f2b16d7}{operator=} (\hyperlink{class_weapon}{Weapon} \&\&rhs)
+\item 
+void \hyperlink{class_weapon_af6f8ab97e28fd4778f97c96c78fd02f4}{fire} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projectile}{Projectile} \hyperlink{class_weapon_ab4dcfce3b3a14222f847e50e95451164}{projectile}
+\item 
+const \hyperlink{struct_position}{Position}$<$ float $>$ $\ast$ \hyperlink{class_weapon_a4f23fa5f82c185dbe975f6d005b0f90a}{owner\-Position}
+\item 
+const \hyperlink{struct_vectr}{Vectr}$<$ float $>$ $\ast$ \hyperlink{class_weapon_a5aad357adfe3e9bdcebc95ee99202ab4}{owner\-Vector}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 45 of file Weapon.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_weapon_a36659b761fc09ceed63bb6643a168211}{\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\subsubsection[{Weapon}]{\setlength{\rightskip}{0pt plus 5cm}Weapon\-::\-Weapon (
+\begin{DoxyParamCaption}
+\item[{const {\bf Asset\-File} \&}]{projectile\-Image\-File, }
+\item[{float}]{size\-Modifier, }
+\item[{const {\bf Position}$<$ float $>$ $\ast$}]{owner\-Position, }
+\item[{const {\bf Vectr}$<$ float $>$ $\ast$}]{owner\-Vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_weapon_a36659b761fc09ceed63bb6643a168211}
+
+
+Definition at line 61 of file Weapon.\-h.
+
+\hypertarget{class_weapon_aad2f19173e90be4a0097a67c66887794}{\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\subsubsection[{Weapon}]{\setlength{\rightskip}{0pt plus 5cm}Weapon\-::\-Weapon (
+\begin{DoxyParamCaption}
+\item[{{\bf Fast\-Rand}$<$ unsigned long $>$ \&}]{randm, }
+\item[{const {\bf Position}$<$ float $>$ $\ast$}]{owner\-Position, }
+\item[{const {\bf Vectr}$<$ float $>$ $\ast$}]{owner\-Vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_weapon_aad2f19173e90be4a0097a67c66887794}
+
+
+Definition at line 66 of file Weapon.\-h.
+
+\hypertarget{class_weapon_ac0c75166822c7694cb0410b80a58d475}{\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\subsubsection[{Weapon}]{\setlength{\rightskip}{0pt plus 5cm}Weapon\-::\-Weapon (
+\begin{DoxyParamCaption}
+\item[{const {\bf Weapon} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_weapon_ac0c75166822c7694cb0410b80a58d475}
+
+
+Definition at line 71 of file Weapon.\-h.
+
+\hypertarget{class_weapon_abbada20225959c54f036cbab506f3d94}{\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\subsubsection[{Weapon}]{\setlength{\rightskip}{0pt plus 5cm}Weapon\-::\-Weapon (
+\begin{DoxyParamCaption}
+\item[{{\bf Weapon} \&\&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_weapon_abbada20225959c54f036cbab506f3d94}
+
+
+Definition at line 74 of file Weapon.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_weapon_af6f8ab97e28fd4778f97c96c78fd02f4}{\index{Weapon@{Weapon}!fire@{fire}}
+\index{fire@{fire}!Weapon@{Weapon}}
+\subsubsection[{fire}]{\setlength{\rightskip}{0pt plus 5cm}void Weapon\-::fire (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_weapon_af6f8ab97e28fd4778f97c96c78fd02f4}
+
+
+Definition at line 27 of file Weapon.\-cpp.
+
+\hypertarget{class_weapon_a5995665bd4c14aa5b2a8773b5c631019}{\index{Weapon@{Weapon}!operator=@{operator=}}
+\index{operator=@{operator=}!Weapon@{Weapon}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Weapon} \& Weapon\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Weapon} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_weapon_a5995665bd4c14aa5b2a8773b5c631019}
+
+
+Definition at line 13 of file Weapon.\-cpp.
+
+\hypertarget{class_weapon_a473db96007a6599273c42c182f2b16d7}{\index{Weapon@{Weapon}!operator=@{operator=}}
+\index{operator=@{operator=}!Weapon@{Weapon}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Weapon} \& Weapon\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Weapon} \&\&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_weapon_a473db96007a6599273c42c182f2b16d7}
+
+
+Definition at line 20 of file Weapon.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_weapon_a4f23fa5f82c185dbe975f6d005b0f90a}{\index{Weapon@{Weapon}!owner\-Position@{owner\-Position}}
+\index{owner\-Position@{owner\-Position}!Weapon@{Weapon}}
+\subsubsection[{owner\-Position}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Position}$<$float$>$$\ast$ Weapon\-::owner\-Position\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_weapon_a4f23fa5f82c185dbe975f6d005b0f90a}
+
+
+Definition at line 55 of file Weapon.\-h.
+
+\hypertarget{class_weapon_a5aad357adfe3e9bdcebc95ee99202ab4}{\index{Weapon@{Weapon}!owner\-Vector@{owner\-Vector}}
+\index{owner\-Vector@{owner\-Vector}!Weapon@{Weapon}}
+\subsubsection[{owner\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vectr}$<$float$>$$\ast$ Weapon\-::owner\-Vector\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_weapon_a5aad357adfe3e9bdcebc95ee99202ab4}
+
+
+Definition at line 57 of file Weapon.\-h.
+
+\hypertarget{class_weapon_ab4dcfce3b3a14222f847e50e95451164}{\index{Weapon@{Weapon}!projectile@{projectile}}
+\index{projectile@{projectile}!Weapon@{Weapon}}
+\subsubsection[{projectile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Projectile} Weapon\-::projectile\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_weapon_ab4dcfce3b3a14222f847e50e95451164}
+A simple \hyperlink{class_game_object}{Game\-Object} that will only be drawn onscreen immediately after the weapon fires 
+
+Definition at line 53 of file Weapon.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_weapon_8h}{Weapon.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_weapon_8cpp}{Weapon.\-cpp}\end{DoxyCompactItemize}

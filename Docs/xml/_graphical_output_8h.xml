@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_graphical_output_8h" kind="file">
+    <compoundname>GraphicalOutput.h</compoundname>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">thread</includes>
+    <includes local="no">chrono</includes>
+    <includes local="no">SDL2/SDL.h</includes>
+    <includes local="no">SDL2/SDL_rect.h</includes>
+    <includes local="no">SDL2/SDL_video.h</includes>
+    <includes local="no">SDL2/SDL_render.h</includes>
+    <includes local="no">SDL2_image/SDL_image.h</includes>
+    <includes local="no">SDL2_ttf/SDL_ttf.h</includes>
+    <includes refid="_debug_8h" local="yes">../Util/Debug.h</includes>
+    <includes refid="_util_8hpp" local="yes">../Util/Util.hpp</includes>
+    <includes refid="_position_8hpp" local="yes">../Util/Position.hpp</includes>
+    <includes refid="_output_data_8hpp" local="yes">OutputData.hpp</includes>
+    <includes refid="_text_output_8hpp" local="yes">TextOutput.hpp</includes>
+    <includes refid="_game_color_8h" local="yes">GameColor.h</includes>
+    <includes refid="_game_state_8hpp" local="yes">../World/GameState.hpp</includes>
+    <includes refid="_game_object_8h" local="yes">../World/GameObject.h</includes>
+    <includedby refid="_main_controller_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</includedby>
+    <includedby refid="_graphical_output_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp</includedby>
+    <incdepgraph>
+      <node id="940">
+        <label>list</label>
+      </node>
+      <node id="948">
+        <label>functional</label>
+      </node>
+      <node id="926">
+        <label>iomanip</label>
+      </node>
+      <node id="921">
+        <label>queue</label>
+      </node>
+      <node id="932">
+        <label>limits</label>
+      </node>
+      <node id="929">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="930" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="925" relation="include">
+        </childnode>
+      </node>
+      <node id="927">
+        <label>assert.h</label>
+      </node>
+      <node id="905">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="936">
+        <label>../Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="933" relation="include">
+        </childnode>
+        <childnode refid="916" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="958">
+        <label>GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="959" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="942">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="906">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="937">
+        <label>Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="943">
+        <label>../Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="944" relation="include">
+        </childnode>
+        <childnode refid="906" relation="include">
+        </childnode>
+        <childnode refid="907" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="923" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+        <childnode refid="945" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="928">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="902" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+      </node>
+      <node id="916">
+        <label>cmath</label>
+      </node>
+      <node id="953">
+        <label>../World/GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="916" relation="include">
+        </childnode>
+        <childnode refid="954" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="936" relation="include">
+        </childnode>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="943" relation="include">
+        </childnode>
+        <childnode refid="934" relation="include">
+        </childnode>
+        <childnode refid="942" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="955" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="958" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+        <childnode refid="960" relation="include">
+        </childnode>
+      </node>
+      <node id="907">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="914">
+        <label>string</label>
+      </node>
+      <node id="947">
+        <label>exception</label>
+      </node>
+      <node id="911">
+        <label>fstream</label>
+      </node>
+      <node id="910">
+        <label>ostream</label>
+      </node>
+      <node id="938">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="910" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="925" relation="include">
+        </childnode>
+        <childnode refid="939" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="940" relation="include">
+        </childnode>
+        <childnode refid="941" relation="include">
+        </childnode>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="906" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="923" relation="include">
+        </childnode>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="942" relation="include">
+        </childnode>
+        <childnode refid="918" relation="include">
+        </childnode>
+      </node>
+      <node id="955">
+        <label>GameMap.hpp</label>
+        <link refid="_game_map_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="921" relation="include">
+        </childnode>
+        <childnode refid="922" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="940" relation="include">
+        </childnode>
+        <childnode refid="956" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="957" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="952">
+        <label>SDL2/SDL_pixels.h</label>
+      </node>
+      <node id="931">
+        <label>GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="932" relation="include">
+        </childnode>
+        <childnode refid="933" relation="include">
+        </childnode>
+        <childnode refid="916" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="903">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="933">
+        <label>random</label>
+      </node>
+      <node id="941">
+        <label>condition_variable</label>
+      </node>
+      <node id="899">
+        <label>unistd.h</label>
+      </node>
+      <node id="915">
+        <label>vector</label>
+      </node>
+      <node id="961">
+        <label>SDL2/SDL_events.h</label>
+      </node>
+      <node id="939">
+        <label>array</label>
+      </node>
+      <node id="912">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="911" relation="include">
+        </childnode>
+        <childnode refid="902" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="917" relation="include">
+        </childnode>
+        <childnode refid="918" relation="include">
+        </childnode>
+      </node>
+      <node id="920">
+        <label>sstream</label>
+      </node>
+      <node id="960">
+        <label>../Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="948" relation="include">
+        </childnode>
+        <childnode refid="935" relation="include">
+        </childnode>
+        <childnode refid="940" relation="include">
+        </childnode>
+        <childnode refid="903" relation="include">
+        </childnode>
+        <childnode refid="961" relation="include">
+        </childnode>
+        <childnode refid="962" relation="include">
+        </childnode>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="958" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="908">
+        <label>SDL2_ttf/SDL_ttf.h</label>
+      </node>
+      <node id="924">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="902" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="925" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="914" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="927" relation="include">
+        </childnode>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="929" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="898">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h</label>
+        <link refid="GraphicalOutput.h"/>
+        <childnode refid="899" relation="include">
+        </childnode>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="902" relation="include">
+        </childnode>
+        <childnode refid="903" relation="include">
+        </childnode>
+        <childnode refid="904" relation="include">
+        </childnode>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="906" relation="include">
+        </childnode>
+        <childnode refid="907" relation="include">
+        </childnode>
+        <childnode refid="908" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="934" relation="include">
+        </childnode>
+        <childnode refid="946" relation="include">
+        </childnode>
+        <childnode refid="951" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="953" relation="include">
+        </childnode>
+      </node>
+      <node id="913">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="914" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="916" relation="include">
+        </childnode>
+        <childnode refid="904" relation="include">
+        </childnode>
+      </node>
+      <node id="949">
+        <label>cstdlib</label>
+      </node>
+      <node id="900">
+        <label>iostream</label>
+      </node>
+      <node id="954">
+        <label>SDL2/SDL_surface.h</label>
+      </node>
+      <node id="922">
+        <label>deque</label>
+      </node>
+      <node id="918">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="902" relation="include">
+        </childnode>
+      </node>
+      <node id="956">
+        <label>climits</label>
+      </node>
+      <node id="923">
+        <label>BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="925">
+        <label>mutex</label>
+      </node>
+      <node id="902">
+        <label>chrono</label>
+      </node>
+      <node id="904">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="919">
+        <label>../Util/Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="916" relation="include">
+        </childnode>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="910" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="921" relation="include">
+        </childnode>
+        <childnode refid="922" relation="include">
+        </childnode>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="923" relation="include">
+        </childnode>
+        <childnode refid="924" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+        <childnode refid="929" relation="include">
+        </childnode>
+      </node>
+      <node id="951">
+        <label>GameColor.h</label>
+        <link refid="_game_color_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="952" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="946">
+        <label>TextOutput.hpp</label>
+        <link refid="_text_output_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="910" relation="include">
+        </childnode>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="914" relation="include">
+        </childnode>
+        <childnode refid="947" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+        <childnode refid="948" relation="include">
+        </childnode>
+        <childnode refid="949" relation="include">
+        </childnode>
+        <childnode refid="950" relation="include">
+        </childnode>
+        <childnode refid="908" relation="include">
+        </childnode>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="929" relation="include">
+        </childnode>
+        <childnode refid="934" relation="include">
+        </childnode>
+        <childnode refid="951" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+      </node>
+      <node id="901">
+        <label>thread</label>
+      </node>
+      <node id="945">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="910" relation="include">
+        </childnode>
+        <childnode refid="923" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+      <node id="934">
+        <label>OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="899" relation="include">
+        </childnode>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="901" relation="include">
+        </childnode>
+        <childnode refid="902" relation="include">
+        </childnode>
+        <childnode refid="935" relation="include">
+        </childnode>
+        <childnode refid="903" relation="include">
+        </childnode>
+        <childnode refid="904" relation="include">
+        </childnode>
+        <childnode refid="905" relation="include">
+        </childnode>
+        <childnode refid="906" relation="include">
+        </childnode>
+        <childnode refid="907" relation="include">
+        </childnode>
+        <childnode refid="908" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+        <childnode refid="909" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="936" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="943" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="957">
+        <label>../Util/Navigator.hpp</label>
+        <link refid="_navigator_8hpp"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="913" relation="include">
+        </childnode>
+        <childnode refid="919" relation="include">
+        </childnode>
+      </node>
+      <node id="959">
+        <label>Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="945" relation="include">
+        </childnode>
+      </node>
+      <node id="950">
+        <label>cstring</label>
+      </node>
+      <node id="909">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="900" relation="include">
+        </childnode>
+        <childnode refid="910" relation="include">
+        </childnode>
+        <childnode refid="911" relation="include">
+        </childnode>
+        <childnode refid="912" relation="include">
+        </childnode>
+      </node>
+      <node id="962">
+        <label>SDL2/SDL_keyboard.h</label>
+      </node>
+      <node id="917">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="930">
+        <label>memory</label>
+      </node>
+      <node id="935">
+        <label>initializer_list</label>
+      </node>
+      <node id="944">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="966">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="965">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="964">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="965" relation="include">
+        </childnode>
+        <childnode refid="966" relation="include">
+        </childnode>
+      </node>
+      <node id="963">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h</label>
+        <link refid="GraphicalOutput.h"/>
+        <childnode refid="964" relation="include">
+        </childnode>
+        <childnode refid="967" relation="include">
+        </childnode>
+      </node>
+      <node id="967">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp</label>
+        <link refid="_graphical_output_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_graphical_output" prot="public">GraphicalOutput</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>WindowOutput.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>4/26/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__GameWorld__WindowOutput__</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__GameWorld__WindowOutput__</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_rect.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_video.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_render.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2/SDL_rect.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2_image/SDL_image.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SDL2_ttf/SDL_ttf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/Debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/Util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/Position.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_output_data_8hpp" kindref="compound">OutputData.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_text_output_8hpp" kindref="compound">TextOutput.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_game_color_8h" kindref="compound">GameColor.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../World/GameState.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../World/GameObject.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std<sp/>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="class_graphical_output" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_graphical_output" kindref="compound">GraphicalOutput</ref><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="class_graphical_output_1a7ec322f6e170a81b22159e766774a0b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="_default_config_8h_1a12f0b3ea7a02ede1c5799a956e008406" kindref="member">Window</ref><sp/>*<sp/><ref refid="class_graphical_output_1a7ec322f6e170a81b22159e766774a0b8" kindref="member">window</ref><sp/>;</highlight></codeline>
+<codeline lineno="48" refid="class_graphical_output_1a0c3e8f71b53de8e424cea3c15b3c28a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref><sp/>*<sp/><ref refid="class_graphical_output_1a0c3e8f71b53de8e424cea3c15b3c28a0" kindref="member">renderer</ref><sp/>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>render()<sp/>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>M,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>render(<ref refid="struct_output_data" kindref="compound">OutputData&lt;M, N&gt;</ref><sp/>*<sp/>output)<sp/>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>M,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>render(<ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref><sp/>*<sp/>texture,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;M&gt;</ref><sp/>pos,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_size" kindref="compound">Size&lt;N&gt;</ref><sp/>size)<sp/>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_graphical_output" kindref="compound">GraphicalOutput</ref>()<sp/>;<sp/></highlight><highlight class="comment">//private<sp/>to<sp/>prevent<sp/>instantiation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init()<sp/>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>update()<sp/>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>exit()<sp/>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>M,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="83" refid="class_graphical_output_1a53fe675842428997d80272249ab2cb8d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_graphical_output_1adeab950f26458b742cd5b4dd6becfd9a" kindref="member">GraphicalOutput::render</ref>(<ref refid="struct_output_data" kindref="compound">OutputData&lt;M, N&gt;</ref><sp/>*<sp/>output)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((output<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>&amp;&amp;<sp/>(output-&gt;<ref refid="struct_output_data_1aeaa3ed34010dfb0726897b9722a779fa" kindref="member">isVisible</ref>()))<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>render(output-&gt;<ref refid="struct_output_data_1abae817843824525377ff87dff98825f1" kindref="member">getTexture</ref>(),<sp/>output-&gt;<ref refid="struct_output_data_1acafb00ba35ee770e08f37de9080430a1" kindref="member">getPosition</ref>(),<sp/>output-&gt;<ref refid="struct_output_data_1a3bffb05a3714e4c93adb33bce30cc86d" kindref="member">getSize</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>M,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
+<codeline lineno="91" refid="class_graphical_output_1a3ff488839b978d605b3f718289056760" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_graphical_output_1adeab950f26458b742cd5b4dd6becfd9a" kindref="member">GraphicalOutput::render</ref>(<ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref><sp/>*<sp/>texture,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;M&gt;</ref><sp/>pos,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_size" kindref="compound">Size&lt;N&gt;</ref><sp/>size)<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>tempShape<sp/>=<sp/><ref refid="_util_8hpp_1af2ffbe7b726877832c94239b5594058c" kindref="member">convertToSDL_Rect</ref>(pos,<sp/>size)<sp/>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sdlrend_error<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>texture<sp/>will<sp/>sometimes<sp/>be<sp/>null,<sp/>e.g.<sp/>when<sp/>game<sp/>objects<sp/>are<sp/>invisible<sp/>their</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>getTexture()<sp/>method<sp/>returns<sp/>a<sp/>nullptr<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(texture<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sdlrend_error<sp/>=<sp/>SDL_RenderCopy(renderer,<sp/>texture,<sp/>NULL,<sp/>&amp;tempShape)<sp/>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdlrend_error<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SDL_RenderCopy()<sp/>failed.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/>SDL_GetError()<sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__GameWorld__WindowOutput__)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h"/>
+  </compounddef>
+</doxygen>

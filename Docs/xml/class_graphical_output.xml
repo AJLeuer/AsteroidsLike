@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_graphical_output" kind="class" prot="public">
+    <compoundname>GraphicalOutput</compoundname>
+    <includes refid="_graphical_output_8h" local="no">GraphicalOutput.h</includes>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="class_graphical_output_1a7ec322f6e170a81b22159e766774a0b8" prot="protected" static="yes" mutable="no">
+        <type><ref refid="_default_config_8h_1a12f0b3ea7a02ede1c5799a956e008406" kindref="member">Window</ref> *</type>
+        <definition>Window * GraphicalOutput::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="47" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_graphical_output_1a0c3e8f71b53de8e424cea3c15b3c28a0" prot="protected" static="yes" mutable="no">
+        <type><ref refid="_default_config_8h_1a15987d3f97f19077ea40d858c2f0b836" kindref="member">Renderer</ref> *</type>
+        <definition>Renderer * GraphicalOutput::renderer</definition>
+        <argsstring></argsstring>
+        <name>renderer</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="48" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_graphical_output_1adeab950f26458b742cd5b4dd6becfd9a" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GraphicalOutput::render</definition>
+        <argsstring>()</argsstring>
+        <name>render</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Handles rendering. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="54" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp" bodystart="95" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graphical_output_1a53fe675842428997d80272249ab2cb8d" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename M</type>
+          </param>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GraphicalOutput::render</definition>
+        <argsstring>(OutputData&lt; M, N &gt; *output)</argsstring>
+        <name>render</name>
+        <param>
+          <type><ref refid="struct_output_data" kindref="compound">OutputData</ref>&lt; M, N &gt; *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="57" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" bodystart="83" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graphical_output_1a3ff488839b978d605b3f718289056760" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename M</type>
+          </param>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GraphicalOutput::render</definition>
+        <argsstring>(Texture *texture, const Position&lt; M &gt; pos, const Size&lt; N &gt; size)</argsstring>
+        <name>render</name>
+        <param>
+          <type><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref> *</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; M &gt;</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_size" kindref="compound">Size</ref>&lt; N &gt;</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Renders the given texture at the desired position and size.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>texture</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Texture to render </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired size of the texture on the screen </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The onscreen coordinates representing where this texture should be rendered </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="67" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" bodystart="91" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_graphical_output_1aa6fb0c39405c04d734d6255ddc95e853" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GraphicalOutput::GraphicalOutput</definition>
+        <argsstring>()</argsstring>
+        <name>GraphicalOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="70" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_graphical_output_1a3f59c7d791678ab879630978dba7d05b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GraphicalOutput::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="74" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp" bodystart="21" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graphical_output_1a27864dad8c7239c22178dbecb405f495" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GraphicalOutput::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="75" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp" bodystart="104" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_graphical_output_1a1cb8ff787dfe43095c9b28e5eb895364" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GraphicalOutput::exit</definition>
+        <argsstring>()</argsstring>
+        <name>exit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="76" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp" bodystart="111" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Controller class for all graphics output. </para>    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" line="43" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h" bodystart="43" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_graphical_output_1a1cb8ff787dfe43095c9b28e5eb895364" prot="public" virt="non-virtual"><scope>GraphicalOutput</scope><name>exit</name></member>
+      <member refid="class_graphical_output_1aa6fb0c39405c04d734d6255ddc95e853" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>GraphicalOutput</name></member>
+      <member refid="class_graphical_output_1a3f59c7d791678ab879630978dba7d05b" prot="public" virt="non-virtual"><scope>GraphicalOutput</scope><name>init</name></member>
+      <member refid="class_graphical_output_1adeab950f26458b742cd5b4dd6becfd9a" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>render</name></member>
+      <member refid="class_graphical_output_1a53fe675842428997d80272249ab2cb8d" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>render</name></member>
+      <member refid="class_graphical_output_1a3ff488839b978d605b3f718289056760" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>render</name></member>
+      <member refid="class_graphical_output_1a0c3e8f71b53de8e424cea3c15b3c28a0" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>renderer</name></member>
+      <member refid="class_graphical_output_1a27864dad8c7239c22178dbecb405f495" prot="public" virt="non-virtual"><scope>GraphicalOutput</scope><name>update</name></member>
+      <member refid="class_graphical_output_1a7ec322f6e170a81b22159e766774a0b8" prot="protected" virt="non-virtual"><scope>GraphicalOutput</scope><name>window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

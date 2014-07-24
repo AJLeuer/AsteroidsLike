@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_n_p_c_8h" kind="file">
+    <compoundname>NPC.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes refid="_character_8h" local="yes">Character.h</includes>
+    <includes refid="_input_8hpp" local="yes">../Control/Input.hpp</includes>
+    <includedby refid="main_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</includedby>
+    <includedby refid="_enemy_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.h</includedby>
+    <includedby refid="_world_controller_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.h</includedby>
+    <includedby refid="_n_p_c_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.cpp</includedby>
+    <incdepgraph>
+      <node id="3081">
+        <label>list</label>
+      </node>
+      <node id="3109">
+        <label>functional</label>
+      </node>
+      <node id="3088">
+        <label>iomanip</label>
+      </node>
+      <node id="3085">
+        <label>queue</label>
+      </node>
+      <node id="3074">
+        <label>limits</label>
+      </node>
+      <node id="3091">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3092" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3079" relation="include">
+        </childnode>
+      </node>
+      <node id="3089">
+        <label>assert.h</label>
+      </node>
+      <node id="3068">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="3096">
+        <label>../Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3075" relation="include">
+        </childnode>
+        <childnode refid="3064" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3106">
+        <label>GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3107" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3093">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="3059">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="3097">
+        <label>Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3056">
+        <label>../Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3058" relation="include">
+        </childnode>
+        <childnode refid="3059" relation="include">
+        </childnode>
+        <childnode refid="3060" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3066" relation="include">
+        </childnode>
+        <childnode refid="3073" relation="include">
+        </childnode>
+        <childnode refid="3076" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3090">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3070" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+      </node>
+      <node id="3064">
+        <label>cmath</label>
+      </node>
+      <node id="3094">
+        <label>GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3064" relation="include">
+        </childnode>
+        <childnode refid="3095" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3073" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3056" relation="include">
+        </childnode>
+        <childnode refid="3098" relation="include">
+        </childnode>
+        <childnode refid="3093" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3103" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+      </node>
+      <node id="3060">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="3063">
+        <label>string</label>
+      </node>
+      <node id="3069">
+        <label>fstream</label>
+      </node>
+      <node id="3077">
+        <label>ostream</label>
+      </node>
+      <node id="3078">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3077" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3079" relation="include">
+        </childnode>
+        <childnode refid="3080" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3081" relation="include">
+        </childnode>
+        <childnode refid="3082" relation="include">
+        </childnode>
+        <childnode refid="3068" relation="include">
+        </childnode>
+        <childnode refid="3059" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3066" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3093" relation="include">
+        </childnode>
+        <childnode refid="3072" relation="include">
+        </childnode>
+      </node>
+      <node id="3103">
+        <label>GameMap.hpp</label>
+        <link refid="_game_map_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3085" relation="include">
+        </childnode>
+        <childnode refid="3086" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3081" relation="include">
+        </childnode>
+        <childnode refid="3104" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3105" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3073">
+        <label>../Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3074" relation="include">
+        </childnode>
+        <childnode refid="3075" relation="include">
+        </childnode>
+        <childnode refid="3064" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3101">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="3075">
+        <label>random</label>
+      </node>
+      <node id="3052">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h</label>
+        <link refid="NPC.h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3054" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+      </node>
+      <node id="3082">
+        <label>condition_variable</label>
+      </node>
+      <node id="3099">
+        <label>unistd.h</label>
+      </node>
+      <node id="3057">
+        <label>vector</label>
+      </node>
+      <node id="3110">
+        <label>SDL2/SDL_events.h</label>
+      </node>
+      <node id="3080">
+        <label>array</label>
+      </node>
+      <node id="3067">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="3068" relation="include">
+        </childnode>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3069" relation="include">
+        </childnode>
+        <childnode refid="3070" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3071" relation="include">
+        </childnode>
+        <childnode refid="3072" relation="include">
+        </childnode>
+      </node>
+      <node id="3055">
+        <label>sstream</label>
+      </node>
+      <node id="3108">
+        <label>../Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3109" relation="include">
+        </childnode>
+        <childnode refid="3100" relation="include">
+        </childnode>
+        <childnode refid="3081" relation="include">
+        </childnode>
+        <childnode refid="3101" relation="include">
+        </childnode>
+        <childnode refid="3110" relation="include">
+        </childnode>
+        <childnode refid="3111" relation="include">
+        </childnode>
+        <childnode refid="3068" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3102">
+        <label>SDL2_ttf/SDL_ttf.h</label>
+      </node>
+      <node id="3087">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="3070" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3079" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3088" relation="include">
+        </childnode>
+        <childnode refid="3063" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3089" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3091" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3061">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3063" relation="include">
+        </childnode>
+        <childnode refid="3057" relation="include">
+        </childnode>
+        <childnode refid="3064" relation="include">
+        </childnode>
+        <childnode refid="3065" relation="include">
+        </childnode>
+      </node>
+      <node id="3053">
+        <label>iostream</label>
+      </node>
+      <node id="3095">
+        <label>SDL2/SDL_surface.h</label>
+      </node>
+      <node id="3086">
+        <label>deque</label>
+      </node>
+      <node id="3072">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3070" relation="include">
+        </childnode>
+      </node>
+      <node id="3104">
+        <label>climits</label>
+      </node>
+      <node id="3066">
+        <label>../Util/BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3079">
+        <label>mutex</label>
+      </node>
+      <node id="3070">
+        <label>chrono</label>
+      </node>
+      <node id="3065">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="3084">
+        <label>../Util/Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="3064" relation="include">
+        </childnode>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3077" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3085" relation="include">
+        </childnode>
+        <childnode refid="3086" relation="include">
+        </childnode>
+        <childnode refid="3068" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3066" relation="include">
+        </childnode>
+        <childnode refid="3087" relation="include">
+        </childnode>
+        <childnode refid="3073" relation="include">
+        </childnode>
+        <childnode refid="3091" relation="include">
+        </childnode>
+      </node>
+      <node id="3062">
+        <label>thread</label>
+      </node>
+      <node id="3076">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3077" relation="include">
+        </childnode>
+        <childnode refid="3066" relation="include">
+        </childnode>
+        <childnode refid="3073" relation="include">
+        </childnode>
+      </node>
+      <node id="3098">
+        <label>../Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="3099" relation="include">
+        </childnode>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3062" relation="include">
+        </childnode>
+        <childnode refid="3070" relation="include">
+        </childnode>
+        <childnode refid="3100" relation="include">
+        </childnode>
+        <childnode refid="3101" relation="include">
+        </childnode>
+        <childnode refid="3065" relation="include">
+        </childnode>
+        <childnode refid="3068" relation="include">
+        </childnode>
+        <childnode refid="3059" relation="include">
+        </childnode>
+        <childnode refid="3060" relation="include">
+        </childnode>
+        <childnode refid="3102" relation="include">
+        </childnode>
+        <childnode refid="3073" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3056" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3105">
+        <label>../Util/Navigator.hpp</label>
+        <link refid="_navigator_8hpp"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3061" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+      </node>
+      <node id="3107">
+        <label>Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3076" relation="include">
+        </childnode>
+      </node>
+      <node id="3054">
+        <label>Character.h</label>
+        <link refid="_character_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+        <childnode refid="3056" relation="include">
+        </childnode>
+        <childnode refid="3094" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+      </node>
+      <node id="3083">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3077" relation="include">
+        </childnode>
+        <childnode refid="3069" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+      </node>
+      <node id="3111">
+        <label>SDL2/SDL_keyboard.h</label>
+      </node>
+      <node id="3071">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="3092">
+        <label>memory</label>
+      </node>
+      <node id="3100">
+        <label>initializer_list</label>
+      </node>
+      <node id="3058">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3117">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="3113">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="3114">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.h</label>
+        <link refid="_enemy_8h"/>
+        <childnode refid="3115" relation="include">
+        </childnode>
+        <childnode refid="3119" relation="include">
+        </childnode>
+      </node>
+      <node id="3120">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.cpp</label>
+        <link refid="_n_p_c_8cpp"/>
+      </node>
+      <node id="3118">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.cpp</label>
+        <link refid="_world_controller_8cpp"/>
+      </node>
+      <node id="3116">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="3113" relation="include">
+        </childnode>
+        <childnode refid="3117" relation="include">
+        </childnode>
+      </node>
+      <node id="3119">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.cpp</label>
+        <link refid="_enemy_8cpp"/>
+      </node>
+      <node id="3112">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h</label>
+        <link refid="NPC.h"/>
+        <childnode refid="3113" relation="include">
+        </childnode>
+        <childnode refid="3114" relation="include">
+        </childnode>
+        <childnode refid="3115" relation="include">
+        </childnode>
+        <childnode refid="3120" relation="include">
+        </childnode>
+      </node>
+      <node id="3115">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.h</label>
+        <link refid="_world_controller_8h"/>
+        <childnode refid="3113" relation="include">
+        </childnode>
+        <childnode refid="3116" relation="include">
+        </childnode>
+        <childnode refid="3118" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_n_p_c" prot="public">NPC</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>NPC.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>3/11/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__GameWorld__NPC__</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__GameWorld__NPC__</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_character_8h" kindref="compound">Character.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Control/Input.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_n_p_c" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_character" kindref="compound">Character</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//todo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a59b45912692304d555df9d6957046962" kindref="member">NPC</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a59b45912692304d555df9d6957046962" kindref="member">NPC</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;<sp/>other)<sp/>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a59b45912692304d555df9d6957046962" kindref="member">NPC</ref>(<ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;&amp;<sp/>other)<sp/>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a59b45912692304d555df9d6957046962" kindref="member">NPC</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>imageFile,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_game_object_1ac4637e122291be2421c851e2a87fb968" kindref="member">size</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;float&gt;</ref><sp/>&amp;<sp/><ref refid="class_game_object_1a6858e668e7d2c5ded850b952aaacd905" kindref="member">loc</ref>,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref>,<sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref><sp/><ref refid="class_character_1ac83b99be690bb41b7fae53e9457838c6" kindref="member">alive</ref>,<sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/><ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref>,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>monitorVelocity,<sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref><sp/><ref refid="class_character_1a579933775b2e4e97465bacb09c4e87f5" kindref="member">reaction</ref>)<sp/>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a59b45912692304d555df9d6957046962" kindref="member">NPC</ref>(<ref refid="class_fast_rand" kindref="compound">FastRand&lt;int&gt;</ref><sp/>rand)<sp/>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_n_p_c_1a67c0caca129b56c82bb7ec8bce6be52b" kindref="member">~NPC</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;<sp/><ref refid="class_n_p_c_1ae8d45c46413afc2d2ab08ff708c9d699" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;<sp/>rhs)<sp/>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;<sp/><ref refid="class_n_p_c_1ae8d45c46413afc2d2ab08ff708c9d699" kindref="member">operator=</ref>(<ref refid="class_n_p_c" kindref="compound">NPC</ref><sp/>&amp;&amp;<sp/>rhs)<sp/>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1a73befe685fef40ab7f1ac954d932697d" kindref="member">operator()</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1a73befe685fef40ab7f1ac954d932697d" kindref="member">operator()</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;<sp/>other)<sp/>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1ab590b71db4dd9dc21f6e2c183e9bd45c" kindref="member">notify</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1adfe9d4edaf5a31f3e3e9f727e86aa0b9" kindref="member">passMessage</ref>(<ref refid="struct_message" kindref="compound">Message</ref><sp/>*<sp/>message,<sp/><ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;<sp/>recipient)<sp/>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1ad85699c2a35f1f5f9d5a81a3d5df2153" kindref="member">textDescription</ref>(ostream<sp/>*<sp/>writeTo)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_n_p_c_1a35234d189d4b9dee193b49f3d9272a0e" kindref="member">attack</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>*<sp/>enemy)<sp/>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141" refid="class_n_p_c_1ac595679b62ded86ebd5ed7e5d046ec2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref><sp/><ref refid="class_n_p_c_1ac595679b62ded86ebd5ed7e5d046ec2c" kindref="member">getReaction</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/>this-&gt;<ref refid="class_character_1a579933775b2e4e97465bacb09c4e87f5" kindref="member">reaction</ref><sp/>;<sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__GameWorld__NPC__)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h"/>
+  </compounddef>
+</doxygen>

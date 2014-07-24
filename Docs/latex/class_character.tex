@@ -1,0 +1,615 @@
+\hypertarget{class_character}{\section{Character Class Reference}
+\label{class_character}\index{Character@{Character}}
+}
+
+
+A class which serves as the basic template for just about any person in the game world, whether player or npc.  
+
+
+
+
+{\ttfamily \#include $<$Character.\-h$>$}
+
+Inheritance diagram for Character\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_character}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_character_adc27bdd255876169bad2ed0bae0cffb5}{Character} ()
+\begin{DoxyCompactList}\small\item\em Constructs a default \hyperlink{class_character}{Character}. \end{DoxyCompactList}\item 
+\hyperlink{class_character_a0eac14bff9a793857bb2a86a2c0fcf9c}{Character} (const \hyperlink{class_character}{Character} \&other)
+\item 
+\hyperlink{class_character_a90171e1a0ff378b3bbe125f85b4ecfdb}{Character} (\hyperlink{class_character}{Character} \&\&other)
+\item 
+\hyperlink{class_character_a71ddaf9372427d6bacf3b6aa0116cecf}{Character} (const \hyperlink{struct_asset_file}{Asset\-File} \&image\-File, float size\-Modifier, const \hyperlink{struct_position}{Position}$<$ float $>$ \&\hyperlink{class_game_object_a6858e668e7d2c5ded850b952aaacd905}{loc}, string \hyperlink{class_character_a2d423654566d1bf2160fef74bf04cc84}{name}, \hyperlink{_character_data_8h_a0e5ce1612c1e71823c97a9cd734de339}{Reaction} \hyperlink{class_character_a579933775b2e4e97465bacb09c4e87f5}{reaction}, \hyperlink{_character_data_8h_acbff4d7298e294294555d39178aad448}{Do\-A} \hyperlink{class_character_ac83b99be690bb41b7fae53e9457838c6}{alive}, \hyperlink{_character_data_8h_aacbb008a93d24b04a8779bbdbd8880b5}{Character\-State} \hyperlink{class_character_ac20f1ebda238017ddc245ecdce827037}{state}, unsigned \hyperlink{class_character_ae8c0d82624dc3a171e2c3b42c699151e}{health}, unsigned \hyperlink{class_character_ae6a140637ffe5004179d90a0e04a411b}{damage}, bool monitor\-Velocity)
+\item 
+\hyperlink{class_character_aa9363d80872be14d29b006745ff0b58a}{Character} (\hyperlink{class_fast_rand}{Fast\-Rand}$<$ int $>$ rand)
+\item 
+\hyperlink{class_character_a9e9be564d05ded80962b2045aa70b3fc}{$\sim$\-Character} ()
+\item 
+virtual \hyperlink{class_character}{Character} \& \hyperlink{class_character_acdb4f61692995622e350cbfbb0c4d8c6}{operator=} (const \hyperlink{class_character}{Character} \&rhs)
+\item 
+virtual \hyperlink{class_character}{Character} \& \hyperlink{class_character_a0c0f1e362dabc8877889e49185afd43e}{operator=} (\hyperlink{class_character}{Character} \&\&rhs)
+\item 
+virtual void \hyperlink{class_character_a3c4dfc59865fe39251070cd0b92d34ac}{operator()} ()
+\item 
+virtual void \hyperlink{class_character_a6dde2dd17bfd31ea6e008d83bdcd3188}{operator()} (\hyperlink{class_game_object}{Game\-Object} $\ast$other)
+\item 
+virtual void \hyperlink{class_character_a457dab4f04550716888425da681b9f1f}{notify} ()
+\item 
+virtual void \hyperlink{class_character_ad0574321c7429301d4d9dd1dd33301c4}{pass\-Message} (\hyperlink{struct_message}{Message} $\ast$message, \hyperlink{class_game_object}{Game\-Object} \&recipient)
+\item 
+virtual void \hyperlink{class_character_a2ab1090f959f0c66b098e0463d4c1bdd}{text\-Description} (ostream $\ast$write\-To) const 
+\item 
+virtual void \hyperlink{class_character_ac96260f4fd9b68a33919a65bc9da9bca}{default\-Behaviors} () override
+\item 
+virtual void \hyperlink{class_character_a7bd55d3615c1eb092f800d8634fa9695}{ai\-Behaviors} () override
+\item 
+virtual void \hyperlink{class_character_a7be3b65a2bc5facbb39ee208f5898560}{attack} (\hyperlink{class_character}{Character} $\ast$enemy)
+\item 
+const string \& \hyperlink{class_character_afb6ef570e4bfc7f1d81ead9ed7e4c744}{get\-Name} () const 
+\item 
+void \hyperlink{class_character_a9bf101bdd0a5cf667f058da2c66f989b}{set\-Name} (string s)
+\begin{DoxyCompactList}\small\item\em Setter for name. \end{DoxyCompactList}\item 
+\hyperlink{_character_data_8h_aacbb008a93d24b04a8779bbdbd8880b5}{Character\-State} $\ast$ \hyperlink{class_character_a1887dada668e71e5b072e71178df87b0}{get\-State} ()
+\item 
+void \hyperlink{class_character_ae3a8fe67a8b3761322a448468c6a0b09}{set\-State} (\hyperlink{_character_data_8h_aacbb008a93d24b04a8779bbdbd8880b5}{Character\-State} \&\hyperlink{class_character_ac20f1ebda238017ddc245ecdce827037}{state})
+\item 
+\hyperlink{struct_health}{Health} $\ast$ \hyperlink{class_character_a225fa5b49f3330f70936ece3f6993448}{check\-Health} ()
+\item 
+void \hyperlink{class_character_a22d3d47dcf5775dac41539ecc3dee072}{mod\-Health} (\hyperlink{struct_health}{Health} $\ast$)
+\item 
+\hyperlink{struct_damage}{Damage} $\ast$ \hyperlink{class_character_a180960a01e928627bfd672dbb19b2f56}{get\-Damage} ()
+\item 
+void \hyperlink{class_character_a80e7bdfad72a223ff4a98e45089ea896}{mod\-Damage} (\hyperlink{struct_damage}{Damage} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_character_aa3a40043d1f3c27edd921aa0e0ef7616}{attack\-\_\-helper} (\hyperlink{class_character}{Character} $\ast$enemy)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_character_a2d423654566d1bf2160fef74bf04cc84}{name}
+\item 
+\hyperlink{_character_data_8h_a0e5ce1612c1e71823c97a9cd734de339}{Reaction} \hyperlink{class_character_a579933775b2e4e97465bacb09c4e87f5}{reaction}
+\item 
+\hyperlink{_character_data_8h_acbff4d7298e294294555d39178aad448}{Do\-A} \hyperlink{class_character_ac83b99be690bb41b7fae53e9457838c6}{alive}
+\item 
+\hyperlink{_character_data_8h_aacbb008a93d24b04a8779bbdbd8880b5}{Character\-State} \hyperlink{class_character_ac20f1ebda238017ddc245ecdce827037}{state}
+\item 
+\hyperlink{struct_health}{Health} $\ast$ \hyperlink{class_character_ae8c0d82624dc3a171e2c3b42c699151e}{health}
+\item 
+\hyperlink{struct_damage}{Damage} $\ast$ \hyperlink{class_character_ae6a140637ffe5004179d90a0e04a411b}{damage}
+\item 
+bool \hyperlink{class_character_a5195d893143824d0ba34180a94229543}{turn} = false
+\item 
+float \hyperlink{class_character_a6328c239882a3c7794332d24d100e02d}{hit\-Percentage}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class which serves as the basic template for just about any person in the game world, whether player or npc. 
+
+Definition at line 23 of file Character.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_character_adc27bdd255876169bad2ed0bae0cffb5}{\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_character_adc27bdd255876169bad2ed0bae0cffb5}
+
+
+Constructs a default \hyperlink{class_character}{Character}. 
+
+
+
+Definition at line 12 of file Character.\-cpp.
+
+\hypertarget{class_character_a0eac14bff9a793857bb2a86a2c0fcf9c}{\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::\-Character (
+\begin{DoxyParamCaption}
+\item[{const {\bf Character} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_character_a0eac14bff9a793857bb2a86a2c0fcf9c}
+Copy constructor for \hyperlink{class_character}{Character}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{class_character}{Character} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file Character.\-cpp.
+
+\hypertarget{class_character_a90171e1a0ff378b3bbe125f85b4ecfdb}{\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::\-Character (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} \&\&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_character_a90171e1a0ff378b3bbe125f85b4ecfdb}
+Move constructor for \hyperlink{class_character}{Character}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{class_character}{Character} to be moved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file Character.\-cpp.
+
+\hypertarget{class_character_a71ddaf9372427d6bacf3b6aa0116cecf}{\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::\-Character (
+\begin{DoxyParamCaption}
+\item[{const {\bf Asset\-File} \&}]{image\-File, }
+\item[{float}]{size\-Modifier, }
+\item[{const {\bf Position}$<$ float $>$ \&}]{loc, }
+\item[{string}]{name, }
+\item[{{\bf Reaction}}]{reaction, }
+\item[{{\bf Do\-A}}]{alive, }
+\item[{{\bf Character\-State}}]{state, }
+\item[{unsigned}]{health, }
+\item[{unsigned}]{damage, }
+\item[{bool}]{monitor\-Velocity}
+\end{DoxyParamCaption}
+)}}\label{class_character_a71ddaf9372427d6bacf3b6aa0116cecf}
+Constructs a \hyperlink{class_character}{Character} based on the arguments given
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this \hyperlink{class_character}{Character} \\
+\hline
+{\em alive} & Whether this \hyperlink{class_character}{Character} is dead or alive \\
+\hline
+{\em state} & The Character\-State of this \hyperlink{class_character}{Character} \\
+\hline
+{\em health} & The \hyperlink{struct_health}{Health} of this \hyperlink{class_character}{Character} \\
+\hline
+{\em damage} & The \hyperlink{struct_damage}{Damage} capability of this \hyperlink{class_character}{Character} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file Character.\-cpp.
+
+\hypertarget{class_character_aa9363d80872be14d29b006745ff0b58a}{\index{Character@{Character}!Character@{Character}}
+\index{Character@{Character}!Character@{Character}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::\-Character (
+\begin{DoxyParamCaption}
+\item[{{\bf Fast\-Rand}$<$ int $>$}]{rand}
+\end{DoxyParamCaption}
+)}}\label{class_character_aa9363d80872be14d29b006745ff0b58a}
+Constructs a randomized \hyperlink{class_character}{Character}. The client has to option to simply leave the argument rand\-Seed as 0, in which case the constructor will generate its own random number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rand} & A seed to initialize the random number generator \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file Character.\-cpp.
+
+\hypertarget{class_character_a9e9be564d05ded80962b2045aa70b3fc}{\index{Character@{Character}!$\sim$\-Character@{$\sim$\-Character}}
+\index{$\sim$\-Character@{$\sim$\-Character}!Character@{Character}}
+\subsubsection[{$\sim$\-Character}]{\setlength{\rightskip}{0pt plus 5cm}Character\-::$\sim$\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_character_a9e9be564d05ded80962b2045aa70b3fc}
+Destructor for \hyperlink{class_character}{Character} 
+
+Definition at line 58 of file Character.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_character_a7bd55d3615c1eb092f800d8634fa9695}{\index{Character@{Character}!ai\-Behaviors@{ai\-Behaviors}}
+\index{ai\-Behaviors@{ai\-Behaviors}!Character@{Character}}
+\subsubsection[{ai\-Behaviors}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::ai\-Behaviors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_character_a7bd55d3615c1eb092f800d8634fa9695}
+
+
+Reimplemented from \hyperlink{class_game_object_a43862b5d602a0fec32b686ab8586e886}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_af7a8c30b3f40a698c28b095a299657ab}{Player\-Character}.
+
+
+
+Definition at line 127 of file Character.\-cpp.
+
+\hypertarget{class_character_a7be3b65a2bc5facbb39ee208f5898560}{\index{Character@{Character}!attack@{attack}}
+\index{attack@{attack}!Character@{Character}}
+\subsubsection[{attack}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::attack (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} $\ast$}]{enemy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a7be3b65a2bc5facbb39ee208f5898560}
+Attacks a hostile \hyperlink{class_character}{Character}
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & The enemy to attack \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_n_p_c_a35234d189d4b9dee193b49f3d9272a0e}{N\-P\-C}.
+
+
+
+Definition at line 132 of file Character.\-cpp.
+
+\hypertarget{class_character_aa3a40043d1f3c27edd921aa0e0ef7616}{\index{Character@{Character}!attack\-\_\-helper@{attack\-\_\-helper}}
+\index{attack\-\_\-helper@{attack\-\_\-helper}!Character@{Character}}
+\subsubsection[{attack\-\_\-helper}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::attack\-\_\-helper (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} $\ast$}]{enemy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_aa3a40043d1f3c27edd921aa0e0ef7616}
+
+
+Definition at line 157 of file Character.\-cpp.
+
+\hypertarget{class_character_a225fa5b49f3330f70936ece3f6993448}{\index{Character@{Character}!check\-Health@{check\-Health}}
+\index{check\-Health@{check\-Health}!Character@{Character}}
+\subsubsection[{check\-Health}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Health} $\ast$ Character\-::check\-Health (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_character_a225fa5b49f3330f70936ece3f6993448}
+\begin{DoxyReturn}{Returns}
+a value representing \hyperlink{class_character}{Character}'s health 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file Character.\-cpp.
+
+\hypertarget{class_character_ac96260f4fd9b68a33919a65bc9da9bca}{\index{Character@{Character}!default\-Behaviors@{default\-Behaviors}}
+\index{default\-Behaviors@{default\-Behaviors}!Character@{Character}}
+\subsubsection[{default\-Behaviors}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::default\-Behaviors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_character_ac96260f4fd9b68a33919a65bc9da9bca}
+Each \hyperlink{class_game_object}{Game\-Object} can implement this to enable its default behaviors to run on a loop on a separate thread 
+
+Reimplemented from \hyperlink{class_game_object_a565a3950ea0af84bf7515bdb77abf51a}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_ac96dd84cef7668557321edc5b251c97c}{Player\-Character}, and \hyperlink{class_enemy_acec008d64103ef820006bcbcf9345a2a}{Enemy}.
+
+
+
+Definition at line 123 of file Character.\-cpp.
+
+\hypertarget{class_character_a180960a01e928627bfd672dbb19b2f56}{\index{Character@{Character}!get\-Damage@{get\-Damage}}
+\index{get\-Damage@{get\-Damage}!Character@{Character}}
+\subsubsection[{get\-Damage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Damage} $\ast$ Character\-::get\-Damage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_character_a180960a01e928627bfd672dbb19b2f56}
+\begin{DoxyReturn}{Returns}
+a read-\/only value representing \hyperlink{class_character}{Character}'s damage 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file Character.\-cpp.
+
+\hypertarget{class_character_afb6ef570e4bfc7f1d81ead9ed7e4c744}{\index{Character@{Character}!get\-Name@{get\-Name}}
+\index{get\-Name@{get\-Name}!Character@{Character}}
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const string\& Character\-::get\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_character_afb6ef570e4bfc7f1d81ead9ed7e4c744}
+Getter for name 
+
+Definition at line 174 of file Character.\-h.
+
+\hypertarget{class_character_a1887dada668e71e5b072e71178df87b0}{\index{Character@{Character}!get\-State@{get\-State}}
+\index{get\-State@{get\-State}!Character@{Character}}
+\subsubsection[{get\-State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Character\-State} $\ast$ Character\-::get\-State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_character_a1887dada668e71e5b072e71178df87b0}
+\begin{DoxyReturn}{Returns}
+This character's current state 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file Character.\-cpp.
+
+\hypertarget{class_character_a80e7bdfad72a223ff4a98e45089ea896}{\index{Character@{Character}!mod\-Damage@{mod\-Damage}}
+\index{mod\-Damage@{mod\-Damage}!Character@{Character}}
+\subsubsection[{mod\-Damage}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::mod\-Damage (
+\begin{DoxyParamCaption}
+\item[{{\bf Damage} $\ast$}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_character_a80e7bdfad72a223ff4a98e45089ea896}
+Sets this \hyperlink{class_character}{Character}'s damage 
+
+Definition at line 194 of file Character.\-cpp.
+
+\hypertarget{class_character_a22d3d47dcf5775dac41539ecc3dee072}{\index{Character@{Character}!mod\-Health@{mod\-Health}}
+\index{mod\-Health@{mod\-Health}!Character@{Character}}
+\subsubsection[{mod\-Health}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::mod\-Health (
+\begin{DoxyParamCaption}
+\item[{{\bf Health} $\ast$}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_character_a22d3d47dcf5775dac41539ecc3dee072}
+Sets this \hyperlink{class_character}{Character}'s health 
+
+Definition at line 183 of file Character.\-cpp.
+
+\hypertarget{class_character_a457dab4f04550716888425da681b9f1f}{\index{Character@{Character}!notify@{notify}}
+\index{notify@{notify}!Character@{Character}}
+\subsubsection[{notify}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::notify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a457dab4f04550716888425da681b9f1f}
+Another class with a reference to this \hyperlink{class_character}{Character} can call this to have the \hyperlink{class_character}{Character} perform some function, as yet undecided. T\-B\-I. 
+
+Reimplemented from \hyperlink{class_game_object_a9867e75f8cfc4df52d03467aca07a4ac}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}{N\-P\-C}.
+
+
+
+Definition at line 104 of file Character.\-cpp.
+
+\hypertarget{class_character_a3c4dfc59865fe39251070cd0b92d34ac}{\index{Character@{Character}!operator()@{operator()}}
+\index{operator()@{operator()}!Character@{Character}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::operator() (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a3c4dfc59865fe39251070cd0b92d34ac}
+Overloads operator() for \hyperlink{class_character}{Character}. Possibly will be used to call \hyperlink{class_character_a457dab4f04550716888425da681b9f1f}{notify()}. T\-B\-D. 
+
+Reimplemented from \hyperlink{class_game_object_ab8fccd5edcbebad0553aa4336a71452a}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_a067c5b11f7deafd448726ec4ac294b03}{Player\-Character}, and \hyperlink{class_n_p_c_a73befe685fef40ab7f1ac954d932697d}{N\-P\-C}.
+
+
+
+Definition at line 96 of file Character.\-cpp.
+
+\hypertarget{class_character_a6dde2dd17bfd31ea6e008d83bdcd3188}{\index{Character@{Character}!operator()@{operator()}}
+\index{operator()@{operator()}!Character@{Character}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::operator() (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a6dde2dd17bfd31ea6e008d83bdcd3188}
+Overloads the overload of operator(). The actual implementation and uses for this are still undecided.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A reference to another \hyperlink{class_character}{Character} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_game_object_afe9e6ee87d3062c80a9c560a12bfc279}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_a1cf7079c60a26c188cf4ed7043a2c9b3}{Player\-Character}.
+
+
+
+Definition at line 100 of file Character.\-cpp.
+
+\hypertarget{class_character_acdb4f61692995622e350cbfbb0c4d8c6}{\index{Character@{Character}!operator=@{operator=}}
+\index{operator=@{operator=}!Character@{Character}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Character} \& Character\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Character} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_acdb4f61692995622e350cbfbb0c4d8c6}
+Assignment operator overload (copy)
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be copied) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file Character.\-cpp.
+
+\hypertarget{class_character_a0c0f1e362dabc8877889e49185afd43e}{\index{Character@{Character}!operator=@{operator=}}
+\index{operator=@{operator=}!Character@{Character}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Character} \& Character\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} \&\&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a0c0f1e362dabc8877889e49185afd43e}
+Assignment operator overload (move)
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be moved) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file Character.\-cpp.
+
+\hypertarget{class_character_ad0574321c7429301d4d9dd1dd33301c4}{\index{Character@{Character}!pass\-Message@{pass\-Message}}
+\index{pass\-Message@{pass\-Message}!Character@{Character}}
+\subsubsection[{pass\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::pass\-Message (
+\begin{DoxyParamCaption}
+\item[{{\bf Message} $\ast$}]{message, }
+\item[{{\bf Game\-Object} \&}]{recipient}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_ad0574321c7429301d4d9dd1dd33301c4}
+A \hyperlink{class_character}{Character} can use this function to pass messages to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The \hyperlink{struct_message}{Message} sent by this \\
+\hline
+{\em recipient} & The object receiving the \hyperlink{struct_message}{Message} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_game_object_ad7f752f1e3c84bd74de6110c17df3938}{Game\-Object}.
+
+
+
+Definition at line 108 of file Character.\-cpp.
+
+\hypertarget{class_character_a9bf101bdd0a5cf667f058da2c66f989b}{\index{Character@{Character}!set\-Name@{set\-Name}}
+\index{set\-Name@{set\-Name}!Character@{Character}}
+\subsubsection[{set\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::set\-Name (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_character_a9bf101bdd0a5cf667f058da2c66f989b}
+
+
+Setter for name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The \hyperlink{class_character}{Character}'s new name \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 181 of file Character.\-h.
+
+\hypertarget{class_character_ae3a8fe67a8b3761322a448468c6a0b09}{\index{Character@{Character}!set\-State@{set\-State}}
+\index{set\-State@{set\-State}!Character@{Character}}
+\subsubsection[{set\-State}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::set\-State (
+\begin{DoxyParamCaption}
+\item[{{\bf Character\-State} \&}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_character_ae3a8fe67a8b3761322a448468c6a0b09}
+Set's this \hyperlink{class_character}{Character}'s state
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The \hyperlink{class_character}{Character}'s new state \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 193 of file Character.\-h.
+
+\hypertarget{class_character_a2ab1090f959f0c66b098e0463d4c1bdd}{\index{Character@{Character}!text\-Description@{text\-Description}}
+\index{text\-Description@{text\-Description}!Character@{Character}}
+\subsubsection[{text\-Description}]{\setlength{\rightskip}{0pt plus 5cm}void Character\-::text\-Description (
+\begin{DoxyParamCaption}
+\item[{ostream $\ast$}]{write\-To}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_character_a2ab1090f959f0c66b098e0463d4c1bdd}
+Writes a formatted text description of this \hyperlink{class_character}{Character} into the desired output stream 
+
+Reimplemented from \hyperlink{class_game_object_adc249c683994a9c74b518a82fc22dbab}{Game\-Object}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_aac83579c2f552973e71008c1b1e01b1d}{Player\-Character}, and \hyperlink{class_n_p_c_ad85699c2a35f1f5f9d5a81a3d5df2153}{N\-P\-C}.
+
+
+
+Definition at line 112 of file Character.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_character_ac83b99be690bb41b7fae53e9457838c6}{\index{Character@{Character}!alive@{alive}}
+\index{alive@{alive}!Character@{Character}}
+\subsubsection[{alive}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Do\-A} Character\-::alive\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_ac83b99be690bb41b7fae53e9457838c6}
+
+
+Definition at line 31 of file Character.\-h.
+
+\hypertarget{class_character_ae6a140637ffe5004179d90a0e04a411b}{\index{Character@{Character}!damage@{damage}}
+\index{damage@{damage}!Character@{Character}}
+\subsubsection[{damage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Damage}$\ast$ Character\-::damage\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_ae6a140637ffe5004179d90a0e04a411b}
+The \hyperlink{class_character}{Character}'s current \hyperlink{struct_damage}{Damage} (a data structure inheriting from \hyperlink{struct_game_state}{Game\-State}) 
+
+Definition at line 46 of file Character.\-h.
+
+\hypertarget{class_character_ae8c0d82624dc3a171e2c3b42c699151e}{\index{Character@{Character}!health@{health}}
+\index{health@{health}!Character@{Character}}
+\subsubsection[{health}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Health}$\ast$ Character\-::health\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_ae8c0d82624dc3a171e2c3b42c699151e}
+The \hyperlink{class_character}{Character}'s current \hyperlink{struct_health}{Health} (a data structure inheriting from \hyperlink{struct_game_state}{Game\-State}) 
+
+Definition at line 41 of file Character.\-h.
+
+\hypertarget{class_character_a6328c239882a3c7794332d24d100e02d}{\index{Character@{Character}!hit\-Percentage@{hit\-Percentage}}
+\index{hit\-Percentage@{hit\-Percentage}!Character@{Character}}
+\subsubsection[{hit\-Percentage}]{\setlength{\rightskip}{0pt plus 5cm}float Character\-::hit\-Percentage\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_a6328c239882a3c7794332d24d100e02d}
+
+
+Definition at line 53 of file Character.\-h.
+
+\hypertarget{class_character_a2d423654566d1bf2160fef74bf04cc84}{\index{Character@{Character}!name@{name}}
+\index{name@{name}!Character@{Character}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Character\-::name\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_a2d423654566d1bf2160fef74bf04cc84}
+
+
+Definition at line 27 of file Character.\-h.
+
+\hypertarget{class_character_a579933775b2e4e97465bacb09c4e87f5}{\index{Character@{Character}!reaction@{reaction}}
+\index{reaction@{reaction}!Character@{Character}}
+\subsubsection[{reaction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Reaction} Character\-::reaction\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_a579933775b2e4e97465bacb09c4e87f5}
+
+
+Definition at line 29 of file Character.\-h.
+
+\hypertarget{class_character_ac20f1ebda238017ddc245ecdce827037}{\index{Character@{Character}!state@{state}}
+\index{state@{state}!Character@{Character}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Character\-State} Character\-::state\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_ac20f1ebda238017ddc245ecdce827037}
+The \hyperlink{class_character}{Character}'s Character\-State 
+
+Definition at line 36 of file Character.\-h.
+
+\hypertarget{class_character_a5195d893143824d0ba34180a94229543}{\index{Character@{Character}!turn@{turn}}
+\index{turn@{turn}!Character@{Character}}
+\subsubsection[{turn}]{\setlength{\rightskip}{0pt plus 5cm}bool Character\-::turn = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_character_a5195d893143824d0ba34180a94229543}
+Used by \hyperlink{class_character_a7be3b65a2bc5facbb39ee208f5898560}{attack()} 
+
+Definition at line 51 of file Character.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_character_8h}{Character.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_character_8cpp}{Character.\-cpp}\end{DoxyCompactItemize}

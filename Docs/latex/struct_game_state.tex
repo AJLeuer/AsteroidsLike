@@ -1,0 +1,183 @@
+\hypertarget{struct_game_state}{\section{Game\-State Struct Reference}
+\label{struct_game_state}\index{Game\-State@{Game\-State}}
+}
+
+
+{\ttfamily \#include $<$Game\-State.\-hpp$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{struct_game_state_a8ed9965a2ad3bf68c0555c9669952368}{init\-Data} (vector$<$ \hyperlink{class_game_object}{Game\-Object} $\ast$ $>$ $\ast$, const \hyperlink{class_game_map}{Game\-Map}$<$ \hyperlink{class_game_object}{Game\-Object} $>$ $\ast$)
+\item 
+static void \hyperlink{struct_game_state_afc3662cfa5b520a915d19f050eabb720}{init\-Graphics} (\hyperlink{_default_config_8h_a12f0b3ea7a02ede1c5799a956e008406}{Window} $\ast$, \hyperlink{_default_config_8h_a15987d3f97f19077ea40d858c2f0b836}{Renderer} $\ast$)
+\item 
+static const vector\\*
+$<$ \hyperlink{class_game_object}{Game\-Object} $\ast$ $>$ $\ast$ \hyperlink{struct_game_state_ae1b4a46f267c8b03a7b4b036d2ba24f5}{get\-Game\-Objects} ()
+\item 
+static const \hyperlink{class_game_map}{Game\-Map}\\*
+$<$ \hyperlink{class_game_object}{Game\-Object} $>$ $\ast$ \hyperlink{struct_game_state_af5f38e58dfaedb66f6c4b6b6ce140d1a}{get\-Map} ()
+\item 
+static \hyperlink{_default_config_8h_a12f0b3ea7a02ede1c5799a956e008406}{Window} $\ast$ \hyperlink{struct_game_state_a62430ef1e6a2e0818f7c18071cfea71d}{get\-Main\-Window} ()
+\item 
+static \hyperlink{_default_config_8h_a15987d3f97f19077ea40d858c2f0b836}{Renderer} $\ast$ \hyperlink{struct_game_state_a590988c72da8823ed14b4be284262467}{get\-Main\-Renderer} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{struct_game_state_a58ee23ac0938d8499250b971f8e1d2d0}{C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G} = true
+\item 
+static \hyperlink{class_timer}{Timer} $\ast$ \hyperlink{struct_game_state_a5e5f91123aacc5e7fa22ddefdb3cd256}{main\-Game\-Clock} = new \hyperlink{class_timer}{Timer}()
+\item 
+static std\-::mutex \hyperlink{struct_game_state_a0d889afebf6eea90f6d3212c29cf7451}{shared\-Mutex}
+\item 
+static string \hyperlink{struct_game_state_a0aad2a1111325f0345a511fe1665800a}{current\-Directory}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{struct_game_state_a0969009180cf671defc02a7b2ad9d500}{Graphical\-Output}
+\item 
+class \hyperlink{struct_game_state_a19ecfd085a11c42d868e25c796419df8}{World\-Controller}
+\item 
+class \hyperlink{struct_game_state_a154f5ffe46dc74c6c94311b4cc3927ae}{Main\-Controller}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A singleton class that will be used purely for shared storage and retrieval. It, and all its members, should be accessible to every other class. It will have only one, statically initialized instance. Game\-State.\-h also holds various statics, globals and defines that are used throughout the scope of the program. 
+
+Definition at line 50 of file Game\-State.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_game_state_ae1b4a46f267c8b03a7b4b036d2ba24f5}{\index{Game\-State@{Game\-State}!get\-Game\-Objects@{get\-Game\-Objects}}
+\index{get\-Game\-Objects@{get\-Game\-Objects}!GameState@{Game\-State}}
+\subsubsection[{get\-Game\-Objects}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf Game\-Object} $\ast$ $>$ $\ast$ Game\-State\-::get\-Game\-Objects (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_ae1b4a46f267c8b03a7b4b036d2ba24f5}
+A container holding most objects in the game world. Note\-: some indices of the returned vector$<$\-Game\-Object$\ast$$>$ may be null. Any class calling this method is responsible for checking for null pointer. 
+
+Definition at line 51 of file Game\-State.\-cpp.
+
+\hypertarget{struct_game_state_a590988c72da8823ed14b4be284262467}{\index{Game\-State@{Game\-State}!get\-Main\-Renderer@{get\-Main\-Renderer}}
+\index{get\-Main\-Renderer@{get\-Main\-Renderer}!GameState@{Game\-State}}
+\subsubsection[{get\-Main\-Renderer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Renderer} $\ast$ Game\-State\-::get\-Main\-Renderer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a590988c72da8823ed14b4be284262467}
+
+
+Definition at line 82 of file Game\-State.\-cpp.
+
+\hypertarget{struct_game_state_a62430ef1e6a2e0818f7c18071cfea71d}{\index{Game\-State@{Game\-State}!get\-Main\-Window@{get\-Main\-Window}}
+\index{get\-Main\-Window@{get\-Main\-Window}!GameState@{Game\-State}}
+\subsubsection[{get\-Main\-Window}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Window} $\ast$ Game\-State\-::get\-Main\-Window (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a62430ef1e6a2e0818f7c18071cfea71d}
+
+
+Definition at line 72 of file Game\-State.\-cpp.
+
+\hypertarget{struct_game_state_af5f38e58dfaedb66f6c4b6b6ce140d1a}{\index{Game\-State@{Game\-State}!get\-Map@{get\-Map}}
+\index{get\-Map@{get\-Map}!GameState@{Game\-State}}
+\subsubsection[{get\-Map}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Game\-Map}$<$ {\bf Game\-Object} $>$ $\ast$ Game\-State\-::get\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_af5f38e58dfaedb66f6c4b6b6ce140d1a}
+Holds pointers to Game\-Objects like game\-Objects, but is 2\-D and the placement of each \hyperlink{class_game_object}{Game\-Object} in map corresponds to the x and y coordinate of its \hyperlink{struct_position}{Position}. Is synced with Game\-Objects's map. 
+
+Definition at line 62 of file Game\-State.\-cpp.
+
+\hypertarget{struct_game_state_a8ed9965a2ad3bf68c0555c9669952368}{\index{Game\-State@{Game\-State}!init\-Data@{init\-Data}}
+\index{init\-Data@{init\-Data}!GameState@{Game\-State}}
+\subsubsection[{init\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::init\-Data (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Game\-Object} $\ast$ $>$ $\ast$}]{gobs, }
+\item[{const {\bf Game\-Map}$<$ {\bf Game\-Object} $>$ $\ast$}]{map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a8ed9965a2ad3bf68c0555c9669952368}
+
+
+Definition at line 38 of file Game\-State.\-cpp.
+
+\hypertarget{struct_game_state_afc3662cfa5b520a915d19f050eabb720}{\index{Game\-State@{Game\-State}!init\-Graphics@{init\-Graphics}}
+\index{init\-Graphics@{init\-Graphics}!GameState@{Game\-State}}
+\subsubsection[{init\-Graphics}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::init\-Graphics (
+\begin{DoxyParamCaption}
+\item[{{\bf Window} $\ast$}]{window, }
+\item[{{\bf Renderer} $\ast$}]{renderer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_afc3662cfa5b520a915d19f050eabb720}
+
+
+Definition at line 44 of file Game\-State.\-cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{struct_game_state_a0969009180cf671defc02a7b2ad9d500}{\index{Game\-State@{Game\-State}!Graphical\-Output@{Graphical\-Output}}
+\index{Graphical\-Output@{Graphical\-Output}!GameState@{Game\-State}}
+\subsubsection[{Graphical\-Output}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Graphical\-Output}\hspace{0.3cm}{\ttfamily [friend]}}}\label{struct_game_state_a0969009180cf671defc02a7b2ad9d500}
+
+
+Definition at line 77 of file Game\-State.\-hpp.
+
+\hypertarget{struct_game_state_a154f5ffe46dc74c6c94311b4cc3927ae}{\index{Game\-State@{Game\-State}!Main\-Controller@{Main\-Controller}}
+\index{Main\-Controller@{Main\-Controller}!GameState@{Game\-State}}
+\subsubsection[{Main\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Main\-Controller}\hspace{0.3cm}{\ttfamily [friend]}}}\label{struct_game_state_a154f5ffe46dc74c6c94311b4cc3927ae}
+
+
+Definition at line 79 of file Game\-State.\-hpp.
+
+\hypertarget{struct_game_state_a19ecfd085a11c42d868e25c796419df8}{\index{Game\-State@{Game\-State}!World\-Controller@{World\-Controller}}
+\index{World\-Controller@{World\-Controller}!GameState@{Game\-State}}
+\subsubsection[{World\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf World\-Controller}\hspace{0.3cm}{\ttfamily [friend]}}}\label{struct_game_state_a19ecfd085a11c42d868e25c796419df8}
+
+
+Definition at line 78 of file Game\-State.\-hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_game_state_a58ee23ac0938d8499250b971f8e1d2d0}{\index{Game\-State@{Game\-State}!C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G@{C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G}}
+\index{C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G@{C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G}!GameState@{Game\-State}}
+\subsubsection[{C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\-State\-::\-C\-O\-N\-T\-I\-N\-U\-E\-\_\-\-F\-L\-A\-G = true\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a58ee23ac0938d8499250b971f8e1d2d0}
+Used by loops throughout the program the signal whether to continue or end execution 
+
+Definition at line 87 of file Game\-State.\-hpp.
+
+\hypertarget{struct_game_state_a0aad2a1111325f0345a511fe1665800a}{\index{Game\-State@{Game\-State}!current\-Directory@{current\-Directory}}
+\index{current\-Directory@{current\-Directory}!GameState@{Game\-State}}
+\subsubsection[{current\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}string Game\-State\-::current\-Directory\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a0aad2a1111325f0345a511fe1665800a}
+
+
+Definition at line 93 of file Game\-State.\-hpp.
+
+\hypertarget{struct_game_state_a5e5f91123aacc5e7fa22ddefdb3cd256}{\index{Game\-State@{Game\-State}!main\-Game\-Clock@{main\-Game\-Clock}}
+\index{main\-Game\-Clock@{main\-Game\-Clock}!GameState@{Game\-State}}
+\subsubsection[{main\-Game\-Clock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Timer} $\ast$ Game\-State\-::main\-Game\-Clock = new {\bf Timer}()\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a5e5f91123aacc5e7fa22ddefdb3cd256}
+
+
+Definition at line 89 of file Game\-State.\-hpp.
+
+\hypertarget{struct_game_state_a0d889afebf6eea90f6d3212c29cf7451}{\index{Game\-State@{Game\-State}!shared\-Mutex@{shared\-Mutex}}
+\index{shared\-Mutex@{shared\-Mutex}!GameState@{Game\-State}}
+\subsubsection[{shared\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}std\-::mutex Game\-State\-::shared\-Mutex\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_game_state_a0d889afebf6eea90f6d3212c29cf7451}
+
+
+Definition at line 91 of file Game\-State.\-hpp.
+
+
+
+The documentation for this struct was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_state_8hpp}{Game\-State.\-hpp}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_state_8cpp}{Game\-State.\-cpp}\end{DoxyCompactItemize}

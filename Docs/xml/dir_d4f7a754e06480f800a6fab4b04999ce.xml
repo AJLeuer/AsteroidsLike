@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_d4f7a754e06480f800a6fab4b04999ce" kind="dir">
+    <compoundname>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util</compoundname>
+    <innerfile refid="_asset_file_i_o_8cpp">AssetFileIO.cpp</innerfile>
+    <innerfile refid="_asset_file_i_o_8h">AssetFileIO.h</innerfile>
+    <innerfile refid="_basic_concurrency_8cpp">BasicConcurrency.cpp</innerfile>
+    <innerfile refid="_basic_concurrency_8h">BasicConcurrency.h</innerfile>
+    <innerfile refid="_bounds_check_8hpp">BoundsCheck.hpp</innerfile>
+    <innerfile refid="_debug_8cpp">Debug.cpp</innerfile>
+    <innerfile refid="_debug_8h">Debug.h</innerfile>
+    <innerfile refid="_game_random_8cpp">GameRandom.cpp</innerfile>
+    <innerfile refid="_game_random_8hpp">GameRandom.hpp</innerfile>
+    <innerfile refid="_navigator_8hpp">Navigator.hpp</innerfile>
+    <innerfile refid="_position_8hpp">Position.hpp</innerfile>
+    <innerfile refid="_size_8hpp">Size.hpp</innerfile>
+    <innerfile refid="_timer_8cpp">Timer.cpp</innerfile>
+    <innerfile refid="_timer_8hpp">Timer.hpp</innerfile>
+    <innerfile refid="_util_8cpp">Util.cpp</innerfile>
+    <innerfile refid="_util_8hpp">Util.hpp</innerfile>
+    <innerfile refid="_util2_8h">Util2.h</innerfile>
+    <innerfile refid="_velocity_8cpp">Velocity.cpp</innerfile>
+    <innerfile refid="_velocity_8hpp">Velocity.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/"/>
+  </compounddef>
+</doxygen>

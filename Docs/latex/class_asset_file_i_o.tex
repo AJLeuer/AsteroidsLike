@@ -1,0 +1,78 @@
+\hypertarget{class_asset_file_i_o}{\section{Asset\-File\-I\-O Class Reference}
+\label{class_asset_file_i_o}\index{Asset\-File\-I\-O@{Asset\-File\-I\-O}}
+}
+
+
+{\ttfamily \#include $<$Asset\-File\-I\-O.\-h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{_default_config_8h_a9ca20d8445e7d830c262f5ec4bb5d1bf}{Texture} $\ast$ \hyperlink{class_asset_file_i_o_a175cb18c4a4fd4387ad54fcc6af4f273}{get\-Texture\-From\-Filename} (\hyperlink{_default_config_8h_a15987d3f97f19077ea40d858c2f0b836}{Renderer} $\ast$renderer, const \hyperlink{struct_asset_file}{Asset\-File} \&file, \hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} type)
+\item 
+static string \& \hyperlink{class_asset_file_i_o_a0e751e03e701e2b90cb8a0805f374f80}{get\-Image\-Filename} (vector$<$ \hyperlink{struct_asset_file}{Asset\-File} $>$\-::size\-\_\-type index, \hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} type)
+\item 
+static \hyperlink{struct_asset_file}{Asset\-File} \hyperlink{class_asset_file_i_o_a6aebe3a253eb43bbd40b6c99b801c893}{get\-Random\-Image\-File} (\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} type)
+\item 
+static \hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} \hyperlink{class_asset_file_i_o_acc6068934ef606e383388b11fa54654b}{get\-Asset\-Type\-From\-Image\-File} (const string \&image\-Filename)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class will store the names and directory info of all file assets used in the program. Add the names of any new files added to \hyperlink{_asset_file_i_o_8cpp}{Asset\-File\-I\-O.\-cpp} 
+
+Definition at line 100 of file Asset\-File\-I\-O.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_asset_file_i_o_acc6068934ef606e383388b11fa54654b}{\index{Asset\-File\-I\-O@{Asset\-File\-I\-O}!get\-Asset\-Type\-From\-Image\-File@{get\-Asset\-Type\-From\-Image\-File}}
+\index{get\-Asset\-Type\-From\-Image\-File@{get\-Asset\-Type\-From\-Image\-File}!AssetFileIO@{Asset\-File\-I\-O}}
+\subsubsection[{get\-Asset\-Type\-From\-Image\-File}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Asset\-Type} Asset\-File\-I\-O\-::get\-Asset\-Type\-From\-Image\-File (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{image\-Filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_asset_file_i_o_acc6068934ef606e383388b11fa54654b}
+In addition to finding the Asset\-Type corresponding to the given string, get\-Asset\-Type\-From() also serves to check that the string, which will presumably be used to initialize a \hyperlink{class_game_object}{Game\-Object} or other in-\/game actor's texture, is in fact valid. It will throw an exception if it is not.
+
+\begin{DoxyReturn}{Returns}
+The Asset\-Type corresponding to image\-Filename 
+\end{DoxyReturn}
+\hypertarget{class_asset_file_i_o_a0e751e03e701e2b90cb8a0805f374f80}{\index{Asset\-File\-I\-O@{Asset\-File\-I\-O}!get\-Image\-Filename@{get\-Image\-Filename}}
+\index{get\-Image\-Filename@{get\-Image\-Filename}!AssetFileIO@{Asset\-File\-I\-O}}
+\subsubsection[{get\-Image\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}static string\& Asset\-File\-I\-O\-::get\-Image\-Filename (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Asset\-File} $>$\-::size\-\_\-type}]{index, }
+\item[{{\bf Asset\-Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_asset_file_i_o_a0e751e03e701e2b90cb8a0805f374f80}
+\hypertarget{class_asset_file_i_o_a6aebe3a253eb43bbd40b6c99b801c893}{\index{Asset\-File\-I\-O@{Asset\-File\-I\-O}!get\-Random\-Image\-File@{get\-Random\-Image\-File}}
+\index{get\-Random\-Image\-File@{get\-Random\-Image\-File}!AssetFileIO@{Asset\-File\-I\-O}}
+\subsubsection[{get\-Random\-Image\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asset\-File} Asset\-File\-I\-O\-::get\-Random\-Image\-File (
+\begin{DoxyParamCaption}
+\item[{{\bf Asset\-Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_asset_file_i_o_a6aebe3a253eb43bbd40b6c99b801c893}
+
+
+Definition at line 280 of file Asset\-File\-I\-O.\-cpp.
+
+\hypertarget{class_asset_file_i_o_a175cb18c4a4fd4387ad54fcc6af4f273}{\index{Asset\-File\-I\-O@{Asset\-File\-I\-O}!get\-Texture\-From\-Filename@{get\-Texture\-From\-Filename}}
+\index{get\-Texture\-From\-Filename@{get\-Texture\-From\-Filename}!AssetFileIO@{Asset\-File\-I\-O}}
+\subsubsection[{get\-Texture\-From\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} $\ast$ Asset\-File\-I\-O\-::get\-Texture\-From\-Filename (
+\begin{DoxyParamCaption}
+\item[{{\bf Renderer} $\ast$}]{renderer, }
+\item[{const {\bf Asset\-File} \&}]{file, }
+\item[{{\bf Asset\-Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_asset_file_i_o_a175cb18c4a4fd4387ad54fcc6af4f273}
+
+
+Definition at line 147 of file Asset\-File\-I\-O.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\hyperlink{_asset_file_i_o_8h}{Asset\-File\-I\-O.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\hyperlink{_asset_file_i_o_8cpp}{Asset\-File\-I\-O.\-cpp}\end{DoxyCompactItemize}

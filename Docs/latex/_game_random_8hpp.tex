@@ -1,0 +1,72 @@
+\hypertarget{_game_random_8hpp}{\section{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Game\-Random.hpp File Reference}
+\label{_game_random_8hpp}\index{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Game\-Random.\-hpp@{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Game\-Random.\-hpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include \char`\"{}../\-Control/\-Configuration.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_fast_rand}{Fast\-Rand$<$ N $>$}
+\item 
+class \hyperlink{class_fast_rand_3_01float_01_4}{Fast\-Rand$<$ float $>$}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename N $>$ }\\N \hyperlink{_game_random_8hpp_ae7cef935d66c5e8ed665fcbae68afb35}{rand\-Sign\-Flip} (N n)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{_game_random_8hpp_a0482d48287ab5fded8ce63a33c09bf79}{choose\-At\-Rand} (T t1, T t2)
+\item 
+{\footnotesize template$<$typename Some\-Enum , typename N $>$ }\\Some\-Enum \hyperlink{_game_random_8hpp_a5ba8203a83c0395ab61e1d3ddaabe250}{random\-Enumeration} (N maximum)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_game_random_8hpp_a0482d48287ab5fded8ce63a33c09bf79}{\index{Game\-Random.\-hpp@{Game\-Random.\-hpp}!choose\-At\-Rand@{choose\-At\-Rand}}
+\index{choose\-At\-Rand@{choose\-At\-Rand}!GameRandom.hpp@{Game\-Random.\-hpp}}
+\subsubsection[{choose\-At\-Rand}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T choose\-At\-Rand (
+\begin{DoxyParamCaption}
+\item[{T}]{t1, }
+\item[{T}]{t2}
+\end{DoxyParamCaption}
+)}}\label{_game_random_8hpp_a0482d48287ab5fded8ce63a33c09bf79}
+
+
+Definition at line 181 of file Game\-Random.\-hpp.
+
+\hypertarget{_game_random_8hpp_a5ba8203a83c0395ab61e1d3ddaabe250}{\index{Game\-Random.\-hpp@{Game\-Random.\-hpp}!random\-Enumeration@{random\-Enumeration}}
+\index{random\-Enumeration@{random\-Enumeration}!GameRandom.hpp@{Game\-Random.\-hpp}}
+\subsubsection[{random\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Some\-Enum , typename N $>$ Some\-Enum random\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{N}]{maximum}
+\end{DoxyParamCaption}
+)}}\label{_game_random_8hpp_a5ba8203a83c0395ab61e1d3ddaabe250}
+Returns a random enumeration of enum type Some\-Enum. Some\-Enum should ideally use integer values starting at zero as the underlying value for its enumerations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Some\-Enum} & An enumeration type \\
+\hline
+{\em N} & Some integer or floating point type \\
+\hline
+{\em maximum} & The numerical value of the maximum enum of type Some\-Enum \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 202 of file Game\-Random.\-hpp.
+
+\hypertarget{_game_random_8hpp_ae7cef935d66c5e8ed665fcbae68afb35}{\index{Game\-Random.\-hpp@{Game\-Random.\-hpp}!rand\-Sign\-Flip@{rand\-Sign\-Flip}}
+\index{rand\-Sign\-Flip@{rand\-Sign\-Flip}!GameRandom.hpp@{Game\-Random.\-hpp}}
+\subsubsection[{rand\-Sign\-Flip}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N $>$ N rand\-Sign\-Flip (
+\begin{DoxyParamCaption}
+\item[{N}]{n}
+\end{DoxyParamCaption}
+)}}\label{_game_random_8hpp_ae7cef935d66c5e8ed665fcbae68afb35}
+
+
+Definition at line 167 of file Game\-Random.\-hpp.
+

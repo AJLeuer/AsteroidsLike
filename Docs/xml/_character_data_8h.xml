@@ -1,0 +1,1171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_character_data_8h" kind="file">
+    <compoundname>CharacterData.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">ostream</includes>
+    <includes refid="_bounds_check_8hpp" local="yes">../Util/BoundsCheck.hpp</includes>
+    <includes refid="_game_random_8hpp" local="yes">../Util/GameRandom.hpp</includes>
+    <includedby refid="_message_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Message.h</includedby>
+    <includedby refid="_asset_file_i_o_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h</includedby>
+    <incdepgraph>
+      <node id="2252">
+        <label>limits</label>
+      </node>
+      <node id="2240">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="2247">
+        <label>cmath</label>
+      </node>
+      <node id="2245">
+        <label>string</label>
+      </node>
+      <node id="2241">
+        <label>fstream</label>
+      </node>
+      <node id="2237">
+        <label>ostream</label>
+      </node>
+      <node id="2251">
+        <label>../Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="2236" relation="include">
+        </childnode>
+        <childnode refid="2252" relation="include">
+        </childnode>
+        <childnode refid="2253" relation="include">
+        </childnode>
+        <childnode refid="2247" relation="include">
+        </childnode>
+        <childnode refid="2239" relation="include">
+        </childnode>
+      </node>
+      <node id="2253">
+        <label>random</label>
+      </node>
+      <node id="2246">
+        <label>vector</label>
+      </node>
+      <node id="2239">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="2240" relation="include">
+        </childnode>
+        <childnode refid="2236" relation="include">
+        </childnode>
+        <childnode refid="2241" relation="include">
+        </childnode>
+        <childnode refid="2242" relation="include">
+        </childnode>
+        <childnode refid="2243" relation="include">
+        </childnode>
+        <childnode refid="2249" relation="include">
+        </childnode>
+        <childnode refid="2250" relation="include">
+        </childnode>
+      </node>
+      <node id="2243">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="2236" relation="include">
+        </childnode>
+        <childnode refid="2244" relation="include">
+        </childnode>
+        <childnode refid="2245" relation="include">
+        </childnode>
+        <childnode refid="2246" relation="include">
+        </childnode>
+        <childnode refid="2247" relation="include">
+        </childnode>
+        <childnode refid="2248" relation="include">
+        </childnode>
+      </node>
+      <node id="2236">
+        <label>iostream</label>
+      </node>
+      <node id="2250">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="2243" relation="include">
+        </childnode>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2238">
+        <label>../Util/BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="2236" relation="include">
+        </childnode>
+        <childnode refid="2239" relation="include">
+        </childnode>
+      </node>
+      <node id="2242">
+        <label>chrono</label>
+      </node>
+      <node id="2248">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="2244">
+        <label>thread</label>
+      </node>
+      <node id="2235">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h</label>
+        <link refid="CharacterData.h"/>
+        <childnode refid="2236" relation="include">
+        </childnode>
+        <childnode refid="2237" relation="include">
+        </childnode>
+        <childnode refid="2238" relation="include">
+        </childnode>
+        <childnode refid="2251" relation="include">
+        </childnode>
+      </node>
+      <node id="2249">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2272">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.cpp</label>
+        <link refid="_player_8cpp"/>
+      </node>
+      <node id="2274">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.cpp</label>
+        <link refid="_character_8cpp"/>
+      </node>
+      <node id="2256">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="2257" relation="include">
+        </childnode>
+        <childnode refid="2259" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2280" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+      </node>
+      <node id="2266">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="2284">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2259" relation="include">
+        </childnode>
+        <childnode refid="2285" relation="include">
+        </childnode>
+        <childnode refid="2261" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2288" relation="include">
+        </childnode>
+      </node>
+      <node id="2260">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="2259">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2261" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2277" relation="include">
+        </childnode>
+        <childnode refid="2279" relation="include">
+        </childnode>
+      </node>
+      <node id="2277">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h</label>
+        <link refid="_weapon_8h"/>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2278" relation="include">
+        </childnode>
+      </node>
+      <node id="2263">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.h</label>
+        <link refid="_enemy_8h"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2268" relation="include">
+        </childnode>
+      </node>
+      <node id="2273">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.cpp</label>
+        <link refid="_player_character_8cpp"/>
+      </node>
+      <node id="2269">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.cpp</label>
+        <link refid="_n_p_c_8cpp"/>
+      </node>
+      <node id="2270">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</label>
+        <link refid="_player_character_8h"/>
+        <childnode refid="2271" relation="include">
+        </childnode>
+        <childnode refid="2273" relation="include">
+        </childnode>
+      </node>
+      <node id="2267">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.cpp</label>
+        <link refid="_world_controller_8cpp"/>
+      </node>
+      <node id="2288">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp</label>
+        <link refid="_asset_file_i_o_8cpp"/>
+      </node>
+      <node id="2265">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2266" relation="include">
+        </childnode>
+      </node>
+      <node id="2268">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.cpp</label>
+        <link refid="_enemy_8cpp"/>
+      </node>
+      <node id="2262">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h</label>
+        <link refid="_n_p_c_8h"/>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2269" relation="include">
+        </childnode>
+      </node>
+      <node id="2280">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameEvent.h</label>
+        <link refid="_game_event_8h"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2281" relation="include">
+        </childnode>
+        <childnode refid="2283" relation="include">
+        </childnode>
+      </node>
+      <node id="2278">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.cpp</label>
+        <link refid="_weapon_8cpp"/>
+      </node>
+      <node id="2287">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp</label>
+        <link refid="_game_state_8cpp"/>
+      </node>
+      <node id="2257">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="2258" relation="include">
+        </childnode>
+        <childnode refid="2259" relation="include">
+        </childnode>
+        <childnode refid="2261" relation="include">
+        </childnode>
+        <childnode refid="2262" relation="include">
+        </childnode>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+      </node>
+      <node id="2275">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h</label>
+        <link refid="_graphical_output_8h"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2276" relation="include">
+        </childnode>
+      </node>
+      <node id="2279">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.cpp</label>
+        <link refid="_game_object_8cpp"/>
+      </node>
+      <node id="2282">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Ability.cpp</label>
+        <link refid="_ability_8cpp"/>
+      </node>
+      <node id="2271">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.h</label>
+        <link refid="_player_8h"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2272" relation="include">
+        </childnode>
+      </node>
+      <node id="2286">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/TextOutput.hpp</label>
+        <link refid="_text_output_8hpp"/>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+      </node>
+      <node id="2254">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h</label>
+        <link refid="CharacterData.h"/>
+        <childnode refid="2255" relation="include">
+        </childnode>
+        <childnode refid="2284" relation="include">
+        </childnode>
+      </node>
+      <node id="2285">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="2259" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2286" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+        <childnode refid="2287" relation="include">
+        </childnode>
+      </node>
+      <node id="2276">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp</label>
+        <link refid="_graphical_output_8cpp"/>
+      </node>
+      <node id="2258">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.cpp</label>
+        <link refid="_input_8cpp"/>
+      </node>
+      <node id="2255">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="2256" relation="include">
+        </childnode>
+      </node>
+      <node id="2283">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameEvent.cpp</label>
+        <link refid="_game_event_8cpp"/>
+      </node>
+      <node id="2261">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.h</label>
+        <link refid="_character_8h"/>
+        <childnode refid="2262" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+      </node>
+      <node id="2281">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Ability.h</label>
+        <link refid="_ability_8h"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2282" relation="include">
+        </childnode>
+      </node>
+      <node id="2264">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.h</label>
+        <link refid="_world_controller_8h"/>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2267" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_character_data" prot="public">CharacterData</innerclass>
+    <innerclass refid="struct_damage" prot="public">Damage</innerclass>
+    <innerclass refid="struct_health" prot="public">Health</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" prot="public" static="no">
+        <name>Colors</name>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a5e543256c480ac577d30f76f9120eb74" prot="public">
+          <name>undefined</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a9f27410725ab8cc8854a2769c7a516b8" prot="public">
+          <name>green</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a48d6215903dff56238e52e8891380c8f" prot="public">
+          <name>blue</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967abb7aedfa61007447dd6efaf9f37641e3" prot="public">
+          <name>purple</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967abda9643ac6601722a28f238714274da4" prot="public">
+          <name>red</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967afe01d67a002dfa0f3ac084298142eccd" prot="public">
+          <name>orange</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a6ff47afa5dc7daa42cc705a03fca8a9b" prot="public">
+          <name>brown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967acda7a650c5856cf2f6738072447d7825" prot="public">
+          <name>gray</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a97f014516561ef487ec368d6158eb3f4" prot="public">
+          <name>silver</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967ae07e81c20cf5935f5225765f0af81755" prot="public">
+          <name>gold</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a5e96bf62b9b2c18fdb65564b4a18fd1f" prot="public">
+          <name>transparent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a16875aa2b5eed3e388dcceaa36f56214" prot="public">
+          <name>various</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a98bd1c45684cf587ac2347a92dd7bb51" prot="public">
+          <name>last</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="199" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="199" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="enum" id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685" prot="public" static="no">
+        <name>Alert</name>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a94890a653a01b7e2bf8c88ae47139fb9" prot="public">
+          <name>noalert</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab136ee6c797c1a851260b9c1ab5ff414" prot="public">
+          <name>danger</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a1a57cb2ac3f4c22ef3169fb974475838" prot="public">
+          <name>nearbyEnemy</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a90a2faf59cecf1f1352e7e8881d170f1" prot="public">
+          <name>lowHealth</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a6f66f29aecbf91992402fdc2f4aa6794" prot="public">
+          <name>lowEnergy</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ad2ab73ed488459de26603acfe8cb3b24" prot="public">
+          <name>lowResource</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab657541b3d1e971d25f1f40f2269db39" prot="public">
+          <name>nearbyMoney</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ac97e7e665c93e88d5d6eeb3fa120a912" prot="public">
+          <name>nearbyBoost</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="222" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="222" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="enum" id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" prot="public" static="no">
+        <name>CharacterState</name>
+        <enumvalue id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a366547561ed3dc4a1bffd71bb3d998f6" prot="public">
+          <name>nocs</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5afea087517c26fadd409bd4b9dc642555" prot="public">
+          <name>normal</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a1f0c59a8bc5effbbeacdf328d30039e9" prot="public">
+          <name>inCombat</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a6d6d22664d4f87278f97cdf29ea5154d" prot="public">
+          <name>inDialogue</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5aec2f993aec2c27fc750119ab17b16cdb" prot="public">
+          <name>idle</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="236" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="236" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="enum" id="_character_data_8h_1acbff4d7298e294294555d39178aad448" prot="public" static="no">
+        <name>DoA</name>
+        <enumvalue id="_character_data_8h_1acbff4d7298e294294555d39178aad448a5b7fc4e00fc0fe00c03e3e74fa4e40e3" prot="public">
+          <name>nodoa</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1acbff4d7298e294294555d39178aad448af58e6a506c76fc2c90a7d29cbc631c2f" prot="public">
+          <name>dead</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" prot="public">
+          <name>alive</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="246" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="246" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="enum" id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" prot="public" static="no">
+        <name>Reaction</name>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8aa539aea4cf281e61b85f88cf2c511d" prot="public">
+          <name>noreact</name>
+          <initializer>= -100</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a90890e6ba4b874422e38101421de5e84" prot="public">
+          <name>loyal</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339abe68582f77aecadc0389a785aefd64e9" prot="public">
+          <name>friendly</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a5da248ea6840aca1ae2b417b17982a89" prot="public">
+          <name>neutral</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a1c1d719d29db0c392d69b2939b2ae8d2" prot="public">
+          <name>unfriendly</name>
+          <initializer>= (-friendly)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8e20e5f0a627b4dd4dedc41a597ab672" prot="public">
+          <name>hostile</name>
+          <initializer>= (-loyal)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="253" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="253" bodyend="263"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_character_data_8h_1acd765542505c533c1994dd4021207709" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" kindref="member">Colors</ref></type>
+        <definition>Colors getRandomColor</definition>
+        <argsstring>()</argsstring>
+        <name>getRandomColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="216" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="216" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="_character_data_8h_1ac94250eaa71a1eb977514891ad49aa0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Alert &amp;alt)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685" kindref="member">Alert</ref> &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="267" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="267" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="_character_data_8h_1aa2edd1ad556829020a600379b46d86c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const CharacterState &amp;cs)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref> &amp;</type>
+          <declname>cs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="298" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="298" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="_character_data_8h_1ac903466d1fb1bf716f29cc6e6f59767d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const DoA &amp;doa)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref> &amp;</type>
+          <declname>doa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="322" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="322" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="_character_data_8h_1ad6b948e01a284ef5ddc62d2d3e58da03" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Reaction &amp;react)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref> &amp;</type>
+          <declname>react</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="340" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="340" bodyend="362"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>CharacterData.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>4/29/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__GameWorld__CharacterData__</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__GameWorld__CharacterData__</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/BoundsCheck.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Util/GameRandom.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="struct_character_data" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" kindref="member">baseValue</ref><sp/>;</highlight></codeline>
+<codeline lineno="30" refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" kindref="member">modifier</ref><sp/>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="struct_character_data_1ace49d29c55eeb48f7fd511841df40c27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data_1ace49d29c55eeb48f7fd511841df40c27" kindref="member">CharacterData</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseValue(0),</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modifier(1)<sp/>{}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="struct_character_data_1abcb9f0bd43c518b28e02065b171d7551" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data_1abcb9f0bd43c518b28e02065b171d7551" kindref="member">CharacterData</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b)<sp/>:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseValue(b),</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modifier(1)<sp/>{}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_character_data_1a28743377c793f39f4203ae71a4a40da9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data_1a28743377c793f39f4203ae71a4a40da9" kindref="member">CharacterData</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>m)<sp/>:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseValue(b),</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modifier(m)<sp/>{}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_character_data_1a9c4f926d20bfcbeaaf9496791160c09d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data_1a9c4f926d20bfcbeaaf9496791160c09d" kindref="member">CharacterData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseValue(other.baseValue),</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modifier(other.modifier)<sp/>{}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="struct_character_data_1a6e4a98d0dfcffd3155846515a9903900" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data_1a6e4a98d0dfcffd3155846515a9903900" kindref="member">CharacterData</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseValue(other.baseValue),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modifier(other.modifier)<sp/>{}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_character_data_1a0118f9a14b08db8bf36870ac1043c780" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/><ref refid="struct_character_data_1a0118f9a14b08db8bf36870ac1043c780" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseValue<sp/>=<sp/>rhs.<ref refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" kindref="member">baseValue</ref><sp/>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;modifier<sp/>=<sp/>rhs.<ref refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" kindref="member">modifier</ref><sp/>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_character_data_1a8241609b7d0abaf5135fc965234dc1d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/><ref refid="struct_character_data_1a8241609b7d0abaf5135fc965234dc1d7" kindref="member">operator=</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseValue<sp/>=<sp/>rhs.<ref refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" kindref="member">baseValue</ref><sp/>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;modifier<sp/>=<sp/>rhs.modifier<sp/>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="struct_character_data_1a815d34f2397d83e26a850f7327e121f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a815d34f2397d83e26a850f7327e121f8" kindref="member">operator==</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(this-&gt;value()<sp/>==<sp/>rhs.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="struct_character_data_1acc34abfc386287c8c38d0de255aa3442" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1acc34abfc386287c8c38d0de255aa3442" kindref="member">operator!=</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(this-&gt;operator==(rhs))<sp/>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="struct_character_data_1a662008be5f99b06b927ba1def39a12f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a662008be5f99b06b927ba1def39a12f3" kindref="member">operator&gt;</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(this-&gt;value()<sp/>&gt;<sp/>rhs.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="struct_character_data_1a8531abd07619859ef83ac3ad3e3c3329" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a8531abd07619859ef83ac3ad3e3c3329" kindref="member">operator&lt;</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(this-&gt;value()<sp/>&lt;<sp/>rhs.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="struct_character_data_1a8f31e2a333183cb8c5c5bb2518933ee0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a8f31e2a333183cb8c5c5bb2518933ee0" kindref="member">operator&gt;=</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(this-&gt;value()<sp/>&gt;=<sp/>rhs.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="struct_character_data_1a8eef34f1395329eb392fb293f7de687d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a8eef34f1395329eb392fb293f7de687d" kindref="member">operator&lt;=</ref>(<ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(this-&gt;value()<sp/>&lt;=<sp/>rhs.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="struct_character_data_1a85313590521d86ff18bfcb6a653919e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/><ref refid="struct_character_data_1a85313590521d86ff18bfcb6a653919e6" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseValue<sp/>+=<sp/>rhs.<ref refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" kindref="member">baseValue</ref><sp/>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;modifier<sp/>+=<sp/>rhs.<ref refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" kindref="member">modifier</ref><sp/>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103" refid="struct_character_data_1afa94ff26fee5818c3603444600ed37b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/><ref refid="struct_character_data_1afa94ff26fee5818c3603444600ed37b9" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseValue<sp/>-=<sp/>rhs.<ref refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" kindref="member">baseValue</ref><sp/>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;modifier<sp/>-=<sp/>rhs.<ref refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" kindref="member">modifier</ref><sp/>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="struct_character_data_1ac3bffef95c1ca2d8be9c0b197dcd383d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>ostream<sp/>&amp;<sp/><ref refid="struct_character_data_1ac3bffef95c1ca2d8be9c0b197dcd383d" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>gmd)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>gmd.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="struct_character_data_1a662f4fb97ebcbf9be2a543877e6b95ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>ostream<sp/>&amp;<sp/><ref refid="struct_character_data_1a662f4fb97ebcbf9be2a543877e6b95ae" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>&amp;<sp/>gmd)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>gmd.<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>baseValue<sp/>*<sp/>modifier<sp/>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140" refid="struct_character_data_1a55c28ca84668020f8e9df060c9e5effc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="struct_character_data_1a55c28ca84668020f8e9df060c9e5effc" kindref="member">operator()</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>value()<sp/>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="struct_damage" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_damage" kindref="compound">Damage</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155" refid="struct_damage_1af71969c367b1b42febfb6ccf8c2d7785" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_damage_1af71969c367b1b42febfb6ccf8c2d7785" kindref="member">Damage</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158" refid="struct_damage_1a2656103f22bbd43950397097289a5b2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_damage_1a2656103f22bbd43950397097289a5b2d" kindref="member">Damage</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b)<sp/>:</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(b)<sp/>{}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161" refid="struct_damage_1a05b94589f8d332a6a8aa5fe59d646d0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_damage_1a05b94589f8d332a6a8aa5fe59d646d0b" kindref="member">Damage</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>m)<sp/>:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(b,<sp/>m)<sp/>{}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="164" refid="struct_damage_1a46a26f5c28d52a849ffb457f4a977948" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_damage_1a46a26f5c28d52a849ffb457f4a977948" kindref="member">Damage</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_damage" kindref="compound">Damage</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(other)<sp/>{}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="struct_health" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_health" kindref="compound">Health</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="179" refid="struct_health_1acd41f307cc9a942c3335480420c0ace7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_health_1acd41f307cc9a942c3335480420c0ace7" kindref="member">Health</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182" refid="struct_health_1a0eea3e266fb44e83dc46d6c45430eff5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_health_1a0eea3e266fb44e83dc46d6c45430eff5" kindref="member">Health</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b)<sp/>:</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(b)<sp/>{}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="185" refid="struct_health_1a8e581ca46b7ec906bad62ce2144c93a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_health_1a8e581ca46b7ec906bad62ce2144c93a1" kindref="member">Health</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>m)<sp/>:</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(b,<sp/>m)<sp/>{}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188" refid="struct_health_1a87dacc9b041b0fc213f108ca94969817" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_health_1a87dacc9b041b0fc213f108ca94969817" kindref="member">Health</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_health" kindref="compound">Health</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_character_data" kindref="compound">CharacterData</ref>(other)<sp/>{}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Below<sp/>are<sp/>a<sp/>few<sp/>enums<sp/>we<sp/>can<sp/>use<sp/>in<sp/>various<sp/>ways<sp/>through<sp/>the<sp/>game.</highlight></codeline>
+<codeline lineno="197"><highlight class="comment"><sp/>Note<sp/>for<sp/>all<sp/>enums<sp/>here:<sp/>the<sp/>value<sp/>-1<sp/>essentially<sp/>can<sp/>be<sp/>considered<sp/>as<sp/>essentially</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/>as<sp/>an<sp/>equivalent<sp/>to<sp/>NULL<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" kindref="member">Colors</ref><sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a5e543256c480ac577d30f76f9120eb74" kindref="member">undefined</ref><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a9f27410725ab8cc8854a2769c7a516b8" kindref="member">green</ref>,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a48d6215903dff56238e52e8891380c8f" kindref="member">blue</ref>,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967abb7aedfa61007447dd6efaf9f37641e3" kindref="member">purple</ref>,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967abda9643ac6601722a28f238714274da4" kindref="member">red</ref>,</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967afe01d67a002dfa0f3ac084298142eccd" kindref="member">orange</ref>,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a6ff47afa5dc7daa42cc705a03fca8a9b" kindref="member">brown</ref>,</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967acda7a650c5856cf2f6738072447d7825" kindref="member">gray</ref>,</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a97f014516561ef487ec368d6158eb3f4" kindref="member">silver</ref>,</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967ae07e81c20cf5935f5225765f0af81755" kindref="member">gold</ref>,</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a5e96bf62b9b2c18fdb65564b4a18fd1f" kindref="member">transparent</ref>,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a16875aa2b5eed3e388dcceaa36f56214" kindref="member">various</ref>,</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>more<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a98bd1c45684cf587ac2347a92dd7bb51" kindref="member">last</ref><sp/></highlight><highlight class="comment">//always<sp/>last</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216" refid="_character_data_8h_1acd765542505c533c1994dd4021207709" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967" kindref="member">Colors</ref><sp/><ref refid="_character_data_8h_1acd765542505c533c1994dd4021207709" kindref="member">getRandomColor</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_fast_rand" kindref="compound">FastRand&lt;unsigned&gt;</ref><sp/>randm(0,<sp/>static_cast&lt;unsigned&gt;(<ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a98bd1c45684cf587ac2347a92dd7bb51" kindref="member">Colors::last</ref>))<sp/>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//auto<sp/>c<sp/>=<sp/>static_cast&lt;Colors&gt;(<sp/>;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a55ecd4f2ec2ebfe8d5b0163e4ac2a967a48d6215903dff56238e52e8891380c8f" kindref="member">Colors::blue</ref><sp/>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685" kindref="member">Alert</ref><sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a94890a653a01b7e2bf8c88ae47139fb9" kindref="member">noalert</ref><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab136ee6c797c1a851260b9c1ab5ff414" kindref="member">danger</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a1a57cb2ac3f4c22ef3169fb974475838" kindref="member">nearbyEnemy</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a90a2faf59cecf1f1352e7e8881d170f1" kindref="member">lowHealth</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a6f66f29aecbf91992402fdc2f4aa6794" kindref="member">lowEnergy</ref><sp/>=<sp/>3,<sp/></highlight><highlight class="comment">/*i.e.<sp/>for<sp/>abilities*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ad2ab73ed488459de26603acfe8cb3b24" kindref="member">lowResource</ref><sp/>=<sp/>4,</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab657541b3d1e971d25f1f40f2269db39" kindref="member">nearbyMoney</ref><sp/>=<sp/>5,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ac97e7e665c93e88d5d6eeb3fa120a912" kindref="member">nearbyBoost</ref><sp/>=<sp/>6</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>more<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="234"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236" refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/>{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a366547561ed3dc4a1bffd71bb3d998f6" kindref="member">nocs</ref><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*typically<sp/>for<sp/>player<sp/>and<sp/>NPCs*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5afea087517c26fadd409bd4b9dc642555" kindref="member">normal</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a1f0c59a8bc5effbbeacdf328d30039e9" kindref="member">inCombat</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a6d6d22664d4f87278f97cdf29ea5154d" kindref="member">inDialogue</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5aec2f993aec2c27fc750119ab17b16cdb" kindref="member">idle</ref><sp/>=<sp/>3</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246" refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref><sp/>{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a5b7fc4e00fc0fe00c03e3e74fa4e40e3" kindref="member">nodoa</ref><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448af58e6a506c76fc2c90a7d29cbc631c2f" kindref="member">dead</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref><sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="251"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253" refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref><sp/>{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8aa539aea4cf281e61b85f88cf2c511d" kindref="member">noreact</ref><sp/>=<sp/>-100,</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*typically<sp/>npc*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a90890e6ba4b874422e38101421de5e84" kindref="member">loyal</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339abe68582f77aecadc0389a785aefd64e9" kindref="member">friendly</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a5da248ea6840aca1ae2b417b17982a89" kindref="member">neutral</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a1c1d719d29db0c392d69b2939b2ae8d2" kindref="member">unfriendly</ref><sp/>=<sp/>(-<ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339abe68582f77aecadc0389a785aefd64e9" kindref="member">friendly</ref>),</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8e20e5f0a627b4dd4dedc41a597ab672" kindref="member">hostile</ref><sp/>=<sp/>(-<ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a90890e6ba4b874422e38101421de5e84" kindref="member">loyal</ref>)</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>more<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267" refid="_character_data_8h_1ac94250eaa71a1eb977514891ad49aa0e" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<sp/><ref refid="_position_8hpp_1a57d0270087c9fb19927cacc70857870b" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685" kindref="member">Alert</ref><sp/>&amp;<sp/>alt)<sp/>{</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(alt)<sp/>{</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a94890a653a01b7e2bf8c88ae47139fb9" kindref="member">Alert::noalert</ref>:</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;No<sp/>alert&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab136ee6c797c1a851260b9c1ab5ff414" kindref="member">Alert::danger</ref>:</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Danger&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a1a57cb2ac3f4c22ef3169fb974475838" kindref="member">Alert::nearbyEnemy</ref>:</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Enemy<sp/>nearby&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a90a2faf59cecf1f1352e7e8881d170f1" kindref="member">Alert::lowHealth</ref>:</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Health<sp/>low&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685a6f66f29aecbf91992402fdc2f4aa6794" kindref="member">Alert::lowEnergy</ref>:</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Energy<sp/>low&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ad2ab73ed488459de26603acfe8cb3b24" kindref="member">Alert::lowResource</ref>:</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Resource<sp/>low&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ab657541b3d1e971d25f1f40f2269db39" kindref="member">Alert::nearbyMoney</ref>:</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Money<sp/>nearby&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a15800b6cb06470a71c1a4b4164d6e685ac97e7e665c93e88d5d6eeb3fa120a912" kindref="member">Alert::nearbyBoost</ref>:</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Nearby<sp/>boost&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298" refid="_character_data_8h_1aa2edd1ad556829020a600379b46d86c9" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<sp/><ref refid="_position_8hpp_1a57d0270087c9fb19927cacc70857870b" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/>&amp;<sp/>cs)<sp/>{</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(cs)<sp/>{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a366547561ed3dc4a1bffd71bb3d998f6" kindref="member">CharacterState::nocs</ref>:</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;No<sp/>character<sp/>state&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5aec2f993aec2c27fc750119ab17b16cdb" kindref="member">CharacterState::idle</ref>:</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Idle&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a1f0c59a8bc5effbbeacdf328d30039e9" kindref="member">CharacterState::inCombat</ref>:</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;In<sp/>combat&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a6d6d22664d4f87278f97cdf29ea5154d" kindref="member">CharacterState::inDialogue</ref>:</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;In<sp/>dialogue&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5afea087517c26fadd409bd4b9dc642555" kindref="member">CharacterState::normal</ref>:</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Normal&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>;</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322" refid="_character_data_8h_1ac903466d1fb1bf716f29cc6e6f59767d" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<sp/><ref refid="_position_8hpp_1a57d0270087c9fb19927cacc70857870b" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref><sp/>&amp;<sp/>doa)<sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(doa)<sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a5b7fc4e00fc0fe00c03e3e74fa4e40e3" kindref="member">DoA::nodoa</ref>:</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;No<sp/>DoA<sp/>value&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">DoA::alive</ref>:</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Alive&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448af58e6a506c76fc2c90a7d29cbc631c2f" kindref="member">DoA::dead</ref>:</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Dead&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os<sp/>;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340" refid="_character_data_8h_1ad6b948e01a284ef5ddc62d2d3e58da03" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<sp/><ref refid="_position_8hpp_1a57d0270087c9fb19927cacc70857870b" kindref="member">operator&lt;&lt;</ref>(std::ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref><sp/>&amp;<sp/>react)<sp/>{</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(react)<sp/>{</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8aa539aea4cf281e61b85f88cf2c511d" kindref="member">Reaction::noreact</ref>:</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;No<sp/>reaction&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a90890e6ba4b874422e38101421de5e84" kindref="member">Reaction::loyal</ref>:</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Loyal&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339abe68582f77aecadc0389a785aefd64e9" kindref="member">Reaction::friendly</ref>:</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Friendly&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a5da248ea6840aca1ae2b417b17982a89" kindref="member">Reaction::neutral</ref>:</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Neutral&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a1c1d719d29db0c392d69b2939b2ae8d2" kindref="member">Reaction::unfriendly</ref>:</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Unfriendly&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8e20e5f0a627b4dd4dedc41a597ab672" kindref="member">Reaction::hostile</ref>:</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Hostile&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break<sp/>;</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="362"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__GameWorld__CharacterData__)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="366"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h"/>
+  </compounddef>
+</doxygen>

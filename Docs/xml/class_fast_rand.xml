@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_fast_rand" kind="class" prot="public">
+    <compoundname>FastRand</compoundname>
+    <includes refid="_game_random_8hpp" local="no">GameRandom.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_fast_rand_1a101185e54f4a2a60a3179a8524c3b8a9" prot="protected" static="no" mutable="no">
+        <type>std::random_device</type>
+        <definition>std::random_device FastRand&lt; N &gt;::dev</definition>
+        <argsstring></argsstring>
+        <name>dev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="26" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fast_rand_1a0b39a2388a6512acb59dfba2c9f19ace" prot="protected" static="no" mutable="no">
+        <type>std::uniform_int_distribution&lt; N &gt;</type>
+        <definition>std::uniform_int_distribution&lt;N&gt; FastRand&lt; N &gt;::dist</definition>
+        <argsstring></argsstring>
+        <name>dist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="27" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fast_rand_1a8f87664883d9d0567615b169e99bcec5" prot="protected" static="no" mutable="no">
+        <type>std::default_random_engine</type>
+        <definition>std::default_random_engine FastRand&lt; N &gt;::rndm</definition>
+        <argsstring></argsstring>
+        <name>rndm</name>
+        <initializer>{<ref refid="class_fast_rand_1a101185e54f4a2a60a3179a8524c3b8a9" kindref="member">dev</ref>()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="28" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fast_rand_1a7041d4ec9e4da25457fe86bada8bca49" prot="protected" static="no" mutable="no">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::minimum</definition>
+        <argsstring></argsstring>
+        <name>minimum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="30" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fast_rand_1aaee674d6363b30ae014073e23e3b2746" prot="protected" static="no" mutable="no">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::maximum</definition>
+        <argsstring></argsstring>
+        <name>maximum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="31" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_fast_rand_1ae6756973a197860a27487b65dee1fad0" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref></type>
+        <definition>FastRand&lt; N &gt; FastRand&lt; N &gt;::defaultRandom</definition>
+        <argsstring></argsstring>
+        <name>defaultRandom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="43" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fast_rand_1aba6b711ca110b6e3ffa5aef1048cfa9b" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref> *</type>
+        <definition>FastRand&lt; N &gt; * FastRand&lt; N &gt;::randPositionSetter</definition>
+        <argsstring></argsstring>
+        <name>randPositionSetter</name>
+        <initializer>= <ref refid="class_fast_rand_1a32428bea0e468c24ad88e70ceac45617" kindref="member">initRandPosSetter</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="44" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_fast_rand_1a32428bea0e468c24ad88e70ceac45617" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref> *</type>
+        <definition>FastRand&lt; N &gt; * FastRand&lt; N &gt;::initRandPosSetter</definition>
+        <argsstring>()</argsstring>
+        <name>initRandPosSetter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="33" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="155" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_fast_rand_1a1b2acd69df1f8ebd670a133186042be4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FastRand&lt; N &gt;::FastRand</definition>
+        <argsstring>(N _min, N _max)</argsstring>
+        <name>FastRand</name>
+        <param>
+          <type>N</type>
+          <declname>_min</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>_max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="46" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="92" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1a51550e21d1aa8f2e4d92cac8c7466aac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FastRand&lt; N &gt;::FastRand</definition>
+        <argsstring>(const FastRand&lt; N &gt; &amp;other)</argsstring>
+        <name>FastRand</name>
+        <param>
+          <type>const <ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="47" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="102" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1aed5b803f4e26008d1b133d7181b626ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref> &amp;</type>
+        <definition>FastRand&lt; N &gt; &amp; FastRand&lt; N &gt;::operator=</definition>
+        <argsstring>(const FastRand&lt; N &gt; &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; N &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="48" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="113" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1a4acb58985ef91f01b3cb35b0aef2c5ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FastRand&lt; N &gt;::~FastRand</definition>
+        <argsstring>()</argsstring>
+        <name>~FastRand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="49" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1a69ad4de951e5150cbde4b0775f4c029a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::nextValue</definition>
+        <argsstring>()</argsstring>
+        <name>nextValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="50" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="124" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1ad072e7031fed3100e5852d9e699fec53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::nextValue</definition>
+        <argsstring>(N minimum, N maximum)</argsstring>
+        <name>nextValue</name>
+        <param>
+          <type>N</type>
+          <declname>minimum</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>maximum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="51" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1aae13cb1cd4178cf1cc7f6823de6110aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+        </templateparamlist>
+        <type>R</type>
+        <definition>R FastRand&lt; N &gt;::nextValue</definition>
+        <argsstring>(R _min, R _max)</argsstring>
+        <name>nextValue</name>
+        <param>
+          <type>R</type>
+          <declname>_min</declname>
+        </param>
+        <param>
+          <type>R</type>
+          <declname>_max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="52" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="146" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1abc8b63cf6e5430753bcb73d83535d62f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::operator()</definition>
+        <argsstring>()</argsstring>
+        <name>operator()</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="53" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="135" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fast_rand_1a2c3b9991bdf5a067f42f0390571b0ddc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>N</type>
+        <definition>N FastRand&lt; N &gt;::operator()</definition>
+        <argsstring>(N minimum, N maximum)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>N</type>
+          <declname>minimum</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>maximum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="54" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="140" bodyend="142"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="104">
+        <label>N</label>
+      </node>
+      <node id="103">
+        <label>FastRand&lt; N &gt;</label>
+        <link refid="class_fast_rand"/>
+        <childnode refid="104" relation="usage">
+          <edgelabel>minimum</edgelabel>
+          <edgelabel>maximum</edgelabel>
+        </childnode>
+        <childnode refid="103" relation="usage">
+          <edgelabel>defaultRandom</edgelabel>
+          <edgelabel>randPositionSetter</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" line="22" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp" bodystart="22" bodyend="56"/>
+    <listofallmembers>
+      <member refid="class_fast_rand_1ae6756973a197860a27487b65dee1fad0" prot="public" virt="non-virtual"><scope>FastRand</scope><name>defaultRandom</name></member>
+      <member refid="class_fast_rand_1a101185e54f4a2a60a3179a8524c3b8a9" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>dev</name></member>
+      <member refid="class_fast_rand_1a0b39a2388a6512acb59dfba2c9f19ace" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>dist</name></member>
+      <member refid="class_fast_rand_1a1b2acd69df1f8ebd670a133186042be4" prot="public" virt="non-virtual"><scope>FastRand</scope><name>FastRand</name></member>
+      <member refid="class_fast_rand_1a51550e21d1aa8f2e4d92cac8c7466aac" prot="public" virt="non-virtual"><scope>FastRand</scope><name>FastRand</name></member>
+      <member refid="class_fast_rand_1a32428bea0e468c24ad88e70ceac45617" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>initRandPosSetter</name></member>
+      <member refid="class_fast_rand_1aaee674d6363b30ae014073e23e3b2746" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>maximum</name></member>
+      <member refid="class_fast_rand_1a7041d4ec9e4da25457fe86bada8bca49" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>minimum</name></member>
+      <member refid="class_fast_rand_1a69ad4de951e5150cbde4b0775f4c029a" prot="public" virt="non-virtual"><scope>FastRand</scope><name>nextValue</name></member>
+      <member refid="class_fast_rand_1ad072e7031fed3100e5852d9e699fec53" prot="public" virt="non-virtual"><scope>FastRand</scope><name>nextValue</name></member>
+      <member refid="class_fast_rand_1aae13cb1cd4178cf1cc7f6823de6110aa" prot="public" virt="non-virtual"><scope>FastRand</scope><name>nextValue</name></member>
+      <member refid="class_fast_rand_1abc8b63cf6e5430753bcb73d83535d62f" prot="public" virt="non-virtual"><scope>FastRand</scope><name>operator()</name></member>
+      <member refid="class_fast_rand_1a2c3b9991bdf5a067f42f0390571b0ddc" prot="public" virt="non-virtual"><scope>FastRand</scope><name>operator()</name></member>
+      <member refid="class_fast_rand_1aed5b803f4e26008d1b133d7181b626ff" prot="public" virt="non-virtual"><scope>FastRand</scope><name>operator=</name></member>
+      <member refid="class_fast_rand_1aba6b711ca110b6e3ffa5aef1048cfa9b" prot="public" virt="non-virtual"><scope>FastRand</scope><name>randPositionSetter</name></member>
+      <member refid="class_fast_rand_1a8f87664883d9d0567615b169e99bcec5" prot="protected" virt="non-virtual"><scope>FastRand</scope><name>rndm</name></member>
+      <member refid="class_fast_rand_1a4acb58985ef91f01b3cb35b0aef2c5ee" prot="public" virt="non-virtual"><scope>FastRand</scope><name>~FastRand</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

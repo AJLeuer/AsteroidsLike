@@ -1,0 +1,149 @@
+\hypertarget{class_timer}{\section{Timer Class Reference}
+\label{class_timer}\index{Timer@{Timer}}
+}
+
+
+A class providing simple nanosecond-\/precision timing facilities.  
+
+
+
+
+{\ttfamily \#include $<$Timer.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_timer_a5f16e8da27d2a5a5242dead46de05d97}{Timer} ()
+\item 
+\hyperlink{class_timer_a0edd539085fac3d019a3465bab2ef3c2}{Timer} (\hyperlink{class_timer}{Timer} \&\&other)
+\item 
+\hyperlink{class_timer_a14fa469c4c295c5fa6e66a4ad1092146}{$\sim$\-Timer} ()
+\item 
+\hyperlink{class_timer}{Timer} \& \hyperlink{class_timer_afbca4871f4efb5aafb3078655ef9dda0}{operator=} (\hyperlink{class_timer}{Timer} \&\&rhs)
+\item 
+void \hyperlink{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{start\-Timer} ()
+\begin{DoxyCompactList}\small\item\em Starts the timer. \end{DoxyCompactList}\item 
+std\-::chrono\-::nanoseconds \hyperlink{class_timer_a0ef64385b0e418f5caf8a61f254a8800}{check\-Time\-Elapsed} ()
+\begin{DoxyCompactList}\small\item\em Checks the time elapsed since \hyperlink{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{start\-Timer()} was called. Unlike \hyperlink{class_timer_a3e55a0766fdb73df26dc4705641eccb6}{stop\-Timer()}, this function will not stop the timer. \end{DoxyCompactList}\item 
+std\-::chrono\-::nanoseconds \hyperlink{class_timer_a3e55a0766fdb73df26dc4705641eccb6}{stop\-Timer} ()
+\begin{DoxyCompactList}\small\item\em Stops timer and returns the time elapsed since \hyperlink{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{start\-Timer()} was called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class providing simple nanosecond-\/precision timing facilities. 
+
+Definition at line 23 of file Timer.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_timer_a5f16e8da27d2a5a5242dead46de05d97}{\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\subsubsection[{Timer}]{\setlength{\rightskip}{0pt plus 5cm}Timer\-::\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_timer_a5f16e8da27d2a5a5242dead46de05d97}
+
+
+Definition at line 7 of file Timer.\-cpp.
+
+\hypertarget{class_timer_a0edd539085fac3d019a3465bab2ef3c2}{\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\subsubsection[{Timer}]{\setlength{\rightskip}{0pt plus 5cm}Timer\-::\-Timer (
+\begin{DoxyParamCaption}
+\item[{{\bf Timer} \&\&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_timer_a0edd539085fac3d019a3465bab2ef3c2}
+
+
+Definition at line 9 of file Timer.\-cpp.
+
+\hypertarget{class_timer_a14fa469c4c295c5fa6e66a4ad1092146}{\index{Timer@{Timer}!$\sim$\-Timer@{$\sim$\-Timer}}
+\index{$\sim$\-Timer@{$\sim$\-Timer}!Timer@{Timer}}
+\subsubsection[{$\sim$\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}Timer\-::$\sim$\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_timer_a14fa469c4c295c5fa6e66a4ad1092146}
+
+
+Definition at line 11 of file Timer.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_timer_a0ef64385b0e418f5caf8a61f254a8800}{\index{Timer@{Timer}!check\-Time\-Elapsed@{check\-Time\-Elapsed}}
+\index{check\-Time\-Elapsed@{check\-Time\-Elapsed}!Timer@{Timer}}
+\subsubsection[{check\-Time\-Elapsed}]{\setlength{\rightskip}{0pt plus 5cm}std\-::chrono\-::nanoseconds Timer\-::check\-Time\-Elapsed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_timer_a0ef64385b0e418f5caf8a61f254a8800}
+
+
+Checks the time elapsed since \hyperlink{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{start\-Timer()} was called. Unlike \hyperlink{class_timer_a3e55a0766fdb73df26dc4705641eccb6}{stop\-Timer()}, this function will not stop the timer. 
+
+\begin{DoxyNote}{Note}
+1 millisecond = 1000000 nanoseconds
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The time elapsed in nanoseconds. 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file Timer.\-cpp.
+
+\hypertarget{class_timer_afbca4871f4efb5aafb3078655ef9dda0}{\index{Timer@{Timer}!operator=@{operator=}}
+\index{operator=@{operator=}!Timer@{Timer}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Timer} \& Timer\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Timer} \&\&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_timer_afbca4871f4efb5aafb3078655ef9dda0}
+
+
+Definition at line 13 of file Timer.\-cpp.
+
+\hypertarget{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{\index{Timer@{Timer}!start\-Timer@{start\-Timer}}
+\index{start\-Timer@{start\-Timer}!Timer@{Timer}}
+\subsubsection[{start\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\-::start\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}
+
+
+Starts the timer. 
+
+
+
+Definition at line 21 of file Timer.\-cpp.
+
+\hypertarget{class_timer_a3e55a0766fdb73df26dc4705641eccb6}{\index{Timer@{Timer}!stop\-Timer@{stop\-Timer}}
+\index{stop\-Timer@{stop\-Timer}!Timer@{Timer}}
+\subsubsection[{stop\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}std\-::chrono\-::nanoseconds Timer\-::stop\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_timer_a3e55a0766fdb73df26dc4705641eccb6}
+
+
+Stops timer and returns the time elapsed since \hyperlink{class_timer_aa8c887576ec3b0d68c10ebf4097c367c}{start\-Timer()} was called. 
+
+\begin{DoxyNote}{Note}
+1 millisecond = 1000000 nanoseconds
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The time elapsed in nanoseconds. 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file Timer.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\hyperlink{_timer_8hpp}{Timer.\-hpp}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\hyperlink{_timer_8cpp}{Timer.\-cpp}\end{DoxyCompactItemize}

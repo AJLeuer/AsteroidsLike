@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="struct_size" kind="struct" prot="public">
+    <compoundname>Size</compoundname>
+    <basecompoundref refid="struct_position" prot="public" virt="non-virtual">Position&lt; N &gt;</basecompoundref>
+    <includes refid="_size_8hpp" local="no">Size.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="struct_size_1a135344117cffe00f21a4e3427667cc9b" prot="private" static="no" mutable="no">
+        <type>N *</type>
+        <definition>N* Size&lt; N &gt;::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <initializer>= &amp;(this-&gt;<ref refid="struct_position_1af908be922fc88d89d81be7d08d06f761" kindref="member">x</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="23" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_size_1a7f816ebdae0dc57d8b627369a2d66ccb" prot="private" static="no" mutable="no">
+        <type>N *</type>
+        <definition>N* Size&lt; N &gt;::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <initializer>= &amp;(this-&gt;<ref refid="struct_position_1af434f54a0aad8bbfc3806ebdd197aa3b" kindref="member">y</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="24" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_size_1a12e5faeb8e0ad20e43e3811db08e912e" prot="private" static="no" mutable="no">
+        <type>N *</type>
+        <definition>N* Size&lt; N &gt;::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="25" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_size_1a21c9fc12c68b38338de53df84277ab6a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Size&lt; N &gt;::sizeModifier</definition>
+        <argsstring></argsstring>
+        <name>sizeModifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The size modifier. Each <ref refid="class_game_object" kindref="compound">GameObject</ref> will have a default size based on the sprite texture used to represent them, which will be multiplied by size. By default size will be 1, leaving the output unchanged. To adjust the size of this object, simply change the value of size (for instance, to make this half the normal size, set size = 0.5). </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="32" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="struct_size_1a0355914ae0b4c890b559e44c771a2ed5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Size&lt; N &gt;::setWidth</definition>
+        <argsstring>(N w)</argsstring>
+        <name>setWidth</name>
+        <param>
+          <type>N</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="34" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a32ae32b14e0d10c0344445fa52f81633" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Size&lt; N &gt;::setHeight</definition>
+        <argsstring>(N h)</argsstring>
+        <name>setHeight</name>
+        <param>
+          <type>N</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="35" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_size_1af17421be7acae6d13fc4670f04854de6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::Size</definition>
+        <argsstring>()</argsstring>
+        <name>Size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="40" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1abf87d26cd771b7fa7b7e3f37acd3e076" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::Size</definition>
+        <argsstring>(N w_, N h_, float modifier)</argsstring>
+        <name>Size</name>
+        <param>
+          <type>N</type>
+          <declname>w_</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>h_</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>modifier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="44" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="44" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1aebc8ee17587db4f84c8d9085f27a761d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::Size</definition>
+        <argsstring>(N w_, N h_)</argsstring>
+        <name>Size</name>
+        <param>
+          <type>N</type>
+          <declname>w_</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>h_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="48" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1ae90aed86840a6650d6ee3d5897afe148" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::Size</definition>
+        <argsstring>(const Size&lt; N &gt; &amp;other)</argsstring>
+        <name>Size</name>
+        <param>
+          <type>const <ref refid="struct_size" kindref="compound">Size</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="52" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a31ee38aed5f689000e9fb7415b2f60ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::Size</definition>
+        <argsstring>(Size&lt; N &gt; &amp;&amp;other)</argsstring>
+        <name>Size</name>
+        <param>
+          <type><ref refid="struct_size" kindref="compound">Size</ref>&lt; N &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="56" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a5a4e62203d653f23e3d88e966b86e3a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Size&lt; N &gt;::~Size</definition>
+        <argsstring>()</argsstring>
+        <name>~Size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="60" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1aa0067a04662b093f532b9ebec3175f66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_size" kindref="compound">Size</ref> &amp;</type>
+        <definition>Size&amp; Size&lt; N &gt;::operator=</definition>
+        <argsstring>(const Size&lt; N &gt; &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="struct_size" kindref="compound">Size</ref>&lt; N &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="62" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="62" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a7837d5a7b300e0e0052d21e8638361b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_size" kindref="compound">Size</ref> &amp;</type>
+        <definition>Size&amp; Size&lt; N &gt;::operator=</definition>
+        <argsstring>(Size&lt; N &gt; &amp;&amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="struct_size" kindref="compound">Size</ref>&lt; N &gt; &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="68" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a923481b9729ecc21e249f957049f5d75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Size&lt; N &gt;::setModifier</definition>
+        <argsstring>(const float modifier)</argsstring>
+        <name>setModifier</name>
+        <param>
+          <type>const float</type>
+          <declname>modifier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="74" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a0893fda3a27cd8bb3e232aa075bfb3cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Size&lt; N &gt;::setSize</definition>
+        <argsstring>(N w, N h)</argsstring>
+        <name>setSize</name>
+        <param>
+          <type>N</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="76" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="76" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a402405c7c280000893b3afb4a6bfcce8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Size&lt; N &gt;::setSize</definition>
+        <argsstring>(N w, N h, float modifier)</argsstring>
+        <name>setSize</name>
+        <param>
+          <type>N</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>modifier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="81" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="81" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a350abccbfe5b544af3fd6f9c2f50efdb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Size&lt; N &gt;::getModifier</definition>
+        <argsstring>() const </argsstring>
+        <name>getModifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="87" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a80f33b91ecc82d4cf95bc00b1a9406f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>N Size&lt; N &gt;::getWidth</definition>
+        <argsstring>() const </argsstring>
+        <name>getWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="88" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_size_1a403711af30722f363b175bc83dcbcc44" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>N Size&lt; N &gt;::getHeight</definition>
+        <argsstring>() const </argsstring>
+        <name>getHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="89" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="326">
+        <label>Position&lt; N &gt;</label>
+        <link refid="struct_position"/>
+      </node>
+      <node id="325">
+        <label>Size&lt; N &gt;</label>
+        <link refid="struct_size"/>
+        <childnode refid="326" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="328">
+        <label>Position&lt; N &gt;</label>
+        <link refid="struct_position"/>
+        <childnode refid="329" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+      <node id="329">
+        <label>N</label>
+      </node>
+      <node id="327">
+        <label>Size&lt; N &gt;</label>
+        <link refid="struct_size"/>
+        <childnode refid="328" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" line="19" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp" bodystart="19" bodyend="91"/>
+    <listofallmembers>
+      <member refid="struct_position_1acbec1420f0dc8f505c745b399ae93234" prot="public" virt="non-virtual"><scope>Size</scope><name>calcDistance</name></member>
+      <member refid="struct_position_1afd2bfedb3b315412862103233665fc02" prot="public" virt="non-virtual"><scope>Size</scope><name>checkBounds</name></member>
+      <member refid="struct_position_1aaf90e9e75b999bf2c43064feaa3694eb" prot="public" virt="non-virtual"><scope>Size</scope><name>checkBounds</name></member>
+      <member refid="struct_size_1a403711af30722f363b175bc83dcbcc44" prot="public" virt="non-virtual"><scope>Size</scope><name>getHeight</name></member>
+      <member refid="struct_position_1a7c5b646e881251041b2373b0b9ee235b" prot="public" virt="non-virtual"><scope>Size</scope><name>getIntX</name></member>
+      <member refid="struct_position_1a2ddf4656749e96c1ad4bfec272521364" prot="public" virt="non-virtual"><scope>Size</scope><name>getIntY</name></member>
+      <member refid="struct_position_1a41e19d862bf29d4aef2e25fbdd58f6b2" prot="public" virt="non-virtual"><scope>Size</scope><name>getIntZ</name></member>
+      <member refid="struct_size_1a350abccbfe5b544af3fd6f9c2f50efdb" prot="public" virt="non-virtual"><scope>Size</scope><name>getModifier</name></member>
+      <member refid="struct_size_1a80f33b91ecc82d4cf95bc00b1a9406f0" prot="public" virt="non-virtual"><scope>Size</scope><name>getWidth</name></member>
+      <member refid="struct_position_1a7d1262a6b6f63f04c605bebf93a1f068" prot="public" virt="non-virtual"><scope>Size</scope><name>getX</name></member>
+      <member refid="struct_position_1a71d93e9a234bc4f32a61781c4e88bc10" prot="public" virt="non-virtual"><scope>Size</scope><name>getY</name></member>
+      <member refid="struct_position_1a1d1171c9049c9a24be31bdb40e8662c0" prot="public" virt="non-virtual"><scope>Size</scope><name>getZ</name></member>
+      <member refid="struct_size_1a7f816ebdae0dc57d8b627369a2d66ccb" prot="private" virt="non-virtual"><scope>Size</scope><name>h</name></member>
+      <member refid="struct_position_1a71640a61fe271ddc9e2451037a11a86d" prot="public" virt="virtual"><scope>Size</scope><name>modify</name></member>
+      <member refid="struct_position_1aa3e6b4d0e63e42c91332ffba79359252" prot="public" virt="virtual"><scope>Size</scope><name>modify</name></member>
+      <member refid="struct_position_1a81dd41480a91a0817c1937afef4cb644" prot="public" virt="virtual"><scope>Size</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a4fa2e78d31d34daba2d555394c4e4b80" prot="public" virt="virtual"><scope>Size</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a3840e7e0c17531cd254810fe62340f52" prot="public" virt="virtual"><scope>Size</scope><name>moveHere</name></member>
+      <member refid="struct_position_1aa268c21ec09dbe0b579b0854ef74ddb9" prot="public" virt="virtual"><scope>Size</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a4be02284917613eaa574c3ebbbbbfcb8" prot="public" virt="virtual"><scope>Size</scope><name>operator!=</name></member>
+      <member refid="struct_position_1acaf1ee869c4bee9e4a6b152eee96efda" prot="public" virt="virtual"><scope>Size</scope><name>operator!=</name></member>
+      <member refid="struct_position_1a95f98be024d028f87681c12092afcb28" prot="public" virt="non-virtual"><scope>Size</scope><name>operator*</name></member>
+      <member refid="struct_position_1acee225b72b18e2468a8015fe3585958e" prot="public" virt="non-virtual"><scope>Size</scope><name>operator+</name></member>
+      <member refid="struct_position_1adc25e016e77688fabb733febd70dc3da" prot="public" virt="non-virtual"><scope>Size</scope><name>operator-</name></member>
+      <member refid="struct_position_1a51bc2b1d3ba86057fc8605208d2fb4cf" prot="public" virt="non-virtual"><scope>Size</scope><name>operator/</name></member>
+      <member refid="struct_size_1aa0067a04662b093f532b9ebec3175f66" prot="public" virt="non-virtual"><scope>Size</scope><name>operator=</name></member>
+      <member refid="struct_size_1a7837d5a7b300e0e0052d21e8638361b1" prot="public" virt="non-virtual"><scope>Size</scope><name>operator=</name></member>
+      <member refid="struct_position_1a669073574ecd196d45ea9d2ff0e3cced" prot="public" virt="virtual" ambiguityscope="Position::"><scope>Size</scope><name>operator=</name></member>
+      <member refid="struct_position_1a580451251fc288d806524683fc85550a" prot="public" virt="virtual" ambiguityscope="Position::"><scope>Size</scope><name>operator=</name></member>
+      <member refid="struct_position_1ac895fed24f992ab43913207bd5fb7048" prot="public" virt="virtual"><scope>Size</scope><name>operator==</name></member>
+      <member refid="struct_position_1a41b600238d7f4b174ed2c7dcd1ff8214" prot="public" virt="virtual"><scope>Size</scope><name>operator==</name></member>
+      <member refid="struct_position_1aac17c8dcac3808518f5e13c7ecf31c19" prot="public" virt="non-virtual"><scope>Size</scope><name>overBounds</name></member>
+      <member refid="struct_position_1a06da33376bc3a116664f8a34e816ba95" prot="public" virt="non-virtual"><scope>Size</scope><name>overXBounds</name></member>
+      <member refid="struct_position_1a45f215fed381839bf860752780a9660f" prot="public" virt="non-virtual"><scope>Size</scope><name>overYBounds</name></member>
+      <member refid="struct_position_1ae3a67f3e6f27a5594c181ca55d2b2ef3" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a82e58f222f30e32c322d77bf9a20352b" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a01b903d664fb8ac74a9342116ce63287" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a14a1831fd5c139aef062778edc05397d" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a5f4ebf0205cb9e52e6f78784ca34d733" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1aa7e02fe8aeff4147c31184d981813f9d" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a7b49db88251912bf531acec16719eb98" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1adfe6dffd68cbf7f26945bfb1a307fa6c" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a370b6460b790eef270233cd7a3527721" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a1072383b9a22b17759b55f897986f011" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1a410251ddeee4121896cac284e3d63de2" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1ae82fce224d7ef1599321a94b0a6f0cee" prot="public" virt="non-virtual"><scope>Size</scope><name>Position</name></member>
+      <member refid="struct_position_1af6cf3e9c2a535e8d988739e075ca76c1" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1abecde70eb2df3f274e171a06386feb4c" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1a03ff8fcf39be2dc2ac547b9849a03fd6" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1ae7ad6637ca006d95867059c5405c2fdc" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1a90a919f4e1d7cdd0fcc50101d4c9dbd0" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1ae27c3958d1827450e434a8b2bb4d1092" prot="public" virt="virtual"><scope>Size</scope><name>setAll</name></member>
+      <member refid="struct_position_1ad625d6ef1db5f72883c6e2834f7cae81" prot="public" virt="virtual"><scope>Size</scope><name>setAllZero</name></member>
+      <member refid="struct_size_1a32ae32b14e0d10c0344445fa52f81633" prot="private" virt="non-virtual"><scope>Size</scope><name>setHeight</name></member>
+      <member refid="struct_size_1a923481b9729ecc21e249f957049f5d75" prot="public" virt="non-virtual"><scope>Size</scope><name>setModifier</name></member>
+      <member refid="struct_size_1a0893fda3a27cd8bb3e232aa075bfb3cb" prot="public" virt="non-virtual"><scope>Size</scope><name>setSize</name></member>
+      <member refid="struct_size_1a402405c7c280000893b3afb4a6bfcce8" prot="public" virt="non-virtual"><scope>Size</scope><name>setSize</name></member>
+      <member refid="struct_size_1a0355914ae0b4c890b559e44c771a2ed5" prot="private" virt="non-virtual"><scope>Size</scope><name>setWidth</name></member>
+      <member refid="struct_position_1a8ff94b86d9853ec1323129e2864a2f8d" prot="public" virt="virtual"><scope>Size</scope><name>setX</name></member>
+      <member refid="struct_position_1af1ca6db4823de1c43f874e72ce2b9b66" prot="public" virt="virtual"><scope>Size</scope><name>setX</name></member>
+      <member refid="struct_position_1ab816c27eddb9c5d4951edfbb78dc7233" prot="public" virt="virtual"><scope>Size</scope><name>setY</name></member>
+      <member refid="struct_position_1a45f946eeadc660099a5c38f882e9074e" prot="public" virt="virtual"><scope>Size</scope><name>setY</name></member>
+      <member refid="struct_position_1aa2c5e74e13456b840ce39ae8fc09c59b" prot="public" virt="virtual"><scope>Size</scope><name>setZ</name></member>
+      <member refid="struct_position_1ac3dd191a672bd9696e6bb2ccf3a622e2" prot="public" virt="virtual"><scope>Size</scope><name>setZ</name></member>
+      <member refid="struct_size_1af17421be7acae6d13fc4670f04854de6" prot="public" virt="non-virtual"><scope>Size</scope><name>Size</name></member>
+      <member refid="struct_size_1abf87d26cd771b7fa7b7e3f37acd3e076" prot="public" virt="non-virtual"><scope>Size</scope><name>Size</name></member>
+      <member refid="struct_size_1aebc8ee17587db4f84c8d9085f27a761d" prot="public" virt="non-virtual"><scope>Size</scope><name>Size</name></member>
+      <member refid="struct_size_1ae90aed86840a6650d6ee3d5897afe148" prot="public" virt="non-virtual"><scope>Size</scope><name>Size</name></member>
+      <member refid="struct_size_1a31ee38aed5f689000e9fb7415b2f60ce" prot="public" virt="non-virtual"><scope>Size</scope><name>Size</name></member>
+      <member refid="struct_size_1a21c9fc12c68b38338de53df84277ab6a" prot="private" virt="non-virtual"><scope>Size</scope><name>sizeModifier</name></member>
+      <member refid="struct_position_1a4ebba65bc16bffa822c653522c5d7dcb" prot="public" virt="non-virtual"><scope>Size</scope><name>toString</name></member>
+      <member refid="struct_size_1a135344117cffe00f21a4e3427667cc9b" prot="private" virt="non-virtual"><scope>Size</scope><name>w</name></member>
+      <member refid="struct_position_1af908be922fc88d89d81be7d08d06f761" prot="protected" virt="non-virtual"><scope>Size</scope><name>x</name></member>
+      <member refid="struct_position_1aa5715ebd88d355988b0c0cf03814a271" prot="public" virt="virtual"><scope>Size</scope><name>x_minus_one</name></member>
+      <member refid="struct_position_1ab96af6ce73be6d52132f4d4e5bf77485" prot="public" virt="virtual"><scope>Size</scope><name>x_minus_one</name></member>
+      <member refid="struct_position_1aca2bf935dd53d012fe3529b81a111e23" prot="public" virt="virtual"><scope>Size</scope><name>x_plus_one</name></member>
+      <member refid="struct_position_1a86f84c270f732ee8a285f0d8672529ad" prot="public" virt="virtual"><scope>Size</scope><name>x_plus_one</name></member>
+      <member refid="struct_position_1af434f54a0aad8bbfc3806ebdd197aa3b" prot="protected" virt="non-virtual"><scope>Size</scope><name>y</name></member>
+      <member refid="struct_position_1a9979106cd4c31b19ecbb831a91ec218a" prot="public" virt="virtual"><scope>Size</scope><name>y_minus_one</name></member>
+      <member refid="struct_position_1a0c0ff46cc0329a0e0109084fb1856233" prot="public" virt="virtual"><scope>Size</scope><name>y_minus_one</name></member>
+      <member refid="struct_position_1a9d1ef5169f798099ab268f62c5acc9e1" prot="public" virt="virtual"><scope>Size</scope><name>y_plus_one</name></member>
+      <member refid="struct_position_1a4ac4b6f9dc9ab06e64ce7b16c5dcdfaa" prot="public" virt="virtual"><scope>Size</scope><name>y_plus_one</name></member>
+      <member refid="struct_size_1a12e5faeb8e0ad20e43e3811db08e912e" prot="private" virt="non-virtual"><scope>Size</scope><name>z</name></member>
+      <member refid="struct_position_1a21a4e620b847f606fe2e1c5244f0f78e" prot="public" virt="virtual"><scope>Size</scope><name>~Position</name></member>
+      <member refid="struct_size_1a5a4e62203d653f23e3d88e966b86e3a5" prot="public" virt="non-virtual"><scope>Size</scope><name>~Size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

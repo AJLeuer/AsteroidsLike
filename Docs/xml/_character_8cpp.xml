@@ -1,0 +1,798 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_character_8cpp" kind="file">
+    <compoundname>Character.cpp</compoundname>
+    <includes refid="_character_8h" local="yes">Character.h</includes>
+    <incdepgraph>
+      <node id="2129">
+        <label>list</label>
+      </node>
+      <node id="2157">
+        <label>functional</label>
+      </node>
+      <node id="2136">
+        <label>iomanip</label>
+      </node>
+      <node id="2133">
+        <label>queue</label>
+      </node>
+      <node id="2122">
+        <label>limits</label>
+      </node>
+      <node id="2139">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2140" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2127" relation="include">
+        </childnode>
+      </node>
+      <node id="2137">
+        <label>assert.h</label>
+      </node>
+      <node id="2116">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="2144">
+        <label>../Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2123" relation="include">
+        </childnode>
+        <childnode refid="2112" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2145" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2100">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.cpp</label>
+        <link refid="Character.cpp"/>
+        <childnode refid="2101" relation="include">
+        </childnode>
+      </node>
+      <node id="2154">
+        <label>GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2155" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2141">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="2107">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="2145">
+        <label>Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2104">
+        <label>../Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2106" relation="include">
+        </childnode>
+        <childnode refid="2107" relation="include">
+        </childnode>
+        <childnode refid="2108" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2114" relation="include">
+        </childnode>
+        <childnode refid="2121" relation="include">
+        </childnode>
+        <childnode refid="2124" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2138">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2118" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+      </node>
+      <node id="2112">
+        <label>cmath</label>
+      </node>
+      <node id="2142">
+        <label>GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2112" relation="include">
+        </childnode>
+        <childnode refid="2143" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2144" relation="include">
+        </childnode>
+        <childnode refid="2145" relation="include">
+        </childnode>
+        <childnode refid="2121" relation="include">
+        </childnode>
+        <childnode refid="2138" relation="include">
+        </childnode>
+        <childnode refid="2104" relation="include">
+        </childnode>
+        <childnode refid="2146" relation="include">
+        </childnode>
+        <childnode refid="2141" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2151" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2154" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+        <childnode refid="2156" relation="include">
+        </childnode>
+      </node>
+      <node id="2108">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="2111">
+        <label>string</label>
+      </node>
+      <node id="2117">
+        <label>fstream</label>
+      </node>
+      <node id="2125">
+        <label>ostream</label>
+      </node>
+      <node id="2126">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2125" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2127" relation="include">
+        </childnode>
+        <childnode refid="2128" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2129" relation="include">
+        </childnode>
+        <childnode refid="2130" relation="include">
+        </childnode>
+        <childnode refid="2116" relation="include">
+        </childnode>
+        <childnode refid="2107" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2114" relation="include">
+        </childnode>
+        <childnode refid="2138" relation="include">
+        </childnode>
+        <childnode refid="2141" relation="include">
+        </childnode>
+        <childnode refid="2120" relation="include">
+        </childnode>
+      </node>
+      <node id="2151">
+        <label>GameMap.hpp</label>
+        <link refid="_game_map_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2133" relation="include">
+        </childnode>
+        <childnode refid="2134" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2129" relation="include">
+        </childnode>
+        <childnode refid="2152" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2153" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2121">
+        <label>../Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2122" relation="include">
+        </childnode>
+        <childnode refid="2123" relation="include">
+        </childnode>
+        <childnode refid="2112" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2149">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="2123">
+        <label>random</label>
+      </node>
+      <node id="2130">
+        <label>condition_variable</label>
+      </node>
+      <node id="2147">
+        <label>unistd.h</label>
+      </node>
+      <node id="2105">
+        <label>vector</label>
+      </node>
+      <node id="2158">
+        <label>SDL2/SDL_events.h</label>
+      </node>
+      <node id="2128">
+        <label>array</label>
+      </node>
+      <node id="2115">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="2116" relation="include">
+        </childnode>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2117" relation="include">
+        </childnode>
+        <childnode refid="2118" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2119" relation="include">
+        </childnode>
+        <childnode refid="2120" relation="include">
+        </childnode>
+      </node>
+      <node id="2103">
+        <label>sstream</label>
+      </node>
+      <node id="2156">
+        <label>../Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2157" relation="include">
+        </childnode>
+        <childnode refid="2148" relation="include">
+        </childnode>
+        <childnode refid="2129" relation="include">
+        </childnode>
+        <childnode refid="2149" relation="include">
+        </childnode>
+        <childnode refid="2158" relation="include">
+        </childnode>
+        <childnode refid="2159" relation="include">
+        </childnode>
+        <childnode refid="2116" relation="include">
+        </childnode>
+        <childnode refid="2126" relation="include">
+        </childnode>
+        <childnode refid="2154" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2150">
+        <label>SDL2_ttf/SDL_ttf.h</label>
+      </node>
+      <node id="2135">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="2118" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2127" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2136" relation="include">
+        </childnode>
+        <childnode refid="2111" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2137" relation="include">
+        </childnode>
+        <childnode refid="2138" relation="include">
+        </childnode>
+        <childnode refid="2139" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2109">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2111" relation="include">
+        </childnode>
+        <childnode refid="2105" relation="include">
+        </childnode>
+        <childnode refid="2112" relation="include">
+        </childnode>
+        <childnode refid="2113" relation="include">
+        </childnode>
+      </node>
+      <node id="2102">
+        <label>iostream</label>
+      </node>
+      <node id="2143">
+        <label>SDL2/SDL_surface.h</label>
+      </node>
+      <node id="2134">
+        <label>deque</label>
+      </node>
+      <node id="2120">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2118" relation="include">
+        </childnode>
+      </node>
+      <node id="2152">
+        <label>climits</label>
+      </node>
+      <node id="2114">
+        <label>../Util/BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2127">
+        <label>mutex</label>
+      </node>
+      <node id="2118">
+        <label>chrono</label>
+      </node>
+      <node id="2113">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="2132">
+        <label>../Util/Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="2112" relation="include">
+        </childnode>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2125" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2133" relation="include">
+        </childnode>
+        <childnode refid="2134" relation="include">
+        </childnode>
+        <childnode refid="2116" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2114" relation="include">
+        </childnode>
+        <childnode refid="2135" relation="include">
+        </childnode>
+        <childnode refid="2121" relation="include">
+        </childnode>
+        <childnode refid="2139" relation="include">
+        </childnode>
+      </node>
+      <node id="2110">
+        <label>thread</label>
+      </node>
+      <node id="2124">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2125" relation="include">
+        </childnode>
+        <childnode refid="2114" relation="include">
+        </childnode>
+        <childnode refid="2121" relation="include">
+        </childnode>
+      </node>
+      <node id="2146">
+        <label>../Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="2147" relation="include">
+        </childnode>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2110" relation="include">
+        </childnode>
+        <childnode refid="2118" relation="include">
+        </childnode>
+        <childnode refid="2148" relation="include">
+        </childnode>
+        <childnode refid="2149" relation="include">
+        </childnode>
+        <childnode refid="2113" relation="include">
+        </childnode>
+        <childnode refid="2116" relation="include">
+        </childnode>
+        <childnode refid="2107" relation="include">
+        </childnode>
+        <childnode refid="2108" relation="include">
+        </childnode>
+        <childnode refid="2150" relation="include">
+        </childnode>
+        <childnode refid="2121" relation="include">
+        </childnode>
+        <childnode refid="2131" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2144" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+        <childnode refid="2145" relation="include">
+        </childnode>
+        <childnode refid="2104" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2153">
+        <label>../Util/Navigator.hpp</label>
+        <link refid="_navigator_8hpp"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2109" relation="include">
+        </childnode>
+        <childnode refid="2132" relation="include">
+        </childnode>
+      </node>
+      <node id="2155">
+        <label>Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2124" relation="include">
+        </childnode>
+      </node>
+      <node id="2101">
+        <label>Character.h</label>
+        <link refid="_character_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2103" relation="include">
+        </childnode>
+        <childnode refid="2104" relation="include">
+        </childnode>
+        <childnode refid="2142" relation="include">
+        </childnode>
+        <childnode refid="2156" relation="include">
+        </childnode>
+      </node>
+      <node id="2131">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="2102" relation="include">
+        </childnode>
+        <childnode refid="2125" relation="include">
+        </childnode>
+        <childnode refid="2117" relation="include">
+        </childnode>
+        <childnode refid="2115" relation="include">
+        </childnode>
+      </node>
+      <node id="2159">
+        <label>SDL2/SDL_keyboard.h</label>
+      </node>
+      <node id="2119">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="2140">
+        <label>memory</label>
+      </node>
+      <node id="2148">
+        <label>initializer_list</label>
+      </node>
+      <node id="2106">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Character.cpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>World</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>3/11/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_character_8h" kindref="compound">Character.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" refkind="member"><highlight class="normal"><ref refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" kindref="member">Character::Character</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref>(),</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>name(</highlight><highlight class="stringliteral">&quot;noName&quot;</highlight><highlight class="normal">),<sp/>reaction(<ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref>::<ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339a8aa539aea4cf281e61b85f88cf2c511d" kindref="member">noreact</ref>),</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>(<ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref>(0)),state(),</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>health(),<sp/>damage()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="class_character_1a0eac14bff9a793857bb2a86a2c0fcf9c" refkind="member"><highlight class="normal"><ref refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" kindref="member">Character::Character</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref>(other),<sp/>reaction(other.reaction),</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>name(other.name),<sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>(other.<ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>state(other.state),<sp/>health(other.health),</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>damage(other.damage)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="class_character_1a90171e1a0ff378b3bbe125f85b4ecfdb" refkind="member"><highlight class="normal"><ref refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" kindref="member">Character::Character</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref>(std::move(other)),</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>name(std::move(other.name)),<sp/>reaction(std::move(other.reaction)),</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>(std::move(other.<ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>)),</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>state(std::move(other.state)),<sp/>health(other.health),</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>damage(other.damage)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>other.health<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>other.damage<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_character_1a71ddaf9372427d6bacf3b6aa0116cecf" refkind="member"><highlight class="normal"><ref refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" kindref="member">Character::Character</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>imageFile,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sizeModifier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;float&gt;</ref><sp/>&amp;<sp/>loc,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name,<sp/><ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref><sp/>reaction,<sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref><sp/>alive,<sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/>state,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>health,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>damage,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>monitorVelocity)<sp/>:</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref>(imageFile,<sp/>sizeModifier,<sp/>loc,<sp/>true,<sp/>monitorVelocity),</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>reaction(reaction),<sp/>name(name),<sp/>alive(alive),</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>state(state),<sp/>health(new<sp/><ref refid="struct_health" kindref="compound">Health</ref>(health)),<sp/>damage(new<sp/><ref refid="struct_damage" kindref="compound">Damage</ref>(damage))</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_character_1aa9363d80872be14d29b006745ff0b58a" refkind="member"><highlight class="normal"><ref refid="class_character_1adc27bdd255876169bad2ed0bae0cffb5" kindref="member">Character::Character</ref>(<ref refid="class_fast_rand" kindref="compound">FastRand&lt;int&gt;</ref><sp/>rand)<sp/>:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref>(rand),</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>reaction((<ref refid="_character_data_8h_1a0e5ce1612c1e71823c97a9cd734de339" kindref="member">Reaction</ref>)rand.nextValue(-2,<sp/>2)),<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>(<ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448" kindref="member">DoA</ref>::<ref refid="_character_data_8h_1acbff4d7298e294294555d39178aad448a7bd3d5f5b3cdb13aed632121206e729c" kindref="member">alive</ref>),</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>state(<ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref>::<ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5afea087517c26fadd409bd4b9dc642555" kindref="member">normal</ref>),</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>health(new<sp/><ref refid="struct_health" kindref="compound">Health</ref>(goRand.nextValue(0,<sp/>500))),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>damage(new<sp/><ref refid="struct_damage" kindref="compound">Damage</ref>(goRand.nextValue(0,<sp/>50)))</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>=<sp/><ref refid="_util_8hpp_1a4c756e2902d65501d8bca292e0d08b5d" kindref="member">generateName</ref>(<ref refid="class_game_object_1adc2b5a062ff3d5ee496f47a0206ddcc7" kindref="member">goRand</ref>.<ref refid="class_fast_rand_1a69ad4de951e5150cbde4b0775f4c029a" kindref="member">nextValue</ref>(0,<sp/>11)<sp/>+<sp/>5)<sp/>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="class_character_1a9e9be564d05ded80962b2045aa70b3fc" refkind="member"><highlight class="normal"><ref refid="class_character_1a9e9be564d05ded80962b2045aa70b3fc" kindref="member">Character::~Character</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_character_1acdb4f61692995622e350cbfbb0c4d8c6" refkind="member"><highlight class="normal"><ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;<sp/><ref refid="class_character_1acdb4f61692995622e350cbfbb0c4d8c6" kindref="member">Character::operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_game_object_1afa8505b16b7f5fe0b825d59fcee17291" kindref="member">GameObject::operator=</ref>(rhs)<sp/>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>=<sp/>rhs.<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1a579933775b2e4e97465bacb09c4e87f5" kindref="member">reaction</ref><sp/>=<sp/>rhs.<ref refid="class_character_1a579933775b2e4e97465bacb09c4e87f5" kindref="member">reaction</ref><sp/>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ac83b99be690bb41b7fae53e9457838c6" kindref="member">alive</ref><sp/>=<sp/>rhs.<ref refid="class_character_1ac83b99be690bb41b7fae53e9457838c6" kindref="member">alive</ref><sp/>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>=<sp/>rhs.<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>=<sp/>rhs.<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>=<sp/>rhs.<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_character_1a0c0f1e362dabc8877889e49185afd43e" refkind="member"><highlight class="normal"><ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;<sp/><ref refid="class_character_1acdb4f61692995622e350cbfbb0c4d8c6" kindref="member">Character::operator=</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>&amp;&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_game_object_1afa8505b16b7f5fe0b825d59fcee17291" kindref="member">GameObject::operator=</ref>(std::move(rhs))<sp/>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>=<sp/>std::move(rhs.name)<sp/>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1a579933775b2e4e97465bacb09c4e87f5" kindref="member">reaction</ref><sp/>=<sp/>std::move(rhs.reaction)<sp/>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ac83b99be690bb41b7fae53e9457838c6" kindref="member">alive</ref><sp/>=<sp/>std::move(rhs.alive)<sp/>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>=<sp/>std::move(rhs.state)<sp/>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>=<sp/>rhs.health<sp/>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>=<sp/>rhs.damage<sp/>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rhs.health<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rhs.damage<sp/>=<sp/>nullptr<sp/>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="class_character_1a3c4dfc59865fe39251070cd0b92d34ac" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a3c4dfc59865fe39251070cd0b92d34ac" kindref="member">Character::operator()</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//todo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="class_character_1a6dde2dd17bfd31ea6e008d83bdcd3188" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a3c4dfc59865fe39251070cd0b92d34ac" kindref="member">Character::operator()</ref>(<ref refid="class_game_object" kindref="compound">GameObject</ref><sp/>*<sp/>other)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//todo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="class_character_1a457dab4f04550716888425da681b9f1f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a457dab4f04550716888425da681b9f1f" kindref="member">Character::notify</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//todo<sp/>implement</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="class_character_1ad0574321c7429301d4d9dd1dd33301c4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1ad0574321c7429301d4d9dd1dd33301c4" kindref="member">Character::passMessage</ref>(<ref refid="struct_message" kindref="compound">Message</ref><sp/>*message,<sp/><ref refid="class_game_object" kindref="compound">GameObject</ref><sp/>&amp;recipient)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//todo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="class_character_1a2ab1090f959f0c66b098e0463d4c1bdd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a2ab1090f959f0c66b098e0463d4c1bdd" kindref="member">Character::textDescription</ref>(ostream<sp/>*<sp/>writeTo)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Character<sp/>name:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>&lt;&lt;<sp/>endl<sp/>;;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Current<sp/>status:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>&lt;&lt;<sp/>endl<sp/><sp/>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Current<sp/>health:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>&lt;&lt;<sp/>endl<sp/>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Damage<sp/>capability:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>&lt;&lt;<sp/>endl<sp/>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_game_object_1adc249c683994a9c74b518a82fc22dbab" kindref="member">GameObject::textDescription</ref>(&amp;ss)<sp/>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>*writeTo<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//using<sp/>GameObject&apos;s<sp/>implementation<sp/>for<sp/>now,<sp/>may<sp/>change</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="class_character_1ac96260f4fd9b68a33919a65bc9da9bca" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1ac96260f4fd9b68a33919a65bc9da9bca" kindref="member">Character::defaultBehaviors</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_character_1a7bd55d3615c1eb092f800d8634fa9695" kindref="member">aiBehaviors</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="class_character_1a7bd55d3615c1eb092f800d8634fa9695" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a7bd55d3615c1eb092f800d8634fa9695" kindref="member">Character::aiBehaviors</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="class_character_1a7be3b65a2bc5facbb39ee208f5898560" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a7be3b65a2bc5facbb39ee208f5898560" kindref="member">Character::attack</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>*<sp/>enemy)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>stringstream<sp/>ss<sp/>;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Fight!<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>attacked<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>enemy-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>(*Debug::debugOutput)<sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>ss.clear()<sp/>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_character_1aa3a40043d1f3c27edd921aa0e0ef7616" kindref="member">attack_helper</ref>(enemy)<sp/>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>&gt;<sp/>enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/>this-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>wins!&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_debug_8h_1a060bbb38ef3767737e942eaf39c0227a" kindref="member">DebugOutput</ref><sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enemy-&gt;<ref refid="class_game_object_1ad99b7e0e0138da7cc825a13a1a0c5326" kindref="member">markForDeletion</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>&gt;<sp/>this-&gt;health)<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/>enemy-&gt;<ref refid="class_character_1a2d423654566d1bf2160fef74bf04cc84" kindref="member">name</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>wins!&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_debug_8h_1a060bbb38ef3767737e942eaf39c0227a" kindref="member">DebugOutput</ref><sp/>&lt;&lt;<sp/>ss.rdbuf()<sp/>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_game_object_1ad99b7e0e0138da7cc825a13a1a0c5326" kindref="member">markForDeletion</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="class_debug_1a1225f6de79fad7fd1cd7b180e139cec1" kindref="member">Debug::debugOutput</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;A<sp/>tie!<sp/>\n&quot;</highlight><highlight class="normal">)<sp/>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="class_character_1aa3a40043d1f3c27edd921aa0e0ef7616" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1aa3a40043d1f3c27edd921aa0e0ef7616" kindref="member">Character::attack_helper</ref>(<ref refid="class_character" kindref="compound">Character</ref><sp/>*<sp/>enemy)<sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>=<sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a1f0c59a8bc5effbbeacdf328d30039e9" kindref="member">CharacterState::inCombat</ref><sp/>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(enemy-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref><sp/>!=<sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5a1f0c59a8bc5effbbeacdf328d30039e9" kindref="member">CharacterState::inCombat</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enemy-&gt;<ref refid="class_character_1aa3a40043d1f3c27edd921aa0e0ef7616" kindref="member">attack_helper</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">)<sp/>;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>*(enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>)<sp/>=<sp/>((enemy-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>())<sp/>-<sp/>(this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref>-&gt;<ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value</ref>()))<sp/>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>enemy-&gt;<ref refid="class_character_1aa3a40043d1f3c27edd921aa0e0ef7616" kindref="member">attack_helper</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">)<sp/>;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="class_character_1a1887dada668e71e5b072e71178df87b0" refkind="member"><highlight class="normal"><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/>*<sp/><ref refid="class_character_1a1887dada668e71e5b072e71178df87b0" kindref="member">Character::getState</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_character_data_8h_1aacbb008a93d24b04a8779bbdbd8880b5" kindref="member">CharacterState</ref><sp/>*<sp/>st<sp/>=<sp/>&amp;(this-&gt;<ref refid="class_character_1ac20f1ebda238017ddc245ecdce827037" kindref="member">state</ref>)<sp/>;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>st<sp/>;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="class_character_1a225fa5b49f3330f70936ece3f6993448" refkind="member"><highlight class="normal"><ref refid="struct_health" kindref="compound">Health</ref><sp/>*<sp/><ref refid="class_character_1a225fa5b49f3330f70936ece3f6993448" kindref="member">Character::checkHealth</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_health" kindref="compound">Health</ref><sp/>*<sp/>h<sp/>=<sp/>this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>h<sp/>;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="class_character_1a22d3d47dcf5775dac41539ecc3dee072" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a22d3d47dcf5775dac41539ecc3dee072" kindref="member">Character::modHealth</ref>(<ref refid="struct_health" kindref="compound">Health</ref><sp/>*<sp/>other)<sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae8c0d82624dc3a171e2c3b42c699151e" kindref="member">health</ref><sp/>=<sp/>other<sp/>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="class_character_1a180960a01e928627bfd672dbb19b2f56" refkind="member"><highlight class="normal"><ref refid="struct_damage" kindref="compound">Damage</ref><sp/>*<sp/><ref refid="class_character_1a180960a01e928627bfd672dbb19b2f56" kindref="member">Character::getDamage</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_damage" kindref="compound">Damage</ref><sp/>*<sp/>d<sp/>=<sp/>this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d<sp/>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="class_character_1a80e7bdfad72a223ff4a98e45089ea896" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_character_1a80e7bdfad72a223ff4a98e45089ea896" kindref="member">Character::modDamage</ref>(<ref refid="struct_damage" kindref="compound">Damage</ref><sp/>*<sp/>other)<sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_character_1ae6a140637ffe5004179d90a0e04a411b" kindref="member">damage</ref><sp/>=<sp/>other<sp/>;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,417 @@
+\hypertarget{class_text_output}{\section{Text\-Output$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ Class Template Reference}
+\label{class_text_output}\index{Text\-Output$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$@{Text\-Output$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$}}
+}
+
+
+{\ttfamily \#include $<$Text\-Output.\-hpp$>$}
+
+Inheritance diagram for Text\-Output$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_text_output}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_text_output_abac1dd11f3ca8dc1ed87f07c17000924}{Text\-Output} (const string \&\hyperlink{class_text_output_aa63e4c0936ed44ad8658f9567acd437b}{text}, const \hyperlink{struct_position}{Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&pos, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a969669fc87e0828685b6b20c4bb79616}{foreground}, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}{background})
+\item 
+\hyperlink{class_text_output_a8fffd270710bf5d13430696091491064}{$\sim$\-Text\-Output} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \hyperlink{class_text_output}{Text\-Output}. \end{DoxyCompactList}\item 
+void \hyperlink{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{update\-Text} (const string \&new\-Text)
+\item 
+void \hyperlink{class_text_output_ae028755399b3afc882a98da908759d0f}{update\-Position} (const \hyperlink{struct_position}{Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&pos)
+\item 
+void \hyperlink{class_text_output_a6477f07208204b1c058ba6fa6b0e5cc6}{update\-Foreground\-Color} (\hyperlink{struct_game_color}{Game\-Color} color)
+\item 
+void \hyperlink{class_text_output_a46c108e633d09a102788e600b7a6d370}{update\-Background\-Color} (\hyperlink{struct_game_color}{Game\-Color} color)
+\item 
+const \hyperlink{struct_output_data}{Output\-Data}$<$ P\-O\-S\-U\-T\-Y\-P\-E, \\*
+S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ $\ast$ \hyperlink{class_text_output_ae0f04c5f70ce6e372f7859daedbf39ee}{get\-Output\-Data} ()
+\item 
+const string $\ast$ \hyperlink{class_text_output_a811bcb3bc1d278ad3716bf768af2ca9d}{view\-Text} ()
+\item 
+void \hyperlink{class_text_output_aa7a22a6b6c0a323524ac4c956d54034c}{erase} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_text_output_ae5f21f4ba09be0b403967268b7ef0ad7}{init} ()
+\item 
+static \hyperlink{struct_size}{Size}$<$ S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ \hyperlink{class_text_output_a0ec07dd71eac9a1dd1622e506bd49377}{get\-Size\-Of\-Text} (const string \&str)
+\item 
+static void \hyperlink{class_text_output_adc94b706e632c9e2b1d62f5756dfbbb5}{exit} ()
+\item 
+static void \hyperlink{class_text_output_ac1c4bc687c2007648a18d3c76ee828f6}{display\-Continuous\-Text} (const string $\ast$updating\-Text, const \hyperlink{struct_position}{Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&pos, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a969669fc87e0828685b6b20c4bb79616}{foreground}, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}{background})
+\begin{DoxyCompactList}\small\item\em Draws a continuously updating text representation of updating\-Text, overriding this-\/$>$text. When using this function there is no need to call \hyperlink{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{update\-Text()}. \end{DoxyCompactList}\item 
+static void \hyperlink{class_text_output_a06a756cc49331463a0e4dd8c4bf57e09}{display\-Continuous\-Text} (function$<$ const string(void)$>$ string\-Updating\-Function, const \hyperlink{struct_position}{Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&pos, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a969669fc87e0828685b6b20c4bb79616}{foreground}, \hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}{background})
+\begin{DoxyCompactList}\small\item\em Draws a continuously updating text representation of the string returned by string\-Updating\-Function, overriding this-\/$>$text. When using this function there is no need to call \hyperlink{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{update\-Text()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_text_output_a2f79d90f6d31ff248fde34f455cf7e16}{add\-Additional\-Update\-Flags} ()
+\item 
+void \hyperlink{class_text_output_a77b70d1145a189362996cd6b308e7dde}{complete\-Initialization} ()
+\begin{DoxyCompactList}\small\item\em Does the remaining initialization that could not be done in the constructor (because it does not know with certainty that it is on the main thread) \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_text_output_a0fc3ebc814aa43df128bc6fcc80f5560}{update} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_text_output_aa63e4c0936ed44ad8658f9567acd437b}{text}
+\item 
+bool \hyperlink{class_text_output_a01eda9d47821115d2389cc874867f2f5}{text\-\_\-was\-\_\-updated} = false
+\item 
+\hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a969669fc87e0828685b6b20c4bb79616}{foreground}
+\item 
+\hyperlink{struct_game_color}{Game\-Color} \hyperlink{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}{background}
+\item 
+bool \hyperlink{class_text_output_abb92f5a8c0c871c8b917f441567d9cae}{color\-\_\-was\-\_\-updated} = false
+\item 
+bool \hyperlink{class_text_output_a51e0f91233dbf52332b3562ab72aca28}{position\-\_\-was\-\_\-updated}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static T\-T\-F\-\_\-\-Font $\ast$ \hyperlink{class_text_output_a784e5c34428d43ed01fc5367638df07e}{game\-Font} = nullptr
+\item 
+static \hyperlink{class_basic_mutex}{Basic\-Mutex} \hyperlink{class_text_output_a64b0160aa7e8ebe7b65744197886662e}{text\-Mutex}
+\item 
+static const vector\\*
+$<$ \hyperlink{struct_output_data}{Output\-Data}$<$ P\-O\-S\-U\-T\-Y\-P\-E, \\*
+S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ $\ast$ $>$ $\ast$ \hyperlink{class_text_output_ae8c77617052494529e2e15a1379c8fa2}{view\-Output\-Data} = \hyperlink{struct_output_data}{Output\-Data}$<$P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E$>$\-::\hyperlink{class_text_output_ae0f04c5f70ce6e372f7859daedbf39ee}{get\-Output\-Data}()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_text_output_a0969009180cf671defc02a7b2ad9d500}{Graphical\-Output}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename P\-O\-S\-U\-T\-Y\-P\-E, typename S\-I\-Z\-E\-U\-T\-Y\-P\-E$>$class Text\-Output$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$}
+
+
+
+Definition at line 38 of file Text\-Output.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_text_output_abac1dd11f3ca8dc1ed87f07c17000924}{\index{Text\-Output@{Text\-Output}!Text\-Output@{Text\-Output}}
+\index{Text\-Output@{Text\-Output}!TextOutput@{Text\-Output}}
+\subsubsection[{Text\-Output}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::{\bf Text\-Output} (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{text, }
+\item[{const {\bf Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&}]{pos, }
+\item[{{\bf Game\-Color}}]{foreground, }
+\item[{{\bf Game\-Color}}]{background}
+\end{DoxyParamCaption}
+)}}\label{class_text_output_abac1dd11f3ca8dc1ed87f07c17000924}
+Creates a \hyperlink{class_text_output}{Text\-Output} object which will automatically output the string text to the screen, at the chosen position position, at the next output update. \hyperlink{class_text_output}{Text\-Output} assumes that all pointers given to it remain valid for calling refresh() 
+
+Definition at line 178 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a8fffd270710bf5d13430696091491064}{\index{Text\-Output@{Text\-Output}!$\sim$\-Text\-Output@{$\sim$\-Text\-Output}}
+\index{$\sim$\-Text\-Output@{$\sim$\-Text\-Output}!TextOutput@{Text\-Output}}
+\subsubsection[{$\sim$\-Text\-Output}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::$\sim${\bf Text\-Output} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_output_a8fffd270710bf5d13430696091491064}
+
+
+Destructor for \hyperlink{class_text_output}{Text\-Output}. 
+
+
+
+Definition at line 88 of file Text\-Output.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_text_output_a2f79d90f6d31ff248fde34f455cf7e16}{\index{Text\-Output@{Text\-Output}!add\-Additional\-Update\-Flags@{add\-Additional\-Update\-Flags}}
+\index{add\-Additional\-Update\-Flags@{add\-Additional\-Update\-Flags}!TextOutput@{Text\-Output}}
+\subsubsection[{add\-Additional\-Update\-Flags}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::add\-Additional\-Update\-Flags (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_a2f79d90f6d31ff248fde34f455cf7e16}
+
+
+Definition at line 192 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a77b70d1145a189362996cd6b308e7dde}{\index{Text\-Output@{Text\-Output}!complete\-Initialization@{complete\-Initialization}}
+\index{complete\-Initialization@{complete\-Initialization}!TextOutput@{Text\-Output}}
+\subsubsection[{complete\-Initialization}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::complete\-Initialization (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_text_output_a77b70d1145a189362996cd6b308e7dde}
+
+
+Does the remaining initialization that could not be done in the constructor (because it does not know with certainty that it is on the main thread) 
+
+\begin{DoxyNote}{Note}
+Can O\-N\-L\-Y be run on the main thread 
+\end{DoxyNote}
+
+
+Reimplemented from \hyperlink{struct_output_data_a7bca309627422d32bd485356394a4ed8}{Output\-Data$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$}.
+
+
+
+Definition at line 203 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_ac1c4bc687c2007648a18d3c76ee828f6}{\index{Text\-Output@{Text\-Output}!display\-Continuous\-Text@{display\-Continuous\-Text}}
+\index{display\-Continuous\-Text@{display\-Continuous\-Text}!TextOutput@{Text\-Output}}
+\subsubsection[{display\-Continuous\-Text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::display\-Continuous\-Text (
+\begin{DoxyParamCaption}
+\item[{const string $\ast$}]{updating\-Text, }
+\item[{const {\bf Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&}]{pos, }
+\item[{{\bf Game\-Color}}]{foreground, }
+\item[{{\bf Game\-Color}}]{background}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_text_output_ac1c4bc687c2007648a18d3c76ee828f6}
+
+
+Draws a continuously updating text representation of updating\-Text, overriding this-\/$>$text. When using this function there is no need to call \hyperlink{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{update\-Text()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em updating\-Text} & The text to draw \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 332 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a06a756cc49331463a0e4dd8c4bf57e09}{\index{Text\-Output@{Text\-Output}!display\-Continuous\-Text@{display\-Continuous\-Text}}
+\index{display\-Continuous\-Text@{display\-Continuous\-Text}!TextOutput@{Text\-Output}}
+\subsubsection[{display\-Continuous\-Text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::display\-Continuous\-Text (
+\begin{DoxyParamCaption}
+\item[{function$<$ const string(void)$>$}]{string\-Updating\-Function, }
+\item[{const {\bf Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&}]{pos, }
+\item[{{\bf Game\-Color}}]{foreground, }
+\item[{{\bf Game\-Color}}]{background}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_text_output_a06a756cc49331463a0e4dd8c4bf57e09}
+
+
+Draws a continuously updating text representation of the string returned by string\-Updating\-Function, overriding this-\/$>$text. When using this function there is no need to call \hyperlink{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{update\-Text()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string\-Updating\-Function} & A function that returns the text to draw \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 352 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_aa7a22a6b6c0a323524ac4c956d54034c}{\index{Text\-Output@{Text\-Output}!erase@{erase}}
+\index{erase@{erase}!TextOutput@{Text\-Output}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::erase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_output_aa7a22a6b6c0a323524ac4c956d54034c}
+
+
+Definition at line 104 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_adc94b706e632c9e2b1d62f5756dfbbb5}{\index{Text\-Output@{Text\-Output}!exit@{exit}}
+\index{exit@{exit}!TextOutput@{Text\-Output}}
+\subsubsection[{exit}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_text_output_adc94b706e632c9e2b1d62f5756dfbbb5}
+
+
+Definition at line 172 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_ae0f04c5f70ce6e372f7859daedbf39ee}{\index{Text\-Output@{Text\-Output}!get\-Output\-Data@{get\-Output\-Data}}
+\index{get\-Output\-Data@{get\-Output\-Data}!TextOutput@{Text\-Output}}
+\subsubsection[{get\-Output\-Data}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ const {\bf Output\-Data}$<$P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E$>$$\ast$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::get\-Output\-Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_output_ae0f04c5f70ce6e372f7859daedbf39ee}
+
+
+Definition at line 100 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a0ec07dd71eac9a1dd1622e506bd49377}{\index{Text\-Output@{Text\-Output}!get\-Size\-Of\-Text@{get\-Size\-Of\-Text}}
+\index{get\-Size\-Of\-Text@{get\-Size\-Of\-Text}!TextOutput@{Text\-Output}}
+\subsubsection[{get\-Size\-Of\-Text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Size}$<$ S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::get\-Size\-Of\-Text (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_text_output_a0ec07dd71eac9a1dd1622e506bd49377}
+
+
+Definition at line 153 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_ae5f21f4ba09be0b403967268b7ef0ad7}{\index{Text\-Output@{Text\-Output}!init@{init}}
+\index{init@{init}!TextOutput@{Text\-Output}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_text_output_ae5f21f4ba09be0b403967268b7ef0ad7}
+
+
+Definition at line 138 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a0fc3ebc814aa43df128bc6fcc80f5560}{\index{Text\-Output@{Text\-Output}!update@{update}}
+\index{update@{update}!TextOutput@{Text\-Output}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_text_output_a0fc3ebc814aa43df128bc6fcc80f5560}
+
+
+Reimplemented from \hyperlink{struct_output_data_aed0e4b81a7c981a7f2a0d6128ee69eb7}{Output\-Data$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$}.
+
+
+
+Definition at line 245 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a46c108e633d09a102788e600b7a6d370}{\index{Text\-Output@{Text\-Output}!update\-Background\-Color@{update\-Background\-Color}}
+\index{update\-Background\-Color@{update\-Background\-Color}!TextOutput@{Text\-Output}}
+\subsubsection[{update\-Background\-Color}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::update\-Background\-Color (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Color}}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_text_output_a46c108e633d09a102788e600b7a6d370}
+
+
+Definition at line 321 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a6477f07208204b1c058ba6fa6b0e5cc6}{\index{Text\-Output@{Text\-Output}!update\-Foreground\-Color@{update\-Foreground\-Color}}
+\index{update\-Foreground\-Color@{update\-Foreground\-Color}!TextOutput@{Text\-Output}}
+\subsubsection[{update\-Foreground\-Color}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::update\-Foreground\-Color (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Color}}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_text_output_a6477f07208204b1c058ba6fa6b0e5cc6}
+
+
+Definition at line 310 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_ae028755399b3afc882a98da908759d0f}{\index{Text\-Output@{Text\-Output}!update\-Position@{update\-Position}}
+\index{update\-Position@{update\-Position}!TextOutput@{Text\-Output}}
+\subsubsection[{update\-Position}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::update\-Position (
+\begin{DoxyParamCaption}
+\item[{const {\bf Position}$<$ P\-O\-S\-U\-T\-Y\-P\-E $>$ \&}]{pos}
+\end{DoxyParamCaption}
+)}}\label{class_text_output_ae028755399b3afc882a98da908759d0f}
+
+
+Definition at line 299 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a9981707e972ac76a7bb7adb65201a84a}{\index{Text\-Output@{Text\-Output}!update\-Text@{update\-Text}}
+\index{update\-Text@{update\-Text}!TextOutput@{Text\-Output}}
+\subsubsection[{update\-Text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ void {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::update\-Text (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{new\-Text}
+\end{DoxyParamCaption}
+)}}\label{class_text_output_a9981707e972ac76a7bb7adb65201a84a}
+
+
+Definition at line 286 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a811bcb3bc1d278ad3716bf768af2ca9d}{\index{Text\-Output@{Text\-Output}!view\-Text@{view\-Text}}
+\index{view\-Text@{view\-Text}!TextOutput@{Text\-Output}}
+\subsubsection[{view\-Text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ const string$\ast$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::view\-Text (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_output_a811bcb3bc1d278ad3716bf768af2ca9d}
+
+
+Definition at line 102 of file Text\-Output.\-hpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_text_output_a0969009180cf671defc02a7b2ad9d500}{\index{Text\-Output@{Text\-Output}!Graphical\-Output@{Graphical\-Output}}
+\index{Graphical\-Output@{Graphical\-Output}!TextOutput@{Text\-Output}}
+\subsubsection[{Graphical\-Output}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ friend class {\bf Graphical\-Output}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_text_output_a0969009180cf671defc02a7b2ad9d500}
+
+
+Definition at line 63 of file Text\-Output.\-hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}{\index{Text\-Output@{Text\-Output}!background@{background}}
+\index{background@{background}!TextOutput@{Text\-Output}}
+\subsubsection[{background}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Game\-Color} {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::background\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_a1d58e4651de9d729bdc19f143b2bb042}
+
+
+Definition at line 54 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_abb92f5a8c0c871c8b917f441567d9cae}{\index{Text\-Output@{Text\-Output}!color\-\_\-was\-\_\-updated@{color\-\_\-was\-\_\-updated}}
+\index{color\-\_\-was\-\_\-updated@{color\-\_\-was\-\_\-updated}!TextOutput@{Text\-Output}}
+\subsubsection[{color\-\_\-was\-\_\-updated}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ bool {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::color\-\_\-was\-\_\-updated = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_abb92f5a8c0c871c8b917f441567d9cae}
+
+
+Definition at line 56 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a969669fc87e0828685b6b20c4bb79616}{\index{Text\-Output@{Text\-Output}!foreground@{foreground}}
+\index{foreground@{foreground}!TextOutput@{Text\-Output}}
+\subsubsection[{foreground}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Game\-Color} {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::foreground\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_a969669fc87e0828685b6b20c4bb79616}
+
+
+Definition at line 54 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a784e5c34428d43ed01fc5367638df07e}{\index{Text\-Output@{Text\-Output}!game\-Font@{game\-Font}}
+\index{game\-Font@{game\-Font}!TextOutput@{Text\-Output}}
+\subsubsection[{game\-Font}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ T\-T\-F\-\_\-\-Font $\ast$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::game\-Font = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_text_output_a784e5c34428d43ed01fc5367638df07e}
+
+
+Definition at line 43 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a51e0f91233dbf52332b3562ab72aca28}{\index{Text\-Output@{Text\-Output}!position\-\_\-was\-\_\-updated@{position\-\_\-was\-\_\-updated}}
+\index{position\-\_\-was\-\_\-updated@{position\-\_\-was\-\_\-updated}!TextOutput@{Text\-Output}}
+\subsubsection[{position\-\_\-was\-\_\-updated}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ bool {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::position\-\_\-was\-\_\-updated\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_a51e0f91233dbf52332b3562ab72aca28}
+
+
+Definition at line 58 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_aa63e4c0936ed44ad8658f9567acd437b}{\index{Text\-Output@{Text\-Output}!text@{text}}
+\index{text@{text}!TextOutput@{Text\-Output}}
+\subsubsection[{text}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ string {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::text\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_aa63e4c0936ed44ad8658f9567acd437b}
+
+
+Definition at line 50 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a01eda9d47821115d2389cc874867f2f5}{\index{Text\-Output@{Text\-Output}!text\-\_\-was\-\_\-updated@{text\-\_\-was\-\_\-updated}}
+\index{text\-\_\-was\-\_\-updated@{text\-\_\-was\-\_\-updated}!TextOutput@{Text\-Output}}
+\subsubsection[{text\-\_\-was\-\_\-updated}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ bool {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::text\-\_\-was\-\_\-updated = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_output_a01eda9d47821115d2389cc874867f2f5}
+
+
+Definition at line 52 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_a64b0160aa7e8ebe7b65744197886662e}{\index{Text\-Output@{Text\-Output}!text\-Mutex@{text\-Mutex}}
+\index{text\-Mutex@{text\-Mutex}!TextOutput@{Text\-Output}}
+\subsubsection[{text\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ {\bf Basic\-Mutex} {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::text\-Mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_text_output_a64b0160aa7e8ebe7b65744197886662e}
+
+
+Definition at line 45 of file Text\-Output.\-hpp.
+
+\hypertarget{class_text_output_ae8c77617052494529e2e15a1379c8fa2}{\index{Text\-Output@{Text\-Output}!view\-Output\-Data@{view\-Output\-Data}}
+\index{view\-Output\-Data@{view\-Output\-Data}!TextOutput@{Text\-Output}}
+\subsubsection[{view\-Output\-Data}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename P\-O\-S\-U\-T\-Y\-P\-E , typename S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ const vector$<$ {\bf Output\-Data}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$ $\ast$ $>$ $\ast$ {\bf Text\-Output}$<$ P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E $>$\-::view\-Output\-Data = {\bf Output\-Data}$<$P\-O\-S\-U\-T\-Y\-P\-E, S\-I\-Z\-E\-U\-T\-Y\-P\-E$>$\-::{\bf get\-Output\-Data}()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_text_output_ae8c77617052494529e2e15a1379c8fa2}
+
+
+Definition at line 47 of file Text\-Output.\-hpp.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Output/\hyperlink{_text_output_8hpp}{Text\-Output.\-hpp}\end{DoxyCompactItemize}

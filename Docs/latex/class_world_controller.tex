@@ -1,0 +1,170 @@
+\hypertarget{class_world_controller}{\section{World\-Controller Class Reference}
+\label{class_world_controller}\index{World\-Controller@{World\-Controller}}
+}
+
+
+{\ttfamily \#include $<$World\-Controller.\-h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_world_controller_afbbfb68f628affc0294ba4dfae1c0f57}{init} ()
+\item 
+static void \hyperlink{class_world_controller_a41fed52dbb0b5821cad8fba591462f01}{begin\-\_\-main} ()
+\item 
+static void \hyperlink{class_world_controller_ab02f125f52eccfc19b5c426a16236610}{exit} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const \hyperlink{class_game_map}{Game\-Map}\\*
+$<$ \hyperlink{class_game_object}{Game\-Object} $>$ $\ast$ \hyperlink{class_world_controller_a1970186c27a575110308f83e7268f375}{map} = nullptr
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_world_controller_ad8c94c8dc3358f4473cddf848ea08953}{World\-Controller} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_world_controller_a9d558bd43591117ec3263c790b185d00}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static vector$<$ \hyperlink{class_game_object}{Game\-Object} $\ast$ $>$ $\ast$ \hyperlink{class_world_controller_a2cb2ca35d201d22f296cda71b8a58e92}{game\-Objects} = nullptr
+\item 
+static thread \hyperlink{class_world_controller_a52eeb1fd93682db9e530ef43304ec5ef}{main\-Thread}
+\item 
+static thread \hyperlink{class_world_controller_ab8fb8ee7100a17d3a6237ce8ac5a15e2}{check\-Del\-Thread}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_world_controller_a5b5c569791ec6a6e8df671cc07169ac9}{Game\-Interface}
+\item 
+class \hyperlink{class_world_controller_a00df87c957d8f7ee0fc51f07a0542f4a}{Game\-Object}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class controlling the world managing all the objects within it. It is generally responsible for managing everything that happens within the scope of a game. It holds all the Game\-Objects, mediates their interactions when neccessary (more or less, in many cases they interact directly), handles output of the game state (whether that means realtime or recorded. rendered or printed. etc. -\/ it was designed to be flexible and extensible), and handles initialization and clean up. It is essentially all static should be treated as a singleton object\-: don't try to create instances of it. Rather call \hyperlink{class_world_controller_afbbfb68f628affc0294ba4dfae1c0f57}{init()} once at the beginning, and end the game program with \hyperlink{class_world_controller_ab02f125f52eccfc19b5c426a16236610}{exit()}. 
+
+Definition at line 52 of file World\-Controller.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_world_controller_ad8c94c8dc3358f4473cddf848ea08953}{\index{World\-Controller@{World\-Controller}!World\-Controller@{World\-Controller}}
+\index{World\-Controller@{World\-Controller}!WorldController@{World\-Controller}}
+\subsubsection[{World\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}World\-Controller\-::\-World\-Controller (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_world_controller_ad8c94c8dc3358f4473cddf848ea08953}
+
+
+Definition at line 20 of file World\-Controller.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_world_controller_a41fed52dbb0b5821cad8fba591462f01}{\index{World\-Controller@{World\-Controller}!begin\-\_\-main@{begin\-\_\-main}}
+\index{begin\-\_\-main@{begin\-\_\-main}!WorldController@{World\-Controller}}
+\subsubsection[{begin\-\_\-main}]{\setlength{\rightskip}{0pt plus 5cm}void World\-Controller\-::begin\-\_\-main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_world_controller_a41fed52dbb0b5821cad8fba591462f01}
+
+
+Definition at line 62 of file World\-Controller.\-cpp.
+
+\hypertarget{class_world_controller_ab02f125f52eccfc19b5c426a16236610}{\index{World\-Controller@{World\-Controller}!exit@{exit}}
+\index{exit@{exit}!WorldController@{World\-Controller}}
+\subsubsection[{exit}]{\setlength{\rightskip}{0pt plus 5cm}void World\-Controller\-::exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_world_controller_ab02f125f52eccfc19b5c426a16236610}
+
+
+Definition at line 123 of file World\-Controller.\-cpp.
+
+\hypertarget{class_world_controller_afbbfb68f628affc0294ba4dfae1c0f57}{\index{World\-Controller@{World\-Controller}!init@{init}}
+\index{init@{init}!WorldController@{World\-Controller}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void World\-Controller\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_world_controller_afbbfb68f628affc0294ba4dfae1c0f57}
+
+
+Definition at line 23 of file World\-Controller.\-cpp.
+
+\hypertarget{class_world_controller_a9d558bd43591117ec3263c790b185d00}{\index{World\-Controller@{World\-Controller}!main@{main}}
+\index{main@{main}!WorldController@{World\-Controller}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}void World\-Controller\-::main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_world_controller_a9d558bd43591117ec3263c790b185d00}
+
+
+Definition at line 67 of file World\-Controller.\-cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_world_controller_a5b5c569791ec6a6e8df671cc07169ac9}{\index{World\-Controller@{World\-Controller}!Game\-Interface@{Game\-Interface}}
+\index{Game\-Interface@{Game\-Interface}!WorldController@{World\-Controller}}
+\subsubsection[{Game\-Interface}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Game\-Interface}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_world_controller_a5b5c569791ec6a6e8df671cc07169ac9}
+
+
+Definition at line 71 of file World\-Controller.\-h.
+
+\hypertarget{class_world_controller_a00df87c957d8f7ee0fc51f07a0542f4a}{\index{World\-Controller@{World\-Controller}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!WorldController@{World\-Controller}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Game\-Object}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_world_controller_a00df87c957d8f7ee0fc51f07a0542f4a}
+
+
+Definition at line 72 of file World\-Controller.\-h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_world_controller_ab8fb8ee7100a17d3a6237ce8ac5a15e2}{\index{World\-Controller@{World\-Controller}!check\-Del\-Thread@{check\-Del\-Thread}}
+\index{check\-Del\-Thread@{check\-Del\-Thread}!WorldController@{World\-Controller}}
+\subsubsection[{check\-Del\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}thread World\-Controller\-::check\-Del\-Thread\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_world_controller_ab8fb8ee7100a17d3a6237ce8ac5a15e2}
+
+
+Definition at line 67 of file World\-Controller.\-h.
+
+\hypertarget{class_world_controller_a2cb2ca35d201d22f296cda71b8a58e92}{\index{World\-Controller@{World\-Controller}!game\-Objects@{game\-Objects}}
+\index{game\-Objects@{game\-Objects}!WorldController@{World\-Controller}}
+\subsubsection[{game\-Objects}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Game\-Object} $\ast$ $>$ $\ast$ World\-Controller\-::game\-Objects = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_world_controller_a2cb2ca35d201d22f296cda71b8a58e92}
+A container holding most objects in the game world 
+
+Definition at line 60 of file World\-Controller.\-h.
+
+\hypertarget{class_world_controller_a52eeb1fd93682db9e530ef43304ec5ef}{\index{World\-Controller@{World\-Controller}!main\-Thread@{main\-Thread}}
+\index{main\-Thread@{main\-Thread}!WorldController@{World\-Controller}}
+\subsubsection[{main\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}thread World\-Controller\-::main\-Thread\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_world_controller_a52eeb1fd93682db9e530ef43304ec5ef}
+
+
+Definition at line 66 of file World\-Controller.\-h.
+
+\hypertarget{class_world_controller_a1970186c27a575110308f83e7268f375}{\index{World\-Controller@{World\-Controller}!map@{map}}
+\index{map@{map}!WorldController@{World\-Controller}}
+\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Game\-Map}$<$ {\bf Game\-Object} $>$ $\ast$ World\-Controller\-::map = nullptr\hspace{0.3cm}{\ttfamily [static]}}}\label{class_world_controller_a1970186c27a575110308f83e7268f375}
+Holds pointers to Game\-Objects like game\-Objects, but is 2\-D and the placement of each \hyperlink{class_game_object}{Game\-Object} in map corresponds to the x and y coordinate of its \hyperlink{struct_position}{Position}. Is synced with Game\-Objects's map. 
+
+Definition at line 87 of file World\-Controller.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_world_controller_8h}{World\-Controller.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_world_controller_8cpp}{World\-Controller.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,393 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_game_map" kind="class" prot="public">
+    <compoundname>GameMap</compoundname>
+    <includes refid="_forward_decl_8h" local="no">ForwardDecl.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_game_map_1a9772a4fc756988879de271a2a478631c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GameMap&lt; T &gt;::mapMembers</definition>
+        <argsstring></argsstring>
+        <name>mapMembers</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="33" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_game_map_1a153813a0a62c21fd28a44b4db51358eb" prot="private" static="no" mutable="no">
+        <type>vector&lt; vector&lt; list&lt; T * &gt; &gt; * &gt; *</type>
+        <definition>vector&lt; vector&lt; list&lt;T *&gt; &gt; *&gt;* GameMap&lt; T &gt;::intern_map</definition>
+        <argsstring></argsstring>
+        <name>intern_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="34" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_game_map_1a81aadec03fd5e583993e3d83754fade5" prot="private" static="no" mutable="no">
+        <type><ref refid="class_game_map" kindref="compound">GameMap</ref>&lt; string &gt; *</type>
+        <definition>GameMap&lt;string&gt;* GameMap&lt; T &gt;::gmDebug</definition>
+        <argsstring></argsstring>
+        <name>gmDebug</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="39" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_game_map_1a2958e7779794322ace38425b689b38f6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool GameMap&lt; T &gt;::searchSuccess</definition>
+        <argsstring></argsstring>
+        <name>searchSuccess</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="42" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_game_map_1a855e0d673dc19c25cbc4787720f52c86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GameMap&lt; T &gt;::findAllNearby_helper</definition>
+        <argsstring>(vector&lt; T * &gt; *store, Navigator&lt; N &gt; &amp;nav, const N x_lim, const N y_lim)</argsstring>
+        <name>findAllNearby_helper</name>
+        <param>
+          <type>vector&lt; T * &gt; *</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type><ref refid="class_navigator" kindref="compound">Navigator</ref>&lt; N &gt; &amp;</type>
+          <declname>nav</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>x_lim</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>y_lim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="37" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="295" bodyend="541"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_game_map_1aaf385841d0390f0b2b21fd6e2553c72e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>GameMap&lt; T &gt;::GameMap</definition>
+        <argsstring>(N maxX, N maxY)</argsstring>
+        <name>GameMap</name>
+        <param>
+          <type>N</type>
+          <declname>maxX</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>maxY</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="45" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="99" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1a4bfac2bbaabb053fad5616666e222691" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GameMap&lt; T &gt;::~GameMap</definition>
+        <argsstring>()</argsstring>
+        <name>~GameMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="49" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="112" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1a47d97dc86ca0b91866b48dcaa9fa39a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; vector&lt; deque&lt; T * &gt; &gt; * &gt; *</type>
+        <definition>vector&lt; vector&lt; deque&lt;T *&gt; &gt; *&gt;* GameMap&lt; T &gt;::getMapVect</definition>
+        <argsstring>()</argsstring>
+        <name>getMapVect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="53" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1abce7a6939365afdcab7bb29399a68ac1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long GameMap&lt; T &gt;::getXBound</definition>
+        <argsstring>()</argsstring>
+        <name>getXBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="55" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1a14de3740816e5328fcc2580363e51f18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long GameMap&lt; T &gt;::getYBound</definition>
+        <argsstring>()</argsstring>
+        <name>getYBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="56" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1aa38c0f97584d3b5b1b78389c94ad194f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GameMap&lt; T &gt;::place</definition>
+        <argsstring>(Position&lt; N &gt; *where, T *pointerToOriginalObject, const BoundsCheck&lt; N &gt; check)</argsstring>
+        <name>place</name>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; *</type>
+          <declname>where</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>pointerToOriginalObject</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Places pointerToOriginalObject at <ref refid="struct_position" kindref="compound">Position</ref> where. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="59" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="135" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1ad171ac0784575bfe68c9ad224fcf05ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GameMap&lt; T &gt;::erase</definition>
+        <argsstring>(const Position&lt; N &gt; *currentLoc, T *pointerToOriginalObject)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; *</type>
+          <declname>currentLoc</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>pointerToOriginalObject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="66" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="241" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1a8aca03fd075ee28bbf65b917eb9a3449" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void GameMap&lt; T &gt;::map_move</definition>
+        <argsstring>(const Position&lt; N &gt; &amp;currentLoc, const Position&lt; N &gt; &amp;toNewLoc, T *pointerToOriginalObject)</argsstring>
+        <name>map_move</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>currentLoc</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>toNewLoc</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>pointerToOriginalObject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Moves the object to a new Position&lt;N&gt; on the map, and erases (calls <ref refid="class_game_map_1ad171ac0784575bfe68c9ad224fcf05ad" kindref="member">erase()</ref>) on its old Position&lt;N&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="73" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="203" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1afc7638e97c9fedbac81f5b88243e9c0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>list&lt; T * &gt; *</type>
+        <definition>list&lt; T * &gt; * GameMap&lt; T &gt;::at_pos</definition>
+        <argsstring>(const Position&lt; N &gt; *where)</argsstring>
+        <name>at_pos</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; *</type>
+          <declname>where</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the first object at this Position&lt;N&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="79" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="211" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1ad9b90d1652b7db7d72370d10b361278d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt;</type>
+        <definition>Position&lt; N &gt; GameMap&lt; T &gt;::currentLoc</definition>
+        <argsstring>(T *obj)</argsstring>
+        <name>currentLoc</name>
+        <param>
+          <type>T *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="82" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="219" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_map_1a2a632a97e225ec9fe54a13fc05ae45fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename N</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T * &gt; *</type>
+        <definition>vector&lt; T * &gt; * GameMap&lt; T &gt;::findNearby</definition>
+        <argsstring>(const Position&lt; N &gt; *start, const N x_lim, const N y_lim)</argsstring>
+        <name>findNearby</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>x_lim</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>y_lim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Searches within the specified limits for an object of the specified type. Returns a nullptr if none found</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Position&lt;N&gt; of the object that wants to search for nearby objects </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x_lim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum distance to search longtitudinally </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y_lim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum distance to search latitudinally </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" line="93" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp" bodystart="282" bodyend="291"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/ForwardDecl.h" line="18" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/ForwardDecl.h" bodystart="18" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="class_game_map_1afc7638e97c9fedbac81f5b88243e9c0a" prot="public" virt="non-virtual"><scope>GameMap</scope><name>at_pos</name></member>
+      <member refid="class_game_map_1ad9b90d1652b7db7d72370d10b361278d" prot="public" virt="non-virtual"><scope>GameMap</scope><name>currentLoc</name></member>
+      <member refid="class_game_map_1ad171ac0784575bfe68c9ad224fcf05ad" prot="public" virt="non-virtual"><scope>GameMap</scope><name>erase</name></member>
+      <member refid="class_game_map_1a855e0d673dc19c25cbc4787720f52c86" prot="private" virt="non-virtual"><scope>GameMap</scope><name>findAllNearby_helper</name></member>
+      <member refid="class_game_map_1a2a632a97e225ec9fe54a13fc05ae45fa" prot="public" virt="non-virtual"><scope>GameMap</scope><name>findNearby</name></member>
+      <member refid="class_game_map_1aaf385841d0390f0b2b21fd6e2553c72e" prot="public" virt="non-virtual"><scope>GameMap</scope><name>GameMap</name></member>
+      <member refid="class_game_map_1a47d97dc86ca0b91866b48dcaa9fa39a2" prot="public" virt="non-virtual"><scope>GameMap</scope><name>getMapVect</name></member>
+      <member refid="class_game_map_1abce7a6939365afdcab7bb29399a68ac1" prot="public" virt="non-virtual"><scope>GameMap</scope><name>getXBound</name></member>
+      <member refid="class_game_map_1a14de3740816e5328fcc2580363e51f18" prot="public" virt="non-virtual"><scope>GameMap</scope><name>getYBound</name></member>
+      <member refid="class_game_map_1a81aadec03fd5e583993e3d83754fade5" prot="private" virt="non-virtual"><scope>GameMap</scope><name>gmDebug</name></member>
+      <member refid="class_game_map_1a153813a0a62c21fd28a44b4db51358eb" prot="private" virt="non-virtual"><scope>GameMap</scope><name>intern_map</name></member>
+      <member refid="class_game_map_1a8aca03fd075ee28bbf65b917eb9a3449" prot="public" virt="non-virtual"><scope>GameMap</scope><name>map_move</name></member>
+      <member refid="class_game_map_1a9772a4fc756988879de271a2a478631c" prot="private" virt="non-virtual"><scope>GameMap</scope><name>mapMembers</name></member>
+      <member refid="class_game_map_1aa38c0f97584d3b5b1b78389c94ad194f" prot="public" virt="non-virtual"><scope>GameMap</scope><name>place</name></member>
+      <member refid="class_game_map_1a2958e7779794322ace38425b689b38f6" prot="public" virt="non-virtual"><scope>GameMap</scope><name>searchSuccess</name></member>
+      <member refid="class_game_map_1a4bfac2bbaabb053fad5616666e222691" prot="public" virt="non-virtual"><scope>GameMap</scope><name>~GameMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

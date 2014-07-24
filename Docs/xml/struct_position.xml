@@ -1,0 +1,1609 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="struct_position" kind="struct" prot="public">
+    <compoundname>Position</compoundname>
+    <derivedcompoundref refid="struct_pos2" prot="public" virt="non-virtual">Pos2&lt; N &gt;</derivedcompoundref>
+    <derivedcompoundref refid="struct_resolution" prot="public" virt="non-virtual">Resolution&lt; N &gt;</derivedcompoundref>
+    <derivedcompoundref refid="struct_size" prot="public" virt="non-virtual">Size&lt; N &gt;</derivedcompoundref>
+    <includes refid="_position_8hpp" local="no">Position.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="struct_position_1af908be922fc88d89d81be7d08d06f761" prot="protected" static="no" mutable="no">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="67" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_position_1af434f54a0aad8bbfc3806ebdd197aa3b" prot="protected" static="no" mutable="no">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="68" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_position_1ac430da98504c2d4fd685c0363d728474" prot="protected" static="no" mutable="no">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="69" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_position_1ae3a67f3e6f27a5594c181ca55d2b2ef3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>()</argsstring>
+        <name>Position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates initialized to 0 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="75" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a82e58f222f30e32c322d77bf9a20352b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates initialized to 0 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="80" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a01b903d664fb8ac74a9342116ce63287" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(N n)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>N</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates initialized to n </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="85" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a14a1831fd5c139aef062778edc05397d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(N n, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>N</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates initialized to n </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="90" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a5f4ebf0205cb9e52e6f78784ca34d733" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(FastRand&lt; R &gt; rand)</argsstring>
+        <name>Position</name>
+        <param>
+          <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; R &gt;</type>
+          <declname>rand</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates randomized, with bounds set by check </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="96" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aa7e02fe8aeff4147c31184d981813f9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(FastRand&lt; R &gt; rand, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; R &gt;</type>
+          <declname>rand</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a Positionwith all coordinates randomized, with bounds set by check </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="105" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="105" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a7b49db88251912bf531acec16719eb98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(const Position &amp;other)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy constructor for <ref refid="struct_position" kindref="compound">Position</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="116" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1adfe6dffd68cbf7f26945bfb1a307fa6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(const Position &amp;other, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy constructor for <ref refid="struct_position" kindref="compound">Position</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="121" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="121" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a370b6460b790eef270233cd7a3527721" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(Position &amp;&amp;other)</argsstring>
+        <name>Position</name>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Move constructor for <ref refid="struct_position" kindref="compound">Position</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="128" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a1072383b9a22b17759b55f897986f011" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(Position &amp;&amp;other, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Move constructor for <ref refid="struct_position" kindref="compound">Position</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="133" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="133" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a410251ddeee4121896cac284e3d63de2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(N x, N y, N z)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a <ref refid="struct_position" kindref="compound">Position</ref> with coordinates initialized to the given arguments</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The z coordinate </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="145" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="145" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ae82fce224d7ef1599321a94b0a6f0cee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Position&lt; N &gt;::Position</definition>
+        <argsstring>(N x, N y, N z, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>Position</name>
+        <param>
+          <type>N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a <ref refid="struct_position" kindref="compound">Position</ref> with coordinates initialized to the given arguments</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The z coordinate </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="155" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="155" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a21a4e620b847f606fe2e1c5244f0f78e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual Position&lt; N &gt;::~Position</definition>
+        <argsstring>()</argsstring>
+        <name>~Position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destructor for <ref refid="struct_position" kindref="compound">Position</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="162" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a669073574ecd196d45ea9d2ff0e3cced" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+        <definition>virtual Position&amp; Position&lt; N &gt;::operator=</definition>
+        <argsstring>(const Position &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <reimplementedby refid="struct_pos2_1a340228a5c2933605e488596eed7fdc16">operator=</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assigment operator (copy). </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="168" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="168" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a580451251fc288d806524683fc85550a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+        <definition>virtual Position&amp; Position&lt; N &gt;::operator=</definition>
+        <argsstring>(Position &amp;&amp;rhs)</argsstring>
+        <name>operator=</name>
+        <reimplementedby refid="struct_pos2_1a02609d7ec3de3cb29b237ae280cd4d03">operator=</reimplementedby>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Assigment operator (move) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="181" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="181" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ac895fed24f992ab43913207bd5fb7048" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Position&lt; N &gt;::operator==</definition>
+        <argsstring>(const Position &amp;rhs) const </argsstring>
+        <name>operator==</name>
+        <reimplementedby refid="struct_pos2_1aaa70e9e703ecf5cf3c85ab7e262ad2cb">operator==</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="192" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="192" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a41b600238d7f4b174ed2c7dcd1ff8214" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Position&lt; N &gt;::operator==</definition>
+        <argsstring>(Position &amp;rhs) const </argsstring>
+        <name>operator==</name>
+        <reimplementedby refid="struct_pos2_1ad79c54f096426bf141a40af32e88d7d3">operator==</reimplementedby>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="201" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="201" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a4be02284917613eaa574c3ebbbbbfcb8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Position&lt; N &gt;::operator!=</definition>
+        <argsstring>(const Position &amp;rhs) const </argsstring>
+        <name>operator!=</name>
+        <reimplementedby refid="struct_pos2_1ae519d026266e7c63cede223ba78d68cf">operator!=</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="210" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="210" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1acaf1ee869c4bee9e4a6b152eee96efda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Position&lt; N &gt;::operator!=</definition>
+        <argsstring>(Position &amp;rhs)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="214" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="214" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1acee225b72b18e2468a8015fe3585958e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref></type>
+        <definition>Position Position&lt; N &gt;::operator+</definition>
+        <argsstring>(const Position &amp;rhs) const </argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="218" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="218" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1adc25e016e77688fabb733febd70dc3da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref></type>
+        <definition>Position Position&lt; N &gt;::operator-</definition>
+        <argsstring>(const Position &amp;rhs) const </argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="229" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="229" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a95f98be024d028f87681c12092afcb28" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref></type>
+        <definition>Position Position&lt; N &gt;::operator*</definition>
+        <argsstring>(const N n) const </argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const N</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="240" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="240" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a51bc2b1d3ba86057fc8605208d2fb4cf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_position" kindref="compound">Position</ref></type>
+        <definition>Position Position&lt; N &gt;::operator/</definition>
+        <argsstring>(const N n) const </argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const N</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="251" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="251" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1af6cf3e9c2a535e8d988739e075ca76c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const N x, const N y, const N z)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1ae98c349465ab4c1085504649413f729b">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1ae98c349465ab4c1085504649413f729b">setAll</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets x, y, and z to the given values. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="296" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="296" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1abecde70eb2df3f274e171a06386feb4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const N x, const N y, const N z, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1a5a26baf8ed6060892131a6e5341f0f3f">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a5a26baf8ed6060892131a6e5341f0f3f">setAll</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const N</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="302" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="302" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a03ff8fcf39be2dc2ac547b9849a03fd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const Position&lt; N &gt; &amp;other)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1a65721a562cff5cbcbf023f4669783f32">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a65721a562cff5cbcbf023f4669783f32">setAll</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="307" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="307" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ae7ad6637ca006d95867059c5405c2fdc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const Position&lt; N &gt; &amp;other, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1a830495035e3981da9e298db636b7f26a">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a830495035e3981da9e298db636b7f26a">setAll</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="311" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="311" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a90a919f4e1d7cdd0fcc50101d4c9dbd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const N n)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1aef9a2916285822cc7a3c8741bd38ddf7">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1aef9a2916285822cc7a3c8741bd38ddf7">setAll</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="316" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="316" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ae27c3958d1827450e434a8b2bb4d1092" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAll</definition>
+        <argsstring>(const N n, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setAll</name>
+        <reimplementedby refid="struct_pos2_1ae08b2b8134a316cc26da0c2b96bf4f14">setAll</reimplementedby>
+        <reimplementedby refid="struct_pos2_1ae08b2b8134a316cc26da0c2b96bf4f14">setAll</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="318" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="318" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ad625d6ef1db5f72883c6e2834f7cae81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setAllZero</definition>
+        <argsstring>()</argsstring>
+        <name>setAllZero</name>
+        <reimplementedby refid="struct_pos2_1a16c48d5f21dfe7e00c1c2cb27e0e13f0">setAllZero</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a16c48d5f21dfe7e00c1c2cb27e0e13f0">setAllZero</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="320" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="320" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a7d1262a6b6f63f04c605bebf93a1f068" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::getX</definition>
+        <argsstring>() const </argsstring>
+        <name>getX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="323" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="323" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a71d93e9a234bc4f32a61781c4e88bc10" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::getY</definition>
+        <argsstring>() const </argsstring>
+        <name>getY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="325" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="325" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a1d1171c9049c9a24be31bdb40e8662c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>N Position&lt; N &gt;::getZ</definition>
+        <argsstring>() const </argsstring>
+        <name>getZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="327" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="327" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a7c5b646e881251041b2373b0b9ee235b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Position&lt; N &gt;::getIntX</definition>
+        <argsstring>() const </argsstring>
+        <name>getIntX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>x as an integer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="332" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="332" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a2ddf4656749e96c1ad4bfec272521364" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Position&lt; N &gt;::getIntY</definition>
+        <argsstring>() const </argsstring>
+        <name>getIntY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>z as an integer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="337" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="337" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a41e19d862bf29d4aef2e25fbdd58f6b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Position&lt; N &gt;::getIntZ</definition>
+        <argsstring>() const </argsstring>
+        <name>getIntZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>z as an integer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="342" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="342" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a8ff94b86d9853ec1323129e2864a2f8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setX</definition>
+        <argsstring>(const N x)</argsstring>
+        <name>setX</name>
+        <reimplementedby refid="struct_pos2_1abbed99ee02ea50c3dc1053671b7331bb">setX</reimplementedby>
+        <reimplementedby refid="struct_pos2_1abbed99ee02ea50c3dc1053671b7331bb">setX</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="344" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="344" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1af1ca6db4823de1c43f874e72ce2b9b66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setX</definition>
+        <argsstring>(const N x, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setX</name>
+        <reimplementedby refid="struct_pos2_1a8ff8dc117956df7acb135c17731133ec">setX</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a8ff8dc117956df7acb135c17731133ec">setX</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="346" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="346" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ab816c27eddb9c5d4951edfbb78dc7233" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setY</definition>
+        <argsstring>(const N y)</argsstring>
+        <name>setY</name>
+        <reimplementedby refid="struct_pos2_1a82ddb6fab8b028a52d53bb28f03b6119">setY</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a82ddb6fab8b028a52d53bb28f03b6119">setY</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="348" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="348" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a45f946eeadc660099a5c38f882e9074e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setY</definition>
+        <argsstring>(const N y, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setY</name>
+        <reimplementedby refid="struct_pos2_1a6ebb86ee57ab1467de7e5440d8e6358c">setY</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a6ebb86ee57ab1467de7e5440d8e6358c">setY</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="350" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="350" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aa2c5e74e13456b840ce39ae8fc09c59b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setZ</definition>
+        <argsstring>(const N z)</argsstring>
+        <name>setZ</name>
+        <reimplementedby refid="struct_pos2_1aaa8e7d737a065e7ca846791ff31ea25c">setZ</reimplementedby>
+        <reimplementedby refid="struct_pos2_1aaa8e7d737a065e7ca846791ff31ea25c">setZ</reimplementedby>
+        <reimplementedby refid="struct_resolution_1a32cf9e339e11a84561a4723e40bf219d">setZ</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="352" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="352" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ac3dd191a672bd9696e6bb2ccf3a622e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::setZ</definition>
+        <argsstring>(const N z, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>setZ</name>
+        <reimplementedby refid="struct_pos2_1af5641ffd9e8b359f7f80321c5d7ddbf5">setZ</reimplementedby>
+        <reimplementedby refid="struct_pos2_1af5641ffd9e8b359f7f80321c5d7ddbf5">setZ</reimplementedby>
+        <param>
+          <type>const N</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="354" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="354" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aca2bf935dd53d012fe3529b81a111e23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::x_plus_one</definition>
+        <argsstring>()</argsstring>
+        <name>x_plus_one</name>
+        <reimplementedby refid="struct_pos2_1af1b35a8b928bea9c73c49ff384b35a4a">x_plus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1af1b35a8b928bea9c73c49ff384b35a4a">x_plus_one</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="357" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="357" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a86f84c270f732ee8a285f0d8672529ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::x_plus_one</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>x_plus_one</name>
+        <reimplementedby refid="struct_pos2_1a95c416fe3b7b2171df1daeb36416e62a">x_plus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a95c416fe3b7b2171df1daeb36416e62a">x_plus_one</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="359" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="359" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aa5715ebd88d355988b0c0cf03814a271" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::x_minus_one</definition>
+        <argsstring>()</argsstring>
+        <name>x_minus_one</name>
+        <reimplementedby refid="struct_pos2_1a0f132fb8ed0c2e7092614cde74ccde27">x_minus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a0f132fb8ed0c2e7092614cde74ccde27">x_minus_one</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="361" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="361" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1ab96af6ce73be6d52132f4d4e5bf77485" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::x_minus_one</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>x_minus_one</name>
+        <reimplementedby refid="struct_pos2_1a6c0daea0c94397af825a3e943665c41a">x_minus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a6c0daea0c94397af825a3e943665c41a">x_minus_one</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="363" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="363" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a9d1ef5169f798099ab268f62c5acc9e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::y_plus_one</definition>
+        <argsstring>()</argsstring>
+        <name>y_plus_one</name>
+        <reimplementedby refid="struct_pos2_1a4bd636102c60fc9e19cb91ffc8dd68bc">y_plus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a4bd636102c60fc9e19cb91ffc8dd68bc">y_plus_one</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="366" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="366" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a4ac4b6f9dc9ab06e64ce7b16c5dcdfaa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::y_plus_one</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>y_plus_one</name>
+        <reimplementedby refid="struct_pos2_1abc24856ae8ef5a4c7bac195193f67e06">y_plus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1abc24856ae8ef5a4c7bac195193f67e06">y_plus_one</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="368" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="368" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a9979106cd4c31b19ecbb831a91ec218a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::y_minus_one</definition>
+        <argsstring>()</argsstring>
+        <name>y_minus_one</name>
+        <reimplementedby refid="struct_pos2_1ae42c57baaa5f3c59565a3d864a6c06f1">y_minus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1ae42c57baaa5f3c59565a3d864a6c06f1">y_minus_one</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="370" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="370" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a0c0ff46cc0329a0e0109084fb1856233" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::y_minus_one</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>y_minus_one</name>
+        <reimplementedby refid="struct_pos2_1a90279c33382f18b737dc2afa901bb4ce">y_minus_one</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a90279c33382f18b737dc2afa901bb4ce">y_minus_one</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="372" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="372" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a71640a61fe271ddc9e2451037a11a86d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::modify</definition>
+        <argsstring>(N delta_x, N delta_y, N delta_z)</argsstring>
+        <name>modify</name>
+        <reimplementedby refid="struct_pos2_1a3065dacbd8e42b36fd5af0775a9342d8">modify</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a3065dacbd8e42b36fd5af0775a9342d8">modify</reimplementedby>
+        <param>
+          <type>N</type>
+          <declname>delta_x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>delta_y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>delta_z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Increments or decrements the x, y and z values according to the arguments passed in. Use negative values to decrement. Passing 0 for any argument will keep the x, y, or z value the same.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delta_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in x value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in y value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in z value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="384" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="384" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aa3e6b4d0e63e42c91332ffba79359252" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::modify</definition>
+        <argsstring>(N delta_x, N delta_y, N delta_z, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>modify</name>
+        <reimplementedby refid="struct_pos2_1ab0ddc65822cce3935319977f3ab7c8e2">modify</reimplementedby>
+        <reimplementedby refid="struct_pos2_1ab0ddc65822cce3935319977f3ab7c8e2">modify</reimplementedby>
+        <param>
+          <type>N</type>
+          <declname>delta_x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>delta_y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>delta_z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Increments or decrements the x, y and z values according to the arguments passed in. Use negative values to decrement. Passing 0 for any argument will keep the x, y, or z value the same.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delta_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in x value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in y value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The change in z value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="405" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="405" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a81dd41480a91a0817c1937afef4cb644" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::moveHere</definition>
+        <argsstring>(N x, N y, N z)</argsstring>
+        <name>moveHere</name>
+        <reimplementedby refid="struct_pos2_1a8cb8d4f4d076ef9ecbb34bcb351ba8fa">moveHere</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a8cb8d4f4d076ef9ecbb34bcb351ba8fa">moveHere</reimplementedby>
+        <param>
+          <type>N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="417" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="417" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a4fa2e78d31d34daba2d555394c4e4b80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::moveHere</definition>
+        <argsstring>(N x, N y, N z, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>moveHere</name>
+        <reimplementedby refid="struct_pos2_1a2cf33b5575ca6cd5a02dbc92ee22fe7a">moveHere</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a2cf33b5575ca6cd5a02dbc92ee22fe7a">moveHere</reimplementedby>
+        <param>
+          <type>N</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="421" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="421" bodyend="424"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a3840e7e0c17531cd254810fe62340f52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::moveHere</definition>
+        <argsstring>(const Position&lt; N &gt; &amp;other)</argsstring>
+        <name>moveHere</name>
+        <reimplementedby refid="struct_pos2_1a112150629c1c77a913f401e8948849b0">moveHere</reimplementedby>
+        <reimplementedby refid="struct_pos2_1a112150629c1c77a913f401e8948849b0">moveHere</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="426" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="426" bodyend="428"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aa268c21ec09dbe0b579b0854ef74ddb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Position&lt; N &gt;::moveHere</definition>
+        <argsstring>(const Position&lt; N &gt; &amp;other, const BoundsCheck&lt; N &gt; &amp;check)</argsstring>
+        <name>moveHere</name>
+        <reimplementedby refid="struct_pos2_1aa743473a51150e91792af64c00153ed9">moveHere</reimplementedby>
+        <reimplementedby refid="struct_pos2_1aa743473a51150e91792af64c00153ed9">moveHere</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="430" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="430" bodyend="433"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a4ebba65bc16bffa822c653522c5d7dcb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Position&lt; N &gt;::toString</definition>
+        <argsstring>() const </argsstring>
+        <name>toString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="444" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="444" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1afd2bfedb3b315412862103233665fc02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Position&lt; N &gt;::checkBounds</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; *check, N objWidth=0, N objHeight=0)</argsstring>
+        <name>checkBounds</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; *</type>
+          <declname>check</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objWidth</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objHeight</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="451" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="451" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aaf90e9e75b999bf2c43064feaa3694eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Position&lt; N &gt;::checkBounds</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; &amp;check, N objWidth=0, N objHeight=0)</argsstring>
+        <name>checkBounds</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; &amp;</type>
+          <declname>check</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objWidth</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objHeight</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="487" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="487" bodyend="521"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1aac17c8dcac3808518f5e13c7ecf31c19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Position&lt; N &gt;::overBounds</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; *check, N objWidth=0, N objHeight=0) const </argsstring>
+        <name>overBounds</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; *</type>
+          <declname>check</declname>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objWidth</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>N</type>
+          <declname>objHeight</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="523" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="523" bodyend="533"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a06da33376bc3a116664f8a34e816ba95" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Position&lt; N &gt;::overXBounds</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; *check) const </argsstring>
+        <name>overXBounds</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; *</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="535" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="535" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_position_1a45f215fed381839bf860752780a9660f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Position&lt; N &gt;::overYBounds</definition>
+        <argsstring>(const BoundsCheck&lt; N &gt; *check) const </argsstring>
+        <name>overYBounds</name>
+        <param>
+          <type>const <ref refid="struct_bounds_check" kindref="compound">BoundsCheck</ref>&lt; N &gt; *</type>
+          <declname>check</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="544" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="544" bodyend="551"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="struct_position_1aa839563739359a38d864a2d4a4e616e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename O</type>
+          </param>
+          <param>
+            <type>typename P</type>
+          </param>
+        </templateparamlist>
+        <type>friend const <ref refid="struct_position" kindref="compound">Position</ref>&lt; P &gt; *</type>
+        <definition>const Position&lt;P&gt;* operator+</definition>
+        <argsstring>(const Position&lt; P &gt; &amp;lhs, const Position&lt; O &gt; *rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; P &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; O &gt; *</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="263" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="263" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="friend" id="struct_position_1a952651ce7dae93907c21bf178d58dd94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename O</type>
+          </param>
+          <param>
+            <type>typename P</type>
+          </param>
+        </templateparamlist>
+        <type>friend const <ref refid="struct_position" kindref="compound">Position</ref>&lt; P &gt; *</type>
+        <definition>const Position&lt;P&gt;* operator-</definition>
+        <argsstring>(const Position&lt; P &gt; &amp;lhs, const Position&lt; O &gt; *rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; P &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; O &gt; *</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="273" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="273" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="friend" id="struct_position_1a7adf840eaa5364c5fdddbc148fcbbdee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend ostream &amp;</type>
+        <definition>ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Position&lt; N &gt; *pos)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="282" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="282" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="friend" id="struct_position_1a8d4dbe2f6bca09c4129d69b47bc4b2ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend ostream &amp;</type>
+        <definition>ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Position&lt; N &gt; &amp;pos)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; N &gt; &amp;</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="287" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="287" bodyend="290"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_position_1acbec1420f0dc8f505c745b399ae93234" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>N</type>
+        <definition>static N Position&lt; N &gt;::calcDistance</definition>
+        <argsstring>(const Position &amp;here, const Position &amp;there)</argsstring>
+        <name>calcDistance</name>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>here</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref> &amp;</type>
+          <declname>there</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="435" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="435" bodyend="442"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Position&lt;&gt; is a simple vector type with the useful feature of storing all its previous states, back through time. Thus an object using <ref refid="struct_position" kindref="compound">Position</ref> to store location information will be able to retrace its steps. Note: Classes with a <ref refid="struct_position" kindref="compound">Position</ref> data member will typically want to have a pointer, instead of holding the <ref refid="struct_position" kindref="compound">Position</ref> locally. This is because many objects in the World may not actually have a physcical <ref refid="struct_position" kindref="compound">Position</ref> in space, in which case they can just hold a null pointer. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="293">
+        <label>Position&lt; N &gt;</label>
+        <link refid="struct_position"/>
+      </node>
+      <node id="295">
+        <label>Resolution&lt; N &gt;</label>
+        <link refid="struct_resolution"/>
+        <childnode refid="293" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="296">
+        <label>Size&lt; N &gt;</label>
+        <link refid="struct_size"/>
+        <childnode refid="293" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="294">
+        <label>Pos2&lt; N &gt;</label>
+        <link refid="struct_pos2"/>
+        <childnode refid="293" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="297">
+        <label>Position&lt; N &gt;</label>
+        <link refid="struct_position"/>
+        <childnode refid="298" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+      <node id="298">
+        <label>N</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" line="63" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp" bodystart="63" bodyend="553"/>
+    <listofallmembers>
+      <member refid="struct_position_1acbec1420f0dc8f505c745b399ae93234" prot="public" virt="non-virtual"><scope>Position</scope><name>calcDistance</name></member>
+      <member refid="struct_position_1afd2bfedb3b315412862103233665fc02" prot="public" virt="non-virtual"><scope>Position</scope><name>checkBounds</name></member>
+      <member refid="struct_position_1aaf90e9e75b999bf2c43064feaa3694eb" prot="public" virt="non-virtual"><scope>Position</scope><name>checkBounds</name></member>
+      <member refid="struct_position_1a7c5b646e881251041b2373b0b9ee235b" prot="public" virt="non-virtual"><scope>Position</scope><name>getIntX</name></member>
+      <member refid="struct_position_1a2ddf4656749e96c1ad4bfec272521364" prot="public" virt="non-virtual"><scope>Position</scope><name>getIntY</name></member>
+      <member refid="struct_position_1a41e19d862bf29d4aef2e25fbdd58f6b2" prot="public" virt="non-virtual"><scope>Position</scope><name>getIntZ</name></member>
+      <member refid="struct_position_1a7d1262a6b6f63f04c605bebf93a1f068" prot="public" virt="non-virtual"><scope>Position</scope><name>getX</name></member>
+      <member refid="struct_position_1a71d93e9a234bc4f32a61781c4e88bc10" prot="public" virt="non-virtual"><scope>Position</scope><name>getY</name></member>
+      <member refid="struct_position_1a1d1171c9049c9a24be31bdb40e8662c0" prot="public" virt="non-virtual"><scope>Position</scope><name>getZ</name></member>
+      <member refid="struct_position_1a71640a61fe271ddc9e2451037a11a86d" prot="public" virt="virtual"><scope>Position</scope><name>modify</name></member>
+      <member refid="struct_position_1aa3e6b4d0e63e42c91332ffba79359252" prot="public" virt="virtual"><scope>Position</scope><name>modify</name></member>
+      <member refid="struct_position_1a81dd41480a91a0817c1937afef4cb644" prot="public" virt="virtual"><scope>Position</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a4fa2e78d31d34daba2d555394c4e4b80" prot="public" virt="virtual"><scope>Position</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a3840e7e0c17531cd254810fe62340f52" prot="public" virt="virtual"><scope>Position</scope><name>moveHere</name></member>
+      <member refid="struct_position_1aa268c21ec09dbe0b579b0854ef74ddb9" prot="public" virt="virtual"><scope>Position</scope><name>moveHere</name></member>
+      <member refid="struct_position_1a4be02284917613eaa574c3ebbbbbfcb8" prot="public" virt="virtual"><scope>Position</scope><name>operator!=</name></member>
+      <member refid="struct_position_1acaf1ee869c4bee9e4a6b152eee96efda" prot="public" virt="virtual"><scope>Position</scope><name>operator!=</name></member>
+      <member refid="struct_position_1a95f98be024d028f87681c12092afcb28" prot="public" virt="non-virtual"><scope>Position</scope><name>operator*</name></member>
+      <member refid="struct_position_1acee225b72b18e2468a8015fe3585958e" prot="public" virt="non-virtual"><scope>Position</scope><name>operator+</name></member>
+      <member refid="struct_position_1aa839563739359a38d864a2d4a4e616e3" prot="public" virt="non-virtual"><scope>Position</scope><name>operator+</name></member>
+      <member refid="struct_position_1adc25e016e77688fabb733febd70dc3da" prot="public" virt="non-virtual"><scope>Position</scope><name>operator-</name></member>
+      <member refid="struct_position_1a952651ce7dae93907c21bf178d58dd94" prot="public" virt="non-virtual"><scope>Position</scope><name>operator-</name></member>
+      <member refid="struct_position_1a51bc2b1d3ba86057fc8605208d2fb4cf" prot="public" virt="non-virtual"><scope>Position</scope><name>operator/</name></member>
+      <member refid="struct_position_1a7adf840eaa5364c5fdddbc148fcbbdee" prot="public" virt="non-virtual"><scope>Position</scope><name>operator&lt;&lt;</name></member>
+      <member refid="struct_position_1a8d4dbe2f6bca09c4129d69b47bc4b2ac" prot="public" virt="non-virtual"><scope>Position</scope><name>operator&lt;&lt;</name></member>
+      <member refid="struct_position_1a669073574ecd196d45ea9d2ff0e3cced" prot="public" virt="virtual"><scope>Position</scope><name>operator=</name></member>
+      <member refid="struct_position_1a580451251fc288d806524683fc85550a" prot="public" virt="virtual"><scope>Position</scope><name>operator=</name></member>
+      <member refid="struct_position_1ac895fed24f992ab43913207bd5fb7048" prot="public" virt="virtual"><scope>Position</scope><name>operator==</name></member>
+      <member refid="struct_position_1a41b600238d7f4b174ed2c7dcd1ff8214" prot="public" virt="virtual"><scope>Position</scope><name>operator==</name></member>
+      <member refid="struct_position_1aac17c8dcac3808518f5e13c7ecf31c19" prot="public" virt="non-virtual"><scope>Position</scope><name>overBounds</name></member>
+      <member refid="struct_position_1a06da33376bc3a116664f8a34e816ba95" prot="public" virt="non-virtual"><scope>Position</scope><name>overXBounds</name></member>
+      <member refid="struct_position_1a45f215fed381839bf860752780a9660f" prot="public" virt="non-virtual"><scope>Position</scope><name>overYBounds</name></member>
+      <member refid="struct_position_1ae3a67f3e6f27a5594c181ca55d2b2ef3" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a82e58f222f30e32c322d77bf9a20352b" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a01b903d664fb8ac74a9342116ce63287" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a14a1831fd5c139aef062778edc05397d" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a5f4ebf0205cb9e52e6f78784ca34d733" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1aa7e02fe8aeff4147c31184d981813f9d" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a7b49db88251912bf531acec16719eb98" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1adfe6dffd68cbf7f26945bfb1a307fa6c" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a370b6460b790eef270233cd7a3527721" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a1072383b9a22b17759b55f897986f011" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1a410251ddeee4121896cac284e3d63de2" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1ae82fce224d7ef1599321a94b0a6f0cee" prot="public" virt="non-virtual"><scope>Position</scope><name>Position</name></member>
+      <member refid="struct_position_1af6cf3e9c2a535e8d988739e075ca76c1" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1abecde70eb2df3f274e171a06386feb4c" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1a03ff8fcf39be2dc2ac547b9849a03fd6" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1ae7ad6637ca006d95867059c5405c2fdc" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1a90a919f4e1d7cdd0fcc50101d4c9dbd0" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1ae27c3958d1827450e434a8b2bb4d1092" prot="public" virt="virtual"><scope>Position</scope><name>setAll</name></member>
+      <member refid="struct_position_1ad625d6ef1db5f72883c6e2834f7cae81" prot="public" virt="virtual"><scope>Position</scope><name>setAllZero</name></member>
+      <member refid="struct_position_1a8ff94b86d9853ec1323129e2864a2f8d" prot="public" virt="virtual"><scope>Position</scope><name>setX</name></member>
+      <member refid="struct_position_1af1ca6db4823de1c43f874e72ce2b9b66" prot="public" virt="virtual"><scope>Position</scope><name>setX</name></member>
+      <member refid="struct_position_1ab816c27eddb9c5d4951edfbb78dc7233" prot="public" virt="virtual"><scope>Position</scope><name>setY</name></member>
+      <member refid="struct_position_1a45f946eeadc660099a5c38f882e9074e" prot="public" virt="virtual"><scope>Position</scope><name>setY</name></member>
+      <member refid="struct_position_1aa2c5e74e13456b840ce39ae8fc09c59b" prot="public" virt="virtual"><scope>Position</scope><name>setZ</name></member>
+      <member refid="struct_position_1ac3dd191a672bd9696e6bb2ccf3a622e2" prot="public" virt="virtual"><scope>Position</scope><name>setZ</name></member>
+      <member refid="struct_position_1a4ebba65bc16bffa822c653522c5d7dcb" prot="public" virt="non-virtual"><scope>Position</scope><name>toString</name></member>
+      <member refid="struct_position_1af908be922fc88d89d81be7d08d06f761" prot="protected" virt="non-virtual"><scope>Position</scope><name>x</name></member>
+      <member refid="struct_position_1aa5715ebd88d355988b0c0cf03814a271" prot="public" virt="virtual"><scope>Position</scope><name>x_minus_one</name></member>
+      <member refid="struct_position_1ab96af6ce73be6d52132f4d4e5bf77485" prot="public" virt="virtual"><scope>Position</scope><name>x_minus_one</name></member>
+      <member refid="struct_position_1aca2bf935dd53d012fe3529b81a111e23" prot="public" virt="virtual"><scope>Position</scope><name>x_plus_one</name></member>
+      <member refid="struct_position_1a86f84c270f732ee8a285f0d8672529ad" prot="public" virt="virtual"><scope>Position</scope><name>x_plus_one</name></member>
+      <member refid="struct_position_1af434f54a0aad8bbfc3806ebdd197aa3b" prot="protected" virt="non-virtual"><scope>Position</scope><name>y</name></member>
+      <member refid="struct_position_1a9979106cd4c31b19ecbb831a91ec218a" prot="public" virt="virtual"><scope>Position</scope><name>y_minus_one</name></member>
+      <member refid="struct_position_1a0c0ff46cc0329a0e0109084fb1856233" prot="public" virt="virtual"><scope>Position</scope><name>y_minus_one</name></member>
+      <member refid="struct_position_1a9d1ef5169f798099ab268f62c5acc9e1" prot="public" virt="virtual"><scope>Position</scope><name>y_plus_one</name></member>
+      <member refid="struct_position_1a4ac4b6f9dc9ab06e64ce7b16c5dcdfaa" prot="public" virt="virtual"><scope>Position</scope><name>y_plus_one</name></member>
+      <member refid="struct_position_1ac430da98504c2d4fd685c0363d728474" prot="protected" virt="non-virtual"><scope>Position</scope><name>z</name></member>
+      <member refid="struct_position_1a21a4e620b847f606fe2e1c5244f0f78e" prot="public" virt="virtual"><scope>Position</scope><name>~Position</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

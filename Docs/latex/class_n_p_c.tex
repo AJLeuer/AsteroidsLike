@@ -1,0 +1,332 @@
+\hypertarget{class_n_p_c}{\section{N\-P\-C Class Reference}
+\label{class_n_p_c}\index{N\-P\-C@{N\-P\-C}}
+}
+
+
+{\ttfamily \#include $<$N\-P\-C.\-h$>$}
+
+Inheritance diagram for N\-P\-C\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_n_p_c}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_n_p_c_a59b45912692304d555df9d6957046962}{N\-P\-C} ()
+\item 
+\hyperlink{class_n_p_c_a3416183550bea0c159cf154c41710fff}{N\-P\-C} (const \hyperlink{class_n_p_c}{N\-P\-C} \&other)
+\item 
+\hyperlink{class_n_p_c_a57565881c93d5b3839b8097ae16c38ae}{N\-P\-C} (\hyperlink{class_n_p_c}{N\-P\-C} \&\&other)
+\item 
+\hyperlink{class_n_p_c_a3afe2ba98d032697bdb09f9a08154614}{N\-P\-C} (const \hyperlink{struct_asset_file}{Asset\-File} \&image\-File, float \hyperlink{class_game_object_ac4637e122291be2421c851e2a87fb968}{size}, const \hyperlink{struct_position}{Position}$<$ float $>$ \&\hyperlink{class_game_object_a6858e668e7d2c5ded850b952aaacd905}{loc}, string \hyperlink{class_character_a2d423654566d1bf2160fef74bf04cc84}{name}, \hyperlink{_character_data_8h_acbff4d7298e294294555d39178aad448}{Do\-A} \hyperlink{class_character_ac83b99be690bb41b7fae53e9457838c6}{alive}, \hyperlink{_character_data_8h_aacbb008a93d24b04a8779bbdbd8880b5}{Character\-State} \hyperlink{class_character_ac20f1ebda238017ddc245ecdce827037}{state}, unsigned \hyperlink{class_character_ae8c0d82624dc3a171e2c3b42c699151e}{health}, unsigned \hyperlink{class_character_ae6a140637ffe5004179d90a0e04a411b}{damage}, bool monitor\-Velocity, \hyperlink{_character_data_8h_a0e5ce1612c1e71823c97a9cd734de339}{Reaction} \hyperlink{class_character_a579933775b2e4e97465bacb09c4e87f5}{reaction})
+\item 
+\hyperlink{class_n_p_c_a7b7d207fbbb2b27a1ca99cd7a533dce5}{N\-P\-C} (\hyperlink{class_fast_rand}{Fast\-Rand}$<$ int $>$ rand)
+\item 
+\hyperlink{class_n_p_c_a67c0caca129b56c82bb7ec8bce6be52b}{$\sim$\-N\-P\-C} ()
+\item 
+virtual \hyperlink{class_n_p_c}{N\-P\-C} \& \hyperlink{class_n_p_c_ae8d45c46413afc2d2ab08ff708c9d699}{operator=} (const \hyperlink{class_n_p_c}{N\-P\-C} \&rhs)
+\item 
+virtual \hyperlink{class_n_p_c}{N\-P\-C} \& \hyperlink{class_n_p_c_a19daaa71a87a22aa760db6ef639c3b53}{operator=} (\hyperlink{class_n_p_c}{N\-P\-C} \&\&rhs)
+\item 
+void \hyperlink{class_n_p_c_a73befe685fef40ab7f1ac954d932697d}{operator()} ()
+\item 
+void \hyperlink{class_n_p_c_a130d4f2fec85e20a54a060cbfcff64cc}{operator()} (\hyperlink{class_character}{Character} \&other)
+\item 
+void \hyperlink{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}{notify} ()
+\item 
+void \hyperlink{class_n_p_c_adfe9d4edaf5a31f3e3e9f727e86aa0b9}{pass\-Message} (\hyperlink{struct_message}{Message} $\ast$message, \hyperlink{class_character}{Character} \&recipient)
+\item 
+virtual void \hyperlink{class_n_p_c_ad85699c2a35f1f5f9d5a81a3d5df2153}{text\-Description} (ostream $\ast$write\-To) const 
+\item 
+void \hyperlink{class_n_p_c_a35234d189d4b9dee193b49f3d9272a0e}{attack} (\hyperlink{class_character}{Character} $\ast$enemy)
+\item 
+\hyperlink{_character_data_8h_a0e5ce1612c1e71823c97a9cd734de339}{Reaction} \hyperlink{class_n_p_c_ac595679b62ded86ebd5ed7e5d046ec2c}{get\-Reaction} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 19 of file N\-P\-C.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_n_p_c_a59b45912692304d555df9d6957046962}{\index{N\-P\-C@{N\-P\-C}!N\-P\-C@{N\-P\-C}}
+\index{N\-P\-C@{N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::\-N\-P\-C (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a59b45912692304d555df9d6957046962}
+Constructs a default \hyperlink{class_n_p_c}{N\-P\-C}. 
+
+Definition at line 12 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a3416183550bea0c159cf154c41710fff}{\index{N\-P\-C@{N\-P\-C}!N\-P\-C@{N\-P\-C}}
+\index{N\-P\-C@{N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::\-N\-P\-C (
+\begin{DoxyParamCaption}
+\item[{const {\bf N\-P\-C} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a3416183550bea0c159cf154c41710fff}
+Copy constructor for \hyperlink{class_n_p_c}{N\-P\-C}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{class_n_p_c}{N\-P\-C} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a57565881c93d5b3839b8097ae16c38ae}{\index{N\-P\-C@{N\-P\-C}!N\-P\-C@{N\-P\-C}}
+\index{N\-P\-C@{N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::\-N\-P\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf N\-P\-C} \&\&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a57565881c93d5b3839b8097ae16c38ae}
+Move constructor for \hyperlink{class_n_p_c}{N\-P\-C}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{class_n_p_c}{N\-P\-C} to be moved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a3afe2ba98d032697bdb09f9a08154614}{\index{N\-P\-C@{N\-P\-C}!N\-P\-C@{N\-P\-C}}
+\index{N\-P\-C@{N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::\-N\-P\-C (
+\begin{DoxyParamCaption}
+\item[{const {\bf Asset\-File} \&}]{image\-File, }
+\item[{float}]{size, }
+\item[{const {\bf Position}$<$ float $>$ \&}]{loc, }
+\item[{string}]{name, }
+\item[{{\bf Do\-A}}]{alive, }
+\item[{{\bf Character\-State}}]{state, }
+\item[{unsigned}]{health, }
+\item[{unsigned}]{damage, }
+\item[{bool}]{monitor\-Velocity, }
+\item[{{\bf Reaction}}]{reaction}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a3afe2ba98d032697bdb09f9a08154614}
+Constructs an \hyperlink{class_n_p_c}{N\-P\-C} based on the arguments given
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this \hyperlink{class_n_p_c}{N\-P\-C} \\
+\hline
+{\em alive} & Whether this \hyperlink{class_n_p_c}{N\-P\-C} is dead or alive \\
+\hline
+{\em state} & The Character\-State of this \hyperlink{class_n_p_c}{N\-P\-C} \\
+\hline
+{\em health} & The \hyperlink{struct_health}{Health} of this \hyperlink{class_n_p_c}{N\-P\-C} \\
+\hline
+{\em damage} & The \hyperlink{struct_damage}{Damage} capability of this \hyperlink{class_n_p_c}{N\-P\-C} \\
+\hline
+{\em reaction} & The reaction of this \hyperlink{class_n_p_c}{N\-P\-C} to the player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a7b7d207fbbb2b27a1ca99cd7a533dce5}{\index{N\-P\-C@{N\-P\-C}!N\-P\-C@{N\-P\-C}}
+\index{N\-P\-C@{N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::\-N\-P\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf Fast\-Rand}$<$ int $>$}]{rand}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a7b7d207fbbb2b27a1ca99cd7a533dce5}
+Constructs a randomized \hyperlink{class_n_p_c}{N\-P\-C}. The client has to option to simply leave the argument rand\-Seed as 0, in which case the constructor will generate its own random number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rand} & A seed to initialize the random number generator \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a67c0caca129b56c82bb7ec8bce6be52b}{\index{N\-P\-C@{N\-P\-C}!$\sim$\-N\-P\-C@{$\sim$\-N\-P\-C}}
+\index{$\sim$\-N\-P\-C@{$\sim$\-N\-P\-C}!NPC@{N\-P\-C}}
+\subsubsection[{$\sim$\-N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}N\-P\-C\-::$\sim$\-N\-P\-C (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a67c0caca129b56c82bb7ec8bce6be52b}
+Destructor for \hyperlink{class_n_p_c}{N\-P\-C} 
+
+Definition at line 31 of file N\-P\-C.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_n_p_c_a35234d189d4b9dee193b49f3d9272a0e}{\index{N\-P\-C@{N\-P\-C}!attack@{attack}}
+\index{attack@{attack}!NPC@{N\-P\-C}}
+\subsubsection[{attack}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::attack (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} $\ast$}]{enemy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_a35234d189d4b9dee193b49f3d9272a0e}
+Attacks a hostile \hyperlink{class_n_p_c}{N\-P\-C}
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & The enemy to attack \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_character_a7be3b65a2bc5facbb39ee208f5898560}{Character}.
+
+
+
+Definition at line 74 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_ac595679b62ded86ebd5ed7e5d046ec2c}{\index{N\-P\-C@{N\-P\-C}!get\-Reaction@{get\-Reaction}}
+\index{get\-Reaction@{get\-Reaction}!NPC@{N\-P\-C}}
+\subsubsection[{get\-Reaction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Reaction} N\-P\-C\-::get\-Reaction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_n_p_c_ac595679b62ded86ebd5ed7e5d046ec2c}
+Returns this \hyperlink{class_n_p_c}{N\-P\-C}'s reaction (attitude) toward the player 
+
+Definition at line 141 of file N\-P\-C.\-h.
+
+\hypertarget{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}{\index{N\-P\-C@{N\-P\-C}!notify@{notify}}
+\index{notify@{notify}!NPC@{N\-P\-C}}
+\subsubsection[{notify}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::notify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}
+Another class with a reference to this \hyperlink{class_n_p_c}{N\-P\-C} can call this to have the \hyperlink{class_n_p_c}{N\-P\-C} perform some function, as yet undecided. T\-B\-I. 
+
+Reimplemented from \hyperlink{class_character_a457dab4f04550716888425da681b9f1f}{Character}.
+
+
+
+Definition at line 59 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a73befe685fef40ab7f1ac954d932697d}{\index{N\-P\-C@{N\-P\-C}!operator()@{operator()}}
+\index{operator()@{operator()}!NPC@{N\-P\-C}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::operator() (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_a73befe685fef40ab7f1ac954d932697d}
+Overloads operator() for \hyperlink{class_n_p_c}{N\-P\-C}. Possibly will be used to call \hyperlink{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}{notify()}. T\-B\-D. 
+
+Reimplemented from \hyperlink{class_character_a3c4dfc59865fe39251070cd0b92d34ac}{Character}.
+
+
+
+Definition at line 51 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a130d4f2fec85e20a54a060cbfcff64cc}{\index{N\-P\-C@{N\-P\-C}!operator()@{operator()}}
+\index{operator()@{operator()}!NPC@{N\-P\-C}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::operator() (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_a130d4f2fec85e20a54a060cbfcff64cc}
+Overloads the overload of operator(). The actual implementation and uses for this are still undecided.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A reference to another \hyperlink{class_n_p_c}{N\-P\-C} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_ae8d45c46413afc2d2ab08ff708c9d699}{\index{N\-P\-C@{N\-P\-C}!operator=@{operator=}}
+\index{operator=@{operator=}!NPC@{N\-P\-C}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\-P\-C} \& N\-P\-C\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf N\-P\-C} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_ae8d45c46413afc2d2ab08ff708c9d699}
+Assignment operator overload (copy)
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be copied) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_a19daaa71a87a22aa760db6ef639c3b53}{\index{N\-P\-C@{N\-P\-C}!operator=@{operator=}}
+\index{operator=@{operator=}!NPC@{N\-P\-C}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\-P\-C} \& N\-P\-C\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf N\-P\-C} \&\&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_a19daaa71a87a22aa760db6ef639c3b53}
+Assignment operator overload (move)
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be moved) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_adfe9d4edaf5a31f3e3e9f727e86aa0b9}{\index{N\-P\-C@{N\-P\-C}!pass\-Message@{pass\-Message}}
+\index{pass\-Message@{pass\-Message}!NPC@{N\-P\-C}}
+\subsubsection[{pass\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::pass\-Message (
+\begin{DoxyParamCaption}
+\item[{{\bf Message} $\ast$}]{message, }
+\item[{{\bf Character} \&}]{recipient}
+\end{DoxyParamCaption}
+)}}\label{class_n_p_c_adfe9d4edaf5a31f3e3e9f727e86aa0b9}
+A \hyperlink{class_n_p_c}{N\-P\-C} can use this function to pass messages to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The \hyperlink{struct_message}{Message} sent by this \\
+\hline
+{\em recipient} & The object receiving the \hyperlink{struct_message}{Message} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file N\-P\-C.\-cpp.
+
+\hypertarget{class_n_p_c_ad85699c2a35f1f5f9d5a81a3d5df2153}{\index{N\-P\-C@{N\-P\-C}!text\-Description@{text\-Description}}
+\index{text\-Description@{text\-Description}!NPC@{N\-P\-C}}
+\subsubsection[{text\-Description}]{\setlength{\rightskip}{0pt plus 5cm}void N\-P\-C\-::text\-Description (
+\begin{DoxyParamCaption}
+\item[{ostream $\ast$}]{write\-To}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_n_p_c_ad85699c2a35f1f5f9d5a81a3d5df2153}
+Writes a formatted text description of this \hyperlink{class_n_p_c}{N\-P\-C} into the desired output stream 
+
+Reimplemented from \hyperlink{class_character_a2ab1090f959f0c66b098e0463d4c1bdd}{Character}.
+
+
+
+Definition at line 67 of file N\-P\-C.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_n_p_c_8h}{N\-P\-C.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_n_p_c_8cpp}{N\-P\-C.\-cpp}\end{DoxyCompactItemize}

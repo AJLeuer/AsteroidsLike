@@ -1,0 +1,189 @@
+\hypertarget{class_event_register_base}{\section{Event\-Register\-Base Class Reference}
+\label{class_event_register_base}\index{Event\-Register\-Base@{Event\-Register\-Base}}
+}
+
+
+{\ttfamily \#include $<$Input.\-hpp$>$}
+
+Inheritance diagram for Event\-Register\-Base\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_event_register_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_event_register_base_a09c3207daecbf7df0da8e9a9c0d9fa46}{call\-Back} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_event_register_base_ab73e973655dabe4de4d5f261736a9201}{Event\-Register\-Base} ()
+\item 
+\hyperlink{class_event_register_base_a63f991f6dd36375b4f845711481d0e8e}{Event\-Register\-Base} (const \hyperlink{class_event_register_base}{Event\-Register\-Base} \&other)
+\item 
+\hyperlink{class_event_register_base_ae5983e78604cc916282577c7ce0edc18}{Event\-Register\-Base} (\hyperlink{class_event_register_base}{Event\-Register\-Base} \&\&other)
+\item 
+\hyperlink{class_event_register_base_ad7b93cb60058b038ba9a5e61a3d1e0b5}{Event\-Register\-Base} (\hyperlink{class_game_interface}{Game\-Interface} $\ast$call\-On, void(Game\-Interface\-::$\ast$cb)())
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{class_event_register_base_a945b318dc066bd29c758e9bb78645c25}{Event\-Register\-Base} (\hyperlink{class_game_interface}{Game\-Interface} $\ast$call\-On, void(Game\-Interface\-::$\ast$cb)(), T arg0)
+\item 
+\hyperlink{class_event_register_base_a85aac264fad1290ad9b4119802401890}{Event\-Register\-Base} (function$<$ void(void)$>$ cb)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_game_interface}{Game\-Interface} $\ast$ \hyperlink{class_event_register_base_a4747220b6d3bdaadda3adee1ad621d4e}{member\-To\-Call\-On}
+\item 
+void(Game\-Interface\-::$\ast$ \hyperlink{class_event_register_base_ad0d7c12c7c5c7176a48388cec7e74923}{member\-\_\-call\-Back\-Function} )()
+\item 
+function$<$ void(void)$>$ \hyperlink{class_event_register_base_a8fcbaadc872f483e42426960e159d4b4}{call\-Back\-Function}
+\item 
+void $\ast$ \hyperlink{class_event_register_base_ad28e4551bc4710d3a79ff5d5f3f50543}{arg} = nullptr
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_event_register_base_a083d5a8d8c2dd3a28d1f55d2965db0ab}{Input\-Controller}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 37 of file Input.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_event_register_base_ab73e973655dabe4de4d5f261736a9201}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_ab73e973655dabe4de4d5f261736a9201}
+
+
+Definition at line 73 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_a63f991f6dd36375b4f845711481d0e8e}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+\item[{const {\bf Event\-Register\-Base} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_a63f991f6dd36375b4f845711481d0e8e}
+Copy constructor 
+
+Definition at line 78 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_ae5983e78604cc916282577c7ce0edc18}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+\item[{{\bf Event\-Register\-Base} \&\&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_ae5983e78604cc916282577c7ce0edc18}
+Move constructor 
+
+Definition at line 86 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_ad7b93cb60058b038ba9a5e61a3d1e0b5}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Interface} $\ast$}]{call\-On, }
+\item[{void(Game\-Interface\-::$\ast$)()}]{cb}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_ad7b93cb60058b038ba9a5e61a3d1e0b5}
+
+
+Definition at line 91 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_a945b318dc066bd29c758e9bb78645c25}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Interface} $\ast$}]{call\-On, }
+\item[{void(Game\-Interface\-::$\ast$)()}]{cb, }
+\item[{T}]{arg0}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_a945b318dc066bd29c758e9bb78645c25}
+
+
+Definition at line 97 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_a85aac264fad1290ad9b4119802401890}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Event\-Register\-Base@{Event\-Register\-Base}}
+\index{Event\-Register\-Base@{Event\-Register\-Base}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Event\-Register\-Base}]{\setlength{\rightskip}{0pt plus 5cm}Event\-Register\-Base\-::\-Event\-Register\-Base (
+\begin{DoxyParamCaption}
+\item[{function$<$ void(void)$>$}]{cb}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_event_register_base_a85aac264fad1290ad9b4119802401890}
+
+
+Definition at line 103 of file Input.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_event_register_base_a09c3207daecbf7df0da8e9a9c0d9fa46}{\index{Event\-Register\-Base@{Event\-Register\-Base}!call\-Back@{call\-Back}}
+\index{call\-Back@{call\-Back}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{call\-Back}]{\setlength{\rightskip}{0pt plus 5cm}void Event\-Register\-Base\-::call\-Back (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_event_register_base_a09c3207daecbf7df0da8e9a9c0d9fa46}
+
+
+Definition at line 15 of file Input.\-cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_event_register_base_a083d5a8d8c2dd3a28d1f55d2965db0ab}{\index{Event\-Register\-Base@{Event\-Register\-Base}!Input\-Controller@{Input\-Controller}}
+\index{Input\-Controller@{Input\-Controller}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{Input\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Input\-Controller}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_event_register_base_a083d5a8d8c2dd3a28d1f55d2965db0ab}
+
+
+Definition at line 71 of file Input.\-hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_event_register_base_ad28e4551bc4710d3a79ff5d5f3f50543}{\index{Event\-Register\-Base@{Event\-Register\-Base}!arg@{arg}}
+\index{arg@{arg}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ Event\-Register\-Base\-::arg = nullptr\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_event_register_base_ad28e4551bc4710d3a79ff5d5f3f50543}
+In the rare case that our callback function takes an argument, we will use arg to store it 
+
+Definition at line 69 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_a8fcbaadc872f483e42426960e159d4b4}{\index{Event\-Register\-Base@{Event\-Register\-Base}!call\-Back\-Function@{call\-Back\-Function}}
+\index{call\-Back\-Function@{call\-Back\-Function}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{call\-Back\-Function}]{\setlength{\rightskip}{0pt plus 5cm}function$<$void (void)$>$ Event\-Register\-Base\-::call\-Back\-Function\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_event_register_base_a8fcbaadc872f483e42426960e159d4b4}
+A pointer to the function to be called when the requested keyboard input is detected. This variable points to static or global functions (member\-\_\-call\-On should be a nullptr in any \hyperlink{class_event_register_base}{Event\-Register\-Base} where a call\-Back\-Fn, and not a member\-\_\-call\-Back\-Fn, is held) 
+
+Definition at line 63 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_ad0d7c12c7c5c7176a48388cec7e74923}{\index{Event\-Register\-Base@{Event\-Register\-Base}!member\-\_\-call\-Back\-Function@{member\-\_\-call\-Back\-Function}}
+\index{member\-\_\-call\-Back\-Function@{member\-\_\-call\-Back\-Function}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{member\-\_\-call\-Back\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void(Game\-Interface\-::$\ast$ Event\-Register\-Base\-::member\-\_\-call\-Back\-Function)()\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_event_register_base_ad0d7c12c7c5c7176a48388cec7e74923}
+A pointer to the function to be called when the requested keyboard input is detected. This variable holds pointers to member functions 
+
+Definition at line 52 of file Input.\-hpp.
+
+\hypertarget{class_event_register_base_a4747220b6d3bdaadda3adee1ad621d4e}{\index{Event\-Register\-Base@{Event\-Register\-Base}!member\-To\-Call\-On@{member\-To\-Call\-On}}
+\index{member\-To\-Call\-On@{member\-To\-Call\-On}!EventRegisterBase@{Event\-Register\-Base}}
+\subsubsection[{member\-To\-Call\-On}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\-Interface}$\ast$ Event\-Register\-Base\-::member\-To\-Call\-On\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_event_register_base_a4747220b6d3bdaadda3adee1ad621d4e}
+See member\-\_\-call\-Back\-Function. 
+
+Definition at line 45 of file Input.\-hpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\hyperlink{_input_8hpp}{Input.\-hpp}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\hyperlink{_input_8cpp}{Input.\-cpp}\end{DoxyCompactItemize}

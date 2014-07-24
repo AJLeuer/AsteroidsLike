@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_event_register_base" kind="class" prot="public">
+    <compoundname>EventRegisterBase</compoundname>
+    <derivedcompoundref refid="class_event_register" prot="public" virt="non-virtual">EventRegister</derivedcompoundref>
+    <derivedcompoundref refid="class_key_input_register" prot="public" virt="non-virtual">KeyInputRegister</derivedcompoundref>
+    <includes refid="_input_8hpp" local="no">Input.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_event_register_base_1a4747220b6d3bdaadda3adee1ad621d4e" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+        <definition>GameInterface* EventRegisterBase::memberToCallOn</definition>
+        <argsstring></argsstring>
+        <name>memberToCallOn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>See member_callBackFunction. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="45" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_event_register_base_1ad0d7c12c7c5c7176a48388cec7e74923" prot="protected" static="no" mutable="no">
+        <type>void(GameInterface::*</type>
+        <definition>void(GameInterface::* EventRegisterBase::member_callBackFunction)()</definition>
+        <argsstring>)()</argsstring>
+        <name>member_callBackFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pointer to the function to be called when the requested keyboard input is detected. This variable holds pointers to member functions </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="52" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_event_register_base_1a8fcbaadc872f483e42426960e159d4b4" prot="protected" static="no" mutable="no">
+        <type>function&lt; void(void)&gt;</type>
+        <definition>function&lt;void (void)&gt; EventRegisterBase::callBackFunction</definition>
+        <argsstring></argsstring>
+        <name>callBackFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pointer to the function to be called when the requested keyboard input is detected. This variable points to static or global functions (member_callOn should be a nullptr in any <ref refid="class_event_register_base" kindref="compound">EventRegisterBase</ref> where a callBackFn, and not a member_callBackFn, is held) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="63" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_event_register_base_1ad28e4551bc4710d3a79ff5d5f3f50543" prot="protected" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* EventRegisterBase::arg</definition>
+        <argsstring></argsstring>
+        <name>arg</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>In the rare case that our callback function takes an argument, we will use arg to store it </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="69" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_event_register_base_1a083d5a8d8c2dd3a28d1f55d2965db0ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class InputController</definition>
+        <argsstring></argsstring>
+        <name>InputController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="71" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_event_register_base_1ab73e973655dabe4de4d5f261736a9201" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>()</argsstring>
+        <name>EventRegisterBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="73" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_event_register_base_1a63f991f6dd36375b4f845711481d0e8e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>(const EventRegisterBase &amp;other)</argsstring>
+        <name>EventRegisterBase</name>
+        <param>
+          <type>const <ref refid="class_event_register_base" kindref="compound">EventRegisterBase</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy constructor </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="78" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_event_register_base_1ae5983e78604cc916282577c7ce0edc18" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>(EventRegisterBase &amp;&amp;other)</argsstring>
+        <name>EventRegisterBase</name>
+        <param>
+          <type><ref refid="class_event_register_base" kindref="compound">EventRegisterBase</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Move constructor </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="86" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_event_register_base_1ad7b93cb60058b038ba9a5e61a3d1e0b5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)())</argsstring>
+        <name>EventRegisterBase</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="91" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_event_register_base_1a945b318dc066bd29c758e9bb78645c25" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>(GameInterface *callOn, void(GameInterface::*cb)(), T arg0)</argsstring>
+        <name>EventRegisterBase</name>
+        <param>
+          <type><ref refid="class_game_interface" kindref="compound">GameInterface</ref> *</type>
+          <declname>callOn</declname>
+        </param>
+        <param>
+          <type>void(GameInterface::*)()</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>arg0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="97" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_event_register_base_1a85aac264fad1290ad9b4119802401890" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>EventRegisterBase::EventRegisterBase</definition>
+        <argsstring>(function&lt; void(void)&gt; cb)</argsstring>
+        <name>EventRegisterBase</name>
+        <param>
+          <type>function&lt; void(void)&gt;</type>
+          <declname>cb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="103" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_event_register_base_1a09c3207daecbf7df0da8e9a9c0d9fa46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EventRegisterBase::callBack</definition>
+        <argsstring>()</argsstring>
+        <name>callBack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="110" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.cpp" bodystart="15" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="99">
+        <label>SwitchableKeyInputRegister</label>
+        <link refid="class_switchable_key_input_register"/>
+        <childnode refid="98" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="96">
+        <label>EventRegisterBase</label>
+        <link refid="class_event_register_base"/>
+      </node>
+      <node id="97">
+        <label>EventRegister</label>
+        <link refid="class_event_register"/>
+        <childnode refid="96" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>KeyInputRegister</label>
+        <link refid="class_key_input_register"/>
+        <childnode refid="96" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="100">
+        <label>EventRegisterBase</label>
+        <link refid="class_event_register_base"/>
+        <childnode refid="101" relation="usage">
+          <edgelabel>memberToCallOn</edgelabel>
+        </childnode>
+      </node>
+      <node id="101">
+        <label>GameInterface</label>
+        <link refid="class_game_interface"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" line="37" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp" bodystart="37" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_event_register_base_1ad28e4551bc4710d3a79ff5d5f3f50543" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>arg</name></member>
+      <member refid="class_event_register_base_1a09c3207daecbf7df0da8e9a9c0d9fa46" prot="public" virt="non-virtual"><scope>EventRegisterBase</scope><name>callBack</name></member>
+      <member refid="class_event_register_base_1a8fcbaadc872f483e42426960e159d4b4" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>callBackFunction</name></member>
+      <member refid="class_event_register_base_1ab73e973655dabe4de4d5f261736a9201" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a63f991f6dd36375b4f845711481d0e8e" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1ae5983e78604cc916282577c7ce0edc18" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1ad7b93cb60058b038ba9a5e61a3d1e0b5" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a945b318dc066bd29c758e9bb78645c25" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a85aac264fad1290ad9b4119802401890" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>EventRegisterBase</name></member>
+      <member refid="class_event_register_base_1a083d5a8d8c2dd3a28d1f55d2965db0ab" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>InputController</name></member>
+      <member refid="class_event_register_base_1ad0d7c12c7c5c7176a48388cec7e74923" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>member_callBackFunction</name></member>
+      <member refid="class_event_register_base_1a4747220b6d3bdaadda3adee1ad621d4e" prot="protected" virt="non-virtual"><scope>EventRegisterBase</scope><name>memberToCallOn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

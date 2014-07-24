@@ -1,0 +1,196 @@
+\hypertarget{class_game_event}{\section{Game\-Event Class Reference}
+\label{class_game_event}\index{Game\-Event@{Game\-Event}}
+}
+
+
+{\ttfamily \#include $<$Game\-Event.\-h$>$}
+
+Inheritance diagram for Game\-Event\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_game_event}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_game_event_a0a8133b65ffc98712879d18186ef3020}{Game\-Event} ()
+\item 
+\hyperlink{class_game_event_a7687b9408418c93c76af200475be6e2e}{Game\-Event} (const \hyperlink{class_game_event}{Game\-Event} \&other)
+\item 
+\hyperlink{class_game_event_a8a164c0919549846f667d7b0e9b80a72}{Game\-Event} (string symbol)
+\item 
+virtual \hyperlink{class_game_event_aaf514ed35c80bbbcc54ce411d9d71eef}{$\sim$\-Game\-Event} ()
+\item 
+\hyperlink{class_game_event}{Game\-Event} \& \hyperlink{class_game_event_a1b0fd750f2e764b1f47ac4c3fda27ebc}{operator=} (const \hyperlink{class_game_event}{Game\-Event} \&rhs)
+\item 
+virtual void \hyperlink{class_game_event_a0d21300957e0a82e4fcfdd7dd8ad9449}{operator()} ()
+\item 
+virtual void \hyperlink{class_game_event_a2effcb2226837b007cfb27defbd5658e}{notify} ()
+\item 
+string \hyperlink{class_game_event_a5013426766329f47e7eb0d2f88dbd8df}{draw} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned \hyperlink{class_game_event_aecdf600e852c5a4f02f3cf2af0f6fe0f}{I\-D}
+\item 
+string \hyperlink{class_game_event_ab09ada74a9aeec15faeb99e2292534b2}{icon}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 19 of file Game\-Event.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_game_event_a0a8133b65ffc98712879d18186ef3020}{\index{Game\-Event@{Game\-Event}!Game\-Event@{Game\-Event}}
+\index{Game\-Event@{Game\-Event}!GameEvent@{Game\-Event}}
+\subsubsection[{Game\-Event}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Event\-::\-Game\-Event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_game_event_a0a8133b65ffc98712879d18186ef3020}
+Creates a new \hyperlink{class_game_event}{Game\-Event} 
+
+Definition at line 14 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_a7687b9408418c93c76af200475be6e2e}{\index{Game\-Event@{Game\-Event}!Game\-Event@{Game\-Event}}
+\index{Game\-Event@{Game\-Event}!GameEvent@{Game\-Event}}
+\subsubsection[{Game\-Event}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Event\-::\-Game\-Event (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game\-Event} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_game_event_a7687b9408418c93c76af200475be6e2e}
+Copy constructor for \hyperlink{class_game_event}{Game\-Event}. The new instance has its own unique I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{class_game_event}{Game\-Event} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_a8a164c0919549846f667d7b0e9b80a72}{\index{Game\-Event@{Game\-Event}!Game\-Event@{Game\-Event}}
+\index{Game\-Event@{Game\-Event}!GameEvent@{Game\-Event}}
+\subsubsection[{Game\-Event}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Event\-::\-Game\-Event (
+\begin{DoxyParamCaption}
+\item[{string}]{symbol}
+\end{DoxyParamCaption}
+)}}\label{class_game_event_a8a164c0919549846f667d7b0e9b80a72}
+Creates an event with the given U\-T\-F-\/8 symbol (preferably just one character) as its icon
+
+
+\begin{DoxyParams}{Parameters}
+{\em symbol} & The icon to be used by this \hyperlink{class_game_event}{Game\-Event} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_aaf514ed35c80bbbcc54ce411d9d71eef}{\index{Game\-Event@{Game\-Event}!$\sim$\-Game\-Event@{$\sim$\-Game\-Event}}
+\index{$\sim$\-Game\-Event@{$\sim$\-Game\-Event}!GameEvent@{Game\-Event}}
+\subsubsection[{$\sim$\-Game\-Event}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Event\-::$\sim$\-Game\-Event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_event_aaf514ed35c80bbbcc54ce411d9d71eef}
+Destructor for \hyperlink{class_game_event}{Game\-Event} 
+
+Definition at line 35 of file Game\-Event.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_game_event_a5013426766329f47e7eb0d2f88dbd8df}{\index{Game\-Event@{Game\-Event}!draw@{draw}}
+\index{draw@{draw}!GameEvent@{Game\-Event}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}string Game\-Event\-::draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_game_event_a5013426766329f47e7eb0d2f88dbd8df}
+
+
+Definition at line 57 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_a2effcb2226837b007cfb27defbd5658e}{\index{Game\-Event@{Game\-Event}!notify@{notify}}
+\index{notify@{notify}!GameEvent@{Game\-Event}}
+\subsubsection[{notify}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Event\-::notify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_event_a2effcb2226837b007cfb27defbd5658e}
+
+
+Reimplemented in \hyperlink{class_ability_a1a960040b98f8632a675ad184ead84b3}{Ability}.
+
+
+
+Definition at line 53 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_a0d21300957e0a82e4fcfdd7dd8ad9449}{\index{Game\-Event@{Game\-Event}!operator()@{operator()}}
+\index{operator()@{operator()}!GameEvent@{Game\-Event}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Event\-::operator() (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_event_a0d21300957e0a82e4fcfdd7dd8ad9449}
+An implementing class can define a default function by overloading its () operator 
+
+Implements \hyperlink{class_game_interface_aa47ddf1a598f94dc6273e5d06834f435}{Game\-Interface}.
+
+
+
+Reimplemented in \hyperlink{class_ability_af5d8c9005cc4b4b2a8f650cc10529924}{Ability}.
+
+
+
+Definition at line 49 of file Game\-Event.\-cpp.
+
+\hypertarget{class_game_event_a1b0fd750f2e764b1f47ac4c3fda27ebc}{\index{Game\-Event@{Game\-Event}!operator=@{operator=}}
+\index{operator=@{operator=}!GameEvent@{Game\-Event}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\-Event} \& Game\-Event\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game\-Event} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_game_event_a1b0fd750f2e764b1f47ac4c3fda27ebc}
+Assignment operator overload for \hyperlink{class_game_event}{Game\-Event}. The object copied to will have its own unique I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be copied) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file Game\-Event.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_game_event_ab09ada74a9aeec15faeb99e2292534b2}{\index{Game\-Event@{Game\-Event}!icon@{icon}}
+\index{icon@{icon}!GameEvent@{Game\-Event}}
+\subsubsection[{icon}]{\setlength{\rightskip}{0pt plus 5cm}string Game\-Event\-::icon\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_event_ab09ada74a9aeec15faeb99e2292534b2}
+
+
+Definition at line 28 of file Game\-Event.\-h.
+
+\hypertarget{class_game_event_aecdf600e852c5a4f02f3cf2af0f6fe0f}{\index{Game\-Event@{Game\-Event}!I\-D@{I\-D}}
+\index{I\-D@{I\-D}!GameEvent@{Game\-Event}}
+\subsubsection[{I\-D}]{\setlength{\rightskip}{0pt plus 5cm}unsigned Game\-Event\-::\-I\-D\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_event_aecdf600e852c5a4f02f3cf2af0f6fe0f}
+
+
+Definition at line 27 of file Game\-Event.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_event_8h}{Game\-Event.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_event_8cpp}{Game\-Event.\-cpp}\end{DoxyCompactItemize}

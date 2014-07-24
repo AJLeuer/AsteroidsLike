@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_timer_8cpp" kind="file">
+    <compoundname>Timer.cpp</compoundname>
+    <includes refid="_timer_8hpp" local="yes">Timer.hpp</includes>
+    <incdepgraph>
+      <node id="1683">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="1676">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="1677" relation="include">
+        </childnode>
+        <childnode refid="1678" relation="include">
+        </childnode>
+        <childnode refid="1679" relation="include">
+        </childnode>
+      </node>
+      <node id="1688">
+        <label>cmath</label>
+      </node>
+      <node id="1686">
+        <label>string</label>
+      </node>
+      <node id="1681">
+        <label>fstream</label>
+      </node>
+      <node id="1680">
+        <label>ostream</label>
+      </node>
+      <node id="1675">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Timer.cpp</label>
+        <link refid="Timer.cpp"/>
+        <childnode refid="1676" relation="include">
+        </childnode>
+      </node>
+      <node id="1687">
+        <label>vector</label>
+      </node>
+      <node id="1682">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="1683" relation="include">
+        </childnode>
+        <childnode refid="1677" relation="include">
+        </childnode>
+        <childnode refid="1681" relation="include">
+        </childnode>
+        <childnode refid="1678" relation="include">
+        </childnode>
+        <childnode refid="1684" relation="include">
+        </childnode>
+        <childnode refid="1690" relation="include">
+        </childnode>
+        <childnode refid="1691" relation="include">
+        </childnode>
+      </node>
+      <node id="1684">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="1677" relation="include">
+        </childnode>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1686" relation="include">
+        </childnode>
+        <childnode refid="1687" relation="include">
+        </childnode>
+        <childnode refid="1688" relation="include">
+        </childnode>
+        <childnode refid="1689" relation="include">
+        </childnode>
+      </node>
+      <node id="1677">
+        <label>iostream</label>
+      </node>
+      <node id="1691">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="1684" relation="include">
+        </childnode>
+        <childnode refid="1678" relation="include">
+        </childnode>
+      </node>
+      <node id="1678">
+        <label>chrono</label>
+      </node>
+      <node id="1689">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="1685">
+        <label>thread</label>
+      </node>
+      <node id="1679">
+        <label>Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="1677" relation="include">
+        </childnode>
+        <childnode refid="1680" relation="include">
+        </childnode>
+        <childnode refid="1681" relation="include">
+        </childnode>
+        <childnode refid="1682" relation="include">
+        </childnode>
+      </node>
+      <node id="1690">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_timer_8hpp" kindref="compound">Timer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std<sp/>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="class_timer_1a5f16e8da27d2a5a5242dead46de05d97" refkind="member"><highlight class="normal"><ref refid="class_timer_1a5f16e8da27d2a5a5242dead46de05d97" kindref="member">Timer::Timer</ref>()<sp/>:<sp/>timerStarted(false)<sp/>{}</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="class_timer_1a0edd539085fac3d019a3465bab2ef3c2" refkind="member"><highlight class="normal"><ref refid="class_timer_1a5f16e8da27d2a5a5242dead46de05d97" kindref="member">Timer::Timer</ref>(<ref refid="class_timer" kindref="compound">Timer</ref><sp/>&amp;&amp;<sp/>other)<sp/>:<sp/>timerStarted(std::move(other.timerStarted)),<sp/>start(std::move(other.start))<sp/>{}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="class_timer_1a14fa469c4c295c5fa6e66a4ad1092146" refkind="member"><highlight class="normal"><ref refid="class_timer_1a14fa469c4c295c5fa6e66a4ad1092146" kindref="member">Timer::~Timer</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="class_timer_1afbca4871f4efb5aafb3078655ef9dda0" refkind="member"><highlight class="normal"><ref refid="class_timer" kindref="compound">Timer</ref><sp/>&amp;<sp/><ref refid="class_timer_1afbca4871f4efb5aafb3078655ef9dda0" kindref="member">Timer::operator=</ref>(<ref refid="class_timer" kindref="compound">Timer</ref><sp/>&amp;&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timerStarted<sp/>=<sp/>rhs.timerStarted<sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>std::move(rhs.start)<sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*this<sp/>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="class_timer_1aa8c887576ec3b0d68c10ebf4097c367c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_timer_1aa8c887576ec3b0d68c10ebf4097c367c" kindref="member">Timer::startTimer</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(timerStarted)<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;stopTimer()<sp/>must<sp/>be<sp/>called<sp/>before<sp/>startTimer()<sp/>can<sp/>be<sp/>called<sp/>again<sp/>for<sp/>this<sp/>Timer<sp/>object<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>timerStarted<sp/>=<sp/>true<sp/>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>start<sp/>=<sp/>chrono::steady_clock::now()<sp/>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="class_timer_1a0ef64385b0e418f5caf8a61f254a8800" refkind="member"><highlight class="normal">std::chrono::nanoseconds<sp/><ref refid="class_timer_1a0ef64385b0e418f5caf8a61f254a8800" kindref="member">Timer::checkTimeElapsed</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>in<sp/>micro<sp/>or<sp/>nanoseconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!timerStarted)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;checkTimeElapsed()<sp/>can<sp/>only<sp/>be<sp/>called<sp/>after<sp/>startTimer()<sp/>has<sp/>been<sp/>called<sp/>once<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>duration<sp/>=<sp/>chrono::steady_clock::now()<sp/>-<sp/>start<sp/>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>duration<sp/>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="class_timer_1a3e55a0766fdb73df26dc4705641eccb6" refkind="member"><highlight class="normal">std::chrono::nanoseconds<sp/><ref refid="class_timer_1a3e55a0766fdb73df26dc4705641eccb6" kindref="member">Timer::stopTimer</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!timerStarted)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;stopTimer()<sp/>can<sp/>only<sp/>be<sp/>called<sp/>after<sp/>startTimer()<sp/>has<sp/>been<sp/>called<sp/>once<sp/>\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>exception()<sp/>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>duration<sp/>=<sp/>chrono::steady_clock::now()<sp/>-<sp/>start<sp/>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>timerStarted<sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>duration<sp/>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Timer.cpp"/>
+  </compounddef>
+</doxygen>

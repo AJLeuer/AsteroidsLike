@@ -1,0 +1,74 @@
+\hypertarget{_asset_file_i_o_8h}{\section{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Asset\-File\-I\-O.h File Reference}
+\label{_asset_file_i_o_8h}\index{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Asset\-File\-I\-O.\-h@{/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\-Asset\-File\-I\-O.\-h}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$dirent.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2/\-S\-D\-L\-\_\-render.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L2\-\_\-image/\-S\-D\-L\-\_\-image.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../\-Util/\-Util.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-Util/\-Bounds\-Check.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-Util/\-Game\-Random.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-World/\-Character\-Data.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-World/\-Game\-State.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../\-Control/\-Configuration.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_asset_file}{Asset\-File}
+\item 
+class \hyperlink{class_asset_file_i_o}{Asset\-File\-I\-O}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} \{ \\*
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9acd76adfdb0f7227ec28f6dc8d0cb3221}{Asset\-Type\-::asteroid}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9ad229bbf31eaeebc7c88897732d8b932d}{Asset\-Type\-::background}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a0f90cac94bfd7222b85c4114d122c5ac}{Asset\-Type\-::explosion}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9af287c6beccb1f257def546ad6acdd9e4}{Asset\-Type\-::powerup}, 
+\\*
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9abdb3aea80363d8d4bded1ce9f3cdadf2}{Asset\-Type\-::projectile}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a28c69b4cba5681d565d3bd901684dd77}{Asset\-Type\-::shield}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a4c08b14797b28df331a55e03fff1b2e6}{Asset\-Type\-::player\-Ship}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a7a484b4c7c5ba2d013a34d7b28636ade}{Asset\-Type\-::enemy\-Ship}, 
+\\*
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a6ea4f9678cf690cec660433e498121df}{Asset\-Type\-::ship\-Damage}, 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a71ff71526d15db86eb50fcac245d183b}{Asset\-Type\-::\-U\-I}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!Asset\-Type@{Asset\-Type}}
+\index{Asset\-Type@{Asset\-Type}!AssetFileIO.h@{Asset\-File\-I\-O.\-h}}
+\subsubsection[{Asset\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Asset\-Type}\hspace{0.3cm}{\ttfamily [strong]}}}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{asteroid@{asteroid}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!asteroid@{asteroid}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9acd76adfdb0f7227ec28f6dc8d0cb3221}{asteroid}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9acd76adfdb0f7227ec28f6dc8d0cb3221}
+}]\index{background@{background}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!background@{background}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9ad229bbf31eaeebc7c88897732d8b932d}{background}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9ad229bbf31eaeebc7c88897732d8b932d}
+}]\index{explosion@{explosion}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!explosion@{explosion}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a0f90cac94bfd7222b85c4114d122c5ac}{explosion}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a0f90cac94bfd7222b85c4114d122c5ac}
+}]\index{powerup@{powerup}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!powerup@{powerup}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9af287c6beccb1f257def546ad6acdd9e4}{powerup}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9af287c6beccb1f257def546ad6acdd9e4}
+}]\index{projectile@{projectile}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!projectile@{projectile}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9abdb3aea80363d8d4bded1ce9f3cdadf2}{projectile}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9abdb3aea80363d8d4bded1ce9f3cdadf2}
+}]\index{shield@{shield}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!shield@{shield}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a28c69b4cba5681d565d3bd901684dd77}{shield}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a28c69b4cba5681d565d3bd901684dd77}
+}]\index{player\-Ship@{player\-Ship}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!player\-Ship@{player\-Ship}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a4c08b14797b28df331a55e03fff1b2e6}{player\-Ship}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a4c08b14797b28df331a55e03fff1b2e6}
+}]\index{enemy\-Ship@{enemy\-Ship}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!enemy\-Ship@{enemy\-Ship}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a7a484b4c7c5ba2d013a34d7b28636ade}{enemy\-Ship}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a7a484b4c7c5ba2d013a34d7b28636ade}
+}]\index{ship\-Damage@{ship\-Damage}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!ship\-Damage@{ship\-Damage}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a6ea4f9678cf690cec660433e498121df}{ship\-Damage}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a6ea4f9678cf690cec660433e498121df}
+}]\index{U\-I@{U\-I}!Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}}\index{Asset\-File\-I\-O.\-h@{Asset\-File\-I\-O.\-h}!U\-I@{U\-I}}\item[{\em 
+\hypertarget{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a71ff71526d15db86eb50fcac245d183b}{U\-I}\label{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9a71ff71526d15db86eb50fcac245d183b}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 32 of file Asset\-File\-I\-O.\-h.
+

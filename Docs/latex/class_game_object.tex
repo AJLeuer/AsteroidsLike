@@ -1,0 +1,1098 @@
+\hypertarget{class_game_object}{\section{Game\-Object Class Reference}
+\label{class_game_object}\index{Game\-Object@{Game\-Object}}
+}
+
+
+The base class from which all other classes in the world will inherit. This class will handle the assignment of a unique I\-D to each \hyperlink{class_game_object}{Game\-Object}.  
+
+
+
+
+{\ttfamily \#include $<$Game\-Object.\-h$>$}
+
+Inheritance diagram for Game\-Object\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_game_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_game_object_a0348e3ee2e83d56eafca7a3547f432c4}{Game\-Object} ()
+\item 
+\hyperlink{class_game_object_ab13374d070cfe6a1459539d54c671eba}{Game\-Object} (const \hyperlink{class_game_object}{Game\-Object} \&other)
+\item 
+\hyperlink{class_game_object_ab415bbda3ab836e5de5e73c0a9d50ba3}{Game\-Object} (\hyperlink{class_game_object}{Game\-Object} \&\&other)
+\item 
+\hyperlink{class_game_object_af784d96f9ca701cd705050ce1baf6bd2}{Game\-Object} (const \hyperlink{struct_asset_file}{Asset\-File} \&image\-File, float size\-Modifier, const \hyperlink{struct_position}{Position}$<$ float $>$ \&\hyperlink{class_game_object_a6858e668e7d2c5ded850b952aaacd905}{loc}, bool visible, bool monitor\-Velocity)
+\item 
+\hyperlink{class_game_object_a039a66e3278f6a75ad0021ffda1b1a71}{Game\-Object} (\hyperlink{class_fast_rand}{Fast\-Rand}$<$ int $>$ rand)
+\item 
+virtual \hyperlink{class_game_object_ab82dfdb656f9051c0587e6593b2dda97}{$\sim$\-Game\-Object} ()
+\item 
+virtual \hyperlink{class_game_object}{Game\-Object} \& \hyperlink{class_game_object_afa8505b16b7f5fe0b825d59fcee17291}{operator=} (const \hyperlink{class_game_object}{Game\-Object} \&rhs)
+\item 
+virtual \hyperlink{class_game_object}{Game\-Object} \& \hyperlink{class_game_object_a428579a3f2d8eb2c9e37bd4452d18d3b}{operator=} (\hyperlink{class_game_object}{Game\-Object} \&\&rhs)
+\item 
+virtual void \hyperlink{class_game_object_ab8fccd5edcbebad0553aa4336a71452a}{operator()} ()
+\item 
+virtual void \hyperlink{class_game_object_afe9e6ee87d3062c80a9c560a12bfc279}{operator()} (\hyperlink{class_game_object}{Game\-Object} $\ast$other)
+\item 
+bool \hyperlink{class_game_object_ab8e7bb6eaae69c9e282efb22c3996499}{operator==} (\hyperlink{class_game_object}{Game\-Object} \&other) const 
+\item 
+unsigned \hyperlink{class_game_object_ac4692b8584d58cabc918e53e54767008}{get\-I\-D} ()
+\item 
+virtual void \hyperlink{class_game_object_a9867e75f8cfc4df52d03467aca07a4ac}{notify} ()
+\item 
+virtual void \hyperlink{class_game_object_ad7f752f1e3c84bd74de6110c17df3938}{pass\-Message} (\hyperlink{struct_message}{Message} $\ast$message, \hyperlink{class_game_object}{Game\-Object} \&recipient)
+\item 
+virtual void \hyperlink{class_game_object_adc249c683994a9c74b518a82fc22dbab}{text\-Description} (ostream $\ast$write\-To) const 
+\item 
+void \hyperlink{class_game_object_ae483f641380cd7d30c8bc469ffa2b219}{move\-To} (\hyperlink{struct_position}{Position}$<$ float $>$ $\ast$to)
+\item 
+void \hyperlink{class_game_object_ac9da7fd4807118db721e2d1cbee69580}{move\-To} (\hyperlink{struct_position}{Position}$<$ float $>$ to)
+\item 
+void \hyperlink{class_game_object_a34a64493de5a087b7cb79e1fceb5db8e}{move\-To} (float x, float y, float z)
+\item 
+void \hyperlink{class_game_object_af0f7a85d5565aa73554140b7cb876af0}{move\-X} (float x)
+\item 
+void \hyperlink{class_game_object_ab7e675ee37da1f4dfe9ce59de2df3a25}{move\-Y} (float y)
+\item 
+virtual void \hyperlink{class_game_object_a2c4862885319288c746d8e1c454556b6}{move\-Up} ()
+\item 
+virtual void \hyperlink{class_game_object_ab2d6fdbc50ff110d3a6d101e3539dca9}{move\-Down} ()
+\item 
+virtual void \hyperlink{class_game_object_abb75fa4bde389384815abb7cacc35045}{move\-Right} ()
+\item 
+virtual void \hyperlink{class_game_object_a71152debfe014bef0efe7464dd45aacb}{move\-Left} ()
+\item 
+virtual void \hyperlink{class_game_object_ac279191d7c42ca8ad3e1dd2baf5a9519}{move\-Random\-Direction} ()
+\item 
+void \hyperlink{class_game_object_aa8b87ef4a487c54c1d5b327c001b5c84}{jump} ()
+\item 
+void \hyperlink{class_game_object_aebf4e54c90de73d56186beaebead1ccc}{move} (float distance\-Modifier=\hyperlink{_default_config_8h_ae612ff4d109725baa6322f37db537175}{default\-Move\-Distance}$<$ float $>$)
+\item 
+virtual void \hyperlink{class_game_object_a41d5ef30ab6863ac5277fbc37297b11b}{move\-New\-Direction} (const \hyperlink{struct_vectr}{Vectr}$<$ float $>$ \&new\-Direction)
+\item 
+void \hyperlink{class_game_object_a372fee85f1892fd1fe258061dfb13269}{wander} ()
+\item 
+virtual void \hyperlink{class_game_object_a565a3950ea0af84bf7515bdb77abf51a}{default\-Behaviors} ()
+\item 
+virtual void \hyperlink{class_game_object_a43862b5d602a0fec32b686ab8586e886}{ai\-Behaviors} ()
+\item 
+virtual void \hyperlink{class_game_object_a87cfdf508b01dd9653716a5b4f4d7571}{attack} (\hyperlink{class_game_object}{Game\-Object} $\ast$enemy)
+\item 
+virtual void \hyperlink{class_game_object_a6bfde6f1f94ce0bf66f598dc53a75551}{find\-Nearby\-Ally} (int search\-Distance\-X, int search\-Distance\-Y)
+\item 
+virtual void \hyperlink{class_game_object_a20ca237d244a3eeb34500e0134d60eb1}{ally\-With} (const \hyperlink{class_game_object}{Game\-Object} $\ast$)
+\item 
+\hyperlink{_character_data_8h_a55ecd4f2ec2ebfe8d5b0163e4ac2a967}{Colors} \hyperlink{class_game_object_afa75c94bc4f7f52a48d000ef0803ec59}{get\-Color} () const 
+\item 
+const \hyperlink{struct_position}{Position}$<$ float $>$ $\ast$ \hyperlink{class_game_object_a8037270ed22a6c599a40610b188bf5d8}{get\-Position} () const 
+\item 
+const \hyperlink{struct_pos2}{Pos2}$<$ float $>$ $\ast$ \hyperlink{class_game_object_ac9c2137750ca7960047ad13fe9bb1b38}{get\-Position\-History} () const 
+\item 
+\hyperlink{struct_vectr}{Vectr}$<$ float $>$ $\ast$ \hyperlink{class_game_object_a12e8f3985a6a4a63dc5be822d50418a1}{get\-Vector} ()
+\item 
+void \hyperlink{class_game_object_a63e1c98f0e834bc9572b99957ebf5d4c}{set\-Image\-File} (string image\-File\-Name)
+\item 
+const \hyperlink{struct_asset_file}{Asset\-File} $\ast$ \hyperlink{class_game_object_a828768b425b6f845409a79f71f17d624}{get\-Image\-File} () const 
+\item 
+\hyperlink{_default_config_8h_a9ca20d8445e7d830c262f5ec4bb5d1bf}{Texture} $\ast$ \hyperlink{class_game_object_af0308820bacc8fa87cf985b78c5814fc}{get\-Texture} () const 
+\item 
+const \hyperlink{struct_size}{Size}$<$ int $>$ $\ast$ \hyperlink{class_game_object_a37fa422cde617a2f0c584193bf83e4a5}{get\-Size} () const 
+\item 
+\hyperlink{_asset_file_i_o_8h_a72d924d1cb8e1544b6d5198e98d52ca9}{Asset\-Type} \hyperlink{class_game_object_a106ef712578d9d9e82bf4df9e29245c5}{get\-Type} () const 
+\item 
+void \hyperlink{class_game_object_a172a0c544564afa8125957ad85772627}{set\-Visibility} (bool visible)
+\item 
+bool \hyperlink{class_game_object_a63a8b301423180c9ff003e0a1145104f}{is\-Visible} () const 
+\item 
+void \hyperlink{class_game_object_abfdb9aa04ec756de76c906001f060e16}{timed\-Turn\-Invisible} (std\-::chrono\-::nanoseconds nano)
+\item 
+string \hyperlink{class_game_object_a6f501dd4b129026d1156745de0046c63}{to\-String} () const 
+\item 
+virtual void \hyperlink{class_game_object_aefab5eddd7dfc186c7e5ba34bbefce41}{fire} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static vector$<$ \hyperlink{class_game_object}{Game\-Object} $\ast$ $>$ $\ast$ \hyperlink{class_game_object_a720f74ac34297ad4cee79723ecd2379e}{get\-All\-Game\-Objects} ()
+\item 
+static const \hyperlink{class_game_map}{Game\-Map}\\*
+$<$ \hyperlink{class_game_object}{Game\-Object} $>$ $\ast$ \hyperlink{class_game_object_ab67caafcd6df99f7b9d022f1595c0f9a}{get\-Map} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_game_object_adad7d284b670db722a2fda8e6a7997e3}{update} ()
+\item 
+void \hyperlink{class_game_object_ad99b7e0e0138da7cc825a13a1a0c5326}{mark\-For\-Deletion} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_game_object_a1996f540da697fa10aa874aa0e6e4572}{check\-For\-Marked\-Deletions} ()
+\item 
+static void \hyperlink{class_game_object_a4c75b1045f9e490c8aee0c4bcf9177d3}{erase\-By\-I\-D} (unsigned \hyperlink{class_game_object_a4db8b68d725cbea63ea94ced03add071}{I\-D})
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_game_object_a4db8b68d725cbea63ea94ced03add071}{I\-D}
+\item 
+\hyperlink{struct_output_data}{Output\-Data}$<$ float, int $>$ \hyperlink{class_game_object_a05d328553084cd1f480a26985a4671b5}{output\-Data}
+\item 
+\hyperlink{struct_pos2}{Pos2}$<$ float $>$ \hyperlink{class_game_object_a6858e668e7d2c5ded850b952aaacd905}{loc}
+\item 
+\hyperlink{struct_size}{Size}$<$ int $>$ \hyperlink{class_game_object_ac4637e122291be2421c851e2a87fb968}{size}
+\item 
+\hyperlink{struct_vectr}{Vectr}$<$ float $>$ \hyperlink{class_game_object_aebcdb5143027789a5f3b0f4ada2dac6b}{vectr}
+\item 
+const \hyperlink{class_game_object}{Game\-Object} $\ast$ \hyperlink{class_game_object_a33c6fbb5bee4bf28ed70ae170b2fdb1a}{ally} = nullptr
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_game_map}{Game\-Map}$<$ \hyperlink{class_game_object}{Game\-Object} $>$ $\ast$ \hyperlink{class_game_object_a5043adc801cf04c0747a0cdf93997d45}{map} = new \hyperlink{class_game_map}{Game\-Map}$<$\hyperlink{class_game_object}{Game\-Object}$>$(\hyperlink{_default_config_8h_ac52cbe2be8df57c4bcb888fae55550a6}{global\-Max\-X}(), \hyperlink{_default_config_8h_aecae0abd5507af9315ddeb2ce60d7997}{global\-Max\-Y}())
+\item 
+static \hyperlink{class_fast_rand}{Fast\-Rand}$<$ int $>$ \hyperlink{class_game_object_adc2b5a062ff3d5ee496f47a0206ddcc7}{go\-Rand}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_game_object_a19ecfd085a11c42d868e25c796419df8}{World\-Controller}
+\item 
+class \hyperlink{class_game_object_aefef8d7a397219a28f7808dc064e03c6}{Game\-State}
+\item 
+ostream \& \hyperlink{class_game_object_af878ba13a78e02d1acdb73ab3ec37110}{operator$<$$<$} (std\-::ostream \&os, const \hyperlink{class_game_object}{Game\-Object} \&game\-Obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The base class from which all other classes in the world will inherit. This class will handle the assignment of a unique I\-D to each \hyperlink{class_game_object}{Game\-Object}. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{class_character}{Character} 
+\end{DoxySeeAlso}
+
+
+Definition at line 47 of file Game\-Object.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_game_object_a0348e3ee2e83d56eafca7a3547f432c4}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_a0348e3ee2e83d56eafca7a3547f432c4}
+Creates a new \hyperlink{class_game_object}{Game\-Object} 
+
+Definition at line 25 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab13374d070cfe6a1459539d54c671eba}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game\-Object} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_ab13374d070cfe6a1459539d54c671eba}
+Copy constructor for \hyperlink{class_game_object}{Game\-Object}. The new instance has its own unique I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{class_game_object}{Game\-Object} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab415bbda3ab836e5de5e73c0a9d50ba3}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} \&\&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_ab415bbda3ab836e5de5e73c0a9d50ba3}
+Move constructor for \hyperlink{class_game_object}{Game\-Object}. The new instance the same I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{class_game_object}{Game\-Object} to be moved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 93 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_af784d96f9ca701cd705050ce1baf6bd2}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+\item[{const {\bf Asset\-File} \&}]{image\-File, }
+\item[{float}]{size\-Modifier, }
+\item[{const {\bf Position}$<$ float $>$ \&}]{loc, }
+\item[{bool}]{visible, }
+\item[{bool}]{monitor\-Velocity}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_af784d96f9ca701cd705050ce1baf6bd2}
+Creates an object with the given U\-T\-F-\/8 symbol (preferably just one character) as its icon
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\-File} & The file to be used as the Texture for this \hyperlink{class_game_object}{Game\-Object} \\
+\hline
+{\em loc} & This \hyperlink{class_game_object}{Game\-Object}'s \hyperlink{struct_position}{Position$<$float$>$} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a039a66e3278f6a75ad0021ffda1b1a71}{\index{Game\-Object@{Game\-Object}!Game\-Object@{Game\-Object}}
+\index{Game\-Object@{Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::\-Game\-Object (
+\begin{DoxyParamCaption}
+\item[{{\bf Fast\-Rand}$<$ int $>$}]{rand}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_a039a66e3278f6a75ad0021ffda1b1a71}
+Constructs a randomized \hyperlink{class_game_object}{Game\-Object}. The client has to option to simply leave the argument rand\-Seed as 0, in which case the constructor will generate its own random number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rand} & A seed to initialize the random number generator \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 145 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab82dfdb656f9051c0587e6593b2dda97}{\index{Game\-Object@{Game\-Object}!$\sim$\-Game\-Object@{$\sim$\-Game\-Object}}
+\index{$\sim$\-Game\-Object@{$\sim$\-Game\-Object}!GameObject@{Game\-Object}}
+\subsubsection[{$\sim$\-Game\-Object}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object\-::$\sim$\-Game\-Object (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_ab82dfdb656f9051c0587e6593b2dda97}
+Destructor for \hyperlink{class_game_object}{Game\-Object} 
+
+Definition at line 168 of file Game\-Object.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_game_object_a43862b5d602a0fec32b686ab8586e886}{\index{Game\-Object@{Game\-Object}!ai\-Behaviors@{ai\-Behaviors}}
+\index{ai\-Behaviors@{ai\-Behaviors}!GameObject@{Game\-Object}}
+\subsubsection[{ai\-Behaviors}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::ai\-Behaviors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a43862b5d602a0fec32b686ab8586e886}
+
+
+Reimplemented in \hyperlink{class_character_a7bd55d3615c1eb092f800d8634fa9695}{Character}, and \hyperlink{class_player_character_af7a8c30b3f40a698c28b095a299657ab}{Player\-Character}.
+
+
+
+Definition at line 415 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a20ca237d244a3eeb34500e0134d60eb1}{\index{Game\-Object@{Game\-Object}!ally\-With@{ally\-With}}
+\index{ally\-With@{ally\-With}!GameObject@{Game\-Object}}
+\subsubsection[{ally\-With}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::ally\-With (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game\-Object} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a20ca237d244a3eeb34500e0134d60eb1}
+
+
+Definition at line 435 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a87cfdf508b01dd9653716a5b4f4d7571}{\index{Game\-Object@{Game\-Object}!attack@{attack}}
+\index{attack@{attack}!GameObject@{Game\-Object}}
+\subsubsection[{attack}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::attack (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} $\ast$}]{enemy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a87cfdf508b01dd9653716a5b4f4d7571}
+
+
+Definition at line 422 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a1996f540da697fa10aa874aa0e6e4572}{\index{Game\-Object@{Game\-Object}!check\-For\-Marked\-Deletions@{check\-For\-Marked\-Deletions}}
+\index{check\-For\-Marked\-Deletions@{check\-For\-Marked\-Deletions}!GameObject@{Game\-Object}}
+\subsubsection[{check\-For\-Marked\-Deletions}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::check\-For\-Marked\-Deletions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_game_object_a1996f540da697fa10aa874aa0e6e4572}
+
+
+Definition at line 247 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a565a3950ea0af84bf7515bdb77abf51a}{\index{Game\-Object@{Game\-Object}!default\-Behaviors@{default\-Behaviors}}
+\index{default\-Behaviors@{default\-Behaviors}!GameObject@{Game\-Object}}
+\subsubsection[{default\-Behaviors}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::default\-Behaviors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a565a3950ea0af84bf7515bdb77abf51a}
+Each \hyperlink{class_game_object}{Game\-Object} can implement this to enable its default behaviors to run on a loop on a separate thread 
+
+Reimplemented in \hyperlink{class_character_ac96260f4fd9b68a33919a65bc9da9bca}{Character}, \hyperlink{class_player_character_ac96dd84cef7668557321edc5b251c97c}{Player\-Character}, \hyperlink{class_projectile_acd6a2cea6b495db189ccc8a05d189ef9}{Projectile}, and \hyperlink{class_enemy_acec008d64103ef820006bcbcf9345a2a}{Enemy}.
+
+
+
+Definition at line 411 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a4c75b1045f9e490c8aee0c4bcf9177d3}{\index{Game\-Object@{Game\-Object}!erase\-By\-I\-D@{erase\-By\-I\-D}}
+\index{erase\-By\-I\-D@{erase\-By\-I\-D}!GameObject@{Game\-Object}}
+\subsubsection[{erase\-By\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::erase\-By\-I\-D (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{I\-D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_game_object_a4c75b1045f9e490c8aee0c4bcf9177d3}
+Erases the \hyperlink{class_game_object}{Game\-Object} pointer matching the given I\-D from the all\-Game\-Objects container. 
+
+Definition at line 259 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a6bfde6f1f94ce0bf66f598dc53a75551}{\index{Game\-Object@{Game\-Object}!find\-Nearby\-Ally@{find\-Nearby\-Ally}}
+\index{find\-Nearby\-Ally@{find\-Nearby\-Ally}!GameObject@{Game\-Object}}
+\subsubsection[{find\-Nearby\-Ally}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::find\-Nearby\-Ally (
+\begin{DoxyParamCaption}
+\item[{int}]{search\-Distance\-X, }
+\item[{int}]{search\-Distance\-Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a6bfde6f1f94ce0bf66f598dc53a75551}
+
+
+Definition at line 426 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_aefab5eddd7dfc186c7e5ba34bbefce41}{\index{Game\-Object@{Game\-Object}!fire@{fire}}
+\index{fire@{fire}!GameObject@{Game\-Object}}
+\subsubsection[{fire}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::fire (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_aefab5eddd7dfc186c7e5ba34bbefce41}
+\begin{DoxyNote}{Note}
+Provides no functionality. Implemented only to fullfill the requirements of \hyperlink{class_game_interface}{Game\-Interface} interface. See \hyperlink{class_player_character_a646ce764c65c544fe4b76912b3fd15e5}{Player\-Character\-::fire()} for a functional implementation 
+\end{DoxyNote}
+
+
+Implements \hyperlink{class_game_interface_af3f525cdb14ebc3c6b139780c1d5f318}{Game\-Interface}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_a646ce764c65c544fe4b76912b3fd15e5}{Player\-Character}.
+
+
+
+Definition at line 475 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a720f74ac34297ad4cee79723ecd2379e}{\index{Game\-Object@{Game\-Object}!get\-All\-Game\-Objects@{get\-All\-Game\-Objects}}
+\index{get\-All\-Game\-Objects@{get\-All\-Game\-Objects}!GameObject@{Game\-Object}}
+\subsubsection[{get\-All\-Game\-Objects}]{\setlength{\rightskip}{0pt plus 5cm}static vector$<${\bf Game\-Object}$\ast$$>$$\ast$ Game\-Object\-::get\-All\-Game\-Objects (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{class_game_object_a720f74ac34297ad4cee79723ecd2379e}
+\begin{DoxyNote}{Note}
+Pointers to all extant Game\-Objects. \hyperlink{class_world_controller}{World\-Controller} will actually inialize this during its init(), by simply syncing all\-Game\-Objects to the same vector pointed by \hyperlink{class_world_controller_a2cb2ca35d201d22f296cda71b8a58e92}{World\-Controller\-::game\-Objects}. In practice the two should almost always be the same. Only classes that {\itshape absolutely} must have write access to all\-Game\-Objects should it access via this method. All others should call \hyperlink{struct_game_state_ae1b4a46f267c8b03a7b4b036d2ba24f5}{Game\-State\-::get\-Game\-Objects()}. 
+\end{DoxyNote}
+
+
+Definition at line 127 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_afa75c94bc4f7f52a48d000ef0803ec59}{\index{Game\-Object@{Game\-Object}!get\-Color@{get\-Color}}
+\index{get\-Color@{get\-Color}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Colors} Game\-Object\-::get\-Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_afa75c94bc4f7f52a48d000ef0803ec59}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s Colors 
+\end{DoxyReturn}
+
+
+Definition at line 316 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_ac4692b8584d58cabc918e53e54767008}{\index{Game\-Object@{Game\-Object}!get\-I\-D@{get\-I\-D}}
+\index{get\-I\-D@{get\-I\-D}!GameObject@{Game\-Object}}
+\subsubsection[{get\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}unsigned Game\-Object\-::get\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_ac4692b8584d58cabc918e53e54767008}
+\begin{DoxyReturn}{Returns}
+this I\-D 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a828768b425b6f845409a79f71f17d624}{\index{Game\-Object@{Game\-Object}!get\-Image\-File@{get\-Image\-File}}
+\index{get\-Image\-File@{get\-Image\-File}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Image\-File}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Asset\-File} $\ast$ Game\-Object\-::get\-Image\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_game_object_a828768b425b6f845409a79f71f17d624}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s texture\-Image\-File, i.\-e. the file path of its texture (usually in png format) 
+\end{DoxyReturn}
+
+
+Definition at line 443 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab67caafcd6df99f7b9d022f1595c0f9a}{\index{Game\-Object@{Game\-Object}!get\-Map@{get\-Map}}
+\index{get\-Map@{get\-Map}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Map}]{\setlength{\rightskip}{0pt plus 5cm}static const {\bf Game\-Map}$<${\bf Game\-Object}$>$$\ast$ Game\-Object\-::get\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{class_game_object_ab67caafcd6df99f7b9d022f1595c0f9a}
+\begin{DoxyReturn}{Returns}
+The current map of Game\-Objects 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a8037270ed22a6c599a40610b188bf5d8}{\index{Game\-Object@{Game\-Object}!get\-Position@{get\-Position}}
+\index{get\-Position@{get\-Position}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Position}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Position}$<$float$>$$\ast$ Game\-Object\-::get\-Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a8037270ed22a6c599a40610b188bf5d8}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s \hyperlink{struct_position}{Position$<$float$>$} 
+\end{DoxyReturn}
+
+
+Definition at line 321 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_ac9c2137750ca7960047ad13fe9bb1b38}{\index{Game\-Object@{Game\-Object}!get\-Position\-History@{get\-Position\-History}}
+\index{get\-Position\-History@{get\-Position\-History}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Position\-History}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Pos2}$<$float$>$$\ast$ Game\-Object\-::get\-Position\-History (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_ac9c2137750ca7960047ad13fe9bb1b38}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s \hyperlink{struct_position}{Position} history (\hyperlink{struct_pos2}{Pos2}) 
+\end{DoxyReturn}
+
+
+Definition at line 326 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a37fa422cde617a2f0c584193bf83e4a5}{\index{Game\-Object@{Game\-Object}!get\-Size@{get\-Size}}
+\index{get\-Size@{get\-Size}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Size}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Size}$<$int$>$$\ast$ Game\-Object\-::get\-Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a37fa422cde617a2f0c584193bf83e4a5}
+
+
+Definition at line 354 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_af0308820bacc8fa87cf985b78c5814fc}{\index{Game\-Object@{Game\-Object}!get\-Texture@{get\-Texture}}
+\index{get\-Texture@{get\-Texture}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture} $\ast$ Game\-Object\-::get\-Texture (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_game_object_af0308820bacc8fa87cf985b78c5814fc}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s texture, or nullptr if this \hyperlink{class_game_object_a63a8b301423180c9ff003e0a1145104f}{is\-Visible()} is false 
+\end{DoxyReturn}
+
+
+Definition at line 447 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a106ef712578d9d9e82bf4df9e29245c5}{\index{Game\-Object@{Game\-Object}!get\-Type@{get\-Type}}
+\index{get\-Type@{get\-Type}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asset\-Type} Game\-Object\-::get\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a106ef712578d9d9e82bf4df9e29245c5}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s asset type 
+\end{DoxyReturn}
+
+
+Definition at line 359 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a12e8f3985a6a4a63dc5be822d50418a1}{\index{Game\-Object@{Game\-Object}!get\-Vector@{get\-Vector}}
+\index{get\-Vector@{get\-Vector}!GameObject@{Game\-Object}}
+\subsubsection[{get\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vectr}$<$float$>$$\ast$ Game\-Object\-::get\-Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a12e8f3985a6a4a63dc5be822d50418a1}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{class_game_object}{Game\-Object}'s vector in 3-\/\-D space 
+\end{DoxyReturn}
+
+
+Definition at line 331 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a63a8b301423180c9ff003e0a1145104f}{\index{Game\-Object@{Game\-Object}!is\-Visible@{is\-Visible}}
+\index{is\-Visible@{is\-Visible}!GameObject@{Game\-Object}}
+\subsubsection[{is\-Visible}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\-Object\-::is\-Visible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a63a8b301423180c9ff003e0a1145104f}
+
+
+Definition at line 362 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_aa8b87ef4a487c54c1d5b327c001b5c84}{\index{Game\-Object@{Game\-Object}!jump@{jump}}
+\index{jump@{jump}!GameObject@{Game\-Object}}
+\subsubsection[{jump}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::jump (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_aa8b87ef4a487c54c1d5b327c001b5c84}
+
+
+Implements \hyperlink{class_game_interface_a7dc8aef4e9339745250c77e8b41ee1b2}{Game\-Interface}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_ab67b7f795e75b73027620483bea2871b}{Player\-Character}.
+
+
+
+Definition at line 363 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ad99b7e0e0138da7cc825a13a1a0c5326}{\index{Game\-Object@{Game\-Object}!mark\-For\-Deletion@{mark\-For\-Deletion}}
+\index{mark\-For\-Deletion@{mark\-For\-Deletion}!GameObject@{Game\-Object}}
+\subsubsection[{mark\-For\-Deletion}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::mark\-For\-Deletion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_game_object_ad99b7e0e0138da7cc825a13a1a0c5326}
+
+
+Definition at line 109 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_aebf4e54c90de73d56186beaebead1ccc}{\index{Game\-Object@{Game\-Object}!move@{move}}
+\index{move@{move}!GameObject@{Game\-Object}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move (
+\begin{DoxyParamCaption}
+\item[{float}]{distance\-Modifier = {\ttfamily {\bf default\-Move\-Distance}$<$float$>$}}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_aebf4e54c90de73d56186beaebead1ccc}
+Moves this \hyperlink{class_game_object}{Game\-Object} by changing its \hyperlink{struct_position}{Position$<$float$>$} x and y coordinates according to the \hyperlink{struct_vectr}{Vectr} of its last move 
+
+Definition at line 370 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab2d6fdbc50ff110d3a6d101e3539dca9}{\index{Game\-Object@{Game\-Object}!move\-Down@{move\-Down}}
+\index{move\-Down@{move\-Down}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Down}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_ab2d6fdbc50ff110d3a6d101e3539dca9}
+
+
+Implements \hyperlink{class_game_interface_a6899c1e5b3f48ed7892791e540a4c55c}{Game\-Interface}.
+
+
+
+Definition at line 336 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a71152debfe014bef0efe7464dd45aacb}{\index{Game\-Object@{Game\-Object}!move\-Left@{move\-Left}}
+\index{move\-Left@{move\-Left}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Left}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Left (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a71152debfe014bef0efe7464dd45aacb}
+
+
+Implements \hyperlink{class_game_interface_a66cbd9c9e07a5abca69879431346e1ea}{Game\-Interface}.
+
+
+
+Definition at line 346 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a41d5ef30ab6863ac5277fbc37297b11b}{\index{Game\-Object@{Game\-Object}!move\-New\-Direction@{move\-New\-Direction}}
+\index{move\-New\-Direction@{move\-New\-Direction}!GameObject@{Game\-Object}}
+\subsubsection[{move\-New\-Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-New\-Direction (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vectr}$<$ float $>$ \&}]{new\-Direction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a41d5ef30ab6863ac5277fbc37297b11b}
+Moves this \hyperlink{class_game_object}{Game\-Object} by changing its \hyperlink{struct_position}{Position$<$float$>$} x and y coordinates according to the given \hyperlink{struct_vectr}{Vectr}
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\-Direction} & The new vector specifying the direction of travel \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 385 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ac279191d7c42ca8ad3e1dd2baf5a9519}{\index{Game\-Object@{Game\-Object}!move\-Random\-Direction@{move\-Random\-Direction}}
+\index{move\-Random\-Direction@{move\-Random\-Direction}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Random\-Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Random\-Direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_ac279191d7c42ca8ad3e1dd2baf5a9519}
+
+
+Reimplemented in \hyperlink{class_player_character_a0c82549ee968726256b518e89b78c605}{Player\-Character}, and \hyperlink{class_projectile_afb8f0b1e6777785b613472d28b1967f6}{Projectile}.
+
+
+
+Definition at line 352 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_abb75fa4bde389384815abb7cacc35045}{\index{Game\-Object@{Game\-Object}!move\-Right@{move\-Right}}
+\index{move\-Right@{move\-Right}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Right}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Right (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_abb75fa4bde389384815abb7cacc35045}
+
+
+Implements \hyperlink{class_game_interface_a4eb03058ca25e4b741f4203e5a2f44b8}{Game\-Interface}.
+
+
+
+Definition at line 341 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ae483f641380cd7d30c8bc469ffa2b219}{\index{Game\-Object@{Game\-Object}!move\-To@{move\-To}}
+\index{move\-To@{move\-To}!GameObject@{Game\-Object}}
+\subsubsection[{move\-To}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-To (
+\begin{DoxyParamCaption}
+\item[{{\bf Position}$<$ float $>$ $\ast$}]{to}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_ae483f641380cd7d30c8bc469ffa2b219}
+Moves this \hyperlink{class_game_object}{Game\-Object} to the \hyperlink{struct_position}{Position$<$float$>$} move\-To. All other movement functions should call this.
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & The \hyperlink{struct_position}{Position$<$float$>$} where this \hyperlink{class_game_object}{Game\-Object} is to move \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 295 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ac9da7fd4807118db721e2d1cbee69580}{\index{Game\-Object@{Game\-Object}!move\-To@{move\-To}}
+\index{move\-To@{move\-To}!GameObject@{Game\-Object}}
+\subsubsection[{move\-To}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-To (
+\begin{DoxyParamCaption}
+\item[{{\bf Position}$<$ float $>$}]{to}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_ac9da7fd4807118db721e2d1cbee69580}
+Moves this \hyperlink{class_game_object}{Game\-Object} to the \hyperlink{struct_position}{Position$<$float$>$} move\-To.
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & The \hyperlink{struct_position}{Position$<$float$>$} where this \hyperlink{class_game_object}{Game\-Object} is to move \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 314 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a34a64493de5a087b7cb79e1fceb5db8e}{\index{Game\-Object@{Game\-Object}!move\-To@{move\-To}}
+\index{move\-To@{move\-To}!GameObject@{Game\-Object}}
+\subsubsection[{move\-To}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-To (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a34a64493de5a087b7cb79e1fceb5db8e}
+
+
+Definition at line 265 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a2c4862885319288c746d8e1c454556b6}{\index{Game\-Object@{Game\-Object}!move\-Up@{move\-Up}}
+\index{move\-Up@{move\-Up}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a2c4862885319288c746d8e1c454556b6}
+
+
+Implements \hyperlink{class_game_interface_ac451407fef525c7114bbd3a2e3d17799}{Game\-Interface}.
+
+
+
+Definition at line 331 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_af0f7a85d5565aa73554140b7cb876af0}{\index{Game\-Object@{Game\-Object}!move\-X@{move\-X}}
+\index{move\-X@{move\-X}!GameObject@{Game\-Object}}
+\subsubsection[{move\-X}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-X (
+\begin{DoxyParamCaption}
+\item[{float}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_af0f7a85d5565aa73554140b7cb876af0}
+
+
+Definition at line 267 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_ab7e675ee37da1f4dfe9ce59de2df3a25}{\index{Game\-Object@{Game\-Object}!move\-Y@{move\-Y}}
+\index{move\-Y@{move\-Y}!GameObject@{Game\-Object}}
+\subsubsection[{move\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::move\-Y (
+\begin{DoxyParamCaption}
+\item[{float}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_ab7e675ee37da1f4dfe9ce59de2df3a25}
+
+
+Definition at line 268 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a9867e75f8cfc4df52d03467aca07a4ac}{\index{Game\-Object@{Game\-Object}!notify@{notify}}
+\index{notify@{notify}!GameObject@{Game\-Object}}
+\subsubsection[{notify}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::notify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a9867e75f8cfc4df52d03467aca07a4ac}
+Every sub-\/type of \hyperlink{class_game_object}{Game\-Object} should implement this to perform some function of their choosing. Will typically be called by other classes with a reference to this \hyperlink{class_game_object}{Game\-Object}. 
+
+Reimplemented in \hyperlink{class_character_a457dab4f04550716888425da681b9f1f}{Character}, and \hyperlink{class_n_p_c_ab590b71db4dd9dc21f6e2c183e9bd45c}{N\-P\-C}.
+
+
+
+Definition at line 274 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab8fccd5edcbebad0553aa4336a71452a}{\index{Game\-Object@{Game\-Object}!operator()@{operator()}}
+\index{operator()@{operator()}!GameObject@{Game\-Object}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::operator() (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_ab8fccd5edcbebad0553aa4336a71452a}
+Overloads operator() for \hyperlink{class_game_object}{Game\-Object}. Possibly will be used to call \hyperlink{class_game_object_a9867e75f8cfc4df52d03467aca07a4ac}{notify()}. T\-B\-D. 
+
+Implements \hyperlink{class_game_interface_aa47ddf1a598f94dc6273e5d06834f435}{Game\-Interface}.
+
+
+
+Reimplemented in \hyperlink{class_character_a3c4dfc59865fe39251070cd0b92d34ac}{Character}, \hyperlink{class_player_character_a067c5b11f7deafd448726ec4ac294b03}{Player\-Character}, and \hyperlink{class_n_p_c_a73befe685fef40ab7f1ac954d932697d}{N\-P\-C}.
+
+
+
+Definition at line 229 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_afe9e6ee87d3062c80a9c560a12bfc279}{\index{Game\-Object@{Game\-Object}!operator()@{operator()}}
+\index{operator()@{operator()}!GameObject@{Game\-Object}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::operator() (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_afe9e6ee87d3062c80a9c560a12bfc279}
+Overloads the overload of operator(). For the most part the details of this function will be handled by inheriting classes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A reference to another \hyperlink{class_game_object}{Game\-Object} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_character_a6dde2dd17bfd31ea6e008d83bdcd3188}{Character}, and \hyperlink{class_player_character_a1cf7079c60a26c188cf4ed7043a2c9b3}{Player\-Character}.
+
+
+
+Definition at line 233 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_afa8505b16b7f5fe0b825d59fcee17291}{\index{Game\-Object@{Game\-Object}!operator=@{operator=}}
+\index{operator=@{operator=}!GameObject@{Game\-Object}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\-Object} \& Game\-Object\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game\-Object} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_afa8505b16b7f5fe0b825d59fcee17291}
+Assignment operator overload (copy) for \hyperlink{class_game_object}{Game\-Object}. The object copied to will have its own unique I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be copied) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 176 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a428579a3f2d8eb2c9e37bd4452d18d3b}{\index{Game\-Object@{Game\-Object}!operator=@{operator=}}
+\index{operator=@{operator=}!GameObject@{Game\-Object}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\-Object} \& Game\-Object\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} \&\&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_a428579a3f2d8eb2c9e37bd4452d18d3b}
+Assignment operator overload (move) for \hyperlink{class_game_object}{Game\-Object}. The object copied to will have the same I\-D.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The right hand side argument (which will be moved) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 203 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ab8e7bb6eaae69c9e282efb22c3996499}{\index{Game\-Object@{Game\-Object}!operator==@{operator==}}
+\index{operator==@{operator==}!GameObject@{Game\-Object}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\-Object\-::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\-Object} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{class_game_object_ab8e7bb6eaae69c9e282efb22c3996499}
+Overloads the overload of operator(). For the most part the details of this function will be handled by inheriting classes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A reference to another \hyperlink{class_game_object}{Game\-Object} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether this \hyperlink{class_game_object}{Game\-Object} I\-D is equal to I\-D of other 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_ad7f752f1e3c84bd74de6110c17df3938}{\index{Game\-Object@{Game\-Object}!pass\-Message@{pass\-Message}}
+\index{pass\-Message@{pass\-Message}!GameObject@{Game\-Object}}
+\subsubsection[{pass\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::pass\-Message (
+\begin{DoxyParamCaption}
+\item[{{\bf Message} $\ast$}]{message, }
+\item[{{\bf Game\-Object} \&}]{recipient}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_ad7f752f1e3c84bd74de6110c17df3938}
+A \hyperlink{class_game_object}{Game\-Object} or any other class can implement this function to pass messages to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The \hyperlink{struct_message}{Message} sent by this \\
+\hline
+{\em recipient} & The object receiving the \hyperlink{struct_message}{Message} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_character_ad0574321c7429301d4d9dd1dd33301c4}{Character}.
+
+
+
+Definition at line 278 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a63e1c98f0e834bc9572b99957ebf5d4c}{\index{Game\-Object@{Game\-Object}!set\-Image\-File@{set\-Image\-File}}
+\index{set\-Image\-File@{set\-Image\-File}!GameObject@{Game\-Object}}
+\subsubsection[{set\-Image\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::set\-Image\-File (
+\begin{DoxyParamCaption}
+\item[{string}]{image\-File\-Name}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_a63e1c98f0e834bc9572b99957ebf5d4c}
+Sets this \hyperlink{class_game_object}{Game\-Object}'s sprite to the specified file
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\-File\-Name} & The filename and path of the sprite image \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 439 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a172a0c544564afa8125957ad85772627}{\index{Game\-Object@{Game\-Object}!set\-Visibility@{set\-Visibility}}
+\index{set\-Visibility@{set\-Visibility}!GameObject@{Game\-Object}}
+\subsubsection[{set\-Visibility}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::set\-Visibility (
+\begin{DoxyParamCaption}
+\item[{bool}]{visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_game_object_a172a0c544564afa8125957ad85772627}
+
+
+Definition at line 361 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_adc249c683994a9c74b518a82fc22dbab}{\index{Game\-Object@{Game\-Object}!text\-Description@{text\-Description}}
+\index{text\-Description@{text\-Description}!GameObject@{Game\-Object}}
+\subsubsection[{text\-Description}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::text\-Description (
+\begin{DoxyParamCaption}
+\item[{ostream $\ast$}]{write\-To}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_game_object_adc249c683994a9c74b518a82fc22dbab}
+Writes a formatted text description of this \hyperlink{class_game_object}{Game\-Object} into the desired output stream 
+
+Reimplemented in \hyperlink{class_player_character_aac83579c2f552973e71008c1b1e01b1d}{Player\-Character}, \hyperlink{class_character_a2ab1090f959f0c66b098e0463d4c1bdd}{Character}, and \hyperlink{class_n_p_c_ad85699c2a35f1f5f9d5a81a3d5df2153}{N\-P\-C}.
+
+
+
+Definition at line 286 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_abfdb9aa04ec756de76c906001f060e16}{\index{Game\-Object@{Game\-Object}!timed\-Turn\-Invisible@{timed\-Turn\-Invisible}}
+\index{timed\-Turn\-Invisible@{timed\-Turn\-Invisible}!GameObject@{Game\-Object}}
+\subsubsection[{timed\-Turn\-Invisible}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::timed\-Turn\-Invisible (
+\begin{DoxyParamCaption}
+\item[{std\-::chrono\-::nanoseconds}]{nano}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_abfdb9aa04ec756de76c906001f060e16}
+Turns this \hyperlink{class_game_object}{Game\-Object} invisible for nano nanoseconds
+
+
+\begin{DoxyParams}{Parameters}
+{\em nano} & The length of time to remain invisible \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 451 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a6f501dd4b129026d1156745de0046c63}{\index{Game\-Object@{Game\-Object}!to\-String@{to\-String}}
+\index{to\-String@{to\-String}!GameObject@{Game\-Object}}
+\subsubsection[{to\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Game\-Object\-::to\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_game_object_a6f501dd4b129026d1156745de0046c63}
+Similar to \hyperlink{class_game_object_adc249c683994a9c74b518a82fc22dbab}{text\-Description()}, but returns a new string instead of writing to one passed to it 
+
+Definition at line 469 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_adad7d284b670db722a2fda8e6a7997e3}{\index{Game\-Object@{Game\-Object}!update@{update}}
+\index{update@{update}!GameObject@{Game\-Object}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_game_object_adad7d284b670db722a2fda8e6a7997e3}
+
+
+Implements \hyperlink{class_game_interface_aac4337d6b69549d389ff7d1b167fd7be}{Game\-Interface}.
+
+
+
+Reimplemented in \hyperlink{class_player_character_a2ac275d3de97c5ecc260e93e0585168a}{Player\-Character}.
+
+
+
+Definition at line 282 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a372fee85f1892fd1fe258061dfb13269}{\index{Game\-Object@{Game\-Object}!wander@{wander}}
+\index{wander@{wander}!GameObject@{Game\-Object}}
+\subsubsection[{wander}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-Object\-::wander (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_game_object_a372fee85f1892fd1fe258061dfb13269}
+Similar to \hyperlink{class_game_object_aebf4e54c90de73d56186beaebead1ccc}{move()}, but instead of stopping when reaching the bounds of the gamespace, the \hyperlink{class_game_object}{Game\-Object} reverses course 
+
+Definition at line 393 of file Game\-Object.\-cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_game_object_aefef8d7a397219a28f7808dc064e03c6}{\index{Game\-Object@{Game\-Object}!Game\-State@{Game\-State}}
+\index{Game\-State@{Game\-State}!GameObject@{Game\-Object}}
+\subsubsection[{Game\-State}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Game\-State}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_game_object_aefef8d7a397219a28f7808dc064e03c6}
+
+
+Definition at line 83 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_af878ba13a78e02d1acdb73ab3ec37110}{\index{Game\-Object@{Game\-Object}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!GameObject@{Game\-Object}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{os, }
+\item[{const {\bf Game\-Object} \&}]{game\-Obj}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_game_object_af878ba13a78e02d1acdb73ab3ec37110}
+Override the $<$$<$ output stream operator 
+
+Definition at line 464 of file Game\-Object.\-cpp.
+
+\hypertarget{class_game_object_a19ecfd085a11c42d868e25c796419df8}{\index{Game\-Object@{Game\-Object}!World\-Controller@{World\-Controller}}
+\index{World\-Controller@{World\-Controller}!GameObject@{Game\-Object}}
+\subsubsection[{World\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf World\-Controller}\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_game_object_a19ecfd085a11c42d868e25c796419df8}
+
+
+Definition at line 82 of file Game\-Object.\-h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_game_object_a33c6fbb5bee4bf28ed70ae170b2fdb1a}{\index{Game\-Object@{Game\-Object}!ally@{ally}}
+\index{ally@{ally}!GameObject@{Game\-Object}}
+\subsubsection[{ally}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Game\-Object}$\ast$ Game\-Object\-::ally = nullptr\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_a33c6fbb5bee4bf28ed70ae170b2fdb1a}
+
+
+Definition at line 97 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_adc2b5a062ff3d5ee496f47a0206ddcc7}{\index{Game\-Object@{Game\-Object}!go\-Rand@{go\-Rand}}
+\index{go\-Rand@{go\-Rand}!GameObject@{Game\-Object}}
+\subsubsection[{go\-Rand}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fast\-Rand}$<$ int $>$ Game\-Object\-::go\-Rand\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_game_object_adc2b5a062ff3d5ee496f47a0206ddcc7}
+
+
+Definition at line 105 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a4db8b68d725cbea63ea94ced03add071}{\index{Game\-Object@{Game\-Object}!I\-D@{I\-D}}
+\index{I\-D@{I\-D}!GameObject@{Game\-Object}}
+\subsubsection[{I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-Object\-::\-I\-D\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_a4db8b68d725cbea63ea94ced03add071}
+
+
+Definition at line 87 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a6858e668e7d2c5ded850b952aaacd905}{\index{Game\-Object@{Game\-Object}!loc@{loc}}
+\index{loc@{loc}!GameObject@{Game\-Object}}
+\subsubsection[{loc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pos2}$<$float$>$ Game\-Object\-::loc\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_a6858e668e7d2c5ded850b952aaacd905}
+
+
+Definition at line 91 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a5043adc801cf04c0747a0cdf93997d45}{\index{Game\-Object@{Game\-Object}!map@{map}}
+\index{map@{map}!GameObject@{Game\-Object}}
+\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\-Map}$<$ {\bf Game\-Object} $>$ $\ast$ Game\-Object\-::map = new {\bf Game\-Map}$<${\bf Game\-Object}$>$({\bf global\-Max\-X}(), {\bf global\-Max\-Y}())\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_game_object_a5043adc801cf04c0747a0cdf93997d45}
+Holds pointers to Game\-Objects like all\-Game\-Objects, but is 2\-D and the placement of each \hyperlink{class_game_object}{Game\-Object} in map corresponds to the x and y coordinate of its \hyperlink{struct_position}{Position}. Is synced with \hyperlink{class_world_controller}{World\-Controller}'s map. 
+
+Definition at line 103 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_a05d328553084cd1f480a26985a4671b5}{\index{Game\-Object@{Game\-Object}!output\-Data@{output\-Data}}
+\index{output\-Data@{output\-Data}!GameObject@{Game\-Object}}
+\subsubsection[{output\-Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Output\-Data}$<$float, int$>$ Game\-Object\-::output\-Data\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_a05d328553084cd1f480a26985a4671b5}
+
+
+Definition at line 89 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_ac4637e122291be2421c851e2a87fb968}{\index{Game\-Object@{Game\-Object}!size@{size}}
+\index{size@{size}!GameObject@{Game\-Object}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Size}$<$int$>$ Game\-Object\-::size\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_ac4637e122291be2421c851e2a87fb968}
+
+
+Definition at line 93 of file Game\-Object.\-h.
+
+\hypertarget{class_game_object_aebcdb5143027789a5f3b0f4ada2dac6b}{\index{Game\-Object@{Game\-Object}!vectr@{vectr}}
+\index{vectr@{vectr}!GameObject@{Game\-Object}}
+\subsubsection[{vectr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vectr}$<$float$>$ Game\-Object\-::vectr\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_object_aebcdb5143027789a5f3b0f4ada2dac6b}
+
+
+Definition at line 95 of file Game\-Object.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_object_8h}{Game\-Object.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-World/\hyperlink{_game_object_8cpp}{Game\-Object.\-cpp}\end{DoxyCompactItemize}

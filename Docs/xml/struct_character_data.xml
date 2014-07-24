@@ -1,0 +1,412 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="struct_character_data" kind="struct" prot="public">
+    <compoundname>CharacterData</compoundname>
+    <derivedcompoundref refid="struct_damage" prot="public" virt="non-virtual">Damage</derivedcompoundref>
+    <derivedcompoundref refid="struct_health" prot="public" virt="non-virtual">Health</derivedcompoundref>
+    <includes refid="_character_data_8h" local="no">CharacterData.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="struct_character_data_1a86c73102954363266a65ee283ff63c02" prot="protected" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long CharacterData::baseValue</definition>
+        <argsstring></argsstring>
+        <name>baseValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="29" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_character_data_1adc89389cfd62de262b8fa380703a8705" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CharacterData::modifier</definition>
+        <argsstring></argsstring>
+        <name>modifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="30" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_character_data_1ace49d29c55eeb48f7fd511841df40c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CharacterData::CharacterData</definition>
+        <argsstring>()</argsstring>
+        <name>CharacterData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="34" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1abcb9f0bd43c518b28e02065b171d7551" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CharacterData::CharacterData</definition>
+        <argsstring>(unsigned long b)</argsstring>
+        <name>CharacterData</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="38" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a28743377c793f39f4203ae71a4a40da9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CharacterData::CharacterData</definition>
+        <argsstring>(unsigned long b, unsigned m)</argsstring>
+        <name>CharacterData</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="43" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a9c4f926d20bfcbeaaf9496791160c09d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CharacterData::CharacterData</definition>
+        <argsstring>(const CharacterData &amp;other)</argsstring>
+        <name>CharacterData</name>
+        <param>
+          <type>const <ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="48" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a6e4a98d0dfcffd3155846515a9903900" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CharacterData::CharacterData</definition>
+        <argsstring>(CharacterData &amp;&amp;other)</argsstring>
+        <name>CharacterData</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="52" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a0118f9a14b08db8bf36870ac1043c780" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+        <definition>CharacterData&amp; CharacterData::operator=</definition>
+        <argsstring>(const CharacterData &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="57" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="57" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a8241609b7d0abaf5135fc965234dc1d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+        <definition>CharacterData&amp; CharacterData::operator=</definition>
+        <argsstring>(CharacterData &amp;&amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="65" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="65" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a815d34f2397d83e26a850f7327e121f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator==</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="73" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="73" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1acc34abfc386287c8c38d0de255aa3442" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator!=</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="77" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a662008be5f99b06b927ba1def39a12f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator&gt;</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="81" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="81" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a8531abd07619859ef83ac3ad3e3c3329" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator&lt;</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="85" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a8f31e2a333183cb8c5c5bb2518933ee0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator&gt;=</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="89" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="89" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a8eef34f1395329eb392fb293f7de687d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CharacterData::operator&lt;=</definition>
+        <argsstring>(CharacterData &amp;rhs)</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="93" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="93" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a85313590521d86ff18bfcb6a653919e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+        <definition>CharacterData&amp; CharacterData::operator+</definition>
+        <argsstring>(const CharacterData &amp;rhs)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="97" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1afa94ff26fee5818c3603444600ed37b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+        <definition>CharacterData&amp; CharacterData::operator-</definition>
+        <argsstring>(const CharacterData &amp;rhs)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="103" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="103" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long CharacterData::value</definition>
+        <argsstring>() const </argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The value of this <ref refid="struct_character_data" kindref="compound">CharacterData</ref> object (e.g. <ref refid="struct_health" kindref="compound">Health</ref> or <ref refid="struct_damage" kindref="compound">Damage</ref>) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="131" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="131" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_character_data_1a55c28ca84668020f8e9df060c9e5effc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long CharacterData::operator()</definition>
+        <argsstring>()</argsstring>
+        <name>operator()</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" kindref="member">value()</ref></para><para><simplesect kind="return"><para>The total amount of this <ref refid="struct_character_data" kindref="compound">CharacterData</ref> value (e.g. <ref refid="struct_health" kindref="compound">Health</ref> or <ref refid="struct_damage" kindref="compound">Damage</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="140" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="140" bodyend="142"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="struct_character_data_1ac3bffef95c1ca2d8be9c0b197dcd383d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend ostream &amp;</type>
+        <definition>ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, CharacterData &amp;gmd)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>gmd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Override the &lt;&lt; output stream operator </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="113" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="113" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="friend" id="struct_character_data_1a662f4fb97ebcbf9be2a543877e6b95ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend ostream &amp;</type>
+        <definition>ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const CharacterData &amp;gmd)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_character_data" kindref="compound">CharacterData</ref> &amp;</type>
+          <declname>gmd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Override the &lt;&lt; output stream operator </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="122" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="122" bodyend="125"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A parent type that will define the basic functions and members for <ref refid="struct_damage" kindref="compound">Damage</ref> and <ref refid="struct_health" kindref="compound">Health</ref> (and other similar data types if we need them) </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="45">
+        <label>Health</label>
+        <link refid="struct_health"/>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Damage</label>
+        <link refid="struct_damage"/>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>CharacterData</label>
+        <link refid="struct_character_data"/>
+      </node>
+    </inheritancegraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" line="25" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h" bodystart="25" bodyend="144"/>
+    <listofallmembers>
+      <member refid="struct_character_data_1a86c73102954363266a65ee283ff63c02" prot="protected" virt="non-virtual"><scope>CharacterData</scope><name>baseValue</name></member>
+      <member refid="struct_character_data_1ace49d29c55eeb48f7fd511841df40c27" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>CharacterData</name></member>
+      <member refid="struct_character_data_1abcb9f0bd43c518b28e02065b171d7551" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>CharacterData</name></member>
+      <member refid="struct_character_data_1a28743377c793f39f4203ae71a4a40da9" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>CharacterData</name></member>
+      <member refid="struct_character_data_1a9c4f926d20bfcbeaaf9496791160c09d" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>CharacterData</name></member>
+      <member refid="struct_character_data_1a6e4a98d0dfcffd3155846515a9903900" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>CharacterData</name></member>
+      <member refid="struct_character_data_1adc89389cfd62de262b8fa380703a8705" prot="protected" virt="non-virtual"><scope>CharacterData</scope><name>modifier</name></member>
+      <member refid="struct_character_data_1acc34abfc386287c8c38d0de255aa3442" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator!=</name></member>
+      <member refid="struct_character_data_1a55c28ca84668020f8e9df060c9e5effc" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator()</name></member>
+      <member refid="struct_character_data_1a85313590521d86ff18bfcb6a653919e6" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator+</name></member>
+      <member refid="struct_character_data_1afa94ff26fee5818c3603444600ed37b9" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator-</name></member>
+      <member refid="struct_character_data_1a8531abd07619859ef83ac3ad3e3c3329" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&lt;</name></member>
+      <member refid="struct_character_data_1ac3bffef95c1ca2d8be9c0b197dcd383d" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&lt;&lt;</name></member>
+      <member refid="struct_character_data_1a662f4fb97ebcbf9be2a543877e6b95ae" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&lt;&lt;</name></member>
+      <member refid="struct_character_data_1a8eef34f1395329eb392fb293f7de687d" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&lt;=</name></member>
+      <member refid="struct_character_data_1a0118f9a14b08db8bf36870ac1043c780" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator=</name></member>
+      <member refid="struct_character_data_1a8241609b7d0abaf5135fc965234dc1d7" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator=</name></member>
+      <member refid="struct_character_data_1a815d34f2397d83e26a850f7327e121f8" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator==</name></member>
+      <member refid="struct_character_data_1a662008be5f99b06b927ba1def39a12f3" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&gt;</name></member>
+      <member refid="struct_character_data_1a8f31e2a333183cb8c5c5bb2518933ee0" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>operator&gt;=</name></member>
+      <member refid="struct_character_data_1a65eb0fdcbb3ccab7f1b685df11161a1e" prot="public" virt="non-virtual"><scope>CharacterData</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

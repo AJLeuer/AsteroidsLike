@@ -1,0 +1,748 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="struct_output_data" kind="struct" prot="public">
+    <compoundname>OutputData</compoundname>
+    <derivedcompoundref refid="class_text_output" prot="public" virt="non-virtual">TextOutput&lt; POSUTYPE, SIZEUTYPE &gt;</derivedcompoundref>
+    <includes refid="_game_state_8hpp" local="no">GameState.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>POSUTYPE</declname>
+        <defname>POSUTYPE</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>SIZEUTYPE</declname>
+        <defname>SIZEUTYPE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="struct_output_data_1ad515b68d5527925323d98113f08b5d8f" prot="protected" static="yes" mutable="no">
+        <type>vector&lt; <ref refid="struct_output_data" kindref="compound">OutputData</ref> * &gt;</type>
+        <definition>vector&lt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt; * &gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::allOutputData</definition>
+        <argsstring></argsstring>
+        <name>allOutputData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="48" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="struct_output_data_1a4b90649aee88b935b5ebf38dee4aff7b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::initFlag</definition>
+        <argsstring></argsstring>
+        <name>initFlag</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="50" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1ab1d5abc732db0f826a01afbea44ada34" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::visible</definition>
+        <argsstring></argsstring>
+        <name>visible</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Indicates whether the <ref refid="struct_output_data" kindref="compound">OutputData</ref> has been recently updated. For every member that changes, it&apos;s corresponding boolean within updateFlags should be set true. Don&apos;t refer to this directly, instead call <ref refid="struct_output_data_1a2b19b9cd0df099c3f923f9c5f1ef28d9" kindref="member">checkIfUpdated()</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="59" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a0f15b2dc64531dfd8dd0925840c4758e" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::visibility_was_updated</definition>
+        <argsstring></argsstring>
+        <name>visibility_was_updated</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="60" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a344be69157cfd43c9ace4158b0e58b6b" prot="protected" static="no" mutable="no">
+        <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+        <definition>PositionType OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::positionType</definition>
+        <argsstring></argsstring>
+        <name>positionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="62" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1aada926eef9e2b2b654caa32de712ef1b" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_asset_file" kindref="compound">AssetFile</ref></type>
+        <definition>AssetFile OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::textureImageFile</definition>
+        <argsstring></argsstring>
+        <name>textureImageFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="64" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1af592125b9117db60d387049a7631c763" prot="protected" static="no" mutable="no">
+        <type><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref> *</type>
+        <definition>Texture* OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::texture</definition>
+        <argsstring></argsstring>
+        <name>texture</name>
+        <briefdescription>
+<para>A texture. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>In most cases, the class owning this <ref refid="struct_output_data" kindref="compound">OutputData</ref> object should never need to deal with texture directly </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="71" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1aa35a2457b23d1a6843ec49c2f6a4b29a" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::texture_was_updated</definition>
+        <argsstring></argsstring>
+        <name>texture_was_updated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="72" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a7494156691e440a9a6f2c808321b0cd5" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+        <definition>const Position&lt;POSUTYPE&gt;* OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+<para>A pointer to a <ref refid="struct_position" kindref="compound">Position</ref> object, which in most cases is owned by the class that owns this <ref refid="struct_output_data" kindref="compound">OutputData</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="78" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1aa0cfd47e41dd6e32a43b10cecdcbeb2b" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_size" kindref="compound">Size</ref>&lt; SIZEUTYPE &gt;</type>
+        <definition>Size&lt;SIZEUTYPE&gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+<para>A <ref refid="struct_size" kindref="compound">Size</ref> object, which unlike position is not a pointer and is owned by the <ref refid="struct_output_data" kindref="compound">OutputData</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="84" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a21ec70c5ab2418a33e9c6293dd9b588d" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt;</type>
+        <definition>Position&lt;POSUTYPE&gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::position_lastRecordedValue</definition>
+        <argsstring></argsstring>
+        <name>position_lastRecordedValue</name>
+        <briefdescription>
+<para>A copy of position from the last time this <ref refid="struct_output_data" kindref="compound">OutputData</ref> was updated. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="89" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a3007edb5d6739619f9e6b3f8ae8e5be1" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_size" kindref="compound">Size</ref>&lt; SIZEUTYPE &gt;</type>
+        <definition>Size&lt;SIZEUTYPE&gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::size_lastRecordedValue</definition>
+        <argsstring></argsstring>
+        <name>size_lastRecordedValue</name>
+        <briefdescription>
+<para>A copy of size from the last time this <ref refid="struct_output_data" kindref="compound">OutputData</ref> was updated. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="94" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_output_data_1a490cb05683b60fb16e696652b0c040d6" prot="protected" static="no" mutable="no">
+        <type>vector&lt; bool * &gt;</type>
+        <definition>vector&lt;bool *&gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::updateFlags</definition>
+        <argsstring></argsstring>
+        <name>updateFlags</name>
+        <initializer>= { &amp; <ref refid="struct_output_data_1a0f15b2dc64531dfd8dd0925840c4758e" kindref="member">visibility_was_updated</ref>, &amp; <ref refid="struct_output_data_1aa35a2457b23d1a6843ec49c2f6a4b29a" kindref="member">texture_was_updated</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="96" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="struct_output_data_1a7bca309627422d32bd485356394a4ed8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::completeInitialization</definition>
+        <argsstring>()</argsstring>
+        <name>completeInitialization</name>
+        <reimplementedby refid="class_text_output_1a77b70d1145a189362996cd6b308e7dde">completeInitialization</reimplementedby>
+        <briefdescription>
+<para>Does the remaining initialization that could not be done in the constructor (because it does not know with certainty that it is on the main thread) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Can ONLY be run on the main thread </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="104" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="357" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1aed0e4b81a7c981a7f2a0d6128ee69eb7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <reimplementedby refid="class_text_output_1a0fc3ebc814aa43df128bc6fcc80f5560">update</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="106" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="402" bodyend="408"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_output_data_1ad67cc040f7336e2c4de57bd852bf3116" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; <ref refid="struct_output_data" kindref="compound">OutputData</ref> * &gt; *</type>
+        <definition>vector&lt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt; * &gt; * OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getOutputData</definition>
+        <argsstring>()</argsstring>
+        <name>getOutputData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="111" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="296" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a1d35bb8a17ff06cd584d879bf30b2445" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::updateAll</definition>
+        <argsstring>()</argsstring>
+        <name>updateAll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Should only be called from the main thread </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="116" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="301" bodyend="326"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_output_data_1a25dd66307e7a48c4bc0d25e0016238fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>()</argsstring>
+        <name>OutputData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="118" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="118" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a5f9343b49b12d6eaebcf0a4f97091a4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>(Position&lt; POSUTYPE &gt; *pos, const float sizeModifier, PositionType type)</argsstring>
+        <name>OutputData</name>
+        <param>
+          <type><ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sizeModifier</declname>
+        </param>
+        <param>
+          <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="128" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="128" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a4d1b3008b1fb7dbb4cf9de8e89414f78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>(const AssetFile &amp;file, const Position&lt; POSUTYPE &gt; *pos, const float sizeModifier, PositionType type)</argsstring>
+        <name>OutputData</name>
+        <param>
+          <type>const <ref refid="struct_asset_file" kindref="compound">AssetFile</ref> &amp;</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sizeModifier</declname>
+        </param>
+        <param>
+          <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="140" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="140" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a31419d6be305d81146da03acf50af852" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>(FastRand&lt; int &gt; &amp;randm, const Position&lt; POSUTYPE &gt; *pos, const float sizeModifier, PositionType type)</argsstring>
+        <name>OutputData</name>
+        <param>
+          <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; int &gt; &amp;</type>
+          <declname>randm</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sizeModifier</declname>
+        </param>
+        <param>
+          <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="152" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="152" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a40e2554a288f7e546593eb866cdd1baf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>(const OutputData &amp;other)</argsstring>
+        <name>OutputData</name>
+        <param>
+          <type>const <ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="164" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="164" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1ab73d0b798428ee36881b61250bd152ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::OutputData</definition>
+        <argsstring>(OutputData &amp;&amp;other)</argsstring>
+        <name>OutputData</name>
+        <param>
+          <type><ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="178" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="178" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1ab9a358e297a61ab8c134376ddddf1c13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::~OutputData</definition>
+        <argsstring>()</argsstring>
+        <name>~OutputData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="196" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="196" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1ad95e5bfff9550c7290c966887e50dd6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;</type>
+        <definition>OutputData&amp; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::operator=</definition>
+        <argsstring>(const OutputData &amp;rhs)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="202" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1acaaf3bcc5ca785c4b96518215d7ecb82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;</type>
+        <definition>OutputData&amp; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::operator=</definition>
+        <argsstring>(OutputData &amp;&amp;rhs)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="struct_output_data" kindref="compound">OutputData</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="225" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1ac9c208239b472eea752f3605b155c713" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::reinitializeMembers</definition>
+        <argsstring>(const AssetFile &amp;file, const Position&lt; POSUTYPE &gt; *pos, const float sizeModifier, PositionType type)</argsstring>
+        <name>reinitializeMembers</name>
+        <param>
+          <type>const <ref refid="struct_asset_file" kindref="compound">AssetFile</ref> &amp;</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sizeModifier</declname>
+        </param>
+        <param>
+          <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Useful when the client class&apos;s constructor can&apos;t properly initialize this in it&apos;s initializer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="251" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="329" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a6cdf1d5f73c6ac03a2b46ce65d01c870" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::reinitializeMembers</definition>
+        <argsstring>(FastRand&lt; int &gt; &amp;randm, const Position&lt; POSUTYPE &gt; *pos, const float sizeModifier, PositionType type)</argsstring>
+        <name>reinitializeMembers</name>
+        <param>
+          <type><ref refid="class_fast_rand" kindref="compound">FastRand</ref>&lt; int &gt; &amp;</type>
+          <declname>randm</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sizeModifier</declname>
+        </param>
+        <param>
+          <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Useful when the client class&apos;s constructor can&apos;t properly initialize this in it&apos;s initializer </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="256" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="343" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a2b19b9cd0df099c3f923f9c5f1ef28d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::checkIfUpdated</definition>
+        <argsstring>()</argsstring>
+        <name>checkIfUpdated</name>
+        <briefdescription>
+<para>Check whether this <ref refid="struct_output_data" kindref="compound">OutputData</ref> has changed since the last time it was rendered. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Whether this <ref refid="struct_output_data" kindref="compound">OutputData</ref> has changed since the last time it was rendered </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="263" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="411" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a43ba11266165462930555fce963d20d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::setAssetFile</definition>
+        <argsstring>(string imageFileName)</argsstring>
+        <name>setAssetFile</name>
+        <param>
+          <type>string</type>
+          <declname>imageFileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="265" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1aa098f57388970d839d6eb55b333b1feb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="struct_asset_file" kindref="compound">AssetFile</ref> *</type>
+        <definition>const AssetFile* OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getAssetFile</definition>
+        <argsstring>() const </argsstring>
+        <name>getAssetFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="266" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a486ecf698661a03fd0740c83cd5ebe39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::setTexture</definition>
+        <argsstring>(Texture *texture)</argsstring>
+        <name>setTexture</name>
+        <param>
+          <type><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref> *</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Use only when absolutely neccessary </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="271" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="434" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1abae817843824525377ff87dff98825f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_default_config_8h_1a9ca20d8445e7d830c262f5ec4bb5d1bf" kindref="member">Texture</ref> *</type>
+        <definition>Texture* OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getTexture</definition>
+        <argsstring>() const </argsstring>
+        <name>getTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="273" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="273" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1acafb00ba35ee770e08f37de9080430a1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt;</type>
+        <definition>const Position&lt; POSUTYPE &gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getPosition</definition>
+        <argsstring>() const </argsstring>
+        <name>getPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="275" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="440" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a472127a33bcf404202ce9481a5ac8c4b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="struct_position" kindref="compound">Position</ref>&lt; POSUTYPE &gt; *</type>
+        <definition>const Position&lt;POSUTYPE&gt;* OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getPosition_raw</definition>
+        <argsstring>() const </argsstring>
+        <name>getPosition_raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Only use for making a copy of this <ref refid="struct_output_data" kindref="compound">OutputData</ref>&apos;s position, not for rendering operations </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="281" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="281" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1ae5a31a3636b1ebcebb70da1d8e2b5111" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_output_data_8hpp_1aa80fe4e9a559009407475c9587214b48" kindref="member">PositionType</ref></type>
+        <definition>PositionType OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getPositionType</definition>
+        <argsstring>() const </argsstring>
+        <name>getPositionType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="283" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="283" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a3bffb05a3714e4c93adb33bce30cc86d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="struct_size" kindref="compound">Size</ref>&lt; SIZEUTYPE &gt;</type>
+        <definition>const Size&lt;SIZEUTYPE&gt; OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::getSize</definition>
+        <argsstring>() const </argsstring>
+        <name>getSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="285" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="285" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1a286c4b1e5d7abf94af4d9f5eb454100e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::setVisibility</definition>
+        <argsstring>(bool visible)</argsstring>
+        <name>setVisibility</name>
+        <param>
+          <type>bool</type>
+          <declname>visible</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="287" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="287" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_output_data_1aeaa3ed34010dfb0726897b9722a779fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool OutputData&lt; POSUTYPE, SIZEUTYPE &gt;::isVisible</definition>
+        <argsstring>() const </argsstring>
+        <name>isVisible</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" line="288" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp" bodystart="288" bodyend="288"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="228">
+        <label>TextOutput&lt; POSUTYPE, SIZEUTYPE &gt;</label>
+        <link refid="class_text_output"/>
+        <childnode refid="227" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="227">
+        <label>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;</label>
+        <link refid="struct_output_data"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="230">
+        <label>AssetFile</label>
+        <link refid="struct_asset_file"/>
+      </node>
+      <node id="231">
+        <label>Size&lt; SIZEUTYPE &gt;</label>
+        <link refid="struct_size"/>
+        <childnode refid="232" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="232">
+        <label>Position&lt; SIZEUTYPE &gt;</label>
+        <link refid="struct_position"/>
+      </node>
+      <node id="229">
+        <label>OutputData&lt; POSUTYPE, SIZEUTYPE &gt;</label>
+        <link refid="struct_output_data"/>
+        <childnode refid="230" relation="usage">
+          <edgelabel>textureImageFile</edgelabel>
+        </childnode>
+        <childnode refid="231" relation="usage">
+          <edgelabel>size</edgelabel>
+          <edgelabel>size_lastRecordedValue</edgelabel>
+        </childnode>
+        <childnode refid="233" relation="usage">
+          <edgelabel>position_lastRecordedValue</edgelabel>
+          <edgelabel>position</edgelabel>
+        </childnode>
+      </node>
+      <node id="233">
+        <label>Position&lt; POSUTYPE &gt;</label>
+        <link refid="struct_position"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.hpp" line="40" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.hpp" bodystart="40" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="struct_output_data_1ad515b68d5527925323d98113f08b5d8f" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>allOutputData</name></member>
+      <member refid="struct_output_data_1a2b19b9cd0df099c3f923f9c5f1ef28d9" prot="public" virt="non-virtual"><scope>OutputData</scope><name>checkIfUpdated</name></member>
+      <member refid="struct_output_data_1a7bca309627422d32bd485356394a4ed8" prot="protected" virt="virtual"><scope>OutputData</scope><name>completeInitialization</name></member>
+      <member refid="struct_output_data_1aa098f57388970d839d6eb55b333b1feb" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getAssetFile</name></member>
+      <member refid="struct_output_data_1ad67cc040f7336e2c4de57bd852bf3116" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getOutputData</name></member>
+      <member refid="struct_output_data_1acafb00ba35ee770e08f37de9080430a1" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getPosition</name></member>
+      <member refid="struct_output_data_1a472127a33bcf404202ce9481a5ac8c4b" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getPosition_raw</name></member>
+      <member refid="struct_output_data_1ae5a31a3636b1ebcebb70da1d8e2b5111" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getPositionType</name></member>
+      <member refid="struct_output_data_1a3bffb05a3714e4c93adb33bce30cc86d" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getSize</name></member>
+      <member refid="struct_output_data_1abae817843824525377ff87dff98825f1" prot="public" virt="non-virtual"><scope>OutputData</scope><name>getTexture</name></member>
+      <member refid="struct_output_data_1a4b90649aee88b935b5ebf38dee4aff7b" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>initFlag</name></member>
+      <member refid="struct_output_data_1aeaa3ed34010dfb0726897b9722a779fa" prot="public" virt="non-virtual"><scope>OutputData</scope><name>isVisible</name></member>
+      <member refid="struct_output_data_1ad95e5bfff9550c7290c966887e50dd6d" prot="public" virt="non-virtual"><scope>OutputData</scope><name>operator=</name></member>
+      <member refid="struct_output_data_1acaaf3bcc5ca785c4b96518215d7ecb82" prot="public" virt="non-virtual"><scope>OutputData</scope><name>operator=</name></member>
+      <member refid="struct_output_data_1a25dd66307e7a48c4bc0d25e0016238fb" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1a5f9343b49b12d6eaebcf0a4f97091a4d" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1a4d1b3008b1fb7dbb4cf9de8e89414f78" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1a31419d6be305d81146da03acf50af852" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1a40e2554a288f7e546593eb866cdd1baf" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1ab73d0b798428ee36881b61250bd152ac" prot="public" virt="non-virtual"><scope>OutputData</scope><name>OutputData</name></member>
+      <member refid="struct_output_data_1a7494156691e440a9a6f2c808321b0cd5" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>position</name></member>
+      <member refid="struct_output_data_1a21ec70c5ab2418a33e9c6293dd9b588d" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>position_lastRecordedValue</name></member>
+      <member refid="struct_output_data_1a344be69157cfd43c9ace4158b0e58b6b" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>positionType</name></member>
+      <member refid="struct_output_data_1ac9c208239b472eea752f3605b155c713" prot="public" virt="non-virtual"><scope>OutputData</scope><name>reinitializeMembers</name></member>
+      <member refid="struct_output_data_1a6cdf1d5f73c6ac03a2b46ce65d01c870" prot="public" virt="non-virtual"><scope>OutputData</scope><name>reinitializeMembers</name></member>
+      <member refid="struct_output_data_1a43ba11266165462930555fce963d20d9" prot="public" virt="non-virtual"><scope>OutputData</scope><name>setAssetFile</name></member>
+      <member refid="struct_output_data_1a486ecf698661a03fd0740c83cd5ebe39" prot="public" virt="non-virtual"><scope>OutputData</scope><name>setTexture</name></member>
+      <member refid="struct_output_data_1a286c4b1e5d7abf94af4d9f5eb454100e" prot="public" virt="non-virtual"><scope>OutputData</scope><name>setVisibility</name></member>
+      <member refid="struct_output_data_1aa0cfd47e41dd6e32a43b10cecdcbeb2b" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>size</name></member>
+      <member refid="struct_output_data_1a3007edb5d6739619f9e6b3f8ae8e5be1" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>size_lastRecordedValue</name></member>
+      <member refid="struct_output_data_1af592125b9117db60d387049a7631c763" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>texture</name></member>
+      <member refid="struct_output_data_1aa35a2457b23d1a6843ec49c2f6a4b29a" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>texture_was_updated</name></member>
+      <member refid="struct_output_data_1aada926eef9e2b2b654caa32de712ef1b" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>textureImageFile</name></member>
+      <member refid="struct_output_data_1aed0e4b81a7c981a7f2a0d6128ee69eb7" prot="protected" virt="virtual"><scope>OutputData</scope><name>update</name></member>
+      <member refid="struct_output_data_1a1d35bb8a17ff06cd584d879bf30b2445" prot="public" virt="non-virtual"><scope>OutputData</scope><name>updateAll</name></member>
+      <member refid="struct_output_data_1a490cb05683b60fb16e696652b0c040d6" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>updateFlags</name></member>
+      <member refid="struct_output_data_1a0f15b2dc64531dfd8dd0925840c4758e" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>visibility_was_updated</name></member>
+      <member refid="struct_output_data_1ab1d5abc732db0f826a01afbea44ada34" prot="protected" virt="non-virtual"><scope>OutputData</scope><name>visible</name></member>
+      <member refid="struct_output_data_1ab9a358e297a61ab8c134376ddddf1c13" prot="public" virt="non-virtual"><scope>OutputData</scope><name>~OutputData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

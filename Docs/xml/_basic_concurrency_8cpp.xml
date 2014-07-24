@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_basic_concurrency_8cpp" kind="file">
+    <compoundname>BasicConcurrency.cpp</compoundname>
+    <includes refid="_basic_concurrency_8h" local="yes">BasicConcurrency.h</includes>
+    <incdepgraph>
+      <node id="1212">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="1213" relation="include">
+        </childnode>
+        <childnode refid="1214" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1216" relation="include">
+        </childnode>
+      </node>
+      <node id="1213">
+        <label>iostream</label>
+      </node>
+      <node id="1216">
+        <label>mutex</label>
+      </node>
+      <node id="1215">
+        <label>thread</label>
+      </node>
+      <node id="1211">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/BasicConcurrency.cpp</label>
+        <link refid="BasicConcurrency.cpp"/>
+        <childnode refid="1212" relation="include">
+        </childnode>
+      </node>
+      <node id="1214">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>BasicConcurrency.cpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>SpriteFight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>7/4/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_basic_concurrency_8h" kindref="compound">BasicConcurrency.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="class_basic_mutex_1aa7a702cf99a4de227661cfb8604f2996" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_basic_mutex_1aa7a702cf99a4de227661cfb8604f2996" kindref="member">BasicMutex::lock</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;mutex::lock()<sp/>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_basic_mutex_1a311753410a2191a3c6d5383698242ae9" kindref="member">locked</ref><sp/>=<sp/>true<sp/>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_basic_mutex_1a10ea86bf3ed7dc5b5e7fd98b456186ca" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_basic_mutex_1a10ea86bf3ed7dc5b5e7fd98b456186ca" kindref="member">BasicMutex::try_lock</ref>()<sp/>_NOEXCEPT<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_basic_mutex_1a311753410a2191a3c6d5383698242ae9" kindref="member">locked</ref><sp/>=<sp/>this-&gt;mutex::try_lock()<sp/>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_basic_mutex_1a311753410a2191a3c6d5383698242ae9" kindref="member">locked</ref><sp/>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="class_basic_mutex_1a2f14a0ea0347d8e1dd450301db0d4c34" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_basic_mutex_1a2f14a0ea0347d8e1dd450301db0d4c34" kindref="member">BasicMutex::unlock</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;mutex::unlock()<sp/>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_basic_mutex_1a311753410a2191a3c6d5383698242ae9" kindref="member">locked</ref><sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/BasicConcurrency.cpp"/>
+  </compounddef>
+</doxygen>

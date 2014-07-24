@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_drawing" kind="class" prot="public">
+    <compoundname>Drawing</compoundname>
+    <includes refid="_util_8hpp" local="no">Util.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_drawing_1a7812f3a85bf7e8ce9e098566d9ae9b40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Container</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Drawing::draw2DRepresentation</definition>
+        <argsstring>(ostream &amp;writeTo, const Container *container, char whitespace) const </argsstring>
+        <name>draw2DRepresentation</name>
+        <param>
+          <type>ostream &amp;</type>
+          <declname>writeTo</declname>
+        </param>
+        <param>
+          <type>const Container *</type>
+          <declname>container</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>whitespace</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util.hpp" line="125" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util.hpp" bodystart="131" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util.hpp" line="110" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util.hpp" bodystart="110" bodyend="126"/>
+    <listofallmembers>
+      <member refid="class_drawing_1a7812f3a85bf7e8ce9e098566d9ae9b40" prot="public" virt="non-virtual"><scope>Drawing</scope><name>draw2DRepresentation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

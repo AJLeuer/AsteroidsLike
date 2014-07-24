@@ -1,0 +1,288 @@
+\hypertarget{struct_velocity}{\section{Velocity$<$ N $>$ Struct Template Reference}
+\label{struct_velocity}\index{Velocity$<$ N $>$@{Velocity$<$ N $>$}}
+}
+
+
+{\ttfamily \#include $<$Velocity.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_velocity_a5a7fc681247a544a000718a35c202958}{Velocity} (const \hyperlink{_velocity_8hpp_a29fbe3dd3ce308a36d5b29488daddcaa}{Distance} $\ast$\hyperlink{struct_velocity_a3f3d268a5d9452ad912c19cfcc7c0394}{distance}, mutex $\ast$mut, bool $\ast$\hyperlink{struct_velocity_a099e0c3e044ce52e11b1e7ab225f896c}{local\-Continue\-Signal})
+\item 
+\hyperlink{struct_velocity_ab501061b7933ea4bf8d722b5e092972a}{Velocity} (const \hyperlink{_velocity_8hpp_a29fbe3dd3ce308a36d5b29488daddcaa}{Distance} $\ast$\hyperlink{struct_velocity_a3f3d268a5d9452ad912c19cfcc7c0394}{distance}, mutex $\ast$mut, bool $\ast$\hyperlink{struct_velocity_a099e0c3e044ce52e11b1e7ab225f896c}{local\-Continue\-Signal}, chrono\-::nanoseconds base\-Time\-Unit\-Override)
+\item 
+\hyperlink{struct_velocity_a8763237baab85450aeadd2f1df96c6ec}{Velocity} (const \hyperlink{struct_velocity}{Velocity} \&other)=delete
+\item 
+\hyperlink{struct_velocity_a5311e10fd1ff6dff1656507d5a7d3d19}{Velocity} (\hyperlink{struct_velocity}{Velocity} \&\&other)=delete
+\item 
+\hyperlink{struct_velocity_a328da698ec2f9cbf0de0ab519b6d7f50}{$\sim$\-Velocity} ()
+\item 
+\hyperlink{struct_velocity}{Velocity} \& \hyperlink{struct_velocity_a46e6358260ffa948eb21b1e235960e56}{operator=} (const \hyperlink{struct_velocity}{Velocity} \&rhs)=delete
+\item 
+\hyperlink{struct_velocity}{Velocity} \& \hyperlink{struct_velocity_a0b9ef6d1f184b6012a2dcc3b7a65539e}{operator=} (\hyperlink{struct_velocity}{Velocity} \&\&rhs)=delete
+\item 
+double \hyperlink{struct_velocity_a39c1fe5e6fc453aa435a648d6ce5ef05}{get\-Value} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const vector$<$ \hyperlink{struct_velocity}{Velocity} $\ast$ $>$ $\ast$ \hyperlink{struct_velocity_af8c34fb6b57a667c06e7baa1801f5df9}{get\-Velocity\-Storage} ()
+\item 
+static void \hyperlink{struct_velocity_ab96b02fb83753526f730e2c5b0337a62}{monitor\-Velocity} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_basic_mutex}{Basic\-Mutex} $\ast$ \hyperlink{struct_velocity_a68112c2f090288d4921a53a21390eac8}{shared\-Vel\-Mutex} = new \hyperlink{class_basic_mutex}{Basic\-Mutex}()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{struct_velocity_a7676bfee3f05da2e4ced84c838f0c1c6}{calculate\-Velocity} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{struct_velocity_a3f33b62ecfeeeb79c13cd732fbb3a05c}{id}
+\item 
+const \hyperlink{_velocity_8hpp_a29fbe3dd3ce308a36d5b29488daddcaa}{Distance} $\ast$ \hyperlink{struct_velocity_a3f3d268a5d9452ad912c19cfcc7c0394}{distance}
+\item 
+\hyperlink{class_timer}{Timer} $\ast$ \hyperlink{struct_velocity_a99f61fd4486ecad5fdbf0c8d3da8c4a0}{timer}
+\item 
+bool $\ast$ \hyperlink{struct_velocity_a099e0c3e044ce52e11b1e7ab225f896c}{local\-Continue\-Signal}
+\item 
+\hyperlink{_velocity_8hpp_a29fbe3dd3ce308a36d5b29488daddcaa}{Distance} \hyperlink{struct_velocity_a4a65b272ce588eab6a9a9fa1fdb94a01}{last\-Distance} = 0
+\item 
+chrono\-::nanoseconds \hyperlink{struct_velocity_a70e2af5664f11aeb266920916c271712}{base\-Time\-Unit} = std\-::chrono\-::milliseconds(30)
+\item 
+double \hyperlink{struct_velocity_acb312e3b7523314efd771a52fe8f2982}{last\-Velocity} = 0
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{struct_velocity_a014fe36081e4170fc42b605048c6086c}{velocity\-Monitor\-Init} = false
+\item 
+static unsigned \hyperlink{struct_velocity_a4ebc19cb1b4fc60b609556073a1d8b36}{I\-Ds} = 0
+\item 
+static vector$<$ \hyperlink{struct_velocity}{Velocity} $\ast$ $>$ \hyperlink{struct_velocity_a3815a4870a3cb81cf239d58e84eb9284}{velocity\-Storage} = vector$<$\hyperlink{struct_velocity}{Velocity}$<$N$>$ $\ast$$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename N$>$struct Velocity$<$ N $>$}
+
+
+
+Definition at line 32 of file Velocity.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_velocity_a5a7fc681247a544a000718a35c202958}{\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\subsubsection[{Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}$<$ N $>$\-::{\bf Velocity} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Distance} $\ast$}]{distance, }
+\item[{mutex $\ast$}]{mut, }
+\item[{bool $\ast$}]{local\-Continue\-Signal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct_velocity_a5a7fc681247a544a000718a35c202958}
+Constructs a \hyperlink{struct_velocity}{Velocity} object. Distance is a pointer that should increase in value as the caller moves. When \hyperlink{struct_velocity}{Velocity} detects that distance has changed from its initial value, it will begin monitoring speed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & A pointer to the distance covered by the client class, which \hyperlink{struct_velocity}{Velocity} expects to change over time \\
+\hline
+{\em mut} & A mutex shared with \hyperlink{struct_velocity}{Velocity} that should be locked when this velocity or distance is about to be deleted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_ab501061b7933ea4bf8d722b5e092972a}{\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\subsubsection[{Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}$<$ N $>$\-::{\bf Velocity} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Distance} $\ast$}]{distance, }
+\item[{mutex $\ast$}]{mut, }
+\item[{bool $\ast$}]{local\-Continue\-Signal, }
+\item[{chrono\-::nanoseconds}]{base\-Time\-Unit\-Override}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct_velocity_ab501061b7933ea4bf8d722b5e092972a}
+
+
+Definition at line 97 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a8763237baab85450aeadd2f1df96c6ec}{\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\subsubsection[{Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}$<$ N $>$\-::{\bf Velocity} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Velocity}$<$ N $>$ \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}}\label{struct_velocity_a8763237baab85450aeadd2f1df96c6ec}
+\hypertarget{struct_velocity_a5311e10fd1ff6dff1656507d5a7d3d19}{\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Velocity@{Velocity}}
+\subsubsection[{Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}$<$ N $>$\-::{\bf Velocity} (
+\begin{DoxyParamCaption}
+\item[{{\bf Velocity}$<$ N $>$ \&\&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}}\label{struct_velocity_a5311e10fd1ff6dff1656507d5a7d3d19}
+\hypertarget{struct_velocity_a328da698ec2f9cbf0de0ab519b6d7f50}{\index{Velocity@{Velocity}!$\sim$\-Velocity@{$\sim$\-Velocity}}
+\index{$\sim$\-Velocity@{$\sim$\-Velocity}!Velocity@{Velocity}}
+\subsubsection[{$\sim$\-Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}$<$ N $>$\-::$\sim${\bf Velocity} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct_velocity_a328da698ec2f9cbf0de0ab519b6d7f50}
+
+
+Definition at line 118 of file Velocity.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_velocity_a7676bfee3f05da2e4ced84c838f0c1c6}{\index{Velocity@{Velocity}!calculate\-Velocity@{calculate\-Velocity}}
+\index{calculate\-Velocity@{calculate\-Velocity}!Velocity@{Velocity}}
+\subsubsection[{calculate\-Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N $>$ void {\bf Velocity}$<$ N $>$\-::calculate\-Velocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_velocity_a7676bfee3f05da2e4ced84c838f0c1c6}
+
+
+Definition at line 170 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a39c1fe5e6fc453aa435a648d6ce5ef05}{\index{Velocity@{Velocity}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!Velocity@{Velocity}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ double {\bf Velocity}$<$ N $>$\-::get\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{struct_velocity_a39c1fe5e6fc453aa435a648d6ce5ef05}
+
+
+Definition at line 137 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_af8c34fb6b57a667c06e7baa1801f5df9}{\index{Velocity@{Velocity}!get\-Velocity\-Storage@{get\-Velocity\-Storage}}
+\index{get\-Velocity\-Storage@{get\-Velocity\-Storage}!Velocity@{Velocity}}
+\subsubsection[{get\-Velocity\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ static const vector$<${\bf Velocity} $\ast$$>$$\ast$ {\bf Velocity}$<$ N $>$\-::get\-Velocity\-Storage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{struct_velocity_af8c34fb6b57a667c06e7baa1801f5df9}
+
+
+Definition at line 67 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_ab96b02fb83753526f730e2c5b0337a62}{\index{Velocity@{Velocity}!monitor\-Velocity@{monitor\-Velocity}}
+\index{monitor\-Velocity@{monitor\-Velocity}!Velocity@{Velocity}}
+\subsubsection[{monitor\-Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N $>$ void {\bf Velocity}$<$ N $>$\-::monitor\-Velocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_velocity_ab96b02fb83753526f730e2c5b0337a62}
+
+
+Definition at line 156 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a46e6358260ffa948eb21b1e235960e56}{\index{Velocity@{Velocity}!operator=@{operator=}}
+\index{operator=@{operator=}!Velocity@{Velocity}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}\& {\bf Velocity}$<$ N $>$\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Velocity}$<$ N $>$ \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}}\label{struct_velocity_a46e6358260ffa948eb21b1e235960e56}
+\hypertarget{struct_velocity_a0b9ef6d1f184b6012a2dcc3b7a65539e}{\index{Velocity@{Velocity}!operator=@{operator=}}
+\index{operator=@{operator=}!Velocity@{Velocity}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Velocity}\& {\bf Velocity}$<$ N $>$\-::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Velocity}$<$ N $>$ \&\&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}}\label{struct_velocity_a0b9ef6d1f184b6012a2dcc3b7a65539e}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_velocity_a70e2af5664f11aeb266920916c271712}{\index{Velocity@{Velocity}!base\-Time\-Unit@{base\-Time\-Unit}}
+\index{base\-Time\-Unit@{base\-Time\-Unit}!Velocity@{Velocity}}
+\subsubsection[{base\-Time\-Unit}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ chrono\-::nanoseconds {\bf Velocity}$<$ N $>$\-::base\-Time\-Unit = std\-::chrono\-::milliseconds(30)\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a70e2af5664f11aeb266920916c271712}
+The unit of time that will function as the denominator for this \hyperlink{struct_velocity}{Velocity} object. By default it is 64 milliseconds. 
+
+Definition at line 54 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a3f3d268a5d9452ad912c19cfcc7c0394}{\index{Velocity@{Velocity}!distance@{distance}}
+\index{distance@{distance}!Velocity@{Velocity}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ const {\bf Distance}$\ast$ {\bf Velocity}$<$ N $>$\-::distance\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a3f3d268a5d9452ad912c19cfcc7c0394}
+
+
+Definition at line 44 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a3f33b62ecfeeeb79c13cd732fbb3a05c}{\index{Velocity@{Velocity}!id@{id}}
+\index{id@{id}!Velocity@{Velocity}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ int {\bf Velocity}$<$ N $>$\-::id\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a3f33b62ecfeeeb79c13cd732fbb3a05c}
+
+
+Definition at line 43 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a4ebc19cb1b4fc60b609556073a1d8b36}{\index{Velocity@{Velocity}!I\-Ds@{I\-Ds}}
+\index{I\-Ds@{I\-Ds}!Velocity@{Velocity}}
+\subsubsection[{I\-Ds}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ unsigned {\bf Velocity}$<$ N $>$\-::I\-Ds = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_velocity_a4ebc19cb1b4fc60b609556073a1d8b36}
+
+
+Definition at line 39 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a4a65b272ce588eab6a9a9fa1fdb94a01}{\index{Velocity@{Velocity}!last\-Distance@{last\-Distance}}
+\index{last\-Distance@{last\-Distance}!Velocity@{Velocity}}
+\subsubsection[{last\-Distance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Distance} {\bf Velocity}$<$ N $>$\-::last\-Distance = 0\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a4a65b272ce588eab6a9a9fa1fdb94a01}
+
+
+Definition at line 48 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_acb312e3b7523314efd771a52fe8f2982}{\index{Velocity@{Velocity}!last\-Velocity@{last\-Velocity}}
+\index{last\-Velocity@{last\-Velocity}!Velocity@{Velocity}}
+\subsubsection[{last\-Velocity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ double {\bf Velocity}$<$ N $>$\-::last\-Velocity = 0\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_acb312e3b7523314efd771a52fe8f2982}
+
+
+Definition at line 56 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a099e0c3e044ce52e11b1e7ab225f896c}{\index{Velocity@{Velocity}!local\-Continue\-Signal@{local\-Continue\-Signal}}
+\index{local\-Continue\-Signal@{local\-Continue\-Signal}!Velocity@{Velocity}}
+\subsubsection[{local\-Continue\-Signal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ bool$\ast$ {\bf Velocity}$<$ N $>$\-::local\-Continue\-Signal\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a099e0c3e044ce52e11b1e7ab225f896c}
+
+
+Definition at line 46 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a68112c2f090288d4921a53a21390eac8}{\index{Velocity@{Velocity}!shared\-Vel\-Mutex@{shared\-Vel\-Mutex}}
+\index{shared\-Vel\-Mutex@{shared\-Vel\-Mutex}!Velocity@{Velocity}}
+\subsubsection[{shared\-Vel\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Basic\-Mutex} $\ast$ {\bf Velocity}$<$ N $>$\-::shared\-Vel\-Mutex = new {\bf Basic\-Mutex}()\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_velocity_a68112c2f090288d4921a53a21390eac8}
+
+
+Definition at line 65 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a99f61fd4486ecad5fdbf0c8d3da8c4a0}{\index{Velocity@{Velocity}!timer@{timer}}
+\index{timer@{timer}!Velocity@{Velocity}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ {\bf Timer}$\ast$ {\bf Velocity}$<$ N $>$\-::timer\hspace{0.3cm}{\ttfamily [protected]}}}\label{struct_velocity_a99f61fd4486ecad5fdbf0c8d3da8c4a0}
+
+
+Definition at line 45 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a014fe36081e4170fc42b605048c6086c}{\index{Velocity@{Velocity}!velocity\-Monitor\-Init@{velocity\-Monitor\-Init}}
+\index{velocity\-Monitor\-Init@{velocity\-Monitor\-Init}!Velocity@{Velocity}}
+\subsubsection[{velocity\-Monitor\-Init}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ bool {\bf Velocity}$<$ N $>$\-::velocity\-Monitor\-Init = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_velocity_a014fe36081e4170fc42b605048c6086c}
+
+
+Definition at line 38 of file Velocity.\-hpp.
+
+\hypertarget{struct_velocity_a3815a4870a3cb81cf239d58e84eb9284}{\index{Velocity@{Velocity}!velocity\-Storage@{velocity\-Storage}}
+\index{velocity\-Storage@{velocity\-Storage}!Velocity@{Velocity}}
+\subsubsection[{velocity\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename N$>$ vector$<$ {\bf Velocity}$<$ N $>$ $\ast$ $>$ {\bf Velocity}$<$ N $>$\-::velocity\-Storage = vector$<${\bf Velocity}$<$N$>$ $\ast$$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{struct_velocity_a3815a4870a3cb81cf239d58e84eb9284}
+
+
+Definition at line 40 of file Velocity.\-hpp.
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Util/\hyperlink{_velocity_8hpp}{Velocity.\-hpp}\end{DoxyCompactItemize}

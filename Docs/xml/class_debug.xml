@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_debug" kind="class" prot="public">
+    <compoundname>Debug</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ostream</basecompoundref>
+    <includes refid="_debug_8h" local="no">Debug.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_debug_1a75ca7768e26fa274e1a7cae2127d5b69" prot="private" static="no" mutable="no">
+        <type>ostream *</type>
+        <definition>ostream* Debug::out</definition>
+        <argsstring></argsstring>
+        <name>out</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="25" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_debug_1a510b7fc05c8761a6928a957b5bb04461" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Debug::file_output</definition>
+        <argsstring></argsstring>
+        <name>file_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="26" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_debug_1a1652cc43c785a11a04df64cd21eec4b0" prot="private" static="no" mutable="no">
+        <type>mutex</type>
+        <definition>mutex Debug::dbgMutex</definition>
+        <argsstring></argsstring>
+        <name>dbgMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="27" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_debug_1a43af4ef5dff053275a8b5cc16fc2670e" prot="private" static="no" mutable="no">
+        <type>mutex</type>
+        <definition>mutex Debug::dbgMutex1</definition>
+        <argsstring></argsstring>
+        <name>dbgMutex1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="28" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_debug_1af371a31645b63f543a60ac7055c76a10" prot="private" static="no" mutable="no">
+        <type>mutex</type>
+        <definition>mutex Debug::dbgMutex2</definition>
+        <argsstring></argsstring>
+        <name>dbgMutex2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="29" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_debug_1a1225f6de79fad7fd1cd7b180e139cec1" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_debug" kindref="compound">Debug</ref> *</type>
+        <definition>Debug * Debug::debugOutput</definition>
+        <argsstring></argsstring>
+        <name>debugOutput</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="65" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_debug_1a6ef39adb314b089b4243f544f1d67735" prot="public" static="yes" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Debug::debugCounter</definition>
+        <argsstring></argsstring>
+        <name>debugCounter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="70" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_debug_1ab865c4f64637d49f5fed793824713294" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Debug::Debug</definition>
+        <argsstring>(ostream *_out)</argsstring>
+        <name>Debug</name>
+        <param>
+          <type>ostream *</type>
+          <declname>_out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="34" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="34" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_debug_1ad5812b399737871bada69fae4dbba5ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_debug" kindref="compound">Debug</ref> &amp;</type>
+        <definition>Debug &amp; Debug::operator&lt;&lt;</definition>
+        <argsstring>(const T &amp;data)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="44" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="75" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_debug_1ab9d98c917063f74402ada8ba5298115a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_debug" kindref="compound">Debug</ref> &amp;</type>
+        <definition>Debug&amp; Debug::operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;(*ptr)(std::ostream &amp;))</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;(*)(std::ostream &amp;)</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="46" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="46" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_debug_1a6e2f2283770dd91b0a3a2b269ca819b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_debug" kindref="compound">Debug</ref> &amp;</type>
+        <definition>Debug&amp; Debug::operator&lt;&lt;</definition>
+        <argsstring>(Debug &amp;(*ptr)(Debug &amp;))</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type><ref refid="class_debug" kindref="compound">Debug</ref> &amp;(*)(<ref refid="class_debug" kindref="compound">Debug</ref> &amp;)</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="55" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_debug_1a4e353e9f6c0ec7ea6757d33fe11cd0c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ostream &amp;</type>
+        <definition>ostream&amp; Debug::get_ostream</definition>
+        <argsstring>()</argsstring>
+        <name>get_ostream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="63" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="63" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_debug_1acd04c0ecba145ac2998cf1c43e7b619b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="67" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.cpp" bodystart="18" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="56">
+        <label>ostream</label>
+      </node>
+      <node id="55">
+        <label>Debug</label>
+        <link refid="class_debug"/>
+        <childnode refid="56" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="58">
+        <label>ostream</label>
+      </node>
+      <node id="57">
+        <label>Debug</label>
+        <link refid="class_debug"/>
+        <childnode refid="58" relation="public-inheritance">
+        </childnode>
+        <childnode refid="57" relation="usage">
+          <edgelabel>debugOutput</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" line="21" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h" bodystart="21" bodyend="72"/>
+    <listofallmembers>
+      <member refid="class_debug_1a1652cc43c785a11a04df64cd21eec4b0" prot="private" virt="non-virtual"><scope>Debug</scope><name>dbgMutex</name></member>
+      <member refid="class_debug_1a43af4ef5dff053275a8b5cc16fc2670e" prot="private" virt="non-virtual"><scope>Debug</scope><name>dbgMutex1</name></member>
+      <member refid="class_debug_1af371a31645b63f543a60ac7055c76a10" prot="private" virt="non-virtual"><scope>Debug</scope><name>dbgMutex2</name></member>
+      <member refid="class_debug_1ab865c4f64637d49f5fed793824713294" prot="public" virt="non-virtual"><scope>Debug</scope><name>Debug</name></member>
+      <member refid="class_debug_1a6ef39adb314b089b4243f544f1d67735" prot="public" virt="non-virtual"><scope>Debug</scope><name>debugCounter</name></member>
+      <member refid="class_debug_1a1225f6de79fad7fd1cd7b180e139cec1" prot="public" virt="non-virtual"><scope>Debug</scope><name>debugOutput</name></member>
+      <member refid="class_debug_1a510b7fc05c8761a6928a957b5bb04461" prot="private" virt="non-virtual"><scope>Debug</scope><name>file_output</name></member>
+      <member refid="class_debug_1a4e353e9f6c0ec7ea6757d33fe11cd0c2" prot="public" virt="non-virtual"><scope>Debug</scope><name>get_ostream</name></member>
+      <member refid="class_debug_1acd04c0ecba145ac2998cf1c43e7b619b" prot="public" virt="non-virtual"><scope>Debug</scope><name>init</name></member>
+      <member refid="class_debug_1ad5812b399737871bada69fae4dbba5ec" prot="public" virt="non-virtual"><scope>Debug</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_debug_1ab9d98c917063f74402ada8ba5298115a" prot="public" virt="non-virtual"><scope>Debug</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_debug_1a6e2f2283770dd91b0a3a2b269ca819b9" prot="public" virt="non-virtual"><scope>Debug</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_debug_1a75ca7768e26fa274e1a7cae2127d5b69" prot="private" virt="non-virtual"><scope>Debug</scope><name>out</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

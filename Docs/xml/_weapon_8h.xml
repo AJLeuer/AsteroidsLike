@@ -1,0 +1,714 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_weapon_8h" kind="file">
+    <compoundname>Weapon.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes refid="_game_object_8h" local="yes">GameObject.h</includes>
+    <includedby refid="_player_character_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</includedby>
+    <includedby refid="_weapon_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.cpp</includedby>
+    <incdepgraph>
+      <node id="3350">
+        <label>list</label>
+      </node>
+      <node id="3369">
+        <label>functional</label>
+      </node>
+      <node id="3340">
+        <label>iomanip</label>
+      </node>
+      <node id="3335">
+        <label>queue</label>
+      </node>
+      <node id="3346">
+        <label>limits</label>
+      </node>
+      <node id="3343">
+        <label>BasicConcurrency.h</label>
+        <link refid="_basic_concurrency_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3344" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3339" relation="include">
+        </childnode>
+      </node>
+      <node id="3341">
+        <label>assert.h</label>
+      </node>
+      <node id="3325">
+        <label>SDL2/SDL_video.h</label>
+      </node>
+      <node id="3332">
+        <label>../Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3333" relation="include">
+        </childnode>
+        <childnode refid="3319" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3347" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3366">
+        <label>GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3367" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3353">
+        <label>ForwardDecl.h</label>
+        <link refid="_forward_decl_8h"/>
+      </node>
+      <node id="3352">
+        <label>SDL2/SDL_render.h</label>
+      </node>
+      <node id="3347">
+        <label>Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3316" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3354">
+        <label>../Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3355" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3356" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3337" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3357" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3342">
+        <label>Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3326" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+      </node>
+      <node id="3319">
+        <label>cmath</label>
+      </node>
+      <node id="3315">
+        <label>GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3316" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3319" relation="include">
+        </childnode>
+        <childnode refid="3320" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3332" relation="include">
+        </childnode>
+        <childnode refid="3347" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3354" relation="include">
+        </childnode>
+        <childnode refid="3358" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3363" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3366" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+        <childnode refid="3368" relation="include">
+        </childnode>
+      </node>
+      <node id="3313">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h</label>
+        <link refid="Weapon.h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3315" relation="include">
+        </childnode>
+      </node>
+      <node id="3356">
+        <label>SDL2_image/SDL_image.h</label>
+      </node>
+      <node id="3328">
+        <label>string</label>
+      </node>
+      <node id="3323">
+        <label>fstream</label>
+      </node>
+      <node id="3322">
+        <label>ostream</label>
+      </node>
+      <node id="3348">
+        <label>../World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3322" relation="include">
+        </childnode>
+        <childnode refid="3316" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3339" relation="include">
+        </childnode>
+        <childnode refid="3349" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3350" relation="include">
+        </childnode>
+        <childnode refid="3351" relation="include">
+        </childnode>
+        <childnode refid="3325" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3337" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+        <childnode refid="3331" relation="include">
+        </childnode>
+      </node>
+      <node id="3363">
+        <label>GameMap.hpp</label>
+        <link refid="_game_map_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3336" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3350" relation="include">
+        </childnode>
+        <childnode refid="3364" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3365" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3345">
+        <label>GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3333" relation="include">
+        </childnode>
+        <childnode refid="3319" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3361">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="3333">
+        <label>random</label>
+      </node>
+      <node id="3351">
+        <label>condition_variable</label>
+      </node>
+      <node id="3359">
+        <label>unistd.h</label>
+      </node>
+      <node id="3317">
+        <label>vector</label>
+      </node>
+      <node id="3370">
+        <label>SDL2/SDL_events.h</label>
+      </node>
+      <node id="3349">
+        <label>array</label>
+      </node>
+      <node id="3324">
+        <label>../Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="3325" relation="include">
+        </childnode>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3323" relation="include">
+        </childnode>
+        <childnode refid="3326" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3330" relation="include">
+        </childnode>
+        <childnode refid="3331" relation="include">
+        </childnode>
+      </node>
+      <node id="3316">
+        <label>sstream</label>
+      </node>
+      <node id="3368">
+        <label>../Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3369" relation="include">
+        </childnode>
+        <childnode refid="3360" relation="include">
+        </childnode>
+        <childnode refid="3350" relation="include">
+        </childnode>
+        <childnode refid="3361" relation="include">
+        </childnode>
+        <childnode refid="3370" relation="include">
+        </childnode>
+        <childnode refid="3371" relation="include">
+        </childnode>
+        <childnode refid="3325" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3366" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3362">
+        <label>SDL2_ttf/SDL_ttf.h</label>
+      </node>
+      <node id="3338">
+        <label>Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="3326" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3339" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3340" relation="include">
+        </childnode>
+        <childnode refid="3328" relation="include">
+        </childnode>
+        <childnode refid="3316" relation="include">
+        </childnode>
+        <childnode refid="3341" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3343" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3327">
+        <label>../Util/Util.hpp</label>
+        <link refid="_util_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3328" relation="include">
+        </childnode>
+        <childnode refid="3317" relation="include">
+        </childnode>
+        <childnode refid="3319" relation="include">
+        </childnode>
+        <childnode refid="3329" relation="include">
+        </childnode>
+      </node>
+      <node id="3314">
+        <label>iostream</label>
+      </node>
+      <node id="3320">
+        <label>SDL2/SDL_surface.h</label>
+      </node>
+      <node id="3336">
+        <label>deque</label>
+      </node>
+      <node id="3331">
+        <label>DefaultConfig.h</label>
+        <link refid="_default_config_8h"/>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3326" relation="include">
+        </childnode>
+      </node>
+      <node id="3364">
+        <label>climits</label>
+      </node>
+      <node id="3337">
+        <label>BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3339">
+        <label>mutex</label>
+      </node>
+      <node id="3326">
+        <label>chrono</label>
+      </node>
+      <node id="3329">
+        <label>SDL2/SDL_rect.h</label>
+      </node>
+      <node id="3334">
+        <label>Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="3319" relation="include">
+        </childnode>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3322" relation="include">
+        </childnode>
+        <childnode refid="3316" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3336" relation="include">
+        </childnode>
+        <childnode refid="3325" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3337" relation="include">
+        </childnode>
+        <childnode refid="3338" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3343" relation="include">
+        </childnode>
+      </node>
+      <node id="3318">
+        <label>thread</label>
+      </node>
+      <node id="3357">
+        <label>../World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3322" relation="include">
+        </childnode>
+        <childnode refid="3337" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+      </node>
+      <node id="3358">
+        <label>../Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="3359" relation="include">
+        </childnode>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3318" relation="include">
+        </childnode>
+        <childnode refid="3326" relation="include">
+        </childnode>
+        <childnode refid="3360" relation="include">
+        </childnode>
+        <childnode refid="3361" relation="include">
+        </childnode>
+        <childnode refid="3329" relation="include">
+        </childnode>
+        <childnode refid="3325" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3356" relation="include">
+        </childnode>
+        <childnode refid="3362" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3321" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3332" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+        <childnode refid="3347" relation="include">
+        </childnode>
+        <childnode refid="3354" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3365">
+        <label>../Util/Navigator.hpp</label>
+        <link refid="_navigator_8hpp"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3327" relation="include">
+        </childnode>
+        <childnode refid="3334" relation="include">
+        </childnode>
+      </node>
+      <node id="3367">
+        <label>Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3357" relation="include">
+        </childnode>
+      </node>
+      <node id="3321">
+        <label>../Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="3314" relation="include">
+        </childnode>
+        <childnode refid="3322" relation="include">
+        </childnode>
+        <childnode refid="3323" relation="include">
+        </childnode>
+        <childnode refid="3324" relation="include">
+        </childnode>
+      </node>
+      <node id="3371">
+        <label>SDL2/SDL_keyboard.h</label>
+      </node>
+      <node id="3330">
+        <label>../Output/DisplayData.h</label>
+        <link refid="_display_data_8h"/>
+      </node>
+      <node id="3344">
+        <label>memory</label>
+      </node>
+      <node id="3360">
+        <label>initializer_list</label>
+      </node>
+      <node id="3355">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3378">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.cpp</label>
+        <link refid="_player_8cpp"/>
+      </node>
+      <node id="3377">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="3376">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="3372">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h</label>
+        <link refid="Weapon.h"/>
+        <childnode refid="3373" relation="include">
+        </childnode>
+        <childnode refid="3380" relation="include">
+        </childnode>
+      </node>
+      <node id="3379">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.cpp</label>
+        <link refid="_player_character_8cpp"/>
+      </node>
+      <node id="3373">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</label>
+        <link refid="_player_character_8h"/>
+        <childnode refid="3374" relation="include">
+        </childnode>
+        <childnode refid="3379" relation="include">
+        </childnode>
+      </node>
+      <node id="3375">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="3376" relation="include">
+        </childnode>
+        <childnode refid="3377" relation="include">
+        </childnode>
+      </node>
+      <node id="3380">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.cpp</label>
+        <link refid="_weapon_8cpp"/>
+      </node>
+      <node id="3374">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.h</label>
+        <link refid="_player_8h"/>
+        <childnode refid="3375" relation="include">
+        </childnode>
+        <childnode refid="3378" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_projectile" prot="public">Projectile</innerclass>
+    <innerclass refid="class_weapon" prot="public">Weapon</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Weapon.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>SpriteFight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>7/10/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__SpriteFight__Weapon__</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__SpriteFight__Weapon__</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_game_object_8h" kindref="compound">GameObject.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_projectile" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_projectile" kindref="compound">Projectile</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_game_object" kindref="compound">GameObject</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_game_object_1a0348e3ee2e83d56eafca7a3547f432c4" kindref="member">GameObject::GameObject</ref><sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>setPosition(Position&lt;float&gt;<sp/>*<sp/>pos)<sp/>;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30" refid="class_projectile_1afb8f0b1e6777785b613472d28b1967f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_projectile_1afb8f0b1e6777785b613472d28b1967f6" kindref="member">moveRandomDirection</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;<sp/></highlight><highlight class="comment">//NOP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="class_projectile_1acd6a2cea6b495db189ccc8a05d189ef9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_projectile_1acd6a2cea6b495db189ccc8a05d189ef9" kindref="member">defaultBehaviors</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//NOP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="class_weapon" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_projectile" kindref="compound">Projectile</ref><sp/><ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref><sp/>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="class_weapon_1a4f23fa5f82c185dbe975f6d005b0f90a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a4f23fa5f82c185dbe975f6d005b0f90a" kindref="member">ownerPosition</ref><sp/>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="class_weapon_1a5aad357adfe3e9bdcebc95ee99202ab4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_vectr" kindref="compound">Vectr&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a5aad357adfe3e9bdcebc95ee99202ab4" kindref="member">ownerVector</ref><sp/>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="class_weapon_1a36659b761fc09ceed63bb6643a168211" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon_1a36659b761fc09ceed63bb6643a168211" kindref="member">Weapon</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref><sp/>&amp;<sp/>projectileImageFile,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sizeModifier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a4f23fa5f82c185dbe975f6d005b0f90a" kindref="member">ownerPosition</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_vectr" kindref="compound">Vectr&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a5aad357adfe3e9bdcebc95ee99202ab4" kindref="member">ownerVector</ref><sp/>)<sp/>:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>(projectileImageFile,<sp/>sizeModifier,<sp/>*ownerPosition,<sp/>false,<sp/>false),</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ownerPosition(ownerPosition),</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ownerVector(ownerVector)<sp/>{}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="class_weapon_1aad2f19173e90be4a0097a67c66887794" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon_1aad2f19173e90be4a0097a67c66887794" kindref="member">Weapon</ref>(<ref refid="class_fast_rand" kindref="compound">FastRand&lt;unsigned long&gt;</ref><sp/>&amp;<sp/>randm,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_position" kindref="compound">Position&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a4f23fa5f82c185dbe975f6d005b0f90a" kindref="member">ownerPosition</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_vectr" kindref="compound">Vectr&lt;float&gt;</ref><sp/>*<sp/><ref refid="class_weapon_1a5aad357adfe3e9bdcebc95ee99202ab4" kindref="member">ownerVector</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>(<ref refid="struct_asset_file" kindref="compound">AssetFile</ref>::projectileImageFilenames-&gt;at(randm(0,<sp/><ref refid="struct_asset_file" kindref="compound">AssetFile</ref>::projectileImageFilenames-&gt;size()-1)),<sp/>1.0,<sp/>*ownerPosition,<sp/>false,<sp/>false),<sp/></highlight><highlight class="comment">/*<sp/>ie<sp/>not<sp/>visible,<sp/>don&apos;t<sp/>monitor<sp/>velocity<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ownerPosition(ownerPosition),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ownerVector(ownerVector)<sp/>{}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_weapon_1ac0c75166822c7694cb0410b80a58d475" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon_1ac0c75166822c7694cb0410b80a58d475" kindref="member">Weapon</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>(other.<ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_weapon_1abbada20225959c54f036cbab506f3d94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon_1abbada20225959c54f036cbab506f3d94" kindref="member">Weapon</ref>(<ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>(std::move(other.<ref refid="class_weapon_1ab4dcfce3b3a14222f847e50e95451164" kindref="member">projectile</ref>))<sp/>{}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;<sp/><ref refid="class_weapon_1a5995665bd4c14aa5b2a8773b5c631019" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;<sp/>rhs)<sp/>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;<sp/><ref refid="class_weapon_1a5995665bd4c14aa5b2a8773b5c631019" kindref="member">operator=</ref>(<ref refid="class_weapon" kindref="compound">Weapon</ref><sp/>&amp;&amp;<sp/>rhs)<sp/>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_weapon_1af6f8ab97e28fd4778f97c96c78fd02f4" kindref="member">fire</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__SpriteFight__Weapon__)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h"/>
+  </compounddef>
+</doxygen>

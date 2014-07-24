@@ -1,0 +1,611 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_display_data_8h" kind="file">
+    <compoundname>DisplayData.h</compoundname>
+    <includedby refid="_configuration_8h" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Configuration.h</includedby>
+    <includedby refid="_display_data_8cpp" local="yes">/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.cpp</includedby>
+    <invincdepgraph>
+      <node id="768">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.cpp</label>
+        <link refid="_player_8cpp"/>
+      </node>
+      <node id="792">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/ConsoleOutput.cpp</label>
+        <link refid="_console_output_8cpp"/>
+      </node>
+      <node id="786">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util2.h</label>
+        <link refid="_util2_8h"/>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+      </node>
+      <node id="770">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.cpp</label>
+        <link refid="_character_8cpp"/>
+      </node>
+      <node id="776">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameInterface.h</label>
+        <link refid="_game_interface_8h"/>
+        <childnode refid="753" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="777" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+      </node>
+      <node id="789">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Size.hpp</label>
+        <link refid="_size_8hpp"/>
+        <childnode refid="786" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="783" relation="include">
+        </childnode>
+      </node>
+      <node id="762">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.cpp</label>
+        <link refid="_main_controller_8cpp"/>
+      </node>
+      <node id="781">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.h</label>
+        <link refid="_asset_file_i_o_8h"/>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="757" relation="include">
+        </childnode>
+        <childnode refid="766" relation="include">
+        </childnode>
+        <childnode refid="785" relation="include">
+        </childnode>
+      </node>
+      <node id="804">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.cpp</label>
+        <link refid="_display_data_8cpp"/>
+      </node>
+      <node id="793">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Timer.hpp</label>
+        <link refid="_timer_8hpp"/>
+        <childnode refid="794" relation="include">
+        </childnode>
+        <childnode refid="752" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="795" relation="include">
+        </childnode>
+      </node>
+      <node id="756">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="755">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.h</label>
+        <link refid="_game_object_8h"/>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="757" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="773" relation="include">
+        </childnode>
+        <childnode refid="775" relation="include">
+        </childnode>
+      </node>
+      <node id="773">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.h</label>
+        <link refid="_weapon_8h"/>
+        <childnode refid="766" relation="include">
+        </childnode>
+        <childnode refid="774" relation="include">
+        </childnode>
+      </node>
+      <node id="759">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.h</label>
+        <link refid="_enemy_8h"/>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="764" relation="include">
+        </childnode>
+      </node>
+      <node id="769">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.cpp</label>
+        <link refid="_player_character_8cpp"/>
+      </node>
+      <node id="765">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.cpp</label>
+        <link refid="_n_p_c_8cpp"/>
+      </node>
+      <node id="766">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/PlayerCharacter.h</label>
+        <link refid="_player_character_8h"/>
+        <childnode refid="767" relation="include">
+        </childnode>
+        <childnode refid="769" relation="include">
+        </childnode>
+      </node>
+      <node id="791">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/ConsoleOutput.hpp</label>
+        <link refid="_console_output_8hpp"/>
+        <childnode refid="792" relation="include">
+        </childnode>
+      </node>
+      <node id="763">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.cpp</label>
+        <link refid="_world_controller_8cpp"/>
+      </node>
+      <node id="785">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/AssetFileIO.cpp</label>
+        <link refid="_asset_file_i_o_8cpp"/>
+      </node>
+      <node id="752">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.hpp</label>
+        <link refid="_game_state_8hpp"/>
+        <childnode refid="753" relation="include">
+        </childnode>
+        <childnode refid="776" relation="include">
+        </childnode>
+        <childnode refid="781" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="786" relation="include">
+        </childnode>
+        <childnode refid="787" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="783" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+        <childnode refid="788" relation="include">
+        </childnode>
+        <childnode refid="784" relation="include">
+        </childnode>
+      </node>
+      <node id="787">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameMap.hpp</label>
+        <link refid="_game_map_8hpp"/>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+      </node>
+      <node id="788">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Velocity.cpp</label>
+        <link refid="_velocity_8cpp"/>
+      </node>
+      <node id="761">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/MainController.h</label>
+        <link refid="_main_controller_8h"/>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="762" relation="include">
+        </childnode>
+      </node>
+      <node id="764">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Enemy.cpp</label>
+        <link refid="_enemy_8cpp"/>
+      </node>
+      <node id="802">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Util.cpp</label>
+        <link refid="_util_8cpp"/>
+      </node>
+      <node id="800">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.hpp</label>
+        <link refid="_game_random_8hpp"/>
+        <childnode refid="751" relation="include">
+        </childnode>
+        <childnode refid="798" relation="include">
+        </childnode>
+        <childnode refid="781" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+        <childnode refid="801" relation="include">
+        </childnode>
+        <childnode refid="802" relation="include">
+        </childnode>
+      </node>
+      <node id="795">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Timer.cpp</label>
+        <link refid="_timer_8cpp"/>
+      </node>
+      <node id="758">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/NPC.h</label>
+        <link refid="_n_p_c_8h"/>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="759" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="765" relation="include">
+        </childnode>
+      </node>
+      <node id="777">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameEvent.h</label>
+        <link refid="_game_event_8h"/>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="778" relation="include">
+        </childnode>
+        <childnode refid="780" relation="include">
+        </childnode>
+      </node>
+      <node id="796">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.cpp</label>
+        <link refid="_debug_8cpp"/>
+      </node>
+      <node id="774">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Weapon.cpp</label>
+        <link refid="_weapon_8cpp"/>
+      </node>
+      <node id="784">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameState.cpp</label>
+        <link refid="_game_state_8cpp"/>
+      </node>
+      <node id="748">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Configuration.h</label>
+        <link refid="_configuration_8h"/>
+        <childnode refid="749" relation="include">
+        </childnode>
+        <childnode refid="750" relation="include">
+        </childnode>
+        <childnode refid="797" relation="include">
+        </childnode>
+        <childnode refid="794" relation="include">
+        </childnode>
+        <childnode refid="800" relation="include">
+        </childnode>
+        <childnode refid="776" relation="include">
+        </childnode>
+        <childnode refid="753" relation="include">
+        </childnode>
+        <childnode refid="781" relation="include">
+        </childnode>
+        <childnode refid="789" relation="include">
+        </childnode>
+        <childnode refid="786" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="787" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="803" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+      </node>
+      <node id="753">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.hpp</label>
+        <link refid="_input_8hpp"/>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="757" relation="include">
+        </childnode>
+        <childnode refid="758" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="766" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+      </node>
+      <node id="794">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Velocity.hpp</label>
+        <link refid="_velocity_8hpp"/>
+        <childnode refid="751" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="788" relation="include">
+        </childnode>
+      </node>
+      <node id="771">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.h</label>
+        <link refid="_graphical_output_8h"/>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="772" relation="include">
+        </childnode>
+      </node>
+      <node id="775">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameObject.cpp</label>
+        <link refid="_game_object_8cpp"/>
+      </node>
+      <node id="801">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/GameRandom.cpp</label>
+        <link refid="_game_random_8cpp"/>
+      </node>
+      <node id="749">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Configuration.cpp</label>
+        <link refid="_configuration_8cpp"/>
+      </node>
+      <node id="797">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/BoundsCheck.hpp</label>
+        <link refid="_bounds_check_8hpp"/>
+        <childnode refid="751" relation="include">
+        </childnode>
+        <childnode refid="752" relation="include">
+        </childnode>
+        <childnode refid="798" relation="include">
+        </childnode>
+        <childnode refid="781" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+      </node>
+      <node id="751">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Position.hpp</label>
+        <link refid="_position_8hpp"/>
+        <childnode refid="749" relation="include">
+        </childnode>
+        <childnode refid="752" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="786" relation="include">
+        </childnode>
+        <childnode refid="789" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="787" relation="include">
+        </childnode>
+        <childnode refid="790" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="791" relation="include">
+        </childnode>
+      </node>
+      <node id="779">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Ability.cpp</label>
+        <link refid="_ability_8cpp"/>
+      </node>
+      <node id="803">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GameColor.h</label>
+        <link refid="_game_color_8h"/>
+        <childnode refid="783" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+      </node>
+      <node id="767">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Player.h</label>
+        <link refid="_player_8h"/>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="768" relation="include">
+        </childnode>
+      </node>
+      <node id="783">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/TextOutput.hpp</label>
+        <link refid="_text_output_8hpp"/>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+      </node>
+      <node id="798">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/CharacterData.h</label>
+        <link refid="_character_data_8h"/>
+        <childnode refid="799" relation="include">
+        </childnode>
+        <childnode refid="781" relation="include">
+        </childnode>
+      </node>
+      <node id="782">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/OutputData.hpp</label>
+        <link refid="_output_data_8hpp"/>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="783" relation="include">
+        </childnode>
+        <childnode refid="767" relation="include">
+        </childnode>
+        <childnode refid="784" relation="include">
+        </childnode>
+      </node>
+      <node id="790">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Navigator.hpp</label>
+        <link refid="_navigator_8hpp"/>
+        <childnode refid="787" relation="include">
+        </childnode>
+      </node>
+      <node id="772">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/GraphicalOutput.cpp</label>
+        <link refid="_graphical_output_8cpp"/>
+      </node>
+      <node id="754">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Control/Input.cpp</label>
+        <link refid="_input_8cpp"/>
+      </node>
+      <node id="799">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Message.h</label>
+        <link refid="_message_8h"/>
+        <childnode refid="776" relation="include">
+        </childnode>
+      </node>
+      <node id="780">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/GameEvent.cpp</label>
+        <link refid="_game_event_8cpp"/>
+      </node>
+      <node id="757">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Character.h</label>
+        <link refid="_character_8h"/>
+        <childnode refid="758" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="766" relation="include">
+        </childnode>
+        <childnode refid="770" relation="include">
+        </childnode>
+      </node>
+      <node id="750">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Util/Debug.h</label>
+        <link refid="_debug_8h"/>
+        <childnode refid="751" relation="include">
+        </childnode>
+        <childnode refid="793" relation="include">
+        </childnode>
+        <childnode refid="752" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="782" relation="include">
+        </childnode>
+        <childnode refid="787" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="771" relation="include">
+        </childnode>
+        <childnode refid="796" relation="include">
+        </childnode>
+      </node>
+      <node id="747">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h</label>
+        <link refid="DisplayData.h"/>
+        <childnode refid="748" relation="include">
+        </childnode>
+        <childnode refid="804" relation="include">
+        </childnode>
+      </node>
+      <node id="778">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/Ability.h</label>
+        <link refid="_ability_8h"/>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="779" relation="include">
+        </childnode>
+      </node>
+      <node id="760">
+        <label>/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/World/WorldController.h</label>
+        <link refid="_world_controller_8h"/>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="763" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_display_data" prot="public">DisplayData</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>DisplayData.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>SpriteFight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Adam<sp/>James<sp/>Leuer<sp/>on<sp/>6/28/14.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SpriteFight_DisplayData_h</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>SpriteFight_DisplayData_h</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="15" refid="struct_display_data" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_display_data" kindref="compound">DisplayData</ref><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isInit<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Using<sp/>several<sp/>extra<sp/>layers<sp/>of<sp/>indirection<sp/>to<sp/>help</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>ensure<sp/>everything<sp/>is<sp/>properly<sp/>initialized<sp/>at<sp/>runtime<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>hiDPI_referenceVal<sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>displayScalingFactor_referenceVal<sp/>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Using<sp/>several<sp/>extra<sp/>layers<sp/>of<sp/>indirection<sp/>to<sp/>help</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>ensure<sp/>everything<sp/>is<sp/>properly<sp/>initialized<sp/>at<sp/>runtime<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//static<sp/>float<sp/>displayScalingFactor_referenceVal<sp/>;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init()<sp/>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calculateDisplayScalingFactor()<sp/>;<sp/></highlight><highlight class="comment">/*<sp/>should<sp/>only<sp/>call<sp/>this<sp/>once<sp/>ideally,<sp/>just<sp/>reference<sp/>displayScalingFactor<sp/>afterwards<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_display_data_1a44babea5f172f58a4b140fb1c02e68ba" kindref="member">hiDPI</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_display_data_1a2a81928e08c2ad29c99c64b6f20146ab" kindref="member">getDisplayScalingFactor</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h"/>
+  </compounddef>
+</doxygen>

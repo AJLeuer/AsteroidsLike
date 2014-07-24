@@ -1,0 +1,141 @@
+\hypertarget{class_main_controller}{\section{Main\-Controller Class Reference}
+\label{class_main_controller}\index{Main\-Controller@{Main\-Controller}}
+}
+
+
+{\ttfamily \#include $<$Main\-Controller.\-h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_main_controller_afb3dbf8d0314f5e5cfe50c703ed4b941}{init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the game before \hyperlink{class_main_controller_a98417d12903433cadd2b286bb975905a}{Main\-Controller\-::main()} is called. \end{DoxyCompactList}\item 
+static void \hyperlink{class_main_controller_a98417d12903433cadd2b286bb975905a}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_main_controller_a04b64137acaa9533edf2eefc941231bf}{begin\-\_\-exit} ()
+\item 
+static void \hyperlink{class_main_controller_aa81c81c1c28da409b6a527e872d2ab24}{setup\-Main\-Contr\-Exit} ()
+\item 
+static void \hyperlink{class_main_controller_ad806bb46ae6399a8d0ca0dd1a201a550}{exit} (int sig=0)
+\begin{DoxyCompactList}\small\item\em Exits the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_player}{Player} $\ast$ \hyperlink{class_main_controller_a778b81dc094ee4409686579d65edb1e4}{player0} = nullptr
+\item 
+static \hyperlink{class_player}{Player} $\ast$ \hyperlink{class_main_controller_adfc74b59bd82472bd38642e7fa8fd723}{player1} = nullptr
+\item 
+static const unsigned $\ast$ \hyperlink{class_main_controller_a68d914337e15b04d3160a528bb62fc1f}{loop\-Count} = \&\hyperlink{_game_state_8cpp_afbf04a84d141072dab9bf93db6c9ad29}{main\-Game\-Loop\-Count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 39 of file Main\-Controller.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_main_controller_a04b64137acaa9533edf2eefc941231bf}{\index{Main\-Controller@{Main\-Controller}!begin\-\_\-exit@{begin\-\_\-exit}}
+\index{begin\-\_\-exit@{begin\-\_\-exit}!MainController@{Main\-Controller}}
+\subsubsection[{begin\-\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}void Main\-Controller\-::begin\-\_\-exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_a04b64137acaa9533edf2eefc941231bf}
+
+
+Definition at line 21 of file Main\-Controller.\-cpp.
+
+\hypertarget{class_main_controller_ad806bb46ae6399a8d0ca0dd1a201a550}{\index{Main\-Controller@{Main\-Controller}!exit@{exit}}
+\index{exit@{exit}!MainController@{Main\-Controller}}
+\subsubsection[{exit}]{\setlength{\rightskip}{0pt plus 5cm}void Main\-Controller\-::exit (
+\begin{DoxyParamCaption}
+\item[{int}]{sig = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_ad806bb46ae6399a8d0ca0dd1a201a550}
+
+
+Exits the game. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{class_main_controller_afb3dbf8d0314f5e5cfe50c703ed4b941}{init()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 118 of file Main\-Controller.\-cpp.
+
+\hypertarget{class_main_controller_afb3dbf8d0314f5e5cfe50c703ed4b941}{\index{Main\-Controller@{Main\-Controller}!init@{init}}
+\index{init@{init}!MainController@{Main\-Controller}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Main\-Controller\-::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_main_controller_afb3dbf8d0314f5e5cfe50c703ed4b941}
+
+
+Initializes the game before \hyperlink{class_main_controller_a98417d12903433cadd2b286bb975905a}{Main\-Controller\-::main()} is called. 
+
+\begin{DoxyNote}{Note}
+Should be called on the main thread 
+\end{DoxyNote}
+
+
+Definition at line 37 of file Main\-Controller.\-cpp.
+
+\hypertarget{class_main_controller_a98417d12903433cadd2b286bb975905a}{\index{Main\-Controller@{Main\-Controller}!main@{main}}
+\index{main@{main}!MainController@{Main\-Controller}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}void Main\-Controller\-::main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_main_controller_a98417d12903433cadd2b286bb975905a}
+
+
+Definition at line 77 of file Main\-Controller.\-cpp.
+
+\hypertarget{class_main_controller_aa81c81c1c28da409b6a527e872d2ab24}{\index{Main\-Controller@{Main\-Controller}!setup\-Main\-Contr\-Exit@{setup\-Main\-Contr\-Exit}}
+\index{setup\-Main\-Contr\-Exit@{setup\-Main\-Contr\-Exit}!MainController@{Main\-Controller}}
+\subsubsection[{setup\-Main\-Contr\-Exit}]{\setlength{\rightskip}{0pt plus 5cm}void Main\-Controller\-::setup\-Main\-Contr\-Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_aa81c81c1c28da409b6a527e872d2ab24}
+This function will call exit at some predetermined point, or when some criterion is met (T\-B\-D -\/ see implementation). This is neccesary since \hyperlink{class_input_controller}{Input\-Controller}, which depends on S\-D\-L, needs to run on the main thread, and since each controller runs a while loop, it will not return until the bool$\ast$ it checks changes. 
+
+Definition at line 25 of file Main\-Controller.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_main_controller_a68d914337e15b04d3160a528bb62fc1f}{\index{Main\-Controller@{Main\-Controller}!loop\-Count@{loop\-Count}}
+\index{loop\-Count@{loop\-Count}!MainController@{Main\-Controller}}
+\subsubsection[{loop\-Count}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned $\ast$ Main\-Controller\-::loop\-Count = \&{\bf main\-Game\-Loop\-Count}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_a68d914337e15b04d3160a528bb62fc1f}
+
+
+Definition at line 45 of file Main\-Controller.\-h.
+
+\hypertarget{class_main_controller_a778b81dc094ee4409686579d65edb1e4}{\index{Main\-Controller@{Main\-Controller}!player0@{player0}}
+\index{player0@{player0}!MainController@{Main\-Controller}}
+\subsubsection[{player0}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player} $\ast$ Main\-Controller\-::player0 = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_a778b81dc094ee4409686579d65edb1e4}
+
+
+Definition at line 43 of file Main\-Controller.\-h.
+
+\hypertarget{class_main_controller_adfc74b59bd82472bd38642e7fa8fd723}{\index{Main\-Controller@{Main\-Controller}!player1@{player1}}
+\index{player1@{player1}!MainController@{Main\-Controller}}
+\subsubsection[{player1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player} $\ast$ Main\-Controller\-::player1 = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{class_main_controller_adfc74b59bd82472bd38642e7fa8fd723}
+
+
+Definition at line 44 of file Main\-Controller.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\hyperlink{_main_controller_8h}{Main\-Controller.\-h}\item 
+/\-Volumes/\-O\-S X H\-D\-D/\-Users/\-Adam/\-Developer/\-Sprite\-Fight/\-Control/\hyperlink{_main_controller_8cpp}{Main\-Controller.\-cpp}\end{DoxyCompactItemize}

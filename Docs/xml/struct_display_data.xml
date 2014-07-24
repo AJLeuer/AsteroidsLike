@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="struct_display_data" kind="struct" prot="public">
+    <compoundname>DisplayData</compoundname>
+    <includes refid="_display_data_8h" local="no">DisplayData.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="struct_display_data_1a05cd683491a1d2279033bf3dc9c9b870" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool DisplayData::isInit</definition>
+        <argsstring></argsstring>
+        <name>isInit</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="19" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_display_data_1a88e04d62d74b07dd11c85121bba01f8b" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool DisplayData::hiDPI_referenceVal</definition>
+        <argsstring></argsstring>
+        <name>hiDPI_referenceVal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="23" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_display_data_1a5e40139880e27898e6bae7e65c23432d" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float DisplayData::displayScalingFactor_referenceVal</definition>
+        <argsstring></argsstring>
+        <name>displayScalingFactor_referenceVal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The display scaling factor. For example, if the system is running in Retina mode, this value will be 2.0 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="30" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="struct_display_data_1a23726971155c1076bb9a23599759152e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DisplayData::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="36" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.cpp" bodystart="14" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_display_data_1a558d5c4543fc9dc643e3a1c7498f9cd6" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DisplayData::calculateDisplayScalingFactor</definition>
+        <argsstring>()</argsstring>
+        <name>calculateDisplayScalingFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Used once to initialize displayScalingFactor For the sake of efficiency, reference displayScalingFactor instead of calling this. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="43" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_display_data_1a44babea5f172f58a4b140fb1c02e68ba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DisplayData::hiDPI</definition>
+        <argsstring>()</argsstring>
+        <name>hiDPI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check if we&apos;re running in Retina mode </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="52" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.cpp" bodystart="26" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_display_data_1a2a81928e08c2ad29c99c64b6f20146ab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float DisplayData::getDisplayScalingFactor</definition>
+        <argsstring>()</argsstring>
+        <name>getDisplayScalingFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The display scaling factor. For example, if the system is running in Retina mode, this value will be 2.0 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="59" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.cpp" bodystart="38" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Holds information about the resolution and scaling of the current display </para>    </detaileddescription>
+    <location file="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" line="15" column="1" bodyfile="/Volumes/OS X HDD/Users/Adam/Developer/SpriteFight/Output/DisplayData.h" bodystart="15" bodyend="61"/>
+    <listofallmembers>
+      <member refid="struct_display_data_1a558d5c4543fc9dc643e3a1c7498f9cd6" prot="private" virt="non-virtual"><scope>DisplayData</scope><name>calculateDisplayScalingFactor</name></member>
+      <member refid="struct_display_data_1a5e40139880e27898e6bae7e65c23432d" prot="private" virt="non-virtual"><scope>DisplayData</scope><name>displayScalingFactor_referenceVal</name></member>
+      <member refid="struct_display_data_1a2a81928e08c2ad29c99c64b6f20146ab" prot="public" virt="non-virtual"><scope>DisplayData</scope><name>getDisplayScalingFactor</name></member>
+      <member refid="struct_display_data_1a44babea5f172f58a4b140fb1c02e68ba" prot="public" virt="non-virtual"><scope>DisplayData</scope><name>hiDPI</name></member>
+      <member refid="struct_display_data_1a88e04d62d74b07dd11c85121bba01f8b" prot="private" virt="non-virtual"><scope>DisplayData</scope><name>hiDPI_referenceVal</name></member>
+      <member refid="struct_display_data_1a23726971155c1076bb9a23599759152e" prot="private" virt="non-virtual"><scope>DisplayData</scope><name>init</name></member>
+      <member refid="struct_display_data_1a05cd683491a1d2279033bf3dc9c9b870" prot="private" virt="non-virtual"><scope>DisplayData</scope><name>isInit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
