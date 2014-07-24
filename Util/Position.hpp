@@ -1155,11 +1155,11 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	Position<float>(other),
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
-    absDistanceMoved(other.absDistanceMoved)
+    absDistanceMoved(other.absDistanceMoved),
+	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
 	if (other.velocity != nullptr) {
-		velocity = new Velocity<N>(other.totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
-        totalDistanceMoved = new N(*other.totalDistanceMoved) ;
+		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 	}
 	else {
 		velocity = nullptr ;
@@ -1171,11 +1171,11 @@ Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
 	Position<float>(other),
 	last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
-	absDistanceMoved(other.absDistanceMoved)
+	absDistanceMoved(other.absDistanceMoved),
+	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
 	if (monitorVelocity && (other.velocity != nullptr)) {
-		velocity = new Velocity<N>(other.totalDistanceMoved, new BasicMutex, new bool(other.sharedVelBool)) ;
-        totalDistanceMoved = new N(*other.totalDistanceMoved) ;
+		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
 	}
 	else {
 		velocity = nullptr ;
