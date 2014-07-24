@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Util2__
-#define __GameWorld__Util2__
+#ifndef __SpriteFight__Util2__
+#define __SpriteFight__Util2__
 
 #include <iostream>
 #include <thread>
@@ -97,4 +97,4 @@ N calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
 
 
 
-#endif /* defined(__GameWorld__Util2__) */
+#endif /* defined(__SpriteFight__Util2__) */

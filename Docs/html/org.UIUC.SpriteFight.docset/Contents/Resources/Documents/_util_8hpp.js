@@ -1,0 +1,26 @@
+var _util_8hpp =
+[
+    [ "Drawing", "class_drawing.html", "class_drawing" ],
+    [ "average", "_util_8hpp.html#adbc4808a31d9d866cb71606069114eae", null ],
+    [ "average", "_util_8hpp.html#a1c4fa14bc90ac4410d0200b9303d5d57", null ],
+    [ "ceilling", "_util_8hpp.html#a86a18f310871a1356c3d1c270d850e6c", null ],
+    [ "convertToSDL_Rect", "_util_8hpp.html#af2ffbe7b726877832c94239b5594058c", null ],
+    [ "findLargest", "_util_8hpp.html#a6bef41ddbe95816fb0336b2847e0fa51", null ],
+    [ "findLargest_helper", "_util_8hpp.html#aa1ed00d48d918ed371ca406f442382e3", null ],
+    [ "findSmallest", "_util_8hpp.html#a76ec7dcf8105a782f975edc9b86e0a88", null ],
+    [ "findSmallest_helper", "_util_8hpp.html#a8512b81ec26f5821b8d439632bd4d8da", null ],
+    [ "floor", "_util_8hpp.html#adfb200439a96cc92fee115c89902e263", null ],
+    [ "generateName", "_util_8hpp.html#a4c756e2902d65501d8bca292e0d08b5d", null ],
+    [ "operator*", "_util_8hpp.html#a1c0f4d3de25ff70e2e2424c47c71f666", null ],
+    [ "operator+", "_util_8hpp.html#a15c9b74884a2474fcc4e2b64e62646e1", null ],
+    [ "operator+", "_util_8hpp.html#af524ab944530cf69013e5064d3ba5cb4", null ],
+    [ "pythag", "_util_8hpp.html#afbaed4b0d68594b345e48b9f4344bd57", null ],
+    [ "roundF", "_util_8hpp.html#aa644e2b705ba2aaa26b6e42c7bf9c3ca", null ],
+    [ "roundF", "_util_8hpp.html#adb7c1051cb83f75fd714dd689879fc7b", null ],
+    [ "roundF", "_util_8hpp.html#a4d98de8591edd668edd01c3f70cff420", null ],
+    [ "roundF", "_util_8hpp.html#a69ee571c0262b8bd13653e1e347a2729", null ],
+    [ "setUnsigned", "_util_8hpp.html#a02d80524463f5c93d38d39344b46cd36", null ],
+    [ "termHeight", "_util_8hpp.html#a0396e69970502820446223a648670663", null ],
+    [ "termWidth", "_util_8hpp.html#aef72576353996260a2b10791cf0ad505", null ],
+    [ "basicAlphabet", "_util_8hpp.html#abd8ca9c349864d8fa0b0f30e8172be48", null ]
+];

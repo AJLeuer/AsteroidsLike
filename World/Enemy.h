@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Enemy__
-#define __GameWorld__Enemy__
+#ifndef __SpriteFight__Enemy__
+#define __SpriteFight__Enemy__
 
 #include <iostream>
 
@@ -30,4 +30,4 @@ public:
     
 } ;
 
-#endif /* defined(__GameWorld__Enemy__) */
+#endif /* defined(__SpriteFight__Enemy__) */

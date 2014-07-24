@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Navigator__
-#define __GameWorld__Navigator__
+#ifndef __SpriteFight__Navigator__
+#define __SpriteFight__Navigator__
 
 #include <iostream>
 
@@ -100,4 +100,4 @@ Navigator<N> & Navigator<N>::operator=(const Navigator<N> & other) {
 
 
 
-#endif /* defined(__GameWorld__Navigator__) */
+#endif /* defined(__SpriteFight__Navigator__) */

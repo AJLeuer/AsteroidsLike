@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__MainController__
-#define __GameWorld__MainController__
+#ifndef __SpriteFight__MainController__
+#define __SpriteFight__MainController__
 
 #include <iostream>
 #include <csignal>
@@ -75,4 +75,4 @@ public:
 } ;
 
 
-#endif /* defined(__GameWorld__MainController__) */
+#endif /* defined(__SpriteFight__MainController__) */

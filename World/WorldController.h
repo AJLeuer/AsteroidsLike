@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__WorldController__
-#define __GameWorld__WorldController__
+#ifndef __SpriteFight__WorldController__
+#define __SpriteFight__WorldController__
 
 #include <unistd.h>
 
@@ -94,4 +94,4 @@ public:
 	
 } ;
 
-#endif /* defined(__GameWorld__WorldController__) */
+#endif /* defined(__SpriteFight__WorldController__) */

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Player__
-#define __GameWorld__Player__
+#ifndef __SpriteFight__Player__
+#define __SpriteFight__Player__
 
 #include <iostream>
 #include <iomanip>
@@ -93,4 +93,4 @@ public:
 
 } ;
 
-#endif /* defined(__GameWorld__Player__) */
+#endif /* defined(__SpriteFight__Player__) */

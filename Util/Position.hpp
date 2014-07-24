@@ -7,8 +7,8 @@
 //
 
 
-#ifndef GameWorld_Position_h
-#define GameWorld_Position_h
+#ifndef SpriteFight_Position_h
+#define SpriteFight_Position_h
 
 
 #include <cmath>
@@ -1288,7 +1288,7 @@ Vectr<N> Vectr<N>::copyVect(bool copyVelocity) const {
     }
 		
     if ((this->velocity != nullptr) && (copyVelocity == true)) {
-        newVect.velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+        newVect.velocity = new Velocity<N>(new N(*totalDistanceMoved), new mutex, new bool(sharedVelBool)) ;
     }
     else {
         newVect.velocity = nullptr ;
@@ -1432,16 +1432,16 @@ Vectr<N> & operator-=(Vectr<N> & rhs, Position<N> & lhs) {
  * Gets the current GLOBAL_max_Position (and min) from World
  * to calculate the ratio
  *
- * @param inGameWorld The Position from within the World
+ * @param inSpriteFight The Position from within the World
  */
 template<typename T>
-extern Position<T> transPosition(const Position<T> & inGameWorld) {
+extern Position<T> transPosition(const Position<T> & inSpriteFight) {
 
 	auto worldXSize = globalMaxX() /*- GameObject::GLOBAL_min_X*/ ;
 	auto worldYSize = globalMaxY() /*- GameObject::GLOBAL_min_Y*/ ;
 	
-	T tempX = inGameWorld.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
-	T tempY = inGameWorld.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
+	T tempX = inSpriteFight.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
+	T tempY = inSpriteFight.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
 	
 	unsigned tw = termWidth() ;
 	unsigned th = termHeight() ;

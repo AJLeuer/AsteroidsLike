@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__WindowOutput__
-#define __GameWorld__WindowOutput__
+#ifndef __SpriteFight__WindowOutput__
+#define __SpriteFight__WindowOutput__
 
 #include <unistd.h>
 
@@ -109,4 +109,4 @@ void GraphicalOutput::render(Texture * texture, const Position<M> pos, const Siz
 	}
 }
 
-#endif /* defined(__GameWorld__WindowOutput__) */
+#endif /* defined(__SpriteFight__WindowOutput__) */

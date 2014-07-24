@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
   <compounddef id="md___volumes__o_s__x__h_d_d__users__adam__developer__sprite_fight__r_e_a_d_m_e" kind="page">
     <compoundname>md__Volumes_OS_X_HDD_Users_Adam_Developer_SpriteFight_README</compoundname>
-    <title>GameWorld</title>
+    <title>SpriteFight</title>
     <detaileddescription>
 <para>A simple 2D sprite game. Pew pew. </para>    </detaileddescription>
   </compounddef>

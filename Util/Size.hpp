@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Size__
-#define __GameWorld__Size__
+#ifndef __SpriteFight__Size__
+#define __SpriteFight__Size__
 
 #include <iostream>
 #include <sstream>
@@ -91,4 +91,4 @@ public:
 } ;
 
 
-#endif /* defined(__GameWorld__Size__) */
+#endif /* defined(__SpriteFight__Size__) */

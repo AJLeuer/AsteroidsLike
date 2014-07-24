@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Input__
-#define __GameWorld__Input__
+#ifndef __SpriteFight__Input__
+#define __SpriteFight__Input__
 
 #include <iostream>
 #include <thread>
@@ -425,4 +425,4 @@ void InputController::registerFor(T * event_or_keypress) {
 	}
 } */
 
-#endif /* defined(__GameWorld__Input__) */
+#endif /* defined(__SpriteFight__Input__) */

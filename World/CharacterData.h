@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__CharacterData__
-#define __GameWorld__CharacterData__
+#ifndef __SpriteFight__CharacterData__
+#define __SpriteFight__CharacterData__
 
 
 #include <iostream>
@@ -362,5 +362,5 @@ std::ostream & operator<<(std::ostream & os, const Reaction & react) {
 }
 
 
-#endif /* defined(__GameWorld__CharacterData__) */
+#endif /* defined(__SpriteFight__CharacterData__) */
 

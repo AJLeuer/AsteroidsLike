@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__BoundsCheck__
-#define __GameWorld__BoundsCheck__
+#ifndef __SpriteFight__BoundsCheck__
+#define __SpriteFight__BoundsCheck__
 
 #include <iostream>
 
@@ -69,4 +69,4 @@ BoundsCheck<N> BoundsCheck<N>::defaultCheck(0, static_cast<N>(globalMaxX()), 0, 
 
 
 
-#endif /* defined(__GameWorld__BoundsCheck__) */
+#endif /* defined(__SpriteFight__BoundsCheck__) */

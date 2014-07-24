@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Message__
-#define __GameWorld__Message__
+#ifndef __SpriteFight__Message__
+#define __SpriteFight__Message__
 
 #include <iostream>
 
@@ -40,4 +40,4 @@ struct Message {
 	
 } ;
 
-#endif /* defined(__GameWorld__Message__) */
+#endif /* defined(__SpriteFight__Message__) */

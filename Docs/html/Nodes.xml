@@ -6,7 +6,7 @@
       <Path>index.html</Path>
       <Subnodes>
        <Node>
-        <Name>GameWorld</Name>
+        <Name>SpriteFight</Name>
         <Path>md___volumes__o_s__x__h_d_d__users__adam__developer__sprite_fight__r_e_a_d_m_e.html</Path>
        </Node>
        <Node>
@@ -6768,7 +6768,7 @@
                <Node>
                 <Name>transPosition</Name>
                 <Path>_position_8hpp.html</Path>
-                <Anchor>a78cdb74b8251b0ab2904043870b9289d</Anchor>
+                <Anchor>adfbd6b292c2358bc14c3f7b74e7a0f62</Anchor>
                </Node>
               </Subnodes>
              </Node>

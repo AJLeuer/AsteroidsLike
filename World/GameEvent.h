@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__GameEvent__
-#define __GameWorld__GameEvent__
+#ifndef __SpriteFight__GameEvent__
+#define __SpriteFight__GameEvent__
 
 #include <dirent.h>
 #include <iostream>
@@ -72,4 +72,4 @@ public:
   
 };
 
-#endif /* defined(__GameWorld__GameEvent__) */
+#endif /* defined(__SpriteFight__GameEvent__) */

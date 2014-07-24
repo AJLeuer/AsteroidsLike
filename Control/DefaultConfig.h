@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef GameWorld_DefaultConfig_h
-#define GameWorld_DefaultConfig_h
+#ifndef SpriteFight_DefaultConfig_h
+#define SpriteFight_DefaultConfig_h
 
 #define Color SDL_Color
 #define Surface SDL_Surface

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Configuration__
-#define __GameWorld__Configuration__
+#ifndef __SpriteFight__Configuration__
+#define __SpriteFight__Configuration__
 
 #include <SDL2/SDL_video.h>
 
@@ -58,4 +58,4 @@ public:
 
 
 
-#endif /* defined(__GameWorld__Configuration__) */
+#endif /* defined(__SpriteFight__Configuration__) */

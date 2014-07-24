@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef GameWorld_Util_h
-#define GameWorld_Util_h
+#ifndef SpriteFight_Util_h
+#define SpriteFight_Util_h
 
 
 #include <iostream>

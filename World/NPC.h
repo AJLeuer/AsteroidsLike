@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__NPC__
-#define __GameWorld__NPC__
+#ifndef __SpriteFight__NPC__
+#define __SpriteFight__NPC__
 
 #include <iostream>
 
@@ -144,4 +144,4 @@ public:
   
 } ;
 
-#endif /* defined(__GameWorld__NPC__) */
+#endif /* defined(__SpriteFight__NPC__) */

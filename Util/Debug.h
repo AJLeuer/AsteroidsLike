@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__Debug__
-#define __GameWorld__Debug__
+#ifndef __SpriteFight__Debug__
+#define __SpriteFight__Debug__
 
 #include <iostream>
 #include <ostream>
@@ -85,4 +85,4 @@ Debug & Debug::operator<<(const T & data) {
 
 #define DebugOutput *(Debug::debugOutput)
 
-#endif /* defined(__GameWorld__Debug__) */
+#endif /* defined(__SpriteFight__Debug__) */

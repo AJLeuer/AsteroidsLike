@@ -1051,7 +1051,7 @@
     <member refid="_position_8hpp_1a918bada5cca5229216fa9545d330fbe7" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="_position_8hpp_1a4df255073e9e918679d349c54458ae23" kind="function"><name>operator+=</name></member>
     <member refid="_position_8hpp_1a74b666432404363daea4d0485431269d" kind="function"><name>operator-=</name></member>
-    <member refid="_position_8hpp_1a78cdb74b8251b0ab2904043870b9289d" kind="function"><name>transPosition</name></member>
+    <member refid="_position_8hpp_1adfbd6b292c2358bc14c3f7b74e7a0f62" kind="function"><name>transPosition</name></member>
   </compound>
   <compound refid="_size_8hpp" kind="file"><name>Size.hpp</name>
   </compound>

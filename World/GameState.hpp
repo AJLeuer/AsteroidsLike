@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__GameState__
-#define __GameWorld__GameState__
+#ifndef __SpriteFight__GameState__
+#define __SpriteFight__GameState__
 
 
 #include <iostream>
@@ -162,4 +162,4 @@ Position<N> getWindowOriginAsWorldCoord() {
  */
 #define GLOBAL_CONTINUE_FLAG GameState::CONTINUE_FLAG
 
-#endif /* defined(__GameWorld__GameState__) */
+#endif /* defined(__SpriteFight__GameState__) */

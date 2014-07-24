@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__GameMap__
-#define __GameWorld__GameMap__
+#ifndef __SpriteFight__GameMap__
+#define __SpriteFight__GameMap__
 
 #include <iostream>
 #include <queue>
@@ -542,4 +542,4 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, co
 
 
 
-#endif /* defined(__GameWorld__GameMap__) */
+#endif /* defined(__SpriteFight__GameMap__) */

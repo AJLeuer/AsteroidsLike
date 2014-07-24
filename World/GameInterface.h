@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Adam James Leuer. All rights reserved.
 //
 
-#ifndef __GameWorld__GameInterface__
-#define __GameWorld__GameInterface__
+#ifndef __SpriteFight__GameInterface__
+#define __SpriteFight__GameInterface__
 
 #include <iostream>
 
@@ -47,4 +47,4 @@ public:
 	
 };
 
-#endif /* defined(__GameWorld__GameInterface__) */
+#endif /* defined(__SpriteFight__GameInterface__) */

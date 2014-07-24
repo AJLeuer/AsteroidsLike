@@ -1036,8 +1036,8 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2014<sp/>Adam<sp/>James<sp/>Leuer.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>GameWorld_DefaultConfig_h</highlight></codeline>
-<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>GameWorld_DefaultConfig_h</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SpriteFight_DefaultConfig_h</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>SpriteFight_DefaultConfig_h</highlight></codeline>
 <codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12" refid="_default_config_8h_1a2f17017b1ef643696b678a0703f0f166" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Color<sp/>SDL_Color</highlight></codeline>
 <codeline lineno="13" refid="_default_config_8h_1ace1255e63d044c904ccde9ccebf40720" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>Surface<sp/>SDL_Surface</highlight></codeline>
