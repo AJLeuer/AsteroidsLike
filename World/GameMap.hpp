@@ -10,6 +10,7 @@
 #define __GameWorld__GameMap__
 
 #include <iostream>
+#include <stack>
 #include <vector>
 #include <list>
 #include <climits>
@@ -29,7 +30,7 @@ class GameMap {
 	
 private:
 	int mapMembers = 0 ;
-	vector< vector< list<T *> *>*> * intern_map ;
+	vector< vector< stack<T *> *>*> * intern_map ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
@@ -95,13 +96,13 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector< list<T *> *> *>()),
+	intern_map(new vector< vector< stack<T *> *> *>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector< list<T *> *>()) ;
+		intern_map->push_back(new vector< stack<T *> *>()) ;
 		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->push_back(new list<T *>()) ;
+			intern_map->at(i)->push_back(new stack<T *>()) ;
 		}
 	}
 }
