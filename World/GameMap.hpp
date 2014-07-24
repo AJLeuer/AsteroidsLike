@@ -10,7 +10,8 @@
 #define __GameWorld__GameMap__
 
 #include <iostream>
-#include <stack>
+#include <queue>
+#include <deque>
 #include <vector>
 #include <list>
 #include <climits>
@@ -30,7 +31,7 @@ class GameMap {
 	
 private:
 	int mapMembers = 0 ;
-	vector< vector< stack<T *> *>*> * intern_map ;
+	vector< vector< list<T *> > *> * intern_map ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
@@ -49,7 +50,7 @@ public:
 
 	//GameMap<T> & operator=(const GameMap<T> & rhs) ; //todo
 	
-	vector< vector< list<T *>>*> * getMapVect() { return this->intern_map ; } ;
+	vector< vector< deque<T *> > *> * getMapVect() { return this->intern_map ; } ;
 	
 	unsigned long getXBound() { return intern_map->size() -1 ; } ;
 	unsigned long getYBound() { return intern_map->at(0)->size() -1 ; } ;
@@ -69,13 +70,13 @@ public:
 	 * (calls erase()) on its old Position<N>
 	 */
 	template<typename N>
-	void move(Position<N> & currentLoc, Position<N> & toNewLoc, T * pointerToOriginalObject) ;
+	void map_move(const Position<N> & currentLoc, const Position<N> & toNewLoc, T * pointerToOriginalObject) ;
 	
 	/**
 	 * Returns the first object at this Position<N>
 	 */
 	template<typename N>
-	list<T *> * at(const Position<N> * where) ;
+	list<T *> * at_pos(const Position<N> * where) ;
 	
 	template<typename N>
 	Position<N> currentLoc(T* obj) ;
@@ -96,13 +97,13 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector< stack<T *> *> *>()),
+	intern_map(new vector< vector< list<T *> > *>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector< stack<T *> *>()) ;
+		intern_map->push_back(new vector< list<T *> >()) ;
 		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->push_back(new stack<T *>()) ;
+			intern_map->at(i)->push_back(list<T *>()) ;
 		}
 	}
 }
@@ -114,9 +115,9 @@ GameMap<T>::~GameMap() {
 	
 	//delete all the vectors inside intern_map
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
-		for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
+		/*for (auto j = 0 ; j < intern_map->at(i)->size() ; j++) {
 			delete intern_map->at(i)->at(j) ;
-		}
+		} */
 		delete intern_map->at(i) ;
 	}
 	delete intern_map ;
@@ -137,7 +138,7 @@ void GameMap<T>::place(Position<N> * where, T * pointerToOriginalObject, const B
 		throw exception() ;
 	}
 	where->checkBounds(check) ;
-	intern_map->at(where->getIntX())->at(where->getIntY())->emplace_front(pointerToOriginalObject) ;
+	intern_map->at(where->getIntX())->at(where->getIntY()).push_back(pointerToOriginalObject) ;
 	mapMembers++ ;
 }
 
@@ -199,18 +200,18 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 
 template<class T>
 template<typename N>
-void GameMap<T>::move(Position<N> & currentLoc, Position<N> & toNewLoc, T * pointerToOriginalObject) {
+void GameMap<T>::map_move(const Position<N> & currentLoc, const Position<N> & toNewLoc, T * pointerToOriginalObject) {
 	list<T *> * temp = at(currentLoc) ;
-	erase(currentLoc, pointerToOriginalObject) ;
+	erase(&currentLoc, pointerToOriginalObject) ;
 	place(toNewLoc, pointerToOriginalObject, temp) ;
 }
 
 template<class T>
 template<typename N>
-list<T *> * GameMap<T>::at(const Position<N> * where) {
+list<T *> * GameMap<T>::at_pos(const Position<N> * where) {
 	unsigned x = where->getIntX() ;
 	unsigned y = where->getIntY() ;
-	return intern_map->at(x)->at(y) ;
+	return &(intern_map->at(x)->at(y)) ;
 }
 
 template<class T>
@@ -239,7 +240,7 @@ template<class T>
 template<typename N>
 void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObject) {
 	
-	list<T *> * containingList = at(currentLoc) ;
+	list<T *> * containingList = at_pos(currentLoc) ;
 
 	bool badpos = true ;
 		
@@ -282,13 +283,12 @@ void GameMap<T>::findAllNearby_helper(vector<T*> * store, Navigator<N> & nav, co
 	
 	//Debug::debugCounter++ ;
 	
-	auto currentList = at(& nav.current) ;
+	auto currentList = at_pos(& nav.current) ;
 	
 	if ((currentList->size() > 0) && (nav.current != *(nav.start))) {
 		
 		searchSuccess = true ;
-		//store->push_back(at(&(nav.current))) ;
-		list<T *> * templist = at(&nav.current) ;
+		list<T *> * templist = at_pos(&nav.current) ;
 		
 		for	(auto i = templist->begin() ; i != templist->end() ; i++) {
 			store->push_back(*i) ;

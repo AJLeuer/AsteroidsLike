@@ -414,6 +414,7 @@ void GameObject::defaultBehaviors() {
 
 void GameObject::aiBehaviors() {
 	wander() ;
+	
 	//todo add more behaviors
 }
 
