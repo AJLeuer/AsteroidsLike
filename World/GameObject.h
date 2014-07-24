@@ -220,6 +220,15 @@ public:
 	bool operator==(GameObject & other) const ;
 	
 	/**
+	 * Overloads the overload of operator(). For the most part the details of
+	 * this function will be handled by inheriting classes.
+	 *
+	 * @param other A reference to another GameObject
+	 * @return whether this GameObject ID is equal to ID of other
+	 */
+	bool operator==(const GameObject & other) const ;
+	
+	/**
 	 * @return this ID
 	 */
 	unsigned getID() { return this->ID ; }
@@ -253,14 +262,15 @@ public:
 	 *
 	 * @param to The Position<float> where this GameObject is to move
 	 */
-	void moveTo(Position<float> * to) ;
-
+	void moveTo(const Position<float> * to) ;
+	
 	/**
-	 * Moves this GameObject to the Position<float> moveTo.
+	 * Moves this GameObject to the Position<float> moveTo. All other movement
+	 * functions should call this.
 	 *
 	 * @param to The Position<float> where this GameObject is to move
 	 */
-	void moveTo(Position<float> to) ;
+	void moveTo(const Position<float> to) ;
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y, z)) ; }
 

@@ -43,7 +43,7 @@ GameObject::GameObject() :
 	allGameObjects->push_back(this) ;
     
     loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>( & loc, this, BoundsCheck<float>::defaultCheck) ;
+	map->place<float>( & loc, this) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
 }
@@ -72,7 +72,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
     loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(& loc, this, BoundsCheck<float>::defaultCheck) ;
+	map->place<float>(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	
 	allGameObjects->push_back(this) ;
@@ -137,7 +137,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	allGameObjects->push_back(this) ;
     
     loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+	map->place(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	setVisibility(visible) ;
 }
@@ -158,7 +158,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	allGameObjects->push_back(this) ;
     
     loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-	map->place<float>(& loc, this, BoundsCheck<float>::defaultCheck) ;
+	map->place<float>(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
@@ -194,7 +194,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
-		map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
+		map->place(& loc, this) ;
 		vectr.updateAndNormalize() ;
 	}
 	return *this ;
@@ -242,6 +242,16 @@ bool GameObject::operator==(GameObject & other) const {
 		return false ;
 	}
 }
+
+bool GameObject::operator==(const GameObject & other) const {
+	if (this->ID == other.ID) {
+		return true ;
+	}
+	else {
+		return false ;
+	}
+}
+
 
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
@@ -292,40 +302,25 @@ void GameObject::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void GameObject::moveTo(Position<float> * to) {
+void GameObject::moveTo(const Position<float> * to) {
 	
-    map->erase(& loc, this) ;
-        
-    to->checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-    loc.setAll(*to) ;
-    map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
-    vectr.updateAndNormalize() ;
+	map->map_move(& loc, to, this) ;
 
+    loc.setAll(*to) ;
+
+    vectr.updateAndNormalize() ;
 	
 	{
 	/* Debug code */
-	//stringstream ss ;
-	//ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
-	//DebugOutput << ss.rdbuf() ;
+	stringstream ss ;
+	ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
+	DebugOutput << ss.rdbuf() ;
 	/* end debug */
 	}
 }
 
-void GameObject::moveTo(Position<float> to) {
-	
-    map->erase(& loc, this) ;
-        
-    to.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
-    loc.setAll(to) ;
-    map->place(& loc, this, BoundsCheck<float>::defaultCheck) ;
-    vectr.updateAndNormalize() ;
-
-
-	/* Debug code */
-	//stringstream ss ;
-	//ss << "Current size of loc archive: " << loc.getHistory()->size() << '\n' ;
-	//DebugOutput << ss.rdbuf() ;
-	/* end debug */
+void GameObject::moveTo(const Position<float> to) {
+	moveTo(&to) ;
 }
 
 void GameObject::moveUp() {
@@ -425,7 +420,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<GameObject *> * nearby = map->findNearby<float>(& loc, searchDistanceX, searchDistanceY) ;
+	vector<const GameObject *> * nearby = map->findNearby<float>(& loc, searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;
