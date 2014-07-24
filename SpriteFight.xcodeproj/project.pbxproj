@@ -27,6 +27,7 @@
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
 		668F564E196E74F6006EB2F1 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 668F564C196E74F6006EB2F1 /* Weapon.cpp */; };
+		669B144E1980EF6F00B0D1B0 /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 669B144D1980EF6F00B0D1B0 /* Docs */; };
 		669F0B62196BFB12007CF4D4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BD195E979400B21A27 /* Assets */; };
 		669F0B63196BFB39007CF4D4 /* About in Resources */ = {isa = PBXBuildFile; fileRef = 665F49BE195EC34C00B21A27 /* About */; };
 		669F0B64196BFB49007CF4D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66E2BC51195DA7E600287A08 /* README.md */; };
@@ -91,6 +92,7 @@
 		668F564C196E74F6006EB2F1 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
 		668F564D196E74F6006EB2F1 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
 		66934EA018F3699100BE3714 /* GameMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameMap.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		669B144D1980EF6F00B0D1B0 /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs; sourceTree = "<group>"; };
 		669F0B65196BFB6B007CF4D4 /* User Configuration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "User Configuration"; sourceTree = "<group>"; };
 		66AAC12D197F226700D7C5C4 /* GameRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRandom.cpp; sourceTree = "<group>"; };
 		66B97F3518FF3A3A00E3A832 /* ForwardDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ForwardDecl.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -199,6 +201,7 @@
 				1EC13454196E3D54000DC02C /* SDL2_image.framework */,
 				1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */,
 				1EAABA0F196A1A0F00FD932F /* Frameworks */,
+				669B144D1980EF6F00B0D1B0 /* Docs */,
 				665F49BE195EC34C00B21A27 /* About */,
 				665F49BD195E979400B21A27 /* Assets */,
 				669F0B65196BFB6B007CF4D4 /* User Configuration */,
@@ -304,6 +307,7 @@
 			files = (
 				669F0B64196BFB49007CF4D4 /* README.md in Resources */,
 				669F0B66196BFB6B007CF4D4 /* User Configuration in Resources */,
+				669B144E1980EF6F00B0D1B0 /* Docs in Resources */,
 				669F0B63196BFB39007CF4D4 /* About in Resources */,
 				669F0B62196BFB12007CF4D4 /* Assets in Resources */,
 			);
