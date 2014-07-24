@@ -1047,6 +1047,7 @@ public:
 	~Vectr() ;
 	Vectr & operator=(const Vectr<N> & rhs) ;
 	Vectr & operator=(Vectr<N> && rhs) ;
+    Vectr copyVect(bool copyVelocity) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
 	
@@ -1154,11 +1155,11 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	Position<float>(other),
     last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
-    absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(new N(*other.totalDistanceMoved))
+    absDistanceMoved(other.absDistanceMoved)
 {
 	if (other.velocity != nullptr) {
 		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+        totalDistanceMoved = new N(*other.totalDistanceMoved) ;
 	}
 	else {
 		velocity = nullptr ;
@@ -1170,11 +1171,11 @@ Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
 	Position<float>(other),
 	last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
-	absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(new N(*other.totalDistanceMoved))
+	absDistanceMoved(other.absDistanceMoved)
 {
 	if (monitorVelocity && (other.velocity != nullptr)) {
 		velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+        totalDistanceMoved = new N(*other.totalDistanceMoved) ;
 	}
 	else {
 		velocity = nullptr ;
@@ -1234,7 +1235,10 @@ Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
 		this->mostRecent = Position<N>(rhs.mostRecent) ;
 		this->current = rhs.current ;
         this->absDistanceMoved = rhs.absDistanceMoved ;
-		this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
+        
+        if (rhs.totalDistanceMoved != nullptr) {
+            this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
+        }
 		
 		if (rhs.velocity != nullptr) {
 			this->velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
@@ -1265,6 +1269,32 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 		rhs.velocity = nullptr ;
 	}
 	return *this ;
+}
+
+template<typename N>
+Vectr<N> Vectr<N>::copyVect(bool copyVelocity) const {
+    
+    Vectr<N> newVect ;
+    
+    newVect.Position<float>::operator=(*this) ;
+    
+    newVect.last = Position<N>(this->last) ;
+    newVect.mostRecent = Position<N>(this->mostRecent) ;
+    newVect.current = this->current ;
+    newVect.absDistanceMoved = this->absDistanceMoved ;
+    
+    if (this->totalDistanceMoved != nullptr) {
+        newVect.totalDistanceMoved = new N(*this->totalDistanceMoved) ;
+    }
+		
+    if ((this->velocity != nullptr) && (copyVelocity == true)) {
+        newVect.velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
+    }
+    else {
+        newVect.velocity = nullptr ;
+    }
+
+    return std::move(newVect) ;
 }
 
 template<typename N>

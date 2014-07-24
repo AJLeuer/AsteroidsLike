@@ -112,7 +112,7 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection) {
+void PlayerCharacter::moveNewDirection(Vectr<float> newDirection) {
 	
 	newDirection.normalize() ;
 	vectr += newDirection ;

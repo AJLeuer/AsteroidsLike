@@ -247,12 +247,22 @@ void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObje
 
 	bool badpos = true ;
 		
-	for (auto i = containingList->begin() ; i != containingList->end() ; i++) {
+    unsigned ct = 0, erased = 0 ; /* debug vars, remove */
+	for (auto i = containingList->begin(); i != containingList->end() ; i++, ct++) {
+        
 		auto sz = containingList->size() ; /* debug var */
 
 		if (**i == *pointerToOriginalObject) {
 			containingList->erase(i) ;
+            
+            /* Debug code */
+            stringstream st ;
+            st << "GameMap erased pointer at the following position: " << *currentLoc << '\n' ;
+            DebugOutput << st.rdbuf() ;
+            /* end debug code */
+            
 			mapMembers-- ;
+            erased++ ;
 			badpos = false ;
 			break ; //break to avoid errors
 		}

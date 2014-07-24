@@ -382,7 +382,7 @@ void GameObject::move(float distanceModifier) {
 	moveTo(next) ;
 }
 
-void GameObject::moveNewDirection(Vectr<float> & newDirection) {
+void GameObject::moveNewDirection(Vectr<float> newDirection) {
 
 	newDirection.normalize() ;
     vectr += newDirection ;

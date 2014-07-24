@@ -30,7 +30,7 @@ void Weapon::fire() {
 		
 		projectile.moveTo(*ownerPosition) ; //projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen
 		projectile.setVisibility(true) ;
-		Vectr<float> tempvec(*this->ownerVector, false) ;
+		Vectr<float> tempvec = copyVect(*this->ownerVector, false) ;
 		
 		while ((projectile.getPosition()->overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
 			projectile.moveNewDirection(tempvec) ;
