@@ -241,6 +241,9 @@ template<typename N>
 void GameMap<T>::erase(const Position<N> * currentLoc, T * pointerToOriginalObject) {
 	
 	list<T *> * containingList = at_pos(currentLoc) ;
+	
+	int x_ = currentLoc->getIntX() ;
+	int y_ = currentLoc->getIntY() ;
 
 	bool badpos = true ;
 		
