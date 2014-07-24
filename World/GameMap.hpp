@@ -20,6 +20,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 #include "../Util/Navigator.hpp"
+#include "../Util/BasicConcurrency.h"
 
 #include "GameState.hpp"
 
@@ -29,14 +30,22 @@
 template <class T>
 class GameMap {
 	
-private:
+protected:
 	int mapMembers = 0 ;
 	vector< vector< list< const T *> > *> * intern_map ;
+	
+	GameMap<string> * gmDebug ; //debug
+	
+	BasicMutex mapMutex ;
 	
 	template<typename N>
 	void findAllNearby_helper(vector<const T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
 	
-	GameMap<string> * gmDebug ; //debug
+	/**
+	 * Returns the first object at this Position<N>
+	 */
+	template<typename N>
+	list<const T *> * at_pos_mutable(const Position<N> * where) ;
 
 public:
 	bool searchSuccess = false ;
@@ -76,7 +85,7 @@ public:
 	 * Returns the first object at this Position<N>
 	 */
 	template<typename N>
-	list<const T *> * at_pos(const Position<N> * where) ;
+	const list<const T *> * at_pos(const Position<N> * where) ;
 	
 	template<typename N>
 	Position<N> currentLoc(const T * obj) ;
@@ -97,19 +106,22 @@ public:
 template<class T>
 template<typename N>
 GameMap<T>::GameMap(N maxX, N maxY) :
-	intern_map(new vector< vector< list< const T *> > *>()),
+	intern_map(new vector< vector< list < const T *> > *>()),
 	gmDebug(nullptr)
 {
 	for (auto i = 0 ; i < maxX ; i++) {
-		intern_map->push_back(new vector< list< const T *> >()) ;
+		intern_map->push_back(new vector< list < const T *> >()) ;
 		for (auto j = 0 ; j < maxY; j++) {
-			intern_map->at(i)->push_back(list<const T *>()) ;
+			intern_map->at(i)->push_back(list <const T *>()) ;
 		}
 	}
 }
 
 template<class T>
 GameMap<T>::~GameMap() {
+	
+	unique_lock<BasicMutex> lck(mapMutex) ;
+	lck.lock() ;
 	
 	mapMembers = 0 ; 
 	
@@ -125,6 +137,8 @@ GameMap<T>::~GameMap() {
 	if (gmDebug != nullptr) {
 		delete gmDebug ;
 	}
+	
+	lck.unlock() ;
 }
 
 /**
@@ -142,12 +156,16 @@ void GameMap<T>::place(const Position<N> * where, const T * pointerToOriginalObj
 		throw exception() ;
 	}
 	
+	mapMutex.lock() ;
+	
 	if ((x < intern_map->size()) && (y < intern_map->at(x)->size())) {
 		auto listAtCoord = &(intern_map->at(x)->at(y)) ;
 		listAtCoord->insert(listAtCoord->cend(), pointerToOriginalObject) ;
 		mapMembers++ ;
 	}
 	/* else do nothing: pointerToOriginalObject has travelled off the map */
+	
+	mapMutex.unlock() ;
 }
 
 /*
@@ -209,14 +227,22 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 template<class T>
 template<typename N>
 void GameMap<T>::map_move(const Position<N> * currentLoc, const Position<N> * toNewLoc, const T * pointerToOriginalObject) {
-	list<const T *> * temp = at_pos(currentLoc) ;
+	list<const T *> * temp = at_pos_mutable(currentLoc) ;
 	erase(currentLoc, pointerToOriginalObject) ;
 	place(toNewLoc, pointerToOriginalObject) ;
 }
 
 template<class T>
 template<typename N>
-list<const T *> * GameMap<T>::at_pos(const Position<N> * where) {
+list<const T *> * GameMap<T>::at_pos_mutable(const Position<N> * where) {
+	unsigned x = where->getIntX() ;
+	unsigned y = where->getIntY() ;
+	return &(intern_map->at(x)->at(y)) ;
+}
+
+template<class T>
+template<typename N>
+const list<const T *> * GameMap<T>::at_pos(const Position<N> * where) {
 	unsigned x = where->getIntX() ;
 	unsigned y = where->getIntY() ;
 	return &(intern_map->at(x)->at(y)) ;
@@ -248,7 +274,7 @@ template<class T>
 template<typename N>
 void GameMap<T>::erase(const Position<N> * currentLoc, const T * pointerToOriginalObject) {
 	
-	list<const T *> * containingList = at_pos(currentLoc) ;
+	list<const T *> * containingList = at_pos_mutable(currentLoc) ;
 	
 	int x_ = currentLoc->getIntX() ;
 	int y_ = currentLoc->getIntY() ;
@@ -256,6 +282,9 @@ void GameMap<T>::erase(const Position<N> * currentLoc, const T * pointerToOrigin
 	bool badpos = true ;
 		
     unsigned ct = 0, erased = 0 ; /* debug vars, remove */
+	
+	mapMutex.lock() ;
+	
 	for (auto i = containingList->cbegin(); i != containingList->cend() ; ct++) {
         
 		auto sz = containingList->size() ; /* debug var */
@@ -274,7 +303,11 @@ void GameMap<T>::erase(const Position<N> * currentLoc, const T * pointerToOrigin
 			badpos = false ;
 			break ; //break to avoid errors
 		}
+		i++ ;
 	}
+	
+	mapMutex.unlock() ;
+	
 	if (badpos) {
 		/* Debug code */
 		stringstream ss ;
@@ -309,7 +342,7 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 	if ((currentList->size() > 0) && (nav.current != *(nav.start))) {
 		
 		searchSuccess = true ;
-		list<const T *> * templist = at_pos(&nav.current) ;
+		list<const T *> * templist = at_pos_mutable(&nav.current) ;
 		
 		for	(auto i = templist->begin() ; i != templist->end() ; i++) {
 			store->push_back(*i) ;

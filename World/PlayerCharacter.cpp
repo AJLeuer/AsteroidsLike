@@ -112,7 +112,7 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection) {
+void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
 	
 	newDirection.normalize() ;
 	vectr += newDirection ;

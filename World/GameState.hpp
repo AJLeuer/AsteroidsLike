@@ -28,6 +28,7 @@
 #include "../Util/Position.hpp"
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Timer.hpp"
+#include "../Util/BasicConcurrency.h"
 
 #include "ForwardDecl.h"
 
@@ -88,7 +89,7 @@ public:
 	
 	static Timer * mainGameClock ;
 	
-	static std::mutex sharedMutex ;
+	static BasicMutex mainMutex ;
 	
 	static string currentDirectory ;
     

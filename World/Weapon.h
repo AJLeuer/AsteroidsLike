@@ -20,6 +20,7 @@ protected:
 	
 public:
 	
+	/* use GameObject's constructors */
 	using GameObject::GameObject ;
 	
 	//void setPosition(Position<float> * pos) ;

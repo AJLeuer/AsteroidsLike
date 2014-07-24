@@ -25,16 +25,24 @@ Weapon & Weapon::operator=(Weapon && rhs) {
 }
 
 void Weapon::fire() {
-	
+
 	auto fireL = [this] () -> void {
 		
-		projectile.moveTo(*ownerPosition) ; //projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen
-		projectile.setVisibility(true) ;
+		/* copy projectile to make a new projectile */
+		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
+		 Move projectile to our current spot */
+		
+		auto projectileFired = this->projectile ;
+		
+		projectileFired.moveTo(*ownerPosition) ;
+		
+		projectileFired.setVisibility(true) ;
+		
 		Vectr<float> tempvec = ownerVector->copyVect(false) ;
 		
-		while ((projectile.getPosition()->overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
-			projectile.moveNewDirection(tempvec) ;
-			this_thread::sleep_for(std::chrono::milliseconds(24)) ;
+		while ((projectileFired.getPosition()->overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
+			projectileFired.moveNewDirection(tempvec, defaultMoveDistance<float>, nullptr) ;
+			this_thread::sleep_for(std::chrono::milliseconds(2)) ;
 		}
 	} ;
 	

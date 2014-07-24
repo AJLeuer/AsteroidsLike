@@ -122,7 +122,7 @@ void WorldController::main() {
 
 void WorldController::exit() {
 	
-	GameState::sharedMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
+	GameState::mainMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 	
 	checkDelThread.join() ;
 	
@@ -138,7 +138,7 @@ void WorldController::exit() {
 	delete map ; 
 	gameObjects = nullptr ;
 	
-	GameState::sharedMutex.unlock() ;
+	GameState::mainMutex.unlock() ;
 }
 
 

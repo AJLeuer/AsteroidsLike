@@ -30,7 +30,7 @@ Renderer * GameState::renderer = nullptr ;
 
 bool GameState::CONTINUE_FLAG = true ;
 Timer * GameState::mainGameClock = new Timer() ;
-std::mutex GameState::sharedMutex ;
+BasicMutex GameState::mainMutex ;
 string GameState::currentDirectory ;
 
 

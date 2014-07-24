@@ -289,16 +289,20 @@ public:
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
 	 * Vectr of its last move
+	 *
+	 * @note If bc = nullptr, move() will skip bounds checking
 	 */
-	void move(float distanceModifier = defaultMoveDistance<float>) ;
+	void move(float distanceModifier = defaultMoveDistance<float>, const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck)) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
 	 * Vectr
 	 *
+	 * @note If bc = nullptr, move() will skip bounds checking
+	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	virtual void moveNewDirection(Vectr<float> & newDirection) ;
+	virtual void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>, const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck)) ;
 	
 	/**
 	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,
