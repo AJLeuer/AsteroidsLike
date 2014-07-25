@@ -25,7 +25,6 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	size(Size<int>()),
 	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
 	vectr() /* nor can this */
 {
@@ -42,7 +41,7 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>( & loc, this) ;
 	vectr.updateAndNormalize() ;
 	/* No graphics data initialization here */
@@ -51,7 +50,6 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     outputData(other.outputData),
-	size(Size<int>()),
 	loc(other.loc),
 	vectr(other.vectr)
 {
@@ -59,7 +57,7 @@ GameObject::GameObject(const GameObject & other) :
 	/* debug */
 	stringstream ss ;
 	ss << "Warning: Copy constructor called on GameObject ID# " << other.ID
-		<< endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
+    << endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
 	*(Debug::debugOutput) << ss.rdbuf() ;
 	/* end debug */
 	}
@@ -71,7 +69,7 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	
@@ -93,7 +91,6 @@ GameObject::GameObject(const GameObject & other) :
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
-	size(std::move(other.size)),
     loc(std::move(other.loc)),
 	vectr(std::move(other.vectr))
 {
@@ -120,7 +117,6 @@ GameObject::GameObject(GameObject && other) :
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	size(Size<int>()),
 	loc(loc_, BoundsCheck<float>::defaultCheck),
 	vectr() /* nor can this */
 {
@@ -136,7 +132,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	setVisibility(visible) ;
@@ -145,7 +141,6 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
 	outputData(rand, &loc, 1.0, PositionType::worldPosition),
-	size(Size<int>()),
 	loc(rand, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, true)
 {
@@ -157,7 +152,7 @@ GameObject::GameObject(FastRand<int> rand) :
 	}
 	allGameObjects->push_back(this) ;
     
-    loc.checkBounds(BoundsCheck<float>::defaultCheck, size.getWidth(), size.getHeight()) ;
+    loc.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>(& loc, this) ;
 	vectr.updateAndNormalize() ;
 	
@@ -189,13 +184,13 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         map->erase(& loc, this) ;
 
         loc = rhs.loc ;
-		vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), &loc) ;
+        vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), &loc) ;
 		
-		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
+        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
-		map->place(& loc, this) ;
-		vectr.updateAndNormalize() ;
+        map->place(& loc, this) ;
+        vectr.updateAndNormalize() ;
 	}
 	return *this ;
 }
@@ -213,7 +208,6 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 	if (this != &rhs) {
 		
 		this->ID = rhs.ID ;
-		this->size = std::move(rhs.size) ;
 		
         this->loc = std::move(rhs.loc) ;
 		this->vectr = std::move(rhs.vectr) ;
