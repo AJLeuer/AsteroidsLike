@@ -90,8 +90,6 @@ protected:
 	
     Pos2<float> loc ;
     
-	Size<int> size ;
-    
 	Vectr<float> vectr ;
 	
 	const GameObject * ally = nullptr ;
@@ -365,7 +363,7 @@ public:
 	 */
 	Texture * getTexture() const ;
 	
-	const Size<int> * getSize() const { return & size ; }
+	const Size<int> * getSize() const { return & outputData.size ; }
 	
 	/**
 	 * @return This GameObject's asset type

@@ -357,7 +357,7 @@ void GameObject::moveRandomDirection() {
 
 void GameObject::jump() {
 	vectr.normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(vectr, 10.0) ;
+	Position<float> next = Vectr<float>::calculateNextPosition(vectr, 15.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
 }

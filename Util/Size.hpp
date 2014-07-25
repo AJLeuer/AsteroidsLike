@@ -33,6 +33,12 @@ private:
 	
 	void setWidth(N w) { *(this->w) = w ; }
 	void setHeight(N h) { *(this->h) = h ; }
+	
+	N getX() const { return this->x ; } /* override these to private */
+	
+	N getY() const { return this->y ; }
+	
+	N getZ() const { return this->z ; }
 
 public:
 

@@ -11,36 +11,7 @@
 
 #include <iostream>
 
-#include "GameObject.h"
-
-class Projectile : public GameObject {
-	
-protected:
-
-	
-public:
-	
-	/* use GameObject's constructors */
-	using GameObject::GameObject ;
-	
-	//void setPosition(Position<float> * pos) ;
-	
-	/**
-	 * Overidden to ensure this has no functionality
-	 */
-	void moveRandomDirection() override {
-		; //NOP
-	}
-	
-	/**
-	 * Overidden to ensure this has no functionality
-	 */
-	void defaultBehaviors() override {
-		//NOP
-	}
-	
-	
-};
+#include "../Output/OutputData.hpp"
 
 
 class Weapon {
@@ -48,26 +19,24 @@ class Weapon {
 protected:
 	
     /**
-     * A simple GameObject that will only be drawn onscreen immediately after the
+     * A simple sprite that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	Projectile projectile ;
-    
-    const Position<float> * ownerPosition ;
+	OutputData<float, int> projectile ;
 	
-	const Vectr<float> * ownerVector ;
+	Position<float> pos ; /* we won't use this for much, just init'ing projectile mainly.
+						   fire() takes arguments to to tell use where we are, so we don't rely on pos */
+
 	
 public:
 	
-	Weapon(const AssetFile & projectileImageFile, float sizeModifier, const Position<float> * ownerPosition, const Vectr<float> * ownerVector ) :
-		projectile(projectileImageFile, sizeModifier, *ownerPosition, false, false),
-		ownerPosition(ownerPosition),
-		ownerVector(ownerVector) {}
+	Weapon(const AssetFile & file, const float sizeModifier, PositionType type) :
+		pos(0, 0, 0),
+		projectile(file, &pos, sizeModifier, type, false) {}
     
-	Weapon(FastRand<unsigned long> & randm, const Position<float> * ownerPosition, const Vectr<float> * ownerVector) :
-		projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)), 1.0, *ownerPosition, false, false), /* ie not visible, don't monitor velocity */
-		ownerPosition(ownerPosition),
-		ownerVector(ownerVector) {}
+	Weapon(FastRand<unsigned long> & randm, const float sizeModifier, PositionType type) :
+		pos(0, 0, 0),
+		projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , &pos, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
 	
     Weapon(const Weapon & other) :
 		projectile(other.projectile) {}
@@ -75,11 +44,11 @@ public:
     Weapon(Weapon && other) :
         projectile(std::move(other.projectile)) {}
     
-    Weapon & operator=(const Weapon & rhs) ;
+	//Weapon & operator=(const Weapon & rhs) ;
     
-    Weapon & operator=(Weapon && rhs) ;
+	//Weapon & operator=(Weapon && rhs) ;
 	
-	void fire() ;
+	void fire(const Position<float> startingPos, const Vectr<float> & direction) ;
 	
 };
 

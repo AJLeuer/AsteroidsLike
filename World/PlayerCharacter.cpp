@@ -13,7 +13,7 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(AssetFile::projectileImageFilenames->at(2), size.getModifier(), & loc, & vectr){}
+    weapon(AssetFile::projectileImageFilenames->at(2), getSize()->getModifier(), outputData.getPositionType()){}
 
 
 /**
@@ -45,7 +45,7 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  */
 PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
     Character(imageFile, size, loc, name, reaction, alive, state, health, damage, monitorVelocity),
-    weapon(projectileImageFile, size, &(this->loc), &(this->vectr)) {}
+    weapon(projectileImageFile, getSize()->getModifier(), outputData.getPositionType()) {}
 
 
 /**
@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
     Character(rand),
-    weapon(AssetFile::projectileImageFilenames->at(2), 1.0, & loc, & vectr){}
+    weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier(), outputData.getPositionType()) {}
 
 
 /**
@@ -129,7 +129,12 @@ void PlayerCharacter::defaultBehaviors() {
 
 
 void PlayerCharacter::fire() {
-    weapon.fire() ;
+	auto gunX = loc.getX() + (getSize()->getWidth() / 2) ;
+	auto gunY = loc.getY() ;
+	
+	Position<float> gunPos { gunX, gunY, 0 } ;
+	
+    weapon.fire(gunPos, vectr) ;
 }
 
 

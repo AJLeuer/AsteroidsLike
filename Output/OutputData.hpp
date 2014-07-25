@@ -105,6 +105,8 @@ protected:
 	
 	virtual void update() ;
 	
+	friend class GameObject ;
+	
 	
 public:
 	
@@ -125,36 +127,39 @@ public:
         allOutputData.push_back(this) ;
     }
 	
-	OutputData(Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
+	OutputData(Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
         size(), /* can't be initialized yet */
-		positionType(type)
+		positionType(type),
+		visible(visible)
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
+	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
         size(),
-		positionType(type)
+		positionType(type),
+		visible(visible)
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) :
+    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(AssetFile(randm)),
         texture(nullptr),
         position(pos),
         size(),
-		positionType(type)
+		positionType(type),
+		visible(visible)
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;

@@ -9,7 +9,7 @@
 #include "Weapon.h"
 
 
-
+/*
 Weapon & Weapon::operator=(const Weapon & rhs) {
     if (this != &rhs) {
         projectile = rhs.projectile ;
@@ -22,26 +22,25 @@ Weapon & Weapon::operator=(Weapon && rhs) {
         projectile = std::move(rhs.projectile) ;
     }
     return *this ;
-}
+} */
 
-void Weapon::fire() {
+void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction) {
+	
+	this->pos.setAll(startingPos) ; //should update projectile's position as well
 
-	auto fireL = [this] () -> void {
+	auto fireL = [&, this] () -> void {
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
 		 Move projectile to our current spot */
 		
-		auto projectileFired = this->projectile ;
+		projectile.setVisibility(true) ;
 		
-		projectileFired.moveTo(*ownerPosition) ;
+		Vectr<float> dir = direction.copyVect(false) ;
+		dir.normalize() ;
 		
-		projectileFired.setVisibility(true) ;
-		
-		Vectr<float> tempvec = ownerVector->copyVect(false) ;
-		
-		while ((projectileFired.getPosition()->overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
-			projectileFired.moveNewDirection(tempvec, defaultMoveDistance<float>, nullptr) ;
+		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
+			this->pos += dir ;
 			this_thread::sleep_for(std::chrono::milliseconds(2)) ;
 		}
 	} ;

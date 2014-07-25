@@ -29,7 +29,7 @@ void Player::initDefaultPlayers() {
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
 	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), "Red",
-                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(2)) ;
+                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(1)) ;
 }
 
 Player::Player() :
@@ -81,10 +81,8 @@ void Player::registerForCallbacks() {
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
     EventRegister * onKeyFire ;
-    
-	onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
 	
-	if (playerCharacter.getColor() != Colors::green) {
+	if (playerCharacter.getColor() == Colors::green) {
         
 		onKeyMoveUp = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{MOVE_UP_KEY}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
@@ -97,9 +95,11 @@ void Player::registerForCallbacks() {
         
         onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying value of SDL keycode for space */
+		
+		onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
 
 	}
-	else if (playerCharacter.getColor() != Colors::blue) {
+	else if (playerCharacter.getColor() == Colors::red) {
 		
 		onKeyMoveUp = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;
