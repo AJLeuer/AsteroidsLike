@@ -109,8 +109,11 @@ void Player::registerForCallbacks() {
 															  {SDLK_KP_4}, KeypressEvaluationMethod::exactlyOne) ;
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
+        
         onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {SDLK_KP_0}, KeypressEvaluationMethod::exactlyOne) ;
+        
+        onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEWHEEL) ;
 		
 	}
 	

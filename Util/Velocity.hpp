@@ -87,7 +87,7 @@ public:
 		timer->startTimer() ;
 		
 		velocityStorage.push_back(this) ;
-		assert(velocityStorage.at(id)->id == id) ;
+		assert(velocityStorage.at(id)->id == id) ; /* for debug builds only */
 		
 		if (velocityMonitorInit == false) {
 			monitorVelocity() ;
@@ -172,9 +172,7 @@ void Velocity<N>::calculateVelocity() {
     /* debug var */
 	auto * vs = &velocityStorage ;
 	/* end debug */
-	
-	
-    
+
 	for (auto i = 0 ; (i < velocityStorage.size()) && (*velocityMonitorContinueSignal) ; i++) {
 		
 		/* Debug var */
@@ -213,10 +211,12 @@ void Velocity<N>::calculateVelocity() {
 			
 			}
 			else {
+                sharedVelMutex->unlock() ;
 				this_thread::sleep_for(defaultSleepTime) ;
 			}
 		}
 		else {
+            sharedVelMutex->unlock() ;
 			this_thread::sleep_for(defaultSleepTime) ;
 		}
 		sharedVelMutex->unlock() ;
