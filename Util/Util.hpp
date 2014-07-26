@@ -18,7 +18,7 @@
 
 #include <SDL2/SDL_rect.h>
 
-
+#define PI 3.141592653589793238462643383279502884197169399375105820974944L
 
 using namespace std ;
 
@@ -246,6 +246,15 @@ SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 
 	return shape ;
 }
+
+template<typename Radians = double>
+double convertToDegrees(Radians angle_rad) {
+	double angle_in_radians = static_cast<double>(angle_rad) ;
+	double angle_in_degrees = (angle_in_radians * PI) / 180.0 ;
+	return angle_in_degrees ;
+}
+
+
 
 
 inline unsigned termWidth() {

@@ -553,8 +553,9 @@ public:
 	
 	
 	double getValue() const {
-		double val = static_cast<double>(atan2(this->x, this->y)) ;
-		return val ;
+		double rad = static_cast<double>(atan2(this->x, this->y)) ;
+		double deg = convertToDegrees(rad) ;
+		return deg ;
 	}
 	
 } ;
