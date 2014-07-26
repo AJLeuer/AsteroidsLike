@@ -19,7 +19,7 @@
 #include <queue>
 #include <deque>
 
-#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_rect.h>
 
 #include "Debug.h"
 #include "Util.hpp"
@@ -194,7 +194,15 @@ public:
 		return(*this) ;
     }
     
-	
+	/**
+	 * Typecast to SDL_Point operator overload
+	 */
+	operator SDL_Point() {
+		SDL_Point point ;
+		point.x = this->x ;
+		point.y = this->y ;
+		return point ;
+	}
 	
 	virtual bool operator==(const Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
@@ -565,12 +573,11 @@ struct Angle : public Position<N> {
 public:
     
     using Position<N>::Position;
-    
-    N getValue() {
-        return atan2(this->x, this->y) ;
-    }
-    
-    
+	
+	double getValue() const {
+		return static_cast<double>(atan2(this->x, this->y)) ;
+	}
+	
 } ;
 
 /**
@@ -1065,6 +1072,7 @@ public:
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
+	operator Angle<N>() ;
     Vectr copyVect(bool copyVelocity) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
@@ -1290,6 +1298,17 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 		rhs.velocity = nullptr ;
 	}
 	return *this ;
+}
+
+template<typename N>
+Vectr<N>::operator Angle<N>() {
+	normalize() ;
+	
+	Angle<N> angle ;
+	angle.setX(x) ;
+	angle.setY(y) ;
+	
+	return angle ;
 }
 
 template<typename N>

@@ -24,7 +24,7 @@
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
 		6652B7F519615A0600243106 /* Velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F419615A0600243106 /* Velocity.cpp */; };
-		666B6AB6196D14FE00135433 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666B6AB5196D14FE00135433 /* AppKit.framework */; };
+		6668B6BF19835D3B0076C44F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6668B6BE19835D3B0076C44F /* AppKit.framework */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
 		668F564E196E74F6006EB2F1 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 668F564C196E74F6006EB2F1 /* Weapon.cpp */; };
@@ -52,9 +52,9 @@
 		1E683B13193ECDC4000F3045 /* DefaultConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DefaultConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1EA04DF4198326B900398884 /* HardwareRand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HardwareRand.c; sourceTree = "<group>"; };
 		1EAABA0F196A1A0F00FD932F /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
-		1EC13454196E3D54000DC02C /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
-		1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
-		1EEEAAAC19831188004DA274 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		1EC13454196E3D54000DC02C /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		1EEEAAAC19831188004DA274 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GraphicalOutput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GraphicalOutput.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6605EE0F1964D37B0028013B /* PlayerCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCharacter.h; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Util2.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		665F49BD195E979400B21A27 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		665F49BE195EC34C00B21A27 /* About */ = {isa = PBXFileReference; lastKnownFileType = folder; path = About; sourceTree = "<group>"; };
-		666B6AB5196D14FE00135433 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6668B6BE19835D3B0076C44F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../Applications/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; lineEnding = 0; path = Util.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6678790118DAE25E00618712 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		6684DDA6195FA6C300E6B997 /* GameRandom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRandom.hpp; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666B6AB6196D14FE00135433 /* AppKit.framework in Frameworks */,
+				6668B6BF19835D3B0076C44F /* AppKit.framework in Frameworks */,
 				1EEEAAAD19831188004DA274 /* SDL2.framework in Frameworks */,
 				1EC13457196E3D5B000DC02C /* SDL2_ttf.framework in Frameworks */,
 				1EC13455196E3D54000DC02C /* SDL2_image.framework in Frameworks */,
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				66E2BC51195DA7E600287A08 /* README.md */,
-				666B6AB5196D14FE00135433 /* AppKit.framework */,
+				6668B6BE19835D3B0076C44F /* AppKit.framework */,
 				1EEEAAAC19831188004DA274 /* SDL2.framework */,
 				1EC13454196E3D54000DC02C /* SDL2_image.framework */,
 				1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */,
@@ -419,7 +419,7 @@
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx10.9;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;
@@ -489,7 +489,7 @@
 				PRELINK_LIBS = Yes;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx10.9;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				SUPPORTED_PLATFORMS = macosx;
@@ -508,6 +508,7 @@
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"~/Library/Frameworks",
 					/Users/aleuer2/Library/Frameworks,
+					"$(SYSTEM_APPS_DIR)/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				LD_RUNPATH_SEARCH_PATHS = "";
@@ -531,6 +532,7 @@
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"~/Library/Frameworks",
 					/Users/aleuer2/Library/Frameworks,
+					"$(SYSTEM_APPS_DIR)/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				LD_RUNPATH_SEARCH_PATHS = "";

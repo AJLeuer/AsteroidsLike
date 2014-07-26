@@ -134,7 +134,7 @@ void PlayerCharacter::fire() {
 	
 	Position<float> gunPos { gunX, gunY, 0 } ;
 	
-    weapon.fire(gunPos, vectr) ;
+    weapon.fire(gunPos, vectr, vectr) ;
 }
 
 

@@ -24,7 +24,7 @@ Weapon & Weapon::operator=(Weapon && rhs) {
     return *this ;
 } */
 
-void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction) {
+void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction, const Angle<float> & orientation) {
 	
 	this->pos.setAll(startingPos) ; //should update projectile's position as well
     
@@ -32,13 +32,14 @@ void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direct
 
     timer->startTimer() ;
 
-	auto fireL = [timer, &direction, this] () -> void {
+	auto fireL = [timer, &direction, &orientation, this] () -> void {
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
 		 Move projectile to our current spot */
 		
 		projectile.setVisibility(true) ;
+		projectile.setOrientation(orientation) ;
         
         const auto time = timer->stopTimer() ;
 		

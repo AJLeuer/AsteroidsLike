@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "World/Weapon.cpp"
-            timestampString = "427999599.338263"
+            timestampString = "428044190.88661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "Weapon::fire(const Position&lt;float&gt; startingPos, const Vectr&lt;float&gt; &amp; direction)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "Weapon::fire(const Position&lt;float&gt; startingPos, const Vectr&lt;float&gt; &amp; direction, const Angle&lt;float&gt; &amp; orientation)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

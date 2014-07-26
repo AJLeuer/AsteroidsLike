@@ -53,9 +53,6 @@ protected:
 	 */
 	static void render() ;
 	
-	template<typename M, typename N>
-	static void render(OutputData<M, N> * output) ;
-    
 	/**
 	 * Renders the given texture at the desired position and size.
 	 *
@@ -64,8 +61,8 @@ protected:
 	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename M, typename N>
-	static void render(Texture * texture, const Position<M> pos, const Size<N> size) ;
-    
+	static void render(OutputData<M, N> * output) ;
+	
 	
 	GraphicalOutput() ; //private to prevent instantiation
 	
@@ -78,26 +75,19 @@ public:
 } ;
 
 
-
 template<typename M, typename N>
 void GraphicalOutput::render(OutputData<M, N> * output) {
-	if ((output != nullptr) && (output->isVisible())) {
-		render(output->getTexture(), output->getPosition(), output->getSize()) ;
-	}
-}
-
-
-template<typename M, typename N>
-void GraphicalOutput::render(Texture * texture, const Position<M> pos, const Size<N> size) {
 	
-	auto tempShape = convertToSDL_Rect(pos, size) ;
+	auto tempShape = convertToSDL_Rect(output->getPosition(), output->getSize()) ;
 	
 	int sdlrend_error = 0 ;
 	
 	/* texture will sometimes be null, e.g. when game objects are invisible their
 	   getTexture() method returns a nullptr */
-	if (texture != nullptr) {
-		sdlrend_error = SDL_RenderCopy(renderer, texture, NULL, &tempShape) ;
+	if ((output != nullptr) && (output->isVisible())) {
+		if (output->getTexture() != nullptr) {
+			sdlrend_error = SDL_RenderCopyEx(renderer, output->getTexture(), NULL, &tempShape, output->getOrientation().getValue(), NULL, SDL_FLIP_NONE) ;
+		}
 	}
 	
 	if (sdlrend_error == -1) {

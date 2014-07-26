@@ -298,6 +298,10 @@ public:
 	
 	PositionType getPositionType() const { return positionType ; }
 	
+	void setOrientation(const Angle<POSUTYPE> & angle) { this->orientation = angle ; }
+	
+	const Angle<POSUTYPE> getOrientation() const { return orientation ; }
+	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
 	void setVisibility(bool visible) { this->visible = visible ; }

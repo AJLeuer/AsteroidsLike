@@ -134,7 +134,7 @@ public:
 	Velocity & operator=(const Velocity & rhs) = delete ;
 	Velocity & operator=(Velocity && rhs)  = delete ;
 
-	double getValue() {
+	double getValue() const {
 		return lastVelocity * 100 ;
 	}
 	 
