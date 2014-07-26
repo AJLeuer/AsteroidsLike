@@ -21,8 +21,8 @@ WorldController::WorldController() {}
 
 
 void WorldController::init() {
-	Position<float> * pos = new Position<float>{0, 0, 0} ;
-	OutputData<float, int> * backdrop = new OutputData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, {0, 0, 0}, 1.0, PositionType::screenPosition) ;
+	Position<float> * pos = new Position<float>(0, 0) ;
+	OutputData<float, int> * backdrop = new OutputData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, ZERO_DEGREES, 1.0, PositionType::screenPosition) ;
 
 	WorldController::gameObjects = GameObject::getAllGameObjects() ;
 	WorldController::map = GameObject::getMap() ;

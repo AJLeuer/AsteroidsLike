@@ -1220,36 +1220,6 @@ Vectr<N>::~Vectr()
 		sharedVelMutex->unlock() ;
 	}
 }
-/*
-template<typename N>
-Vectr<N> & Vectr<N>::operator=(const Vectr<N> & rhs) {
-	if (this != &rhs) {
-		
-		delete current ;
-		delete totalDistanceMoved ;
-		delete velocity ;
-		
-		this->Position<float>::operator=(rhs) ;
-        this->last = Position<N>(rhs.last) ;
-		this->mostRecent = Position<N>(rhs.mostRecent) ;
-		this->current = rhs.current ;
-        this->absDistanceMoved = rhs.absDistanceMoved ;
-        
-        if (rhs.totalDistanceMoved != nullptr) {
-            this->totalDistanceMoved = new N(*rhs.totalDistanceMoved) ;
-        }
-		
-		if (rhs.velocity != nullptr) {
-			this->velocity = new Velocity<N>(totalDistanceMoved, sharedVelMutex, &sharedVelBool) ;
-		}
-		else {
-			velocity = nullptr ;
-		}
-		
-		
-	}
-	return *this ;
-} */
 
 
 template<typename N>
@@ -1470,7 +1440,7 @@ extern Position<T> transPosition(const Position<T> & inSpriteFight) {
 	T x = (tw * tempX)/worldXSize ;
 	T y = (th * tempY)/worldYSize ;
 	
-	return Position<T>(x, y, 0) ;
+	return Position<T>(x, y) ;
 }
 
 template<typename N>
@@ -1485,10 +1455,10 @@ private:
 public:
 	
 	Resolution() :
-		Position<N>(0, 0 , 0) {}
+		Position<N>(0, 0) {}
 	
 	Resolution(N x, N y) :
-		Position<N>(x, y, 0) {}
+		Position<N>(x, y) {}
 	
 	Resolution(const Resolution & other) :
 		Position<N>(other) {}
