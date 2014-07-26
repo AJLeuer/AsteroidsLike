@@ -20,7 +20,7 @@ Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
 Pos2<float> Player::position_in_defaultStartingArea() {
-	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2)), 0) ;
+	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
 	return ret ;
 }
 
@@ -154,7 +154,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 
 	} ;
 	
-	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, foreground, background) ;
+	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, ZERO_DEGREES, foreground, background) ;
 }
 
 

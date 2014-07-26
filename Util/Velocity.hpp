@@ -31,7 +31,7 @@ extern bool * velocityMonitorContinueSignal ;
 template<typename N>
 struct Velocity {
 
-#define Distance N
+typedef N Distance ;
 	
 protected:
 	

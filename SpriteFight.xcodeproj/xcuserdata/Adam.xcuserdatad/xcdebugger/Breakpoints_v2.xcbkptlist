@@ -9,14 +9,86 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "World/Weapon.cpp"
-            timestampString = "428044190.88661"
+            filePath = "Util/Position.hpp"
+            timestampString = "428054100.726751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "Weapon::fire(const Position&lt;float&gt; startingPos, const Vectr&lt;float&gt; &amp; direction, const Angle&lt;float&gt; &amp; orientation)"
-            landmarkType = "5">
+            startingLineNumber = "603"
+            endingLineNumber = "603"
+            landmarkName = "getValue()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Util/Position.hpp"
+            timestampString = "428054100.726751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "599"
+            endingLineNumber = "599">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Angle&lt;float&gt;::Angle&lt;double&gt;(std::initializer_list&lt;double&gt;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/Control/../Util/Position.hpp"
+                  timestampString = "428054299.279913"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "599"
+                  endingLineNumber = "599"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Angle&lt;float&gt;::Angle&lt;double&gt;(std::initializer_list&lt;double&gt;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/Control/../Util/Position.hpp"
+                  timestampString = "428054299.280069"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "599"
+                  endingLineNumber = "599"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Angle&lt;float&gt;::Angle&lt;int&gt;(FastRand&lt;int&gt;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Util/Position.hpp"
+                  timestampString = "428054299.280192"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "599"
+                  endingLineNumber = "599"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Angle&lt;float&gt;::Angle&lt;int&gt;(FastRand&lt;int&gt;)"
+                  moduleName = "SpriteFight"
+                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Util/Position.hpp"
+                  timestampString = "428054299.280311"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "599"
+                  endingLineNumber = "599"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

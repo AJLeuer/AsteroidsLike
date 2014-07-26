@@ -9,7 +9,7 @@
 #ifndef __SpriteFight__GameColor__
 #define __SpriteFight__GameColor__
 
-#define Byte unsigned char
+typedef unsigned char Byte ;
 
 #include <iostream>
 

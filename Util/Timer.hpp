@@ -69,4 +69,4 @@ public:
 
 
 
-#endif /* defined(__Intro_to_C____ClockTicks__) */
+#endif /* defined Time */

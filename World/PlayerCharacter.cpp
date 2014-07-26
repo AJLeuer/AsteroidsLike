@@ -132,7 +132,7 @@ void PlayerCharacter::fire() {
 	auto gunX = loc.getX() + (getSize()->getWidth() / 2) ;
 	auto gunY = loc.getY() ;
 	
-	Position<float> gunPos { gunX, gunY, 0 } ;
+	Position<float> gunPos { gunX, gunY} ;
 	
     weapon.fire(gunPos, vectr, vectr) ;
 }

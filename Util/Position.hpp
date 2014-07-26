@@ -17,6 +17,7 @@
 #include <ostream>
 #include <sstream>
 #include <queue>
+#include <initializer_list>
 #include <deque>
 
 #include <SDL2/SDL_rect.h>
@@ -32,6 +33,8 @@
 #define DOWN 0, 1, 0
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
+
+#define ZERO_DEGREES {1.0, 0.0}
 
 //#include "../Control/Configuration.h"
 
@@ -67,28 +70,31 @@ protected:
 
 	N x ;
 	N y ;
-    N z ;
 
 public:
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
-	Position() : x(0), y(0), z(0) {}
+	Position() : x(0), y(0) {}
 	
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
-	Position(const BoundsCheck<N> & check) : x(0), y(0), z(0) { this->checkBounds(check) ; }
+	Position(const BoundsCheck<N> & check) : x(0), y(0) { this->checkBounds(check) ; }
 	
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
-	Position(N n) : x(n), y(n), z(n) {}
+	Position(N n) : x(n), y(n) {}
 	
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
-	Position(N n, const BoundsCheck<N> & check) : x(n), y(n), z(n) { this->checkBounds(check) ; }
+	Position(N n, const BoundsCheck<N> & check) : x(n), y(n) { this->checkBounds(check) ; }
+	
+	
+	template<typename M>
+	Position(M x, M y) : x(static_cast<N>(x)), y(static_cast<N>(y)) {}
 	
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
@@ -96,8 +102,7 @@ public:
     template<typename R>
 	Position(FastRand<R> rand) :
 		x(rand.nextValue()),
-		y(rand.nextValue()),
-		z(0) {}
+		y(rand.nextValue()) {}
 	
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
@@ -105,8 +110,7 @@ public:
     template<typename R>
 	Position(FastRand<R> rand, const BoundsCheck<N> & check) :
 		x(rand.nextValue(check.min_X, check.max_X)),
-		y(rand.nextValue(check.min_Y, check.max_Y)),
-		z(0)
+		y(rand.nextValue(check.min_Y, check.max_Y))
 	{
 		checkBounds(check) ;
 	}
@@ -114,24 +118,24 @@ public:
     /**
      * Copy constructor for Position
      */
-    Position(const Position & other) : Position(other.x, other.y, other.z) {}
+    Position(const Position & other) : Position(other.x, other.y) {}
 	
 	/**
      * Copy constructor for Position
      */
-    Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z)  {
+    Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y)  {
 		checkBounds(check) ;
 	}
 	
 	/**
      * Move constructor for Position
      */
-    Position(Position && other) : Position(other.x, other.y, other.z) {}
+    Position(Position && other) : Position(other.x, other.y) {}
 	
 	/**
      * Move constructor for Position
      */
-    Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y, other.z) {
+    Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y) {
 		checkBounds(check) ;
 	}
     
@@ -141,9 +145,8 @@ public:
      *
      * @param x The x coordinate
      * @param y The y coordinate
-     * @param z The z coordinate
      */
-	Position(N x, N y, N z) : x(x), y(y), z(z) {}
+	Position(N x, N y) : x(x), y(y) {}
 	
     /**
      * Creates a Position with coordinates initialized to the
@@ -151,16 +154,14 @@ public:
      *
      * @param x The x coordinate
      * @param y The y coordinate
-     * @param z The z coordinate
      */
-	Position(N x, N y, N z, const BoundsCheck<N> & check) : x(x), y(y), z(z) {
+	Position(N x, N y, const BoundsCheck<N> & check) : x(x), y(y) {
 		this->checkBounds(check) ;
 	}
     
-    Position(const FastRand<N> & randm) {
+    Position(FastRand<N> & randm) {
         x = randm(BoundsCheck<N>::defaultCheck.min_X, BoundsCheck<N>::defaultCheck.max_X) ;
         y = randm(BoundsCheck<N>::defaultCheck.min_Y, BoundsCheck<N>::defaultCheck.max_Y) ;
-        z = 0 ;
     }
 	
     /**
@@ -176,7 +177,6 @@ public:
 
 		this->x = rhs.x ;
 		this->y = rhs.y ;
-		this->z = rhs.z ;
        
         return *this;
     }
@@ -189,7 +189,6 @@ public:
 
 		this->x = rhs.x ;
 		this->y = rhs.y ;
-		this->z = rhs.z ;
 
 		return(*this) ;
     }
@@ -205,7 +204,7 @@ public:
 	}
 	
 	virtual bool operator==(const Position & rhs) const {
-		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
+		if ((this->x == rhs.x) && (this->y == rhs.y)) {
 			return true ;
 		}
 		else {
@@ -214,7 +213,7 @@ public:
 	}
 	
 	virtual bool operator==(Position & rhs) const {
-		if ((this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z)) {
+		if ((this->x == rhs.x) && (this->y == rhs.y)) {
 			return true ;
 		}
 		else {
@@ -232,44 +231,40 @@ public:
 	
 	Position operator+(const Position & rhs) const {
         
-        Position temp = Position(this->x, this->y, this->z) ;
+        Position temp = Position(this->x, this->y) ;
         
 		temp.x = temp.x + rhs.x ;
 		temp.y = temp.y + rhs.y ;
-		temp.z = temp.z + rhs.z ;
 		
 		return temp ;
 	}
 	
 	Position operator-(const Position & rhs) const {
         
-        Position temp = Position(this->x, this->y, this->z) ;
+        Position temp = Position(this->x, this->y) ;
         
 		temp.x = temp.x - rhs.x ;
 		temp.y = temp.y - rhs.y ;
-		temp.z = temp.z - rhs.z ;
 		
 		return temp ;
 	}
 	
 	Position operator*(const N n) const {
         
-        Position temp = Position(x, y, z) ;
+        Position temp = Position(x, y) ;
         
 		temp.x = temp.x * n ;
 		temp.y = temp.y * n ;
-		temp.z = temp.z * n ;
 		
 		return temp ;
 	}
 	
 	Position operator/(const N n) const {
         
-        Position temp = Position(x, y, z) ;
+        Position temp = Position(x, y) ;
         
 		temp.x = temp.x / n ;
 		temp.y = temp.y / n ;
-		temp.z = temp.z / n ;
 		
 		return temp ;
 	}
@@ -279,9 +274,8 @@ public:
 
 		P x = lhs.x + rhs->x ;
 		P y = lhs.y + rhs->y ;
-		P z = lhs.z + rhs->z ;
 
-		return new Position<P>(x, y, z) ;
+		return new Position<P>(x, y) ;
 	}
 
 	template<typename O, typename P>
@@ -289,18 +283,17 @@ public:
 
 		P x = lhs.x - rhs->x ;
 		P y = lhs.y - rhs->y ;
-		P z = lhs.z - rhs->z ;
 
-		return new Position<P>(x, y, z) ;
+		return new Position<P>(x, y) ;
 	}
 	
 	friend ostream & operator<<(std::ostream & os, const Position<N> * pos) {
-		os << "Position: X = " << pos->x << ", Y = " << pos->y << ", Z = " << pos->z << '\n' ;
+		os << "Position: X = " << pos->x << ", Y = " << pos->y  << '\n' ;
 		return os ;
 	}
 	
 	friend ostream & operator<<(std::ostream & os, const Position<N> & pos) {
-		os << "Position: X = " << pos.x << ", Y = " << pos.y << ", Z = " << pos.z << '\n' ;
+		os << "Position: X = " << pos.x << ", Y = " << pos.y << '\n' ;
 		return os ;
 	}
 
@@ -308,29 +301,28 @@ public:
 	/**
 	 * Sets x, y, and z to the given values.
 	 */
-	virtual void setAll(const N x, const N y, const N z) {
+	virtual void setAll(const N x, const N y) {
 		this->x = x ;
 		this->y = y ;
-		this->z = z ;
 	}
 
-	virtual void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
-		setAll(x, y, z) ;
+	virtual void setAll(const N x, const N y, const BoundsCheck<N> & check) {
+		setAll(x, y) ;
 		checkBounds(&check) ;
 	}
 
 	virtual void setAll(const Position<N> & other) {
-		setAll(other.x, other.y, other.z) ;
+		setAll(other.x, other.y) ;
 	}
 
 	virtual void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
-		setAll(other.x, other.y, other.z) ;
+		setAll(other.x, other.y) ;
 		checkBounds(&check) ;
 	}
 
-	virtual void setAll(const N n) { setAll(n, n, n) ; }
+	virtual void setAll(const N n) { setAll(n, n) ; }
 
-	virtual void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, n, check) ; }
+	virtual void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, check) ; }
 
 	virtual void setAllZero() { setAll(0) ; }
 
@@ -338,8 +330,6 @@ public:
 	N getX() const { return this->x ; }
 	
 	N getY() const { return this->y ; }
-	
-	N getZ() const { return this->z ; }
 
 	/**
 	 * @return x as an integer
@@ -350,24 +340,15 @@ public:
 	 * @return z as an integer
 	 */
 	int getIntY() const { return roundF<N, int>(y) ; }
-
-	/**
-	 * @return z as an integer
-	 */
-	int getIntZ() const { return roundF<N, int>(z) ; }
 	
-	virtual void setX(const N x) { setAll(x, this->y, this->z) ; }
+	virtual void setX(const N x) { setAll(x, this->y) ; }
 	
 	virtual void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; checkBounds(check) ; }
 	
-	virtual void setY(const N y) { setAll(this->x, y, this->z) ; }
+	virtual void setY(const N y) { setAll(this->x, y) ; }
 	
 	virtual void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; checkBounds(check) ; }
 	
-	virtual void setZ(const N z) { setAll(this->x, this->y, z) ; }
-	
-	virtual void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; checkBounds(check) ; }
-
 
 	virtual void x_plus_one() { setX(x++) ; }
 
@@ -396,16 +377,14 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	virtual void modify(N delta_x, N delta_y, N delta_z) {
+	virtual void modify(N delta_x, N delta_y) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
-		auto tempZ = this->z ;
 
 		tempX += delta_x ;
 		tempY += delta_y ;
-		tempZ += delta_z ;
 
-		setAll(tempX, tempY, tempZ) ;
+		setAll(tempX, tempY) ;
 	}
 	
 	/**
@@ -417,29 +396,27 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	virtual void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
+	virtual void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
-		auto tempZ = this->z ;
 		
 		tempX += delta_x ;
 		tempY += delta_y ;
-		tempZ += delta_z ;
 
-		setAll(tempX, tempY, tempZ, check) ;
+		setAll(tempX, tempY, check) ;
 	}
 
-	virtual void moveHere(N x, N y, N z) {
-		setAll(x, y, z) ;
+	virtual void moveHere(N x, N y) {
+		setAll(x, y) ;
 	}
 
-	virtual void moveHere(N x, N y, N z, const BoundsCheck<N> & check) {
-		moveHere(x, y, z) ;
+	virtual void moveHere(N x, N y, const BoundsCheck<N> & check) {
+		moveHere(x, y) ;
 		checkBounds(check) ;
 	}
 
 	virtual void moveHere(const Position<N> & other) {
-		setAll(other.x, other.y, other.z) ;
+		setAll(other.x, other.y) ;
 	}
 
 	virtual void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
@@ -572,10 +549,12 @@ struct Angle : public Position<N> {
    
 public:
     
-    using Position<N>::Position;
+	using Position<N>::Position;
+	
 	
 	double getValue() const {
-		return static_cast<double>(atan2(this->x, this->y)) ;
+		double val = static_cast<double>(atan2(this->x, this->y)) ;
+		return val ;
 	}
 	
 } ;
@@ -599,7 +578,7 @@ protected:
 	 * Saves our current state
 	 */
 	void archive() {
-		Position<N> archived(this->x, this->y, this->z) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
+		Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
 
 		if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
 			pastPositions->pop_front() ;
@@ -612,7 +591,7 @@ public:
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
      */
-	Pos2() : Position<N>(0, 0, 0), pastPositions(new deque<Position<N>>) {}
+	Pos2() : Position<N>(0, 0), pastPositions(new deque<Position<N>>) {}
 	
 	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<Position<N>>) {}
 	
@@ -707,7 +686,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y, N z) : Position<N>(x, y, z), pastPositions(new deque<Position<N>>) {}
+	Pos2(N x, N y) : Position<N>(x, y), pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Creates a Pos2 with coordinates initialized to the
@@ -717,7 +696,7 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y, N z, const BoundsCheck<N> & check) : Position<N>(x, y, z, check), pastPositions(new deque<Position<N>>) {}
+	Pos2(N x, N y, const BoundsCheck<N> & check) : Position<N>(x, y, check), pastPositions(new deque<Position<N>>) {}
 
 	/**
      * Destructor for Position
@@ -873,42 +852,39 @@ public:
 		return pastPositions ;
 	}
 
-	void setAll(const N x, const N y, const N z) {
+	void setAll(const N x, const N y) {
 		archive() ;
-		this->Position<N>::setAll(x, y, z) ;
+		this->Position<N>::setAll(x, y) ;
 	}
 
-	void setAll(const N x, const N y, const N z, const BoundsCheck<N> & check) {
+	void setAll(const N x, const N y, const BoundsCheck<N> & check) {
 		archive() ;
-		Position<N>::setAll(x, y, z, check) ;
+		Position<N>::setAll(x, y, check) ;
 	}
 
 	void setAll(const Position<N> & other) {
-		setAll(other.getX(), other.getY(), other.getZ()) ;
+		setAll(other.getX(), other.getY()) ;
 	}
 
 	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
-		setAll(other.getX(), other.getY(), other.getZ(), check) ;
+		setAll(other.getX(), other.getY(), check) ;
 	}
 
-	void setAll(const N n) { setAll(n, n, n) ; }
+	void setAll(const N n) { setAll(n, n) ; }
 
-	void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, n, check) ; }
+	void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, check) ; }
 
 	void setAllZero() { setAll(0) ; }
 
 
-	void setX(const N x) { setAll(x, this->y, this->z) ; }
+	void setX(const N x) { setAll(x, this->y) ; }
 
 	void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; this->checkBounds(check) ; }
 
-	void setY(const N y) { setAll(this->x, y, this->z) ; }
+	void setY(const N y) { setAll(this->x, y) ; }
 
 	void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; this->checkBounds(check) ; }
-
-	void setZ(const N z) { setAll(this->x, this->y, z) ; }
-
-	void setZ(const N z, const BoundsCheck<N> & check) { setZ(z) ; this->checkBounds(check) ; }
+	
 
 	void x_plus_one() { setX(this->x++) ; }
 
@@ -927,15 +903,33 @@ public:
 
 	void y_minus_one(const BoundsCheck<N> & check) { setY(this->y--) ; this->checkBounds(check) ; }
 
-	void moveRight() { setAll((this->x+1), this->y, this->z) ; }
-	void moveLeft() { setAll((this->x-1), this->y, this->z) ; }
-	void moveUp() { setAll(this->x, (this->y+1), this->z) ; }
-	void moveDown() { setAll(this->x, (this->y-1), this->z) ; }
+	void moveRight() { setAll((this->x+1), this->y) ; }
+	void moveLeft() { setAll((this->x-1), this->y) ; }
+	void moveUp() { setAll(this->x, (this->y+1)) ; }
+	void moveDown() { setAll(this->x, (this->y-1)) ; }
 
-	void moveUpRight() { setAll((this->x+1), (this->y+1), this->z) ; }
-	void moveUpLeft() { setAll((this->x-1), (this->y+1), this->z) ; }
-	void moveDownRight() { setAll((this->x+1), (this->y-1), this->z) ; }
-	void moveDownLeft() { setAll((this->x-1), (this->y-1), this->z) ; }
+	void moveUpRight() { setAll((this->x+1), (this->y+1)) ; }
+	void moveUpLeft() { setAll((this->x-1), (this->y+1)) ; }
+	void moveDownRight() { setAll((this->x+1), (this->y-1)) ; }
+	void moveDownLeft() { setAll((this->x-1), (this->y-1)) ; }
+
+	/**
+	 * Increments or decrements the x, y and z values according to
+	 * the arguments passed in. Use negative values to decrement. Passing
+	 * 0 for any argument will keep the x, y, or z value the same.
+	 *
+	 * @param delta_x The change in x value
+	 * @param delta_y The change in y value
+	 */
+	void modify(N delta_x, N delta_y) {
+		auto tempX = this->x ;
+		auto tempY = this->y ;
+
+		tempX += delta_x ;
+		tempY += delta_y ;
+
+		setAll(tempX, tempY) ;
+	}
 
 	/**
 	 * Increments or decrements the x, y and z values according to
@@ -946,54 +940,31 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, N delta_z) {
+	void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
-		auto tempZ = this->z ;
 
 		tempX += delta_x ;
 		tempY += delta_y ;
-		tempZ += delta_z ;
 
-		setAll(tempX, tempY, tempZ) ;
+		setAll(tempX, tempY, check) ;
 	}
 
-	/**
-	 * Increments or decrements the x, y and z values according to
-	 * the arguments passed in. Use negative values to decrement. Passing
-	 * 0 for any argument will keep the x, y, or z value the same.
-	 *
-	 * @param delta_x The change in x value
-	 * @param delta_y The change in y value
-	 * @param delta_z The change in z value
-	 */
-	void modify(N delta_x, N delta_y, N delta_z, const BoundsCheck<N> & check) {
-		auto tempX = this->x ;
-		auto tempY = this->y ;
-		auto tempZ = this->z ;
-
-		tempX += delta_x ;
-		tempY += delta_y ;
-		tempZ += delta_z ;
-
-		setAll(tempX, tempY, tempZ, check) ;
+	void moveHere(N x, N y) {
+		setAll(x, y) ;
 	}
 
-	void moveHere(N x, N y, N z) {
-		setAll(x, y, z) ;
-	}
-
-	void moveHere(N x, N y, N z, const BoundsCheck<N> & check) {
-		moveHere(x, y, z) ;
+	void moveHere(N x, N y, const BoundsCheck<N> & check) {
+		moveHere(x, y) ;
 		this->checkBounds(check) ;
 	}
 
 	void moveHere(const Pos2 & other) {
-		setAll(other.x, other.y, other.z) ;
+		setAll(other.x, other.y) ;
 	}
 
 	void moveHere(const Position<N> & other) {
-		setAll(other.getX(), other.getY(), other.getZ()) ;
+		setAll(other.getX(), other.getY()) ;
 	}
 
 	void moveHere(const Pos2 & other, const BoundsCheck<N> & check) {
@@ -1063,8 +1034,8 @@ protected:
 public:
 	
     Vectr() ;
-	Vectr(float headingX, float headingY, float headingZ, bool monitorVelocity) ;
-	Vectr(float headingX, float headingY, float headingZ, Position<N> * current_, bool monitorVelocity) ;
+	Vectr(float headingX, float headingY, bool monitorVelocity) ;
+	Vectr(float headingX, float headingY, Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Position<N> & mostRecent_, Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Vectr<N> & other) ;
@@ -1118,8 +1089,8 @@ Vectr<N>::Vectr() :
 	velocity(nullptr) {}
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, float headingZ, bool monitorVelocity) :
-	Position<float>(headingX, headingY, headingZ),
+Vectr<N>::Vectr(float headingX, float headingY, bool monitorVelocity) :
+	Position<float>(headingX, headingY),
 	current(nullptr),
 	totalDistanceMoved(new N)
 {
@@ -1132,8 +1103,8 @@ Vectr<N>::Vectr(float headingX, float headingY, float headingZ, bool monitorVelo
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, float headingZ, Position<N> * current_, bool monitorVelocity) :
-	Position<float>(headingX, headingY, headingZ),
+Vectr<N>::Vectr(float headingX, float headingY, Position<N> * current_, bool monitorVelocity) :
+	Position<float>(headingX, headingY),
 	current(current_),
 	totalDistanceMoved(new N)
 {
@@ -1358,7 +1329,7 @@ void Vectr<N>::update() {
 		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator+() overload to add
 															       our x, y, and z (which are offset values) to those
 															       stored in current, giving our new location  */
-		setAll(temp.getX(), temp.getY(), temp.getZ()) ;
+		setAll(temp.getX(), temp.getY()) ;
         last = mostRecent ;
 		mostRecent = std::move((Position<N>(*this->current))) ;
 	}
@@ -1374,7 +1345,6 @@ void Vectr<N>::normalize() {
 	if ((y != 0) && (distance != 0)) {
 		y = (y / distance) ;
 	}
-	z = 0 ;
 }
 
 template<typename N>
@@ -1401,9 +1371,8 @@ Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
 	
 	nx = (vec.current)->getX() + stor.getX() ;
 	ny = (vec.current)->getY() + stor.getY() ;
-	nz = (vec.current)->getZ() + stor.getZ() ;
 	
-	Position<N> next(nx, ny, nz) ;
+	Position<N> next(nx, ny) ;
 	return next ;
 }
 
@@ -1421,7 +1390,7 @@ Position<N> Vectr<N>::calculateNextPositionChecked(Vectr<N> & vec, float modifie
 	nx = (vec.current)->getX() + stor.getX() ;
 	ny = (vec.current)->getY() + stor.getY() ;
 	
-	Position<N> next(nx, ny, nz, check) ;
+	Position<N> next(nx, ny, check) ;
 	
 	return next ;
 }

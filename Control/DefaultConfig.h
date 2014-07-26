@@ -9,11 +9,13 @@
 #ifndef SpriteFight_DefaultConfig_h
 #define SpriteFight_DefaultConfig_h
 
-#define Color SDL_Color
-#define Surface SDL_Surface
-#define Texture SDL_Texture
-#define Renderer SDL_Renderer
-#define Window SDL_Window
+#include <SDL2/SDL_render.h>
+
+typedef SDL_Color Color ;
+typedef SDL_Surface Surface ;
+typedef SDL_Texture Texture ;
+typedef SDL_Renderer Renderer ;
+typedef SDL_Window Window ;
 
 
 #include "../Util/Util.hpp"

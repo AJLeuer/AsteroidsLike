@@ -25,7 +25,7 @@ public:
 	Position<N> current ;
 	
 	long x_travelled() {
-		Position<N> temp{ current - (*start) } ;
+		Position<N> temp( current - (*start) ) ;
 		long x_trav = setUnsigned(temp.getX()) ;
 		return x_trav ;
 	}
@@ -57,7 +57,7 @@ Navigator<N>::Navigator(N i) {}
 
 template<typename N>
 Navigator<N>::Navigator(Direction d, const Position<N> * s, Position<N> c) :
-	dir(d), start(s), current{c} {}
+	dir(d), start(s), current(c) {}
 
 template<typename N>
 Navigator<N>::Navigator(const Navigator & other) :

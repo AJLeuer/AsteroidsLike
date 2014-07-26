@@ -270,10 +270,10 @@ public:
 	 */
 	void moveTo(const Position<float> to) ;
 
-	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y, z)) ; }
+	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y)) ; }
 
-	void moveX(float x) { moveTo(x, loc.getY(), loc.getZ()) ; }
-	void moveY(float y) { moveTo(loc.getX(), y, loc.getZ()) ; }
+	void moveX(float x) { moveTo({x, loc.getY()}) ; }
+	void moveY(float y) { moveTo({loc.getX(), y}) ; }
 	
 	virtual void moveUp() ;
 	virtual void moveDown() ;

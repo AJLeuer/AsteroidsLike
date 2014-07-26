@@ -45,7 +45,7 @@ Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
 	
 	Position<N> origin = getWindowOriginAsWorldCoord<N>() ;
 	
-	auto windowCoords = translateCoords(worldCoords, {0, 0, 0}, origin) ;
+	auto windowCoords = translateCoords(worldCoords, {0, 0}, origin) ;
 	
 	return windowCoords ;
 }
@@ -84,7 +84,7 @@ Position<N> translateCoords(const Position<N> & coords, const Position<N> & sour
  */
 template<typename N>
 N calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
-    auto sum = pow<N>((q.getX() - p.getX()), 2) + pow<N>((q.getY() - p.getY()), 2) + pow<N>((q.getZ() - p.getZ()), 2) ;
+    auto sum = pow<N>((q.getX() - p.getX()), 2) + pow<N>((q.getY() - p.getY()), 2) ;
     auto sqRoot = sqrt(sum) ;
     return sqRoot ;
 }

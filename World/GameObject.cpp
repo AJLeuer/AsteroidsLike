@@ -25,7 +25,7 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	loc(0.0, 0.0, 0.0, BoundsCheck<float>::defaultCheck),
+	loc(0.0, 0.0, BoundsCheck<float>::defaultCheck),
 	vectr() /* nor can this */
 {
 	IDs++ ;
@@ -184,7 +184,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         map->erase(& loc, this) ;
 
         loc = rhs.loc ;
-        vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), rhs.vectr.getZ(), &loc) ;
+        vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), &loc) ;
 		
         this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;

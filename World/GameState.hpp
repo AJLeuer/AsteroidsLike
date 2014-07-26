@@ -152,7 +152,7 @@ Position<N> getWindowOriginAsWorldCoord() {
 	N leftX = (globalMaxX() - windowSizeX()) / 2 ;
 	N topY = (globalMaxY() - windowSizeY()) / 2 ;
 	
-	return Position<N>(leftX, topY, 0) ;
+	return Position<N>(leftX, topY) ;
 }
 
 

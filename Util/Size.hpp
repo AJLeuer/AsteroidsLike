@@ -48,11 +48,11 @@ public:
 		sizeModifier(1.0) {}
 
 	Size(N w_, N h_, float modifier) :
-		Position<N>(w_, h_, 0),
+		Position<N>(w_, h_),
 		sizeModifier(modifier) {}
     
     Size(N w_, N h_) :
-        Position<N>(w_, h_, 0),
+        Position<N>(w_, h_),
         sizeModifier(1) {}
 
 	Size(const Size<N> & other) :
