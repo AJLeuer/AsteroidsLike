@@ -44,7 +44,12 @@ public:
 	static FastRand * randPositionSetter ;
 	
 	FastRand(N _min, N _max) ;
+    
 	FastRand(const FastRand<N> & other) ;
+    
+    template<typename M>
+    FastRand(const FastRand<M> & other) ;
+    
 	FastRand & operator=(const FastRand<N> & rhs) ;
 	~FastRand() ;
 	N nextValue() ;
@@ -104,6 +109,16 @@ FastRand<N>::FastRand(const FastRand<N> & other)
 	std::random_device dev2 ;
 	dist = uniform_int_distribution<N>(other.minimum, other.maximum) ;
 	rndm.seed(dev2()) ;
+}
+
+template<typename N>
+template<typename M>
+FastRand<N>::FastRand(const FastRand<M> & other) {
+    this->minimum(static_cast<N>(other.minimum)) ;
+    this->maximum(static_cast<N>(other.maximum)) ;
+    
+    dist = uniform_int_distribution<N>(minimum, maximum) ;
+	rndm.seed(dev()) ;
 }
 
 template<typename N>

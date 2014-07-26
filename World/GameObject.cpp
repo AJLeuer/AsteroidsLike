@@ -140,7 +140,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 
 GameObject::GameObject(FastRand<int> rand) :
 	ID(IDs),
-	outputData(rand, &loc, 1.0, PositionType::worldPosition),
+	outputData(rand, 1.0, PositionType::worldPosition),
 	loc(rand, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, true)
 {

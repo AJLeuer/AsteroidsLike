@@ -33,11 +33,11 @@ public:
 	
 	Weapon(const AssetFile & file, const float sizeModifier, PositionType type) :
 		pos(0, 0, 0),
-		projectile(file, &pos, sizeModifier, type, false) {}
+        projectile(file, &pos, {1, 1, 0}, sizeModifier, type, false) {}
     
 	Weapon(FastRand<unsigned long> & randm, const float sizeModifier, PositionType type) :
 		pos(0, 0, 0),
-		projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , &pos, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
+        projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , &pos, {0, 0, 0}, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
 	
     Weapon(const Weapon & other) :
 		projectile(other.projectile) {}

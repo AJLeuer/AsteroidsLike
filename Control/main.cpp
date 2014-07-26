@@ -39,7 +39,9 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 	
-	std::thread::id id = this_thread::get_id() ;
+
+    
+    
 
 	MainController::init() ;
 	MainController::main() ;

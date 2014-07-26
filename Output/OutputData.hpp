@@ -57,6 +57,7 @@ protected:
 
 	
 	bool visible = true ;
+    
 	bool visibility_was_updated = false ;
 	
 	PositionType positionType ;
@@ -76,6 +77,11 @@ protected:
 	 *        this OutputData object
 	 */
 	const Position<POSUTYPE> * position ;
+    
+    /**
+     * @brief This object's orientation in 2 dimensions
+     */
+    Angle<POSUTYPE> orientation ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
@@ -127,10 +133,11 @@ public:
         allOutputData.push_back(this) ;
     }
 	
-	OutputData(Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
+	OutputData(Position<POSUTYPE> * pos, Angle<POSUTYPE> orientation, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
+        orientation(orientation),
         size(), /* can't be initialized yet */
 		positionType(type),
 		visible(visible)
@@ -140,10 +147,11 @@ public:
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
+	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, Angle<POSUTYPE> orientation,  const float sizeModifier, PositionType type, bool visible = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
+        orientation(orientation),
         size(),
 		positionType(type),
 		visible(visible)
@@ -153,10 +161,11 @@ public:
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type, bool visible = true) :
+    OutputData(FastRand<int> & randm, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(AssetFile(randm)),
         texture(nullptr),
-        position(pos),
+        position(nullptr),
+        orientation(randm),
         size(),
 		positionType(type),
 		visible(visible)
@@ -170,6 +179,7 @@ public:
         textureImageFile(other.textureImageFile),
         texture(nullptr),
         position(other.position),
+        orientation(other.orientation),
         size(other.size),
 		position_lastRecordedValue(other.position_lastRecordedValue),
 		size_lastRecordedValue(other.size_lastRecordedValue),
@@ -185,6 +195,7 @@ public:
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         position(other.position),
+        orientation(std::move(other.orientation)),
 		size(std::move(other.size)),
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),

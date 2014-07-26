@@ -11,7 +11,8 @@
 #define SpriteFight_Position_h
 
 
-#include <cmath>
+#include <complex>
+#include <valarray>
 #include <iostream>
 #include <ostream>
 #include <sstream>
@@ -155,6 +156,12 @@ public:
 	Position(N x, N y, N z, const BoundsCheck<N> & check) : x(x), y(y), z(z) {
 		this->checkBounds(check) ;
 	}
+    
+    Position(const FastRand<N> & randm) {
+        x = randm(BoundsCheck<N>::defaultCheck.min_X, BoundsCheck<N>::defaultCheck.max_X) ;
+        y = randm(BoundsCheck<N>::defaultCheck.min_Y, BoundsCheck<N>::defaultCheck.max_Y) ;
+        z = 0 ;
+    }
 	
     /**
      * Destructor for Position
@@ -440,7 +447,7 @@ public:
 		N dist = pythag(nx, ny) ;
 		return dist ;
 	}
-	
+    
 	std::string toString() const {
 		stringstream ss ;
 		ss << this ;
@@ -552,7 +559,19 @@ public:
 
 } ;
 
-
+template<typename N>
+struct Angle : public Position<N> {
+   
+public:
+    
+    using Position<N>::Position;
+    
+    N getValue() {
+        return atan2(this->x, this->y) ;
+    }
+    
+    
+} ;
 
 /**
  * Similar to Position, but also holds copies of each of its previous states.

@@ -32,7 +32,7 @@ void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direct
 
     timer->startTimer() ;
 
-	auto fireL = [timer, direction, this] () -> void {
+	auto fireL = [timer, &direction, this] () -> void {
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.

@@ -176,7 +176,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::exit() {
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<POSUTYPE> & pos, GameColor foreground, GameColor background) :
-	OutputData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), 1.0, PositionType::screenPosition),
+    OutputData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), {0, 0, 0}, 1.0, PositionType::screenPosition),
 	text(text), foreground(foreground), background(background)
 {
 	
