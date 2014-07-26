@@ -17,6 +17,8 @@ Window * GraphicalOutput::window = NULL ;
 
 Renderer * GraphicalOutput::renderer = NULL ;
 
+RenderInfo GraphicalOutput::renderInfo ; // = (RenderInfo *)malloc(sizeof(RenderInfo)) ;
+
 
 void GraphicalOutput::init() {
     
@@ -88,13 +90,18 @@ void GraphicalOutput::init() {
 		cerr << ss.rdbuf() ;
 		throw exception() ;
 	}
+	
+	SDL_GetRendererInfo(renderer, &renderInfo) ;
+	
 	GameState::initGraphics(window, renderer) ;
 }
 
 
 void GraphicalOutput::render() {
+	
+	auto outputData = OutputData<float, int>::getOutputData() ; //debug variable, delete this
+	
 	for (auto i = 0 ; i < OutputData<float, int>::getOutputData()->size() ; i++) {
-		auto outputData = OutputData<float, int>::getOutputData() ; //debug variable, delete this
 		render(OutputData<float, int>::getOutputData()->at(i)) ;
 	}
 }
@@ -109,7 +116,8 @@ void GraphicalOutput::update() {
 }
 
 void GraphicalOutput::exit() {
-    
+	
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
     

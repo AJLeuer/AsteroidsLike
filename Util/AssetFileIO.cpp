@@ -108,6 +108,7 @@ AssetFile::AssetFile(const string & existingFilename) {
 			if (allAssetFiles->at(i)->at(j).fileName == existingFilename) {
 				*this = allAssetFiles->at(i)->at(j) ;
 				found = true ;
+				break ;
 			}
 		}
 	}
@@ -117,13 +118,26 @@ AssetFile::AssetFile(const string & existingFilename) {
 	}
 }
 
-AssetFile::AssetFile(FastRand<int> randm) {
-    int i = randm(0, (allAssetFiles->size() - 1)) ;
-    int j = randm(0, (allAssetFiles->at(i)->size() - 1)) ;
-    
-    AssetFile * file = &(allAssetFiles->at(i)->at(j)) ;
-    
-    *this = *file ;
+AssetFile::AssetFile(FastRand<int> randm, AssetType type) {
+
+	bool match = false ;
+	vector<AssetFile> * files = nullptr ;
+	
+	for (auto n = 0 ; n < allAssetFiles->size() ; n++) {
+		if (allAssetFiles->at(n)->at(0).type == type) {
+			files = allAssetFiles->at(n) ;
+			match = true ;
+		}
+	}
+	if (match) {
+		auto index = randm.nextValue(0, files->size() -1) ;
+		*this = files->at(index) ;
+	}
+	else {
+		stringstream ss ;
+		ss << "Warning: the random constructor for AssetFile was unable to match the given AssetType. This AssetFile will not be correctly initiialized." << '\n' ;
+		DebugOutput << ss.rdbuf() ;
+	}
 }
 
 AssetFile & AssetFile::operator = (const AssetFile & rhs) {

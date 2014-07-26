@@ -158,7 +158,7 @@ public:
 	 * @param imageFile The file to be used as the Texture for this GameObject
      * @param loc This GameObject's Position<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, bool visible, bool monitorVelocity) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, const Angle<float> & rotation, bool visible, bool monitorVelocity) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -166,7 +166,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	GameObject(FastRand<int> rand) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(FastRand<int> & rand, AssetType type) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	

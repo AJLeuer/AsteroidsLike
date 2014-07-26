@@ -43,8 +43,8 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
-    Character(imageFile, size, loc, name, reaction, alive, state, health, damage, monitorVelocity),
+PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
+    Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity),
     weapon(projectileImageFile, getSize()->getModifier(), outputData.getPositionType()) {}
 
 
@@ -54,8 +54,8 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  *
  * @param randSeed A seed to initialize the random number generator
  */
-PlayerCharacter::PlayerCharacter(FastRand<int> rand) :
-    Character(rand),
+PlayerCharacter::PlayerCharacter(FastRand<int> rand, AssetType type) :
+    Character(rand, type),
     weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier(), outputData.getPositionType()) {}
 
 
@@ -134,7 +134,7 @@ void PlayerCharacter::fire() {
 	
 	Position<float> gunPos { gunX, gunY} ;
 	
-    weapon.fire(gunPos, vectr, vectr) ;
+    weapon.fire(gunPos, vectr, outputData.getOrientation()) ;
 }
 
 

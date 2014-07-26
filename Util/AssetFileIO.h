@@ -83,7 +83,7 @@ public:
 	
 	AssetFile(const string & existingFilename) ;
     
-    AssetFile(FastRand<int> randm) ;
+    AssetFile(FastRand<int> randm, AssetType type) ;
 	
 	~AssetFile() {}
 	

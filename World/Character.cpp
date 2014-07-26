@@ -37,15 +37,15 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity) :
-	GameObject(imageFile, sizeModifier, loc, true, monitorVelocity),
+Character::Character(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity) :
+	GameObject(imageFile, sizeModifier, loc, rotation, true, monitorVelocity),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(new Health(health)), damage(new Damage(damage))
 {
 }
 
-Character::Character(FastRand<int> rand) :
-	GameObject(rand),
+Character::Character(FastRand<int> rand, AssetType type) :
+	GameObject(rand, type),
 	reaction((Reaction)rand.nextValue(-2, 2)), 
 	alive(DoA::alive),
 	state(CharacterState::normal),

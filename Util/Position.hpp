@@ -35,6 +35,7 @@
 #define RIGHT 1, 0, 0
 
 #define ZERO_DEGREES {0.0, 1.0}
+#define NINETY_DEGREES {1.0, 0.0} /* Rotating anti-clockwise */
 
 //#include "../Control/Configuration.h"
 
@@ -267,6 +268,17 @@ public:
 		temp.y = temp.y / n ;
 		
 		return temp ;
+	}
+	
+
+	void normalize() {
+		auto distance = pythag<float>(x, y) ;
+		if ((x != 0) && (distance != 0)) {
+			x = (x / distance) ;
+		}
+		if ((y != 0) && (distance != 0)) {
+			y = (y / distance) ;
+		}
 	}
     
 	template<typename O, typename P>
@@ -551,8 +563,12 @@ public:
     
 	using Position<N>::Position;
 	
+	Angle(FastRand<float> & realRandm) : Position<N>::x(realRandm(-1.0, 1.0)), Position<N>::y(realRandm(-1.0, 1.0)) {}
 	
-	double getValue() const {
+	Angle(FastRand<double> & realRandm) : Position<N>::x(realRandm(-1.0, 1.0)), Position<N>::y(realRandm(-1.0, 1.0)) {}
+	
+	double getValue() {
+		this->normalize() ;
 		double rad = static_cast<double>(atan2(this->x, this->y)) ;
 		double deg = convertToDegrees(rad) ;
 		return deg ;
@@ -1053,8 +1069,6 @@ public:
 	
 	const Position getLast() const { return this->last ; }
 	
-	void normalize() ;
-	
 	void updateAndNormalize() ;
 	
 	N getLastMoveDistance() { return absDistanceMoved ; }
@@ -1305,17 +1319,6 @@ void Vectr<N>::update() {
 		mostRecent = std::move((Position<N>(*this->current))) ;
 	}
 
-}
-
-template<typename N>
-void Vectr<N>::normalize() {
-	auto distance = pythag<float>(x, y) ;
-	if ((x != 0) && (distance != 0)) {
-		x = (x / distance) ;
-	}
-	if ((y != 0) && (distance != 0)) {
-		y = (y / distance) ;
-	}
 }
 
 template<typename N>

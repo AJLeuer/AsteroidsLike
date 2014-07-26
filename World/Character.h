@@ -87,7 +87,7 @@ public:
 	 * @param damage The Damage capability of this Character
 	 */
 	Character(const AssetFile & imageFile, float sizeModifier,
-			  const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity) ;
+			  const Position<float> & loc, const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity) ;
 	
 	
 	/**
@@ -96,7 +96,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	Character(FastRand<int> rand) ;
+	Character(FastRand<int> rand, AssetType type) ;
 	
 	
 	/**

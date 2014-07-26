@@ -8,6 +8,9 @@
 
 #include "GameRandom.hpp"
 
+/**
+ * A convenience global for creating random positions
+ */
 FastRand<float> * FastRand<float>::randPositionSetter = initRandPosSetter() ;
 
 
@@ -78,3 +81,75 @@ R FastRand<float>::nextValue(R _min, R _max) {
 	return dif_dist(rndm) ;
 }
 
+/**
+ * A convenience global for creating random positions
+ */
+FastRand<double> * FastRand<double>::randPositionSetter = initRandPosSetter() ;
+
+
+FastRand<double> * FastRand<double>::initRandPosSetter() {
+	return new FastRand<double>(0, findLargest<double>({static_cast<double>(globalMaxX()), static_cast<double>(globalMaxY())})) ;
+}
+
+
+FastRand<double> FastRand<double>::defaultRandom(std::numeric_limits<double>::min(), std::numeric_limits<double>::max()) ;
+
+
+FastRand<double>::FastRand(double _min, double _max) :
+minimum(_min),
+maximum(_max)
+{
+	//dev ;
+	dist = uniform_real_distribution<double>(minimum, maximum) ;
+	rndm.seed(dev()) ;
+}
+
+
+FastRand<double>::FastRand(const FastRand<double> & other)
+{
+	std::random_device dev2 ;
+	dist = uniform_real_distribution<double>(other.minimum, other.maximum) ;
+	rndm.seed(dev2()) ;
+}
+
+
+FastRand<double>::~FastRand(){}
+
+
+FastRand<double> & FastRand<double>::operator=(const FastRand<double> & rhs)
+{
+	if (this != &rhs) {
+		std::random_device dev2 ;
+		dist = uniform_real_distribution<double>(rhs.minimum, rhs.maximum) ;
+		rndm.seed(dev2()) ;
+	}
+	return *this ;
+}
+
+
+double FastRand<double>::nextValue() {
+	return dist(rndm) ;
+}
+
+
+double FastRand<double>::nextValue(double minimum, double maximum) {
+	std::uniform_real_distribution<double> dif_dist{minimum, maximum} ;
+	return dif_dist(rndm) ;
+}
+
+
+double FastRand<double>::operator()() {
+	return nextValue() ;
+}
+
+
+double FastRand<double>::operator()(double minimum, double maximum) {
+	return nextValue(minimum, maximum) ;
+}
+
+
+template<typename R>
+R FastRand<double>::nextValue(R _min, R _max) {
+	std::uniform_real_distribution<R> dif_dist{_min, _max} ;
+	return dif_dist(rndm) ;
+}

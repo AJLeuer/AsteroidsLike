@@ -30,7 +30,7 @@ GameObject::GameObject() :
 {
 	IDs++ ;
     
-    outputData.reinitializeMembers(FastRand<int>::defaultRandom, & loc, 1.0, PositionType::worldPosition) ;
+	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->loc, AssetType::asteroid, PositionType::worldPosition) ;
 	
 	vectr = Vectr<float>(& loc, false) ;
     
@@ -114,7 +114,7 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, bool visible, bool monitorVelocity) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle<float> & rotation, bool visible, bool monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
 	loc(loc_, BoundsCheck<float>::defaultCheck),
@@ -122,7 +122,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 {
 	IDs++ ;
     
-    outputData.reinitializeMembers(imageFile, &loc, sizeModifier, PositionType::worldPosition) ;
+    outputData.reinitializeMembers(imageFile, &loc, rotation, sizeModifier, PositionType::worldPosition) ;
 	vectr = Vectr<float>(& loc, monitorVelocity) ;
     
 	if (!map_is_init) {
@@ -138,13 +138,15 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	setVisibility(visible) ;
 }
 
-GameObject::GameObject(FastRand<int> rand) :
+GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 	ID(IDs),
-	outputData(rand, 1.0, PositionType::worldPosition),
+	outputData(),
 	loc(rand, BoundsCheck<float>::defaultCheck),
 	vectr(& loc, true)
 {
 	IDs++ ;
+	
+	outputData.reinitializeMembers(rand, &loc, type, PositionType::worldPosition) ;
 
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -186,7 +188,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         loc = rhs.loc ;
         vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), &loc) ;
 		
-        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
+        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc, *rhs.outputData.getOrientation(true),
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
         map->place(& loc, this) ;
@@ -212,7 +214,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
         this->loc = std::move(rhs.loc) ;
 		this->vectr = std::move(rhs.vectr) ;
 		
-		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc,
+		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->loc, *rhs.outputData.getOrientation(true),
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
 		rhs.ID = -1 ;

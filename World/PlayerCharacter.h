@@ -67,7 +67,9 @@ public:
 	 * @param health The Health of this PlayerCharacter
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
-	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) ;
+	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
+					const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state,
+					unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) ;
 	
 	
 	/**
@@ -76,7 +78,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	PlayerCharacter(FastRand<int> rand) ;
+	PlayerCharacter(FastRand<int> rand, AssetType type) ;
 	
 	
 	/**

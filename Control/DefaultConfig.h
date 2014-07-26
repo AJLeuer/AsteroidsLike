@@ -16,6 +16,7 @@ typedef SDL_Surface Surface ;
 typedef SDL_Texture Texture ;
 typedef SDL_Renderer Renderer ;
 typedef SDL_Window Window ;
+typedef SDL_RendererInfo RenderInfo ;
 
 
 #include "../Util/Util.hpp"

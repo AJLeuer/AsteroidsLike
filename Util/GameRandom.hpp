@@ -30,8 +30,6 @@ protected:
 	N minimum ;
 	N maximum ;
 	
-	static FastRand * initRandPosSetter() ;
-	
 	/* A conveniance random object that won't require initialization.
 	 * Especially useful in constructors and initializing static values.
 	 * A superior replacement for calling rand() 
@@ -41,7 +39,6 @@ protected:
 public:
 	
 	static FastRand defaultRandom ;
-	static FastRand * randPositionSetter ;
 	
 	FastRand(N _min, N _max) ;
     
@@ -92,6 +89,37 @@ public:
 	
 } ;
 
+template<>
+class FastRand<double> {
+	
+protected:
+	
+	std::random_device dev ;
+	std::uniform_real_distribution<double> dist ;
+	std::default_random_engine rndm{dev()} ;
+	
+	double minimum ;
+	double maximum ;
+	
+	static FastRand * initRandPosSetter() ;
+	
+public:
+	
+	static FastRand defaultRandom ;
+	static FastRand * randPositionSetter ;
+	
+	FastRand(double _min, double _max) ;
+	FastRand(const FastRand<double> & other) ;
+	FastRand & operator=(const FastRand<double> & rhs) ;
+	~FastRand() ;
+	double nextValue() ;
+	double nextValue(double minimum, double maximum) ;
+	template<typename R> R nextValue(R _min, R _max) ;
+	double operator()() ;
+	double operator()(double minimum, double maximum) ;
+	
+	
+} ;
 
 template<typename N>
 FastRand<N>::FastRand(N _min, N _max) :
@@ -163,13 +191,14 @@ R FastRand<N>::nextValue(R _min, R _max) {
 	return dif_dist(rndm) ;
 }
 
+/*
 template<typename N>
 FastRand<N> * FastRand<N>::randPositionSetter = initRandPosSetter() ;
 
 template<typename N>
 FastRand<N> * FastRand<N>::initRandPosSetter() {
     return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
-}
+} */
 
 template<typename N>
 FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;

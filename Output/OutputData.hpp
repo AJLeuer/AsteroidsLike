@@ -162,17 +162,18 @@ public:
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const float sizeModifier, PositionType type, bool visible = true) :
-        textureImageFile(AssetFile(randm)),
+    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
+        textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
-        position(nullptr),
+        position(pos),
         orientation(randm),
         size(),
-		positionType(type),
+		positionType(posType),
 		visible(visible)
     {
         /* init flag is true */
-		size.setModifier(sizeModifier) ;
+		FastRand<float> sizeInit(0.75, 1.5) ;
+		size.setModifier(sizeInit()) ;
 		allOutputData.push_back(this) ;
     }
 	
@@ -265,12 +266,12 @@ public:
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle<float> & rotation, const float sizeModifier, PositionType type) ;
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) ;
 	
 	/**
 	 * @brief Check whether this OutputData has changed since the last time it was rendered
@@ -301,7 +302,9 @@ public:
 	
 	void setOrientation(const Angle<POSUTYPE> & angle) { this->orientation = angle ; }
 	
-	const Angle<POSUTYPE> getOrientation() const { return orientation ; }
+	Angle<POSUTYPE> * getOrientation() { return & orientation ; }
+
+	const Angle<POSUTYPE> * getOrientation(short ignored) const { return & orientation ; }
 	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
@@ -347,11 +350,12 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) {
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle<float> & rotation, const float sizeModifier, PositionType type) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
 	position = pos ;
+	orientation = rotation ;
 	positionType = type ;
 	size.setModifier(sizeModifier) ;
 	
@@ -361,13 +365,18 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, const float sizeModifier, PositionType type) {
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
 	
-	textureImageFile = AssetFile(randm) ;
+	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
+	
+	textureImageFile = AssetFile(randm, assetType) ;
 	texture = nullptr ;
 	position = pos ;
-	positionType = type ;
-	size.setModifier(sizeModifier) ;
+	orientation = {realRand(-1.0f, 1.0f), realRand(-1.0f, 1.0f)} ;
+	positionType = posType ;
+	
+	
+	size.setModifier(realRand.nextValue(0.75f, 1.5f)) ;
 	
 	update() ;
 	

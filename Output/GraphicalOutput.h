@@ -35,6 +35,8 @@
 #include "../World/GameState.hpp"
 #include "../World/GameObject.h"
 
+#include "../Control/Configuration.h"
+
 using namespace std ;
 
 /**
@@ -46,7 +48,7 @@ protected:
 	
 	static Window * window ;
 	static Renderer * renderer ;
-
+	static RenderInfo renderInfo ;
 	
 	/**
 	 * Handles rendering.
@@ -86,7 +88,7 @@ void GraphicalOutput::render(OutputData<M, N> * output) {
 	   getTexture() method returns a nullptr */
 	if ((output != nullptr) && (output->isVisible())) {
 		if (output->getTexture() != nullptr) {
-			sdlrend_error = SDL_RenderCopyEx(renderer, output->getTexture(), NULL, &tempShape, output->getOrientation().getValue(), NULL, SDL_FLIP_NONE) ;
+			sdlrend_error = SDL_RenderCopyEx(renderer, output->getTexture(), NULL, &tempShape, output->getOrientation()->getValue(), NULL, SDL_FLIP_NONE) ;
 		}
 	}
 	
