@@ -160,7 +160,6 @@ template<typename N>
 FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
 
 
-
 /* more useful random functions: */
 
 template<typename N>

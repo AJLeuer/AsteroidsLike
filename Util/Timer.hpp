@@ -28,7 +28,6 @@ private:
 	
 	chrono::time_point<std::chrono::steady_clock, std::chrono::nanoseconds> start ;
 
-	
 public:
 	
 	Timer() ;

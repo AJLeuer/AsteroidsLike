@@ -40,7 +40,6 @@ std::chrono::nanoseconds Timer::checkTimeElapsed() {
 
 
 std::chrono::nanoseconds Timer::stopTimer() {
-	
 	if (!timerStarted) {
 		cerr << "stopTimer() can only be called after startTimer() has been called once \n" ;
 		throw exception() ;

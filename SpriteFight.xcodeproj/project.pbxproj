@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E683B0F193ECB71000F3045 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E683B0D193ECB71000F3045 /* Enemy.cpp */; };
 		1E683B12193ECDA4000F3045 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E683B10193ECDA4000F3045 /* GameState.cpp */; };
+		1EA04DF5198326B900398884 /* HardwareRand.c in Sources */ = {isa = PBXBuildFile; fileRef = 1EA04DF4198326B900398884 /* HardwareRand.c */; };
 		1EC13455196E3D54000DC02C /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC13454196E3D54000DC02C /* SDL2_image.framework */; };
 		1EC13457196E3D5B000DC02C /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */; };
 		1EEEAAAD19831188004DA274 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEAAAC19831188004DA274 /* SDL2.framework */; };
@@ -49,6 +50,7 @@
 		1E683B10193ECDA4000F3045 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GameState.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		1E683B11193ECDA4000F3045 /* GameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GameState.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1E683B13193ECDC4000F3045 /* DefaultConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DefaultConfig.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1EA04DF4198326B900398884 /* HardwareRand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HardwareRand.c; sourceTree = "<group>"; };
 		1EAABA0F196A1A0F00FD932F /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
 		1EC13454196E3D54000DC02C /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				6617B184190D725C004B442B /* AssetFileIO.cpp */,
 				6648C98D1967620D0052E27E /* BasicConcurrency.cpp */,
 				66AAC12D197F226700D7C5C4 /* GameRandom.cpp */,
+				1EA04DF4198326B900398884 /* HardwareRand.c */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				66AAC12E197F226700D7C5C4 /* GameRandom.cpp in Sources */,
 				6617B186190D725C004B442B /* AssetFileIO.cpp in Sources */,
 				664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */,
+				1EA04DF5198326B900398884 /* HardwareRand.c in Sources */,
 				6605EE111964D38E0028013B /* PlayerCharacter.cpp in Sources */,
 				66E97F4918CF109A002EFA00 /* Character.cpp in Sources */,
 				662D9E6D18FF763A003A6EE0 /* Util.cpp in Sources */,
