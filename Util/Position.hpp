@@ -34,7 +34,7 @@
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
 
-#define ZERO_DEGREES {1.0, 0.0}
+#define ZERO_DEGREES {0.0, 1.0}
 
 //#include "../Control/Configuration.h"
 

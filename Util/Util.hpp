@@ -18,9 +18,9 @@
 
 #include <SDL2/SDL_rect.h>
 
-#define PI 3.141592653589793238462643383279502884197169399375105820974944L
-
 using namespace std ;
+
+constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ;
 
 /**
  * @param first The first value to average
@@ -250,7 +250,7 @@ SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 template<typename Radians = double>
 double convertToDegrees(Radians angle_rad) {
 	double angle_in_radians = static_cast<double>(angle_rad) ;
-	double angle_in_degrees = (angle_in_radians * PI) / 180.0 ;
+	double angle_in_degrees = angle_in_radians * (180.0L / 𝛑) ;
 	return angle_in_degrees ;
 }
 

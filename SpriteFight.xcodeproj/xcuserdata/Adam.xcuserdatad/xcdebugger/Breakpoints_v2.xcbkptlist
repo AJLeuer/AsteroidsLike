@@ -6,101 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Util/Position.hpp"
-            timestampString = "428056514.295558"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Angle&lt;float&gt;::Angle&lt;double&gt;(double, double)"
-                  moduleName = "SpriteFight"
-                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/Control/../Util/Position.hpp"
-                  timestampString = "428056514.590021"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Angle&lt;float&gt;::Angle&lt;double&gt;(double, double)"
-                  moduleName = "SpriteFight"
-                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/Control/../Util/Position.hpp"
-                  timestampString = "428056514.590174"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Angle&lt;float&gt;::Angle&lt;int&gt;(FastRand&lt;int&gt;)"
-                  moduleName = "SpriteFight"
-                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Util/Position.hpp"
-                  timestampString = "428056514.590296"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Angle&lt;float&gt;::Angle&lt;int&gt;(FastRand&lt;int&gt;)"
-                  moduleName = "SpriteFight"
-                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/World/../Util/Position.hpp"
-                  timestampString = "428056514.590414"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Position&lt;unsigned int&gt;::checkBounds(BoundsCheck&lt;unsigned int&gt; const&amp;, unsigned int, unsigned int)"
-                  moduleName = "SpriteFight"
-                  urlString = "file:///Volumes/OS%20X%20HDD/Users/Adam/Developer/SpriteFight/Control/../Util/Position.hpp"
-                  timestampString = "428056514.590529"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "216">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Util/Position.hpp"
-            timestampString = "428059177.352962"
+            timestampString = "428061667.908907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
             landmarkName = "getValue()"
             landmarkType = "7">
          </BreakpointContent>
