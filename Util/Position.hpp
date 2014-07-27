@@ -35,7 +35,9 @@
 #define RIGHT 1, 0, 0
 
 #define ZERO_DEGREES {0.0, 1.0}
-#define NINETY_DEGREES {1.0, 0.0} /* Rotating anti-clockwise */
+#define NINETY_DEGREES {1.0, 0.0} /* Rotating clockwise */
+#define ONE_EIGHTY_DEGREES {0, -1}
+#define TWO_SEVENTY_DEGREES {-1, 0}
 
 //#include "../Control/Configuration.h"
 

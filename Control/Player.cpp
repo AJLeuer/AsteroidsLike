@@ -25,7 +25,7 @@ Pos2<float> Player::position_in_defaultStartingArea() {
 }
 
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), ZERO_DEGREES, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), TWO_SEVENTY_DEGREES, "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
 	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), NINETY_DEGREES, "Red",
