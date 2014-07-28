@@ -25,10 +25,10 @@ Pos2<float> Player::position_in_defaultStartingArea() {
 }
 
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), ZERO_DEGREES, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), 0.0, "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), ZERO_DEGREES, "Red",
+	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), 0.0, "Red",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(1)) ;
 }
 
@@ -170,7 +170,7 @@ void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColo
 
 	} ;
 	
-	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, ZERO_DEGREES, foreground, background) ;
+	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, pos, 0.0, foreground, background) ;
 }
 
 

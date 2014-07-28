@@ -24,7 +24,7 @@ Weapon & Weapon::operator=(Weapon && rhs) {
     return *this ;
 } */
 
-void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction, Angle * orientation) {
+void Weapon::fire(const Position<float> startingPos, /*const Vectr<float> & direction,*/ const Angle & orientation) {
 	
 	this->pos.setAll(startingPos) ; //should update projectile's position as well
     
@@ -32,22 +32,23 @@ void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direct
 
     timer->startTimer() ;
 
-	auto fireL = [timer, &direction, orientation, this] () -> void {
+	auto fireL = [/*&direction,*/ &orientation, this] () -> void {
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
 		 Move projectile to our current spot */
-		
 		projectile.setVisibility(true) ;
-		projectile.setOrientation(*orientation) ;
-        
-        const auto time = timer->stopTimer() ;
 		
-		Vectr<float> dir = direction.copyVect(false) ;
-		dir.normalize() ;
+		/* set orientation to the same as the ship */
+		projectile.setOrientation(orientation) ;
+		
+		/* rotate our vector by the given angle */
+		vectr.rotate(orientation, RotationType::counterClockwise) ;
+		
+		vectr.normalize() ;
 		
 		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
-			this->pos += dir ;
+			this->pos += vectr ;
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}
 	} ;

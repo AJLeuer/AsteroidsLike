@@ -27,17 +27,19 @@ protected:
 	
 	Position<float> pos ; /* we won't use this for much, just init'ing projectile mainly.
 						   fire() takes arguments to to tell use where we are, so we don't rely on pos */
+	
+	Vectr<float> vectr ;
 
 	
 public:
 	
 	Weapon(const AssetFile & file, const float sizeModifier, PositionType type) :
 		pos(0, 0),
-		projectile(file, &pos, ZERO_DEGREES, sizeModifier, type, false) {}
+		projectile(file, &pos, 0.0, sizeModifier, type, false) {}
     
 	Weapon(FastRand<unsigned long> & randm, const float sizeModifier, PositionType type) :
 		pos(0, 0),
-        projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , &pos, ZERO_DEGREES, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
+        projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , &pos, 0.0, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
 	
     Weapon(const Weapon & other) :
 		projectile(other.projectile) {}
@@ -49,7 +51,7 @@ public:
     
 	//Weapon & operator=(Weapon && rhs) ;
 	
-	void fire(const Position<float> startingPos, const Vectr<float> & direction, Angle * orientation) ;
+	void fire(const Position<float> startingPos, /*const Vectr<float> & direction,*/ const Angle & orientation) ;
 	
 };
 

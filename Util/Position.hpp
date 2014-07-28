@@ -36,17 +36,12 @@
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
 
-#define ZERO_DEGREES 0
-#define NINETY_DEGREES 90 /* Rotating clockwise */
-#define ONE_EIGHTY_DEGREES 180
-#define TWO_SEVENTY_DEGREES 270
-
 //#include "../Control/Configuration.h"
 
 
 using namespace std ;
 
-typedef float Angle ;
+
 
 
 enum class RotationType {
@@ -64,6 +59,87 @@ enum Direction {
 	sw = south + west,
 	nw = north + west,
 	noDirection //the best direction! (and also a base case in certain recursive algorithms)
+} ;
+
+
+class Angle {
+	
+protected:
+	
+	float value ;
+	
+public:
+	
+	Angle(const float angle) : value(angle) {
+		value = Mod(value, 360.0f) ;
+	}
+	
+	Angle(const Angle & other) : value(other.value) {
+		value = Mod(value, 360.0f) ;
+	}
+	
+	~Angle() {}
+	
+	Angle & operator=(const Angle & rhs) {
+		if (this != &rhs) {
+			this->value = Mod(rhs.value, 360.0f) ;
+		}
+		return *this ;
+	}
+	
+	Angle & operator=(const float & f) {
+		value = Mod(f, 360.0f) ;
+		return *this ;
+	}
+	
+	//operator float() const { return this->value ; }
+	
+	Angle operator+(const float otherAngle) const {
+		Angle val(0) ;
+		val.value = Mod((this->value + otherAngle), 360.0f) ;
+		return val ;
+	}
+	
+	Angle operator-(const float otherAngle) const {
+		Angle val(0) ;
+		val.value = Mod((this->value - otherAngle), 360.0f) ;
+		return val ;
+	}
+	
+	void operator+=(const float otherAngle) {
+		this->value = Mod((value + otherAngle), 360.0f) ;
+	}
+	
+	void operator-=(const float otherAngle) {
+		this->value = Mod((value - otherAngle), 360.0f) ;
+	}
+	
+	Angle operator+(const Angle otherAngle) const {
+		Angle val(0) ;
+		val.value = Mod((this->value + otherAngle.value), 360.0f) ;
+		return val ;
+	}
+	
+	Angle operator-(const Angle otherAngle) const {
+		Angle val(0) ;
+		val.value = Mod((this->value - otherAngle.value), 360.0f) ;
+		return val ;
+	}
+	
+	void operator+=(const Angle otherAngle) {
+		this->value = Mod((value + otherAngle.value), 360.0f) ;
+	}
+	
+	void operator-=(const Angle otherAngle) {
+		this->value = Mod((value - otherAngle.value), 360.0f) ;
+	}
+	
+	float val() {
+		value = Mod(value, 360.0f) ;
+		return value ;
+	}
+	
+	
 } ;
 
 
@@ -322,18 +398,18 @@ public:
 	}
 	
 
-	void rotate(const Angle 𝛳, RotationType clockwiseOrCounter) {
+	virtual void rotate(Angle 𝛳, RotationType clockwiseOrCounter) {
 		
 		float tempX = 0 ;
 		float tempY = 0 ;
 		
 		if (clockwiseOrCounter == RotationType::clockwise) {
-			tempX = (x * cos(𝛳)) - (y * sin(𝛳)) ;
-			tempY = (x * sin(𝛳)) + (y * cos(𝛳)) ;
+			tempX = (x * cos(𝛳.val())) - (y * sin(𝛳.val())) ;
+			tempY = (x * sin(𝛳.val())) + (y * cos(𝛳.val())) ;
 		}
 		else { //if (clockwiseOrCounter == RotationType::counterClockwise)
-			tempX = (x * cos(𝛳)) + (y * sin(𝛳)) ;
-			tempY = (x * sinNeg(𝛳)) + (y * cos(𝛳)) ;
+			tempX = (x * cos(𝛳.val())) + (y * sin(𝛳.val())) ;
+			tempY = (x * sinNeg(𝛳.val())) + (y * cos(𝛳.val())) ;
 		}
 		
 		x = tempX ;
@@ -1058,6 +1134,9 @@ protected:
 	 */
 	Velocity<N> * velocity ;
 	
+	/* The current rotation of this vector */
+	Angle currentRotation = 0.0 ;
+	
 	
 	bool sharedVelBool = true ;
 	
@@ -1079,6 +1158,7 @@ public:
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
+	void rotate(Angle 𝛳, RotationType clockwiseOrCounter) override ;
     Vectr copyVect(bool copyVelocity) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
@@ -1116,7 +1196,7 @@ BasicMutex * Vectr<N>::sharedVelMutex = Velocity<N>::sharedVelMutex ;
 
 template<typename N>
 Vectr<N>::Vectr() :
-    Position<float>(),
+    Position<float>(0, -1), /* default direction is up */
 	current(nullptr),
     totalDistanceMoved(new N()),
 	velocity(nullptr) {}
@@ -1166,7 +1246,7 @@ Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * cu
 
 template<typename N>
 Vectr<N>::Vectr(const Position<N> * current_, bool monitorVelocity) :
-	Position<float>(),
+	Position<float>(0, -1),
     last(*current_),
 	mostRecent(*current_), current(current_),
 	totalDistanceMoved(new N)
@@ -1272,6 +1352,31 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 		rhs.velocity = nullptr ;
 	}
 	return *this ;
+}
+
+template<typename N>
+void Vectr<N>::rotate(Angle 𝛳, RotationType clockwiseOrCounter) {
+	
+	float tempX = 0 ;
+	float tempY = 0 ;
+	
+	float diff = (𝛳.val() - currentRotation.val()) ;
+	
+	this->currentRotation += diff ; //i.e. (currentRotation + abs𝛳) % 360
+
+	if (clockwiseOrCounter == RotationType::clockwise) {
+		tempX = (x * cos(currentRotation.val())) - (y * sin(currentRotation.val())) ;
+		tempY = (x * sin(currentRotation.val())) + (y * cos(currentRotation.val())) ;
+	}
+	else { //if (clockwiseOrCounter == RotationType::counterClockwise)
+		tempX = (x * cos(currentRotation.val())) + (y * sin(currentRotation.val())) ;
+		tempY = -(x * sin(currentRotation.val())) + (y * cos(currentRotation.val())) ;
+	}
+	
+	Position<N> temp(tempX, tempY) ;
+	temp.normalize() ;
+	
+	this->setAll(temp) ;
 }
 
 

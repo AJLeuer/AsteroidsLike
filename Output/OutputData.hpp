@@ -127,7 +127,7 @@ public:
         textureImageFile(),
         texture(nullptr),
         position(nullptr),
-		orientation(ZERO_DEGREES),
+		orientation(0),
         size(), /* can't be initialized yet */
         positionType(PositionType::null)
     {

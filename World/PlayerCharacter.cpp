@@ -135,12 +135,12 @@ void PlayerCharacter::defaultBehaviors() {
 
 
 void PlayerCharacter::fire() {
-	auto gunX = loc.getX() + (getSize()->getWidth() / 2) ;
-	auto gunY = loc.getY() ;
+	auto gunX = pos.getX() + (getSize()->getWidth() / 2) ;
+	auto gunY = pos.getY() ;
 	
 	Position<float> gunPos { gunX, gunY} ;
 	
-    weapon.fire(gunPos, vectr, outputData.getOrientation()) ;
+    weapon.fire(gunPos, *outputData.getOrientation()) ;
 }
 
 

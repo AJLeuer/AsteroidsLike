@@ -88,7 +88,7 @@ protected:
     
     OutputData<float, int> outputData ;
 	
-    Pos2<float> loc ;
+    Pos2<float> pos ;
     
 	Vectr<float> vectr ;
 	
@@ -156,9 +156,9 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param imageFile The file to be used as the Texture for this GameObject
-     * @param loc This GameObject's Position<float>
+     * @param pos This GameObject's Position<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, const Angle rotation, bool visible, bool monitorVelocity) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & pos, const Angle rotation, bool visible, bool monitorVelocity) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -272,8 +272,8 @@ public:
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y)) ; }
 
-	void moveX(float x) { moveTo({x, loc.getY()}) ; }
-	void moveY(float y) { moveTo({loc.getX(), y}) ; }
+	void moveX(float x) { moveTo({x, pos.getY()}) ; }
+	void moveY(float y) { moveTo({pos.getX(), y}) ; }
 	
 	virtual void moveUp() ;
 	virtual void moveDown() ;
@@ -340,12 +340,12 @@ public:
 	/**
 	 * @return This GameObject's Position<float>
 	 */
-	const Position<float> * getPosition() const { return & this->loc ; }
+	const Position<float> * getPosition() const { return & this->pos ; }
 
 	/**
 	 * @return This GameObject's Position history (Pos2)
 	 */
-	const Pos2<float> * getPositionHistory() const { return & this->loc ; }
+	const Pos2<float> * getPositionHistory() const { return & this->pos ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space

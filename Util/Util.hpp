@@ -22,6 +22,73 @@ using namespace std ;
 
 constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ;
 
+template<typename N>
+constexpr static bool checkIfFloatingPointType() {
+	if (typeid(N) == typeid(long double)) {
+		return true ;
+	}
+	if (typeid(N) == typeid(double)) {
+		return true ;
+	}
+	if (typeid(N) == typeid(float)) {
+		return true ;
+	}
+	else {
+		return false ;
+	}
+}
+
+/*
+ * Code partial credit stackoverflow: http://stackoverflow.com/questions/4633177/c-how-to-wrap-a-float-to-the-interval-pi-pi
+ * todo: reimplement
+ */
+template<typename M, typename N>
+double Mod(M x_in, N y_in) {
+	
+	double x = static_cast<double>(x_in) ; /* x is ok */
+	
+	double y = static_cast<double>(y_in) ;
+
+	static_assert(!std::numeric_limits<M>::is_exact , "Mod: floating-point type expected");
+	static_assert(!std::numeric_limits<N>::is_exact , "Mod: floating-point type expected");
+	
+	if (0. == y)
+		return x;
+	
+	double m = x - y * floor(x/y);
+	
+	// handle boundary cases resulted from floating-point cut off:
+	
+	if (y > 0)              // modulo range: [0..y)
+	{
+		if (m>=y)           // Mod(-1e-16             , 360.    ): m= 360.
+			return 0;
+		
+		if (m<0 )
+		{
+			if (y+m == y)
+				return 0  ; // just in case...
+			else
+				return y+m; // Mod(106.81415022205296 , _TWO_PI ): m= -1.421e-14
+		}
+	}
+	else                    // modulo range: (y..0]
+	{
+		if (m<=y)           // Mod(1e-16              , -360.   ): m= -360.
+			return 0;
+		
+		if (m>0 )
+		{
+			if (y+m == y)
+				return 0  ; // just in case...
+			else
+				return y+m; // Mod(-106.81415022205296, -_TWO_PI): m= 1.421e-14
+		}
+	}
+	
+	return m;
+}
+
 /**
  * @param first The first value to average
  * @param second The second value to average
@@ -54,6 +121,15 @@ T setUnsigned(T n) {
 		n = (n * -1) ;
 	}
 	return n ;
+}
+
+template<typename N>
+N difference(N n0, N n1) {
+	N saveSign = n1 / (setUnsigned(n1)) ;
+	n1 = setUnsigned(n1) ;
+	
+	
+	
 }
 
 
