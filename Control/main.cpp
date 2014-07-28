@@ -39,7 +39,9 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 	
-	void (GameInterface::*cb)() ;
+	Position<float> pos(2, 4) ;
+	
+	pos.rotate(60, RotationType::clockwise) ;
     
 	MainController::init() ;
 	MainController::main() ;

@@ -81,7 +81,7 @@ protected:
     /**
      * @brief This object's orientation in 2 dimensions
      */
-    Angle<POSUTYPE> orientation ;
+    Angle orientation ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
@@ -134,7 +134,7 @@ public:
         allOutputData.push_back(this) ;
     }
 	
-	OutputData(Position<POSUTYPE> * pos, Angle<POSUTYPE> orientation, const float sizeModifier, PositionType type, bool visible = true) :
+	OutputData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
@@ -148,7 +148,7 @@ public:
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, Angle<POSUTYPE> orientation,  const float sizeModifier, PositionType type, bool visible = true) :
+	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
@@ -166,7 +166,7 @@ public:
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
-        orientation(randm),
+        orientation(randm(0, 365)),
         size(),
 		positionType(posType),
 		visible(visible)
@@ -266,7 +266,7 @@ public:
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle<float> & rotation, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) ;
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
@@ -300,19 +300,19 @@ public:
 	
 	PositionType getPositionType() const { return positionType ; }
 	
-	void setOrientation(const Angle<POSUTYPE> & angle) { this->orientation = angle ; }
+	void setOrientation(const Angle angle) { this->orientation = angle ; }
 	
-	Angle<POSUTYPE> * getOrientation() { return & orientation ; }
+	Angle * getOrientation() { return & orientation ; }
 
-	const Angle<POSUTYPE> * getOrientation(short ignored) const { return & orientation ; }
+	const Angle * getOrientation(short ignored) const { return & orientation ; }
 	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
     
-    void rotateClockwise() { orientation += Angle<POSUTYPE>(NINETY_DEGREES) ; }
-    void rotateCounterClockwise() { orientation -= Angle<POSUTYPE>(NINETY_DEGREES) ; }
+    void rotateClockwise() { orientation += Angle(1) ; }
+    void rotateCounterClockwise() { orientation -= Angle(1) ; }
 	
 } ;
 
@@ -353,7 +353,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle<float> & rotation, const float sizeModifier, PositionType type) {
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
@@ -375,7 +375,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm,
 	textureImageFile = AssetFile(randm, assetType) ;
 	texture = nullptr ;
 	position = pos ;
-	orientation = {realRand(-1.0f, 1.0f), realRand(-1.0f, 1.0f)} ;
+	orientation = realRand(0, 365) ;
 	positionType = posType ;
 	
 	

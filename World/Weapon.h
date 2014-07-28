@@ -49,7 +49,7 @@ public:
     
 	//Weapon & operator=(Weapon && rhs) ;
 	
-	void fire(const Position<float> startingPos, const Vectr<float> & direction, Angle<float> * orientation) ;
+	void fire(const Position<float> startingPos, const Vectr<float> & direction, Angle * orientation) ;
 	
 };
 

@@ -114,7 +114,7 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle<float> & rotation, bool visible, bool monitorVelocity) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, bool monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
 	loc(loc_, BoundsCheck<float>::defaultCheck),

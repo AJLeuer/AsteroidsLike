@@ -25,10 +25,10 @@ Pos2<float> Player::position_in_defaultStartingArea() {
 }
 
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), TWO_SEVENTY_DEGREES, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), ZERO_DEGREES, "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), NINETY_DEGREES, "Red",
+	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), ZERO_DEGREES, "Red",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(1)) ;
 }
 
@@ -43,7 +43,7 @@ Player::Player() :
 }
 
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
-	float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const Angle<float> & playerCharacter_rotation, const string & playerCharacter_name,
+	float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage, const AssetFile & projectileImageFile) :
 
@@ -137,8 +137,8 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(onKeyMoveDown) ;
 	InputController::registerForKeypress(onKeyMoveLeft) ;
 	InputController::registerForKeypress(onKeyMoveRight) ;
-    InputController::registerForKeypress(onKeyRotateCounterClockwise) ;
-    InputController::registerForKeypress(onKeyRotateClockwise) ;
+	InputController::registerForKeypress(onKeyRotateCounterClockwise) ;
+	InputController::registerForKeypress(onKeyRotateClockwise) ;
 	InputController::registerForEvent(onKeyFire) ;
 }
 

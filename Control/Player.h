@@ -69,7 +69,7 @@ public:
 	Player() ;
 	
 	Player(const string & name, const string & playerCharacter_imageFilename,
-		   float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const Angle<float> & playerCharacter_rotation,
+		   float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const Angle playerCharacter_rotation,
 		   const string & playerCharacter_name, Reaction playerCharacter_reaction, DoA playerCharacter_alive,
 		   CharacterState playerCharacter_state, unsigned playerCharacter_health, unsigned playerCharacter_damage,
 		   const AssetFile & projectileImageFile) ;

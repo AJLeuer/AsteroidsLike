@@ -62,6 +62,10 @@ T pythag(T a, T b) {
 	return sqrt((pow(a,2)) + (pow(b,2))) ;
 }
 
+inline float sinNeg(float n) {
+	return (-1 * (sin(n))) ;
+}
+
 template<typename T>
 T findSmallest_helper(unsigned long currSmallest, vector<T> cont) {
 	//vector<T*> smallerElem = vector<T*>() ;

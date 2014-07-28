@@ -17,6 +17,8 @@
 #include <ostream>
 #include <sstream>
 #include <queue>
+#include <vector>
+#include <array>
 #include <initializer_list>
 #include <deque>
 
@@ -34,15 +36,23 @@
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
 
-#define ZERO_DEGREES {0.0, 1.0}
-#define NINETY_DEGREES {1.0, 0.0} /* Rotating clockwise */
-#define ONE_EIGHTY_DEGREES {0, -1}
-#define TWO_SEVENTY_DEGREES {-1, 0}
+#define ZERO_DEGREES 0
+#define NINETY_DEGREES 90 /* Rotating clockwise */
+#define ONE_EIGHTY_DEGREES 180
+#define TWO_SEVENTY_DEGREES 270
 
 //#include "../Control/Configuration.h"
 
 
 using namespace std ;
+
+typedef float Angle ;
+
+
+enum class RotationType {
+	clockwise,
+	counterClockwise
+};
 
 enum Direction {
 	north = 'n',
@@ -273,7 +283,7 @@ public:
 	}
 	
 
-	void normalize() {
+	virtual void normalize() {
 		auto distance = pythag<float>(x, y) ;
 		if ((x != 0) && (distance != 0)) {
 			x = (x / distance) ;
@@ -309,6 +319,25 @@ public:
 	friend ostream & operator<<(std::ostream & os, const Position<N> & pos) {
 		os << "Position: X = " << pos.x << ", Y = " << pos.y << '\n' ;
 		return os ;
+	}
+	
+
+	void rotate(const Angle 𝛳, RotationType clockwiseOrCounter) {
+		
+		float tempX = 0 ;
+		float tempY = 0 ;
+		
+		if (clockwiseOrCounter == RotationType::clockwise) {
+			tempX = (x * cos(𝛳)) - (y * sin(𝛳)) ;
+			tempY = (x * sin(𝛳)) + (y * cos(𝛳)) ;
+		}
+		else { //if (clockwiseOrCounter == RotationType::counterClockwise)
+			tempX = (x * cos(𝛳)) + (y * sin(𝛳)) ;
+			tempY = (x * sinNeg(𝛳)) + (y * cos(𝛳)) ;
+		}
+		
+		x = tempX ;
+		y = tempY ;
 	}
 
 
@@ -558,25 +587,13 @@ public:
 
 } ;
 
-template<typename N>
-struct Angle : public Position<N> {
-   
-public:
-    
-	using Position<N>::Position;
-	
-	Angle(FastRand<float> & realRandm) : Position<N>::x(realRandm(-1.0, 1.0)), Position<N>::y(realRandm(-1.0, 1.0)) {}
-	
-	Angle(FastRand<double> & realRandm) : Position<N>::x(realRandm(-1.0, 1.0)), Position<N>::y(realRandm(-1.0, 1.0)) {}
-	
-	double getValue() {
-		this->normalize() ;
-		double rad = static_cast<double>(atan2(this->x, this->y)) ;
-		double deg = convertToDegrees(rad) ;
-		return deg ;
-	}
-	
-} ;
+
+
+
+
+
+
+
 
 /**
  * Similar to Position, but also holds copies of each of its previous states.
@@ -1062,7 +1079,6 @@ public:
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
-	operator Angle<N>() ;
     Vectr copyVect(bool copyVelocity) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
@@ -1258,16 +1274,6 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 	return *this ;
 }
 
-template<typename N>
-Vectr<N>::operator Angle<N>() {
-	normalize() ;
-	
-	Angle<N> angle ;
-	angle.setX(x) ;
-	angle.setY(y) ;
-	
-	return angle ;
-}
 
 template<typename N>
 Vectr<N> Vectr<N>::copyVect(bool copyVelocity) const {
@@ -1399,10 +1405,10 @@ Position<N> & operator+=(Position<N> & rhs, const Position<N> & lhs) {
 }
 
 template<typename N>
-Position<N> & operator-=(Position<N> & rhs, const Position<N> & lhs) {
-	rhs.setX(rhs.getX() - lhs.getX()) ;
-	rhs.setY(rhs.getY() - lhs.getY()) ;
-	return rhs ;
+Position<N> & operator-=(Position<N> & lhs, const Position<N> & rhs) {
+	lhs.setX(lhs.getX() - rhs.getX()) ;
+	lhs.setY(lhs.getY() - rhs.getY()) ;
+	return lhs ;
 }
 
 /*

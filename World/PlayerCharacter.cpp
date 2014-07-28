@@ -43,7 +43,7 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
+PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc, const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) :
     Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity),
     weapon(projectileImageFile, getSize()->getModifier(), outputData.getPositionType()) {}
 
@@ -118,10 +118,14 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	vectr += newDirection ;
 	
 	printPositition() ;
-    
-    defferedCallbacks.push_back(std::pair<void (GameObject::*)(), GameObject *>(&GameObject::move, this)) ;
 	
-	moveFlag = true ;
+	/* have to use this until we find a better way to stop moving more than once per loop */
+	/* if moveFlag == true, then we've already been instructed to move this loop, so we don't need to
+		do anything */
+	if (moveFlag == false) {
+		defferredCallbacks.push_back(std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>(&PlayerCharacter::move, this)) ;
+		moveFlag = true ;
+	}
 }
 
 //using GameObject's implementation for now, may change later
@@ -155,11 +159,19 @@ void PlayerCharacter::jump() {
 	update() to make sure that the player's
 	character updates smoothly, not sporadically */
 void PlayerCharacter::update() {
-    for (auto i = 0 ; i < defferedCallbacks.size() ; i++) {
-        auto obj = defferedCallbacks.at(i).second ;
-        void (GameObject::*callBack)() = defferedCallbacks.at(i).first ;
-        obj->*callBack()() ;
+    for (long i = (defferredCallbacks.size() - 1) ; i >= 0 ; i--) {
+        auto obj = defferredCallbacks.at(i).second ;
+        void (PlayerCharacter::*callBack)() = defferredCallbacks.at(i).first ;
+        (obj->*callBack)() ;
+		defferredCallbacks.pop_back() ;
     }
+	
+	/* move() is a special case in that it can only be called once per loop,
+	 so we have an extra measure that we use in order to prevent that happenening (moveFlag)
+	 and update() is in charge of resetting it. Note however that update doesn't actually
+	 check to make sure move() wasn't added to defferredCallbacks more than once, PlayerCharacter's
+	 movement functions are responsible for doing that*/
+	moveFlag = false ;
 }
 
 /**

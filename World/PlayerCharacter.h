@@ -24,11 +24,14 @@
 class PlayerCharacter : public Character  {
     
 protected:
-    
-    void (GameInterface::*callBackFunction)() ;
-    
-    
-    vector<std::pair<void (GameObject::*)(), GameObject *>> defferedCallbacks ;
+	
+	/**
+	 * Any state change that cannot be done to PlayerCharacter in realtime, and only once per global loop,
+	 * should be stored the form of std::pair consisting of a void PlayerCharacter member function and pointer to the relevant
+	 * PlayerCharacter object, and pushed back onto defferedCallbacks. The function will be called once during update(),
+	 * then removed from defferedCallbacks. Each time the the function is needed it will need to be readded.
+	 */
+    vector<std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>> defferredCallbacks ;
     
 	Weapon weapon ;
     
@@ -73,7 +76,7 @@ public:
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
 	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
-					const Angle<float> & rotation, string name, Reaction reaction, DoA alive, CharacterState state,
+					const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
 					unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) ;
 	
 	

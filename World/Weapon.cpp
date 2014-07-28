@@ -24,7 +24,7 @@ Weapon & Weapon::operator=(Weapon && rhs) {
     return *this ;
 } */
 
-void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction, Angle<float> * orientation) {
+void Weapon::fire(const Position<float> startingPos, const Vectr<float> & direction, Angle * orientation) {
 	
 	this->pos.setAll(startingPos) ; //should update projectile's position as well
     
