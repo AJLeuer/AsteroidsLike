@@ -156,9 +156,9 @@ void PlayerCharacter::jump() {
 	character updates smoothly, not sporadically */
 void PlayerCharacter::update() {
     for (auto i = 0 ; i < defferedCallbacks.size() ; i++) {
-        auto * obj = defferedCallbacks.at(i).second ;
-        auto callback = defferedCallbacks.at(i).second ;
-        obj->callback() ;
+        auto obj = defferedCallbacks.at(i).second ;
+        void (GameObject::*callBack)() = defferedCallbacks.at(i).first ;
+        obj->*callBack()() ;
     }
 }
 
