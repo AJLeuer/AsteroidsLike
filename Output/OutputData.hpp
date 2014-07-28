@@ -310,6 +310,9 @@ public:
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
+    
+    void rotateClockwise() { orientation += Angle<POSUTYPE>(NINETY_DEGREES) ; }
+    void rotateCounterClockwise() { orientation -= Angle<POSUTYPE>(NINETY_DEGREES) ; }
 	
 } ;
 

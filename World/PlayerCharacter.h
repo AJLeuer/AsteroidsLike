@@ -25,6 +25,11 @@ class PlayerCharacter : public Character  {
     
 protected:
     
+    void (GameInterface::*callBackFunction)() ;
+    
+    
+    vector<std::pair<void (GameObject::*)(), GameObject *>> defferedCallbacks ;
+    
 	Weapon weapon ;
     
     
@@ -153,6 +158,12 @@ public:
     
     void jump() ;
 	
+    /**
+     * @brief Some PlayerCharacter functions cannot be called in realtime (i.e. not at the time the Player reqests them). There
+     * may be multiple reasons for this. For example, movement functions cannot be called in realtime, as that would result in the Player's avatar
+     * moving unevenly across the screen. For all such functions, instead of making a state change directly, they should push_back a reference to another
+     * function that *will* perform the updating onto the updateCallbacks vector
+     */
 	void update() override ;
 	
 	/**

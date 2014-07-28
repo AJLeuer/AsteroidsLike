@@ -358,8 +358,25 @@ void GameObject::jump() {
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
+void GameObject::move() {
+    float distanceModifier = defaultMoveDistance<float> ;
+    const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
+    
+    vectr.normalize() ;
+	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
+	
+	if (bc != nullptr) {
+		if (next.overXBounds(bc)) {
+			next.setX(loc.getX()) ;
+		}
+		if (next.overYBounds(bc)) {
+			next.setY(loc.getY()) ;
+		}
+	}
+	moveTo(next) ;
+}
 
+void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
 	vectr.normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
 	

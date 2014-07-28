@@ -75,11 +75,14 @@ void Player::registerForCallbacks() {
 	
 	//todo make more generic
 	
-	KeyInputRegister * onKeyJump ;
+	
 	KeyInputRegister * onKeyMoveUp ;
 	KeyInputRegister * onKeyMoveDown ;
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
+    KeyInputRegister * onKeyRotateCounterClockwise ;
+    KeyInputRegister * onKeyRotateClockwise ;
+    KeyInputRegister * onKeyJump ;
     EventRegister * onKeyFire ;
 	
 	if (playerCharacter.getColor() == Colors::green) {
@@ -92,6 +95,12 @@ void Player::registerForCallbacks() {
 															  {MOVE_LEFT_KEY}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
+        
+        onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
+                                         {"Q"}, KeypressEvaluationMethod::any) ;
+        
+        onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
+                                                    {"E"}, KeypressEvaluationMethod::any) ;
         
         onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying value of SDL keycode for space */
@@ -110,6 +119,12 @@ void Player::registerForCallbacks() {
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
         
+        onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
+                                                           {SDLK_KP_7}, KeypressEvaluationMethod::any) ;
+        
+        onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
+                                                    {SDLK_KP_9}, KeypressEvaluationMethod::any) ;
+        
         onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {SDLK_KP_0}, KeypressEvaluationMethod::exactlyOne) ;
         
@@ -122,8 +137,9 @@ void Player::registerForCallbacks() {
 	InputController::registerForKeypress(onKeyMoveDown) ;
 	InputController::registerForKeypress(onKeyMoveLeft) ;
 	InputController::registerForKeypress(onKeyMoveRight) ;
+    InputController::registerForKeypress(onKeyRotateCounterClockwise) ;
+    InputController::registerForKeypress(onKeyRotateClockwise) ;
 	InputController::registerForEvent(onKeyFire) ;
-
 }
 
 void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {

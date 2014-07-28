@@ -279,10 +279,20 @@ public:
 	virtual void moveDown() ;
 	virtual void moveRight();
 	virtual void moveLeft();
+    
+    virtual void rotateClockwise() override { outputData.rotateClockwise() ; }
+    virtual void rotateCounterClockwise() override { outputData.rotateCounterClockwise() ; } ;
 	
     virtual void moveRandomDirection() ;
 	
 	void jump() ;
+    
+    /**
+	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
+	 * Vectr of its last move
+	 *
+	 */
+	void move() ;
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
@@ -290,7 +300,7 @@ public:
 	 *
 	 * @note If bc = nullptr, move() will skip bounds checking
 	 */
-	void move(float distanceModifier = defaultMoveDistance<float>, const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck)) ;
+	void move(float distanceModifier, const BoundsCheck<float> * bc) ;
 	
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given

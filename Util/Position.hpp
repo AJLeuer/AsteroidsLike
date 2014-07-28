@@ -1392,14 +1392,14 @@ Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, 
 }
 
 template<typename N>
-Position<N> & operator+=(Position<N> & rhs, const Vectr<N> & lhs) {
+Position<N> & operator+=(Position<N> & rhs, const Position<N> & lhs) {
 	rhs.setX(rhs.getX() + lhs.getX()) ;
 	rhs.setY(rhs.getY() + lhs.getY()) ;
 	return rhs ;
 }
 
 template<typename N>
-Position<N> & operator-=(Position<N> & rhs, const Vectr<N> & lhs) {
+Position<N> & operator-=(Position<N> & rhs, const Position<N> & lhs) {
 	rhs.setX(rhs.getX() - lhs.getX()) ;
 	rhs.setY(rhs.getY() - lhs.getY()) ;
 	return rhs ;

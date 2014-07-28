@@ -118,6 +118,8 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	vectr += newDirection ;
 	
 	printPositition() ;
+    
+    defferedCallbacks.push_back(std::pair<void (GameObject::*)(), GameObject *>(&GameObject::move, this)) ;
 	
 	moveFlag = true ;
 }
@@ -153,10 +155,11 @@ void PlayerCharacter::jump() {
 	update() to make sure that the player's
 	character updates smoothly, not sporadically */
 void PlayerCharacter::update() {
-	if (moveFlag) {
-		move() ;
-		moveFlag = false ;
-	}
+    for (auto i = 0 ; i < defferedCallbacks.size() ; i++) {
+        auto * obj = defferedCallbacks.at(i).second ;
+        auto callback = defferedCallbacks.at(i).second ;
+        obj->callback() ;
+    }
 }
 
 /**
