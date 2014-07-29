@@ -39,9 +39,6 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
     
-	Vectr<float> vec(-6, 6, SafeBoolean::f) ;
-    
-    vec.rotate(-60) ;
     
 	MainController::init() ;
 	MainController::main() ;

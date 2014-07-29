@@ -136,6 +136,12 @@ public:
 		value = Mod(value, 360.0f) ;
 		return value ;
 	}
+	
+	float val_const() const {
+		float val = value ;
+		val = Mod(val, 360.0f) ;
+		return val ;
+	}
     
     float valInRadians() {
         return (convertToRadians<float>((val()))) ;
@@ -1142,6 +1148,7 @@ public:
 	
     Vectr() ;
     Vectr(SafeBoolean tf) ;
+	Vectr(FastRand<N> randm) ;
 	Vectr(float headingX, float headingY, SafeBoolean tf) ;
 	Vectr(float headingX, float headingY, Position<N> * current_, SafeBoolean tf) ;
 	Vectr(const Position<N> & mostRecent_, Position<N> * current_, SafeBoolean tf) ;
@@ -1156,6 +1163,14 @@ public:
     Vectr copyVect(SafeBoolean tf) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
+	
+	const Angle * getOrientation() const { return & currentRotation ; }
+	
+	Angle copyOrientation() const { return currentRotation ; }
+	
+	void modifyOrientation(const Angle & angleOffset) { currentRotation += angleOffset ; }
+	
+	void overrideCurrentOrientation(const Angle & newAngle) { currentRotation = newAngle; }
 	
 	const Position * getCurrent() const { return current ; }
 	
@@ -1208,6 +1223,17 @@ Vectr<N>::Vectr(SafeBoolean tf) :
 	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
+}
+
+template<typename N>
+Vectr<N>::Vectr(FastRand<N> randm) :
+	Position<float>(randm(), randm()),
+	current(nullptr),
+	totalDistanceMoved(new N()),
+	velocity(nullptr)
+{
+	FastRand<float> randmf(0, 360) ;
+	currentRotation = randmf() ;
 }
 
 template<typename N>
@@ -1276,7 +1302,8 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	mostRecent(Position<N>(other.mostRecent)),
 	current(other.current),
     absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(new N(*other.totalDistanceMoved))
+	totalDistanceMoved(new N(*other.totalDistanceMoved)),
+	currentRotation(other.currentRotation)
 {
 	if (other.velocity != nullptr) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
@@ -1311,7 +1338,8 @@ Vectr<N>::Vectr(Vectr<N> && other) :
 	mostRecent(std::move(other.mostRecent)), current(other.current),
     absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(other.totalDistanceMoved),
-	velocity(other.velocity)
+	velocity(other.velocity),
+	currentRotation(std::move(other.currentRotation))
 {
 	other.current = nullptr ;
 	other.totalDistanceMoved = nullptr ;
@@ -1355,6 +1383,7 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
         this->absDistanceMoved = rhs.absDistanceMoved ;
 		this->totalDistanceMoved = rhs.totalDistanceMoved ;
 		this->velocity = rhs.velocity ;
+		this->currentRotation = std::move(rhs.currentRotation) ;
 		
 		rhs.current = nullptr ;
 		rhs.totalDistanceMoved = nullptr ;
@@ -1371,8 +1400,12 @@ void Vectr<N>::rotate(Angle 𝛳) {
 	float diff = (𝛳.val() - currentRotation.val()) ;
 	
 	this->currentRotation += diff ; //i.e. (currentRotation + abs𝛳) % 360
+	
+	assert((currentRotation.val() == 𝛳.val())) ; /* debug code, remove */
 
     this->Position<N>::rotate(diff) ;
+	
+	/* we should still be normalized here */
 }
 
 template<typename N>
@@ -1386,6 +1419,7 @@ Vectr<N> & Vectr<N>::copyVect(const Vectr & other, SafeBoolean tf) {
 	this->current = other.current ;
 	this->absDistanceMoved = other.absDistanceMoved ;
 	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
+	this->currentRotation = other.currentRotation ;
 	
 	if ((other.velocity != nullptr) && (tf == SafeBoolean::t)) {
 		this->velocity = new Velocity<N>(this->totalDistanceMoved, &this->sharedVelBool) ;
@@ -1423,7 +1457,7 @@ ostream & operator<<(std::ostream & os, const Vectr<N> & vec) {
 template<typename N>
 void Vectr<N>::update() {
 
-	if (mostRecent != *current) { //only if we've moved...
+	if ((current != nullptr) && (mostRecent != *current)) { //only if we've moved...
         
         absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
 		*totalDistanceMoved += absDistanceMoved ;

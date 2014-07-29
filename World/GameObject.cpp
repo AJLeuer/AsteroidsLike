@@ -188,7 +188,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         pos = rhs.pos ;
 		vectr.copyVect(rhs.vectr, SafeBoolean::t) ;
 		
-        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, *rhs.outputData.getOrientation(true),
+        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, rhs.outputData.copyOrientation(),
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
         map->place(& pos, this) ;
@@ -214,7 +214,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
         this->pos = std::move(rhs.pos) ;
 		this->vectr = std::move(rhs.vectr) ;
 		
-		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, *rhs.outputData.getOrientation(true),
+		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, *rhs.outputData.getOrientation(),
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
 		
 		rhs.ID = -1 ;

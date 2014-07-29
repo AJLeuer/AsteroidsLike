@@ -80,11 +80,6 @@ protected:
 	Position<POSUTYPE> * position ;
     
 	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(SafeBoolean::f) ;
-    
-    /**
-     * @brief This object's orientation in 2 dimensions
-     */
-    Angle orientation ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
@@ -130,7 +125,6 @@ public:
         textureImageFile(),
         texture(nullptr),
         position(nullptr),
-		orientation(0),
         size(), /* can't be initialized yet */
         positionType(PositionType::null)
     {
@@ -141,7 +135,6 @@ public:
         textureImageFile(),
         texture(nullptr),
         position(pos),
-        orientation(orientation),
         size(), /* can't be initialized yet */
 		positionType(type),
 		visible(visible)
@@ -155,7 +148,6 @@ public:
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
-        orientation(orientation),
         size(),
 		positionType(type),
 		visible(visible)
@@ -169,7 +161,6 @@ public:
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
-        orientation(randm(0, 365)),
         size(),
 		positionType(posType),
 		visible(visible)
@@ -185,7 +176,6 @@ public:
         texture(nullptr),
         position(other.position),
         vectr(other.vectr),
-        orientation(other.orientation),
         size(other.size),
 		position_lastRecordedValue(other.position_lastRecordedValue),
 		size_lastRecordedValue(other.size_lastRecordedValue),
@@ -202,7 +192,6 @@ public:
         texture(other.texture),
         position(other.position),
         vectr(std::move(other.vectr)),
-        orientation(std::move(other.orientation)),
 		size(std::move(other.size)),
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),
@@ -297,12 +286,17 @@ public:
 	
 	const Position<POSUTYPE> getPosition() const ;
     
-    Vectr<POSUTYPE> * getVectr() { return & vectr ; }
+    const Vectr<POSUTYPE> * getVector() const { return & vectr ; }
     
     /**
      * @note Use only when no other options are available
      */
     Position<POSUTYPE> * getRawMutablePosition() { return position ; }
+	
+	/**
+	 * @note Use only when no other options are available
+	 */
+	Vectr<POSUTYPE> * getRawMutableVector() { return & vectr ; }
 	
 	/**
 	 * @note Only use for making a copy of this OutputData's position,
@@ -312,19 +306,23 @@ public:
 	
 	PositionType getPositionType() const { return positionType ; }
 	
-	void setOrientation(const Angle angle) { this->orientation = angle ; }
+	void modifyOrientation(const Angle & angleOffset) { vectr.setOrientation(angleOffset) ; }
 	
-	Angle * getOrientation() { return & orientation ; }
+	void overrideCurrentOrientation(const Angle & newAngle) { vectr.overrideCurrentOrientation(newAngle) ; }
+	
+	const Angle * getOrientation() const { return vectr.getOrientation() ; }
+	
+	Angle copyOrientation() const { return vectr.copyOrientation() ; }
 
-	const Angle * getOrientation(short ignored) const { return & orientation ; }
+	//const Angle * getOrientation(short ignored) const { return & orientation ; }
 	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
     
-    void rotateClockwise() { orientation += Angle(1) ; }
-    void rotateCounterClockwise() { orientation -= Angle(1) ; }
+	void rotateClockwise() { vectr.modifyOrientation(Angle(1)) ; }
+    void rotateCounterClockwise() { vectr.modifyOrientation(Angle(-1)) ; }
 	
 } ;
 
@@ -370,7 +368,6 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file
 	textureImageFile = file ;
 	texture = nullptr ;
 	position = pos ;
-	orientation = rotation ;
 	positionType = type ;
 	size.setModifier(sizeModifier) ;
 	
@@ -387,7 +384,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm,
 	textureImageFile = AssetFile(randm, assetType) ;
 	texture = nullptr ;
 	position = pos ;
-	orientation = realRand(0, 365) ;
+	//vectr = realRand(0, 365) ;
 	positionType = posType ;
 	
 	

@@ -28,7 +28,7 @@ void Weapon::fire(const Position<float> startingPos, const Angle & orientation) 
     
     Position<float> * pos = projectile.getRawMutablePosition() ;
     
-    Vectr<float> * vectr = projectile.getVectr() ;
+    Vectr<float> * vectr = projectile.getRawMutableVector() ;
 	
 	pos->setAll(startingPos) ; //should update projectile's position as well
 
@@ -39,13 +39,8 @@ void Weapon::fire(const Position<float> startingPos, const Angle & orientation) 
 		 Move projectile to our current spot */
 		projectile.setVisibility(true) ;
 		
-		/* set orientation to the same as the ship */
-		projectile.setOrientation(orientation) ;
-		
 		/* rotate our vector by the given angle */
 		vectr->rotate(orientation) ;
-		
-		vectr->normalize() ;
 		
 		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
 			*pos += *vectr ;
