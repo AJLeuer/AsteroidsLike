@@ -77,7 +77,7 @@ public:
 	 */
 	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
 					const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
-					unsigned health, unsigned damage, bool monitorVelocity, const AssetFile & projectileImageFile) ;
+					unsigned health, unsigned damage, SafeBoolean monitorVelocity, const AssetFile & projectileImageFile) ;
 	
 	
 	/**

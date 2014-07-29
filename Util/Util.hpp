@@ -22,6 +22,15 @@ using namespace std ;
 
 constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ;
 
+/**
+ * Used to avoid ambiguity when calling various constructors
+ * with integral values that might be confused for boolean
+ */
+enum class SafeBoolean {
+	t,
+	f
+};
+
 template<typename N>
 constexpr static bool checkIfFloatingPointType() {
 	if (typeid(N) == typeid(long double)) {

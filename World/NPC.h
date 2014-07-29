@@ -58,7 +58,7 @@ public:
 	 * @param reaction The reaction of this NPC to the player
 	 */
 	NPC(const AssetFile & imageFile, float size, const Position<float> & loc, const Angle rotation,
-		string name, DoA alive, CharacterState state, unsigned health, unsigned damage, bool monitorVelocity, Reaction reaction) ;
+		string name, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, Reaction reaction) ;
 	
 	
 	/**

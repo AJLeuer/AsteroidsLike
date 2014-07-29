@@ -79,7 +79,7 @@ protected:
 	 */
 	Position<POSUTYPE> * position ;
     
-    Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(false) ;
+	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(SafeBoolean::f) ;
     
     /**
      * @brief This object's orientation in 2 dimensions

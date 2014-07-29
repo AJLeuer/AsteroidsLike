@@ -32,7 +32,7 @@ GameObject::GameObject() :
     
 	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, AssetType::asteroid, PositionType::worldPosition) ;
 	
-	vectr = Vectr<float>(& pos, false) ;
+	vectr = Vectr<float>(& pos, SafeBoolean::f) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -114,7 +114,7 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, bool monitorVelocity) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
 	pos(loc_, BoundsCheck<float>::defaultCheck),
@@ -142,7 +142,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 	ID(IDs),
 	outputData(),
 	pos(rand, BoundsCheck<float>::defaultCheck),
-	vectr(& pos, true)
+	vectr(& pos, SafeBoolean::t)
 {
 	IDs++ ;
 	
@@ -186,7 +186,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         map->erase(& pos, this) ;
 
         pos = rhs.pos ;
-        vectr = Vectr<float>(rhs.vectr.getX(), rhs.vectr.getY(), &pos) ;
+		vectr.copyVect(rhs.vectr, SafeBoolean::t) ;
 		
         this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, *rhs.outputData.getOrientation(true),
 											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
@@ -320,22 +320,22 @@ void GameObject::moveTo(const Position<float> to) {
 }
 
 void GameObject::moveUp() {
-    Vectr<float> up(UP, false) ;
+	Vectr<float> up(UP, SafeBoolean::f) ;
     moveNewDirection(up) ;
 }
 
  void GameObject::moveDown() {
-    Vectr<float> down(DOWN, false) ;
+    Vectr<float> down(DOWN, SafeBoolean::f) ;
     moveNewDirection(down) ;
 }
 
  void GameObject::moveRight() {
-     Vectr<float> right(RIGHT, false) ;
+     Vectr<float> right(RIGHT, SafeBoolean::f) ;
      moveNewDirection(right) ;
 }
 
  void GameObject::moveLeft() {
-     Vectr<float> left(LEFT, false) ;
+     Vectr<float> left(LEFT, SafeBoolean::f) ;
      moveNewDirection(left) ;
 }
 
@@ -346,7 +346,7 @@ void GameObject::moveRandomDirection() {
 	
 	float y = chooseAtRand(1.0, -1.0) ;
 	
-	Vectr<float> newVector(x, y, 0, false) ;
+	Vectr<float> newVector(x, y, 0, SafeBoolean::f) ;
 	
 	moveNewDirection(newVector) ;
 }

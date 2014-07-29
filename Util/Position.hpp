@@ -1133,7 +1133,7 @@ protected:
 	bool sharedVelBool = true ;
 	
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool monitorVelocity) ;
+	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, SafeBoolean tf) ;
 	
 	void update() ;
 
@@ -1141,18 +1141,19 @@ protected:
 public:
 	
     Vectr() ;
-    Vectr(bool monitorVelocity) ;
-	Vectr(float headingX, float headingY, bool monitorVelocity) ;
-	Vectr(float headingX, float headingY, Position<N> * current_, bool monitorVelocity) ;
-	Vectr(const Position<N> & mostRecent_, Position<N> * current_, bool monitorVelocity) ;
-	Vectr(const Position<N> * current_, bool monitorVelocity) ;
+    Vectr(SafeBoolean tf) ;
+	Vectr(float headingX, float headingY, SafeBoolean tf) ;
+	Vectr(float headingX, float headingY, Position<N> * current_, SafeBoolean tf) ;
+	Vectr(const Position<N> & mostRecent_, Position<N> * current_, SafeBoolean tf) ;
+	Vectr(const Position<N> * current_, SafeBoolean tf) ;
 	Vectr(const Vectr<N> & other) ;
-	Vectr(const Vectr<N> & other, bool monitorVelocity) ;
+	Vectr(const Vectr<N> & other, SafeBoolean tf) ;
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
 	void rotate(Angle 𝛳) override ;
-    Vectr copyVect(bool copyVelocity) const ;
+	Vectr & copyVect(const Vectr & other, SafeBoolean tf) ;
+    Vectr copyVect(SafeBoolean tf) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
 	
@@ -1195,74 +1196,74 @@ Vectr<N>::Vectr() :
 	velocity(nullptr) {}
 
 template<typename N>
-Vectr<N>::Vectr(bool monitorVelocity) :
+Vectr<N>::Vectr(SafeBoolean tf) :
     Position<float>(0, -1), /* default direction is up */
     current(nullptr),
     totalDistanceMoved(new N()),
     velocity(nullptr)
 {
-    if (monitorVelocity) {
+	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, bool monitorVelocity) :
+Vectr<N>::Vectr(float headingX, float headingY, SafeBoolean tf) :
 	Position<float>(headingX, headingY),
 	current(nullptr),
 	totalDistanceMoved(new N)
 {
-	if (monitorVelocity) {
+	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, Position<N> * current_, bool monitorVelocity) :
+Vectr<N>::Vectr(float headingX, float headingY, Position<N> * current_, SafeBoolean tf) :
 	Position<float>(headingX, headingY),
 	current(current_),
 	totalDistanceMoved(new N)
 {
-	if (monitorVelocity) {
+	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, bool monitorVelocity) :
+Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, SafeBoolean tf) :
 	Position<float>(overrideCurrData),
 	current(current_),
 	totalDistanceMoved(new N)
 {
-	if (monitorVelocity) {
+	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
 }
 
 
 template<typename N>
-Vectr<N>::Vectr(const Position<N> * current_, bool monitorVelocity) :
+Vectr<N>::Vectr(const Position<N> * current_, SafeBoolean tf) :
 	Position<float>(0, -1),
     last(*current_),
 	mostRecent(*current_), current(current_),
 	totalDistanceMoved(new N)
 {
-	if (monitorVelocity) {
+	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
 }
@@ -1280,13 +1281,13 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	if (other.velocity != nullptr) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else {
+	else { // if (tf == SafeBoolean::falsus)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
+Vectr<N>::Vectr(const Vectr<N> & other, SafeBoolean tf) :
 	Position<float>(other),
 	last(Position<N>(other.last)),
 	mostRecent(Position<N>(other.mostRecent)),
@@ -1294,7 +1295,7 @@ Vectr<N>::Vectr(const Vectr<N> & other, bool monitorVelocity) :
 	absDistanceMoved(other.absDistanceMoved),
 	totalDistanceMoved(new N(*other.totalDistanceMoved))
 {
-	if (monitorVelocity && (other.velocity != nullptr)) {
+	if ((tf == SafeBoolean::t) && (other.velocity != nullptr)) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
 	else {
@@ -1374,26 +1375,34 @@ void Vectr<N>::rotate(Angle 𝛳) {
     this->Position<N>::rotate(diff) ;
 }
 
+template<typename N>
+Vectr<N> & Vectr<N>::copyVect(const Vectr & other, SafeBoolean tf) {
+	
+
+	this->Position<float>::operator=(other) ;
+	
+	this->last = Position<N>(other.last) ;
+	this->mostRecent = Position<N>(other.mostRecent) ;
+	this->current = other.current ;
+	this->absDistanceMoved = other.absDistanceMoved ;
+	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
+	
+	if ((other.velocity != nullptr) && (tf == SafeBoolean::t)) {
+		this->velocity = new Velocity<N>(this->totalDistanceMoved, &this->sharedVelBool) ;
+	}
+	else {
+		this->velocity = nullptr ;
+	}
+	
+	return *this ;
+}
+
 
 template<typename N>
-Vectr<N> Vectr<N>::copyVect(bool copyVelocity) const {
+Vectr<N> Vectr<N>::copyVect(SafeBoolean tf) const {
     
 	Vectr<N> newVect ;
-	
-    newVect.Position<float>::operator=(*this) ;
-    
-    newVect.last = Position<N>(this->last) ;
-    newVect.mostRecent = Position<N>(this->mostRecent) ;
-    newVect.current = this->current ;
-    newVect.absDistanceMoved = this->absDistanceMoved ;
-	newVect.totalDistanceMoved = new N(*this->totalDistanceMoved) ;
-
-    if ((this->velocity != nullptr) && (copyVelocity == true)) {
-        newVect.velocity = new Velocity<N>(newVect.totalDistanceMoved, &newVect.sharedVelBool) ;
-    }
-    else {
-        newVect.velocity = nullptr ;
-    }
+	newVect.copyVect(*this, tf) ;
 
     return std::move(newVect) ;
 }
