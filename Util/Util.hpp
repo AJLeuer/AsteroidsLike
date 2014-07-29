@@ -20,7 +20,7 @@
 
 using namespace std ;
 
-constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ;
+constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ; /* UTF-8 support */
 
 /**
  * Used to avoid ambiguity when calling various constructors

@@ -1159,10 +1159,11 @@ public:
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
 	void rotate(Angle 𝛳) override ;
+	Vectr & copyVect(const Vectr & other) ;
 	Vectr & copyVect(const Vectr & other, SafeBoolean tf) ;
     Vectr copyVect(SafeBoolean tf) const ;
 	
-	Velocity<N> * getVelocity() { return this->velocity ; }
+	const Velocity<N> * getVelocity() const { return this->velocity ; }
 	
 	const Angle * getOrientation() const { return & currentRotation ; }
 	
@@ -1406,6 +1407,29 @@ void Vectr<N>::rotate(Angle 𝛳) {
     this->Position<N>::rotate(diff) ;
 	
 	/* we should still be normalized here */
+}
+
+template<typename N>
+Vectr<N> & Vectr<N>::copyVect(const Vectr & other) {
+	
+	
+	this->Position<float>::operator=(other) ;
+	
+	this->last = Position<N>(other.last) ;
+	this->mostRecent = Position<N>(other.mostRecent) ;
+	this->current = other.current ;
+	this->absDistanceMoved = other.absDistanceMoved ;
+	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
+	this->currentRotation = other.currentRotation ;
+	
+	if (other.velocity != nullptr) {
+		this->velocity = new Velocity<N>(this->totalDistanceMoved, &this->sharedVelBool) ;
+	}
+	else {
+		this->velocity = nullptr ;
+	}
+	
+	return *this ;
 }
 
 template<typename N>

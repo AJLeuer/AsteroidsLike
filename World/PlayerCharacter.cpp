@@ -117,7 +117,9 @@ void PlayerCharacter::operator()(GameObject * other) {
 void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
 	
 	newDirection.normalize() ;
-	vectr += newDirection ;
+	
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	*vec += newDirection ;
 	
 	printPositition() ;
 	
@@ -184,7 +186,8 @@ void PlayerCharacter::textDescription(ostream * writeTo) const {
 }
 
 void PlayerCharacter::printPositition() {
-	if (*vectr.getCurrent() != vectr.getLast()) {
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	if (*vec->getCurrent() != vec->getLast()) {
 		stringstream ss ;
 		ss << this->name << "'s current world position is: " << getPosition() ;
 		auto screenPosition = translateToWindowCoords(*getPosition()) ;

@@ -25,14 +25,11 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck),
-	vectr() /* nor can this */
+	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck)
 {
 	IDs++ ;
     
-	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, AssetType::asteroid, PositionType::worldPosition) ;
-	
-	vectr = Vectr<float>(& pos, SafeBoolean::f) ;
+	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -43,7 +40,7 @@ GameObject::GameObject() :
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>( & pos, this) ;
-	vectr.updateAndNormalize() ;
+	outputData.updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
 }
 
@@ -71,7 +68,7 @@ GameObject::GameObject(const GameObject & other) :
 	
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>(& pos, this) ;
-	vectr.updateAndNormalize() ;
+	outputData.updateAndNormalizeVector() ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -117,13 +114,11 @@ GameObject::GameObject(GameObject && other) :
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	pos(loc_, BoundsCheck<float>::defaultCheck),
-	vectr() /* nor can this */
+	pos(loc_, BoundsCheck<float>::defaultCheck)
 {
 	IDs++ ;
     
-    outputData.reinitializeMembers(imageFile, &pos, rotation, sizeModifier, PositionType::worldPosition) ;
-	vectr = Vectr<float>(& pos, monitorVelocity) ;
+    outputData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -134,19 +129,18 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place(& pos, this) ;
-	vectr.updateAndNormalize() ;
+	outputData.updateAndNormalizeVector() ;
 	setVisibility(visible) ;
 }
 
 GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 	ID(IDs),
 	outputData(),
-	pos(rand, BoundsCheck<float>::defaultCheck),
-	vectr(& pos, SafeBoolean::t)
+	pos(rand, BoundsCheck<float>::defaultCheck)
 {
 	IDs++ ;
 	
-	outputData.reinitializeMembers(rand, &pos, type, PositionType::worldPosition) ;
+	outputData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition) ;
 
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -156,7 +150,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type) :
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	map->place<float>(& pos, this) ;
-	vectr.updateAndNormalize() ;
+	outputData.updateAndNormalizeVector() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
 }

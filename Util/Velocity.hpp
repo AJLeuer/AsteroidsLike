@@ -230,10 +230,11 @@ ostream & operator<<(std::ostream & os, Velocity<N> * vel) {
 }
 
 template<typename N>
-ostream & operator<<(std::ostream & os, Velocity<N> & vel) {
+ostream & operator<<(std::ostream & os, const Velocity<N> & vel) {
 	os << "Velocity: " << setprecision(3) << std::fixed << vel.getValue() ;
 	return os ;
 }
+
 
 
 

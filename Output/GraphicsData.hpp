@@ -49,13 +49,6 @@ protected:
 	
 	bool initFlag = true ;
 	
-	/**
-	 * @brief Indicates whether the GraphicsData has been recently updated. For every member that
-	 *		  changes, it's corresponding boolean within updateFlags should be set true. Don't refer to this
-	 *		  directly, instead call checkIfUpdated()
-	 */
-
-	
 	bool visible = true ;
     
 	bool visibility_was_updated = false ;
@@ -260,12 +253,16 @@ public:
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean tf, const Angle rotation, const float sizeModifier, PositionType type) ;
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) ;
+	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean tf, AssetType assetType, PositionType posType) ;
+	
+	GraphicsData & copy(const GraphicsData & other) ;
+	
+	GraphicsData & moveCopy(GraphicsData && other) ;
 	
 	/**
 	 * @brief Check whether this GraphicsData has changed since the last time it was rendered
@@ -320,6 +317,8 @@ public:
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
+	
+	void updateAndNormalizeVector() { vectr.updateAndNormalize() ; }
     
 	void rotateClockwise() { vectr.modifyOrientation(Angle(1)) ; }
     void rotateCounterClockwise() { vectr.modifyOrientation(Angle(-1)) ; }
@@ -363,11 +362,12 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, const Angle rotation, const float sizeModifier, PositionType type) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
 	position = pos ;
+	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
 	positionType = type ;
 	size.setModifier(sizeModifier) ;
 	
@@ -377,14 +377,14 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & fi
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, AssetType assetType, PositionType posType) {
 	
 	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
 	
 	textureImageFile = AssetFile(randm, assetType) ;
 	texture = nullptr ;
 	position = pos ;
-	//vectr = realRand(0, 365) ;
+	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
 	positionType = posType ;
 	
 	
@@ -393,6 +393,40 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & rand
 	update() ;
 	
 	initFlag = true ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(const GraphicsData<POSUTYPE, SIZEUTYPE> & other) {
+	initFlag = other.initFlag ;
+	visible = other.visible ;
+	texture_was_updated = other.texture_was_updated ;
+	visibility_was_updated = other.visibility_was_updated ;
+	updateFlags = other.updateFlags ;
+	
+	textureImageFile = other.textureImageFile ;
+	texture = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), other.textureImageFile, textureImageFile.type) ;
+	position = other.position ;
+	size = other.size ;
+	position_lastRecordedValue = other.position_lastRecordedValue ;
+	vectr.copyVec(other.vec) ;
+	positionType = other.positionType ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(GraphicsData<POSUTYPE, SIZEUTYPE> && other) {
+	initFlag = other.initFlag ;
+	visible = other.visible ;
+	texture_was_updated = other.texture_was_updated ;
+	visibility_was_updated = other.visibility_was_updated ;
+	updateFlags = std::move(other.updateFlags) ;
+	
+	textureImageFile = std::move(other.textureImageFile) ;
+	texture = other.texture ;
+	position = other.position ;
+	size = std::move(other.size) ;
+	position_lastRecordedValue = std::move(other.position_lastRecordedValue) ;
+	vectr.copyVec(other.vec) ;
+	positionType = other.positionType ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

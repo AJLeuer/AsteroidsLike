@@ -90,7 +90,7 @@ protected:
 	
     Pos2<float> pos ;
     
-	Vectr<float> vectr ;
+	//Vectr<float> vectr ;
 	
 	const GameObject * ally = nullptr ;
 	
@@ -350,7 +350,7 @@ public:
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	Vectr<float> * getVector() { return &(this->vectr) ; }
+	const Vectr<float> * getVector() { return outputData.getVector() ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
