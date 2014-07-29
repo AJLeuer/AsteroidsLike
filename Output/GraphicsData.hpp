@@ -1,5 +1,5 @@
 //
-//  OutputData.h
+//  GraphicsData.h
 //  SpriteFight
 //
 //  Created by aleuer2 on 7/5/14.
@@ -41,16 +41,16 @@ enum class PositionType {
 };
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-struct OutputData {
+struct GraphicsData {
 	
 protected:
 	
-	static vector<OutputData *> allOutputData ;
+	static vector<GraphicsData *> allOutputData ;
 	
 	bool initFlag = true ;
 	
 	/**
-	 * @brief Indicates whether the OutputData has been recently updated. For every member that
+	 * @brief Indicates whether the GraphicsData has been recently updated. For every member that
 	 *		  changes, it's corresponding boolean within updateFlags should be set true. Don't refer to this
 	 *		  directly, instead call checkIfUpdated()
 	 */
@@ -67,7 +67,7 @@ protected:
 	/**
 	 * @brief A texture
 	 *
-	 * @note In most cases, the class owning this OutputData object should never need to deal with texture directly
+	 * @note In most cases, the class owning this GraphicsData object should never need to deal with texture directly
 	 */
 	Texture * texture ;
     
@@ -75,25 +75,25 @@ protected:
 	
 	/**
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
-	 *        this OutputData object
+	 *        this GraphicsData object
 	 */
 	Position<POSUTYPE> * position ;
     
 	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(SafeBoolean::f) ;
 	
 	/**
-	 * @brief A Size object, which unlike position is not a pointer and is owned by the OutputData object
+	 * @brief A Size object, which unlike position is not a pointer and is owned by the GraphicsData object
 	 *
 	 */
 	Size<SIZEUTYPE> size ;
 	
 	/**
-	 * @brief A copy of position from the last time this OutputData was updated
+	 * @brief A copy of position from the last time this GraphicsData was updated
 	 */
 	Position<POSUTYPE> position_lastRecordedValue ;
 	
 	/**
-	 * @brief A copy of size from the last time this OutputData was updated
+	 * @brief A copy of size from the last time this GraphicsData was updated
 	 */
 	Size<SIZEUTYPE> size_lastRecordedValue ;
 	
@@ -114,14 +114,14 @@ protected:
 	
 public:
 	
-	static vector<OutputData *> * getOutputData() ;
+	static vector<GraphicsData *> * getOutputData() ;
 	
 	/**
 	 * @note Should only be called from the main thread
 	 */
 	static void updateAll() ;
     
-    OutputData() :
+    GraphicsData() :
         textureImageFile(),
         texture(nullptr),
         position(nullptr),
@@ -131,7 +131,7 @@ public:
         allOutputData.push_back(this) ;
     }
 	
-	OutputData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true) :
+	GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
@@ -144,7 +144,7 @@ public:
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
+	GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
@@ -157,7 +157,7 @@ public:
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
+    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
@@ -171,7 +171,7 @@ public:
 		allOutputData.push_back(this) ;
     }
 	
-    OutputData(const OutputData & other) :
+    GraphicsData(const GraphicsData & other) :
         textureImageFile(other.textureImageFile),
         texture(nullptr),
         position(other.position),
@@ -186,7 +186,7 @@ public:
 		allOutputData.push_back(this) ;
     }
 	
-    OutputData(OutputData && other) :
+    GraphicsData(GraphicsData && other) :
 		initFlag(other.initFlag),
         textureImageFile(other.textureImageFile),
         texture(other.texture),
@@ -205,16 +205,16 @@ public:
     }
     
 	
-	~OutputData() {
+	~GraphicsData() {
         if (texture != nullptr) {
             SDL_DestroyTexture(texture) ;
         }
     }
 	
-	OutputData & operator=(const OutputData & rhs) = delete ;
+	GraphicsData & operator=(const GraphicsData & rhs) = delete ;
 	
 	/*
-	OutputData & operator=(const OutputData & rhs) {
+	GraphicsData & operator=(const GraphicsData & rhs) {
 		if (this != &rhs) {
             SDL_DestroyTexture(texture) ;
             
@@ -234,10 +234,10 @@ public:
 		return *this ;
 	} */
 	
-	OutputData & operator=(OutputData && rhs) = delete ;
+	GraphicsData & operator=(GraphicsData && rhs) = delete ;
 	
 	/*
-    OutputData & operator=(OutputData && rhs) {
+    GraphicsData & operator=(GraphicsData && rhs) {
         if (this != &rhs) {
             this->textureImageFile = rhs.textureImageFile ;
             this->texture = rhs.texture ;
@@ -268,9 +268,9 @@ public:
 	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) ;
 	
 	/**
-	 * @brief Check whether this OutputData has changed since the last time it was rendered
+	 * @brief Check whether this GraphicsData has changed since the last time it was rendered
 	 *
-	 * @return Whether this OutputData has changed since the last time it was rendered
+	 * @return Whether this GraphicsData has changed since the last time it was rendered
 	 */
 	bool checkIfUpdated() ;
     
@@ -327,21 +327,21 @@ public:
 } ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-vector<OutputData<POSUTYPE, SIZEUTYPE> *> OutputData<POSUTYPE, SIZEUTYPE>::allOutputData ;
+vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allOutputData ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-vector<OutputData<POSUTYPE, SIZEUTYPE> *> * OutputData<POSUTYPE, SIZEUTYPE>::getOutputData() {
+vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() {
 	return & allOutputData ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	
 	{
 	/* Debug code */
 	#ifdef DEBUG_MODE
 	if (this_thread::get_id() != mainThreadID) {
-		DebugOutput << "OutputData::updateAll() can only be called on the main thread \n" ;
+		DebugOutput << "GraphicsData::updateAll() can only be called on the main thread \n" ;
 		throw exception() ;
 	}
 	#endif
@@ -350,9 +350,9 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	
 	auto * od =  & allOutputData ; /* temp debug var */
 	
-	for (auto i = 0 ; i < OutputData::allOutputData.size() ; i++) {
+	for (auto i = 0 ; i < GraphicsData::allOutputData.size() ; i++) {
 		
-		OutputData * out = allOutputData.at(i) ; /* temp debug var */
+		GraphicsData * out = allOutputData.at(i) ; /* temp debug var */
 		
 		if (allOutputData.at(i)->initFlag) {
 			allOutputData.at(i)->completeInitialization() ;
@@ -363,7 +363,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
@@ -377,7 +377,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
 	
 	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
 	
@@ -396,13 +396,13 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm,
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 	
 	{
 	/* Debug code */
 	#ifdef DEBUG_MODE
 	if (this_thread::get_id() != mainThreadID) {
-		DebugOutput << "OutputData::initGraphicsData() can only be called on the main thread \n" ;
+		DebugOutput << "GraphicsData::initGraphicsData() can only be called on the main thread \n" ;
 		throw exception() ;
 	}
 	#endif
@@ -441,7 +441,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 
 /* Can only be called after we complete initialization */
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::update() {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::update() {
     if (checkIfUpdated()) {
         position_lastRecordedValue = *position ;
         size_lastRecordedValue = size ;
@@ -450,7 +450,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::update() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
+bool GraphicsData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 	
 	/* if the updateFlag was set directly, this overrides any checking. Just return true immediately */
 	for (auto i = 0 ; i < updateFlags.size(); i++) {
@@ -473,13 +473,13 @@ bool OutputData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
 	SDL_DestroyTexture(this->texture) ;
 	this->texture = texture ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-const Position<POSUTYPE> OutputData<POSUTYPE, SIZEUTYPE>::getPosition() const {
+const Position<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const {
 	if (this->positionType == PositionType::worldPosition) {
 		return translateToWindowCoords(*this->position) ;
 	}

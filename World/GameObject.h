@@ -25,7 +25,7 @@
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
 
-#include "../Output/OutputData.hpp"
+#include "../Output/GraphicsData.hpp"
 
 #include "ForwardDecl.h"
 #include "Position.hpp"
@@ -86,7 +86,7 @@ protected:
 	
 	int ID ;
     
-    OutputData<float, int> outputData ;
+    GraphicsData<float, int> outputData ;
 	
     Pos2<float> pos ;
     

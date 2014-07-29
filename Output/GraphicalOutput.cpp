@@ -99,17 +99,17 @@ void GraphicalOutput::init() {
 
 void GraphicalOutput::render() {
 	
-	auto outputData = OutputData<float, int>::getOutputData() ; //debug variable, delete this
+	auto outputData = GraphicsData<float, int>::getOutputData() ; //debug variable, delete this
 	
-	for (auto i = 0 ; i < OutputData<float, int>::getOutputData()->size() ; i++) {
-		render(OutputData<float, int>::getOutputData()->at(i)) ;
+	for (auto i = 0 ; i < GraphicsData<float, int>::getOutputData()->size() ; i++) {
+		render(GraphicsData<float, int>::getOutputData()->at(i)) ;
 	}
 }
 
 
 
 void GraphicalOutput::update() {
-	OutputData<float, int>::updateAll() ;
+	GraphicsData<float, int>::updateAll() ;
 	SDL_RenderClear(renderer) ;
 	render() ;
 	SDL_RenderPresent(renderer) ;

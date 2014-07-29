@@ -21,7 +21,7 @@
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/GameRandom.hpp"
 
-#include "../Output/OutputData.hpp"
+#include "../Output/GraphicsData.hpp"
 #include "../Output/TextOutput.hpp"
 
 #include "../World/GameInterface.h"

@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include "../Output/OutputData.hpp"
+#include "../Output/GraphicsData.hpp"
 
 #include "GameState.hpp"
 

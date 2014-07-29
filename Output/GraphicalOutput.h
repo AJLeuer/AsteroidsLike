@@ -27,7 +27,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Position.hpp"
 
-#include "OutputData.hpp"
+#include "GraphicsData.hpp"
 #include "TextOutput.hpp"
 #include "GameColor.h"
 
@@ -63,7 +63,7 @@ protected:
 	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename M, typename N>
-	static void render(OutputData<M, N> * output) ;
+	static void render(GraphicsData<M, N> * output) ;
 	
 	
 	GraphicalOutput() ; //private to prevent instantiation
@@ -78,7 +78,7 @@ public:
 
 
 template<typename M, typename N>
-void GraphicalOutput::render(OutputData<M, N> * output) {
+void GraphicalOutput::render(GraphicsData<M, N> * output) {
 	
 	auto tempShape = convertToSDL_Rect(output->getPosition(), output->getSize()) ;
 	

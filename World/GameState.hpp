@@ -38,7 +38,7 @@ using namespace std ;
 
 /* Forward-declaring */
 template<typename POSUTYPE, typename SIZEUTYPE>
-struct OutputData ;
+struct GraphicsData ;
 
 
 /**

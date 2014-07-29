@@ -12,7 +12,7 @@
 #include <iostream>
 
 #include "../Util/Timer.hpp"
-#include "../Output/OutputData.hpp"
+#include "../Output/GraphicsData.hpp"
 
 
 class Weapon {
@@ -23,7 +23,7 @@ protected:
      * A simple sprite that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	OutputData<float, int> projectile ;
+	GraphicsData<float, int> projectile ;
 	
 public:
 	

@@ -26,7 +26,7 @@ Weapon & Weapon::operator=(Weapon && rhs) {
 
 void Weapon::fire(const Position<float> startingPos, const Angle & orientation) {
     
-    Position<float> * pos = projectile.getRawMutablePosition() ;
+    Position<float> * pos = projectile.getRawMutablePosition() ; /* dangerous */
     
     Vectr<float> * vectr = projectile.getRawMutableVector() ;
 	

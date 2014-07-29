@@ -27,7 +27,7 @@
 #include "../Util/Size.hpp"
 #include "../Util/BasicConcurrency.h"
 
-#include "OutputData.hpp"
+#include "GraphicsData.hpp"
 #include "GameColor.h"
 
 #include "../World/GameState.hpp"
@@ -35,7 +35,7 @@
 using namespace std ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-class TextOutput : public OutputData<POSUTYPE, SIZEUTYPE> {
+class TextOutput : public GraphicsData<POSUTYPE, SIZEUTYPE> {
 	
 protected:
 	
@@ -44,7 +44,7 @@ protected:
 	
 	static BasicMutex textMutex ;
 	
-	static const vector<OutputData<POSUTYPE, SIZEUTYPE> *> * viewOutputData ; /* debug variable, remove this */
+	static const vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * viewOutputData ; /* debug variable, remove this */
 	
 	
 	string text ;
@@ -99,7 +99,7 @@ public:
 	
 	//void setTexture(Texture * texture) ;
 	
-	const OutputData<POSUTYPE, SIZEUTYPE> * getOutputData() { return this ; }
+	const GraphicsData<POSUTYPE, SIZEUTYPE> * getOutputData() { return this ; }
 	
 	const string * viewText() { return & text ; }
 	
@@ -134,7 +134,7 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 BasicMutex TextOutput<POSUTYPE, SIZEUTYPE>::textMutex ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-const vector<OutputData<POSUTYPE, SIZEUTYPE> *> * TextOutput<POSUTYPE, SIZEUTYPE>::viewOutputData = OutputData<POSUTYPE, SIZEUTYPE>::getOutputData() ; /* debug variable, remove this */
+const vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * TextOutput<POSUTYPE, SIZEUTYPE>::viewOutputData = GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() ; /* debug variable, remove this */
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void TextOutput<POSUTYPE, SIZEUTYPE>::init() {
@@ -178,12 +178,12 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::exit() {
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) :
-    OutputData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), orientation, 1.0, PositionType::screenPosition),
+    GraphicsData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), orientation, 1.0, PositionType::screenPosition),
 	text(text), foreground(foreground), background(background)
 {
 	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
-		OutputData simply sets the initFlag */
+		GraphicsData simply sets the initFlag */
 	
 	/* initFlag = true */
 	
@@ -259,7 +259,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
     
     if (this->checkIfUpdated()) { /* check if we actually need to update anything */
 		
-        this->OutputData<POSUTYPE, SIZEUTYPE>::update() ;
+        this->GraphicsData<POSUTYPE, SIZEUTYPE>::update() ;
         
 		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
