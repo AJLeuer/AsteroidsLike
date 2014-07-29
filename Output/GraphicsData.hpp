@@ -322,8 +322,8 @@ public:
 	
 	void updateAndNormalizeVector() { vectr.updateAndNormalize() ; }
     
-	void rotateClockwise() { vectr.modifyOrientation(Angle(1)) ; }
-    void rotateCounterClockwise() { vectr.modifyOrientation(Angle(-1)) ; }
+	void rotateClockwise() ;
+    void rotateCounterClockwise() ;
 	
 } ;
 
@@ -525,6 +525,16 @@ const Position<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const 
 		return *this->position ;
 	}
 	return *this->position ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateClockwise() {
+	vectr.rotateAbs(Angle(defaultMoveDistance<float>)) ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateCounterClockwise() {
+	vectr.rotateAbs(Angle(-defaultMoveDistance<float>)) ;
 }
 
 

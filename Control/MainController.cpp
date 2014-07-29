@@ -34,6 +34,20 @@ void MainController::setupMainContrExit() {
 	InputController::registerForEvent(quitEvent) ;
 }
 
+auto reverseTimeFlow = [] () -> void {
+	if (timeFlow == TimeFlow::forward) {
+		timeFlow = TimeFlow::reverse ;
+	}
+	else { //if (timeFlow == TimeFlow::reverse)
+		timeFlow = TimeFlow::forward ;
+	}
+} ;
+
+void MainController::setupCallbacks() {
+	KeyInputRegister * onKeypressReverseTime = new KeyInputRegister(reverseTimeFlow, {"1"}, KeypressEvaluationMethod::any) ;
+	InputController::registerForKeypress(onKeypressReverseTime) ;
+}
+
 void MainController::init() {
 	
 	GameState::mainGameClock->startTimer() ;
@@ -57,6 +71,7 @@ void MainController::init() {
 	GraphicalOutput::init() ;
     TextOutput<float, int>::init() ;
 	InputController::init() ;
+	MainController::setupCallbacks() ;
 	WorldController::init() ;    //must be last, will init GameState as well
 	
 	Player::initDefaultPlayers() ;

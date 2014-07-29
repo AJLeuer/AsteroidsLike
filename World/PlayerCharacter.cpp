@@ -118,7 +118,8 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	
 	newDirection.normalize() ;
 	
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	newDirection.rotateAbs(*vec->getOrientation()) ; /* rotate new direction to match our own orientation */
+	
 	*vec += newDirection ;
 	
 	printPositition() ;

@@ -73,6 +73,9 @@ protected:
 	
 	static void main() ;
 	
+	static void main_forwardTime() ;
+	static void main_reverseTime() ;
+	
 	WorldController() ;
 	
 	/* can umcomment this later if we end up needing it */

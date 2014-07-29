@@ -97,6 +97,8 @@ unsigned worldLoopCount = 0 ;
 mutex syncMutex ;
 condition_variable conditionalWait ;
 
+TimeFlow timeFlow = TimeFlow::forward ;
+
 
 
 

@@ -54,6 +54,8 @@ protected:
 	 */
 	static void setupMainContrExit() ;
 	
+	static void setupCallbacks() ;
+	
 	/**
 	 * @brief Exits the game
 	 * 

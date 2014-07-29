@@ -46,9 +46,9 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		
-        /*
+		
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-			Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), true, false) ; */
+					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f) ;
 		
 		//new GameObject(randm) ;
 	}
@@ -82,18 +82,15 @@ void WorldController::main() {
 	bool * cont = &GLOBAL_CONTINUE_FLAG ; //debug variable - rm
 	
 	while (GLOBAL_CONTINUE_FLAG) {
+		
+
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
-		/* Do stuff */
-		for (auto i = 0 ; i < gameObjects->size() ; i++) {
-			if (gameObjects->at(i) != nullptr) {
-				gameObjects->at(i)->defaultBehaviors() ;
-                
-                /* do any stuff with GameObjects */
-                
-                /* always call update at the end */
-                gameObjects->at(i)->update() ;
-			}
+		if (timeFlow == TimeFlow::forward) {
+			main_forwardTime() ;
+		}
+		else if (timeFlow == TimeFlow::reverse) {
+			main_reverseTime() ;
 		}
 		
 		auto * mloop = &mainGameLoopCount ; //debug var, delete this
@@ -105,7 +102,7 @@ void WorldController::main() {
 		
 		worldLoopCount++ ;
 		
-		//this_thread::sleep_for(sleepTime) ;
+		this_thread::sleep_for(sleepTime) ;
 		
 		if (worldLoopCount > mainGameLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;
@@ -117,6 +114,25 @@ void WorldController::main() {
 	}
 }
 
+void WorldController::main_forwardTime() {
+	/* Do stuff */
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		if (gameObjects->at(i) != nullptr) {
+			gameObjects->at(i)->defaultBehaviors() ;
+			
+			/* do any stuff with GameObjects */
+			
+			/* always call update at the end */
+			gameObjects->at(i)->update() ;
+		}
+	}
+}
+
+void WorldController::main_reverseTime() {
+	for (auto i = 0 ; i < gameObjects->size() ; i++) {
+		gameObjects->at(i)->reverseMove() ; //moves each object to it's previous position
+	}
+}
 
 
 void WorldController::exit() {

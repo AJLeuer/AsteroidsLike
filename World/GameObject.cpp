@@ -25,7 +25,8 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 GameObject::GameObject() :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck)
+	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck),
+	vec(outputData.getRawMutableVector())
 {
 	IDs++ ;
     
@@ -60,6 +61,8 @@ GameObject::GameObject(const GameObject & other) :
 	
 	IDs++ ;
 	
+	vec = outputData.getRawMutableVector() ;
+	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
@@ -86,7 +89,8 @@ GameObject::GameObject(const GameObject & other) :
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
-    pos(std::move(other.pos))
+    pos(std::move(other.pos)),
+	vec(other.vec)
 {
 	{
 	/* debug */
@@ -104,6 +108,7 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
+	other.vec = nullptr ;
 	other.ID = -1 ;
 }
 
@@ -111,7 +116,8 @@ GameObject::GameObject(GameObject && other) :
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity) :
 	ID(IDs),
 	outputData(), /* can't be properly initialized yet */
-	pos(loc_, BoundsCheck<float>::defaultCheck)
+	pos(loc_, BoundsCheck<float>::defaultCheck),
+	vec(outputData.getRawMutableVector())
 {
 	IDs++ ;
     
@@ -133,7 +139,8 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 	ID(IDs),
 	outputData(),
-	pos(rand, BoundsCheck<float>::defaultCheck)
+	pos(rand, BoundsCheck<float>::defaultCheck),
+	vec(outputData.getRawMutableVector())
 {
 	IDs++ ;
 	
@@ -181,6 +188,8 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		
 		outputData.copy(rhs.outputData) ; //give outputdata our new position as well
 		
+		vec = outputData.getRawMutableVector() ;
+		
         map->place(& pos, this) ;
 		outputData.updateAndNormalizeVector() ;
 	}
@@ -202,8 +211,12 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->ID = rhs.ID ;
 		
         this->pos = std::move(rhs.pos) ;
+		
 		outputData.moveCopy(std::move(rhs.outputData)) ;
-
+		
+		vec = outputData.getRawMutableVector() ;
+		
+		rhs.vec = nullptr ;
 		rhs.ID = -1 ;
 	}
 	return *this ;
@@ -234,8 +247,6 @@ bool GameObject::operator==(const GameObject & other) const {
 		return false ;
 	}
 }
-
-
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
 	while (GLOBAL_CONTINUE_FLAG) {
@@ -339,7 +350,6 @@ void GameObject::moveRandomDirection() {
 }
 
 void GameObject::jump() {
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
 	vec->normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(*vec, 15.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
@@ -350,7 +360,6 @@ void GameObject::move() {
     float distanceModifier = defaultMoveDistance<float> ;
     const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
 	
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
     vec->normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
 	
@@ -366,7 +375,6 @@ void GameObject::move() {
 }
 
 void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
 	vec->normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
 	
@@ -381,19 +389,26 @@ void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
 	moveTo(next) ;
 }
 
+void GameObject::reverseMove() {
+	if (pos.archivedPositionsCount() > 0) {
+		Position<float> lastPos = pos.popLastArchivedPosition() ;
+		moveTo(lastPos) ;
+	}
+	/* else do nothing, just stay frozen in place */
+}
+
 void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
 
 	newDirection.normalize() ;
 	
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	newDirection.rotateAbs(*vec->getOrientation()) ; /* rotate new direction to match our own orientation */
+
     *vec += newDirection ;
 	
 	move(distanceModifier, bc) ;
 }
 
 void GameObject::wander() {
-	
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
 	
 	vec->normalize() ;
 	

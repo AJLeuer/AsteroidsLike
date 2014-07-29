@@ -31,12 +31,12 @@
 #include "GameRandom.hpp"
 #include "BasicConcurrency.h"
 
+#include "../Control/GlobalVar.h"
+
 #define UP 0, -1, 0
 #define DOWN 0, 1, 0
 #define LEFT -1, 0, 0
 #define RIGHT 1, 0, 0
-
-//#include "../Control/Configuration.h"
 
 
 using namespace std ;
@@ -404,7 +404,6 @@ public:
 		os << "Position: X = " << pos.x << ", Y = " << pos.y << '\n' ;
 		return os ;
 	}
-	
 
 	virtual void rotate(Angle 𝛳) {
         const N prevX = x ;
@@ -413,7 +412,6 @@ public:
         x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
         y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
 	}
-
 
 	/**
 	 * Sets x, y, and z to the given values.
@@ -676,6 +674,7 @@ template<typename N>
 struct Pos2 : public Position<N> {
 
 protected:
+	
 
 	/** 
 	 * A vector container storing all the previous positions of this object,
@@ -688,12 +687,15 @@ protected:
 	 * Saves our current state
 	 */
 	void archive() {
-		Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
-
-		if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
-			pastPositions->pop_front() ;
+		
+		if (timeFlow == TimeFlow::forward) { /* only archive while moving forward in time */
+			Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
+			
+			if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
+				pastPositions->pop_front() ;
+			}
+			pastPositions->push_back(archived) ;
 		}
-		pastPositions->push_back(archived) ;
 	}
 
 public:
@@ -953,6 +955,23 @@ public:
 	Pos2 operator-(const Position<N> & rhs) const {
 		return Position<N>::operator-(rhs) ;
 	}
+	
+	/**
+	 * @return The size of the past positions archive
+	 */
+	size_t archivedPositionsCount() {
+		return pastPositions->size() ;
+	}
+	
+	/**
+	 * @return Pop the last added Position from the queue
+	 */
+	Position<N> popLastArchivedPosition() {
+		size_t size = pastPositions->size() ; //debug var, delete this
+		Position<N> pop = pastPositions->back() ;
+		pastPositions->pop_back() ;
+		return pop ;
+	}
 
 	const Position<N> * getCurrent() {
 		return (Position<N>)(this) ;
@@ -1158,7 +1177,19 @@ public:
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
-	void rotate(Angle 𝛳) override ;
+	
+	/**
+	 * Rotate the number of degrees equal to the difference between
+	 * this vectors current rotation, and the given angle 𝛳
+	 */
+	void rotateDiff(Angle 𝛳) ;
+	
+	/**
+	 * Rotate the number of degrees equal to the difference between
+	 * this vectors current rotation, and the given angle 𝛳
+	 */
+	void rotateAbs(Angle 𝛳) ;
+	
 	Vectr & copy(const Vectr & other, const Position * newCurrent) ;
     Vectr copy() const ;
 	
@@ -1167,8 +1198,6 @@ public:
 	const Angle * getOrientation() const { return & currentRotation ; }
 	
 	Angle copyOrientation() const { return currentRotation ; }
-	
-	void modifyOrientation(const Angle & angleOffset) { currentRotation += angleOffset ; }
 	
 	void overrideCurrentOrientation(const Angle & newAngle) { currentRotation = newAngle; }
 	
@@ -1393,7 +1422,7 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 }
 
 template<typename N>
-void Vectr<N>::rotate(Angle 𝛳) {
+void Vectr<N>::rotateDiff(Angle 𝛳) {
 	
     normalize() ;
     
@@ -1404,6 +1433,18 @@ void Vectr<N>::rotate(Angle 𝛳) {
 	assert((currentRotation.val() == 𝛳.val())) ; /* debug code, remove */
 
     this->Position<N>::rotate(diff) ;
+	
+	/* we should still be normalized here */
+}
+
+template<typename N>
+void Vectr<N>::rotateAbs(Angle 𝛳) {
+	
+	normalize() ;
+	
+	this->currentRotation += 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
+	
+	this->Position<N>::rotate(𝛳) ;
 	
 	/* we should still be normalized here */
 }

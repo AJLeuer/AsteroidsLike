@@ -89,6 +89,11 @@ protected:
     GraphicsData<float, int> outputData ;
 	
     Pos2<float> pos ;
+	
+	/**
+	 * A pointer to outputData's vector
+	 */
+	Vectr<float> * vec ;
     
 	//Vectr<float> vectr ;
 	
@@ -293,6 +298,8 @@ public:
 	 *
 	 */
 	void move() ;
+	
+	void reverseMove() ;
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the

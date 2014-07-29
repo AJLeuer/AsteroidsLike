@@ -40,7 +40,7 @@ void Weapon::fire(const Position<float> startingPos, const Angle & orientation) 
 		projectile.setVisibility(true) ;
 		
 		/* rotate our vector by the given angle */
-		vectr->rotate(orientation) ;
+		vectr->rotateDiff(orientation) ;
 		
 		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
 			*pos += *vectr ;

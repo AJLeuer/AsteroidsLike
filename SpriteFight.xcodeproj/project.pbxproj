@@ -55,6 +55,7 @@
 		1EC13454196E3D54000DC02C /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		1EEEAAAC19831188004DA274 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		66010FAB1987FF410069F8EF /* GlobalVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVar.h; sourceTree = "<group>"; };
 		6603FD72190C902800A5F41A /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GraphicalOutput.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6603FD73190C902800A5F41A /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GraphicalOutput.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6605EE0F1964D37B0028013B /* PlayerCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCharacter.h; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		666F1C07190A2C1F0004B793 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				66010FAB1987FF410069F8EF /* GlobalVar.h */,
 				1E683B13193ECDC4000F3045 /* DefaultConfig.h */,
 				66E3235619327761005A1144 /* Configuration.h */,
 				664BFFB11939E6BE008F4CD1 /* Player.h */,
