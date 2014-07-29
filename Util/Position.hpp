@@ -53,7 +53,13 @@ enum Direction {
 	noDirection //the best direction! (and also a base case in certain recursive algorithms)
 } ;
 
-
+/**
+ * @brief A storage class for Angle values. All underlying values are represented in degrees.
+ *
+ * @note Since the standard library trigonometric functions (i.e. sin(), cos(), etc.) expect
+ * argument values expressed in radians, values passed to those functions should first be converted.
+ * Angle provides the member function valInRadians() for just that purpose
+ */
 class Angle {
 	
 protected:
@@ -130,6 +136,10 @@ public:
 		value = Mod(value, 360.0f) ;
 		return value ;
 	}
+    
+    float valInRadians() {
+        return (convertToRadians<float>((val()))) ;
+    }
 	
 	
 } ;
@@ -391,8 +401,11 @@ public:
 	
 
 	virtual void rotate(Angle 𝛳) {
-        x = (x * cos(𝛳.val())) - (y * sin(𝛳.val())) ;
-        y = (x * sin(𝛳.val())) + (y * cos(𝛳.val())) ;
+        const N prevX = x ;
+        const N prevY = y ;
+        
+        x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
+        y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
 	}
 
 

@@ -328,10 +328,17 @@ SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 }
 
 template<typename Radians = double>
-double convertToDegrees(Radians angle_rad) {
+double convertToDegrees(const Radians angle_rad) {
 	double angle_in_radians = static_cast<double>(angle_rad) ;
 	double angle_in_degrees = angle_in_radians * (180.0L / 𝛑) ;
 	return angle_in_degrees ;
+}
+
+template<typename Degrees = double>
+double convertToRadians(const Degrees angle_deg) {
+	double angle_in_degrees = static_cast<double>(angle_deg) ;
+	double angle_in_radians = angle_in_degrees / (180.0L / 𝛑) ;
+	return angle_in_radians ;
 }
 
 

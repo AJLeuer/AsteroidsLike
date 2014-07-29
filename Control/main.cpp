@@ -38,10 +38,10 @@ int main(int argc, char ** argv) {
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
-	
-	Position<float> pos(0, 1) ;
-	
-	pos.rotate(45) ;
+    
+    Position<float> pos (4, 6) ;
+    
+    pos.rotate(60) ;
     
 	MainController::init() ;
 	MainController::main() ;
