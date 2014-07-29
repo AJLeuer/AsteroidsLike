@@ -58,7 +58,7 @@ enum Direction {
  *
  * @note Since the standard library trigonometric functions (i.e. sin(), cos(), etc.) expect
  * argument values expressed in radians, values passed to those functions should first be converted.
- * Angle provides the member function valInRadians() for just that purpose
+ * Angle provides the member function valInRadians() for just that purpose.
  */
 class Angle {
 	
