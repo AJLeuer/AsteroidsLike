@@ -24,15 +24,15 @@ Weapon & Weapon::operator=(Weapon && rhs) {
     return *this ;
 } */
 
-void Weapon::fire(const Position<float> startingPos, /*const Vectr<float> & direction,*/ const Angle & orientation) {
-	
-	this->pos.setAll(startingPos) ; //should update projectile's position as well
+void Weapon::fire(const Position<float> startingPos, const Angle & orientation) {
     
-    Timer * timer = new Timer() ; //debug var
+    Position<float> * pos = projectile.getRawMutablePosition() ;
+    
+    Vectr<float> * vectr = projectile.getVectr() ;
+	
+	pos->setAll(startingPos) ; //should update projectile's position as well
 
-    timer->startTimer() ;
-
-	auto fireL = [/*&direction,*/ &orientation, this] () -> void {
+	auto fireL = [this, orientation, vectr, pos] () -> void { /* copies variables by value */
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
@@ -43,12 +43,12 @@ void Weapon::fire(const Position<float> startingPos, /*const Vectr<float> & dire
 		projectile.setOrientation(orientation) ;
 		
 		/* rotate our vector by the given angle */
-		vectr.rotate(orientation, RotationType::counterClockwise) ;
+		vectr->rotate(orientation) ;
 		
-		vectr.normalize() ;
+		vectr->normalize() ;
 		
 		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
-			this->pos += vectr ;
+			*pos += *vectr ;
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}
 	} ;

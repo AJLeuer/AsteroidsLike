@@ -41,14 +41,6 @@
 
 using namespace std ;
 
-
-
-
-enum class RotationType {
-	clockwise,
-	counterClockwise
-};
-
 enum Direction {
 	north = 'n',
 	south = 's',
@@ -398,22 +390,9 @@ public:
 	}
 	
 
-	virtual void rotate(Angle 𝛳, RotationType clockwiseOrCounter) {
-		
-		float tempX = 0 ;
-		float tempY = 0 ;
-		
-		if (clockwiseOrCounter == RotationType::clockwise) {
-			tempX = (x * cos(𝛳.val())) - (y * sin(𝛳.val())) ;
-			tempY = (x * sin(𝛳.val())) + (y * cos(𝛳.val())) ;
-		}
-		else { //if (clockwiseOrCounter == RotationType::counterClockwise)
-			tempX = (x * cos(𝛳.val())) + (y * sin(𝛳.val())) ;
-			tempY = (x * sinNeg(𝛳.val())) + (y * cos(𝛳.val())) ;
-		}
-		
-		x = tempX ;
-		y = tempY ;
+	virtual void rotate(Angle 𝛳) {
+        x = (x * cos(𝛳.val())) - (y * sin(𝛳.val())) ;
+        y = (x * sin(𝛳.val())) + (y * cos(𝛳.val())) ;
 	}
 
 
@@ -1149,6 +1128,7 @@ protected:
 public:
 	
     Vectr() ;
+    Vectr(bool monitorVelocity) ;
 	Vectr(float headingX, float headingY, bool monitorVelocity) ;
 	Vectr(float headingX, float headingY, Position<N> * current_, bool monitorVelocity) ;
 	Vectr(const Position<N> & mostRecent_, Position<N> * current_, bool monitorVelocity) ;
@@ -1158,7 +1138,7 @@ public:
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
-	void rotate(Angle 𝛳, RotationType clockwiseOrCounter) override ;
+	void rotate(Angle 𝛳) override ;
     Vectr copyVect(bool copyVelocity) const ;
 	
 	Velocity<N> * getVelocity() { return this->velocity ; }
@@ -1200,6 +1180,21 @@ Vectr<N>::Vectr() :
 	current(nullptr),
     totalDistanceMoved(new N()),
 	velocity(nullptr) {}
+
+template<typename N>
+Vectr<N>::Vectr(bool monitorVelocity) :
+    Position<float>(0, -1), /* default direction is up */
+    current(nullptr),
+    totalDistanceMoved(new N()),
+    velocity(nullptr)
+{
+    if (monitorVelocity) {
+		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
+	}
+	else {
+		velocity = nullptr ;
+	}
+}
 
 template<typename N>
 Vectr<N>::Vectr(float headingX, float headingY, bool monitorVelocity) :
@@ -1355,28 +1350,15 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 }
 
 template<typename N>
-void Vectr<N>::rotate(Angle 𝛳, RotationType clockwiseOrCounter) {
+void Vectr<N>::rotate(Angle 𝛳) {
 	
-	float tempX = 0 ;
-	float tempY = 0 ;
-	
+    normalize() ;
+    
 	float diff = (𝛳.val() - currentRotation.val()) ;
 	
 	this->currentRotation += diff ; //i.e. (currentRotation + abs𝛳) % 360
 
-	if (clockwiseOrCounter == RotationType::clockwise) {
-		tempX = (x * cos(currentRotation.val())) - (y * sin(currentRotation.val())) ;
-		tempY = (x * sin(currentRotation.val())) + (y * cos(currentRotation.val())) ;
-	}
-	else { //if (clockwiseOrCounter == RotationType::counterClockwise)
-		tempX = (x * cos(currentRotation.val())) + (y * sin(currentRotation.val())) ;
-		tempY = -(x * sin(currentRotation.val())) + (y * cos(currentRotation.val())) ;
-	}
-	
-	Position<N> temp(tempX, tempY) ;
-	temp.normalize() ;
-	
-	this->setAll(temp) ;
+    this->Position<N>::rotate(diff) ;
 }
 
 

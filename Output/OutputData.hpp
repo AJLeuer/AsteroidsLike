@@ -70,13 +70,16 @@ protected:
 	 * @note In most cases, the class owning this OutputData object should never need to deal with texture directly
 	 */
 	Texture * texture ;
+    
 	bool texture_was_updated ;
 	
 	/**
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
 	 *        this OutputData object
 	 */
-	const Position<POSUTYPE> * position ;
+	Position<POSUTYPE> * position ;
+    
+    Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(false) ;
     
     /**
      * @brief This object's orientation in 2 dimensions
@@ -148,7 +151,7 @@ public:
 		allOutputData.push_back(this) ;
 	}
 	
-	OutputData(const AssetFile & file, const Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
+	OutputData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
@@ -162,7 +165,7 @@ public:
 		allOutputData.push_back(this) ;
     }
     
-    OutputData(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
+    OutputData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
@@ -181,6 +184,7 @@ public:
         textureImageFile(other.textureImageFile),
         texture(nullptr),
         position(other.position),
+        vectr(other.vectr),
         orientation(other.orientation),
         size(other.size),
 		position_lastRecordedValue(other.position_lastRecordedValue),
@@ -197,6 +201,7 @@ public:
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         position(other.position),
+        vectr(std::move(other.vectr)),
         orientation(std::move(other.orientation)),
 		size(std::move(other.size)),
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
@@ -266,12 +271,12 @@ public:
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) ;
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) ;
+	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) ;
 	
 	/**
 	 * @brief Check whether this OutputData has changed since the last time it was rendered
@@ -291,6 +296,13 @@ public:
     Texture * getTexture() const { return texture ; }
 	
 	const Position<POSUTYPE> getPosition() const ;
+    
+    Vectr<POSUTYPE> * getVectr() { return & vectr ; }
+    
+    /**
+     * @note Use only when no other options are available
+     */
+    Position<POSUTYPE> * getRawMutablePosition() { return position ; }
 	
 	/**
 	 * @note Only use for making a copy of this OutputData's position,
@@ -353,7 +365,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, const Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, const Angle rotation, const float sizeModifier, PositionType type) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
@@ -368,7 +380,7 @@ void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, const Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
+void OutputData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType) {
 	
 	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
 	

@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
             endingLineNumber = "45"
-            landmarkName = "Weapon::fire(const Position&lt;float&gt; startingPos, const Vectr&lt;float&gt; &amp; direction)"
+            landmarkName = "Weapon::fire(const Position&lt;float&gt; startingPos, const Angle &amp; orientation)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
