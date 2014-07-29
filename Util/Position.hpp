@@ -1159,9 +1159,8 @@ public:
 	~Vectr() ;
 	Vectr & operator=(Vectr<N> && rhs) ;
 	void rotate(Angle 𝛳) override ;
-	Vectr & copyVect(const Vectr & other) ;
-	Vectr & copyVect(const Vectr & other, SafeBoolean tf) ;
-    Vectr copyVect(SafeBoolean tf) const ;
+	Vectr & copy(const Vectr & other, const Position * newCurrent) ;
+    Vectr copy() const ;
 	
 	const Velocity<N> * getVelocity() const { return this->velocity ; }
 	
@@ -1410,14 +1409,13 @@ void Vectr<N>::rotate(Angle 𝛳) {
 }
 
 template<typename N>
-Vectr<N> & Vectr<N>::copyVect(const Vectr & other) {
-	
+Vectr<N> & Vectr<N>::copy(const Vectr & other, const Position * newCurrent) {
 	
 	this->Position<float>::operator=(other) ;
 	
 	this->last = Position<N>(other.last) ;
 	this->mostRecent = Position<N>(other.mostRecent) ;
-	this->current = other.current ;
+	this->current = newCurrent ;
 	this->absDistanceMoved = other.absDistanceMoved ;
 	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
 	this->currentRotation = other.currentRotation ;
@@ -1433,34 +1431,10 @@ Vectr<N> & Vectr<N>::copyVect(const Vectr & other) {
 }
 
 template<typename N>
-Vectr<N> & Vectr<N>::copyVect(const Vectr & other, SafeBoolean tf) {
-	
-
-	this->Position<float>::operator=(other) ;
-	
-	this->last = Position<N>(other.last) ;
-	this->mostRecent = Position<N>(other.mostRecent) ;
-	this->current = other.current ;
-	this->absDistanceMoved = other.absDistanceMoved ;
-	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
-	this->currentRotation = other.currentRotation ;
-	
-	if ((other.velocity != nullptr) && (tf == SafeBoolean::t)) {
-		this->velocity = new Velocity<N>(this->totalDistanceMoved, &this->sharedVelBool) ;
-	}
-	else {
-		this->velocity = nullptr ;
-	}
-	
-	return *this ;
-}
-
-
-template<typename N>
-Vectr<N> Vectr<N>::copyVect(SafeBoolean tf) const {
+Vectr<N> Vectr<N>::copy() const {
     
 	Vectr<N> newVect ;
-	newVect.copyVect(*this, tf) ;
+	newVect.copyVect(*this) ;
 
     return std::move(newVect) ;
 }

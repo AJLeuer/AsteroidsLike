@@ -47,8 +47,7 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     outputData(other.outputData),
-	pos(other.pos),
-	vectr(other.vectr)
+	pos(other.pos)
 {
 	{
 	/* debug */
@@ -72,7 +71,6 @@ GameObject::GameObject(const GameObject & other) :
 	
 	allGameObjects->push_back(this) ;
 
-	
 	/* Don't copy gthread or goIterator */
 
 	{
@@ -88,8 +86,7 @@ GameObject::GameObject(const GameObject & other) :
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
-    pos(std::move(other.pos)),
-	vectr(std::move(other.vectr))
+    pos(std::move(other.pos))
 {
 	{
 	/* debug */
@@ -146,6 +143,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
 	}
+	
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
@@ -180,13 +178,11 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         map->erase(& pos, this) ;
 
         pos = rhs.pos ;
-		vectr.copyVect(rhs.vectr, SafeBoolean::t) ;
 		
-        this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, rhs.outputData.copyOrientation(),
-											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
+		outputData.copy(rhs.outputData) ; //give outputdata our new position as well
 		
         map->place(& pos, this) ;
-        vectr.updateAndNormalize() ;
+		outputData.updateAndNormalizeVector() ;
 	}
 	return *this ;
 }
@@ -206,11 +202,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		this->ID = rhs.ID ;
 		
         this->pos = std::move(rhs.pos) ;
-		this->vectr = std::move(rhs.vectr) ;
-		
-		this->outputData.reinitializeMembers(*rhs.outputData.getAssetFile(), & this->pos, *rhs.outputData.getOrientation(),
-											 rhs.outputData.getSize().getModifier(), rhs.outputData.getPositionType()) ;
-		
+		outputData.moveCopy(std::move(rhs.outputData)) ;
+
 		rhs.ID = -1 ;
 	}
 	return *this ;
@@ -298,7 +291,7 @@ void GameObject::moveTo(const Position<float> * to) {
 
     pos.setAll(*to) ;
 
-    vectr.updateAndNormalize() ;
+	outputData.updateAndNormalizeVector() ;
 	
 	{
 	/* Debug code */
@@ -346,8 +339,9 @@ void GameObject::moveRandomDirection() {
 }
 
 void GameObject::jump() {
-	vectr.normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(vectr, 15.0) ;
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	vec->normalize() ;
+	Position<float> next = Vectr<float>::calculateNextPosition(*vec, 15.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
 }
@@ -355,9 +349,10 @@ void GameObject::jump() {
 void GameObject::move() {
     float distanceModifier = defaultMoveDistance<float> ;
     const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
-    
-    vectr.normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
+	
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+    vec->normalize() ;
+	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
 	
 	if (bc != nullptr) {
 		if (next.overXBounds(bc)) {
@@ -371,8 +366,9 @@ void GameObject::move() {
 }
 
 void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
-	vectr.normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(vectr, distanceModifier) ;
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	vec->normalize() ;
+	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
 	
 	if (bc != nullptr) {
 		if (next.overXBounds(bc)) {
@@ -388,24 +384,28 @@ void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
 void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
 
 	newDirection.normalize() ;
-    vectr += newDirection ;
+	
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
+    *vec += newDirection ;
 	
 	move(distanceModifier, bc) ;
 }
 
 void GameObject::wander() {
 	
-	vectr.normalize() ;
+	Vectr<float> * vec = outputData.getRawMutableVector() ;
 	
-	auto dist = vectr.getLastMoveDistance() ;
+	vec->normalize() ;
 	
-	Position<float> next = Vectr<float>::calculateNextPosition(vectr, defaultMoveDistance<float>) ;
+	auto dist = vec->getLastMoveDistance() ;
+	
+	Position<float> next = Vectr<float>::calculateNextPosition(*vec, defaultMoveDistance<float>) ;
 	
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = Vectr<float>::calculateReverseXPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next = Vectr<float>::calculateReverseXPosition(*vec, 1.0, BoundsCheck<float>::defaultCheck) ;
 	}
 	if (next.overYBounds(&BoundsCheck<float>::defaultCheck)) {
-		next = Vectr<float>::calculateReverseYPosition(vectr, 1.0, BoundsCheck<float>::defaultCheck) ;
+		next = Vectr<float>::calculateReverseYPosition(*vec, 1.0, BoundsCheck<float>::defaultCheck) ;
 	}
 	
 	moveTo(std::move(next)) ;

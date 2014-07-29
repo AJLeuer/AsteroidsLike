@@ -281,6 +281,8 @@ public:
 	
     Texture * getTexture() const { return texture ; }
 	
+	void setPosition(Position<POSUTYPE> * pos) { this->pos = pos ; }
+	
 	const Position<POSUTYPE> getPosition() const ;
     
     const Vectr<POSUTYPE> * getVector() const { return & vectr ; }
@@ -356,7 +358,6 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 		if (allOutputData.at(i)->initFlag) {
 			allOutputData.at(i)->completeInitialization() ;
 		}
-		
 		allOutputData.at(i)->update() ;
 	}
 }
@@ -386,8 +387,6 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & rand
 	position = pos ;
 	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
 	positionType = posType ;
-	
-	
 	size.setModifier(realRand.nextValue(0.75f, 1.5f)) ;
 	
 	update() ;
@@ -405,11 +404,12 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 	
 	textureImageFile = other.textureImageFile ;
 	texture = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), other.textureImageFile, textureImageFile.type) ;
-	position = other.position ;
 	size = other.size ;
 	position_lastRecordedValue = other.position_lastRecordedValue ;
-	vectr.copyVec(other.vec) ;
-	positionType = other.positionType ;
+	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Position object
+    positionType = other.positionType ; //pointed to by position, will have updated it's position to the copy argument's position's values,
+										//so we don't need to worry about that
+	return *this ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -425,8 +425,12 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(
 	position = other.position ;
 	size = std::move(other.size) ;
 	position_lastRecordedValue = std::move(other.position_lastRecordedValue) ;
-	vectr.copyVec(other.vec) ;
+	vectr = std::move(other.vectr) ;
 	positionType = other.positionType ;
+	
+	other.position = nullptr ;
+	
+	return *this ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
