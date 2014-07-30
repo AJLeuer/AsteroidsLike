@@ -117,7 +117,10 @@ void GraphicalOutput::update() {
 
 void GraphicalOutput::exit() {
 	
-
+	for (auto i = 0 ; i > texturesToDestroy.size() ; i++) {
+		SDL_DestroyTexture(texturesToDestroy.at(i)) ;
+	}
+	
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
     

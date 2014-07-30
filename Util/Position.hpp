@@ -677,7 +677,7 @@ struct Pos2 : public Position<N> {
 protected:
 	
     /**
-     * A data storage class that holds a copy of an objects previous position, plus
+     * A data storage type that holds a copy of an objects previous position, plus
      * the difference in time between when the object existed at one position, and when it
      * existed at the next
      */
@@ -699,6 +699,7 @@ protected:
 		
 		if (timeFlow == TimeFlow::forward) { /* only archive while moving forward in time */
             chrono::nanoseconds time = timer.checkTimeElapsed() ;
+			timer.reset() ; //reset the timer to zero
             
 			Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
 			

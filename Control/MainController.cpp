@@ -27,6 +27,7 @@ void MainController::setupMainContrExit() {
 	/* Signal handling */
 	signal(SIGQUIT, &MainController::exit) ;
 	signal(SIGABRT, &MainController::exit) ;
+	signal(SIGTERM, &MainController::exit) ;
 	
 	/* Register for MainController::exit() to be called if a quit event is initiated (i.e. user clicks
 	  window close button, presses ⌘Q, etc */
@@ -109,6 +110,10 @@ void MainController::main() {
 		GraphicalOutput::update() ;
 		InputController::update() ;
 		
+		if (GLOBAL_CONTINUE_FLAG == false) { /* we check here because setting false will have been done by callback during InputController::update() */
+			break ;
+		}
+		
 		auto time2 = GameState::mainGameClock->checkTimeElapsed() ;
 		auto timeElapsed = time2 - startTime ;
 		auto sleepTime = (refreshTime - timeElapsed) ;
@@ -147,6 +152,8 @@ void MainController::exit(int sig) {
 	
 		GameState::mainGameClock->stopTimer() ;
 	}
+	
+	exit(sig) ;
 	
 	/* And we're done! Returning now... */
 }

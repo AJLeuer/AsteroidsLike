@@ -137,7 +137,6 @@ extern std::mutex syncMutex ;
 extern condition_variable conditionalWait ;
 
 
-
 /**
  * Returns the window origin coordinates (i.e. {0, 0, 0}
  * within the window's own coordinate system), but represented

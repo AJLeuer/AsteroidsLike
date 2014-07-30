@@ -54,6 +54,11 @@ public:
 	std::chrono::nanoseconds checkTimeElapsed() ;
 	
 	/**
+	 * @brief Resets the timer to 0
+	 */
+	void reset() ;
+	
+	/**
 	 * @brief Stops timer and returns the time elapsed since startTimer() was called.
 	 *
 	 * @note 1 millisecond = 1000000 nanoseconds

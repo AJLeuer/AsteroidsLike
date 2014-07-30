@@ -59,6 +59,8 @@ protected:
 	/**
 	 * @brief Exits the game
 	 * 
+	 * @return Signal argument, or else 0
+	 *
 	 * @see init()
 	 */
 	static void exit(int sig = 0) ;

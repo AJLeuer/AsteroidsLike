@@ -100,7 +100,5 @@ condition_variable conditionalWait ;
 TimeFlow timeFlow = TimeFlow::forward ;
 
 
-
-
 //static bool GLOBAL_CONTINUE_FLAG = true ;
 

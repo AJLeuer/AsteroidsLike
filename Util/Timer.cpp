@@ -38,6 +38,9 @@ std::chrono::nanoseconds Timer::checkTimeElapsed() {
 	return duration ;
 }
 
+void Timer::reset() {
+	start = chrono::steady_clock::now() ;
+}
 
 std::chrono::nanoseconds Timer::stopTimer() {
 	if (!timerStarted) {

@@ -40,6 +40,8 @@ enum class PositionType {
     null
 };
 
+extern vector<Texture *> texturesToDestroy ;
+
 template<typename POSUTYPE, typename SIZEUTYPE>
 struct GraphicsData {
 	
@@ -200,7 +202,7 @@ public:
 	
 	~GraphicsData() {
         if (texture != nullptr) {
-            SDL_DestroyTexture(texture) ;
+			texturesToDestroy.push_back(texture) ;
         }
     }
 	
@@ -512,7 +514,7 @@ bool GraphicsData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
-	SDL_DestroyTexture(this->texture) ;
+	texturesToDestroy.push_back(this->texture) ;
 	this->texture = texture ;
 }
 
@@ -536,10 +538,6 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateCounterClockwise() {
 	vectr.rotateAbs(Angle(-defaultMoveDistance<float>)) ;
 }
-
-
-
-
 
 
 

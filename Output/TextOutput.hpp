@@ -339,7 +339,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updat
 		
 		while (GLOBAL_CONTINUE_FLAG) {
 			textoutput->updateText(*updatingText) ;
-			this_thread::sleep_for(chrono::nanoseconds(1)) ;
+			this_thread::sleep_for(chrono::milliseconds(24)) ;
 		}
 		
 		delete textoutput ;
@@ -359,7 +359,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const strin
 		
 		while (GLOBAL_CONTINUE_FLAG) {
 			textoutput->updateText(stringUpdatingFunction()) ;
-			this_thread::sleep_for(chrono::nanoseconds(1)) ;
+			this_thread::sleep_for(chrono::milliseconds(24)) ;
 		}
 		
 		delete textoutput ;
