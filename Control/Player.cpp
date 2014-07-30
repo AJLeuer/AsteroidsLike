@@ -91,9 +91,9 @@ void Player::registerForCallbacks() {
 															{MOVE_UP_KEY}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		onKeyMoveDown = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
 															{MOVE_DOWN_KEY}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
-		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentLeftRightMove),
 															  {MOVE_LEFT_KEY}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
-		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentRightLeftMove),
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
         
         onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
@@ -114,9 +114,9 @@ void Player::registerForCallbacks() {
 															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;
 		onKeyMoveDown = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
 															  {SDLK_KP_2}, KeypressEvaluationMethod::exactlyOne) ;
-		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
+		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentLeftRightMove),
 															  {SDLK_KP_4}, KeypressEvaluationMethod::exactlyOne) ;
-		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
+		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentRightLeftMove),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
         
         onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),

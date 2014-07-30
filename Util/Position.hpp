@@ -19,6 +19,7 @@
 #include <queue>
 #include <vector>
 #include <array>
+#include <tuple>
 #include <initializer_list>
 #include <deque>
 
@@ -326,7 +327,7 @@ public:
 		return !(this->operator==(rhs)) ;
 	}
 	
-	Position operator+(const Position & rhs) const {
+	virtual Position operator+(const Position & rhs) const {
         
         Position temp = Position(this->x, this->y) ;
         
@@ -336,7 +337,7 @@ public:
 		return temp ;
 	}
 	
-	Position operator-(const Position & rhs) const {
+	virtual Position operator-(const Position & rhs) const {
         
         Position temp = Position(this->x, this->y) ;
         
@@ -346,7 +347,7 @@ public:
 		return temp ;
 	}
 	
-	Position operator*(const N n) const {
+	virtual Position operator*(const N n) const {
         
         Position temp = Position(x, y) ;
         
@@ -356,7 +357,7 @@ public:
 		return temp ;
 	}
 	
-	Position operator/(const N n) const {
+	virtual Position operator/(const N n) const {
         
         Position temp = Position(x, y) ;
         
@@ -675,13 +676,21 @@ struct Pos2 : public Position<N> {
 
 protected:
 	
+    /**
+     * A data storage class that holds a copy of an objects previous position, plus
+     * the difference in time between when the object existed at one position, and when it
+     * existed at the next
+     */
+    typedef std::pair<Position<N>, chrono::nanoseconds> PastPositionAndTimeDifferential ;
 
 	/** 
 	 * A vector container storing all the previous positions of this object,
 	 * with the most recent positions at the end of the vector, and the initial position at
 	 * the front. See archive().
 	 */
-	deque<Position<N>> * pastPositions ;
+	deque<PastPositionAndTimeDifferential> * pastPositions ;
+    
+    Timer timer ;
 
 	/**
 	 * Saves our current state
@@ -689,12 +698,14 @@ protected:
 	void archive() {
 		
 		if (timeFlow == TimeFlow::forward) { /* only archive while moving forward in time */
+            chrono::nanoseconds time = timer.checkTimeElapsed() ;
+            
 			Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
 			
 			if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
 				pastPositions->pop_front() ;
 			}
-			pastPositions->push_back(archived) ;
+			pastPositions->push_back({archived, time}) ;
 		}
 	}
 
@@ -703,26 +714,44 @@ public:
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
      */
-	Pos2() : Position<N>(0, 0), pastPositions(new deque<Position<N>>) {}
+	Pos2() : Position<N>(0, 0), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 	
-	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<Position<N>>) {}
+	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 	
-	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new deque<Position<N>>) {}
+	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 
 	/**
      * Creates a Pos2 with all coordinates initialized to 0
      */
-	Pos2(const BoundsCheck<N> & check) : Position<N>(check), pastPositions(new queue<Position<N>>) {}
+	Pos2(const BoundsCheck<N> & check) : Position<N>(check), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+       timer.startTimer() ;
+    }
 
 	/**
      * Creates a Pos2 with all coordinates initialized to n
      */
-	Pos2(N n) : Position<N>(n), pastPositions(new queue<Position<N>>) {}
+	Pos2(N n) : Position<N>(n), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+       timer.startTimer() ;
+    }
 
 	/**
      * Creates a Pos2 with all coordinates initialized to n
      */
-	Pos2(N n, const BoundsCheck<N> & check) : Position<N>(n, check), pastPositions(new queue<Position<N>>) {}
+	Pos2(N n, const BoundsCheck<N> & check) : Position<N>(n, check), pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 	
 	/**
      * Creates a Pos2 all coordinates randomized, with bounds set by check
@@ -730,7 +759,10 @@ public:
     template<typename R>
 	Pos2(FastRand<R> & rand) :
 		Position<N>(rand),
-		pastPositions(new queue<Position<N>>) {}
+		pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 
 	/**
      * Creates a Pos2 all coordinates randomized, with bounds set by check
@@ -738,15 +770,20 @@ public:
     template<typename R>
 	Pos2(FastRand<R> & rand, const BoundsCheck<N> & check) :
 		Position<N>(rand, check),
-		pastPositions(new deque<Position<N>>) {}
+		pastPositions(new deque<PastPositionAndTimeDifferential>)
+    {
+        timer.startTimer() ;
+    }
 
 	/**
      * Copy constructor for Pos2
      */
     Pos2(const Pos2 & other) : Position<N>(other)  {
 		if (other.pastPositions != nullptr) {
-			this->pastPositions = new deque<Position<N>>(*other.pastPositions) ;
+			this->pastPositions = new deque<PastPositionAndTimeDifferential>(*other.pastPositions) ;
 		}
+        timer = Timer() ;
+        timer.startTimer() ;
 	}
 
 	/**
@@ -754,8 +791,10 @@ public:
      */
     Pos2(const Pos2 & other, const BoundsCheck<N> & check) : Position<N>(other, check)  {
 		if (other.pastPositions != nullptr) {
-			this->pastPositions = new deque<Position<N>>(*other.pastPositions) ;
+			this->pastPositions = new deque<PastPositionAndTimeDifferential>(*other.pastPositions) ;
 		}
+        timer = Timer() ;
+        timer.startTimer() ;
 	}
 
 	/**
@@ -770,6 +809,7 @@ public:
 		}
 
 		pastPositions = other.pastPositions ;
+        timer = std::move(other.timer) ;
 
 		other.pastPositions = nullptr ;
 	}
@@ -786,6 +826,7 @@ public:
 		}
 
 		pastPositions = other.pastPositions ;
+        timer = std::move(other.timer) ;
 
 		other.pastPositions = nullptr ;
 	}
@@ -798,7 +839,9 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y) : Position<N>(x, y), pastPositions(new deque<Position<N>>) {}
+	Pos2(N x, N y) : Position<N>(x, y), pastPositions(new deque<PastPositionAndTimeDifferential>) {
+        timer.startTimer() ;
+    }
 
 	/**
      * Creates a Pos2 with coordinates initialized to the
@@ -808,7 +851,9 @@ public:
      * @param y The y coordinate
      * @param z The z coordinate
      */
-	Pos2(N x, N y, const BoundsCheck<N> & check) : Position<N>(x, y, check), pastPositions(new deque<Position<N>>) {}
+	Pos2(N x, N y, const BoundsCheck<N> & check) : Position<N>(x, y, check), pastPositions(new deque<PastPositionAndTimeDifferential>) {
+        timer.startTimer() ;
+    }
 
 	/**
      * Destructor for Position
@@ -820,6 +865,8 @@ public:
 		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
 		/* End Debug code */
 		}
+        
+        timer.stopTimer() ;
 
 		if (pastPositions != nullptr) {
 			delete pastPositions ;
@@ -846,10 +893,13 @@ public:
 
 	    this->Position<N>::operator=(std::move(rhs)) ;
 
-        pastPositions = new deque<Position<N>>() ;
+        pastPositions = new deque<PastPositionAndTimeDifferential>() ;
+        
+        timer = Timer() ;
+        timer.startTimer() ;
 
 		for (auto i = rhs.pastPositions->begin() ; i != rhs.pastPositions->end() ; i++) {
-			this->pastPositions->push_back(Position<N>(*i)) ; //push_back()
+			this->pastPositions->push_back(PastPositionAndTimeDifferential(*i)) ; //push_back()
 		}
 
         return *this;
@@ -869,6 +919,8 @@ public:
 		this->Position<N>::operator=(std::move(rhs)) ;
 
 		this->pastPositions = rhs.pastPositions ;
+        timer = std::move(rhs.timer) ;
+        
 		rhs.pastPositions = nullptr ;
 
 		return(*this) ;
@@ -887,6 +939,8 @@ public:
 		}
 
         setAll(rhs) ;
+        
+        /* no need to make any changes to timer */
 
         return *this;
     }
@@ -903,6 +957,8 @@ public:
 		}
 
 		setAll(rhs) ;
+        
+        /* no need to make any changes to timer */
 
         return *this ;
     }
@@ -935,15 +991,15 @@ public:
 		return Position<N>::operator!=(rhs) ;
 	}
 
-	bool operator!=(const Position<N> & rhs) const {
+	bool operator!=(const Position<N> & rhs) const  {
 		return Position<N>::operator!=(rhs) ;
 	}
 
-	Pos2 operator+(const Pos2 & rhs) const {
+	Pos2 operator+(const Pos2 & rhs) const  {
 		return Position<N>::operator+(rhs) ;
 	}
 
-	Pos2 operator+(const Position<N> & rhs) const {
+	Position<N> operator+(const Position<N> & rhs) const override {
 		Pos2 pos2 = Position<N>::operator+(rhs) ;
 		return pos2 ;
 	}
@@ -952,8 +1008,29 @@ public:
 		return Position<N>::operator-(rhs) ;
 	}
 
-	Pos2 operator-(const Position<N> & rhs) const {
+	Position<N> operator-(const Position<N> & rhs) const override {
 		return Position<N>::operator-(rhs) ;
+	}
+    
+	
+	Position<N> operator*(const N n) const override {
+        
+        Pos2 temp(this->x, this->y) ;
+        
+		temp.x = temp.x * n ;
+		temp.y = temp.y * n ;
+		
+		return temp ;
+	}
+	
+    Position<N> operator/(const N n) const override {
+        
+        Pos2 temp(this->x, this->y) ;
+        
+		temp.x = temp.x / n ;
+		temp.y = temp.y / n ;
+		
+		return temp ;
 	}
 	
 	/**
@@ -966,71 +1043,67 @@ public:
 	/**
 	 * @return Pop the last added Position from the queue
 	 */
-	Position<N> popLastArchivedPosition() {
+	PastPositionAndTimeDifferential popLastArchivedPosition() {
 		size_t size = pastPositions->size() ; //debug var, delete this
-		Position<N> pop = pastPositions->back() ;
+		PastPositionAndTimeDifferential pop = pastPositions->back() ;
 		pastPositions->pop_back() ;
 		return pop ;
 	}
-
-	const Position<N> * getCurrent() {
-		return (Position<N>)(this) ;
-	}
 	
-	const deque<Position<N>> * getHistory() {
+	const deque<PastPositionAndTimeDifferential> * getHistory() {
 		return pastPositions ;
 	}
 
-	void setAll(const N x, const N y) {
+	void setAll(const N x, const N y) override {
 		archive() ;
 		this->Position<N>::setAll(x, y) ;
 	}
 
-	void setAll(const N x, const N y, const BoundsCheck<N> & check) {
+	void setAll(const N x, const N y, const BoundsCheck<N> & check) override {
 		archive() ;
 		Position<N>::setAll(x, y, check) ;
 	}
 
-	void setAll(const Position<N> & other) {
+	void setAll(const Position<N> & other) override {
 		setAll(other.getX(), other.getY()) ;
 	}
 
-	void setAll(const Position<N> & other, const BoundsCheck<N> & check) {
+	void setAll(const Position<N> & other, const BoundsCheck<N> & check) override {
 		setAll(other.getX(), other.getY(), check) ;
 	}
 
-	void setAll(const N n) { setAll(n, n) ; }
+	void setAll(const N n) override { setAll(n, n) ; }
 
-	void setAll(const N n, const BoundsCheck<N> & check) { setAll(n, n, check) ; }
+	void setAll(const N n, const BoundsCheck<N> & check) override { setAll(n, n, check) ; }
 
-	void setAllZero() { setAll(0) ; }
+	void setAllZero() override { setAll(0) ; }
 
 
-	void setX(const N x) { setAll(x, this->y) ; }
+	void setX(const N x) override { setAll(x, this->y) ; }
 
-	void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; this->checkBounds(check) ; }
+	void setX(const N x, const BoundsCheck<N> & check) override { setX(x) ; this->checkBounds(check) ; }
 
-	void setY(const N y) { setAll(this->x, y) ; }
+	void setY(const N y) override { setAll(this->x, y) ; }
 
-	void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; this->checkBounds(check) ; }
+	void setY(const N y, const BoundsCheck<N> & check) override { setY(y) ; this->checkBounds(check) ; }
 	
 
-	void x_plus_one() { setX(this->x++) ; }
+	void x_plus_one() override { setX(this->x++) ; }
 
-	void x_plus_one(const BoundsCheck<N> & check) { setX(this->x++) ; this->checkBounds(check) ; }
+	void x_plus_one(const BoundsCheck<N> & check) override { setX(this->x++) ; this->checkBounds(check) ; }
 
 	void x_minus_one() { setX(this->x--) ; }
 
-	void x_minus_one(const BoundsCheck<N> & check) { setX(this->x--) ; this->checkBounds(check) ; }
+	void x_minus_one(const BoundsCheck<N> & check) override { setX(this->x--) ; this->checkBounds(check) ; }
 
 
-	void y_plus_one() { setY(this->y++) ; }
+	void y_plus_one() override { setY(this->y++) ; }
 
-	void y_plus_one(const BoundsCheck<N> & check) { setY(this->y++) ; this->checkBounds(check) ; }
+	void y_plus_one(const BoundsCheck<N> & check) override { setY(this->y++) ; this->checkBounds(check) ; }
 
-	void y_minus_one() { setY(this->y--) ; }
+	void y_minus_one() override { setY(this->y--) ; }
 
-	void y_minus_one(const BoundsCheck<N> & check) { setY(this->y--) ; this->checkBounds(check) ; }
+	void y_minus_one(const BoundsCheck<N> & check) override { setY(this->y--) ; this->checkBounds(check) ; }
 
 	void moveRight() { setAll((this->x+1), this->y) ; }
 	void moveLeft() { setAll((this->x-1), this->y) ; }
@@ -1050,7 +1123,7 @@ public:
 	 * @param delta_x The change in x value
 	 * @param delta_y The change in y value
 	 */
-	void modify(N delta_x, N delta_y) {
+	void modify(N delta_x, N delta_y) override {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
 
@@ -1069,7 +1142,7 @@ public:
 	 * @param delta_y The change in y value
 	 * @param delta_z The change in z value
 	 */
-	void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) {
+	void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) override {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
 
@@ -1079,29 +1152,20 @@ public:
 		setAll(tempX, tempY, check) ;
 	}
 
-	void moveHere(N x, N y) {
+	void moveHere(N x, N y) override {
 		setAll(x, y) ;
 	}
 
-	void moveHere(N x, N y, const BoundsCheck<N> & check) {
+	void moveHere(N x, N y, const BoundsCheck<N> & check) override {
 		moveHere(x, y) ;
 		this->checkBounds(check) ;
 	}
 
-	void moveHere(const Pos2 & other) {
-		setAll(other.x, other.y) ;
-	}
-
-	void moveHere(const Position<N> & other) {
+	void moveHere(const Position<N> & other) override {
 		setAll(other.getX(), other.getY()) ;
 	}
 
-	void moveHere(const Pos2 & other, const BoundsCheck<N> & check) {
-		moveHere(other) ;
-		this->Position<N>::checkBounds(check) ;
-	}
-
-	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) {
+	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) override {
 		moveHere(other) ;
 		this->Position<N>::checkBounds(check) ;
 	}
@@ -1674,14 +1738,6 @@ public:
 			this->Position<N>::operator=(std::move(rhs)) ;
 		}
 		return *this ;
-	}
-	
-	Resolution operator*(const N n) const {
-		
-        auto x_product = (this->x * n) ;
-		auto y_product = (this->y * n) ;
-		
-		return Resolution<N>(x_product, y_product) ;
 	}
 	
 	double operator/(const Resolution & rhs) const {

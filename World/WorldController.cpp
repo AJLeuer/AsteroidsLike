@@ -129,9 +129,19 @@ void WorldController::main_forwardTime() {
 }
 
 void WorldController::main_reverseTime() {
+    deque<chrono::nanoseconds> sleepTimes ;
 	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		gameObjects->at(i)->reverseMove() ; //moves each object to it's previous position
+        if (gameObjects->at(i)->archivedPositionsCount() > 0) {
+            auto last = gameObjects->at(i)->getReverseMove() ;
+            gameObjects->at(i)->moveTo(last.first) ;
+            sleepTimes.push_back(last.second) ;
+        }
 	}
+    /*while (sleepTimes.size() > 0) {
+        chrono::nanoseconds time = sleepTimes.front() ;
+        this_thread::sleep_for(time) ;
+        sleepTimes.pop_front() ;
+    }*/
 }
 
 

@@ -9,7 +9,7 @@
 #ifndef SpriteFight_GlobalVar_h
 #define SpriteFight_GlobalVar_h
 
-/* Holds some variables that needed global scope and couldn't be added to existing classes */
+/* Holds variables that needed global scope and couldn't be added to existing headers for various reasons */
 
 enum class TimeFlow {
 	forward,

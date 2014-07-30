@@ -40,6 +40,9 @@ public:
 	virtual void moveRight() = 0 ;
 	virtual void moveLeft() = 0 ;
     
+    virtual void orientationDependentLeftRightMove() = 0 ;
+    virtual void orientationDependentRightLeftMove() = 0 ;
+    
     virtual void rotateClockwise() = 0 ;
     virtual void rotateCounterClockwise() = 0 ;
     

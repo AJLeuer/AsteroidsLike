@@ -38,6 +38,8 @@
 
 using namespace::std ;
 
+typedef std::pair<Position<float>, chrono::nanoseconds> PastPositionAndTimeDifferential ;
+
 /**
  * @brief The base class from which all other classes in the world
  *		  will inherit. This class will handle the assignment of a unique ID to each GameObject.
@@ -285,6 +287,9 @@ public:
 	virtual void moveRight();
 	virtual void moveLeft();
     
+    void orientationDependentLeftRightMove() ;
+    void orientationDependentRightLeftMove() ;
+    
     virtual void rotateClockwise() override { outputData.rotateClockwise() ; }
     virtual void rotateCounterClockwise() override { outputData.rotateCounterClockwise() ; } ;
 	
@@ -299,7 +304,9 @@ public:
 	 */
 	void move() ;
 	
-	void reverseMove() ;
+    size_t archivedPositionsCount() { return pos.archivedPositionsCount() ; }
+    
+	PastPositionAndTimeDifferential getReverseMove() ;
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the

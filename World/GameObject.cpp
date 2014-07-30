@@ -337,6 +337,24 @@ void GameObject::moveUp() {
      moveNewDirection(left) ;
 }
 
+void GameObject::orientationDependentLeftRightMove() {
+    if ((outputData.getOrientation()->val_const() >= 270) || (outputData.getOrientation()->val_const() <= 90)) {
+        moveLeft() ;
+    }
+    else { /* if > 90 and  < 270... */
+        moveRight() ;
+    }
+}
+
+void GameObject::orientationDependentRightLeftMove() {
+    if ((outputData.getOrientation()->val_const() >= 270) || (outputData.getOrientation()->val_const() <= 90)) {
+        moveRight() ;
+    }
+    else { /* if > 90 and  < 270... */
+        moveLeft() ;
+    }
+}
+
 
 void GameObject::moveRandomDirection() {
 	
@@ -389,11 +407,9 @@ void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
 	moveTo(next) ;
 }
 
-void GameObject::reverseMove() {
-	if (pos.archivedPositionsCount() > 0) {
-		Position<float> lastPos = pos.popLastArchivedPosition() ;
-		moveTo(lastPos) ;
-	}
+PastPositionAndTimeDifferential GameObject::getReverseMove() {
+    PastPositionAndTimeDifferential lastPos = pos.popLastArchivedPosition();
+    return lastPos ;
 	/* else do nothing, just stay frozen in place */
 }
 
