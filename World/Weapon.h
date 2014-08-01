@@ -12,7 +12,8 @@
 #include <iostream>
 
 #include "../Util/Timer.hpp"
-#include "../Output/GraphicsData.hpp"
+
+#include "GameObject.h"
 
 
 class Weapon {
@@ -23,12 +24,12 @@ protected:
      * A simple sprite that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	GraphicsData<float, int> projectile ;
+	GameObject projectile ;
 	
 public:
 	
-	Weapon(const AssetFile & file, const float sizeModifier, PositionType type) :
-		projectile(file, new Position<float>(0, 0), 0.0, sizeModifier, type, false) {}
+	Weapon(const AssetFile & file, const float sizeModifier) :
+		projectile(file, sizeModifier, Position<float>(0, 0), {0.0}, false, SafeBoolean::f) {}
     
 	Weapon(FastRand<unsigned long> & randm, const float sizeModifier, PositionType type) :
         projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , new Position<float>(0, 0), 0.0, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}

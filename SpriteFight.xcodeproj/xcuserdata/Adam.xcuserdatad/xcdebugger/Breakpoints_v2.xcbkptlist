@@ -6,32 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Control/MainController.cpp"
-            timestampString = "428395761.447354"
+            filePath = "Control/Input.cpp"
+            timestampString = "428587943.105157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "MainController::exit(int sig)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Control/MainController.cpp"
-            timestampString = "428395584.819467"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "MainController::begin_exit()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
