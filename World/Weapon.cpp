@@ -15,23 +15,27 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
     projectile = new Projectile(textureFile, sizeModifier, startingPos, orientation, true, SafeBoolean::f) ; //current plan is to not actually create the projectile until it's fired
     
     Position<float> * pos = projectile->getRawMutablePosition() ;
-    Vectr<float> * vectr = projectile->getRawMutableVector() ;
+	
+	Vectr<float> vectr = *(projectile->getRawMutableVector()) ; //copy vector
+	
+	/* rotate our vector by the given angle */
+	vectr.rotateDiff(orientation) ;
 
-	auto fireL = [this, pos, vectr, orientation] () -> void { /* copies variables by value */
+	auto fireL = [this, pos, vectr, orientation] () mutable -> void { /* copies variables by value */
 		
-		/* copy projectile to make a new projectile */
-		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
-		 Move projectile to our current spot */
+		projectile->moveTo(pos) ;
+		
+		projectile->moveNewDirection(vectr) ;
+		
 		projectile->setVisibility(true) ;
 		
-		/* rotate our vector by the given angle */
-		vectr->rotateDiff(orientation) ;
-		
 		while ((pos->overBounds(BoundsCheck<float>::defaultCheck)) == false) {
-			*pos += *vectr ;
+			projectile->move() ;
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}
-        projectile->markForDeletion() ;
+		
+	projectile->markForDeletion() ;
+		
 	} ;
 	
 	thread thr(fireL) ;
