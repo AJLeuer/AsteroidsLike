@@ -19,34 +19,44 @@
 class Weapon {
 	
 protected:
-	
+    
+    AssetFile textureFile ;
+    float sizeModifier ;
+    
     /**
      * A simple sprite that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	GameObject projectile ;
+	GameObject * projectile ;
 	
 public:
 	
-	Weapon(const AssetFile & file, const float sizeModifier) :
-		projectile(file, sizeModifier, Position<float>(0, 0), {0.0}, false, SafeBoolean::f) {}
+	Weapon(const AssetFile & file, float sizeMod) :
+        textureFile(file),
+        sizeModifier(sizeMod),
+		projectile(nullptr) {}
     
-	Weapon(FastRand<unsigned long> & randm, const float sizeModifier, PositionType type) :
-        projectile(AssetFile::projectileImageFilenames->at(randm(0, AssetFile::projectileImageFilenames->size()-1)) , new Position<float>(0, 0), 0.0, sizeModifier, type, false) /* ie not visible, don't monitor velocity */ {}
 	
     Weapon(const Weapon & other) :
+        textureFile(other.textureFile),
+        sizeModifier(other.sizeModifier),
 		projectile(other.projectile) {}
     
     Weapon(Weapon && other) :
-        projectile(std::move(other.projectile)) {}
+        textureFile(std::move(other.textureFile)),
+        sizeModifier(other.sizeModifier),
+        projectile(other.projectile)
+    {
+        other.projectile = nullptr ;
+    }
     
-    ~Weapon() { delete (projectile.getRawMutablePosition()) ;}
+    ~Weapon() { delete projectile ;}
     
 	//Weapon & operator=(const Weapon & rhs) ;
     
 	//Weapon & operator=(Weapon && rhs) ;
 	
-	void fire(const Position<float> startingPos, const Angle & orientation) ;
+	void fire(const Position<float> & startingPos, const Angle & orientation) ;
 	
 };
 

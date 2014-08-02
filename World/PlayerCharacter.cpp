@@ -13,7 +13,7 @@
  */
 PlayerCharacter::PlayerCharacter() :
     Character(),
-    weapon(AssetFile::projectileImageFilenames->at(2), getSize()->getModifier(), outputData.getPositionType()){}
+    weapon(AssetFile::projectileImageFilenames->at(2), getSize()->getModifier()){}
 
 
 /**
@@ -47,7 +47,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
 								 const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
 								 unsigned health, unsigned damage, SafeBoolean monitorVelocity, const AssetFile & projectileImageFile) :
     Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity),
-    weapon(projectileImageFile, getSize()->getModifier(), outputData.getPositionType()) {}
+    weapon(projectileImageFile, getSize()->getModifier()) {}
 
 
 /**
@@ -58,7 +58,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(FastRand<int> rand, AssetType type) :
     Character(rand, type),
-    weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier(), outputData.getPositionType()) {}
+    weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier()) {}
 
 
 /**

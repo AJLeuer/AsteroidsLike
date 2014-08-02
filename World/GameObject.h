@@ -29,6 +29,7 @@
 
 #include "ForwardDecl.h"
 #include "Position.hpp"
+#include "BoundsCheck.hpp"
 #include "GameMap.hpp"
 #include "GameState.hpp"
 #include "GameInterface.h"
@@ -97,21 +98,29 @@ protected:
 	 */
 	Vectr<float> * vec ;
     
+    bool onMap = false ;
+    
 	//Vectr<float> vectr ;
 	
 	const GameObject * ally = nullptr ;
+    
+    void update() ;
+	
+	void markForDeletion() { markedForDeletion = true ; }
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
 	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
 	 */
 	static GameMap<GameObject> * map ;
+    
+    static void placeOnMap(GameObject * obj) ;
+    
+    static void moveOnMap(const Position<float> * toNewLoc, GameObject * obj) ;
+    
+    static void eraseFromMap(GameObject * obj) ;
 	
 	static FastRand<int> goRand ;
-	
-	void update() ;
-	
-	void markForDeletion() { markedForDeletion = true ; }
 	
 	static void checkForMarkedDeletions() ;
 	
@@ -173,7 +182,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	GameObject(FastRand<int> & rand, AssetType type) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(FastRand<int> & rand, AssetType type, bool visible) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	
@@ -325,6 +334,8 @@ public:
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
 	virtual void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>, const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck)) ;
+    
+    void rotateDiff(const Angle & orientation) { outputData.rotateDiff(orientation) ; }
 	
 	/**
 	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,
@@ -365,6 +376,16 @@ public:
 	 * @return This GameObject's vector in 3-D space
 	 */
 	const Vectr<float> * getVector() { return outputData.getVector() ; }
+    
+    /**
+     * @note Use only when no other options are available
+     */
+    Position<float> * getRawMutablePosition() { return & pos ; }
+	
+	/**
+	 * @note Use only when no other options are available
+	 */
+	Vectr<float> * getRawMutableVector() { return outputData.getRawMutableVector() ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

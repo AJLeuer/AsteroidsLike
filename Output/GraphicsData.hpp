@@ -255,12 +255,12 @@ public:
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean tf, const Angle rotation, const float sizeModifier, PositionType type) ;
+	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean tf, const Angle rotation, const float sizeModifier, PositionType type, bool visible) ;
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
 	 */
-	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean tf, AssetType assetType, PositionType posType) ;
+	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean tf, AssetType assetType, PositionType posType, bool visible) ;
 	
 	GraphicsData & copy(const GraphicsData & other) ;
 	
@@ -326,6 +326,8 @@ public:
     
 	void rotateClockwise() ;
     void rotateCounterClockwise() ;
+    
+    void rotateDiff(const Angle & orientation) { vectr.rotateDiff(orientation) ; }
 	
 } ;
 
@@ -365,13 +367,14 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, const Angle rotation, const float sizeModifier, PositionType type) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, const Angle rotation, const float sizeModifier, PositionType type, bool visible) {
 	
 	textureImageFile = file ;
 	texture = nullptr ;
 	position = pos ;
 	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
 	positionType = type ;
+    this->visible = visible ;
 	size.setModifier(sizeModifier) ;
 	
 	update() ;
@@ -380,7 +383,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & fi
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, AssetType assetType, PositionType posType) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, AssetType assetType, PositionType posType, bool visible) {
 	
 	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
 	
@@ -389,6 +392,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & rand
 	position = pos ;
 	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
 	positionType = posType ;
+    this->visible = visible ;
 	size.setModifier(realRand.nextValue(0.75f, 1.5f)) ;
 	
 	update() ;

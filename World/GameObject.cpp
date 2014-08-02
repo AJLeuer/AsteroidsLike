@@ -21,6 +21,27 @@ GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), gl
 
 FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
+void GameObject::placeOnMap(GameObject *obj) {
+    map->place<float>(& (obj->pos), obj) ;
+    obj->onMap = true ;
+}
+
+void GameObject::moveOnMap(const Position<float> * toNewLoc, GameObject * obj) {
+    if (toNewLoc->overBounds(map->mapBounds<float>(), obj->outputData.getSize().getWidth(), obj->outputData.getSize().getHeight()) == false) {
+        map->map_move(& (obj->pos), toNewLoc, obj, obj->onMap) ;
+        obj->onMap = true ;
+    }
+    else if (toNewLoc->overBounds(map->mapBounds<float>(), obj->outputData.getSize().getWidth(), obj->outputData.getSize().getHeight()) == true) {
+        map->erase(&(obj->pos), obj) ;
+        obj->onMap = false ;
+    }
+}
+
+void GameObject::eraseFromMap(GameObject * obj) {
+    map->erase(& (obj->pos), obj) ;
+    obj->onMap = false ;
+}
+
 
 GameObject::GameObject() :
 	ID(IDs),
@@ -30,7 +51,7 @@ GameObject::GameObject() :
 {
 	IDs++ ;
     
-	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition) ;
+	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition, true) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -40,7 +61,7 @@ GameObject::GameObject() :
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	map->place<float>( & pos, this) ;
+    placeOnMap(this) ;
 	outputData.updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
 }
@@ -48,7 +69,8 @@ GameObject::GameObject() :
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     outputData(other.outputData),
-	pos(other.pos)
+	pos(other.pos),
+    onMap(other.onMap)
 {
 	{
 	/* debug */
@@ -69,7 +91,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	map->place<float>(& pos, this) ;
+	placeOnMap(this) ;
 	outputData.updateAndNormalizeVector() ;
 	
 	allGameObjects->push_back(this) ;
@@ -90,7 +112,8 @@ GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
     pos(std::move(other.pos)),
-	vec(other.vec)
+	vec(other.vec),
+    onMap(other.onMap)
 {
 	{
 	/* debug */
@@ -121,7 +144,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 {
 	IDs++ ;
     
-    outputData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition) ;
+    outputData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition, visible) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -131,12 +154,12 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	map->place(& pos, this) ;
+	placeOnMap(this) ;
 	outputData.updateAndNormalizeVector() ;
 	setVisibility(visible) ;
 }
 
-GameObject::GameObject(FastRand<int> & rand, AssetType type) :
+GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
 	outputData(),
 	pos(rand, BoundsCheck<float>::defaultCheck),
@@ -144,7 +167,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 {
 	IDs++ ;
 	
-	outputData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition) ;
+	outputData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition, visible) ;
 
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -154,7 +177,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type) :
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	map->place<float>(& pos, this) ;
+	placeOnMap(this) ;
 	outputData.updateAndNormalizeVector() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
@@ -165,7 +188,7 @@ GameObject::~GameObject() {
 	
 	eraseByID(this->ID) ;
 	
-	map->erase(& pos, this) ;
+	eraseFromMap(this) ;
 
 }
 
@@ -182,15 +205,17 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
 
 		/* Keep ID the same */
-        map->erase(& pos, this) ;
+        eraseFromMap(this) ;
 
         pos = rhs.pos ;
 		
 		outputData.copy(rhs.outputData) ; //give outputdata our new position as well
 		
 		vec = outputData.getRawMutableVector() ;
+        
+        onMap = rhs.onMap ;
 		
-        map->place(& pos, this) ;
+        placeOnMap(this) ;
 		outputData.updateAndNormalizeVector() ;
 	}
 	return *this ;
@@ -213,6 +238,8 @@ GameObject & GameObject::operator=(GameObject && rhs) {
         this->pos = std::move(rhs.pos) ;
 		
 		outputData.moveCopy(std::move(rhs.outputData)) ;
+        
+        onMap = rhs.onMap ;
 		
 		vec = outputData.getRawMutableVector() ;
 		
@@ -265,7 +292,7 @@ void GameObject::eraseByID(unsigned ID) {
 	if (allGameObjects->at(ID)->getID() == ID) {
 		allGameObjects->at(ID) = nullptr ;
 	}
-	else {
+	else { //we have to do it the hard way...
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
 			if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
 				allGameObjects->at(i) = nullptr ;
@@ -297,8 +324,8 @@ void GameObject::textDescription(ostream * writeTo) const {
 }
 
 void GameObject::moveTo(const Position<float> * to) {
-	
-	map->map_move(& pos, to, this) ;
+    
+    moveOnMap(to, this) ;
 
     pos.setAll(*to) ;
 
@@ -442,8 +469,19 @@ void GameObject::wander() {
 	moveTo(std::move(next)) ;
 }
 
+/* This function will really only apply to generic GameObject (like Asteroids and debris, etc.)
+ All other inheriting classes will override this (usually with no-ops) */
 void GameObject::defaultBehaviors() {
-	aiBehaviors() ;
+    
+    static unsigned calls = 0 ;
+    
+    if (calls == 0) {
+        moveRandomDirection() ;
+        update() ;
+    }
+    else if (calls > 0) {
+        aiBehaviors() ;
+    }
 }
 
 void GameObject::aiBehaviors() {

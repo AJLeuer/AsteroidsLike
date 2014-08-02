@@ -453,7 +453,7 @@ public:
 	int getIntX() const { return roundF<N, int>(x) ; }
 
 	/**
-	 * @return z as an integer
+	 * @return y as an integer
 	 */
 	int getIntY() const { return roundF<N, int>(y) ; }
 	
@@ -628,11 +628,11 @@ public:
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) const {
-		if (((this->x + objWidth) >= check->max_X) || ((this->y + objHeight) >= check->max_Y)) {
+	bool overBounds(const BoundsCheck<N> check, N objWidth = 0, N objHeight = 0) const {
+		if (((this->x + objWidth) >= check.max_X) || ((this->y + objHeight) >= check.max_Y)) {
 			return true ;
 		}
-		else if	((this->x < check->min_X) || (this->y < check->min_Y)) {
+		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {
 			return true ;
 		}
 		else {

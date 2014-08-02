@@ -36,6 +36,15 @@ public:
 	
 	BoundsCheck<N>(N min_X_, N max_X_, N min_Y_, N max_Y_) :
 		max_X(max_X_), min_X(min_X_), max_Y(max_Y_), min_Y(min_Y_) {}
+    
+    template<typename M>
+    operator BoundsCheck<M>() {
+        this->min_X = static_cast<M>(min_X) ;
+        this->max_X = static_cast<M>(max_X) ;
+        this->min_Y = static_cast<M>(min_Y) ;
+        this->max_Y = static_cast<M>(max_Y) ;
+        return *this ;
+    }
 	
 	void checkAgainst(N * x) {
 		if (*x > this->max_X) {

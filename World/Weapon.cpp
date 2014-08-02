@@ -9,40 +9,25 @@
 #include "Weapon.h"
 
 
-/*
-Weapon & Weapon::operator=(const Weapon & rhs) {
-    if (this != &rhs) {
-        projectile = rhs.projectile ;
-    }
-    return *this ;
-}
 
-Weapon & Weapon::operator=(Weapon && rhs) {
-    if (this != &rhs) {
-        projectile = std::move(rhs.projectile) ;
-    }
-    return *this ;
-} */
-
-void Weapon::fire(const Position<float> startingPos, const Angle & orientation) {
+void Weapon::fire(const Position<float> & startingPos, const Angle & orientation) {
     
-    Position<float> * pos = projectile.getRawMutablePosition() ; /* dangerous */
+    projectile = new GameObject(textureFile, sizeModifier, startingPos, orientation, true, SafeBoolean::f) ; //current plan is to not actually create the projectile until it's fired
     
-    Vectr<float> * vectr = projectile.getRawMutableVector() ;
-	
-	pos->setAll(startingPos) ; //should update projectile's position as well
+    Position<float> * pos = projectile->getRawMutablePosition() ;
+    Vectr<float> * vectr = projectile->getRawMutableVector() ;
 
-	auto fireL = [this, orientation, vectr, pos] () -> void { /* copies variables by value */
+	auto fireL = [this, pos, vectr, &orientation] () -> void { /* copies variables by value */
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
 		 Move projectile to our current spot */
-		projectile.setVisibility(true) ;
+		projectile->setVisibility(true) ;
 		
 		/* rotate our vector by the given angle */
 		vectr->rotateDiff(orientation) ;
 		
-		while ((projectile.getPosition().overBounds(&BoundsCheck<float>::defaultCheck)) == false) {
+		while ((pos->overBounds(BoundsCheck<float>::defaultCheck)) == false) {
 			*pos += *vectr ;
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}

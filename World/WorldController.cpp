@@ -67,18 +67,6 @@ void WorldController::main() {
 	
 	auto * rt = &refreshTime ; //debug symbol
     
-    /* start the gameobjects moving */
-    for (auto i = 0 ; i < gameObjects->size() ; i++) {
-        if (gameObjects->at(i) != nullptr) {
-            gameObjects->at(i)->moveRandomDirection();
-            
-            /* do any other stuff with GameObjects */
-            
-            /* always call update at the end */
-            gameObjects->at(i)->update() ;
-        }
-    }
-	
 	bool * cont = &GLOBAL_CONTINUE_FLAG ; //debug variable - rm
 	
 	while (GLOBAL_CONTINUE_FLAG) {
