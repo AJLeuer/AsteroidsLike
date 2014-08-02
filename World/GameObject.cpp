@@ -38,8 +38,13 @@ void GameObject::moveOnMap(const Position<float> * toNewLoc, GameObject * obj) {
 }
 
 void GameObject::eraseFromMap(GameObject * obj) {
-    map->erase(& (obj->pos), obj) ;
-    obj->onMap = false ;
+    if (obj->onMap == true) {
+        map->erase(& (obj->pos), obj) ;
+        obj->onMap = false ;
+    }
+    else {
+        /* moveOnMap() probably already removed it, so no need to do anything */
+    }
 }
 
 
@@ -482,6 +487,8 @@ void GameObject::defaultBehaviors() {
     else if (calls > 0) {
         aiBehaviors() ;
     }
+    
+    calls++ ;
 }
 
 void GameObject::aiBehaviors() {

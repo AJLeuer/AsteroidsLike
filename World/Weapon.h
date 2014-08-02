@@ -16,6 +16,15 @@
 #include "GameObject.h"
 
 
+class Projectile : public GameObject {
+    using GameObject::GameObject ;
+    
+    void defaultBehaviors() override {
+        /* do nothing */ ;
+    }
+};
+
+
 class Weapon {
 	
 protected:
@@ -27,7 +36,7 @@ protected:
      * A simple sprite that will only be drawn onscreen immediately after the
      * weapon fires
      */
-	GameObject * projectile ;
+	Projectile * projectile ;
 	
 public:
 	
@@ -50,7 +59,7 @@ public:
         other.projectile = nullptr ;
     }
     
-    ~Weapon() { delete projectile ;}
+    ~Weapon() { /* projectile deleted at end of fire(), don't call it here */ }
     
 	//Weapon & operator=(const Weapon & rhs) ;
     

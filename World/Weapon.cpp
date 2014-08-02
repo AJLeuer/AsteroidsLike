@@ -12,12 +12,12 @@
 
 void Weapon::fire(const Position<float> & startingPos, const Angle & orientation) {
     
-    projectile = new GameObject(textureFile, sizeModifier, startingPos, orientation, true, SafeBoolean::f) ; //current plan is to not actually create the projectile until it's fired
+    projectile = new Projectile(textureFile, sizeModifier, startingPos, orientation, true, SafeBoolean::f) ; //current plan is to not actually create the projectile until it's fired
     
     Position<float> * pos = projectile->getRawMutablePosition() ;
     Vectr<float> * vectr = projectile->getRawMutableVector() ;
 
-	auto fireL = [this, pos, vectr, &orientation] () -> void { /* copies variables by value */
+	auto fireL = [this, pos, vectr, orientation] () -> void { /* copies variables by value */
 		
 		/* copy projectile to make a new projectile */
 		/* projectile will start out in a completely wrong spot. We need to move it before drawing it onscreen.
@@ -31,6 +31,7 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 			*pos += *vectr ;
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}
+        projectile->markForDeletion() ;
 	} ;
 	
 	thread thr(fireL) ;

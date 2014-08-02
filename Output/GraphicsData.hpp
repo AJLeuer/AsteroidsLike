@@ -48,6 +48,8 @@ struct GraphicsData {
 protected:
 	
 	static vector<GraphicsData *> allOutputData ;
+    
+    static BasicMutex gdMutex ;
 	
 	bool initFlag = true ;
 	
@@ -201,9 +203,11 @@ public:
     
 	
 	~GraphicsData() {
+        gdMutex.lock() ;
         if (texture != nullptr) {
 			texturesToDestroy.push_back(texture) ;
         }
+        gdMutex.unlock() ;
     }
 	
 	GraphicsData & operator=(const GraphicsData & rhs) = delete ;
@@ -335,6 +339,9 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allOutputData ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
+BasicMutex GraphicsData<POSUTYPE, SIZEUTYPE>::gdMutex ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
 vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() {
 	return & allOutputData ;
 }
@@ -356,13 +363,16 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	auto * od =  & allOutputData ; /* temp debug var */
 	
 	for (auto i = 0 ; i < GraphicsData::allOutputData.size() ; i++) {
-		
+		gdMutex.lock() ;
 		GraphicsData * out = allOutputData.at(i) ; /* temp debug var */
 		
-		if (allOutputData.at(i)->initFlag) {
+		if ((allOutputData.at(i) != nullptr) && (allOutputData.at(i)->initFlag)) {
 			allOutputData.at(i)->completeInitialization() ;
 		}
-		allOutputData.at(i)->update() ;
+        if (allOutputData.at(i) != nullptr) {
+            allOutputData.at(i)->update() ;
+        }
+        gdMutex.unlock() ;
 	}
 }
 

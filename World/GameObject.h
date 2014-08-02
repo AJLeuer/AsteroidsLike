@@ -128,6 +128,8 @@ protected:
 	 * Erases the GameObject pointer matching the given ID from the allGameObjects container.
 	 */
 	static void eraseByID(unsigned ID) ;
+    
+    friend class Weapon ;
 	
 
 public:
