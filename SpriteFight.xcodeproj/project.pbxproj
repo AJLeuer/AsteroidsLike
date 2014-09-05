@@ -62,6 +62,7 @@
 		6605EE101964D38E0028013B /* PlayerCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCharacter.cpp; sourceTree = "<group>"; };
 		6617B184190D725C004B442B /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = AssetFileIO.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6617B185190D725C004B442B /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AssetFileIO.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		661D845A19B9BDE900018559 /* SpriteFight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpriteFight; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D9E6C18FF763A003A6EE0 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Util.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		662D9E6E18FF90C7003A6EE0 /* MainController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = MainController.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		662D9E6F18FF90C7003A6EE0 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MainController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -104,7 +105,6 @@
 		66E2BC51195DA7E600287A08 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Configuration.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E3235A19327C28005A1144 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Configuration.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		66E97F2E18CF009E002EFA00 /* SpriteFight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpriteFight; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66E97F3B18CF012F002EFA00 /* GameInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameInterface.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E97F3D18CF02B8002EFA00 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GameObject.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -137,6 +137,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		661D845B19B9BDE900018559 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				661D845A19B9BDE900018559 /* SpriteFight */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		666D354919022C3000A615D5 /* Output */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,18 +222,9 @@
 				666D354919022C3000A615D5 /* Output */,
 				66E97F3018CF009E002EFA00 /* World */,
 				666F1C07190A2C1F0004B793 /* Control */,
-				66E97F2F18CF009E002EFA00 /* Products */,
+				661D845B19B9BDE900018559 /* Products */,
 			);
 			sourceTree = "<group>";
-		};
-		66E97F2F18CF009E002EFA00 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				66E97F2E18CF009E002EFA00 /* SpriteFight */,
-			);
-			name = Products;
-			path = "/Users/aleuer2/Library/Developer/Xcode/DerivedData/SpriteFight-cluzsmcncqefdkgvozqdpflcfkea/Build/Products/Debug";
-			sourceTree = "<absolute>";
 		};
 		66E97F3018CF009E002EFA00 /* World */ = {
 			isa = PBXGroup;
@@ -276,7 +275,7 @@
 			);
 			name = SpriteFight;
 			productName = GameWorld;
-			productReference = 66E97F2E18CF009E002EFA00 /* SpriteFight */;
+			productReference = 661D845A19B9BDE900018559 /* SpriteFight */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -296,7 +295,7 @@
 				en,
 			);
 			mainGroup = 66E97F2518CF009E002EFA00;
-			productRefGroup = 66E97F2F18CF009E002EFA00 /* Products */;
+			productRefGroup = 661D845B19B9BDE900018559 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -375,6 +374,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -448,6 +448,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -509,7 +510,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"~/Library/Frameworks",
-					/Users/aleuer2/Library/Frameworks,
 					"$(SYSTEM_APPS_DIR)/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -534,7 +534,6 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 					"~/Library/Frameworks",
-					/Users/aleuer2/Library/Frameworks,
 					"$(SYSTEM_APPS_DIR)/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;

@@ -472,7 +472,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 			stringstream ss ;
 			ss << "Load texture failed." << '\n' ;
 			ss << SDL_GetError() << '\n' ;
-			cerr << ss.rdbuf() ;
+			DebugOutput << ss.rdbuf() ;
 			throw exception() ;
 		}
 		
