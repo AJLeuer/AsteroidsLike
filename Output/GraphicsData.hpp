@@ -56,6 +56,8 @@ protected:
 	bool visible = true ;
     
 	bool visibility_was_updated = false ;
+    
+    bool boundsChecking = true ;
 	
 	PositionType positionType ;
 	
@@ -128,39 +130,42 @@ public:
         allOutputData.push_back(this) ;
     }
 	
-	GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true) :
+	GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
         size(), /* can't be initialized yet */
 		positionType(type),
-		visible(visible)
+		visible(visible),
+        boundsChecking(boundsChecking)
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
 		allOutputData.push_back(this) ;
 	}
 	
-	GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true) :
+	GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
         size(),
 		positionType(type),
-		visible(visible)
+		visible(visible),
+        boundsChecking(boundsChecking)
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
 		allOutputData.push_back(this) ;
     }
     
-    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true) :
+    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, bool boundsChecking = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
         size(),
 		positionType(posType),
-		visible(visible)
+		visible(visible),
+        boundsChecking(boundsChecking)
     {
         /* init flag is true */
 		FastRand<float> sizeInit(0.75, 1.5) ;
@@ -177,7 +182,8 @@ public:
 		position_lastRecordedValue(other.position_lastRecordedValue),
 		size_lastRecordedValue(other.size_lastRecordedValue),
 		positionType(other.positionType),
-		visible(other.visible)
+		visible(other.visible),
+        boundsChecking(other.boundsChecking)
     {
 		//init flag is true
 		allOutputData.push_back(this) ;
@@ -193,7 +199,8 @@ public:
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),
 		positionType(other.positionType),
-		visible(other.visible)
+		visible(other.visible),
+        boundsChecking(other.boundsChecking)
     {
         other.texture = nullptr ;
         other.position = nullptr ;
@@ -311,7 +318,7 @@ public:
 	
 	PositionType getPositionType() const { return positionType ; }
 	
-	void modifyOrientation(const Angle & angleOffset) { vectr.setOrientation(angleOffset) ; }
+	void modifyOrientation(const Angle & angleOffset) { vectr.modifyOrientation(angleOffset) ; }
 	
 	void overrideCurrentOrientation(const Angle & newAngle) { vectr.overrideCurrentOrientation(newAngle) ; }
 	
@@ -325,6 +332,9 @@ public:
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
+    
+    void setBoundsChecking(bool bc) { boundsChecking = bc ; }
+    bool isBoundsChecked() const { return boundsChecking ; }
 	
 	void updateAndNormalizeVector() { vectr.updateAndNormalize() ; }
     

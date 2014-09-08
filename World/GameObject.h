@@ -313,7 +313,7 @@ public:
 	 * Vectr of its last move
 	 *
 	 */
-	void move() ;
+    void move() ;
 	
     size_t archivedPositionsCount() { return pos.archivedPositionsCount() ; }
     

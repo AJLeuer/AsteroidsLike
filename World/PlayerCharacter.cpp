@@ -122,7 +122,7 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	
 	*vec += newDirection ;
 	
-	printPositition() ;
+	printPositition() ; /* Debug code */
 	
 	/* have to use this until we find a better way to stop moving more than once per loop */
 	/* if moveFlag == true, then we've already been instructed to move this loop, so we don't need to

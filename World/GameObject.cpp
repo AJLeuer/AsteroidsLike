@@ -410,25 +410,14 @@ void GameObject::move() {
     float distanceModifier = defaultMoveDistance<float> ;
     const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
 	
-    vec->normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
-	
-	if (bc != nullptr) {
-		if (next.overXBounds(bc)) {
-			next.setX(pos.getX()) ;
-		}
-		if (next.overYBounds(bc)) {
-			next.setY(pos.getY()) ;
-		}
-	}
-	moveTo(next) ;
+    move(distanceModifier, bc) ;
 }
 
 void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
 	vec->normalize() ;
 	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
 	
-	if (bc != nullptr) {
+	if ((bc != nullptr) && (outputData.isBoundsChecked())) {
 		if (next.overXBounds(bc)) {
 			next.setX(pos.getX()) ;
 		}

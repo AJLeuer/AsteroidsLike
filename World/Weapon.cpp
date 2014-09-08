@@ -22,12 +22,16 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 	vectr.rotateDiff(orientation) ;
 
 	auto fireL = [this, pos, vectr, orientation] () mutable -> void { /* copies variables by value */
+        
+        //projectile->outputData.setBoundsChecking(false) ;
+        
+        projectile->outputData.overrideCurrentOrientation(orientation) ;
 		
 		projectile->moveTo(pos) ;
 		
 		projectile->moveNewDirection(vectr) ;
 		
-		projectile->setVisibility(true) ;
+		projectile->setVisibility(true) ; //set to visible only after we've moved it into the correct position
 		
 		while ((pos->overBounds(BoundsCheck<float>::defaultCheck)) == false) {
 			projectile->move() ;

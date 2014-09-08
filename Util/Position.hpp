@@ -153,9 +153,8 @@ public:
 
 
 /**
- * Position<> is a simple vector type with the useful feature of storing all its previous states,
- * back through time. Thus an object using Position to store location information will be able to
- * retrace its steps.
+ * Position<> is a simple vector data type.
+ *
  * Note: Classes with a Position data member will typically want to have a pointer,
  * instead of holding the Position locally. This is because many objects in the World
  * may not actually have a physcical Position in space, in which case they can just hold a
@@ -696,8 +695,9 @@ protected:
 	 * Saves our current state
 	 */
 	void archive() {
-		
-		if (timeFlow == TimeFlow::forward) { /* only archive while moving forward in time */
+        //currently causing all kinds of bugs, commenting this out until time to fix
+		/*
+		if (timeFlow == TimeFlow::forward) { //only archive while moving forward in time
             chrono::nanoseconds time = timer.checkTimeElapsed() ;
 			timer.reset() ; //reset the timer to zero
             
@@ -708,6 +708,7 @@ protected:
 			}
 			pastPositions->push_back({archived, time}) ;
 		}
+        */
 	}
 
 public:
@@ -1175,7 +1176,7 @@ public:
 
 
 /**
- * This class provides facilities for calculating an object's current trajectory,
+ * This class provides facilities for storing an object's current vector,
  * predicting its next Position, monitoring its speed, maintaining a record of its
  * last two Positions (for more detailed record keeping of past Positions, see Pos2),
  * and more.
@@ -1263,6 +1264,8 @@ public:
 	const Angle * getOrientation() const { return & currentRotation ; }
 	
 	Angle copyOrientation() const { return currentRotation ; }
+    
+    void modifyOrientation(const Angle & angleOffset) { currentRotation += angleOffset ; }
 	
 	void overrideCurrentOrientation(const Angle & newAngle) { currentRotation = newAngle; }
 	
