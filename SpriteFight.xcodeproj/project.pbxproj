@@ -24,7 +24,6 @@
 		664BFFB8193A0730008F4CD1 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664BFFB7193A0730008F4CD1 /* Input.cpp */; };
 		6652B7F119610BE700243106 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F019610BE700243106 /* Timer.cpp */; };
 		6652B7F519615A0600243106 /* Velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6652B7F419615A0600243106 /* Velocity.cpp */; };
-		6664BC711988BE620050F30A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6664BC701988BE620050F30A /* AppKit.framework */; };
 		6664BC731988D01B0050F30A /* GraphicsData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6664BC721988D01B0050F30A /* GraphicsData.cpp */; };
 		6684DDA9195FC8AA00E6B997 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDA8195FC8AA00E6B997 /* DisplayData.mm */; };
 		6684DDAD195FE24000E6B997 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6684DDAC195FE24000E6B997 /* DisplayData.cpp */; };
@@ -35,6 +34,7 @@
 		669F0B66196BFB6B007CF4D4 /* User Configuration in Resources */ = {isa = PBXBuildFile; fileRef = 669F0B65196BFB6B007CF4D4 /* User Configuration */; };
 		66AAC12E197F226700D7C5C4 /* GameRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66AAC12D197F226700D7C5C4 /* GameRandom.cpp */; };
 		66E3235B19327C28005A1144 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E3235A19327C28005A1144 /* Configuration.cpp */; };
+		66E3FBD719BDAE040044245E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E3FBD519BDAD3F0044245E /* AppKit.framework */; };
 		66E97F3218CF009E002EFA00 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3118CF009E002EFA00 /* main.cpp */; };
 		66E97F3F18CF02B8002EFA00 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F3D18CF02B8002EFA00 /* GameObject.cpp */; };
 		66E97F4218CF032B002EFA00 /* WorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E97F4018CF032B002EFA00 /* WorldController.cpp */; };
@@ -84,7 +84,6 @@
 		665E4730192FC38800738F85 /* Util2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Util2.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		665F49BD195E979400B21A27 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		665F49BE195EC34C00B21A27 /* About */ = {isa = PBXFileReference; lastKnownFileType = folder; path = About; sourceTree = "<group>"; };
-		6664BC701988BE620050F30A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../Applications/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = "<group>"; };
 		6664BC721988D01B0050F30A /* GraphicsData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsData.cpp; sourceTree = "<group>"; };
 		667878FF18DACE9000618712 /* Util.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; lineEnding = 0; path = Util.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6678790118DAE25E00618712 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		66E2BC51195DA7E600287A08 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		66E3235619327761005A1144 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Configuration.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E3235A19327C28005A1144 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Configuration.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		66E3FBD519BDAD3F0044245E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		66E97F3118CF009E002EFA00 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66E97F3B18CF012F002EFA00 /* GameInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameInterface.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E97F3D18CF02B8002EFA00 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GameObject.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -127,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6664BC711988BE620050F30A /* AppKit.framework in Frameworks */,
+				66E3FBD719BDAE040044245E /* AppKit.framework in Frameworks */,
 				1EEEAAAD19831188004DA274 /* SDL2.framework in Frameworks */,
 				1EC13457196E3D5B000DC02C /* SDL2_ttf.framework in Frameworks */,
 				1EC13455196E3D54000DC02C /* SDL2_image.framework in Frameworks */,
@@ -210,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				66E2BC51195DA7E600287A08 /* README.md */,
-				6664BC701988BE620050F30A /* AppKit.framework */,
+				66E3FBD519BDAD3F0044245E /* AppKit.framework */,
 				1EEEAAAC19831188004DA274 /* SDL2.framework */,
 				1EC13454196E3D54000DC02C /* SDL2_image.framework */,
 				1EC13456196E3D5B000DC02C /* SDL2_ttf.framework */,
@@ -385,7 +385,7 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
