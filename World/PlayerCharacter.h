@@ -130,7 +130,7 @@ public:
 	 * but overridden to ensure the player cannot move more than once
 	 * each time through the game loop
 	 */
-	void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>, const BoundsCheck<float> * bc = nullptr) override ;
+	void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>) override ;
 	
 	/**
 	 * Overidden to ensure this has no functionality

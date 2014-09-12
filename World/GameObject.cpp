@@ -24,13 +24,13 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	outputData(), /* can't be properly initialized yet */
+	graphicsData(), /* can't be properly initialized yet */
 	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck),
-	vec(outputData.getRawMutableVector())
+	vec(graphicsData.getRawMutableVector())
 {
 	IDs++ ;
     
-	outputData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition, true) ;
+	graphicsData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition, true) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -41,13 +41,13 @@ GameObject::GameObject() :
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
     placeOnMap() ;
-	outputData.updateAndNormalizeVector() ;
+	graphicsData.updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
 }
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
-    outputData(other.outputData),
+    graphicsData(other.graphicsData),
 	pos(other.pos),
     onMap(other.onMap)
 {
@@ -62,7 +62,7 @@ GameObject::GameObject(const GameObject & other) :
 	
 	IDs++ ;
 	
-	vec = outputData.getRawMutableVector() ;
+	vec = graphicsData.getRawMutableVector() ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -71,7 +71,7 @@ GameObject::GameObject(const GameObject & other) :
 	
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	outputData.updateAndNormalizeVector() ;
+	graphicsData.updateAndNormalizeVector() ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -89,7 +89,7 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
-    outputData(std::move(other.outputData)), /* No initGraphicsData() for move operations, just steal from other */
+    graphicsData(std::move(other.graphicsData)), /* No initGraphicsData() for move operations, just steal from other */
     pos(std::move(other.pos)),
 	vec(other.vec),
     onMap(other.onMap)
@@ -117,13 +117,13 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity) :
 	ID(IDs),
-	outputData(), /* can't be properly initialized yet */
+	graphicsData(), /* can't be properly initialized yet */
 	pos(loc_, BoundsCheck<float>::defaultCheck),
-	vec(outputData.getRawMutableVector())
+	vec(graphicsData.getRawMutableVector())
 {
 	IDs++ ;
     
-    outputData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition, visible) ;
+    graphicsData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition, visible) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -134,19 +134,19 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	outputData.updateAndNormalizeVector() ;
+	graphicsData.updateAndNormalizeVector() ;
 	setVisibility(visible) ;
 }
 
 GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-	outputData(),
+	graphicsData(),
 	pos(rand, BoundsCheck<float>::defaultCheck),
-	vec(outputData.getRawMutableVector())
+	vec(graphicsData.getRawMutableVector())
 {
 	IDs++ ;
 	
-	outputData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition, visible) ;
+	graphicsData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition, visible) ;
 
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -157,7 +157,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	outputData.updateAndNormalizeVector() ;
+	graphicsData.updateAndNormalizeVector() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
 }
@@ -189,14 +189,14 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 
         pos = rhs.pos ;
 		
-		outputData.copy(rhs.outputData) ; //give outputdata our new position as well
+		graphicsData.copy(rhs.graphicsData) ; //give outputdata our new position as well
 		
-		vec = outputData.getRawMutableVector() ;
+		vec = graphicsData.getRawMutableVector() ;
         
         onMap = rhs.onMap ;
 		
         placeOnMap() ;
-		outputData.updateAndNormalizeVector() ;
+		graphicsData.updateAndNormalizeVector() ;
 	}
 	return *this ;
 }
@@ -217,11 +217,11 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
         this->pos = std::move(rhs.pos) ;
 		
-		outputData.moveCopy(std::move(rhs.outputData)) ;
+		graphicsData.moveCopy(std::move(rhs.graphicsData)) ;
         
         onMap = rhs.onMap ;
 		
-		vec = outputData.getRawMutableVector() ;
+		vec = graphicsData.getRawMutableVector() ;
 		
 		rhs.vec = nullptr ;
 		rhs.ID = -1 ;
@@ -256,11 +256,13 @@ bool GameObject::operator==(const GameObject & other) const {
 }
 
 void GameObject::checkForMarkedDeletions() { //will run on own thread
+    unsigned objectsDeleted = 0 ; //debug var, remove this
 	while (GLOBAL_CONTINUE_FLAG) {
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->markedForDeletion)) {
+			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->isMarkedForDeletion())) {
 				delete allGameObjects->at(i) ;
 				allGameObjects->at(i) = nullptr ;
+                objectsDeleted++ ;
 			}
 		}
 		this_thread::sleep_for(defaultSleepTime) ;
@@ -309,7 +311,7 @@ void GameObject::placeOnMap() {
 }
 
 void GameObject::moveOnMap(const Position<float> * toNewLoc) {
-    if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), outputData.getSize().getWidth(), outputData.getSize().getHeight()) == false)) {
+    if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), graphicsData.getSize().getWidth(), graphicsData.getSize().getHeight()) == false)) {
         map->map_move(& pos, toNewLoc, this, onMap) ;
         onMap = true ;
     }
@@ -318,7 +320,6 @@ void GameObject::moveOnMap(const Position<float> * toNewLoc) {
     }
     else { //if it's moved off the map, mark it as such
         eraseFromMap() ;
-        markForDeletion() ;
     }
 }
 
@@ -329,13 +330,45 @@ void GameObject::eraseFromMap() {
     }
 }
 
-void GameObject::moveTo(const Position<float> * to) {
+void GameObject::move() {
+    float distanceModifier = defaultMoveDistance<float> ;
+    move(distanceModifier) ;
+}
+
+void GameObject::move(float distanceModifier) {
+    vec->normalize() ;
+    /* Automatically find our next move based on our current vector */
+    Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
+    moveTo(next) ;
+}
+
+
+void GameObject::moveTo(Position<float> to) {
+    moveTo(&to) ;
+}
+
+void GameObject::moveTo(Position<float> * to) {
     
+    /* If this object is bounds checked, do bounds checking */
+    const BoundsCheck<float> * bc = graphicsData.getBoundsCheck() ;
+    
+    if (graphicsData.isBoundsChecked()) { //isBoundsChecked() will also check to make sure bc isn't null
+        if (to->overXBounds(bc)) {
+            to->setX(pos.getX()) ;
+        }
+        if (to->overYBounds(bc)) {
+            to->setY(pos.getY()) ;
+        }
+    }
+    
+    /* then move the map representation of us */
     moveOnMap(to) ;
 
+    /* next update our current position */
     pos.setAll(*to) ;
-
-	outputData.updateAndNormalizeVector() ;
+    
+    /* Finally update and normalize the vector */
+	graphicsData.updateAndNormalizeVector() ;
 	
 	{
 	/* Debug code */
@@ -344,10 +377,6 @@ void GameObject::moveTo(const Position<float> * to) {
 	DebugOutput << ss.rdbuf() ;
 	/* end debug */
 	}
-}
-
-void GameObject::moveTo(const Position<float> to) {
-	moveTo(&to) ;
 }
 
 void GameObject::moveUp() {
@@ -371,7 +400,7 @@ void GameObject::moveUp() {
 }
 
 void GameObject::orientationDependentLeftRightMove() {
-    if ((outputData.getOrientation()->val_const() >= 270) || (outputData.getOrientation()->val_const() <= 90)) {
+    if ((graphicsData.getOrientation()->val_const() >= 270) || (graphicsData.getOrientation()->val_const() <= 90)) {
         moveLeft() ;
     }
     else { /* if > 90 and  < 270... */
@@ -380,7 +409,7 @@ void GameObject::orientationDependentLeftRightMove() {
 }
 
 void GameObject::orientationDependentRightLeftMove() {
-    if ((outputData.getOrientation()->val_const() >= 270) || (outputData.getOrientation()->val_const() <= 90)) {
+    if ((graphicsData.getOrientation()->val_const() >= 270) || (graphicsData.getOrientation()->val_const() <= 90)) {
         moveRight() ;
     }
     else { /* if > 90 and  < 270... */
@@ -407,35 +436,13 @@ void GameObject::jump() {
 	moveTo(std::move(next)) ;
 }
 
-void GameObject::move() {
-    float distanceModifier = defaultMoveDistance<float> ;
-    const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
-	
-    move(distanceModifier, bc) ;
-}
-
-void GameObject::move(float distanceModifier, const BoundsCheck<float> * bc) {
-	vec->normalize() ;
-	Position<float> next = Vectr<float>::calculateNextPosition(*vec, distanceModifier) ;
-	
-	if ((bc != nullptr) && (outputData.isBoundsChecked())) {
-		if (next.overXBounds(bc)) {
-			next.setX(pos.getX()) ;
-		}
-		if (next.overYBounds(bc)) {
-			next.setY(pos.getY()) ;
-		}
-	}
-	moveTo(next) ;
-}
-
 PastPositionAndTimeDifferential GameObject::getReverseMove() {
     PastPositionAndTimeDifferential lastPos = pos.popLastArchivedPosition();
     return lastPos ;
 	/* else do nothing, just stay frozen in place */
 }
 
-void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
+void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceModifier) {
 
 	newDirection.normalize() ;
 	
@@ -443,7 +450,7 @@ void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceMod
 
     *vec += newDirection ;
 	
-	move(distanceModifier, bc) ;
+	move(distanceModifier) ;
 }
 
 void GameObject::wander() {
@@ -506,15 +513,15 @@ void GameObject::allyWith(const GameObject * other) {
 }
 
 void GameObject::setImageFile(string imageFileName) {
-	outputData.setAssetFile(imageFileName) ;
+	graphicsData.setAssetFile(imageFileName) ;
 }
 
 const AssetFile * GameObject::getImageFile() const {
-	return outputData.getAssetFile() ;
+	return graphicsData.getAssetFile() ;
 }
 
 Texture * GameObject::getTexture() const {
-	return outputData.getTexture() ;
+	return graphicsData.getTexture() ;
 }
 
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {

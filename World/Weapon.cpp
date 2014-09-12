@@ -23,10 +23,10 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 
 	auto fireL = [this, pos, vectr, orientation] () mutable -> void { /* copies variables by value */
         
-        //projectile->outputData.setBoundsChecking(false) ;
+        projectile->graphicsData.setBoundsChecking(false) ;
         
-        projectile->outputData.overrideCurrentOrientation(orientation) ;
-		
+        projectile->graphicsData.overrideCurrentOrientation(orientation) ;
+        
 		projectile->moveTo(pos) ;
 		
 		projectile->moveNewDirection(vectr) ;
@@ -38,7 +38,7 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 			this_thread::sleep_for(std::chrono::microseconds(250)) ;
 		}
 		
-	projectile->markForDeletion() ;
+        projectile->markForDeletion() ;
 		
 	} ;
 	

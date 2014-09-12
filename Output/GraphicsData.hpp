@@ -47,9 +47,9 @@ struct GraphicsData {
 	
 protected:
 	
-	static vector<GraphicsData *> allOutputData ;
+	static vector<GraphicsData *> allGraphicsData ;
     
-    static BasicMutex gdMutex ;
+    /*static*/ BasicMutex gdMutex ;
 	
 	bool initFlag = true ;
 	
@@ -58,6 +58,12 @@ protected:
 	bool visibility_was_updated = false ;
     
     bool boundsChecking = true ;
+    
+    /**
+     * A BoundsCheck object that can serve to perform bounds checking when
+     * an object is moved around the screen or in the world
+     */
+    const BoundsCheck<float> * bc = &(BoundsCheck<float>::defaultCheck) ;
 	
 	PositionType positionType ;
 	
@@ -127,7 +133,7 @@ public:
         size(), /* can't be initialized yet */
         positionType(PositionType::null)
     {
-        allOutputData.push_back(this) ;
+        allGraphicsData.push_back(this) ;
     }
 	
 	GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
@@ -141,7 +147,7 @@ public:
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
-		allOutputData.push_back(this) ;
+		allGraphicsData.push_back(this) ;
 	}
 	
 	GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
@@ -155,7 +161,7 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
-		allOutputData.push_back(this) ;
+		allGraphicsData.push_back(this) ;
     }
     
     GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, bool boundsChecking = true) :
@@ -170,7 +176,7 @@ public:
         /* init flag is true */
 		FastRand<float> sizeInit(0.75, 1.5) ;
 		size.setModifier(sizeInit()) ;
-		allOutputData.push_back(this) ;
+		allGraphicsData.push_back(this) ;
     }
 	
     GraphicsData(const GraphicsData & other) :
@@ -183,10 +189,11 @@ public:
 		size_lastRecordedValue(other.size_lastRecordedValue),
 		positionType(other.positionType),
 		visible(other.visible),
-        boundsChecking(other.boundsChecking)
+        boundsChecking(other.boundsChecking),
+        bc(other.bc)
     {
 		//init flag is true
-		allOutputData.push_back(this) ;
+		allGraphicsData.push_back(this) ;
     }
 	
     GraphicsData(GraphicsData && other) :
@@ -200,12 +207,14 @@ public:
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),
 		positionType(other.positionType),
 		visible(other.visible),
-        boundsChecking(other.boundsChecking)
+        boundsChecking(other.boundsChecking),
+        bc(other.bc)
     {
         other.texture = nullptr ;
         other.position = nullptr ;
+        other.bc = nullptr ;
 	
-		allOutputData.push_back(this) ;
+		allGraphicsData.push_back(this) ;
     }
     
 	
@@ -317,7 +326,7 @@ public:
 	const Position<POSUTYPE> * getPosition_raw() const { return position ; }
 	
 	PositionType getPositionType() const { return positionType ; }
-	
+    
 	void modifyOrientation(const Angle & angleOffset) { vectr.modifyOrientation(angleOffset) ; }
 	
 	void overrideCurrentOrientation(const Angle & newAngle) { vectr.overrideCurrentOrientation(newAngle) ; }
@@ -334,8 +343,11 @@ public:
 	bool isVisible() const { return visible ; }
     
     void setBoundsChecking(bool bc) { boundsChecking = bc ; }
-    bool isBoundsChecked() const { return boundsChecking ; }
-	
+    bool isBoundsChecked() const { return ((boundsChecking) && (bc != nullptr)) ; }
+    
+    const BoundsCheck<float> * getBoundsCheck() const { return bc ; }
+    void setBoundsCheck(BoundsCheck<float> * b) { bc = b ; }
+
 	void updateAndNormalizeVector() { vectr.updateAndNormalize() ; }
     
 	void rotateClockwise() ;
@@ -346,14 +358,15 @@ public:
 } ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allOutputData ;
+vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allGraphicsData ;
 
+/*
 template<typename POSUTYPE, typename SIZEUTYPE>
-BasicMutex GraphicsData<POSUTYPE, SIZEUTYPE>::gdMutex ;
+BasicMutex GraphicsData<POSUTYPE, SIZEUTYPE>::gdMutex ; */
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() {
-	return & allOutputData ;
+	return & allGraphicsData ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -370,19 +383,21 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	/* End Debug code */
 	}
 	
-	auto * od =  & allOutputData ; /* temp debug var */
+	auto * od =  & allGraphicsData ; /* temp debug var */
 	
-	for (auto i = 0 ; i < GraphicsData::allOutputData.size() ; i++) {
-		gdMutex.lock() ;
-		GraphicsData * out = allOutputData.at(i) ; /* temp debug var */
+	for (auto i = 0 ; i < GraphicsData::allGraphicsData.size() ; i++) {
 		
-		if ((allOutputData.at(i) != nullptr) && (allOutputData.at(i)->initFlag)) {
-			allOutputData.at(i)->completeInitialization() ;
+		GraphicsData * out = allGraphicsData.at(i) ; /* temp debug var */
+        
+        allGraphicsData.at(i)->gdMutex.lock() ;
+        
+		if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
+			allGraphicsData.at(i)->completeInitialization() ;
 		}
-        if (allOutputData.at(i) != nullptr) {
-            allOutputData.at(i)->update() ;
+        if (allGraphicsData.at(i) != nullptr) {
+            allGraphicsData.at(i)->update() ;
         }
-        gdMutex.unlock() ;
+        allGraphicsData.at(i)->gdMutex.unlock() ;
 	}
 }
 
@@ -435,6 +450,8 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Position object
     positionType = other.positionType ; //pointed to by position, will have updated it's position to the copy argument's position's values,
 										//so we don't need to worry about that
+    bc = other.bc ;
+
 	return *this ;
 }
 

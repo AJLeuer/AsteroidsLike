@@ -99,7 +99,7 @@ void GraphicalOutput::init() {
 
 void GraphicalOutput::render() {
 	
-	auto outputData = GraphicsData<float, int>::getOutputData() ; //debug variable, delete this
+	auto gData = GraphicsData<float, int>::getOutputData() ; //debug variable, delete this
 	
 	for (auto i = 0 ; i < GraphicsData<float, int>::getOutputData()->size() ; i++) {
 		render(GraphicsData<float, int>::getOutputData()->at(i)) ;

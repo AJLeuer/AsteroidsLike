@@ -114,7 +114,7 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distanceModifier, const BoundsCheck<float> * bc) {
+void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distanceModifier) {
 	
 	newDirection.normalize() ;
 	
@@ -145,7 +145,7 @@ void PlayerCharacter::fire() {
 	
 	Position<float> gunPos { gunX, gunY} ;
 	
-    weapon.fire(gunPos, *outputData.getOrientation()) ;
+    weapon.fire(gunPos, *graphicsData.getOrientation()) ;
 }
 
 
@@ -187,7 +187,7 @@ void PlayerCharacter::textDescription(ostream * writeTo) const {
 }
 
 void PlayerCharacter::printPositition() {
-	Vectr<float> * vec = outputData.getRawMutableVector() ;
+	Vectr<float> * vec = graphicsData.getRawMutableVector() ;
 	if (*vec->getCurrent() != vec->getLast()) {
 		stringstream ss ;
 		ss << this->name << "'s current world position is: " << getPosition() ;
