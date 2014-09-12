@@ -21,32 +21,6 @@ GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), gl
 
 FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
-void GameObject::placeOnMap(GameObject *obj) {
-    map->place<float>(& (obj->pos), obj) ;
-    obj->onMap = true ;
-}
-
-void GameObject::moveOnMap(const Position<float> * toNewLoc, GameObject * obj) {
-    if (toNewLoc->overBounds(map->mapBounds<float>(), obj->outputData.getSize().getWidth(), obj->outputData.getSize().getHeight()) == false) {
-        map->map_move(& (obj->pos), toNewLoc, obj, obj->onMap) ;
-        obj->onMap = true ;
-    }
-    else if (toNewLoc->overBounds(map->mapBounds<float>(), obj->outputData.getSize().getWidth(), obj->outputData.getSize().getHeight()) == true) {
-        map->erase(&(obj->pos), obj) ;
-        obj->onMap = false ;
-    }
-}
-
-void GameObject::eraseFromMap(GameObject * obj) {
-    if (obj->onMap == true) {
-        map->erase(& (obj->pos), obj) ;
-        obj->onMap = false ;
-    }
-    else {
-        /* moveOnMap() probably already removed it, so no need to do anything */
-    }
-}
-
 
 GameObject::GameObject() :
 	ID(IDs),
@@ -66,7 +40,7 @@ GameObject::GameObject() :
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-    placeOnMap(this) ;
+    placeOnMap() ;
 	outputData.updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
 }
@@ -96,7 +70,7 @@ GameObject::GameObject(const GameObject & other) :
 	}
 	
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	placeOnMap(this) ;
+	placeOnMap() ;
 	outputData.updateAndNormalizeVector() ;
 	
 	allGameObjects->push_back(this) ;
@@ -159,7 +133,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	placeOnMap(this) ;
+	placeOnMap() ;
 	outputData.updateAndNormalizeVector() ;
 	setVisibility(visible) ;
 }
@@ -182,7 +156,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 	allGameObjects->push_back(this) ;
     
     pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
-	placeOnMap(this) ;
+	placeOnMap() ;
 	outputData.updateAndNormalizeVector() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
@@ -190,10 +164,11 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 
 
 GameObject::~GameObject() {
+    
 	
 	eraseByID(this->ID) ;
 	
-	eraseFromMap(this) ;
+	eraseFromMap() ;
 
 }
 
@@ -210,7 +185,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 	if (this != &rhs) {
 
 		/* Keep ID the same */
-        eraseFromMap(this) ;
+        eraseFromMap() ;
 
         pos = rhs.pos ;
 		
@@ -220,7 +195,7 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
         
         onMap = rhs.onMap ;
 		
-        placeOnMap(this) ;
+        placeOnMap() ;
 		outputData.updateAndNormalizeVector() ;
 	}
 	return *this ;
@@ -328,9 +303,35 @@ void GameObject::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
+void GameObject::placeOnMap() {
+    map->place<float>(& (pos), this) ;
+    onMap = true ;
+}
+
+void GameObject::moveOnMap(const Position<float> * toNewLoc) {
+    if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), outputData.getSize().getWidth(), outputData.getSize().getHeight()) == false)) {
+        map->map_move(& pos, toNewLoc, this, onMap) ;
+        onMap = true ;
+    }
+    else if (onMap == false) {
+        //do nothing
+    }
+    else { //if it's moved off the map, mark it as such
+        eraseFromMap() ;
+        markForDeletion() ;
+    }
+}
+
+void GameObject::eraseFromMap() {
+    if (onMap == true) {
+        map->erase(& pos, this) ;
+        onMap = false ;
+    }
+}
+
 void GameObject::moveTo(const Position<float> * to) {
     
-    moveOnMap(to, this) ;
+    moveOnMap(to) ;
 
     pos.setAll(*to) ;
 

@@ -113,12 +113,6 @@ protected:
 	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
 	 */
 	static GameMap<GameObject> * map ;
-    
-    static void placeOnMap(GameObject * obj) ;
-    
-    static void moveOnMap(const Position<float> * toNewLoc, GameObject * obj) ;
-    
-    static void eraseFromMap(GameObject * obj) ;
 	
 	static FastRand<int> goRand ;
 	
@@ -271,6 +265,12 @@ public:
 	 * Writes a formatted text description of this GameObject into the desired output stream
 	 */
 	virtual void textDescription(ostream * writeTo) const ;
+    
+    void placeOnMap() ;
+    
+    void moveOnMap(const Position<float> * toNewLoc) ;
+    
+    void eraseFromMap() ;
 	
 	/**
 	 * Moves this GameObject to the Position<float> moveTo. All other movement
