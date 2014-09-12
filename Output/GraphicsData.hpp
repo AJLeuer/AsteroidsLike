@@ -115,6 +115,8 @@ protected:
 	virtual void update() ;
 	
 	friend class GameObject ;
+    
+    friend class GraphicalOutput ;
 	
 	
 public:
@@ -389,15 +391,19 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 		
 		GraphicsData * out = allGraphicsData.at(i) ; /* temp debug var */
         
-        allGraphicsData.at(i)->gdMutex.lock() ;
-        
-		if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
-			allGraphicsData.at(i)->completeInitialization() ;
-		}
-        if (allGraphicsData.at(i) != nullptr) {
-            allGraphicsData.at(i)->update() ;
+        /* Try to lock each GraphicsData's mutex before updating. When locking fails,
+         that typically means that graphics data was just destroyed, so skip it. Also, check
+         for null pointers stored in allGraphicsData
+         */
+        if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->gdMutex.try_lock())) {
+            if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
+                allGraphicsData.at(i)->completeInitialization() ;
+            }
+            if (allGraphicsData.at(i) != nullptr) {
+                allGraphicsData.at(i)->update() ;
+            }
+            allGraphicsData.at(i)->gdMutex.unlock() ;
         }
-        allGraphicsData.at(i)->gdMutex.unlock() ;
 	}
 }
 

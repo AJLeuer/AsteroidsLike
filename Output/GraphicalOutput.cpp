@@ -102,7 +102,18 @@ void GraphicalOutput::render() {
 	auto gData = GraphicsData<float, int>::getOutputData() ; //debug variable, delete this
 	
 	for (auto i = 0 ; i < GraphicsData<float, int>::getOutputData()->size() ; i++) {
-		render(GraphicsData<float, int>::getOutputData()->at(i)) ;
+        
+        /* 
+        Check for nullptr and try to get the mutex lock on each graphics data.
+        The destructor will need to acquire the same lock, so we should avoid
+        the graphics data being destroyed while we're rendering. If we can't get the lock
+        that likely means the destructor is running on that gd object, so we're happy to skip it.
+        */
+    
+        if ((GraphicsData<float, int>::getOutputData()->at(i) != nullptr) && (GraphicsData<float, int>::getOutputData()->at(i)->gdMutex.try_lock())) {
+            render(GraphicsData<float, int>::getOutputData()->at(i)) ;
+            GraphicsData<float, int>::getOutputData()->at(i)->gdMutex.unlock() ;
+        }
 	}
 }
 
