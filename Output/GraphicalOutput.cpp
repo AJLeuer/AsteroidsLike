@@ -117,8 +117,6 @@ void GraphicalOutput::render() {
 	}
 }
 
-
-
 void GraphicalOutput::update() {
 	GraphicsData<float, int>::updateAll() ;
 	SDL_RenderClear(renderer) ;
