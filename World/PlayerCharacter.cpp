@@ -140,18 +140,16 @@ void PlayerCharacter::defaultBehaviors() {
 
 
 void PlayerCharacter::fire() {
-	auto gunX = pos.getX() + (getSize()->getWidth() / 2) ;
-	auto gunY = pos.getY() ;
+	auto gunX = graphicsData->getPosition().getX() + (getSize()->getWidth() / 2) ;
+	auto gunY = graphicsData->getPosition().getY() + (getSize()->getWidth() / 2) ;
 	
 	Position<float> gunPos { gunX, gunY} ;
 	
-    weapon.fire(gunPos, *graphicsData.getOrientation()) ;
+    weapon.fire(gunPos, *graphicsData->getOrientation()) ;
 }
 
 
-void PlayerCharacter::fire(const Character * atEnemy) {
-    
-}
+void PlayerCharacter::fire(const Character * atEnemy) {}
 
 void PlayerCharacter::jump() {
     GameObject::jump() ;
@@ -187,7 +185,7 @@ void PlayerCharacter::textDescription(ostream * writeTo) const {
 }
 
 void PlayerCharacter::printPositition() {
-	Vectr<float> * vec = graphicsData.getRawMutableVector() ;
+	Vectr<float> * vec = graphicsData->getRawMutableVector() ;
 	if (*vec->getCurrent() != vec->getLast()) {
 		stringstream ss ;
 		ss << this->name << "'s current world position is: " << getPosition() ;

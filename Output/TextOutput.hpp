@@ -34,6 +34,10 @@
 
 using namespace std ;
 
+/**
+ * @note Must be created with heap allocated memory. Do not call delete, this is done automatically.
+ * @see GraphicsData for more detailed explanation
+ */
 template<typename POSUTYPE, typename SIZEUTYPE>
 class TextOutput : public GraphicsData<POSUTYPE, SIZEUTYPE> {
 	
@@ -56,6 +60,12 @@ protected:
 	bool color_was_updated = false ;
 	
 	bool position_was_updated ;
+    
+
+    /**
+     * @brief Destructor for TextOutput
+     */
+    ~TextOutput() { erase() ; }
 	
 	
 	void addAdditionalUpdateFlags() ;
@@ -80,12 +90,7 @@ public:
 	 * next output update. TextOutput assumes that all pointers given to it remain valid for calling refresh()
 	 */
 	TextOutput(const string & text, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
-	
-	/* Since TextOutput allocates a new Position for it's superclass's position member, TextOutput will destroy that position as well */
-	/**
-	 * @brief Destructor for TextOutput
-	 */
-	~TextOutput() { erase() ; delete this->position ; }
+
 	
 	void updateText(const string & newText) ;
 	

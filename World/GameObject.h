@@ -89,9 +89,7 @@ protected:
 	
 	int ID ;
     
-    GraphicsData<float, int> graphicsData ;
-	
-    Pos2<float> pos ;
+    GraphicsData<float, int> * graphicsData ;
 	
 	/**
 	 * A pointer to outputData's vector
@@ -105,10 +103,6 @@ protected:
 	const GameObject * ally = nullptr ;
     
     void update() ;
-	
-	void markForDeletion() { markedForDeletion = true ; }
-    
-    bool isMarkedForDeletion() { return markedForDeletion  ;  }
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
@@ -238,6 +232,10 @@ public:
 	 * @return whether this GameObject ID is equal to ID of other
 	 */
 	bool operator==(const GameObject & other) const ;
+    
+    void markForDeletion() { markedForDeletion = true ; }
+    
+    bool isMarkedForDeletion() { return markedForDeletion  ;  }
 	
 	/**
 	 * @return this ID
@@ -291,8 +289,8 @@ public:
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y)) ; }
 
-	void moveX(float x) { moveTo({x, pos.getY()}) ; }
-	void moveY(float y) { moveTo({pos.getX(), y}) ; }
+	void moveX(float x) { moveTo({x, graphicsData->getPosition().getY()}) ; }
+	void moveY(float y) { moveTo({graphicsData->getPosition().getX(), y}) ; }
 	
 	virtual void moveUp() ;
 	virtual void moveDown() ;
@@ -302,8 +300,8 @@ public:
     void orientationDependentLeftRightMove() ;
     void orientationDependentRightLeftMove() ;
     
-    virtual void rotateClockwise() override { graphicsData.rotateClockwise() ; }
-    virtual void rotateCounterClockwise() override { graphicsData.rotateCounterClockwise() ; } ;
+    virtual void rotateClockwise() override { graphicsData->rotateClockwise() ; }
+    virtual void rotateCounterClockwise() override { graphicsData->rotateCounterClockwise() ; } ;
 	
     virtual void moveRandomDirection() ;
 	
@@ -316,7 +314,7 @@ public:
 	 */
     void move() ;
 	
-    size_t archivedPositionsCount() { return pos.archivedPositionsCount() ; }
+    size_t archivedPositionsCount() { Pos2<float> * pos = (Pos2<float> *)graphicsData->getRawMutablePosition() ; return pos->archivedPositionsCount() ; }
     
 	PastPositionAndTimeDifferential getReverseMove() ;
 
@@ -338,7 +336,7 @@ public:
 	 */
 	virtual void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>) ;
     
-    void rotateDiff(const Angle & orientation) { graphicsData.rotateDiff(orientation) ; }
+    void rotateDiff(const Angle & orientation) { graphicsData->rotateDiff(orientation) ; }
 	
 	/**
 	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,
@@ -363,32 +361,32 @@ public:
 	/**
 	 * @return This GameObject's Colors
 	 */
-	Colors getColor() const { return graphicsData.getAssetFile()->color ; }
+	Colors getColor() const { return graphicsData->getAssetFile()->color ; }
 	
 	/**
 	 * @return This GameObject's Position<float>
 	 */
-	const Position<float> * getPosition() const { return & this->pos ; }
+	const Position<float> * getPosition() const { return this->graphicsData->getRawMutablePosition() ; }
 
 	/**
 	 * @return This GameObject's Position history (Pos2)
 	 */
-	const Pos2<float> * getPositionHistory() const { return & this->pos ; }
+	const Pos2<float> * getPositionHistory() const { return (Pos2<float> *)graphicsData->getRawMutablePosition()  ; } //todo uncomment and fix
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const Vectr<float> * getVector() { return graphicsData.getVector() ; }
+	const Vectr<float> * getVector() { return graphicsData->getVector() ; }
     
     /**
      * @note Use only when no other options are available
      */
-    Position<float> * getRawMutablePosition() { return & pos ; }
+    Position<float> * getRawMutablePosition() { return this->graphicsData->getRawMutablePosition() ; }
 	
 	/**
 	 * @note Use only when no other options are available
 	 */
-	Vectr<float> * getRawMutableVector() { return graphicsData.getRawMutableVector() ; }
+	Vectr<float> * getRawMutableVector() { return graphicsData->getRawMutableVector() ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file
@@ -411,15 +409,15 @@ public:
 	 */
 	Texture * getTexture() const ;
 	
-	const Size<int> * getSize() const { return & graphicsData.size ; }
+	const Size<int> * getSize() const { return graphicsData->getSizePtr() ; }
 	
 	/**
 	 * @return This GameObject's asset type
 	 */
-	AssetType getType() const { return graphicsData.getAssetFile()->type ; }
+	AssetType getType() const { return graphicsData->getAssetFile()->type ; }
 	
-	void setVisibility(bool visible) { this->graphicsData.setVisibility(visible) ; }
-	bool isVisible() const { return this->graphicsData.isVisible() ; }
+	void setVisibility(bool visible) { this->graphicsData->setVisibility(visible) ; }
+	bool isVisible() const { return this->graphicsData->isVisible() ; }
 	
 	/**
 	 * Turns this GameObject invisible for nano nanoseconds

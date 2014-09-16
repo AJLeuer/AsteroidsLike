@@ -22,7 +22,7 @@ private:
 
 	N * w = &(this->x) ; /* Never assign w or h, only ever assign to the values they point to (*w or *h) */
 	N * h = &(this->y) ;
-	N * z ; //don't use it
+
 
 	/**
 	 * The size modifier. Each GameObject will have a default size based on the sprite texture used to represent them, which will
@@ -91,8 +91,8 @@ public:
 	}
 	
 	float getModifier() const { return sizeModifier ; }
-	N getWidth() const { return (*(this->w) * sizeModifier) ; }
-	N getHeight() const { return (*(this->h) * sizeModifier)  ; }
+	N getWidth() const { return (this->x * sizeModifier) ; }
+	N getHeight() const { return (this->y * sizeModifier)  ; }
 
 } ;
 

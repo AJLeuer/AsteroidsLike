@@ -21,7 +21,9 @@ WorldController::WorldController() {}
 
 
 void WorldController::init() {
+    
 	Position<float> * pos = new Position<float>(0, 0) ;
+    
 	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition) ;
 
 	WorldController::gameObjects = GameObject::getAllGameObjects() ;
@@ -45,12 +47,8 @@ void WorldController::init() {
 	FastRand<int> randm(0, 100) ;
 	
 	for (auto i = 0 ; i < 10 ; i++) {
-		
-		
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
 					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f) ;
-		
-		//new GameObject(randm) ;
 	}
 	
 	/* Init game state */

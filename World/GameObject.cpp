@@ -16,7 +16,6 @@ bool GameObject::map_is_init = false ;
 
 vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
-
 GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), globalMaxY()) ;
 
 FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
@@ -24,13 +23,12 @@ FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	graphicsData(), /* can't be properly initialized yet */
-	pos(0.0, 0.0, BoundsCheck<float>::defaultCheck),
-	vec(graphicsData.getRawMutableVector())
+	graphicsData(new GraphicsData<float, int>), /* can't be properly initialized yet */
+	vec(graphicsData->getRawMutableVector())
 {
 	IDs++ ;
     
-	graphicsData.reinitializeMembers(FastRand<int>::defaultRandom, & this->pos, SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition, true) ;
+	graphicsData->reinitializeMembers(FastRand<int>::defaultRandom, new Pos2<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), SafeBoolean::t, AssetType::asteroid, PositionType::worldPosition, true) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -39,16 +37,15 @@ GameObject::GameObject() :
 
 	allGameObjects->push_back(this) ;
     
-    pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
+    graphicsData->getRawMutablePosition()->checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
     placeOnMap() ;
-	graphicsData.updateAndNormalizeVector() ;
+	graphicsData->updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
 }
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
-    graphicsData(other.graphicsData),
-	pos(other.pos),
+    graphicsData(new GraphicsData<float, int>(*other.graphicsData)),
     onMap(other.onMap)
 {
 	{
@@ -62,16 +59,16 @@ GameObject::GameObject(const GameObject & other) :
 	
 	IDs++ ;
 	
-	vec = graphicsData.getRawMutableVector() ;
+	vec = graphicsData->getRawMutableVector() ;
 	
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
 		map_is_init = true ;
 	}
 	
-    pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
+    graphicsData->getRawMutablePosition()->checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	graphicsData.updateAndNormalizeVector() ;
+	graphicsData->updateAndNormalizeVector() ;
 	
 	allGameObjects->push_back(this) ;
 
@@ -89,8 +86,7 @@ GameObject::GameObject(const GameObject & other) :
 
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
-    graphicsData(std::move(other.graphicsData)), /* No initGraphicsData() for move operations, just steal from other */
-    pos(std::move(other.pos)),
+    graphicsData(other.graphicsData), /* No initGraphicsData() for move operations, just steal from other */
 	vec(other.vec),
     onMap(other.onMap)
 {
@@ -110,6 +106,7 @@ GameObject::GameObject(GameObject && other) :
 	/* There's already references to us on the map and in 
 	 allGameObjects, don't need to add us again */
 	
+    other.graphicsData = nullptr ;
 	other.vec = nullptr ;
 	other.ID = -1 ;
 }
@@ -117,13 +114,12 @@ GameObject::GameObject(GameObject && other) :
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity) :
 	ID(IDs),
-	graphicsData(), /* can't be properly initialized yet */
-	pos(loc_, BoundsCheck<float>::defaultCheck),
-	vec(graphicsData.getRawMutableVector())
+	graphicsData(new GraphicsData<float, int>()), /* can't be properly initialized yet */
+	vec(graphicsData->getRawMutableVector())
 {
 	IDs++ ;
     
-    graphicsData.reinitializeMembers(imageFile, &pos, monitorVelocity, rotation, sizeModifier, PositionType::worldPosition, visible) ;
+    graphicsData->reinitializeMembers(imageFile, new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck), monitorVelocity, rotation, sizeModifier, PositionType::worldPosition, visible) ;
     
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -132,21 +128,20 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	
 	allGameObjects->push_back(this) ;
     
-    pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
+    graphicsData->getRawMutablePosition()->checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	graphicsData.updateAndNormalizeVector() ;
+	graphicsData->updateAndNormalizeVector() ;
 	setVisibility(visible) ;
 }
 
 GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-	graphicsData(),
-	pos(rand, BoundsCheck<float>::defaultCheck),
-	vec(graphicsData.getRawMutableVector())
+	graphicsData(new GraphicsData<float, int>()),
+	vec(graphicsData->getRawMutableVector())
 {
 	IDs++ ;
 	
-	graphicsData.reinitializeMembers(rand, &pos, SafeBoolean::t, type, PositionType::worldPosition, visible) ;
+	graphicsData->reinitializeMembers(rand, new Pos2<float>(rand, BoundsCheck<float>::defaultCheck), SafeBoolean::t, type, PositionType::worldPosition, visible) ;
 
 	if (!map_is_init) {
 		map = new GameMap<GameObject>(globalMaxX()+1, globalMaxY()+1) ;
@@ -155,9 +150,9 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 	
 	allGameObjects->push_back(this) ;
     
-    pos.checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
+    graphicsData->getRawMutablePosition()->checkBounds(BoundsCheck<float>::defaultCheck, getSize()->getWidth(), getSize()->getHeight()) ;
 	placeOnMap() ;
-	graphicsData.updateAndNormalizeVector() ;
+	graphicsData->updateAndNormalizeVector() ;
 	
 	FastRand<float> randSizeMod(0.5, 1.0) ;
 }
@@ -165,11 +160,11 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
 
 GameObject::~GameObject() {
     
-	
 	eraseByID(this->ID) ;
 	
 	eraseFromMap() ;
-
+    
+    graphicsData->markForDeletion() ;
 }
 
 GameObject & GameObject::operator=(const GameObject & rhs) {
@@ -187,16 +182,14 @@ GameObject & GameObject::operator=(const GameObject & rhs) {
 		/* Keep ID the same */
         eraseFromMap() ;
 
-        pos = rhs.pos ;
+		graphicsData->copy(*rhs.graphicsData) ; //give outputdata our new position as well
 		
-		graphicsData.copy(rhs.graphicsData) ; //give outputdata our new position as well
-		
-		vec = graphicsData.getRawMutableVector() ;
+		vec = graphicsData->getRawMutableVector() ;
         
         onMap = rhs.onMap ;
 		
         placeOnMap() ;
-		graphicsData.updateAndNormalizeVector() ;
+		graphicsData->updateAndNormalizeVector() ;
 	}
 	return *this ;
 }
@@ -215,14 +208,13 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 		
 		this->ID = rhs.ID ;
 		
-        this->pos = std::move(rhs.pos) ;
-		
-		graphicsData.moveCopy(std::move(rhs.graphicsData)) ;
+		graphicsData = rhs.graphicsData ;
         
         onMap = rhs.onMap ;
 		
-		vec = graphicsData.getRawMutableVector() ;
+		vec = graphicsData->getRawMutableVector() ;
 		
+        rhs.graphicsData = nullptr ;
 		rhs.vec = nullptr ;
 		rhs.ID = -1 ;
 	}
@@ -300,19 +292,19 @@ void GameObject::textDescription(ostream * writeTo) const {
 	stringstream ss ;
 	ss << "GameObject ID#: " << this->ID << endl ;
 
-    ss << "Current Position: " << pos.toString() << endl ;
+    ss << "Current Position: " << graphicsData->getRawMutablePosition()->toString() << endl ;
 
 	*writeTo << ss.rdbuf() ;
 }
 
 void GameObject::placeOnMap() {
-    map->place<float>(& (pos), this) ;
+    map->place<float>(graphicsData->getRawMutablePosition(), this) ;
     onMap = true ;
 }
 
 void GameObject::moveOnMap(const Position<float> * toNewLoc) {
-    if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), graphicsData.getSize().getWidth(), graphicsData.getSize().getHeight()) == false)) {
-        map->map_move(& pos, toNewLoc, this, onMap) ;
+    if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), graphicsData->getSize().getWidth(), graphicsData->getSize().getHeight()) == false)) {
+        map->map_move(graphicsData->getRawMutablePosition(), toNewLoc, this, onMap) ;
         onMap = true ;
     }
     else if (onMap == false) {
@@ -325,7 +317,7 @@ void GameObject::moveOnMap(const Position<float> * toNewLoc) {
 
 void GameObject::eraseFromMap() {
     if (onMap == true) {
-        map->erase(& pos, this) ;
+        map->erase(graphicsData->getRawMutablePosition(), this) ;
         onMap = false ;
     }
 }
@@ -350,14 +342,14 @@ void GameObject::moveTo(Position<float> to) {
 void GameObject::moveTo(Position<float> * to) {
     
     /* If this object is bounds checked, do bounds checking */
-    const BoundsCheck<float> * bc = graphicsData.getBoundsCheck() ;
+    const BoundsCheck<float> * bc = graphicsData->getBoundsCheck() ;
     
-    if (graphicsData.isBoundsChecked()) { //isBoundsChecked() will also check to make sure bc isn't null
+    if (graphicsData->isBoundsChecked()) { //isBoundsChecked() will also check to make sure bc isn't null
         if (to->overXBounds(bc)) {
-            to->setX(pos.getX()) ;
+            to->setX(graphicsData->getRawMutablePosition()->getX()) ;
         }
         if (to->overYBounds(bc)) {
-            to->setY(pos.getY()) ;
+            to->setY(graphicsData->getRawMutablePosition()->getY()) ;
         }
     }
     
@@ -365,18 +357,11 @@ void GameObject::moveTo(Position<float> * to) {
     moveOnMap(to) ;
 
     /* next update our current position */
-    pos.setAll(*to) ;
+    graphicsData->getRawMutablePosition()->setAll(*to) ;
     
     /* Finally update and normalize the vector */
-	graphicsData.updateAndNormalizeVector() ;
+	graphicsData->updateAndNormalizeVector() ;
 	
-	{
-	/* Debug code */
-	stringstream ss ;
-	ss << "Current size of pos archive: " << pos.getHistory()->size() << '\n' ;
-	DebugOutput << ss.rdbuf() ;
-	/* end debug */
-	}
 }
 
 void GameObject::moveUp() {
@@ -400,7 +385,7 @@ void GameObject::moveUp() {
 }
 
 void GameObject::orientationDependentLeftRightMove() {
-    if ((graphicsData.getOrientation()->val_const() >= 270) || (graphicsData.getOrientation()->val_const() <= 90)) {
+    if ((graphicsData->getOrientation()->val_const() >= 270) || (graphicsData->getOrientation()->val_const() <= 90)) {
         moveLeft() ;
     }
     else { /* if > 90 and  < 270... */
@@ -409,7 +394,7 @@ void GameObject::orientationDependentLeftRightMove() {
 }
 
 void GameObject::orientationDependentRightLeftMove() {
-    if ((graphicsData.getOrientation()->val_const() >= 270) || (graphicsData.getOrientation()->val_const() <= 90)) {
+    if ((graphicsData->getOrientation()->val_const() >= 270) || (graphicsData->getOrientation()->val_const() <= 90)) {
         moveRight() ;
     }
     else { /* if > 90 and  < 270... */
@@ -437,7 +422,8 @@ void GameObject::jump() {
 }
 
 PastPositionAndTimeDifferential GameObject::getReverseMove() {
-    PastPositionAndTimeDifferential lastPos = pos.popLastArchivedPosition();
+    Pos2<float> * pos_hist = (Pos2<float> *)graphicsData->getRawMutablePosition() ;
+    PastPositionAndTimeDifferential lastPos = pos_hist->popLastArchivedPosition();
     return lastPos ;
 	/* else do nothing, just stay frozen in place */
 }
@@ -501,7 +487,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<const GameObject *> * nearby = map->findNearby<float>(& pos, searchDistanceX, searchDistanceY) ;
+	vector<const GameObject *> * nearby = map->findNearby<float>(graphicsData->getRawMutablePosition(), searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;
@@ -513,15 +499,15 @@ void GameObject::allyWith(const GameObject * other) {
 }
 
 void GameObject::setImageFile(string imageFileName) {
-	graphicsData.setAssetFile(imageFileName) ;
+	graphicsData->setAssetFile(imageFileName) ;
 }
 
 const AssetFile * GameObject::getImageFile() const {
-	return graphicsData.getAssetFile() ;
+	return graphicsData->getAssetFile() ;
 }
 
 Texture * GameObject::getTexture() const {
-	return graphicsData.getTexture() ;
+	return graphicsData->getTexture() ;
 }
 
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {

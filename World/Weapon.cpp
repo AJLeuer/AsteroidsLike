@@ -23,9 +23,9 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 
 	auto fireL = [this, pos, vectr, orientation] () mutable -> void { /* copies variables by value */
         
-        projectile->graphicsData.setBoundsChecking(false) ;
+        projectile->graphicsData->setBoundsChecking(false) ;
         
-        projectile->graphicsData.overrideCurrentOrientation(orientation) ;
+        projectile->graphicsData->overrideCurrentOrientation(orientation) ;
         
 		projectile->moveTo(pos) ;
 		

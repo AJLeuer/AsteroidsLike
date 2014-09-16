@@ -15,6 +15,7 @@
 #include <thread>
 #include <chrono>
 #include <initializer_list>
+#include <memory>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_rect.h>
@@ -42,14 +43,20 @@ enum class PositionType {
 
 extern vector<Texture *> texturesToDestroy ;
 
+/**
+ * Simple storage class for grouping together types used by rendering functions.
+ *
+ * @note This class manages it's own memory usage. GraphicsData objects cannot be
+ * allocated on the stack. They must be heap allocated (i.e. using operator new).
+ * There's is no need to call delete on a GraphicsData object (indeed the destructor
+ * is not accessible to client classes) - the class manages this automatically.
+ */
 template<typename POSUTYPE, typename SIZEUTYPE>
 struct GraphicsData {
 	
 protected:
 	
-	static vector<GraphicsData *> allGraphicsData ;
-    
-    /*static*/ BasicMutex gdMutex ;
+    static vector<GraphicsData *> allGraphicsData ;
 	
 	bool initFlag = true ;
 	
@@ -58,6 +65,8 @@ protected:
 	bool visibility_was_updated = false ;
     
     bool boundsChecking = true ;
+    
+    bool markedForDeletion ;
     
     /**
      * A BoundsCheck object that can serve to perform bounds checking when
@@ -82,7 +91,7 @@ protected:
 	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
 	 *        this GraphicsData object
 	 */
-	Position<POSUTYPE> * position ;
+    Position<POSUTYPE> * position ;
     
 	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(SafeBoolean::f) ;
 	
@@ -103,7 +112,18 @@ protected:
 	Size<SIZEUTYPE> size_lastRecordedValue ;
 	
 	vector<bool *> updateFlags = { & visibility_was_updated, & texture_was_updated } ; /* add more here */
-	
+    
+    /**
+     * @note Declared protected, thus can't be called directly. Protected destructors prevent this class from
+     * being allocated on the stack
+     *
+     */
+    virtual ~GraphicsData() {
+        if (texture != nullptr) {
+            SDL_DestroyTexture(texture) ;
+        }
+    }
+    
 	/**
 	 * @brief Does the remaining initialization that could not be done in the constructor (because it does not
 	 * know with certainty that it is on the main thread)
@@ -114,7 +134,7 @@ protected:
 	
 	virtual void update() ;
 	
-	friend class GameObject ;
+	//friend class GameObject ;
     
     friend class GraphicalOutput ;
 	
@@ -163,7 +183,7 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
-		allGraphicsData.push_back(this) ;
+        allGraphicsData.push_back(this) ;
     }
     
     GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, bool boundsChecking = true) :
@@ -184,9 +204,9 @@ public:
     GraphicsData(const GraphicsData & other) :
         textureImageFile(other.textureImageFile),
         texture(nullptr),
-        position(other.position),
         vectr(other.vectr),
         size(other.size),
+        position(*new auto(other.position)),
 		position_lastRecordedValue(other.position_lastRecordedValue),
 		size_lastRecordedValue(other.size_lastRecordedValue),
 		positionType(other.positionType),
@@ -202,9 +222,9 @@ public:
 		initFlag(other.initFlag),
         textureImageFile(other.textureImageFile),
         texture(other.texture),
-        position(other.position),
         vectr(std::move(other.vectr)),
 		size(std::move(other.size)),
+        position(other.position),
 		position_lastRecordedValue(std::move(other.position_lastRecordedValue)),
 		size_lastRecordedValue(std::move(other.size_lastRecordedValue)),
 		positionType(other.positionType),
@@ -218,61 +238,11 @@ public:
 	
 		allGraphicsData.push_back(this) ;
     }
-    
-	
-	~GraphicsData() {
-        gdMutex.lock() ;
-        if (texture != nullptr) {
-			texturesToDestroy.push_back(texture) ;
-        }
-        gdMutex.unlock() ;
-    }
 	
 	GraphicsData & operator=(const GraphicsData & rhs) = delete ;
 	
-	/*
-	GraphicsData & operator=(const GraphicsData & rhs) {
-		if (this != &rhs) {
-            SDL_DestroyTexture(texture) ;
-            
-            this->textureImageFile = rhs.textureImageFile ;
-			this->texture = nullptr ;
-			this->position = rhs.position ;
-			this->size = rhs.size ;
-			this->position_lastRecordedValue = rhs.position_lastRecordedValue ;
-			this->size_lastRecordedValue = rhs.size_lastRecordedValue ;
-			this->positionType = rhs.positionType ;
-			this->visible = rhs.visible ;
-            
-            initFlag = true ;
-            
-            update() ;
-		}
-		return *this ;
-	} */
 	
 	GraphicsData & operator=(GraphicsData && rhs) = delete ;
-	
-	/*
-    GraphicsData & operator=(GraphicsData && rhs) {
-        if (this != &rhs) {
-            this->textureImageFile = rhs.textureImageFile ;
-            this->texture = rhs.texture ;
-            this->position = rhs.position ;
-			this->size = std::move(rhs.size) ;
-			this->position_lastRecordedValue = std::move(rhs.position_lastRecordedValue) ;
-			this->size_lastRecordedValue = std::move(rhs.size_lastRecordedValue) ;
-			this->positionType = rhs.positionType ;
-			this->visible = rhs.visible ;
-			this->initFlag = rhs.initFlag ;
-			
-            rhs.texture = nullptr ;
-            rhs.position = nullptr ;
-            
-            update() ;
-        }
-        return *this ;
-    } */
 	
 	/**
 	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
@@ -294,6 +264,10 @@ public:
 	 * @return Whether this GraphicsData has changed since the last time it was rendered
 	 */
 	bool checkIfUpdated() ;
+    
+    bool isMarkedForDeletion() const { return markedForDeletion ; }
+    
+    void markForDeletion(bool mark = true) { markedForDeletion = mark ; }
     
     void setAssetFile(string imageFileName) { textureImageFile = imageFileName ; }
     const AssetFile * getAssetFile() const { return & textureImageFile ; }
@@ -325,7 +299,7 @@ public:
 	 * @note Only use for making a copy of this OutputData's position,
 	 * not for rendering operations
 	 */
-	const Position<POSUTYPE> * getPosition_raw() const { return position ; }
+	const Pos2<POSUTYPE> * getPosition_raw() const { return position ; }
 	
 	PositionType getPositionType() const { return positionType ; }
     
@@ -340,6 +314,8 @@ public:
 	//const Angle * getOrientation(short ignored) const { return & orientation ; }
 	
 	const Size<SIZEUTYPE> getSize() const { return size ; }
+    
+    const Size<SIZEUTYPE> * getSizePtr() const { return & size ; }
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
@@ -360,14 +336,10 @@ public:
 } ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allGraphicsData ;
-
-/*
-template<typename POSUTYPE, typename SIZEUTYPE>
-BasicMutex GraphicsData<POSUTYPE, SIZEUTYPE>::gdMutex ; */
+vector< GraphicsData<POSUTYPE, SIZEUTYPE> *> GraphicsData<POSUTYPE, SIZEUTYPE>::allGraphicsData ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() {
+vector< GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>::getOutputData() {
 	return & allGraphicsData ;
 }
 
@@ -385,24 +357,27 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	/* End Debug code */
 	}
 	
-	auto * od =  & allGraphicsData ; /* temp debug var */
+	auto * agd =  & allGraphicsData ; /* temp debug var */
 	
 	for (auto i = 0 ; i < GraphicsData::allGraphicsData.size() ; i++) {
 		
-		GraphicsData * out = allGraphicsData.at(i) ; /* temp debug var */
+		auto current = allGraphicsData.at(i) ; /* temp debug var */
         
         /* Try to lock each GraphicsData's mutex before updating. When locking fails,
          that typically means that graphics data was just destroyed, so skip it. Also, check
          for null pointers stored in allGraphicsData
          */
-        if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->gdMutex.try_lock())) {
-            if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
+        if (allGraphicsData.at(i) != nullptr) {
+            if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->isMarkedForDeletion())) {
+                delete allGraphicsData.at(i) ;
+                allGraphicsData.at(i) = nullptr ;
+            }
+            else if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
                 allGraphicsData.at(i)->completeInitialization() ;
             }
-            if (allGraphicsData.at(i) != nullptr) {
+            else if (allGraphicsData.at(i) != nullptr) {
                 allGraphicsData.at(i)->update() ;
             }
-            allGraphicsData.at(i)->gdMutex.unlock() ;
         }
 	}
 }
@@ -452,6 +427,7 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 	textureImageFile = other.textureImageFile ;
 	texture = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), other.textureImageFile, textureImageFile.type) ;
 	size = other.size ;
+    position = *new auto(other.position) ;
 	position_lastRecordedValue = other.position_lastRecordedValue ;
 	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Position object
     positionType = other.positionType ; //pointed to by position, will have updated it's position to the copy argument's position's values,
@@ -549,7 +525,7 @@ bool GraphicsData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 
 	/* otherwise do any other checking for possible changes... */
 	bool changed = false ;
-	if (*this->position != this->position_lastRecordedValue ) {
+	if ((position != nullptr) && (*this->position != this->position_lastRecordedValue)) {
 		changed = true ;
 	}
 	else if (this->size != this->size_lastRecordedValue) {
@@ -585,14 +561,6 @@ template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateCounterClockwise() {
 	vectr.rotateAbs(Angle(-defaultMoveDistance<float>)) ;
 }
-
-
-
-
-
-
-
-
 
 
 
