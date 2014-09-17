@@ -638,8 +638,6 @@ public:
 			return false ;
 		}
 	}
-    
-    bool overBounds(const BoundsCheck<N> check, N objWidth = 0, N objHeight = 0) const {
 
 	bool overXBounds(const BoundsCheck<N> * check) const {
 		if ((this->x >= check->max_X) || (this->x < check->min_X)) {

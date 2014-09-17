@@ -231,7 +231,7 @@ public:
 	 */
 	bool operator==(const GameObject & other) const ;
     
-    void markForDeletion() { markedForDeletion = true ; }
+    void markForDeletion(bool mark = true) { markedForDeletion = mark ; }
     
     bool isMarkedForDeletion() { return markedForDeletion  ;  }
 	

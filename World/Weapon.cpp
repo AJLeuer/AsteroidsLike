@@ -37,7 +37,8 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
         } while (projectile->overBounds() == false) ;
         
         projectile->setVisibility(false) ;
-        //projectile->markForDeletion() ;
+        
+        projectile->markForDeletion() ;
 		
 	} ;
 	

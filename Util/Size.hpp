@@ -31,8 +31,8 @@ private:
 	 */
 	float sizeModifier ;
 	
-	void setWidth(N w) { *(this->w) = w ; }
-	void setHeight(N h) { *(this->h) = h ; }
+	void setWidth(N width) { *(this->w) = width ; }
+	void setHeight(N height) { *(this->h) = height ; }
 	
 	N getX() const { return this->x ; } /* override these to private */
 	

@@ -292,19 +292,19 @@ void GameObject::textDescription(ostream * writeTo) const {
 	stringstream ss ;
 	ss << "GameObject ID#: " << this->ID << endl ;
 
-    ss << "Current Position: " << graphicsData->getRawMutablePosition()->toString() << endl ;
+    ss << "Current Position: " << getPosition()->toString() << endl ;
 
 	*writeTo << ss.rdbuf() ;
 }
 
 void GameObject::placeOnMap() {
-    map->place<float>(graphicsData->getRawMutablePosition(), this) ;
+    map->place<float>(getPosition(), this) ;
     onMap = true ;
 }
 
 void GameObject::moveOnMap(const Position<float> * toNewLoc) {
     if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>(), graphicsData->getSize().getWidth(), graphicsData->getSize().getHeight()) == false)) {
-        map->map_move(graphicsData->getRawMutablePosition(), toNewLoc, this, onMap) ;
+        map->map_move(getPosition(), toNewLoc, this, onMap) ;
         onMap = true ;
     }
     else if (onMap == false) {
@@ -317,7 +317,7 @@ void GameObject::moveOnMap(const Position<float> * toNewLoc) {
 
 void GameObject::eraseFromMap() {
     if (onMap == true) {
-        map->erase(graphicsData->getRawMutablePosition(), this) ;
+        map->erase(getPosition(), this) ;
         onMap = false ;
     }
 }
@@ -346,10 +346,10 @@ void GameObject::moveTo(Position<float> * to) {
     
     if (graphicsData->isBoundsChecked()) { //isBoundsChecked() will also check to make sure bc isn't null
         if (to->overXBounds(bc)) {
-            to->setX(graphicsData->getRawMutablePosition()->getX()) ;
+            to->setX(getPosition()->getX()) ;
         }
         if (to->overYBounds(bc)) {
-            to->setY(graphicsData->getRawMutablePosition()->getY()) ;
+            to->setY(getPosition()->getY()) ;
         }
     }
     
@@ -487,7 +487,7 @@ void GameObject::attack(GameObject * enemy) {
 
 void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
     
-	vector<const GameObject *> * nearby = map->findNearby<float>(graphicsData->getRawMutablePosition(), searchDistanceX, searchDistanceY) ;
+	vector<const GameObject *> * nearby = map->findNearby<float>(getPosition(), searchDistanceX, searchDistanceY) ;
 	
 	if ((nearby != nullptr) && (nearby->size() > 0)) {
 		allyWith(nearby->at(0)) ;
@@ -511,7 +511,7 @@ Texture * GameObject::getTexture() const {
 }
 
 bool GameObject::overBounds(const BoundsCheck<float> & bc) {
-    return getPosition()->overBounds(bc, getSize().getWidth(), getSize().getHeight()) ;
+    return getPosition()->overBounds(bc, getSize()->getWidth(), getSize()->getHeight()) ;
 }
 
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {

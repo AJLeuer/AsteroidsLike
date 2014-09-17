@@ -66,7 +66,7 @@ protected:
     
     bool boundsChecking = true ;
     
-    bool markedForDeletion ;
+    bool markedForDeletion = false ;
     
     /**
      * A BoundsCheck object that can serve to perform bounds checking when
@@ -206,13 +206,14 @@ public:
         texture(nullptr),
         vectr(other.vectr),
         size(other.size),
-        position(*new auto(other.position)),
+        position(new auto(*other.position)),
 		position_lastRecordedValue(other.position_lastRecordedValue),
 		size_lastRecordedValue(other.size_lastRecordedValue),
 		positionType(other.positionType),
 		visible(other.visible),
         boundsChecking(other.boundsChecking),
-        bc(other.bc)
+        bc(new BoundsCheck<float>(*other.bc)),
+        markedForDeletion(other.markedForDeletion)
     {
 		//init flag is true
 		allGraphicsData.push_back(this) ;
@@ -230,7 +231,8 @@ public:
 		positionType(other.positionType),
 		visible(other.visible),
         boundsChecking(other.boundsChecking),
-        bc(other.bc)
+        bc(other.bc),
+        markedForDeletion(other.markedForDeletion)
     {
         other.texture = nullptr ;
         other.position = nullptr ;
@@ -367,17 +369,16 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
          that typically means that graphics data was just destroyed, so skip it. Also, check
          for null pointers stored in allGraphicsData
          */
-        if (allGraphicsData.at(i) != nullptr) {
-            if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->isMarkedForDeletion())) {
-                delete allGraphicsData.at(i) ;
-                allGraphicsData.at(i) = nullptr ;
-            }
-            else if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
-                allGraphicsData.at(i)->completeInitialization() ;
-            }
-            else if (allGraphicsData.at(i) != nullptr) {
-                allGraphicsData.at(i)->update() ;
-            }
+
+        if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->isMarkedForDeletion())) {
+            delete allGraphicsData.at(i) ;
+            allGraphicsData.at(i) = nullptr ;
+        }
+        else if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
+            allGraphicsData.at(i)->completeInitialization() ;
+        }
+        else if (allGraphicsData.at(i) != nullptr) {
+            allGraphicsData.at(i)->update() ;
         }
 	}
 }
@@ -427,12 +428,13 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 	textureImageFile = other.textureImageFile ;
 	texture = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), other.textureImageFile, textureImageFile.type) ;
 	size = other.size ;
-    position = *new auto(other.position) ;
+    position = new auto(*other.position) ;
 	position_lastRecordedValue = other.position_lastRecordedValue ;
 	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Position object
     positionType = other.positionType ; //pointed to by position, will have updated it's position to the copy argument's position's values,
 										//so we don't need to worry about that
-    bc = other.bc ;
+    bc = new auto(*other.bc) ;
+    markedForDeletion = other.markedForDeletion ;
 
 	return *this ;
 }
@@ -452,8 +454,11 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(
 	position_lastRecordedValue = std::move(other.position_lastRecordedValue) ;
 	vectr = std::move(other.vectr) ;
 	positionType = other.positionType ;
+    bc = other.bc ;
+    markedForDeletion = other.markedForDeletion ;
 	
 	other.position = nullptr ;
+    other.bc = nullptr ;
 	
 	return *this ;
 }
@@ -490,8 +495,8 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		/* texture must be initialized before we can set Size */
 		
 		//set size
-		int tempW  ;
-		int tempH  ;
+		int tempW = 0  ;
+		int tempH = 0  ;
 		
 		SDL_QueryTexture(texture, NULL, NULL, &tempW, &tempH) ; //init local size with size of texture
 		
