@@ -176,13 +176,11 @@ public:
 	GameObject(FastRand<int> & rand, AssetType type, bool visible) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
-	
 	/**
 	 * Destructor for GameObject
 	 */
 	virtual ~GameObject() ;
-	
-	
+		
 	/**
 	 * Assignment operator overload (copy) for GameObject. The object copied
 	 * to will have its own unique ID.
@@ -242,15 +240,12 @@ public:
 	 */
 	unsigned getID() { return this->ID ; }
 	
-
-	
 	/**
 	 * Every sub-type of GameObject should implement this to perform some
 	 * function of their choosing. Will typically be called by other classes with a 
 	 * reference to this GameObject.
 	 */
 	virtual void notify() ;
-	
 	
 	/**
 	 * A GameObject or any other class can implement this function to pass messages to another.
@@ -418,6 +413,8 @@ public:
 	
 	void setVisibility(bool visible) { this->graphicsData->setVisibility(visible) ; }
 	bool isVisible() const { return this->graphicsData->isVisible() ; }
+    
+    bool overBounds(const BoundsCheck<float> & bc = BoundsCheck<float>::defaultCheck) ;
 	
 	/**
 	 * Turns this GameObject invisible for nano nanoseconds

@@ -510,6 +510,10 @@ Texture * GameObject::getTexture() const {
 	return graphicsData->getTexture() ;
 }
 
+bool GameObject::overBounds(const BoundsCheck<float> & bc) {
+    return getPosition()->overBounds(bc, getSize().getWidth(), getSize().getHeight()) ;
+}
+
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {
 	
 	this->setVisibility(false) ;
