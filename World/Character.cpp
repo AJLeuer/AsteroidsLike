@@ -129,29 +129,8 @@ void Character::aiBehaviors() {
 }
 
 
-void Character::attack(Character * enemy) {
-	stringstream ss ;
-	ss << "Fight! " << this->name << " attacked " << enemy->name << '\n' ;
-	(*Debug::debugOutput) << ss.rdbuf() ;
-	ss.clear() ;
-	attack_helper(enemy) ;
-	if (this->health > enemy->health) {
-		ss << this->name << " wins!" << '\n' ;
-		DebugOutput << ss.rdbuf() ;
-		if (enemy->health->value() <= 0) {
-			enemy->markForDeletion() ;
-		}
-	}
-	else if (enemy->health > this->health) {
-		ss << enemy->name << " wins!" << '\n' ;
-		DebugOutput << ss.rdbuf() ;
-		if (this->health->value() <= 0) {
-			this->markForDeletion() ;
-		}
-	}
-	else {
-		(*Debug::debugOutput << "A tie! \n") ;
-	}
+void Character::attack(GameObject * enemy) {
+    //TODO
 }
 
 void Character::attack_helper(Character * enemy) {

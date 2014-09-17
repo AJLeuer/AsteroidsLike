@@ -63,7 +63,7 @@ void NPC::notify() {
 	//todo
 }
 
-void NPC::passMessage(Message * message, Character & recipient) {
+void NPC::passMessage(Message * message, GameObject & recipient) {
 	//todo
 }
 
@@ -74,7 +74,7 @@ void NPC::textDescription(ostream * writeTo) const {
 	*writeTo << ss.rdbuf() ;
 }
 
-void NPC::attack(Character * enemy) {
+void NPC::attack(GameObject * enemy) {
 	//todo
 }
 

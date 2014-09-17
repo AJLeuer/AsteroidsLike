@@ -120,7 +120,7 @@ public:
 	 * @param message The Message sent by this
 	 * @param recipient The object receiving the Message
 	 */
-	void passMessage(Message * message, Character & recipient) ;
+	void passMessage(Message * message, GameObject & recipient) ;
 	
 	/**
 	 * Writes a formatted text description of this NPC into the desired output stream
@@ -132,7 +132,7 @@ public:
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	void attack(Character * enemy) ;
+	void attack(GameObject * enemy) ;
 	
 	
 	/**

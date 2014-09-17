@@ -166,7 +166,7 @@ public:
 	 *
 	 * @param enemy The enemy to attack
 	 */
-	virtual void attack(Character * enemy) ;
+	virtual void attack(GameObject * enemy) ;
 	
 	/**
 	 * Getter for name

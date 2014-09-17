@@ -345,7 +345,7 @@ public:
 		}
 	}
 	
-	~KeyInputRegister() {}
+	virtual ~KeyInputRegister() {}
 	
 	static ScanCode getScanCodeFor(const char* c) { return SDL_GetScancodeFromName(c) ; } /* wrapper (just in case
 																							   I forget how to get scancodes!) */
