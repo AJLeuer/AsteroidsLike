@@ -9,3 +9,9 @@ SpriteFight.xcodeproj/xcuserdata/Adam.xcuserdatad/xcdebugger/Breakpoints_v2.xcbk
 SpriteFight.xcodeproj/project.xcworkspace/xcuserdata/Adam.xcuserdatad/UserInterfaceState.xcuserstate
 
 SpriteFight.xcodeproj/project.pbxproj
+
+Frameworks/SDL2_image.framework/
+
+Frameworks/SDL2_ttf.framework/
+
+Frameworks/SDL2.framework/

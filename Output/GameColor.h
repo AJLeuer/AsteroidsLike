@@ -9,13 +9,13 @@
 #ifndef __SpriteFight__GameColor__
 #define __SpriteFight__GameColor__
 
-typedef unsigned char Byte ;
-
 #include <iostream>
 
 #include <SDL2/SDL_pixels.h>
 
 #include "../Control/Configuration.h"
+
+typedef unsigned char Byte ;
 
 struct GameColor {
     
