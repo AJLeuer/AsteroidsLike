@@ -374,10 +374,10 @@ public:
 
 	virtual void normalize() {
 		auto distance = pythag<float>(x, y) ;
-		if ((x != 0) && (distance != 0)) {
+		if (distance != 0) {
 			x = (x / distance) ;
 		}
-		if ((y != 0) && (distance != 0)) {
+		if (distance != 0) {
 			y = (y / distance) ;
 		}
 	}
@@ -1244,13 +1244,17 @@ public:
 	 * Rotate the number of degrees equal to the difference between
 	 * this vectors current rotation, and the given angle 𝛳
 	 */
-	void rotateDiff(Angle 𝛳) ;
+	void setVectorAndOrientation(Angle 𝛳) ;
 	
 	/**
 	 * Rotate the number of degrees equal to the difference between
 	 * this vectors current rotation, and the given angle 𝛳
 	 */
-	void rotateAbs(Angle 𝛳) ;
+	void rotateVectorAndOrientation(Angle 𝛳) ;
+    
+    void rotateVector(Angle 𝛳) ;
+    
+    void rotateOrientation(Angle 𝛳) ;
 	
 	Vectr & copy(const Vectr & other, const Position * newCurrent) ;
     Vectr copy() const ;
@@ -1458,31 +1462,43 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 }
 
 template<typename N>
-void Vectr<N>::rotateDiff(Angle 𝛳) {
+void Vectr<N>::setVectorAndOrientation(Angle 𝛳) {
 	
     normalize() ;
     
-	float diff = (𝛳.val() - currentRotation.val()) ;
-	
-	this->currentRotation += diff ; //i.e. (currentRotation + abs𝛳) % 360
+    this->Position<N>::rotate(𝛳) ;
+    
+	this->currentRotation = 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
 	
 	assert((currentRotation.val() == 𝛳.val())) ; /* debug code, remove */
 
-    this->Position<N>::rotate(diff) ;
+	/* we should still be normalized here */
+}
+
+template<typename N>
+void Vectr<N>::rotateVectorAndOrientation(Angle 𝛳) {
+	
+	normalize() ;
+    
+	this->Position<N>::rotate(𝛳) ;
+    
+	this->currentRotation += 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
 	
 	/* we should still be normalized here */
 }
 
 template<typename N>
-void Vectr<N>::rotateAbs(Angle 𝛳) {
-	
-	normalize() ;
-	
-	this->currentRotation += 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
-	
-	this->Position<N>::rotate(𝛳) ;
-	
-	/* we should still be normalized here */
+void Vectr<N>::rotateVector(Angle 𝛳) {
+    
+    normalize() ;
+    
+    this->Position<N>::rotate(𝛳) ;
+}
+
+template<typename N>
+void Vectr<N>::rotateOrientation(Angle 𝛳) {
+    this->currentRotation += 𝛳 ;
+    //i.e. (currentRotation + abs𝛳) % 360
 }
 
 template<typename N>

@@ -114,13 +114,13 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distanceModifier) {
+void PlayerCharacter::move(Vectr<float> & direction, float distanceModifier) {
 	
-	newDirection.normalize() ;
+	direction.normalize() ;
 	
-	newDirection.rotateAbs(*graphicsData->getRawMutableVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
+	direction.rotateVectorAndOrientation(*graphicsData->getRawMutableVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
 	
-	*graphicsData->getRawMutableVector() += newDirection ;
+	*graphicsData->getRawMutableVector() += direction ;
 	
 	printPositition() ; /* Debug code */
 	
@@ -128,7 +128,7 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	/* if moveFlag == true, then we've already been instructed to move this loop, so we don't need to
 		do anything */
 	if (moveFlag == false) {
-		deferredCallbacks.push_back(std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>(&PlayerCharacter::move, this)) ;
+		deferredCallbacks.push_back(std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>(&GameObject::move, this)) ;
 		moveFlag = true ;
 	}
 }

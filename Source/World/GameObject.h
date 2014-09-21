@@ -324,9 +324,9 @@ public:
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	virtual void moveNewDirection(Vectr<float> & newDirection, float distanceModifier = defaultMoveDistance<float>) ;
+	virtual void move(Vectr<float> & direction, float distanceModifier = defaultMoveDistance<float>) ;
     
-    void rotateDiff(const Angle & orientation) { graphicsData->rotateDiff(orientation) ; }
+    void rotateDiff(const Angle & orientation) { graphicsData->setVectorAndOrientation(orientation) ; }
 	
 	/**
 	 * Similar to move(), but instead of stopping when reaching the bounds of the gamespace,

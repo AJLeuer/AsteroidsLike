@@ -14,18 +14,14 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
     
     projectile = new Projectile(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, false) ; //current plan is to not actually create the projectile until it's fired
 	
-	Vectr<float> vectr = *(projectile->getRawMutableVector()) ; //get a pointer to modify vector
-	
 	/* rotate our vector by the given angle */
-	vectr.rotateDiff(orientation) ;
+    projectile->getRawMutableVector()->rotateVector(orientation) ;
+    
+    projectile->graphicsData->setBoundsChecking(false) ;
 
-	auto fireL = [this, vectr, orientation] () mutable -> void { /* copies variables by value */
-        
-        projectile->graphicsData->setBoundsChecking(false) ;
-        
-        projectile->graphicsData->overrideCurrentOrientation(orientation) ;
+	auto fireL = [this] () mutable -> void { /* copies variables by value */
 		
-		projectile->moveNewDirection(vectr) ;
+		projectile->move() ;
 		
 		projectile->setVisibility(true) ; //set to visible only after we've moved it into the correct position
 

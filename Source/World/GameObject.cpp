@@ -305,6 +305,17 @@ void GameObject::move() {
     move(distanceModifier) ;
 }
 
+void GameObject::move(Vectr<float> & direction, float distanceModifier) {
+    
+    direction.normalize() ;
+    
+    direction.rotateVectorAndOrientation(*graphicsData->getVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
+    
+    *graphicsData->getRawMutableVector() += direction ;
+    
+    move(distanceModifier) ;
+}
+
 void GameObject::move(float distanceModifier) {
     graphicsData->getRawMutableVector()->normalize() ;
     /* Automatically find our next move based on our current vector */
@@ -342,32 +353,24 @@ void GameObject::moveTo(Position<float> * to) {
 	
 }
 
-void GameObject::moveX(float x) {
-    this->moveTo({x, graphicsData->getPosition().getY()}) ;
-}
-
-void GameObject::moveY(float y) {
-    this->moveTo({graphicsData->getPosition().getX(), y}) ;
-}
-
 void GameObject::moveUp() {
 	Vectr<float> up(UP, SafeBoolean::f) ;
-    moveNewDirection(up) ;
+    move(up) ;
 }
 
  void GameObject::moveDown() {
     Vectr<float> down(DOWN, SafeBoolean::f) ;
-    moveNewDirection(down) ;
+    move(down) ;
 }
 
  void GameObject::moveRight() {
      Vectr<float> right(RIGHT, SafeBoolean::f) ;
-     moveNewDirection(right) ;
+     move(right) ;
 }
 
  void GameObject::moveLeft() {
      Vectr<float> left(LEFT, SafeBoolean::f) ;
-     moveNewDirection(left) ;
+     move(left) ;
 }
 
 void GameObject::orientationDependentLeftRightMove() {
@@ -388,6 +391,14 @@ void GameObject::orientationDependentRightLeftMove() {
     }
 }
 
+void GameObject::moveX(float x) {
+    this->moveTo({x, graphicsData->getPosition().getY()}) ;
+}
+
+void GameObject::moveY(float y) {
+    this->moveTo({graphicsData->getPosition().getX(), y}) ;
+}
+
 
 void GameObject::moveRandomDirection() {
 	
@@ -397,7 +408,7 @@ void GameObject::moveRandomDirection() {
 	
 	Vectr<float> newVector(x, y, 0, SafeBoolean::f) ;
 	
-	moveNewDirection(newVector) ;
+	move(newVector) ;
 }
 
 void GameObject::jump() {
@@ -412,17 +423,6 @@ PastPositionAndTimeDifferential GameObject::getReverseMove() {
     PastPositionAndTimeDifferential lastPos = pos_hist->popLastArchivedPosition();
     return lastPos ;
 	/* else do nothing, just stay frozen in place */
-}
-
-void GameObject::moveNewDirection(Vectr<float> & newDirection, float distanceModifier) {
-
-	newDirection.normalize() ;
-	
-	newDirection.rotateAbs(*graphicsData->getVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
-
-    *(graphicsData->getRawMutableVector()) += newDirection ;
-	
-	move(distanceModifier) ;
 }
 
 void GameObject::wander() {

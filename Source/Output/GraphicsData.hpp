@@ -341,7 +341,7 @@ public:
 	void rotateClockwise() ;
     void rotateCounterClockwise() ;
     
-    void rotateDiff(const Angle & orientation) { vectr.rotateDiff(orientation) ; }
+    void setVectorAndOrientation(const Angle & orientation) { vectr.setVectorAndOrientation(orientation) ; }
 	
 } ;
 
@@ -535,12 +535,12 @@ const Position<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const 
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateClockwise() {
-	vectr.rotateAbs(Angle(defaultMoveDistance<float>)) ;
+	vectr.rotateVectorAndOrientation(Angle(defaultMoveDistance<float>)) ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::rotateCounterClockwise() {
-	vectr.rotateAbs(Angle(-defaultMoveDistance<float>)) ;
+	vectr.rotateVectorAndOrientation(Angle(-defaultMoveDistance<float>)) ;
 }
 
 
