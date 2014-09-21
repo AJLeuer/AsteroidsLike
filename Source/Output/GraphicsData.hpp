@@ -93,7 +93,7 @@ protected:
 	 */
     Position<POSUTYPE> * position ;
     
-	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(SafeBoolean::f) ;
+	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(0.0, SafeBoolean::f) ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the GraphicsData object
@@ -124,6 +124,13 @@ protected:
         }
     }
     
+    /**
+     * @brief Check whether this GraphicsData has changed since the last time it was rendered
+     *
+     * @return Whether this GraphicsData has changed since the last time it was rendered
+     */
+    bool checkIfUpdated() ;
+    
 	/**
 	 * @brief Does the remaining initialization that could not be done in the constructor (because it does not
 	 * know with certainty that it is on the main thread)
@@ -148,20 +155,23 @@ public:
 	 */
 	static void updateAll() ;
     
+    /*
     GraphicsData() :
         textureImageFile(),
-        texture(nullptr),
+        texture(nullptr), //impossible to init here
         position(nullptr),
-        size(), /* can't be initialized yet */
+        vectr(position, Angle(0), SafeBoolean::f),
+        size(), //can't be initialized yet
         positionType(PositionType::null)
     {
         allGraphicsData.push_back(this) ;
-    }
+    } */
 	
-	GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
+    GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean   monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
+        vectr(position, orientation, monitorVelocity),
         size(), /* can't be initialized yet */
 		positionType(type),
 		visible(visible),
@@ -169,13 +179,17 @@ public:
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
+        
 		allGraphicsData.push_back(this) ;
+        
+        update() ;
 	}
 	
-	GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation,  const float sizeModifier, PositionType type, bool visible = true, bool boundsChecking = true) :
+    GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
+        vectr(position, orientation, monitorVelocity),
         size(),
 		positionType(type),
 		visible(visible),
@@ -183,13 +197,17 @@ public:
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
+        
         allGraphicsData.push_back(this) ;
+        
+        update() ;
     }
     
-    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, bool boundsChecking = true) :
+    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
+        vectr(position, Angle(randm), monitorVelocity),
         size(),
 		positionType(posType),
 		visible(visible),
@@ -198,7 +216,10 @@ public:
         /* init flag is true */
 		FastRand<float> sizeInit(0.75, 1.5) ;
 		size.setModifier(sizeInit()) ;
+        
 		allGraphicsData.push_back(this) ;
+        
+        update() ;
     }
 	
     GraphicsData(const GraphicsData & other) :
@@ -217,6 +238,8 @@ public:
     {
 		//init flag is true
 		allGraphicsData.push_back(this) ;
+        
+        update() ;
     }
 	
     GraphicsData(GraphicsData && other) :
@@ -239,33 +262,18 @@ public:
         other.bc = nullptr ;
 	
 		allGraphicsData.push_back(this) ;
+        
+        update() ;
     }
 	
 	GraphicsData & operator=(const GraphicsData & rhs) = delete ;
 	
-	
 	GraphicsData & operator=(GraphicsData && rhs) = delete ;
 	
-	/**
-	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
-	 */
-	void reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean tf, const Angle rotation, const float sizeModifier, PositionType type, bool visible) ;
-	
-	/**
-	 * @note Useful when the client class's constructor can't properly initialize this in it's initializer
-	 */
-	void reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean tf, AssetType assetType, PositionType posType, bool visible) ;
 	
 	GraphicsData & copy(const GraphicsData & other) ;
 	
 	GraphicsData & moveCopy(GraphicsData && other) ;
-	
-	/**
-	 * @brief Check whether this GraphicsData has changed since the last time it was rendered
-	 *
-	 * @return Whether this GraphicsData has changed since the last time it was rendered
-	 */
-	bool checkIfUpdated() ;
     
     bool isMarkedForDeletion() const { return markedForDeletion ; }
     
@@ -383,39 +391,6 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	}
 }
 
-template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(const AssetFile & file, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, const Angle rotation, const float sizeModifier, PositionType type, bool visible) {
-	
-	textureImageFile = file ;
-	texture = nullptr ;
-	position = pos ;
-	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
-	positionType = type ;
-    this->visible = visible ;
-	size.setModifier(sizeModifier) ;
-	
-	update() ;
-	
-	initFlag = true ;
-}
-
-template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::reinitializeMembers(FastRand<int> & randm, Position<POSUTYPE> * pos, SafeBoolean monitorVelocity, AssetType assetType, PositionType posType, bool visible) {
-	
-	FastRand<float> realRand(0.0, 0.0) ; /* ignore the initialization max and mins, each individual use of this FastRand will have different max/min parameters */
-	
-	textureImageFile = AssetFile(randm, assetType) ;
-	texture = nullptr ;
-	position = pos ;
-	vectr = Vectr<POSUTYPE>(pos, monitorVelocity) ;
-	positionType = posType ;
-    this->visible = visible ;
-	size.setModifier(realRand.nextValue(0.75f, 1.5f)) ;
-	
-	update() ;
-	
-	initFlag = true ;
-}
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(const GraphicsData<POSUTYPE, SIZEUTYPE> & other) {
@@ -510,16 +485,18 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 /* Can only be called after we complete initialization */
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::update() {
+    if (boundsChecking) {
+        position->checkBounds(BoundsCheck<POSUTYPE>::defaultCheck) ;
+        updateAndNormalizeVector() ;
+    }
     if (checkIfUpdated()) {
         position_lastRecordedValue = *position ;
         size_lastRecordedValue = size ;
-
     }
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 bool GraphicsData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
-	
 	/* if the updateFlag was set directly, this overrides any checking. Just return true immediately */
 	for (auto i = 0 ; i < updateFlags.size(); i++) {
 		if (*updateFlags.at(i) == true) {
@@ -537,7 +514,6 @@ bool GraphicsData<POSUTYPE, SIZEUTYPE>::checkIfUpdated() {
 		changed = true ;
 	}
 	return changed ;
-
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

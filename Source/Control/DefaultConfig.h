@@ -34,6 +34,16 @@ struct Resolution ;
  * This header holds important data and definitions used throughout the program
  */
 
+/*
+ * The __cplusplus macro's value changes based on which standard we're using.
+ * We will use this for preprocessor checks to make sure we can use C++14 features, and
+ * if not default to an equivalent solution compatible with C++11
+ */
+#define CPP_VERSION __cplusplus
+
+#define CPP11 201103
+#define CPP14 201305
+
 
 /* comment this out (or #undef) when not running in debug mode */
 #define DEBUG_MODE
@@ -47,12 +57,22 @@ struct Resolution ;
 extern bool debugToSTDOutput ;
 
 /* Don't change */
+#if CPP_VERSION == CPP14
 constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;
 
 /* Default value for window height and width */
 constexpr unsigned DEFAULT_W_MAX_X = 960 ;
 constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
+
+#else
+const unsigned MAX_X_REFERENCE_VAL = 1280 ;
+const unsigned MAX_Y_REFERENCE_VAL = 720 ;
+
+/* Default value for window height and width */
+const unsigned DEFAULT_W_MAX_X = 960 ;
+const unsigned DEFAULT_W_MAX_Y = 540 ;
+#endif
 
 extern unsigned globalMaxX() ; /* To give us buffer space outside the window margins */
 extern unsigned globalMaxY() ;

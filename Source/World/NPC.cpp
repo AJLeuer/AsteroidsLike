@@ -19,10 +19,10 @@ NPC::NPC(NPC && other) :
 	Character(std::move(other)) {}
 
 NPC::NPC(const AssetFile & imageFile, float size, const Position<float> & loc, const Angle rotation,
-		 string name, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity,
+		 string name, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking,
 		 Reaction reaction) :
 
-	Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity) {}
+	Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking) {}
 
 NPC::NPC(FastRand<int> rand, AssetType type) :
 	Character(rand, type)

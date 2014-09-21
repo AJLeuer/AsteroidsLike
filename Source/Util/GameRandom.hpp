@@ -25,7 +25,7 @@ protected:
 	
 	std::random_device dev ;
 	std::uniform_int_distribution<N> dist ;
-	std::default_random_engine rndm{dev()} ;
+    std::default_random_engine rndm = std::default_random_engine(dev()) ;
 	
 	N minimum ;
 	N maximum ;
@@ -64,7 +64,7 @@ protected:
 	
 	std::random_device dev ;
 	std::uniform_real_distribution<float> dist ;
-	std::default_random_engine rndm{dev()} ;
+	std::default_random_engine rndm = std::default_random_engine(dev()) ;
 	
 	float minimum ;
 	float maximum ;
@@ -96,7 +96,7 @@ protected:
 	
 	std::random_device dev ;
 	std::uniform_real_distribution<double> dist ;
-	std::default_random_engine rndm{dev()} ;
+	std::default_random_engine rndm = std::default_random_engine(dev()) ;
 	
 	double minimum ;
 	double maximum ;

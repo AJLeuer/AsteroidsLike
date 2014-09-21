@@ -55,7 +55,7 @@ enum Direction {
 } ;
 
 /**
- * @brief A storage class for Angle values. All underlying values are represented in degrees.
+ * @brief A storage class for angular values. All underlying values are represented in degrees.
  *
  * @note Since the standard library trigonometric functions (i.e. sin(), cos(), etc.) expect
  * argument values expressed in radians, values passed to those functions should first be converted.
@@ -76,6 +76,11 @@ public:
 	Angle(const Angle & other) : value(other.value) {
 		value = Mod(value, 360.0f) ;
 	}
+    
+    template<typename N>
+    Angle(FastRand<N> randm) {
+        value = randm(0, 360) ;
+    }
 	
 	~Angle() {}
 	
@@ -555,9 +560,9 @@ public:
 	}
 
 
-	void checkBounds(const BoundsCheck<N> * check, N objWidth = 0, N objHeight = 0) {
+	void checkBounds(const BoundsCheck<N> * check) {
 		
-		if ((this->x /*+ objWidth*/) >= check->max_X) {
+		if ((this->x) >= check->max_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
@@ -565,7 +570,7 @@ public:
 			}
 			this->x = check->max_X /*- objWidth*/ - 1 ;
 		}
-		if (this->x /*- objWidth*/ < check->min_X) {
+		if (this->x < check->min_X) {
 			{
 			/* Debug code */
 			DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
@@ -573,7 +578,7 @@ public:
 			}
 			this->x = check->min_X /*+ objWidth*/ ;
 		}
-		if ((this->y /*+ objHeight*/) >= check->max_Y) {
+		if ((this->y) >= check->max_Y) {
 			{
 			/* Debug code */
 			DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
@@ -591,31 +596,31 @@ public:
 		}
 	}
 	
-	void checkBounds(const BoundsCheck<N> & check, N objWidth = 0, N objHeight = 0) {
+	void checkBounds(const BoundsCheck<N> & check) {
 		
-		if ((this->x /*+ objWidth*/) >= check.max_X) {
+		if ((this->x) >= check.max_X) {
 			{
 				/* Debug code */
 				DebugOutput << "An X value was over the global limit. Reducing value... \n" ;
 				/* End Debug code */
 			}
-			this->x = check.max_X /*- objWidth*/ - 1 ;
+			this->x = check.max_X - 1 ;
 		}
-		if (this->x /*- objWidth*/ < check.min_X) {
+		if (this->x < check.min_X) {
 			{
 				/* Debug code */
 				DebugOutput << "An X value was under the global minimum. Increasing value... \n" ;
 				/* End Debug code */
 			}
-			this->x = check.min_X /*+ objWidth*/ ;
+			this->x = check.min_X ;
 		}
-		if ((this->y /*+ objHeight*/) >= check.max_Y) {
+		if ((this->y) >= check.max_Y) {
 			{
 				/* Debug code */
 				DebugOutput << "A Y value was over the global limit. Reducing value... \n" ;
 				/* End Debug code */
 			}
-			this->y = check.max_Y /*- objHeight*/ - 1 ;
+			this->y = check.max_Y - 1 ;
 		}
 		if (this->y < check.min_Y) {
 			{
@@ -627,20 +632,17 @@ public:
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> check, N objWidth = 0, N objHeight = 0) const {
-		if (((this->x + objWidth) >= check.max_X) || ((this->y + objHeight) >= check.max_Y)) {
-			return true ;
-		}
-		else if	((this->x < check.min_X) || (this->y < check.min_Y)) {
-			return true ;
-		}
+	bool overBounds(const BoundsCheck<N> check) const {
+        if (overXBounds(& check) || overYBounds(& check)) {
+            return true ;
+        }
 		else {
 			return false ;
 		}
 	}
 
 	bool overXBounds(const BoundsCheck<N> * check) const {
-		if ((this->x >= check->max_X) || (this->x < check->min_X)) {
+		if (((this->x) >= check->max_X) || ((this->x) < check->min_X)) {
 			return true ;
 		}
 		else {
@@ -649,7 +651,7 @@ public:
 	}
 
 	bool overYBounds(const BoundsCheck<N> * check) const {
-		if ((this->y >= check->max_Y) || (this->y < check->min_Y)) {
+		if (((this->y) >= check->max_Y) || ((this->y) < check->min_Y)) {
 			return true ;
 		}
 		else {
@@ -1227,16 +1229,15 @@ protected:
 public:
 	
     Vectr() ;
-    Vectr(SafeBoolean tf) ;
+    Vectr(Angle rotation, SafeBoolean tf) ;
 	Vectr(FastRand<N> randm) ;
-	Vectr(float headingX, float headingY, SafeBoolean tf) ;
-	Vectr(float headingX, float headingY, Position<N> * current_, SafeBoolean tf) ;
-	Vectr(const Position<N> & mostRecent_, Position<N> * current_, SafeBoolean tf) ;
-	Vectr(const Position<N> * current_, SafeBoolean tf) ;
+	Vectr(float headingX, float headingY, Angle rotation, SafeBoolean tf) ;
+	Vectr(float headingX, float headingY, Position<N> * current_, Angle rotation, SafeBoolean tf) ;
+	Vectr(const Position<N> * current_, Angle rotation, SafeBoolean tf) ;
 	Vectr(const Vectr<N> & other) ;
-	Vectr(const Vectr<N> & other, SafeBoolean tf) ;
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
+    
 	Vectr & operator=(Vectr<N> && rhs) ;
 	
 	/**
@@ -1270,24 +1271,22 @@ public:
 	
 	void updateAndNormalize() ;
 	
-	N getLastMoveDistance() { return absDistanceMoved ; }
+	N getLastMoveDistance() const { return absDistanceMoved ; }
 	
 	Velocity<N> & calculateVelocity() ;
 
-	
-	static Position<N> calculateNextPosition(Vectr<N> &, float modifier = 1.0) ;
+	Position<N> calculateNextPosition(float modifier = 1.0) ;
+
+	Position<N> calculateNextPositionChecked(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateNextPositionChecked(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	Position<N> calculateReverseNextPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseNextPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	Position<N> calculateReverseXPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
-	static Position<N> calculateReverseXPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
-
-	
-	static Position<N> calculateReverseYPosition(Vectr<N> &, float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
+	Position<N> calculateReverseYPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
 	
 } ;
@@ -1300,19 +1299,21 @@ Vectr<N>::Vectr() :
     Position<float>(0, -1), /* default direction is up */
 	current(nullptr),
     totalDistanceMoved(new N()),
-	velocity(nullptr) {}
+	velocity(nullptr),
+    currentRotation(0.0){}
 
 template<typename N>
-Vectr<N>::Vectr(SafeBoolean tf) :
+Vectr<N>::Vectr(Angle rotation, SafeBoolean tf) :
     Position<float>(0, -1), /* default direction is up */
     current(nullptr),
     totalDistanceMoved(new N()),
-    velocity(nullptr)
+    velocity(nullptr),
+    currentRotation(rotation)
 {
 	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::falsus)
+	else { // if (tf == SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
@@ -1329,10 +1330,11 @@ Vectr<N>::Vectr(FastRand<N> randm) :
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, SafeBoolean tf) :
+Vectr<N>::Vectr(float headingX, float headingY, Angle rotation, SafeBoolean tf) :
 	Position<float>(headingX, headingY),
 	current(nullptr),
-	totalDistanceMoved(new N)
+	totalDistanceMoved(new N),
+    currentRotation(rotation)
 {
 	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
@@ -1343,45 +1345,33 @@ Vectr<N>::Vectr(float headingX, float headingY, SafeBoolean tf) :
 }
 
 template<typename N>
-Vectr<N>::Vectr(float headingX, float headingY, Position<N> * current_, SafeBoolean tf) :
+Vectr<N>::Vectr(float headingX, float headingY, Position<N> * current_, Angle rotation, SafeBoolean tf) :
 	Position<float>(headingX, headingY),
 	current(current_),
-	totalDistanceMoved(new N)
+	totalDistanceMoved(new N),
+    currentRotation(rotation)
 {
 	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::falsus)
+	else { // if (tf == SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-Vectr<N>::Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, SafeBoolean tf) :
-	Position<float>(overrideCurrData),
-	current(current_),
-	totalDistanceMoved(new N)
-{
-	if (tf == SafeBoolean::t) {
-		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
-	}
-	else { // if (tf == SafeBoolean::falsus)
-		velocity = nullptr ;
-	}
-}
-
-
-template<typename N>
-Vectr<N>::Vectr(const Position<N> * current_, SafeBoolean tf) :
+Vectr<N>::Vectr(const Position<N> * current_, Angle rotation, SafeBoolean tf) :
 	Position<float>(0, -1),
     last(*current_),
-	mostRecent(*current_), current(current_),
-	totalDistanceMoved(new N)
+	mostRecent(*current_),
+    current(current_),
+	totalDistanceMoved(new N),
+    currentRotation(rotation)
 {
 	if (tf == SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::falsus)
+	else { // if (tf == SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
@@ -1400,24 +1390,7 @@ Vectr<N>::Vectr(const Vectr<N> & other) :
 	if (other.velocity != nullptr) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::falsus)
-		velocity = nullptr ;
-	}
-}
-
-template<typename N>
-Vectr<N>::Vectr(const Vectr<N> & other, SafeBoolean tf) :
-	Position<float>(other),
-	last(Position<N>(other.last)),
-	mostRecent(Position<N>(other.mostRecent)),
-	current(other.current),
-	absDistanceMoved(other.absDistanceMoved),
-	totalDistanceMoved(new N(*other.totalDistanceMoved))
-{
-	if ((tf == SafeBoolean::t) && (other.velocity != nullptr)) {
-		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
-	}
-	else {
+	else { // if (tf == SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
@@ -1564,9 +1537,9 @@ void Vectr<N>::update() {
         absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
 		*totalDistanceMoved += absDistanceMoved ;
         
-		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator+() overload to add
-															       our x, y, and z (which are offset values) to those
-															       stored in current, giving our new location  */
+		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator- overload to subtract
+                                                                      our x, y, and z (which are offset values) from those
+                                                                      stored in current, giving our new location  */
 		setAll(temp.getX(), temp.getY()) ;
         last = mostRecent ;
 		mostRecent = std::move((Position<N>(*this->current))) ;
@@ -1586,36 +1559,37 @@ Velocity<N> & Vectr<N>::calculateVelocity() {
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPosition(Vectr<N> & vec, float modifier) {
+Position<N> Vectr<N>::calculateNextPosition(float modifier) {
 	
-	vec.normalize() ;
+	normalize() ;
 	
-	auto stor = vec * modifier ;
+	auto stor = *this * modifier ;
 	
 	N nx ;
 	N ny ;
 	N nz ;
 	
-	nx = (vec.current)->getX() + stor.getX() ;
-	ny = (vec.current)->getY() + stor.getY() ;
+	nx = (current)->getX() + stor.getX() ;
+	ny = (current)->getY() + stor.getY() ;
 	
 	Position<N> next(nx, ny) ;
+    
 	return next ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateNextPositionChecked(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
+Position<N> Vectr<N>::calculateNextPositionChecked(float modifier, const BoundsCheck<N> & check) {
 	
-	vec.normalize() ;
+	normalize() ;
 	
-	auto stor = vec * modifier ;
+	auto stor = *this * modifier ;
 	
 	N nx ;
 	N ny ;
 	N nz ;
 	
-	nx = (vec.current)->getX() + stor.getX() ;
-	ny = (vec.current)->getY() + stor.getY() ;
+	nx = (current)->getX() + stor.getX() ;
+	ny = (current)->getY() + stor.getY() ;
 	
 	Position<N> next(nx, ny, check) ;
 	
@@ -1623,23 +1597,22 @@ Position<N> Vectr<N>::calculateNextPositionChecked(Vectr<N> & vec, float modifie
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseNextPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.x = (vec.x * -1) ;
-	vec.y = (vec.y * -1) ;
-	vec.z = (vec.z * -1) ;
-	return calculateNextPosition(vec, modifier, check) ;
+Position<N> Vectr<N>::calculateReverseNextPosition(float modifier, const BoundsCheck<N> & check) {
+	x = (x * -1) ;
+	y = (y * -1) ;
+	return calculateNextPosition(modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseXPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.x = (vec.x * -1) ;
-	return calculateNextPositionChecked(vec, modifier, check) ;
+Position<N> Vectr<N>::calculateReverseXPosition(float modifier, const BoundsCheck<N> & check) {
+	x = (x * -1) ;
+	return calculateNextPositionChecked(modifier, check) ;
 }
 
 template<typename N>
-Position<N> Vectr<N>::calculateReverseYPosition(Vectr<N> & vec, float modifier, const BoundsCheck<N> & check) {
-	vec.y = (vec.y * -1) ;
-	return calculateNextPositionChecked(vec, modifier, check) ;
+Position<N> Vectr<N>::calculateReverseYPosition(float modifier, const BoundsCheck<N> & check) {
+	y = (y * -1) ;
+	return calculateNextPositionChecked(modifier, check) ;
 }
 
 template<typename N>

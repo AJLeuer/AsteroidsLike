@@ -45,8 +45,8 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  */
 PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
 								 const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
-								 unsigned health, unsigned damage, SafeBoolean monitorVelocity, const AssetFile & projectileImageFile) :
-    Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity),
+								 unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
+    Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking),
     weapon(projectileImageFile, getSize()->getModifier()) {}
 
 
@@ -118,9 +118,9 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	
 	newDirection.normalize() ;
 	
-	newDirection.rotateAbs(*vec->getOrientation()) ; /* rotate new direction to match our own orientation */
+	newDirection.rotateAbs(*graphicsData->getRawMutableVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
 	
-	*vec += newDirection ;
+	*graphicsData->getRawMutableVector() += newDirection ;
 	
 	printPositition() ; /* Debug code */
 	
@@ -128,7 +128,7 @@ void PlayerCharacter::moveNewDirection(Vectr<float> & newDirection, float distan
 	/* if moveFlag == true, then we've already been instructed to move this loop, so we don't need to
 		do anything */
 	if (moveFlag == false) {
-		defferredCallbacks.push_back(std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>(&PlayerCharacter::move, this)) ;
+		deferredCallbacks.push_back(std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>(&PlayerCharacter::move, this)) ;
 		moveFlag = true ;
 	}
 }
@@ -162,11 +162,11 @@ void PlayerCharacter::jump() {
 	update() to make sure that the player's
 	character updates smoothly, not sporadically */
 void PlayerCharacter::update() {
-    for (long i = (defferredCallbacks.size() - 1) ; i >= 0 ; i--) {
-        auto obj = defferredCallbacks.at(i).second ;
-        void (PlayerCharacter::*callBack)() = defferredCallbacks.at(i).first ;
-        (obj->*callBack)() ;
-		defferredCallbacks.pop_back() ;
+    for (long i = (deferredCallbacks.size() - 1) ; i >= 0 ; i--) {
+        PlayerCharacter * pc = deferredCallbacks.at(i).second ;
+        void (PlayerCharacter::*callBack)() = deferredCallbacks.at(i).first ;
+        (pc->*callBack)() ;
+		deferredCallbacks.pop_back() ;
     }
 	
 	/* move() is a special case in that it can only be called once per loop,

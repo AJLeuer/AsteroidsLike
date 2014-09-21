@@ -39,7 +39,12 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 	
-	auto * pi = & 𝛑 ; //debug symbol
+    
+    auto version = CPP_VERSION ;
+    auto cpp11 = CPP11 ;
+    auto cpp14 = CPP14 ;
+    
+    int a = MAX_X_REFERENCE_VAL ;
     
 	MainController::init() ;
 	MainController::main() ;

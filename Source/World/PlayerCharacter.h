@@ -31,7 +31,7 @@ protected:
 	 * PlayerCharacter object, and pushed back onto defferedCallbacks. The function will be called once during update(),
 	 * then removed from defferedCallbacks. Each time the the function is needed it will need to be readded.
 	 */
-    vector<std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>> defferredCallbacks ;
+    vector<std::pair<void (PlayerCharacter::*)(), PlayerCharacter *>> deferredCallbacks ;
     
 	Weapon weapon ;
     
@@ -77,7 +77,7 @@ public:
 	 */
 	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
 					const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
-					unsigned health, unsigned damage, SafeBoolean monitorVelocity, const AssetFile & projectileImageFile) ;
+					unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
 	
 	
 	/**

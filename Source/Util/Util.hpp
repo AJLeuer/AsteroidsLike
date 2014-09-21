@@ -20,7 +20,7 @@
 
 using namespace std ;
 
-constexpr auto 𝛑 = 3.141592653589793238462643383279502884197169399375105820974944L ; /* UTF-8 support */
+constexpr auto pi = 3.141592653589793238462643383279502884197169399375105820974944L ; /* needs UTF-8 support */
 
 /**
  * Used to avoid ambiguity when calling various constructors
@@ -46,6 +46,7 @@ constexpr static bool checkIfFloatingPointType() {
 		return false ;
 	}
 }
+
 
 /*
  * Code partial credit stackoverflow: http://stackoverflow.com/questions/4633177/c-how-to-wrap-a-float-to-the-interval-pi-pi
@@ -196,43 +197,6 @@ T findLargest(vector<T> cont) {
 	return findLargest_helper(0, cont) ;
 }
 
-class Drawing {
-public:
-	/*
-	 * Draws a grid representing every object in the container. Draws an icon at every
-	 * index an object is found. It calls the object's getIcon(), returning a std::string,
-	 * and prints that at each index. It is recommended that icon consist of only a single char (though
-	 * stored inside a string) in order to maintain proportions.
-	 *
-	 * Note: If the class stored in the container does not implement getIcon() returning a std::string,
-	 * the code will not compile.
-	 *
-	 * @param whiteSpace The character to be printed in spaces where there are no objects
-	 * @param writeTo The outputstream (std::ostream) that will receive output
-	 */
-	template <typename Container>
-	void draw2DRepresentation(ostream & writeTo, const Container * container, char whitespace) const ;
-} ;
-
-
-
-template<class Container>
-void Drawing::draw2DRepresentation (ostream & writeTo, const Container * container, char whitespace) const {
-	
-	for (auto i = 0 ; i < container->at(0)->size() ; i++) {
-		for (auto j = 0 ; j < container->size() ; j++) {
-			if (container->at(j)->at(i) != nullptr) {
-				auto c = container->at(j)->at(i)->getIcon() ;
-				writeTo << c ; /*->getIcon()*/  //remove *(     )
-			}
-			else {
-				writeTo << whitespace ;
-			}
-		}
-		writeTo << endl ;
-	}
-}
-
 template<typename N>
 N ceilling(N n1, N n2) {
 	if (n1 >= n2) {
@@ -339,14 +303,14 @@ SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 template<typename Radians = double>
 double convertToDegrees(const Radians angle_rad) {
 	double angle_in_radians = static_cast<double>(angle_rad) ;
-	double angle_in_degrees = angle_in_radians * (180.0L / 𝛑) ;
+	double angle_in_degrees = angle_in_radians * (180.0L / pi) ;
 	return angle_in_degrees ;
 }
 
 template<typename Degrees = double>
 double convertToRadians(const Degrees angle_deg) {
 	double angle_in_degrees = static_cast<double>(angle_deg) ;
-	double angle_in_radians = angle_in_degrees / (180.0L / 𝛑) ;
+	double angle_in_radians = angle_in_degrees / (180.0L / pi) ;
 	return angle_in_radians ;
 }
 

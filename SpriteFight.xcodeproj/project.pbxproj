@@ -187,7 +187,8 @@
 				66C7924719CA1A89000C2338 /* Player.cpp */,
 				66C7924419CA1A89000C2338 /* main.cpp */,
 			);
-			path = Control;
+			name = Control;
+			path = Source/Control;
 			sourceTree = "<group>";
 		};
 		66C7924919CA1A89000C2338 /* Output */ = {
@@ -204,7 +205,8 @@
 				66C7925119CA1A89000C2338 /* GraphicalOutput.cpp */,
 				66C7925319CA1A89000C2338 /* GraphicsData.cpp */,
 			);
-			path = Output;
+			name = Output;
+			path = Source/Output;
 			sourceTree = "<group>";
 		};
 		66C7925619CA1A89000C2338 /* Util */ = {
@@ -231,7 +233,8 @@
 				66C7926619CA1A89000C2338 /* Util.cpp */,
 				66C7926919CA1A89000C2338 /* Velocity.cpp */,
 			);
-			path = Util;
+			name = Util;
+			path = Source/Util;
 			sourceTree = "<group>";
 		};
 		66C7926B19CA1A89000C2338 /* World */ = {
@@ -263,7 +266,8 @@
 				66C7928119CA1A89000C2338 /* Weapon.cpp */,
 				66C7928319CA1A89000C2338 /* WorldController.cpp */,
 			);
-			path = World;
+			name = World;
+			path = Source/World;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +376,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -385,6 +390,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
@@ -421,6 +427,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -429,6 +436,7 @@
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
@@ -454,6 +462,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
+				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -465,6 +474,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
+				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

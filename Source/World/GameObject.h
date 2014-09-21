@@ -91,11 +91,6 @@ protected:
     
     GraphicsData<float, int> * graphicsData ;
 	
-	/**
-	 * A pointer to outputData's vector
-	 */
-	Vectr<float> * vec ;
-    
     bool onMap = false ;
     
 	//Vectr<float> vectr ;
@@ -165,7 +160,7 @@ public:
 	 * @param imageFile The file to be used as the Texture for this GameObject
      * @param pos This GameObject's Position<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -284,8 +279,8 @@ public:
 
 	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y)) ; }
 
-	void moveX(float x) { moveTo({x, graphicsData->getPosition().getY()}) ; }
-	void moveY(float y) { moveTo({graphicsData->getPosition().getX(), y}) ; }
+    void moveX(float x) ;
+    void moveY(float y) ;
 	
 	virtual void moveUp() ;
 	virtual void moveDown() ;

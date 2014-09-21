@@ -37,8 +37,8 @@ Character::Character(Character && other) :
 }
 
 
-Character::Character(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity) :
-	GameObject(imageFile, sizeModifier, loc, rotation, true, monitorVelocity),
+Character::Character(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc, const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
+	GameObject(imageFile, sizeModifier, loc, rotation, true, monitorVelocity, boundsChecking),
 	reaction(reaction), name(name), alive(alive),
 	state(state), health(new Health(health)), damage(new Damage(damage))
 {

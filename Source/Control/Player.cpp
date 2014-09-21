@@ -50,8 +50,8 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 	ID(IDs),
 	name(name),
 	playerCharacter(playerCharacter_imageFilename, playerCharacter_size,
-		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
-		playerCharacter_health, playerCharacter_damage, SafeBoolean::t, projectileImageFile)
+		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive,playerCharacter_state,
+		playerCharacter_health, playerCharacter_damage, SafeBoolean::t, true, projectileImageFile)
 {
 	IDs++ ;
 	setNames() ;
@@ -91,9 +91,9 @@ void Player::registerForCallbacks() {
 															{MOVE_UP_KEY}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
 		onKeyMoveDown = new KeyInputRegister(&playerCharacter, (&GameInterface::moveDown),
 															{MOVE_DOWN_KEY}, {SDLK_DOWN}, KeypressEvaluationMethod::any) ;
-		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentLeftRightMove),
+		onKeyMoveLeft = new KeyInputRegister(&playerCharacter, (&GameInterface::moveLeft),
 															  {MOVE_LEFT_KEY}, {SDLK_LEFT}, KeypressEvaluationMethod::any) ;
-		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentRightLeftMove),
+		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
         
         onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),

@@ -12,9 +12,9 @@
 
 void Weapon::fire(const Position<float> & startingPos, const Angle & orientation) {
     
-    projectile = new Projectile(textureFile, sizeModifier, startingPos, orientation, true, SafeBoolean::f) ; //current plan is to not actually create the projectile until it's fired
+    projectile = new Projectile(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, false) ; //current plan is to not actually create the projectile until it's fired
 	
-	Vectr<float> vectr = *(projectile->getRawMutableVector()) ; //copy vector
+	Vectr<float> vectr = *(projectile->getRawMutableVector()) ; //get a pointer to modify vector
 	
 	/* rotate our vector by the given angle */
 	vectr.rotateDiff(orientation) ;

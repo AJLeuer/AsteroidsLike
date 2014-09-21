@@ -48,7 +48,7 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f) ;
+					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
 	}
 	
 	/* Init game state */
