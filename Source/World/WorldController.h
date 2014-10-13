@@ -53,12 +53,7 @@ class WorldController {
 	
 protected:
 
-	
-	/**
-	 * A container holding most objects in the game world
-	 */
-	static vector<GameObject*> * gameObjects ; /* Convenience to access GameObject::getAllGameObjects() */
-	
+		
 	/* We might need these later. Or we might not */
 	//static vector<GameObject*> * secondaryGameObjects ;
 	//static vector<GameObject*> * obstacleObjects ;

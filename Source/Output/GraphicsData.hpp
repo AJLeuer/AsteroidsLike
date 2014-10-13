@@ -333,6 +333,8 @@ public:
     void setBoundsChecking(bool bc) { boundsChecking = bc ; }
     bool isBoundsChecked() const { return ((boundsChecking) && (bc != nullptr)) ; }
     
+    bool overBounds() ;
+    
     const BoundsCheck<float> * getBoundsCheck() const { return bc ; }
     void setBoundsCheck(BoundsCheck<float> * b) { bc = b ; }
 
@@ -486,7 +488,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::update() {
     if (boundsChecking) {
-        position->checkBounds(BoundsCheck<POSUTYPE>::defaultCheck) ;
+        position->checkBounds(bc) ;
         updateAndNormalizeVector() ;
     }
     if (checkIfUpdated()) {
@@ -531,6 +533,11 @@ const Position<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const 
 		return *this->position ;
 	}
 	return *this->position ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+bool GraphicsData<POSUTYPE, SIZEUTYPE>::overBounds() {
+    return size.overBounds(*bc, *position, *vectr.getOrientation()) ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

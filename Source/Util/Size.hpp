@@ -93,6 +93,46 @@ public:
 	float getModifier() const { return sizeModifier ; }
 	N getWidth() const { return (this->x * sizeModifier) ; }
 	N getHeight() const { return (this->y * sizeModifier)  ; }
+    
+    virtual void rotate(Angle 𝛳) {
+        this->Position<N>::rotate(𝛳) ;
+        this->x = setUnsigned(this->x) ;
+        this->y = setUnsigned(this->y) ;
+    }
+    
+    template<typename M>
+    bool overBounds(const BoundsCheck<M> & check, const Position<M> & pos, const Angle & a = Angle(0)) const {
+        
+        //if x coord + width is less than x min... return true
+        //if y coord - width is greater than y min... return true
+        //etc
+        
+        Size adjustedSize = *this ; //copy size then adjust for our currentrotation
+        
+        adjustedSize.rotate(a) ;
+        
+        Position<M> topLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
+        Position<M> topRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
+        Position<M> botLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
+        Position<M> botRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
+        
+        
+        if ((topLeft.getX() > check.max_X) || (topLeft.getY() > check.max_Y)) {
+            return true ;
+        }
+        else if ((topRight.getX() < check.min_X) || (topRight.getY() > check.max_Y)) {
+            return true ;
+        }
+        else if ((botLeft.getX() > check.max_X) || (botLeft.getY() < check.min_Y)) {
+            return true ;
+        }
+        else if ((botRight.getX() < check.min_X) || (botRight.getY() < check.min_Y)) {
+            return true ;
+        }
+        else {
+            return false ;
+        }
+    }
 
 } ;
 

@@ -124,9 +124,23 @@ N average(const vector<N> & numbers) {
 	return result ;
 }
 
+template<typename T, template <typename, typename = std::allocator<T>> class Container>
+T sumElements(const Container<T, std::allocator<T>> & cont) {
+    
+    T sum ;
+    auto i = cont.begin() ;
+    sum = *i ;
+    
+    for (i++ ; i != cont.end() ; i++) {
+        sum += *i ;
+    }
+    
+    return sum ;
+}
 
-template<typename T>
-T setUnsigned(T n) {
+
+template<typename N>
+N setUnsigned(N n) {
 	if (n < 0) {
 		n = (n * -1) ;
 	}
@@ -137,9 +151,6 @@ template<typename N>
 N difference(N n0, N n1) {
 	N saveSign = n1 / (setUnsigned(n1)) ;
 	n1 = setUnsigned(n1) ;
-	
-	
-	
 }
 
 

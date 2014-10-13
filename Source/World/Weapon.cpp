@@ -8,7 +8,9 @@
 
 #include "Weapon.h"
 
-
+void Projectile::doDefaultBehavior(bool initialCall) {
+    /* do nothing */ ;
+}
 
 void Weapon::fire(const Position<float> & startingPos, const Angle & orientation) {
     
@@ -21,12 +23,12 @@ void Weapon::fire(const Position<float> & startingPos, const Angle & orientation
 
 	auto fireL = [this] () mutable -> void { /* copies variables by value */
 		
-		projectile->move() ;
+		projectile->move(defaultMoveDistance<float> / 4) ;
 		
 		projectile->setVisibility(true) ; //set to visible only after we've moved it into the correct position
 
         do {
-            projectile->move() ;
+            projectile->move(defaultMoveDistance<float> / 4) ;
             
             this_thread::sleep_for(std::chrono::microseconds(250)) ;
             

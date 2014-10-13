@@ -26,7 +26,7 @@ public:
 	
 		NPC(imageFile, size, loc, rotation, name, alive, state, health, damage, monitorVelocity, boundsChecking, reaction) {}
     
-    void defaultBehaviors() override ;
+    virtual void doDefaultBehavior(bool initialCall = false) override ;
     
     
     

@@ -410,14 +410,6 @@ public:
 		return os ;
 	}
 
-	virtual void rotate(Angle 𝛳) {
-        const N prevX = x ;
-        const N prevY = y ;
-        
-        x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
-        y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
-	}
-
 	/**
 	 * Sets x, y, and z to the given values.
 	 */
@@ -543,6 +535,14 @@ public:
 		moveHere(other) ;
 		checkBounds(check) ;
 	}
+    
+    virtual void rotate(Angle 𝛳) {
+        const N prevX = x ;
+        const N prevY = y ;
+        
+        x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
+        y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
+    }
 	
 	static N calcDistance(const Position & here, const Position & there) {
 		N dx = here.x - there.x ;
@@ -632,7 +632,7 @@ public:
 		}
 	}
 
-	bool overBounds(const BoundsCheck<N> check) const {
+	bool overBounds(const BoundsCheck<N> & check) const {
         if (overXBounds(& check) || overYBounds(& check)) {
             return true ;
         }

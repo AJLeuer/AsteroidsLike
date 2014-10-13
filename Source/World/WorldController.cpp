@@ -12,7 +12,6 @@
 using namespace std ;
 
 
-vector<GameObject*> * WorldController::gameObjects  = nullptr ;
 thread WorldController::mainThread ;
 thread WorldController::checkDelThread ;
 const GameMap<GameObject> * WorldController::map = nullptr ;
@@ -26,7 +25,6 @@ void WorldController::init() {
     
 	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition) ;
 
-	WorldController::gameObjects = GameObject::getAllGameObjects() ;
 	WorldController::map = GameObject::getMap() ;
 
 	FastRand<int> posModifier(-100, 100) ;
@@ -102,32 +100,11 @@ void WorldController::main() {
 
 void WorldController::main_forwardTime() {
 	/* Do stuff */
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		if (gameObjects->at(i) != nullptr) {
-			gameObjects->at(i)->defaultBehaviors() ;
-			
-			/* do any stuff with GameObjects */
-			
-			/* always call update at the end */
-			gameObjects->at(i)->update() ;
-		}
-	}
+    GameObject::allDoDefaultBehaviors(TimeFlow::forward) ;
 }
 
 void WorldController::main_reverseTime() {
-    deque<chrono::nanoseconds> sleepTimes ;
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-        if (gameObjects->at(i)->archivedPositionsCount() > 0) {
-            auto last = gameObjects->at(i)->getReverseMove() ;
-            gameObjects->at(i)->moveTo(last.first) ;
-            sleepTimes.push_back(last.second) ;
-        }
-	}
-    /*while (sleepTimes.size() > 0) {
-        chrono::nanoseconds time = sleepTimes.front() ;
-        this_thread::sleep_for(time) ;
-        sleepTimes.pop_front() ;
-    }*/
+
 }
 
 
@@ -139,15 +116,15 @@ void WorldController::exit() {
 	
 	mainThread.join() ;
 	
-	for (auto i = 0 ; i < gameObjects->size() ; i++) {
-		if (gameObjects->at(i) != nullptr) {
+	for (auto i = 0 ; i < GameObject::getAllGameObjects()->size() ; i++) {
+        if (GameObject::getAllGameObjects()->at(i) != nullptr) {
 			//delete gameObjects->at(i) ;
 		}
 	}
 
-	delete gameObjects ;
+	delete GameObject::getAllGameObjects() ;
 	delete map ; 
-	gameObjects = nullptr ;
+    GameObject::getAllGameObjects() = nullptr ;
 	
 	GameState::mainMutex.unlock() ;
 }

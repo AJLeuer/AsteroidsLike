@@ -124,13 +124,15 @@ public:
 	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
 	 * GameState::getGameObjects().
 	 */
-	static vector<GameObject*> * getAllGameObjects() { return GameObject::allGameObjects ; }
+	static vector<GameObject*> * & getAllGameObjects() { return GameObject::allGameObjects ; }
 	
 	
     /**
      * @return The current map of GameObjects 
      */
 	static const GameMap<GameObject> * getMap() { return GameObject::map ; }
+    
+    static void allDoDefaultBehaviors(const TimeFlow & tf) ;
 	
 	
 	/**
@@ -338,7 +340,7 @@ public:
 	 * Each GameObject can implement this to enable its default behaviors to run 
 	 * on a loop on a separate thread
 	 */
-	virtual void defaultBehaviors() ;
+	virtual void doDefaultBehavior(bool initialCall = false) ;
 	
 	virtual void aiBehaviors() ;
 	
@@ -409,7 +411,7 @@ public:
 	void setVisibility(bool visible) { this->graphicsData->setVisibility(visible) ; }
 	bool isVisible() const { return this->graphicsData->isVisible() ; }
     
-    bool overBounds(const BoundsCheck<float> & bc = BoundsCheck<float>::defaultCheck) ;
+    bool overBounds() ;
 	
 	/**
 	 * Turns this GameObject invisible for nano nanoseconds

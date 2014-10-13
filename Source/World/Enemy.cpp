@@ -9,6 +9,6 @@
 #include "Enemy.h"
 
 
-void Enemy::defaultBehaviors() {
+void Enemy::doDefaultBehavior() {
 	
 }

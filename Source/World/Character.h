@@ -157,7 +157,7 @@ public:
 	virtual void textDescription(ostream * writeTo) const ;
 	
 	//using GameObject's implementation for now, may change later
-	virtual void defaultBehaviors() override ;
+	virtual void doDefaultBehavior(bool initialCall = false) override ;
 	
 	virtual void aiBehaviors() override ;
 	

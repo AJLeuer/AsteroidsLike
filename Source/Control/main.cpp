@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <limits>
+#include <functional>
 
 #include <iostream>
 
@@ -38,11 +39,6 @@ int main(int argc, char ** argv) {
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
-	
-    
-    auto version = CPP_VERSION ;
-    auto cpp11 = CPP11 ;
-    auto cpp14 = CPP14 ;
     
     int a = MAX_X_REFERENCE_VAL ;
     

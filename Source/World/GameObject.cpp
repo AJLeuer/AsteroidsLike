@@ -20,6 +20,54 @@ GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), gl
 
 FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
 
+void GameObject::allDoDefaultBehaviors(const TimeFlow & tf) {
+    
+    static unsigned calls = 0 ;
+    
+    /* while time is moving forward... */
+    if (tf == TimeFlow::forward) {
+        for (auto i = 0 ; i < allGameObjects->size() ; i++) {
+            
+            if (allGameObjects->at(i) != nullptr) {
+                
+                //if this is the first time calling
+                if (calls == 0) {
+                    allGameObjects->at(i)->doDefaultBehavior(true) ;
+                }
+                else {
+                    allGameObjects->at(i)->doDefaultBehavior(false) ;
+                }
+                
+                /* do any other stuff with GameObjects */
+                
+                /* always call update at the end */
+                allGameObjects->at(i)->update() ;
+            }
+        }
+    }
+    
+    /* while time is running backwards... */
+    else if (tf == TimeFlow::reverse) {
+        
+        deque<chrono::nanoseconds> sleepTimes ;
+        
+        for (auto i = 0 ; i < allGameObjects->size() ; i++) {
+            if (allGameObjects->at(i)->archivedPositionsCount() > 0) {
+                auto last = allGameObjects->at(i)->getReverseMove() ;
+                allGameObjects->at(i)->moveTo(last.first) ;
+                sleepTimes.push_back(last.second) ;
+            }
+        }
+        
+        while (sleepTimes.size() > 0) {
+            chrono::nanoseconds time = sumElements(sleepTimes) ;
+            this_thread::sleep_for(time) ;
+        }
+    }
+
+    calls++ ;
+}
+
 
 GameObject::GameObject() :
 	ID(IDs),
@@ -199,7 +247,7 @@ GameObject & GameObject::operator=(GameObject && rhs) {
 }
 
 void GameObject::operator()() {
-	defaultBehaviors() ;
+	doDefaultBehavior() ;
 }
 
 void GameObject::operator()(GameObject * sentObject) {
@@ -401,10 +449,12 @@ void GameObject::moveY(float y) {
 
 
 void GameObject::moveRandomDirection() {
+    
+    FastRand<float> randVectorIniter(-10.0, 10.0) ;
 	
-	float x = chooseAtRand(1.0, -1.0) ;
+	float x = randVectorIniter.nextValue() ;
 	
-	float y = chooseAtRand(1.0, -1.0) ;
+	float y = randVectorIniter.nextValue() ;
 	
 	Vectr<float> newVector(x, y, 0, SafeBoolean::f) ;
 	
@@ -445,25 +495,20 @@ void GameObject::wander() {
 
 /* This function will really only apply to generic GameObject (like Asteroids and debris, etc.)
  All other inheriting classes will override this (usually with no-ops) */
-void GameObject::defaultBehaviors() {
-    
-    static unsigned calls = 0 ;
-    
-    if (calls == 0) {
+void GameObject::doDefaultBehavior(bool initialCall) {
+
+    if (initialCall) {
         moveRandomDirection() ;
-        update() ;
     }
-    else if (calls > 0) {
-        aiBehaviors() ;
+    else {
+        wander() ;
     }
-    
-    calls++ ;
 }
 
 void GameObject::aiBehaviors() {
 	wander() ;
 	
-	//todo add more behaviors
+	//todo add ai
 }
 
 
@@ -496,8 +541,8 @@ Texture * GameObject::getTexture() const {
 	return graphicsData->getTexture() ;
 }
 
-bool GameObject::overBounds(const BoundsCheck<float> & bc) {
-    return getPosition()->overBounds(bc) ;
+bool GameObject::overBounds() {
+    return graphicsData->overBounds() ;
 }
 
 void GameObject::timedTurnInvisible(std::chrono::nanoseconds nano) {

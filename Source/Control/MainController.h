@@ -63,7 +63,7 @@ protected:
 	 *
 	 * @see init()
 	 */
-	static void exit(int sig = 0) ;
+	static void exitmc(int sig) ;
 	
 public:
 	

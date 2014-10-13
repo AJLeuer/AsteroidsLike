@@ -25,9 +25,9 @@ void MainController::begin_exit() {
 void MainController::setupMainContrExit() {
 	
 	/* Signal handling */
-	signal(SIGQUIT, &MainController::exit) ;
-	signal(SIGABRT, &MainController::exit) ;
-	signal(SIGTERM, &MainController::exit) ;
+	signal(SIGQUIT, &MainController::exitmc) ;
+	signal(SIGABRT, &MainController::exitmc) ;
+	signal(SIGTERM, &MainController::exitmc) ;
 	
 	/* Register for MainController::exit() to be called if a quit event is initiated (i.e. user clicks
 	  window close button, presses ⌘Q, etc */
@@ -132,26 +132,23 @@ void MainController::main() {
 	}
 
 	/* exit signaled GLOBAL_CONTINUE_FLAG. We're outta here! Handing off to MainController::exit() */
-	exit() ;
 }
 
-void MainController::exit(int sig) {
+void MainController::exitmc(int sig) {
 	
-	if (GLOBAL_CONTINUE_FLAG == true) {
-		
-		GLOBAL_CONTINUE_FLAG = false ;
-		/* other signals to define false here? */
+    GLOBAL_CONTINUE_FLAG = false ;
+    /* other signals to define false here? */
         
-        TextOutput<float, int>::exit() ; /* quits() sdl_ttf */
-		GraphicalOutput::exit() ;
-		WorldController::exit() ;
-		InputController::exit() ;
+    TextOutput<float, int>::exit() ; /* quits() sdl_ttf */
+    GraphicalOutput::exit() ;
+    WorldController::exit() ;
+    InputController::exit() ;
 	
 		
-		SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
+    SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
 	
-		GameState::mainGameClock->stopTimer() ;
-	}
+    GameState::mainGameClock->stopTimer() ;
+
 	
 	exit(sig) ;
 	

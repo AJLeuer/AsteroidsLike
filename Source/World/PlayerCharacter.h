@@ -140,7 +140,7 @@ public:
 	}
 	
 	//using GameObject's implementation for now, may change later
-	void defaultBehaviors() override ;
+	virtual void doDefaultBehavior(bool initialCall = false) override ;
 	
 	/* no AI behaviors, for obvious reasons */
 	void aiBehaviors() override { /* nothing */ }

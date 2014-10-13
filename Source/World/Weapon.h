@@ -19,9 +19,7 @@
 class Projectile : public GameObject {
     using GameObject::GameObject ;
     
-    void defaultBehaviors() override {
-        /* do nothing */ ;
-    }
+    virtual void doDefaultBehavior(bool initialCall = false) override ;
 };
 
 
