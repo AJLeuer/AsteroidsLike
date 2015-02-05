@@ -192,7 +192,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 	}
 	else {
 		
-		FastRand<unsigned> rand(0, 3) ;
+		Randm<unsigned> rand(0, 3) ;
 		unsigned swt = rand.nextValue() ;
 		
 		switch (swt) {

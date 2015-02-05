@@ -20,7 +20,7 @@ Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
 Pos2<float> Player::position_in_defaultStartingArea() {
-	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + FastRand<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
+	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + Randm<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
 	return ret ;
 }
 

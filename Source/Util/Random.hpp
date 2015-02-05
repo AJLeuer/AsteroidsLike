@@ -1,5 +1,5 @@
 //
-//  GameRandom.hpp
+//  Random.hpp
 //  SpriteFight
 //
 //  Created by Adam James Leuer on 6/28/14.
@@ -19,7 +19,7 @@
 using namespace std ;
 
 template<typename N>
-class FastRand {
+class Randm {
 	
 protected:
 	
@@ -30,22 +30,22 @@ protected:
 	N minimum ;
 	N maximum ;
 	
-	static FastRand * initRandPosSetter() ;
+	static Randm * initRandPosSetter() ;
 	
 public:
 	
-	static FastRand defaultRandom ;
-	static FastRand * randPositionSetter ;
+	static Randm defaultRandom ;
+	static Randm * randPositionSetter ;
 	
-	FastRand(N _min, N _max) ;
+	Randm(N _min, N _max) ;
     
-	FastRand(const FastRand<N> & other) ;
+	Randm(const Randm<N> & other) ;
     
     template<typename M>
-    FastRand(const FastRand<M> & other) ;
+    Randm(const Randm<M> & other) ;
     
-	FastRand & operator=(const FastRand<N> & rhs) ;
-	~FastRand() ;
+	Randm & operator=(const Randm<N> & rhs) ;
+	~Randm() ;
 	N nextValue() ;
 	N nextValue(N minimum, N maximum) ;
 	template<typename R> R nextValue(R _min, R _max) ;
@@ -55,7 +55,7 @@ public:
 } ;
 
 template<>
-class FastRand<float> {
+class Randm<float> {
 	
 protected:
 	
@@ -66,17 +66,17 @@ protected:
 	float minimum ;
 	float maximum ;
 	
-	static FastRand * initRandPosSetter() ;
+	static Randm * initRandPosSetter() ;
 	
 public:
 	
-	static FastRand defaultRandom ;
-	static FastRand * randPositionSetter ;
+	static Randm defaultRandom ;
+	static Randm * randPositionSetter ;
 	
-	FastRand(float _min, float _max) ;
-	FastRand(const FastRand<float> & other) ;
-	FastRand & operator=(const FastRand<float> & rhs) ;
-	~FastRand() ;
+	Randm(float _min, float _max) ;
+	Randm(const Randm<float> & other) ;
+	Randm & operator=(const Randm<float> & rhs) ;
+	~Randm() ;
 	float nextValue() ;
 	float nextValue(float minimum, float maximum) ;
 	template<typename R> R nextValue(R _min, R _max) ;
@@ -87,7 +87,7 @@ public:
 } ;
 
 template<>
-class FastRand<double> {
+class Randm<double> {
 	
 protected:
 	
@@ -98,17 +98,17 @@ protected:
 	double minimum ;
 	double maximum ;
 	
-	static FastRand * initRandPosSetter() ;
+	static Randm * initRandPosSetter() ;
 	
 public:
 	
-	static FastRand defaultRandom ;
-	static FastRand * randPositionSetter ;
+	static Randm defaultRandom ;
+	static Randm * randPositionSetter ;
 	
-	FastRand(double _min, double _max) ;
-	FastRand(const FastRand<double> & other) ;
-	FastRand & operator=(const FastRand<double> & rhs) ;
-	~FastRand() ;
+	Randm(double _min, double _max) ;
+	Randm(const Randm<double> & other) ;
+	Randm & operator=(const Randm<double> & rhs) ;
+	~Randm() ;
 	double nextValue() ;
 	double nextValue(double minimum, double maximum) ;
 	template<typename R> R nextValue(R _min, R _max) ;
@@ -119,7 +119,7 @@ public:
 } ;
 
 template<typename N>
-FastRand<N>::FastRand(N _min, N _max) :
+Randm<N>::Randm(N _min, N _max) :
 	minimum(_min),
 	maximum(_max)
 {
@@ -129,7 +129,7 @@ FastRand<N>::FastRand(N _min, N _max) :
 }
 
 template<typename N>
-FastRand<N>::FastRand(const FastRand<N> & other)
+Randm<N>::Randm(const Randm<N> & other)
 {
 	std::random_device dev2 ;
 	dist = uniform_int_distribution<N>(other.minimum, other.maximum) ;
@@ -138,7 +138,7 @@ FastRand<N>::FastRand(const FastRand<N> & other)
 
 template<typename N>
 template<typename M>
-FastRand<N>::FastRand(const FastRand<M> & other) {
+Randm<N>::Randm(const Randm<M> & other) {
     this->minimum(static_cast<N>(other.minimum)) ;
     this->maximum(static_cast<N>(other.maximum)) ;
     
@@ -147,10 +147,10 @@ FastRand<N>::FastRand(const FastRand<M> & other) {
 }
 
 template<typename N>
-FastRand<N>::~FastRand(){}
+Randm<N>::~Randm(){}
 
 template<typename N>
-FastRand<N> & FastRand<N>::operator=(const FastRand<N> & rhs)
+Randm<N> & Randm<N>::operator=(const Randm<N> & rhs)
 {
 	if (this != &rhs) {
 		std::random_device dev2 ;
@@ -161,29 +161,29 @@ FastRand<N> & FastRand<N>::operator=(const FastRand<N> & rhs)
 }
 
 template<typename N>
-N FastRand<N>::nextValue() {
+N Randm<N>::nextValue() {
 	return dist(rndm) ;
 }
 
 template<typename N>
-N FastRand<N>::nextValue(N minimum, N maximum) {
+N Randm<N>::nextValue(N minimum, N maximum) {
 	std::uniform_int_distribution<N> dif_dist{minimum, maximum} ;
 	return dif_dist(rndm) ;
 }
 
 template<typename N>
-N FastRand<N>::operator()() {
+N Randm<N>::operator()() {
 	return nextValue() ;
 }
 
 template<typename N>
-N FastRand<N>::operator()(N minimum, N maximum) {
+N Randm<N>::operator()(N minimum, N maximum) {
 	return nextValue(minimum, maximum) ;
 }
 
 template<typename N>
 template<typename R>
-R FastRand<N>::nextValue(R _min, R _max) {
+R Randm<N>::nextValue(R _min, R _max) {
 	std::uniform_int_distribution<R> dif_dist{_min, _max} ;
 	return dif_dist(rndm) ;
 }
@@ -191,15 +191,15 @@ R FastRand<N>::nextValue(R _min, R _max) {
 
 
 template<typename N>
-FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
+Randm<N> Randm<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
 
 
 template<typename N>
-FastRand<N> * FastRand<N>::randPositionSetter = initRandPosSetter() ;
+Randm<N> * Randm<N>::randPositionSetter = initRandPosSetter() ;
  
 template<typename N>
-FastRand<N> * FastRand<N>::initRandPosSetter() {
-	return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
+Randm<N> * Randm<N>::initRandPosSetter() {
+	return new Randm<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
 }
  
 
@@ -208,7 +208,7 @@ FastRand<N> * FastRand<N>::initRandPosSetter() {
 template<typename N>
 N randSignFlip(N n) {
 	
-	FastRand<unsigned short> rand(0, 1) ;
+	Randm<unsigned short> rand(0, 1) ;
 	bool pos = rand.nextValue() % 2 ;
 	if (pos) {
 		return n ;
@@ -221,7 +221,7 @@ N randSignFlip(N n) {
 
 template <typename T>
 T chooseAtRand(T t1, T t2) {
-	FastRand<unsigned long> rand(0, 1) ;
+	Randm<unsigned long> rand(0, 1) ;
 	bool first = rand.nextValue() ;
 	if (first) {
 		return t1 ;
@@ -243,7 +243,7 @@ T chooseAtRand(T t1, T t2) {
 template<typename SomeEnum, typename N>
 SomeEnum randomEnumeration(N maximum) {
 	
-	FastRand<N> randm(0, maximum) ;
+	Randm<N> randm(0, maximum) ;
 	N num = randm() ;
 	return SomeEnum(num) ;
 }

@@ -19,7 +19,7 @@
 		66C7928F19CA1A89000C2338 /* AssetFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7925719CA1A89000C2338 /* AssetFileIO.cpp */; };
 		66C7929019CA1A89000C2338 /* BasicConcurrency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7925919CA1A89000C2338 /* BasicConcurrency.cpp */; };
 		66C7929119CA1A89000C2338 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7925C19CA1A89000C2338 /* Debug.cpp */; };
-		66C7929219CA1A89000C2338 /* GameRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7925E19CA1A89000C2338 /* GameRandom.cpp */; };
+		66C7929219CA1A89000C2338 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7925E19CA1A89000C2338 /* Random.cpp */; };
 		66C7929319CA1A89000C2338 /* HardwareRand.c in Sources */ = {isa = PBXBuildFile; fileRef = 66C7926019CA1A89000C2338 /* HardwareRand.c */; };
 		66C7929419CA1A89000C2338 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7926419CA1A89000C2338 /* Timer.cpp */; };
 		66C7929519CA1A89000C2338 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7926619CA1A89000C2338 /* Util.cpp */; };
@@ -53,7 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		66B86E3B19CA194000FAA59D /* SpriteFight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpriteFight; sourceTree = BUILT_PRODUCTS_DIR; };
+		66B86E3B19CA194000FAA59D /* AsteroidsLike */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AsteroidsLike; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C7923E19CA1A89000C2338 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		66C7923F19CA1A89000C2338 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		66C7924019CA1A89000C2338 /* DefaultConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultConfig.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		66C7924419CA1A89000C2338 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66C7924519CA1A89000C2338 /* MainController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainController.cpp; sourceTree = "<group>"; };
 		66C7924619CA1A89000C2338 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
-		66C7924719CA1A89000C2338 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		66C7924719CA1A89000C2338 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Player.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66C7924819CA1A89000C2338 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		66C7924C19CA1A89000C2338 /* Decl_Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decl_Apple.h; sourceTree = "<group>"; };
 		66C7924D19CA1A89000C2338 /* DisplayData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayData.cpp; sourceTree = "<group>"; };
@@ -73,17 +73,17 @@
 		66C7925119CA1A89000C2338 /* GraphicalOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicalOutput.cpp; sourceTree = "<group>"; };
 		66C7925219CA1A89000C2338 /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicalOutput.h; sourceTree = "<group>"; };
 		66C7925319CA1A89000C2338 /* GraphicsData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsData.cpp; sourceTree = "<group>"; };
-		66C7925419CA1A89000C2338 /* GraphicsData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GraphicsData.hpp; sourceTree = "<group>"; };
+		66C7925419CA1A89000C2338 /* GraphicsData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GraphicsData.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66C7925519CA1A89000C2338 /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextOutput.hpp; sourceTree = "<group>"; };
-		66C7925719CA1A89000C2338 /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetFileIO.cpp; sourceTree = "<group>"; };
-		66C7925819CA1A89000C2338 /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetFileIO.h; sourceTree = "<group>"; };
+		66C7925719CA1A89000C2338 /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = AssetFileIO.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		66C7925819CA1A89000C2338 /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AssetFileIO.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66C7925919CA1A89000C2338 /* BasicConcurrency.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicConcurrency.cpp; sourceTree = "<group>"; };
 		66C7925A19CA1A89000C2338 /* BasicConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicConcurrency.h; sourceTree = "<group>"; };
 		66C7925B19CA1A89000C2338 /* BoundsCheck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundsCheck.hpp; sourceTree = "<group>"; };
 		66C7925C19CA1A89000C2338 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		66C7925D19CA1A89000C2338 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		66C7925E19CA1A89000C2338 /* GameRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRandom.cpp; sourceTree = "<group>"; };
-		66C7925F19CA1A89000C2338 /* GameRandom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRandom.hpp; sourceTree = "<group>"; };
+		66C7925E19CA1A89000C2338 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Random.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		66C7925F19CA1A89000C2338 /* Random.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
 		66C7926019CA1A89000C2338 /* HardwareRand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HardwareRand.c; sourceTree = "<group>"; };
 		66C7926119CA1A89000C2338 /* Navigator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Navigator.hpp; sourceTree = "<group>"; };
 		66C7926219CA1A89000C2338 /* Position.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		66B86E3C19CA194000FAA59D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66B86E3B19CA194000FAA59D /* SpriteFight */,
+				66B86E3B19CA194000FAA59D /* AsteroidsLike */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 				66C7925A19CA1A89000C2338 /* BasicConcurrency.h */,
 				66C7925B19CA1A89000C2338 /* BoundsCheck.hpp */,
 				66C7925D19CA1A89000C2338 /* Debug.h */,
-				66C7925F19CA1A89000C2338 /* GameRandom.hpp */,
+				66C7925F19CA1A89000C2338 /* Random.hpp */,
 				66C7926119CA1A89000C2338 /* Navigator.hpp */,
 				66C7926219CA1A89000C2338 /* Position.hpp */,
 				66C7926319CA1A89000C2338 /* Size.hpp */,
@@ -228,7 +228,7 @@
 				66C7925719CA1A89000C2338 /* AssetFileIO.cpp */,
 				66C7925919CA1A89000C2338 /* BasicConcurrency.cpp */,
 				66C7925C19CA1A89000C2338 /* Debug.cpp */,
-				66C7925E19CA1A89000C2338 /* GameRandom.cpp */,
+				66C7925E19CA1A89000C2338 /* Random.cpp */,
 				66C7926419CA1A89000C2338 /* Timer.cpp */,
 				66C7926619CA1A89000C2338 /* Util.cpp */,
 				66C7926919CA1A89000C2338 /* Velocity.cpp */,
@@ -273,9 +273,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		66B86E3A19CA194000FAA59D /* SpriteFight */ = {
+		66B86E3A19CA194000FAA59D /* AsteroidsLike */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66B86E4219CA194000FAA59D /* Build configuration list for PBXNativeTarget "SpriteFight" */;
+			buildConfigurationList = 66B86E4219CA194000FAA59D /* Build configuration list for PBXNativeTarget "AsteroidsLike" */;
 			buildPhases = (
 				66B86E3719CA194000FAA59D /* Sources */,
 				66B86E3819CA194000FAA59D /* Frameworks */,
@@ -285,9 +285,9 @@
 			);
 			dependencies = (
 			);
-			name = SpriteFight;
+			name = AsteroidsLike;
 			productName = SpriteFight;
-			productReference = 66B86E3B19CA194000FAA59D /* SpriteFight */;
+			productReference = 66B86E3B19CA194000FAA59D /* AsteroidsLike */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -304,7 +304,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 66B86E3619CA194000FAA59D /* Build configuration list for PBXProject "SpriteFight" */;
+			buildConfigurationList = 66B86E3619CA194000FAA59D /* Build configuration list for PBXProject "AsteroidsLike" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -316,7 +316,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66B86E3A19CA194000FAA59D /* SpriteFight */,
+				66B86E3A19CA194000FAA59D /* AsteroidsLike */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 				66C7929719CA1A89000C2338 /* Ability.cpp in Sources */,
 				66C7929319CA1A89000C2338 /* HardwareRand.c in Sources */,
 				66C7929F19CA1A89000C2338 /* Weapon.cpp in Sources */,
-				66C7929219CA1A89000C2338 /* GameRandom.cpp in Sources */,
+				66C7929219CA1A89000C2338 /* Random.cpp in Sources */,
 				66C7928619CA1A89000C2338 /* Input.cpp in Sources */,
 				66C7929A19CA1A89000C2338 /* GameEvent.cpp in Sources */,
 				66C7929019CA1A89000C2338 /* BasicConcurrency.cpp in Sources */,
@@ -463,7 +463,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AsteroidsLike;
 			};
 			name = Debug;
 		};
@@ -475,14 +475,14 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AsteroidsLike;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66B86E3619CA194000FAA59D /* Build configuration list for PBXProject "SpriteFight" */ = {
+		66B86E3619CA194000FAA59D /* Build configuration list for PBXProject "AsteroidsLike" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66B86E4019CA194000FAA59D /* Debug */,
@@ -491,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66B86E4219CA194000FAA59D /* Build configuration list for PBXNativeTarget "SpriteFight" */ = {
+		66B86E4219CA194000FAA59D /* Build configuration list for PBXNativeTarget "AsteroidsLike" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66B86E4319CA194000FAA59D /* Debug */,

@@ -56,7 +56,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  *
  * @param randSeed A seed to initialize the random number generator
  */
-PlayerCharacter::PlayerCharacter(FastRand<int> rand, AssetType type) :
+PlayerCharacter::PlayerCharacter(Randm<int> rand, AssetType type) :
     Character(rand, type),
     weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier()) {}
 

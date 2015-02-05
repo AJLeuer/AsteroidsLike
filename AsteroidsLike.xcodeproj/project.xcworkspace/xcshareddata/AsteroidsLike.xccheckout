@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>0AD8DD2D-213F-4B02-86EC-296879047E3F</string>
+	<string>F3D5C658-9902-405A-B2D0-9A385CB444EC</string>
 	<key>IDESourceControlProjectName</key>
-	<string>SpriteFight</string>
+	<string>AsteroidsLike</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>507C56BA-E62E-4057-ADB8-F1CF736B4BB0</key>
+		<key>3890D50A0914C252091A83E61606122FA0756092</key>
 		<string>https://github.com/AJLeuer/SpriteFight.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SpriteFight.xcodeproj/project.xcworkspace</string>
+	<string>AsteroidsLike.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>507C56BA-E62E-4057-ADB8-F1CF736B4BB0</key>
+		<key>3890D50A0914C252091A83E61606122FA0756092</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/AJLeuer/SpriteFight.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>507C56BA-E62E-4057-ADB8-F1CF736B4BB0</string>
+	<string>3890D50A0914C252091A83E61606122FA0756092</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>507C56BA-E62E-4057-ADB8-F1CF736B4BB0</string>
+			<string>3890D50A0914C252091A83E61606122FA0756092</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SpriteFight</string>
 		</dict>

@@ -118,7 +118,7 @@ AssetFile::AssetFile(const string & existingFilename) {
 	}
 }
 
-AssetFile::AssetFile(FastRand<int> randm, AssetType type) {
+AssetFile::AssetFile(Randm<int> randm, AssetType type) {
 
 	bool match = false ;
 	vector<AssetFile> * files = nullptr ;
@@ -293,57 +293,57 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 
 AssetFile AssetFileIO::getRandomImageFile(AssetType type) {
 	
-    FastRand<vector<AssetFile>::size_type> rnd(0, AssetFile::allAssetFiles->size()-1) ; //not used
+    Randm<vector<AssetFile>::size_type> rnd(0, AssetFile::allAssetFiles->size()-1) ; //not used
 	
 	switch (type) {
 		case AssetType::asteroid:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::asteroidImageFilenames->size() -1) ;
 			return AssetFile::asteroidImageFilenames->at(rnd()) ;
 		}
 		case AssetType::background:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::backgroundImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::backgroundImageFilenames->size() -1) ;
 			return AssetFile::backgroundImageFilenames->at(rnd()) ;
 		}
         case AssetType::explosion:
         {
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::explosionImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::explosionImageFilenames->size() -1) ;
 			return AssetFile::explosionImageFilenames->at(rnd()) ;
         }
 		case AssetType::powerup:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::powerupImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::powerupImageFilenames->size() -1) ;
 			return AssetFile::powerupImageFilenames->at(rnd()) ;
 		}
         case AssetType::projectile:
         {
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::projectileImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::projectileImageFilenames->size() -1) ;
 			return AssetFile::projectileImageFilenames->at(rnd()) ;
         }
         case AssetType::shield:
         {
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::shieldImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::shieldImageFilenames->size() -1) ;
 			return AssetFile::shieldImageFilenames->at(rnd()) ;
         }
 		case AssetType::playerShip:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::playerShipImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::playerShipImageFilenames->size() -1) ;
 			return AssetFile::playerShipImageFilenames->at(rnd()) ;
 		}
 		case AssetType::enemyShip:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::enemyShipImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::enemyShipImageFilenames->size() -1) ;
 			return AssetFile::enemyShipImageFilenames->at(rnd()) ;
 		}
         case AssetType::shipDamage:
         {
-            rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::shipDamageImageFilenames->size() -1) ;
+            rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::shipDamageImageFilenames->size() -1) ;
 			return AssetFile::shipDamageImageFilenames->at(rnd()) ;
         }
 		case AssetType::UI:
 		{
-			rnd = FastRand<vector<AssetFile>::size_type>(0, AssetFile::UIImageFilenames->size() -1) ;
+			rnd = Randm<vector<AssetFile>::size_type>(0, AssetFile::UIImageFilenames->size() -1) ;
 			return AssetFile::UIImageFilenames->at(rnd()) ;
 		}
 	}

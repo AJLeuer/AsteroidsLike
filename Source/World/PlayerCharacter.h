@@ -86,7 +86,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	PlayerCharacter(FastRand<int> rand, AssetType type) ;
+	PlayerCharacter(Randm<int> rand, AssetType type) ;
 	
 	
 	/**

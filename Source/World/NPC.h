@@ -67,7 +67,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	NPC(FastRand<int> rand, AssetType type) ;
+	NPC(Randm<int> rand, AssetType type) ;
 	
 	
 	/**

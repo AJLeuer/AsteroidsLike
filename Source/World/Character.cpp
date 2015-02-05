@@ -44,7 +44,7 @@ Character::Character(const AssetFile & imageFile, float sizeModifier, const Posi
 {
 }
 
-Character::Character(FastRand<int> rand, AssetType type) :
+Character::Character(Randm<int> rand, AssetType type) :
 	GameObject(rand, type, true),
 	reaction((Reaction)rand.nextValue(-2, 2)), 
 	alive(DoA::alive),

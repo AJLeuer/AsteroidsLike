@@ -18,7 +18,7 @@ vector<GameObject *> * GameObject::allGameObjects = new vector<GameObject*>() ;
 
 GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), globalMaxY()) ;
 
-FastRand<int> GameObject::goRand(FastRand<int>(0, INT_MAX));
+Randm<int> GameObject::goRand(Randm<int>(0, INT_MAX));
 
 void GameObject::allDoDefaultBehaviors(const TimeFlow & tf) {
     
@@ -71,7 +71,7 @@ void GameObject::allDoDefaultBehaviors(const TimeFlow & tf) {
 
 GameObject::GameObject() :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(FastRand<int>::defaultRandom, new Pos2<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
+    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Pos2<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
 {
 	IDs++ ;
     
@@ -167,7 +167,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	placeOnMap() ;
 }
 
-GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
+GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
     graphicsData(new GraphicsData<float, int>(rand, new Pos2<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
 {
@@ -182,7 +182,7 @@ GameObject::GameObject(FastRand<int> & rand, AssetType type, bool visible) :
     
 	placeOnMap() ;
 	
-	FastRand<float> randSizeMod(0.5, 1.0) ;
+	Randm<float> randSizeMod(0.5, 1.0) ;
 }
 
 
@@ -450,7 +450,7 @@ void GameObject::moveY(float y) {
 
 void GameObject::moveRandomDirection() {
     
-    FastRand<float> randVectorIniter(-10.0, 10.0) ;
+    Randm<float> randVectorIniter(-10.0, 10.0) ;
 	
 	float x = randVectorIniter.nextValue() ;
 	

@@ -24,7 +24,7 @@ NPC::NPC(const AssetFile & imageFile, float size, const Position<float> & loc, c
 
 	Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking) {}
 
-NPC::NPC(FastRand<int> rand, AssetType type) :
+NPC::NPC(Randm<int> rand, AssetType type) :
 	Character(rand, type)
 {
 	this->reaction = Reaction(rand() % 5) ;

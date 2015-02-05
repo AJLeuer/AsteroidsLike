@@ -27,7 +27,7 @@ void WorldController::init() {
 
 	WorldController::map = GameObject::getMap() ;
 
-	FastRand<int> posModifier(-100, 100) ;
+	Randm<int> posModifier(-100, 100) ;
 
 	
 	/* Init enemies */
@@ -40,13 +40,13 @@ void WorldController::init() {
 	*/
 	/* Init obstacles */
 	
-	FastRand<float>randomSizeModifier(0.25, 1.0) ;
+	Randm<float>randomSizeModifier(0.25, 1.0) ;
 	
-	FastRand<int> randm(0, 100) ;
+	Randm<int> randm(0, 100) ;
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Pos2<float>(*FastRand<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
+					   Pos2<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
 	}
 	
 	/* Init game state */

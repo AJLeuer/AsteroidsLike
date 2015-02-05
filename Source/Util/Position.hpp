@@ -29,7 +29,7 @@
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
 #include "Velocity.hpp"
-#include "GameRandom.hpp"
+#include "Random.hpp"
 #include "BasicConcurrency.h"
 
 #include "../Control/GlobalVar.h"
@@ -78,7 +78,7 @@ public:
 	}
 
     template<typename N>
-    Angle(FastRand<N> randm) {
+    Angle(Randm<N> randm) {
         value = randm(0, 360) ;
     }
 
@@ -202,7 +202,7 @@ public:
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Position(FastRand<R> rand) :
+	Position(Randm<R> rand) :
 		x(rand.nextValue()),
 		y(rand.nextValue()) {}
 
@@ -210,7 +210,7 @@ public:
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Position(FastRand<R> rand, const BoundsCheck<N> & check) :
+	Position(Randm<R> rand, const BoundsCheck<N> & check) :
 		x(rand.nextValue(check.min_X, check.max_X)),
 		y(rand.nextValue(check.min_Y, check.max_Y))
 	{
@@ -261,7 +261,7 @@ public:
 		this->checkBounds(check) ;
 	}
 
-    Position(FastRand<N> & randm) {
+    Position(Randm<N> & randm) {
         x = randm(BoundsCheck<N>::defaultCheck.min_X, BoundsCheck<N>::defaultCheck.max_X) ;
         y = randm(BoundsCheck<N>::defaultCheck.min_Y, BoundsCheck<N>::defaultCheck.max_Y) ;
     }
@@ -756,7 +756,7 @@ public:
      * Creates a Pos2 all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Pos2(FastRand<R> & rand) :
+	Pos2(Randm<R> & rand) :
 		Position<N>(rand),
 		pastPositions(new deque<PastPositionAndTimeDifferential>)
     {
@@ -767,7 +767,7 @@ public:
      * Creates a Pos2 all coordinates randomized, with bounds set by check
      */
     template<typename R>
-	Pos2(FastRand<R> & rand, const BoundsCheck<N> & check) :
+	Pos2(Randm<R> & rand, const BoundsCheck<N> & check) :
 		Position<N>(rand, check),
 		pastPositions(new deque<PastPositionAndTimeDifferential>)
     {
@@ -1230,7 +1230,7 @@ public:
 
     Vectr() ;
     Vectr(Angle rotation, SafeBoolean tf) ;
-	Vectr(FastRand<N> randm) ;
+	Vectr(Randm<N> randm) ;
 	Vectr(float headingX, float headingY, Angle rotation, SafeBoolean tf) ;
 	Vectr(float headingX, float headingY, Position<N> * current_, Angle rotation, SafeBoolean tf) ;
 	Vectr(const Position<N> * current_, Angle rotation, SafeBoolean tf) ;
@@ -1323,13 +1323,13 @@ Vectr<N>::Vectr(Angle rotation, SafeBoolean tf) :
 }
 
 template<typename N>
-Vectr<N>::Vectr(FastRand<N> randm) :
+Vectr<N>::Vectr(Randm<N> randm) :
 	Position<float>(randm(), randm()),
 	current(nullptr),
 	totalDistanceMoved(new N()),
 	velocity(nullptr)
 {
-	FastRand<float> randmf(0, 360) ;
+	Randm<float> randmf(0, 360) ;
 	currentRotation = randmf() ;
 }
 

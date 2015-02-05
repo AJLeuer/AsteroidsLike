@@ -14,7 +14,7 @@
 #include <ostream>
 
 #include "../Util/BoundsCheck.hpp"
-#include "../Util/GameRandom.hpp"
+#include "../Util/Random.hpp"
 
 using namespace std ;
 
@@ -214,7 +214,7 @@ enum class Colors {
 };
 
 inline Colors getRandomColor() {
-	FastRand<unsigned> randm(0, static_cast<unsigned>(Colors::last)) ;
+	Randm<unsigned> randm(0, static_cast<unsigned>(Colors::last)) ;
 	//auto c = static_cast<Colors>( ;)
 	return Colors::blue ;
 }

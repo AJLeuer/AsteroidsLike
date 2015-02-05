@@ -19,7 +19,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
 #include "../Util/BoundsCheck.hpp"
-#include "../Util/GameRandom.hpp"
+#include "../Util/Random.hpp"
 
 #include "../Output/GraphicsData.hpp"
 #include "../Output/TextOutput.hpp"

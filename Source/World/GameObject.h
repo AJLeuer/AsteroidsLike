@@ -21,7 +21,7 @@
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
 #include "../Util/Size.hpp"
-#include "../Util/GameRandom.hpp"
+#include "../Util/Random.hpp"
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
 
@@ -105,7 +105,7 @@ protected:
 	 */
 	static GameMap<GameObject> * map ;
 	
-	static FastRand<int> goRand ;
+	static Randm<int> goRand ;
 	
 	static void checkForMarkedDeletions() ;
 	
@@ -170,7 +170,7 @@ public:
 	 *
 	 * @param rand A seed to initialize the random number generator
 	 */
-	GameObject(FastRand<int> & rand, AssetType type, bool visible) ; //increase fastRand limit (currently 1) to maximum number
+	GameObject(Randm<int> & rand, AssetType type, bool visible) ; //increase fastRand limit (currently 1) to maximum number
 																								   //of values represented by enum class FileType
 	
 	/**

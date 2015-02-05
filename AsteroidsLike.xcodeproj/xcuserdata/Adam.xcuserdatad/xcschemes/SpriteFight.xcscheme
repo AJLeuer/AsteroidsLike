@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66B86E3A19CA194000FAA59D"
-               BuildableName = "SpriteFight"
-               BlueprintName = "SpriteFight"
-               ReferencedContainer = "container:SpriteFight.xcodeproj">
+               BuildableName = "AsteroidsLike"
+               BlueprintName = "AsteroidsLike"
+               ReferencedContainer = "container:AsteroidsLike.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66B86E3A19CA194000FAA59D"
-            BuildableName = "SpriteFight"
-            BlueprintName = "SpriteFight"
-            ReferencedContainer = "container:SpriteFight.xcodeproj">
+            BuildableName = "AsteroidsLike"
+            BlueprintName = "AsteroidsLike"
+            ReferencedContainer = "container:AsteroidsLike.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66B86E3A19CA194000FAA59D"
-            BuildableName = "SpriteFight"
-            BlueprintName = "SpriteFight"
-            ReferencedContainer = "container:SpriteFight.xcodeproj">
+            BuildableName = "AsteroidsLike"
+            BlueprintName = "AsteroidsLike"
+            ReferencedContainer = "container:AsteroidsLike.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66B86E3A19CA194000FAA59D"
-            BuildableName = "SpriteFight"
-            BlueprintName = "SpriteFight"
-            ReferencedContainer = "container:SpriteFight.xcodeproj">
+            BuildableName = "AsteroidsLike"
+            BlueprintName = "AsteroidsLike"
+            ReferencedContainer = "container:AsteroidsLike.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

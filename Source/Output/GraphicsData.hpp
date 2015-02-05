@@ -25,7 +25,7 @@
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
 
-#include "../Util/GameRandom.hpp"
+#include "../Util/Random.hpp"
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
@@ -203,7 +203,7 @@ public:
         update() ;
     }
     
-    GraphicsData(FastRand<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(Randm<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
@@ -214,7 +214,7 @@ public:
         boundsChecking(boundsChecking)
     {
         /* init flag is true */
-		FastRand<float> sizeInit(0.75, 1.5) ;
+		Randm<float> sizeInit(0.75, 1.5) ;
 		size.setModifier(sizeInit()) ;
         
 		allGraphicsData.push_back(this) ;
