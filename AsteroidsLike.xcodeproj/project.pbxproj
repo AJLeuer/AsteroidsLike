@@ -53,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		66B597001A831F430089F828 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66B86E3B19CA194000FAA59D /* AsteroidsLike */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AsteroidsLike; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C7923E19CA1A89000C2338 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
 		66C7923F19CA1A89000C2338 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				66C7926B19CA1A89000C2338 /* World */,
 				66C7923D19CA1A89000C2338 /* Control */,
 				66B86E3C19CA194000FAA59D /* Products */,
+				66B597001A831F430089F828 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
