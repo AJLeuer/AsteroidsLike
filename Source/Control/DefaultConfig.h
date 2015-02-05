@@ -62,8 +62,8 @@ constexpr unsigned MAX_X_REFERENCE_VAL = 1280 ;
 constexpr unsigned MAX_Y_REFERENCE_VAL = 720 ;
 
 /* Default value for window height and width */
-constexpr unsigned DEFAULT_W_MAX_X = 960 ;
-constexpr unsigned DEFAULT_W_MAX_Y = 540 ;
+constexpr unsigned DEFAULT_W_MAX_X = 1600 ;
+constexpr unsigned DEFAULT_W_MAX_Y = 900 ;
 
 #else
 const unsigned MAX_X_REFERENCE_VAL = 1280 ;

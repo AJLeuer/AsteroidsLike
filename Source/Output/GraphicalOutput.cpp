@@ -19,6 +19,8 @@ Renderer * GraphicalOutput::renderer = NULL ;
 
 RenderInfo GraphicalOutput::renderInfo ; // = (RenderInfo *)malloc(sizeof(RenderInfo)) ;
 
+unsigned GraphicalOutput::framesRendered = 0 ;
+
 
 void GraphicalOutput::init() {
     
@@ -105,6 +107,8 @@ void GraphicalOutput::render() {
             render(GraphicsData<float, int>::getOutputData()->at(i)) ;
         }
 	}
+	
+	framesRendered++ ;
 }
 
 void GraphicalOutput::update() {
@@ -112,6 +116,48 @@ void GraphicalOutput::update() {
 	SDL_RenderClear(renderer) ;
 	render() ;
 	SDL_RenderPresent(renderer) ;
+}
+
+void GraphicalOutput::drawFPS() {
+	
+	static auto startTime = chrono::system_clock::now()  ;
+	static chrono::seconds elapsedTime = chrono::duration_cast<chrono::seconds>(chrono::system_clock::now() - startTime) ;// ;
+	
+	static unsigned framesLastCount = framesRendered ;
+	static unsigned framesCurrentCount = framesRendered ;
+	static unsigned frames = framesCurrentCount - framesLastCount ;
+	
+	auto updateFPS = [&]() -> string {
+		
+		auto & sT = startTime ; //debug variables, can delete
+		auto & elapsed = elapsedTime ;
+		unsigned & fs = frames ;
+		unsigned & curCount = framesCurrentCount ;
+		unsigned & lastCt = framesLastCount ;
+		
+		framesCurrentCount = framesRendered ;
+		frames = framesCurrentCount - framesLastCount ;//get the frames rendered since the last time we ran
+		framesLastCount = framesCurrentCount ;
+		
+		elapsedTime = chrono::duration_cast<chrono::seconds>(chrono::system_clock::now() - startTime) ; //and the time elapsed
+		startTime = chrono::system_clock::now() ;
+		
+		static float FPS = 0 ;
+		
+		if (frames > 0) {
+			FPS = (float)frames / (float)elapsedTime.count() ; //no divide by zero errors here!
+		}
+		//else don't update FPS, just display it's most recent value
+		
+		stringstream fpsText ;
+		
+		fpsText << "FPS: " << FPS ;
+		
+		return fpsText.str() ;
+		
+	} ;
+	
+	TextOutput<float, int>::displayContinuousText(updateFPS, chrono::seconds(1), {300, 15}, Angle(0), GameColor(55, 255, 0, 0), GameColor(50, 40, 43, 0)) ;
 }
 
 void GraphicalOutput::exit() {

@@ -134,7 +134,7 @@ void PlayerCharacter::move(Vectr<float> & direction, float distanceModifier) {
 }
 
 //using GameObject's implementation for now, may change later
-void PlayerCharacter::defaultBehaviors() {
+void PlayerCharacter::doDefaultBehavior(bool initialCall) {
    /* Overriding this with nothing, since we are player-controlled, not AI-controlled */
 }
 

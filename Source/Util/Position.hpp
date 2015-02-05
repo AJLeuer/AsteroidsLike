@@ -62,98 +62,98 @@ enum Direction {
  * Angle provides the member function valInRadians() for just that purpose.
  */
 class Angle {
-	
+
 protected:
-	
+
 	float value ;
-	
+
 public:
-	
+
 	Angle(const float angle) : value(angle) {
 		value = Mod(value, 360.0f) ;
 	}
-	
+
 	Angle(const Angle & other) : value(other.value) {
 		value = Mod(value, 360.0f) ;
 	}
-    
+
     template<typename N>
     Angle(FastRand<N> randm) {
         value = randm(0, 360) ;
     }
-	
+
 	~Angle() {}
-	
+
 	Angle & operator=(const Angle & rhs) {
 		if (this != &rhs) {
 			this->value = Mod(rhs.value, 360.0f) ;
 		}
 		return *this ;
 	}
-	
+
 	Angle & operator=(const float & f) {
 		value = Mod(f, 360.0f) ;
 		return *this ;
 	}
-	
+
 	//operator float() const { return this->value ; }
-	
+
 	Angle operator+(const float otherAngle) const {
 		Angle val(0) ;
 		val.value = Mod((this->value + otherAngle), 360.0f) ;
 		return val ;
 	}
-	
+
 	Angle operator-(const float otherAngle) const {
 		Angle val(0) ;
 		val.value = Mod((this->value - otherAngle), 360.0f) ;
 		return val ;
 	}
-	
+
 	void operator+=(const float otherAngle) {
 		this->value = Mod((value + otherAngle), 360.0f) ;
 	}
-	
+
 	void operator-=(const float otherAngle) {
 		this->value = Mod((value - otherAngle), 360.0f) ;
 	}
-	
+
 	Angle operator+(const Angle otherAngle) const {
 		Angle val(0) ;
 		val.value = Mod((this->value + otherAngle.value), 360.0f) ;
 		return val ;
 	}
-	
+
 	Angle operator-(const Angle otherAngle) const {
 		Angle val(0) ;
 		val.value = Mod((this->value - otherAngle.value), 360.0f) ;
 		return val ;
 	}
-	
+
 	void operator+=(const Angle otherAngle) {
 		this->value = Mod((value + otherAngle.value), 360.0f) ;
 	}
-	
+
 	void operator-=(const Angle otherAngle) {
 		this->value = Mod((value - otherAngle.value), 360.0f) ;
 	}
-	
+
 	float val() {
 		value = Mod(value, 360.0f) ;
 		return value ;
 	}
-	
+
 	float val_const() const {
 		float val = value ;
 		val = Mod(val, 360.0f) ;
 		return val ;
 	}
-    
+
     float valInRadians() {
         return (convertToRadians<float>((val()))) ;
     }
-	
-	
+
+
 } ;
 
 
@@ -178,26 +178,26 @@ public:
      * Creates a Positionwith all coordinates initialized to 0
      */
 	Position() : x(0), y(0) {}
-	
+
 	/**
      * Creates a Positionwith all coordinates initialized to 0
      */
 	Position(const BoundsCheck<N> & check) : x(0), y(0) { this->checkBounds(check) ; }
-	
+
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
 	Position(N n) : x(n), y(n) {}
-	
+
 	/**
      * Creates a Positionwith all coordinates initialized to n
      */
 	Position(N n, const BoundsCheck<N> & check) : x(n), y(n) { this->checkBounds(check) ; }
-	
-	
+
+
 	template<typename M>
 	Position(M x, M y) : x(static_cast<N>(x)), y(static_cast<N>(y)) {}
-	
+
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
@@ -205,7 +205,7 @@ public:
 	Position(FastRand<R> rand) :
 		x(rand.nextValue()),
 		y(rand.nextValue()) {}
-	
+
 	/**
      * Creates a Positionwith all coordinates randomized, with bounds set by check
      */
@@ -221,26 +221,26 @@ public:
      * Copy constructor for Position
      */
     Position(const Position & other) : Position(other.x, other.y) {}
-	
+
 	/**
      * Copy constructor for Position
      */
     Position(const Position & other, const BoundsCheck<N> & check) : Position(other.x, other.y)  {
 		checkBounds(check) ;
 	}
-	
+
 	/**
      * Move constructor for Position
      */
     Position(Position && other) : Position(other.x, other.y) {}
-	
+
 	/**
      * Move constructor for Position
      */
     Position(Position && other, const BoundsCheck<N> & check) : Position(other.x, other.y) {
 		checkBounds(check) ;
 	}
-    
+
 	/**
      * Creates a Position with coordinates initialized to the
      * given arguments
@@ -249,7 +249,7 @@ public:
      * @param y The y coordinate
      */
 	Position(N x, N y) : x(x), y(y) {}
-	
+
     /**
      * Creates a Position with coordinates initialized to the
      * given arguments
@@ -260,12 +260,12 @@ public:
 	Position(N x, N y, const BoundsCheck<N> & check) : x(x), y(y) {
 		this->checkBounds(check) ;
 	}
-    
+
     Position(FastRand<N> & randm) {
         x = randm(BoundsCheck<N>::defaultCheck.min_X, BoundsCheck<N>::defaultCheck.max_X) ;
         y = randm(BoundsCheck<N>::defaultCheck.min_Y, BoundsCheck<N>::defaultCheck.max_Y) ;
     }
-	
+
     /**
      * Destructor for Position
      */
@@ -279,11 +279,11 @@ public:
 
 		this->x = rhs.x ;
 		this->y = rhs.y ;
-       
+
         return *this;
     }
-	
-	
+
+
 	/**
      * Assigment operator (move)
      */
@@ -294,7 +294,7 @@ public:
 
 		return(*this) ;
     }
-    
+
 	/**
 	 * Typecast to SDL_Point operator overload
 	 */
@@ -304,7 +304,7 @@ public:
 		point.y = this->y ;
 		return point ;
 	}
-	
+
 	virtual bool operator==(const Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y)) {
 			return true ;
@@ -313,7 +313,7 @@ public:
 			return false ;
 		}
 	}
-	
+
 	virtual bool operator==(Position & rhs) const {
 		if ((this->x == rhs.x) && (this->y == rhs.y)) {
 			return true ;
@@ -322,55 +322,55 @@ public:
 			return false ;
 		}
 	}
-	
+
 	virtual bool operator!=(const Position & rhs) const {
 		return !(this->operator==(rhs)) ;
 	}
-	
+
 	virtual bool operator!=(Position & rhs) {
 		return !(this->operator==(rhs)) ;
 	}
-	
+
 	virtual Position operator+(const Position & rhs) const {
-        
+
         Position temp = Position(this->x, this->y) ;
-        
+
 		temp.x = temp.x + rhs.x ;
 		temp.y = temp.y + rhs.y ;
-		
+
 		return temp ;
 	}
-	
+
 	virtual Position operator-(const Position & rhs) const {
-        
+
         Position temp = Position(this->x, this->y) ;
-        
+
 		temp.x = temp.x - rhs.x ;
 		temp.y = temp.y - rhs.y ;
-		
+
 		return temp ;
 	}
-	
+
 	virtual Position operator*(const N n) const {
-        
-        Position temp = Position(x, y) ;
+
+    Position temp = Position(x, y) ;
         
 		temp.x = temp.x * n ;
 		temp.y = temp.y * n ;
-		
+
 		return temp ;
 	}
-	
+
 	virtual Position operator/(const N n) const {
-        
-        Position temp = Position(x, y) ;
-        
+
+    Position temp = Position(x, y) ;
+
 		temp.x = temp.x / n ;
 		temp.y = temp.y / n ;
-		
+
 		return temp ;
 	}
-	
+
 
 	virtual void normalize() {
 		auto distance = pythag<float>(x, y) ;
@@ -381,7 +381,7 @@ public:
 			y = (y / distance) ;
 		}
 	}
-    
+
 	template<typename O, typename P>
     friend const Position<P> * operator+(const Position<P> & lhs, const Position<O> * rhs) {
 
@@ -399,12 +399,12 @@ public:
 
 		return new Position<P>(x, y) ;
 	}
-	
+
 	friend ostream & operator<<(std::ostream & os, const Position<N> * pos) {
 		os << "Position: X = " << pos->x << ", Y = " << pos->y  << '\n' ;
 		return os ;
 	}
-	
+
 	friend ostream & operator<<(std::ostream & os, const Position<N> & pos) {
 		os << "Position: X = " << pos.x << ", Y = " << pos.y << '\n' ;
 		return os ;
@@ -438,9 +438,9 @@ public:
 
 	virtual void setAllZero() { setAll(0) ; }
 
-	
+
 	N getX() const { return this->x ; }
-	
+
 	N getY() const { return this->y ; }
 
 	/**
@@ -452,15 +452,15 @@ public:
 	 * @return y as an integer
 	 */
 	int getIntY() const { return roundF<N, int>(y) ; }
-	
+
 	virtual void setX(const N x) { setAll(x, this->y) ; }
-	
+
 	virtual void setX(const N x, const BoundsCheck<N> & check) { setX(x) ; checkBounds(check) ; }
-	
+
 	virtual void setY(const N y) { setAll(this->x, y) ; }
-	
+
 	virtual void setY(const N y, const BoundsCheck<N> & check) { setY(y) ; checkBounds(check) ; }
-	
+
 
 	virtual void x_plus_one() { setX(x++) ; }
 
@@ -479,9 +479,9 @@ public:
 
 	virtual void y_minus_one(const BoundsCheck<N> & check) { setY(y--) ; checkBounds(check) ; }
 
-	
+
 	/**
-	 * Increments or decrements the x, y and z values according to 
+	 * Increments or decrements the x, y and z values according to
 	 * the arguments passed in. Use negative values to decrement. Passing
 	 * 0 for any argument will keep the x, y, or z value the same.
 	 *
@@ -498,7 +498,7 @@ public:
 
 		setAll(tempX, tempY) ;
 	}
-	
+
 	/**
 	 * Increments or decrements the x, y and z values according to
 	 * the arguments passed in. Use negative values to decrement. Passing
@@ -511,7 +511,7 @@ public:
 	virtual void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) {
 		auto tempX = this->x ;
 		auto tempY = this->y ;
-		
+
 		tempX += delta_x ;
 		tempY += delta_y ;
 
@@ -535,15 +535,15 @@ public:
 		moveHere(other) ;
 		checkBounds(check) ;
 	}
-    
+
     virtual void rotate(Angle 𝛳) {
         const N prevX = x ;
         const N prevY = y ;
-        
+
         x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
         y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
     }
-	
+
 	static N calcDistance(const Position & here, const Position & there) {
 		N dx = here.x - there.x ;
 		N dy = here.y - there.y ;
@@ -552,7 +552,7 @@ public:
 		N dist = pythag(nx, ny) ;
 		return dist ;
 	}
-    
+
 	std::string toString() const {
 		stringstream ss ;
 		ss << this ;
@@ -561,7 +561,7 @@ public:
 
 
 	void checkBounds(const BoundsCheck<N> * check) {
-		
+
 		if ((this->x) >= check->max_X) {
 			{
 			/* Debug code */
@@ -595,9 +595,9 @@ public:
 			this->y = check->min_Y ;
 		}
 	}
-	
+
 	void checkBounds(const BoundsCheck<N> & check) {
-		
+
 		if ((this->x) >= check.max_X) {
 			{
 				/* Debug code */
@@ -671,7 +671,7 @@ template<typename N>
 struct Pos2 : public Position<N> {
 
 protected:
-	
+
     /**
      * A data storage type that holds a copy of an objects previous position, plus
      * the difference in time between when the object existed at one position, and when it
@@ -679,13 +679,13 @@ protected:
      */
     typedef std::pair<Position<N>, chrono::nanoseconds> PastPositionAndTimeDifferential ;
 
-	/** 
+	/**
 	 * A vector container storing all the previous positions of this object,
 	 * with the most recent positions at the end of the vector, and the initial position at
 	 * the front. See archive().
 	 */
 	deque<PastPositionAndTimeDifferential> * pastPositions ;
-    
+
     Timer timer ;
 
 	/**
@@ -697,9 +697,9 @@ protected:
 		if (timeFlow == TimeFlow::forward) { //only archive while moving forward in time
             chrono::nanoseconds time = timer.checkTimeElapsed() ;
 			timer.reset() ; //reset the timer to zero
-            
+
 			Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
-			
+
 			if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
 				pastPositions->pop_front() ;
 			}
@@ -717,12 +717,12 @@ public:
     {
         timer.startTimer() ;
     }
-	
+
 	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<PastPositionAndTimeDifferential>)
     {
         timer.startTimer() ;
     }
-	
+
 	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new deque<PastPositionAndTimeDifferential>)
     {
         timer.startTimer() ;
@@ -751,7 +751,7 @@ public:
     {
         timer.startTimer() ;
     }
-	
+
 	/**
      * Creates a Pos2 all coordinates randomized, with bounds set by check
      */
@@ -858,13 +858,13 @@ public:
      * Destructor for Position
      */
     virtual ~Pos2() {
-		
+
 		{
 		/* Debug code */
 		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
 		/* End Debug code */
 		}
-        
+
         timer.stopTimer() ;
 
 		if (pastPositions != nullptr) {
@@ -893,7 +893,7 @@ public:
 	    this->Position<N>::operator=(std::move(rhs)) ;
 
         pastPositions = new deque<PastPositionAndTimeDifferential>() ;
-        
+
         timer = Timer() ;
         timer.startTimer() ;
 
@@ -908,7 +908,7 @@ public:
      * Assigment operator (move)
      */
     Pos2 & operator=(Pos2 && rhs) {
-		
+
 		{
 		/* Debug code */
 		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
@@ -919,7 +919,7 @@ public:
 
 		this->pastPositions = rhs.pastPositions ;
         timer = std::move(rhs.timer) ;
-        
+
 		rhs.pastPositions = nullptr ;
 
 		return(*this) ;
@@ -930,7 +930,7 @@ public:
 	 * onto pastPositions.
      */
     Pos2 & operator=(const Position<N> & rhs) {
-		
+
 		{
         /* Debug code */
         DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause unexpected behavior. \n" ;
@@ -938,7 +938,7 @@ public:
 		}
 
         setAll(rhs) ;
-        
+
         /* no need to make any changes to timer */
 
         return *this;
@@ -948,7 +948,7 @@ public:
      * Assigment operator (move)
      */
     Pos2 & operator=(Position<N> && rhs) {
-		
+
 		{
 		/* Debug code */
 		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
@@ -956,7 +956,7 @@ public:
 		}
 
 		setAll(rhs) ;
-        
+
         /* no need to make any changes to timer */
 
         return *this ;
@@ -1010,35 +1010,35 @@ public:
 	Position<N> operator-(const Position<N> & rhs) const override {
 		return Position<N>::operator-(rhs) ;
 	}
-    
-	
+
+
 	Position<N> operator*(const N n) const override {
-        
+
         Pos2 temp(this->x, this->y) ;
-        
+
 		temp.x = temp.x * n ;
 		temp.y = temp.y * n ;
-		
+
 		return temp ;
 	}
-	
+
     Position<N> operator/(const N n) const override {
-        
+
         Pos2 temp(this->x, this->y) ;
-        
+
 		temp.x = temp.x / n ;
 		temp.y = temp.y / n ;
-		
+
 		return temp ;
 	}
-	
+
 	/**
 	 * @return The size of the past positions archive
 	 */
 	size_t archivedPositionsCount() {
 		return pastPositions->size() ;
 	}
-	
+
 	/**
 	 * @return Pop the last added Position from the queue
 	 */
@@ -1048,7 +1048,7 @@ public:
 		pastPositions->pop_back() ;
 		return pop ;
 	}
-	
+
 	const deque<PastPositionAndTimeDifferential> * getHistory() {
 		return pastPositions ;
 	}
@@ -1085,7 +1085,7 @@ public:
 	void setY(const N y) override { setAll(this->x, y) ; }
 
 	void setY(const N y, const BoundsCheck<N> & check) override { setY(y) ; this->checkBounds(check) ; }
-	
+
 
 	void x_plus_one() override { setX(this->x++) ; }
 
@@ -1182,52 +1182,52 @@ public:
  */
 template<typename N>
 struct Vectr : public Position<float> {
-	
+
 protected:
-    
+
 	static BasicMutex * sharedVelMutex ;
-	
+
     /**
      * The Position preceding the most recent Position
      */
     Position<N> last ;
-    
+
     /**
      * The Position most recently visited
      */
 	Position<N> mostRecent ;
-    
+
     /**
      * A pointer to the current Position
      */
 	const Position<N> * current ;
-    
+
     /**
      * The non-normalized distance between the current Position and mostRecent Position
      */
     N absDistanceMoved = 0 ;
-	
+
 	N * totalDistanceMoved ;
-	
+
 	/**
 	 * Monitors velocity
 	 */
 	Velocity<N> * velocity ;
-	
+
 	/* The current rotation of this vector */
 	Angle currentRotation = 0.0 ;
-	
-	
+
+
 	bool sharedVelBool = true ;
-	
+
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
 	Vectr(const Position<float> & overrideCurrData, const Position<N> * current_, SafeBoolean tf) ;
-	
+
 	void update() ;
 
-	
+
 public:
-	
+
     Vectr() ;
     Vectr(Angle rotation, SafeBoolean tf) ;
 	Vectr(FastRand<N> randm) ;
@@ -1237,62 +1237,62 @@ public:
 	Vectr(const Vectr<N> & other) ;
 	Vectr(Vectr<N> && other) ;
 	~Vectr() ;
-    
+
 	Vectr & operator=(Vectr<N> && rhs) ;
-	
+
 	/**
 	 * Rotate the number of degrees equal to the difference between
 	 * this vectors current rotation, and the given angle 𝛳
 	 */
 	void setVectorAndOrientation(Angle 𝛳) ;
-	
+
 	/**
 	 * Rotate the number of degrees equal to the difference between
 	 * this vectors current rotation, and the given angle 𝛳
 	 */
 	void rotateVectorAndOrientation(Angle 𝛳) ;
-    
+
     void rotateVector(Angle 𝛳) ;
-    
+
     void rotateOrientation(Angle 𝛳) ;
-	
+
 	Vectr & copy(const Vectr & other, const Position * newCurrent) ;
     Vectr copy() const ;
-	
+
 	const Velocity<N> * getVelocity() const { return this->velocity ; }
-	
+
 	const Angle * getOrientation() const { return & currentRotation ; }
-	
+
 	Angle copyOrientation() const { return currentRotation ; }
-    
+
     void modifyOrientation(const Angle & angleOffset) { currentRotation += angleOffset ; }
-	
+
 	void overrideCurrentOrientation(const Angle & newAngle) { currentRotation = newAngle; }
-	
+
 	const Position * getCurrent() const { return current ; }
-	
+
 	const Position getLast() const { return this->last ; }
-	
+
 	void updateAndNormalize() ;
-	
+
 	N getLastMoveDistance() const { return absDistanceMoved ; }
-	
+
 	Velocity<N> & calculateVelocity() ;
 
 	Position<N> calculateNextPosition(float modifier = 1.0) ;
 
 	Position<N> calculateNextPositionChecked(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
-	
+
 	Position<N> calculateReverseNextPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
-	
+
 	Position<N> calculateReverseXPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
-	
+
 	Position<N> calculateReverseYPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 
-	
+
 } ;
 
 template<typename N>
@@ -1422,19 +1422,19 @@ Vectr<N>::~Vectr()
 	if (velocity != nullptr) {
 		sharedVelMutex->lock() ;
 	}
-	
+
 	sharedVelBool = false ;
-	
+
 	this->current = nullptr ;
-	
+
 	if (velocity != nullptr) {
 		delete velocity;
 	}
-	
+
 	if (totalDistanceMoved != nullptr) {
 		delete totalDistanceMoved ;
 	}
-	
+
 	if (velocity != nullptr) {
 		sharedVelMutex->unlock() ;
 	}
@@ -1444,7 +1444,7 @@ Vectr<N>::~Vectr()
 template<typename N>
 Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 	if (this != &rhs) {
-		
+
 		this->Position<float>::operator=(std::move(rhs)) ;
         this->last = Position<N>(rhs.last) ;
 		this->mostRecent = Position<N>(rhs.mostRecent) ;
@@ -1453,7 +1453,7 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 		this->totalDistanceMoved = rhs.totalDistanceMoved ;
 		this->velocity = rhs.velocity ;
 		this->currentRotation = std::move(rhs.currentRotation) ;
-		
+
 		rhs.current = nullptr ;
 		rhs.totalDistanceMoved = nullptr ;
 		rhs.velocity = nullptr ;
@@ -1463,13 +1463,13 @@ Vectr<N> & Vectr<N>::operator=(Vectr<N> && rhs) {
 
 template<typename N>
 void Vectr<N>::setVectorAndOrientation(Angle 𝛳) {
-	
+
     normalize() ;
-    
+
     this->Position<N>::rotate(𝛳) ;
-    
+
 	this->currentRotation = 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
-	
+
 	assert((currentRotation.val() == 𝛳.val())) ; /* debug code, remove */
 
 	/* we should still be normalized here */
@@ -1477,21 +1477,21 @@ void Vectr<N>::setVectorAndOrientation(Angle 𝛳) {
 
 template<typename N>
 void Vectr<N>::rotateVectorAndOrientation(Angle 𝛳) {
-	
+
 	normalize() ;
-    
+
 	this->Position<N>::rotate(𝛳) ;
-    
+
 	this->currentRotation += 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
-	
+
 	/* we should still be normalized here */
 }
 
 template<typename N>
 void Vectr<N>::rotateVector(Angle 𝛳) {
-    
+
     normalize() ;
-    
+
     this->Position<N>::rotate(𝛳) ;
 }
 
@@ -1503,29 +1503,29 @@ void Vectr<N>::rotateOrientation(Angle 𝛳) {
 
 template<typename N>
 Vectr<N> & Vectr<N>::copy(const Vectr & other, const Position * newCurrent) {
-	
+
 	this->Position<float>::operator=(other) ;
-	
+
 	this->last = Position<N>(other.last) ;
 	this->mostRecent = Position<N>(other.mostRecent) ;
 	this->current = newCurrent ;
 	this->absDistanceMoved = other.absDistanceMoved ;
 	this->totalDistanceMoved = new N(*other.totalDistanceMoved) ;
 	this->currentRotation = other.currentRotation ;
-	
+
 	if (other.velocity != nullptr) {
 		this->velocity = new Velocity<N>(this->totalDistanceMoved, &this->sharedVelBool) ;
 	}
 	else {
 		this->velocity = nullptr ;
 	}
-	
+
 	return *this ;
 }
 
 template<typename N>
 Vectr<N> Vectr<N>::copy() const {
-    
+
 	Vectr<N> newVect ;
 	newVect.copyVect(*this) ;
 
@@ -1549,10 +1549,10 @@ template<typename N>
 void Vectr<N>::update() {
 
 	if ((current != nullptr) && (mostRecent != *current)) { //only if we've moved...
-        
+
         absDistanceMoved = calcEuclidianDistance(mostRecent, *current) ;
 		*totalDistanceMoved += absDistanceMoved ;
-        
+
 		Position<N> temp = ((*current) - mostRecent) ;               /*  uses Position operator- overload to subtract
                                                                       our x, y, and z (which are offset values) from those
                                                                       stored in current, giving our new location  */
@@ -1576,39 +1576,39 @@ Velocity<N> & Vectr<N>::calculateVelocity() {
 
 template<typename N>
 Position<N> Vectr<N>::calculateNextPosition(float modifier) {
-	
+
 	normalize() ;
-	
+
 	auto stor = *this * modifier ;
-	
+
 	N nx ;
 	N ny ;
 	N nz ;
-	
+
 	nx = (current)->getX() + stor.getX() ;
 	ny = (current)->getY() + stor.getY() ;
-	
+
 	Position<N> next(nx, ny) ;
-    
+
 	return next ;
 }
 
 template<typename N>
 Position<N> Vectr<N>::calculateNextPositionChecked(float modifier, const BoundsCheck<N> & check) {
-	
+
 	normalize() ;
-	
+
 	auto stor = *this * modifier ;
-	
+
 	N nx ;
 	N ny ;
 	N nz ;
-	
+
 	nx = (current)->getX() + stor.getX() ;
 	ny = (current)->getY() + stor.getY() ;
-	
+
 	Position<N> next(nx, ny, check) ;
-	
+
 	return next ;
 }
 
@@ -1676,78 +1676,78 @@ extern Position<T> transPosition(const Position<T> & inSpriteFight) {
 
 	auto worldXSize = globalMaxX() /*- GameObject::GLOBAL_min_X*/ ;
 	auto worldYSize = globalMaxY() /*- GameObject::GLOBAL_min_Y*/ ;
-	
+
 	T tempX = inSpriteFight.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
 	T tempY = inSpriteFight.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
-	
+
 	unsigned tw = termWidth() ;
 	unsigned th = termHeight() ;
-	
+
 	T x = (tw * tempX)/worldXSize ;
 	T y = (th * tempY)/worldYSize ;
-	
+
 	return Position<T>(x, y) ;
 }
 
 template<typename N>
 struct Resolution : public Position<N> {
-	
+
 private:
-	
+
 	N getZ() const { return 0 ; }
-	
+
 	virtual void setZ(const N z) {}
-	
+
 public:
-	
+
 	Resolution() :
 		Position<N>(0, 0) {}
-	
+
 	Resolution(N x, N y) :
 		Position<N>(x, y) {}
-	
+
 	Resolution(const Resolution & other) :
 		Position<N>(other) {}
-	
+
 	Resolution(Resolution && other) :
 		Position<N>(std::move(other)) {}
-	
+
 	Resolution & operator=(const Resolution & rhs) {
 		if (this != &rhs) {
 			this->Position<N>::operator=(rhs) ;
 		}
 		return *this ;
 	}
-	
+
 	~Resolution() {}
-	
+
 	Resolution & operator=(Resolution && rhs) {
 		if (this != &rhs) {
 			this->Position<N>::operator=(std::move(rhs)) ;
 		}
 		return *this ;
 	}
-	
+
 	double operator/(const Resolution & rhs) const {
-		
+
         double x_quotient = (static_cast<double>(this->getX()) / static_cast<double>(rhs.getX())) ;
 		double y_quotient = (static_cast<double>(this->getY()) / static_cast<double>(rhs.getY())) ;
-		
+
 		double avrg = average<double>(x_quotient, y_quotient) ;
-		
+
 		return avrg ;
 	}
-	
+
 	friend ostream & operator<<(std::ostream & os, const Resolution<N> * pos) {
 		os << pos->x << "x" << pos->y << '\n' ;
 		return os ;
 	}
-	
+
 	friend ostream & operator<<(std::ostream & os, const Resolution<N> & pos) {
 		os << pos.x << "x" << pos.y << '\n' ;
 		return os ;
 	}
-	
+
 } ;
 
 

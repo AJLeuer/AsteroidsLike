@@ -96,6 +96,8 @@ void MainController::main() {
 	 switch off on the main thread */
 	WorldController::begin_main() ;
 	
+	GraphicalOutput::drawFPS() ;
+	
 	auto rt = refreshTime ; //debug symbol
 	
 	while (GLOBAL_CONTINUE_FLAG) {
@@ -120,7 +122,7 @@ void MainController::main() {
 		
 		mainGameLoopCount++ ;
 		
-		//this_thread::sleep_for(sleepTime) ;
+		this_thread::sleep_for(sleepTime) ;
 		
 		if (mainGameLoopCount > worldLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;

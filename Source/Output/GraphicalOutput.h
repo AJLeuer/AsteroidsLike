@@ -49,6 +49,7 @@ protected:
 	static Window * window ;
 	static Renderer * renderer ;
 	static RenderInfo renderInfo ;
+	static unsigned framesRendered ;
 	
 	/**
 	 * Handles rendering.
@@ -72,6 +73,7 @@ public:
 	
 	static void init() ;
 	static void update() ;
+	static void drawFPS() ;
 	static void exit() ;
 	
 } ;

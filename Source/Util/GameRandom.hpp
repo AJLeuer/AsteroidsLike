@@ -30,15 +30,12 @@ protected:
 	N minimum ;
 	N maximum ;
 	
-	/* A conveniance random object that won't require initialization.
-	 * Especially useful in constructors and initializing static values.
-	 * A superior replacement for calling rand() 
-	 */
-	
+	static FastRand * initRandPosSetter() ;
 	
 public:
 	
 	static FastRand defaultRandom ;
+	static FastRand * randPositionSetter ;
 	
 	FastRand(N _min, N _max) ;
     
@@ -191,18 +188,20 @@ R FastRand<N>::nextValue(R _min, R _max) {
 	return dif_dist(rndm) ;
 }
 
-/*
-template<typename N>
-FastRand<N> * FastRand<N>::randPositionSetter = initRandPosSetter() ;
 
-template<typename N>
-FastRand<N> * FastRand<N>::initRandPosSetter() {
-    return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
-} */
 
 template<typename N>
 FastRand<N> FastRand<N>::defaultRandom(std::numeric_limits<N>::min(), std::numeric_limits<N>::max()) ;
 
+
+template<typename N>
+FastRand<N> * FastRand<N>::randPositionSetter = initRandPosSetter() ;
+ 
+template<typename N>
+FastRand<N> * FastRand<N>::initRandPosSetter() {
+	return new FastRand<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
+}
+ 
 
 /* more useful random functions: */
 

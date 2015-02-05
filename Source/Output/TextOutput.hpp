@@ -122,14 +122,13 @@ public:
 	/**
 	 * @brief Draws a continuously updating text representation of the string returned
 	 *		  by stringUpdatingFunction, overriding this->text. When using this function
-	 *		  there is no need to call updateText().
+	 *		  there is no need to call updateText(). Runs on its own thread.
 	 *
 	 * @param stringUpdatingFunction A function that returns the text to draw
 	 */
-	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
+	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
 	
 	
-    
 } ;
 
 template<typename POSUTYPE, typename SIZEUTYPE>
@@ -356,15 +355,16 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updat
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const string (void)> stringUpdatingFunction, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
+void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
 	
 	TextOutput * textoutput = new TextOutput(stringUpdatingFunction(), pos, orientation, foreground, background) ;
 	
 	auto continuousTextDisplay = [=] () -> void {
 		
 		while (GLOBAL_CONTINUE_FLAG) {
-			textoutput->updateText(stringUpdatingFunction()) ;
-			this_thread::sleep_for(chrono::milliseconds(24)) ;
+			string s = stringUpdatingFunction() ;
+			textoutput->updateText(s) ;
+			this_thread::sleep_for(sleepTime) ;
 		}
 		
 		delete textoutput ;

@@ -31,6 +31,7 @@ private:
 	
 	
 public:
+	
 	Debug(ostream * _out) : out(_out) {
 		
 	/* if DEBUG_MODE is not set, setting badbit prevents Debug from outputting anything */

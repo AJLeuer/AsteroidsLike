@@ -120,7 +120,7 @@ void Character::textDescription(ostream * writeTo) const {
 }
 
 //using GameObject's implementation for now, may change
-void Character::doDefaultBehavior() {
+void Character::doDefaultBehavior(bool initialCall) {
 	aiBehaviors() ;
 }
 

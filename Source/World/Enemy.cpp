@@ -9,6 +9,6 @@
 #include "Enemy.h"
 
 
-void Enemy::doDefaultBehavior() {
+void Enemy::doDefaultBehavior(bool initialCall) {
 	
 }
