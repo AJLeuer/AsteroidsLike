@@ -34,7 +34,6 @@ BasicMutex GameState::mainMutex ;
 string GameState::currentDirectory ;
 
 
-
 void GameState::initData(vector<GameObject *> * gobs, const GameMap<GameObject> * map) {
 	GameState::gameObjects = gobs ;
 	GameState::map = map ;

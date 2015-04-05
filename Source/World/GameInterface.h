@@ -27,6 +27,8 @@ class GameInterface {
 
  
 public:
+	
+	virtual ~GameInterface() {} 
 
 	/**
 	 * An implementing class can define a default function by overloading its () operator

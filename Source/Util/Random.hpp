@@ -45,11 +45,18 @@ public:
     Randm(const Randm<M> & other) ;
     
 	Randm & operator=(const Randm<N> & rhs) ;
+	
 	~Randm() ;
+	
 	N nextValue() ;
+	
 	N nextValue(N minimum, N maximum) ;
-	template<typename R> R nextValue(R _min, R _max) ;
+	
+	template<typename R>
+	R nextValue(R _min, R _max) ;
+	
 	N operator()() ;
+	
 	N operator()(N minimum, N maximum) ;
 	
 } ;

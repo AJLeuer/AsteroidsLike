@@ -130,7 +130,7 @@ AssetFile::AssetFile(Randm<int> randm, AssetType type) {
 		}
 	}
 	if (match) {
-		auto index = randm.nextValue(0, files->size() -1) ;
+		unsigned long index = randm.nextValue<unsigned long>(0, files->size() -1) ;
 		*this = files->at(index) ;
 	}
 	else {

@@ -1,0 +1,34 @@
+dependencies: \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameEvent.cpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameEvent.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameInterface.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Message.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/CharacterData.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/BoundsCheck.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/Configuration.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_video.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_stdinc.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_config.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_platform.h \
+  /Library/Frameworks/SDL2.framework/Headers/begin_code.h \
+  /Library/Frameworks/SDL2.framework/Headers/close_code.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_config_macosx.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_pixels.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_rect.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_error.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_rwops.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_surface.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/../Util/Util.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/../Output/DisplayData.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/DefaultConfig.h \
+  /Library/Frameworks/SDL2.framework/Headers/SDL_render.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Random.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameState.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Debug.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Velocity.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Timer.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/BasicConcurrency.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/GlobalVar.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/ForwardDecl.h

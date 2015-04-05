@@ -1,80 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
       <config projectName="SpriteFight" targetName="SpriteFight" />
     </generated>
   </component>
+  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
+    <ADDITIONAL_GENERATION_ENVIRONMENT>
+      <envs />
+    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1faaf2-7330-4dcf-82ca-2aaeaef4fe44" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Configuration.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Configuration.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/DefaultConfig.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/GlobalVar.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Input.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Input.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/MainController.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/MainController.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Player.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/Player.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Control/main.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Decl_Apple.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/DisplayData.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/DisplayData.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/DisplayData.mm" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/GameColor.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/GraphicalOutput.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/GraphicalOutput.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/GraphicsData.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/GraphicsData.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/TextOutput.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/AssetFileIO.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/AssetFileIO.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/BasicConcurrency.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/BasicConcurrency.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/BoundsCheck.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Debug.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Debug.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/GameRandom.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/GameRandom.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/HardwareRand.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Navigator.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Position.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Size.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Timer.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Timer.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Util.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Util.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Util2.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Velocity.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Util/Velocity.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Ability.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Ability.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Character.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Character.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/CharacterData.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Enemy.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Enemy.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/ForwardDecl.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameEvent.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameEvent.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameInterface.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameMap.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameObject.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameObject.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameState.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/GameState.hpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Message.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/NPC.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/NPC.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/PlayerCharacter.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/PlayerCharacter.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Weapon.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/Weapon.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/WorldController.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/World/WorldController.h" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpriteFight.xcodeproj/project.xcworkspace/xcuserdata/Adam.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/SpriteFight.xcodeproj/project.xcworkspace/xcuserdata/Adam.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpriteFight.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SpriteFight.xcodeproj/project.pbxproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BuildConfig.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/project.xcworkspace/xcuserdata/Adam.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/project.xcworkspace/xcuserdata/Adam.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Util/AssetFileIO.cpp" afterPath="$PROJECT_DIR$/Source/Util/AssetFileIO.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/World/GameInterface.h" afterPath="$PROJECT_DIR$/Source/World/GameInterface.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/World/GameState.cpp" afterPath="$PROJECT_DIR$/Source/World/GameState.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Util/Random.hpp" afterPath="$PROJECT_DIR$/Source/Util/Random.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/xcuserdata/Adam.xcuserdatad/xcschemes/SpriteFight.xcscheme" afterPath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/xcuserdata/Adam.xcuserdatad/xcschemes/SpriteFight.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/AsteroidsLike.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SpriteFight.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,20 +35,17 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="SpriteFight" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="150">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.27027026">
+              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -111,30 +54,18 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Control/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1020">
+            <state vertical-scroll-proportion="0.0">
               <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Util.hpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Util.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Util/Util.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="5955">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-              <folding>
-                <element signature="e#992#1004#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameRandom.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Util/GameRandom.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="3885">
-              <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -143,7 +74,7 @@
       <file leaf-file-name="Position.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Util/Position.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="26805">
+            <state vertical-scroll-proportion="0.0">
               <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
               <folding />
             </state>
@@ -153,7 +84,7 @@
       <file leaf-file-name="fp.h" pinned="false" current-in-tab="false">
         <entry file="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/fp.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="17850" max-vertical-offset="36735">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1190" column="28" selection-start-line="1190" selection-start-column="28" selection-end-line="1190" selection-end-column="28" />
               <folding />
             </state>
@@ -163,7 +94,7 @@
       <file leaf-file-name="DefaultConfig.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Control/DefaultConfig.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2310">
+            <state vertical-scroll-proportion="0.0">
               <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
               <folding />
             </state>
@@ -180,19 +111,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="changedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/Source/Control/main.cpp" />
-        <option value="$PROJECT_DIR$/Source/Util/GameRandom.hpp" />
-        <option value="$PROJECT_DIR$/Source/Util/Util.hpp" />
-      </list>
-    </option>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="613" />
   </component>
@@ -210,7 +137,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Cidr.FilesView" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -222,6 +149,26 @@
       <sortByType Cidr.FilesView="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpriteFight" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpriteFight" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpriteFight" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Cidr.FilesView">
         <subPane>
           <PATH>
@@ -282,6 +229,8 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.SpriteFight">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="SpriteFight" TARGET_NAME="SpriteFight" CONFIG_NAME="Debug">
@@ -292,18 +241,24 @@
       <node-options />
       <gulpfile />
       <tasks />
-      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="SpriteFight" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="SpriteFight" TARGET_NAME="SpriteFight" CONFIG_NAME="Debug">
+    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SpriteFight" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="SpriteFight" TARGET_NAME="SpriteFight" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SpriteFight" RUN_TARGET_NAME="SpriteFight">
       <envs />
       <RunnerSettings RunnerId="CPPAppRunner" />
       <ConfigurationWrapper RunnerId="CPPAppRunner" />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.SpriteFight" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.SpriteFight" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -320,25 +275,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="613" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="613" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3050505" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290441" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4949495" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290441" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25019857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.630303" sideWeight="0.49722" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17791899" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.50277996" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929292" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290441" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -355,11 +310,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -367,7 +317,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="150">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding />
         </state>
@@ -375,7 +325,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Control/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1020">
+        <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
@@ -383,25 +333,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Util/Util.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#992#1004#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Util/GameRandom.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="3885">
-          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Util/Position.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="26805">
+        <state vertical-scroll-proportion="0.0">
           <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
           <folding />
         </state>
@@ -409,7 +349,7 @@
     </entry>
     <entry file="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/fp.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17850" max-vertical-offset="36735">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1190" column="28" selection-start-line="1190" selection-start-column="28" selection-end-line="1190" selection-end-column="28" />
           <folding />
         </state>
@@ -417,7 +357,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Control/DefaultConfig.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2310">
+        <state vertical-scroll-proportion="0.0">
           <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
           <folding />
         </state>
@@ -425,7 +365,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Control/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Util/Util.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Util/Position.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/fp.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1190" column="28" selection-start-line="1190" selection-start-column="28" selection-end-line="1190" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Control/DefaultConfig.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -433,7 +421,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Control/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="945">
+        <state vertical-scroll-proportion="0.0">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="37" />
           <folding />
         </state>
@@ -441,17 +429,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Util/Util.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3285" max-vertical-offset="6030">
+        <state vertical-scroll-proportion="0.0">
           <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-          <folding>
-            <element signature="e#992#1004#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -459,21 +445,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -481,43 +467,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/fp.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17726" max-vertical-offset="36735">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1190" column="28" selection-start-line="1190" selection-start-column="28" selection-end-line="1190" selection-end-column="28" />
           <folding />
         </state>
@@ -525,7 +503,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Control/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="215" max-vertical-offset="1020">
+        <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
@@ -533,23 +511,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Control/DefaultConfig.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="545" max-vertical-offset="2280">
+        <state vertical-scroll-proportion="0.0">
           <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Util/GameRandom.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="3810">
-          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Util/Position.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="26490">
+        <state vertical-scroll-proportion="0.0">
           <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
           <folding />
         </state>
@@ -557,11 +527,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Util/Util.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="5955">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="e#992#1004#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27027026">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -582,4 +558,3 @@
     </states>
   </component>
 </project>
-
