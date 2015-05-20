@@ -90,7 +90,7 @@ void GraphicalOutput::render(GraphicsData<M, N> * output) {
 	   getTexture() method returns a nullptr */
 	if ((output != nullptr) && (output->isVisible())) {
 		if (output->getTexture() != nullptr) {
-			sdlrend_error = SDL_RenderCopyEx(renderer, output->getTexture(), NULL, &tempShape, output->getOrientation()->val_const(), NULL, SDL_FLIP_NONE) ;
+			sdlrend_error = SDL_RenderCopyEx(renderer, output->getTexture(), NULL, &tempShape, output->copyOrientation(), NULL, SDL_FLIP_NONE) ;
 		}
 	}
 	

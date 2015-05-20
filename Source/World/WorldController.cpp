@@ -12,8 +12,12 @@
 using namespace std ;
 
 
+//vector<GameObject*> * WorldController::allGameObjects = GameObject::allGameObjects ;
+
+
 thread WorldController::mainThread ;
-thread WorldController::checkDelThread ;
+
+
 const GameMap<GameObject> * WorldController::map = nullptr ;
 
 WorldController::WorldController() {}
@@ -33,10 +37,10 @@ void WorldController::init() {
 	/* Init enemies */
 	/*
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(globalMaxX() - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>())) ;
+              0.50, Position<float>(globalMaxX() - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>())) ;
 
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Pos2<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
+              0.50, Position<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
 	*/
 	/* Init obstacles */
 	
@@ -46,17 +50,16 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Pos2<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
+					   Position<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
 	}
 	
 	/* Init game state */
-	GameState::initData(GameObject::getAllGameObjects(), GameObject::getMap()) ;
+	GameState::initData(GameObject::accessAllGameObjects(), GameObject::getMap()) ;
     
 }
 
 void WorldController::begin_main() {
 	mainThread = thread(&WorldController::main) ;  //runWorldSimulation()
-	checkDelThread = thread(&GameObject::checkForMarkedDeletions) ;
 }
 
 void WorldController::main() {
@@ -77,6 +80,14 @@ void WorldController::main() {
 			main_reverseTime() ;
 		}
 		
+		/* Every once it a while it will be necessary to clean out the main game object container to
+		   remove the accumulated null pointers */
+		if ((worldLoopCount % 384) == 0) {
+			auto temporaryGameObjects = copyWithoutNullValues(GameObject::accessAllGameObjects(), new vector<GameObject*>) ;
+			delete ( GameObject::accessAllGameObjects() ) ;
+			GameObject::accessAllGameObjects() = temporaryGameObjects ;
+		}
+		
 		auto * mloop = &mainGameLoopCount ; //debug var, delete this
 		auto * wloop = &worldLoopCount ; //debug var, delete
 		
@@ -91,40 +102,73 @@ void WorldController::main() {
 		if (worldLoopCount > mainGameLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;
 			
-			conditionalWait.wait(locked) ;
+			shared_conditional.wait(locked) ;
 		}
 		
-		conditionalWait.notify_all() ;
+		shared_conditional.notify_all() ;
 	}
 }
 
 void WorldController::main_forwardTime() {
 	/* Do stuff */
-    GameObject::allDoDefaultBehaviors(TimeFlow::forward) ;
+	static unsigned calls = 0 ;
+	
+	for (auto i = 0 ; i < GameObject::accessAllGameObjects()->size() ; i++) {
+		
+		if ((GameObject::accessAllGameObjects()->at(i) != nullptr) && (GameObject::accessAllGameObjects()->at(i)->accessMutex().try_lock())) {
+			
+			GameObject * current = GameObject::accessAllGameObjects()->at(i) ;
+
+			auto allGOs = GameObject::accessAllGameObjects() ; //debug var
+			
+			//if this is the first time calling
+			if (calls == 0) {
+				current->doDefaultBehavior(true) ;
+			}
+			else {
+				current->doDefaultBehavior(false) ;
+			}
+			
+			/* do any other stuff with GameObjects */
+			
+			/* always call update at the end */
+			current->update() ;
+			
+			current->accessMutex().unlock() ;
+		}
+	}
+	
+	calls++ ;
 }
 
 void WorldController::main_reverseTime() {
-
+	
+	for (auto i = 0 ; i < GameObject::accessAllGameObjects()->size() ; i++) {
+		
+		if (GameObject::accessAllGameObjects()->at(i) != nullptr) {
+			
+			GameObject::accessAllGameObjects()->at(i)->reversePreviousAction() ;
+			
+		}
+	}
 }
 
 
 void WorldController::exit() {
 	
 	GameState::mainMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
-	
-	checkDelThread.join() ;
-	
+
 	mainThread.join() ;
 	
-	for (auto i = 0 ; i < GameObject::getAllGameObjects()->size() ; i++) {
-        if (GameObject::getAllGameObjects()->at(i) != nullptr) {
+	for (auto i = 0 ; i < GameObject::accessAllGameObjects()->size() ; i++) {
+        if (GameObject::accessAllGameObjects()->at(i) != nullptr) {
 			//delete gameObjects->at(i) ;
 		}
 	}
 
-	delete GameObject::getAllGameObjects() ;
+	delete GameObject::accessAllGameObjects() ;
 	delete map ; 
-    GameObject::getAllGameObjects() = nullptr ;
+    GameObject::accessAllGameObjects() = nullptr ;
 	
 	GameState::mainMutex.unlock() ;
 }

@@ -20,58 +20,10 @@ GameMap<GameObject> * GameObject::map = new GameMap<GameObject>(globalMaxX(), gl
 
 Randm<int> GameObject::goRand(Randm<int>(0, INT_MAX));
 
-void GameObject::allDoDefaultBehaviors(const TimeFlow & tf) {
-    
-    static unsigned calls = 0 ;
-    
-    /* while time is moving forward... */
-    if (tf == TimeFlow::forward) {
-        for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-            
-            if (allGameObjects->at(i) != nullptr) {
-                
-                //if this is the first time calling
-                if (calls == 0) {
-                    allGameObjects->at(i)->doDefaultBehavior(true) ;
-                }
-                else {
-                    allGameObjects->at(i)->doDefaultBehavior(false) ;
-                }
-                
-                /* do any other stuff with GameObjects */
-                
-                /* always call update at the end */
-                allGameObjects->at(i)->update() ;
-            }
-        }
-    }
-    
-    /* while time is running backwards... */
-    else if (tf == TimeFlow::reverse) {
-        
-        deque<chrono::nanoseconds> sleepTimes ;
-        
-        for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-            if (allGameObjects->at(i)->archivedPositionsCount() > 0) {
-                auto last = allGameObjects->at(i)->getReverseMove() ;
-                allGameObjects->at(i)->moveTo(last.first) ;
-                sleepTimes.push_back(last.second) ;
-            }
-        }
-        
-        while (sleepTimes.size() > 0) {
-            chrono::nanoseconds time = sumElements(sleepTimes) ;
-            this_thread::sleep_for(time) ;
-        }
-    }
-
-    calls++ ;
-}
-
 
 GameObject::GameObject() :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Pos2<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
+    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Position<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
 {
 	IDs++ ;
     
@@ -81,27 +33,20 @@ GameObject::GameObject() :
 	}
 
 	allGameObjects->push_back(this) ;
-
     placeOnMap() ;
     
 	graphicsData->updateAndNormalizeVector() ;
 	/* No graphics data initialization here */
+	
 }
 
 GameObject::GameObject(const GameObject & other) :
 	ID(IDs),
     graphicsData(new GraphicsData<float, int>(*other.graphicsData)),
-    onMap(other.onMap)
+    /* Don't copy other's onMap */
+	previousActionUndoFunctions(new stack<function<void()>>(* other.previousActionUndoFunctions))
 {
-	{
-	/* debug */
-	stringstream ss ;
-	ss << "Warning: Copy constructor called on GameObject ID# " << other.ID
-    << endl << "Dumping description of GameObject to be copied from: " << endl << other << endl ;
-	*(Debug::debugOutput) << ss.rdbuf() ;
-	/* end debug */
-	}
-	
+
 	IDs++ ;
 	
 	if (!map_is_init) {
@@ -109,26 +54,15 @@ GameObject::GameObject(const GameObject & other) :
 		map_is_init = true ;
 	}
 	
-	placeOnMap() ;
-	
 	allGameObjects->push_back(this) ;
-
-	/* Don't copy gthread or goIterator */
-
-	{
-	/* debug */
-	stringstream st ;
-	st << "Warning: Copy constructor finished copying GameObject ID# " << other.ID
-		<< " to GameObject ID# " << this->ID << '\n' << "Dumping desciption of GameObject copied to: " << '\n' << this << '\n' ;
-	*(Debug::debugOutput) << st.rdbuf() ;
-	/* end debug */
-	}
-}
+	placeOnMap() ;
+ }
 
 GameObject::GameObject(GameObject && other) :
 	ID(other.ID),
     graphicsData(other.graphicsData), /* No initGraphicsData() for move operations, just steal from other */
-    onMap(other.onMap)
+    /* Don't copy other's onMap */
+	previousActionUndoFunctions(other.previousActionUndoFunctions)
 {
 	{
 	/* debug */
@@ -143,17 +77,23 @@ GameObject::GameObject(GameObject && other) :
 		map_is_init = true ;
 	}
 	
-	/* There's already references to us on the map and in 
-	 allGameObjects, don't need to add us again */
+	allGameObjects->push_back(this) ;
+	placeOnMap() ;
 	
+	/* Cannot erase by id, since this and other share the same ids. Instead, we have to call
+	   eraseByReference */
+	eraseByReference(other) ;
+	other.eraseFromMap() ;
     other.graphicsData = nullptr ;
 	other.ID = -1 ;
+	other.previousActionUndoFunctions = nullptr ;
+	other.wasMoved = true ;
 }
 
 
 GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) :
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(imageFile, new Pos2<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, visible, monitorVelocity, boundsChecking)) /* can't be properly initialized yet */
+	graphicsData(new GraphicsData<float, int>(imageFile, new Position<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, visible, monitorVelocity, boundsChecking)) /* can't be properly initialized yet */
 {
 	IDs++ ;
     
@@ -165,11 +105,12 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 	allGameObjects->push_back(this) ;
     
 	placeOnMap() ;
+
 }
 
 GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(rand, new Pos2<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
+    graphicsData(new GraphicsData<float, int>(rand, new Position<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
 {
 	IDs++ ;
 	
@@ -187,63 +128,20 @@ GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 
 
 GameObject::~GameObject() {
-    
-	eraseByID(this->ID) ;
 	
-	eraseFromMap() ;
-    
-    graphicsData->markForDeletion() ;
-}
-
-GameObject & GameObject::operator=(const GameObject & rhs) {
-
-	{
-	/* Debug code */
-	stringstream ss ;
-	ss << "Warning: GameObject assignment operator overload (copy) called. This will cause performance issues." << '\n' ;
-	DebugOutput << ss.rdbuf() ;
-	/* End Debug code */
+	mtx.lock() ;
+	
+	if (wasMoved == false) { //no need to destruct if this was the argument to a move operation
+		eraseByID(this->ID) ;
+		
+		eraseFromMap() ;
+		
+		graphicsData->markForDeletion() ;
+		
+		delete previousActionUndoFunctions ;
 	}
-
-	if (this != &rhs) {
-
-		/* Keep ID the same */
-        eraseFromMap() ;
-
-		graphicsData->copy(*rhs.graphicsData) ; //give outputdata our new position as well
-		
-        onMap = rhs.onMap ;
-		
-        placeOnMap() ;
-        
-		graphicsData->updateAndNormalizeVector() ;
-	}
-	return *this ;
-}
-
-GameObject & GameObject::operator=(GameObject && rhs) {
-
-	{
-	/* Debug code */
-	stringstream ss ;
-	ss << "Warning: GameObject assignment operator overload (move) called." << '\n' ;
-	DebugOutput << ss.rdbuf() ;
-	/* End Debug code */
-	}
-
-	if (this != &rhs) {
-		
-		this->ID = rhs.ID ;
-		
-		graphicsData = rhs.graphicsData ;
-        
-        onMap = rhs.onMap ;
-		
-        rhs.graphicsData = nullptr ;
-        
-		rhs.ID = -1 ;
-	}
-	return *this ;
+	
+	mtx.unlock() ;
 }
 
 void GameObject::operator()() {
@@ -263,7 +161,7 @@ bool GameObject::operator==(GameObject & other) const {
 	}
 }
 
-bool GameObject::operator==(const GameObject & other) const {
+bool GameObject::operator == (const GameObject & other) const {
 	if (this->ID == other.ID) {
 		return true ;
 	}
@@ -272,32 +170,52 @@ bool GameObject::operator==(const GameObject & other) const {
 	}
 }
 
-void GameObject::checkForMarkedDeletions() { //will run on own thread
-    unsigned objectsDeleted = 0 ; //debug var, remove this
-	while (GLOBAL_CONTINUE_FLAG) {
-		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->isMarkedForDeletion())) {
-				delete allGameObjects->at(i) ;
-				allGameObjects->at(i) = nullptr ;
-                objectsDeleted++ ;
-			}
-		}
-        this_thread::sleep_for(std::chrono::seconds(1)) ;
-	}
-}
-
-void GameObject::eraseByID(unsigned ID) {
+void GameObject::eraseByID(int ID) {
 	/* Try a shortcut first (this will only work if the Game o's were pushed onto the vector in the order of their creation) */
-	if (allGameObjects->at(ID)->getID() == ID) {
-		allGameObjects->at(ID) = nullptr ;
+	if (ID == -1) {
+		//then the GameObject was already erased by ID during a move op, so just return immediately
+		return ;
+	}
+
+	//else...
+	if (ID <= (allGameObjects->size() - 1)) {
+		if ((allGameObjects->at(ID) != nullptr) && (allGameObjects->at(ID)->ID == ID)) {
+			allGameObjects->at(ID) = nullptr ;
+		}
 	}
 	else { //we have to do it the hard way...
 		for (auto i = 0 ; i < allGameObjects->size() ; i++) {
-			if (((allGameObjects->at(i)) != nullptr) && ((allGameObjects->at(i)->ID) == ID)) {
+			if ((allGameObjects->at(i) != nullptr) && (allGameObjects->at(i)->ID == ID)) {
 				allGameObjects->at(i) = nullptr ;
 				break ;
 			}
 		}
+	}
+
+	
+}
+
+void GameObject::eraseByReference(GameObject & reference) {
+	
+	for (auto i = 0 ; i < allGameObjects->size() ; i++) {
+		
+		/* No real need for null pointer checks here, since we're just comparing references, or assigning to null */
+		if ( (*allGameObjects)[i] == & reference) {
+			(*allGameObjects)[i] = nullptr ;
+			break ;
+		}
+		
+	}
+}
+
+void GameObject::reversePreviousAction() {
+	if (previousActionUndoFunctions->size() > 0) {
+		
+		function<void()> undoMostRecentAction = previousActionUndoFunctions->top() ;
+		previousActionUndoFunctions->pop() ; /* pop the undo counterpart to the most recent recent action,
+											  removing it from the stack and ensuring it won't be called again */
+		
+		undoMostRecentAction() ; //call the reversal function, undoing the most recent action
 	}
 }
 
@@ -377,6 +295,9 @@ void GameObject::moveTo(Position<float> to) {
 }
 
 void GameObject::moveTo(Position<float> * to) {
+	
+	/* copy current position for undoing later */
+	const Position<float> oldPosition = * this->getPosition() ;
     
     /* If this object is bounds checked, do bounds checking */
     const BoundsCheck<float> * bc = graphicsData->getBoundsCheck() ;
@@ -399,6 +320,15 @@ void GameObject::moveTo(Position<float> * to) {
     /* Finally update and normalize the vector */
 	graphicsData->updateAndNormalizeVector() ;
 	
+	/* create the undo action for resetting position to it's previous state */
+	auto undo = [this, oldPosition] () { //copy variables by value
+		auto thisPointerCopy = this ; //debug var
+		this->moveOnMap(& oldPosition) ;
+		graphicsData->getRawMutablePosition()->setAll(oldPosition) ;
+		graphicsData->updateAndNormalizeVector() ;
+	} ;
+	
+	previousActionUndoFunctions->push(undo) ;
 }
 
 void GameObject::moveUp() {
@@ -422,7 +352,7 @@ void GameObject::moveUp() {
 }
 
 void GameObject::orientationDependentLeftRightMove() {
-    if ((graphicsData->getOrientation()->val_const() >= 270) || (graphicsData->getOrientation()->val_const() <= 90)) {
+    if ((graphicsData->copyOrientation() >= 270.0f) || (graphicsData->copyOrientation() <= 90.0f)) {
         moveLeft() ;
     }
     else { /* if > 90 and  < 270... */
@@ -431,13 +361,37 @@ void GameObject::orientationDependentLeftRightMove() {
 }
 
 void GameObject::orientationDependentRightLeftMove() {
-    if ((graphicsData->getOrientation()->val_const() >= 270) || (graphicsData->getOrientation()->val_const() <= 90)) {
+    if ((graphicsData->copyOrientation() >= 270.0f) || (graphicsData->copyOrientation() <= 90.0f)) {
         moveRight() ;
     }
     else { /* if > 90 and  < 270... */
         moveLeft() ;
     }
 }
+
+void GameObject::rotateClockwise() {
+	
+	graphicsData->rotateClockwise() ;
+	
+	/* create the undo action for resetting position to it's previous state */
+	auto undo = [this] () { //copy variables by value
+		graphicsData->rotateCounterClockwise() ;
+	} ;
+	
+	previousActionUndoFunctions->push(undo) ;
+}
+
+void GameObject::rotateCounterClockwise() {
+	
+	graphicsData->rotateCounterClockwise() ;
+	
+	/* create the undo action for resetting position to it's previous state */
+	auto undo = [this] () { //copy variables by value
+		graphicsData->rotateClockwise() ;
+	} ;
+	
+	previousActionUndoFunctions->push(undo) ;
+} ;
 
 void GameObject::moveX(float x) {
     this->moveTo({x, graphicsData->getPosition().getY()}) ;
@@ -466,13 +420,6 @@ void GameObject::jump() {
 	Position<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(15.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
-}
-
-PastPositionAndTimeDifferential GameObject::getReverseMove() {
-    Pos2<float> * pos_hist = (Pos2<float> *)graphicsData->getRawMutablePosition() ;
-    PastPositionAndTimeDifferential lastPos = pos_hist->popLastArchivedPosition();
-    return lastPos ;
-	/* else do nothing, just stay frozen in place */
 }
 
 void GameObject::wander() {
@@ -514,19 +461,6 @@ void GameObject::aiBehaviors() {
 
 void GameObject::attack(GameObject * enemy) {
 	
-}
-
-void GameObject::findNearbyAlly(int searchDistanceX, int searchDistanceY) {
-    
-	vector<const GameObject *> * nearby = map->findNearby<float>(getPosition(), searchDistanceX, searchDistanceY) ;
-	
-	if ((nearby != nullptr) && (nearby->size() > 0)) {
-		allyWith(nearby->at(0)) ;
-	}
-}
-
-void GameObject::allyWith(const GameObject * other) {
-	this->ally = other ;
 }
 
 void GameObject::setImageFile(string imageFileName) {

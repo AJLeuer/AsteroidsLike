@@ -19,8 +19,8 @@ float Player::defaultSize = 1.00 ;
 Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
-Pos2<float> Player::position_in_defaultStartingArea() {
-	Pos2<float> ret = Pos2<float>((globalMaxX() / 2) + Randm<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
+Position<float> Player::position_in_defaultStartingArea() {
+	Position<float> ret = Position<float>((globalMaxX() / 2) + Randm<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
 	return ret ;
 }
 
@@ -43,7 +43,7 @@ Player::Player() :
 }
 
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
-	float playerCharacter_size, const Pos2<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
+	float playerCharacter_size, const Position<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage, const AssetFile & projectileImageFile) :
 

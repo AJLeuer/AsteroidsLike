@@ -16,4 +16,6 @@ enum class TimeFlow {
 	reverse
 } extern timeFlow ;
 
+inline TimeFlow & initTimeFlow() { timeFlow = TimeFlow::forward ; return timeFlow ; }
+
 #endif

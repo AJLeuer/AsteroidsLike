@@ -64,34 +64,6 @@ Character::~Character() {
 	}
 }
 
-Character & Character::operator=(const Character &rhs) {
-	if (this != &rhs) {
-		this->GameObject::operator=(rhs) ;
-		this->name = rhs.name ;
-		this->reaction = rhs.reaction ;
-		this->alive = rhs.alive ;
-		this->state = rhs.state ;
-		this->health = rhs.health ;
-		this->damage = rhs.damage ;
-	}
-	return *this ;
-}
-
-Character & Character::operator=(Character && rhs) {
-	if (this != &rhs) {
-		this->GameObject::operator=(std::move(rhs)) ;
-		this->name = std::move(rhs.name) ;
-		this->reaction = std::move(rhs.reaction) ;
-		this->alive = std::move(rhs.alive) ;
-		this->state = std::move(rhs.state) ;
-		this->health = rhs.health ;
-		this->damage = rhs.damage ;
-		
-		rhs.health = nullptr ;
-		rhs.damage = nullptr ;
-	}
-	return *this ;
-}
 
 void Character::operator()() {
 	//todo

@@ -68,34 +68,6 @@ PlayerCharacter::~PlayerCharacter() {}
 
 
 /**
- * Assignment operator overload (copy)
- *
- * @param rhs The right hand side argument (which will be copied)
- */
-PlayerCharacter & PlayerCharacter::operator=(const PlayerCharacter & rhs) {
-    if (this != &rhs) {
-        this->Character::operator=(rhs) ;
-		this->moveFlag = rhs.moveFlag ;
-    }
-    return *this ;
-    
-}
-
-/**
- * Assignment operator overload (move)
- *
- * @param rhs The right hand side argument (which will be moved)
- */
-PlayerCharacter & PlayerCharacter::operator=(PlayerCharacter && rhs) {
-    if (this != &rhs) {
-        this->Character::operator=(std::move(rhs)) ;
-		this->moveFlag = rhs.moveFlag ;
-    }
-    return *this ;
-}
-
-
-/**
  * Overloads operator() for PlayerCharacter. Possibly will be used to
  * call notify(). TBD.
  */
@@ -118,9 +90,9 @@ void PlayerCharacter::move(Vectr<float> & direction, float distanceModifier) {
 	
 	direction.normalize() ;
 	
-	direction.rotateVectorAndOrientation(*graphicsData->getRawMutableVector()->getOrientation()) ; /* rotate new direction to match our own orientation */
+	direction.rotateVectorAndOrientation(getRawMutableVector()->copyOrientation()) ; /* rotate new direction to match our own orientation */
 	
-	*graphicsData->getRawMutableVector() += direction ;
+	*getRawMutableVector() += direction ;
 	
 	printPositition() ; /* Debug code */
 	
@@ -140,12 +112,12 @@ void PlayerCharacter::doDefaultBehavior(bool initialCall) {
 
 
 void PlayerCharacter::fire() {
-	auto gunX = graphicsData->getPosition().getX() + (getSize()->getWidth() / 2) ;
-	auto gunY = graphicsData->getPosition().getY() + (getSize()->getWidth() / 2) ;
+	auto gunX = copyPosition().getX() + (getSize()->getWidth() / 2) ;
+	auto gunY = copyPosition().getY() + (getSize()->getWidth() / 2) ;
 	
 	Position<float> gunPos { gunX, gunY} ;
 	
-    weapon.fire(gunPos, *graphicsData->getOrientation()) ;
+    weapon.fire(gunPos, * getOrientation()) ;
 }
 
 
@@ -185,7 +157,7 @@ void PlayerCharacter::textDescription(ostream * writeTo) const {
 }
 
 void PlayerCharacter::printPositition() {
-	Vectr<float> * vec = graphicsData->getRawMutableVector() ;
+	Vectr<float> * vec = getRawMutableVector() ;
 	if (*vec->getCurrent() != vec->getLast()) {
 		stringstream ss ;
 		ss << this->name << "'s current world position is: " << getPosition() ;

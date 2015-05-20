@@ -26,9 +26,9 @@ constexpr auto pi = 3.1415926535897932384626433832795028841971693993751058209749
  * Used to avoid ambiguity when calling various constructors
  * with integral values that might be confused for boolean
  */
-enum class SafeBoolean {
-	t,
-	f
+enum class SafeBoolean : bool {
+	t = true,
+	f = false
 };
 
 template<typename N>
@@ -47,13 +47,29 @@ constexpr static bool checkIfFloatingPointType() {
 	}
 }
 
+static constexpr const double huge = 1.0e300 ;
+
+template <typename N>
+inline constexpr N computeFloor(N x) {
+	if (x >= 0.0f)
+	{
+		auto ret = (N)((int)x) ;
+		return ret ;
+	}
+	else
+	{
+		auto ret = (N)((int)x - 1);
+		return ret ;
+	}
+}
+
 
 /*
  * Code partial credit stackoverflow: http://stackoverflow.com/questions/4633177/c-how-to-wrap-a-float-to-the-interval-pi-pi
  * todo: reimplement
  */
 template<typename M, typename N>
-double Mod(M x_in, N y_in) {
+constexpr double Mod(M x_in, N y_in) {
 	
 	double x = static_cast<double>(x_in) ; /* x is ok */
 	
@@ -65,7 +81,7 @@ double Mod(M x_in, N y_in) {
 	if (0. == y)
 		return x;
 	
-	double m = x - y * floor(x/y);
+	double m = x - (y * computeFloor<double>(x/y)) ;
 	
 	// handle boundary cases resulted from floating-point cut off:
 	
@@ -358,6 +374,33 @@ inline string operator +(const string & str, const char * rhs) {
 	ret += app ;
 	return ret ;
 }
+	
+
+/**
+ * Takes a container holding pointer values as an argument, and an 
+ * additional new container (ideally empty), and copies values from old to new, only it
+ * ignores all null pointer values in the old container
+ *
+ * @param oldContainer A container holding pointer values
+ *
+ * @ return New container with all the non-null values from old
+ */
+template <template <typename, typename> class Container,
+typename Pointer,
+typename Allocator = std::allocator<Pointer> >
+
+Container<Pointer, Allocator> * copyWithoutNullValues(Container<Pointer, Allocator> * oldContainer, Container<Pointer, Allocator> * newContainer) {
+
+	for (auto iterator = oldContainer->begin() ; iterator != oldContainer->end() ; iterator++) {
+		
+		if ((* iterator) != nullptr) {
+			newContainer->push_back( * iterator) ;
+		}
+	}
+	
+	return newContainer ;
+}
+
 
 /* powerup. other */
 extern char * basicAlphabet ;

@@ -47,6 +47,7 @@ void GameState::initGraphics(Window * window, Renderer * renderer) {
 }
 
 
+/*
 const vector<GameObject*> * GameState::getGameObjects()  {
 	if (dataIsInit == false) {
 		stringstream ss ;
@@ -55,7 +56,7 @@ const vector<GameObject*> * GameState::getGameObjects()  {
 		throw exception() ;
 	}
 	return gameObjects ;
-}
+} */
 
 
 const GameMap<GameObject> * GameState::getMap()  {
@@ -94,9 +95,9 @@ unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
 mutex syncMutex ;
-condition_variable conditionalWait ;
+condition_variable shared_conditional ;
 
-TimeFlow timeFlow = TimeFlow::forward ;
+TimeFlow timeFlow = initTimeFlow() ;
 
 
 //static bool GLOBAL_CONTINUE_FLAG = true ;

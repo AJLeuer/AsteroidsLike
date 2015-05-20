@@ -26,7 +26,12 @@ class Projectile : public GameObject {
 class Weapon {
 	
 protected:
-    
+	
+	static list<Projectile> firedProjectiles ;
+	
+	static void trackFiredProjectiles() ;
+	
+	
     AssetFile textureFile ;
     float sizeModifier ;
     
@@ -37,6 +42,8 @@ protected:
 	Projectile * projectile ;
 	
 public:
+	
+	static void init() ;
 	
 	Weapon(const AssetFile & file, float sizeMod) :
         textureFile(file),

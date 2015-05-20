@@ -37,6 +37,8 @@
 
 int main(int argc, char ** argv) {
 	
+	constexpr Angle angle { 90.0 } ;
+	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
     

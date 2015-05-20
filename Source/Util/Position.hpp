@@ -69,88 +69,55 @@ protected:
 
 public:
 
-	Angle(const float angle) : value(angle) {
+	constexpr inline Angle(const float angle) : value(angle) {
 		value = Mod(value, 360.0f) ;
 	}
 
-	Angle(const Angle & other) : value(other.value) {
+	constexpr inline Angle(const Angle & other) : value(other.value) {
 		value = Mod(value, 360.0f) ;
 	}
 
     template<typename N>
-    Angle(Randm<N> randm) {
+    constexpr inline Angle(Randm<N> & randm) {
         value = randm(0, 360) ;
     }
+	
+	constexpr inline operator float() const {
+		return value ;
+	}
 
-	~Angle() {}
-
-	Angle & operator=(const Angle & rhs) {
+	constexpr inline Angle & operator = (const Angle & rhs) {
 		if (this != &rhs) {
 			this->value = Mod(rhs.value, 360.0f) ;
 		}
 		return *this ;
 	}
 
-	Angle & operator=(const float & f) {
+	constexpr inline Angle & operator = (const float & f) {
 		value = Mod(f, 360.0f) ;
 		return *this ;
 	}
 
-	//operator float() const { return this->value ; }
-
-	Angle operator+(const float otherAngle) const {
-		Angle val(0) ;
-		val.value = Mod((this->value + otherAngle), 360.0f) ;
+	constexpr inline Angle operator + (const float otherAngle) const {
+		Angle val(this->value + otherAngle) ;
 		return val ;
 	}
 
-	Angle operator-(const float otherAngle) const {
-		Angle val(0) ;
-		val.value = Mod((this->value - otherAngle), 360.0f) ;
+	constexpr inline Angle operator - (const float otherAngle) const {
+		Angle val(this->value - otherAngle) ;
 		return val ;
 	}
 
-	void operator+=(const float otherAngle) {
+	constexpr inline void operator += (const float otherAngle) {
 		this->value = Mod((value + otherAngle), 360.0f) ;
 	}
 
-	void operator-=(const float otherAngle) {
+	constexpr inline void operator -= (const float otherAngle) {
 		this->value = Mod((value - otherAngle), 360.0f) ;
 	}
 
-	Angle operator+(const Angle otherAngle) const {
-		Angle val(0) ;
-		val.value = Mod((this->value + otherAngle.value), 360.0f) ;
-		return val ;
-	}
-
-	Angle operator-(const Angle otherAngle) const {
-		Angle val(0) ;
-		val.value = Mod((this->value - otherAngle.value), 360.0f) ;
-		return val ;
-	}
-
-	void operator+=(const Angle otherAngle) {
-		this->value = Mod((value + otherAngle.value), 360.0f) ;
-	}
-
-	void operator-=(const Angle otherAngle) {
-		this->value = Mod((value - otherAngle.value), 360.0f) ;
-	}
-
-	float val() {
-		value = Mod(value, 360.0f) ;
-		return value ;
-	}
-
-	float val_const() const {
-		float val = value ;
-		val = Mod(val, 360.0f) ;
-		return val ;
-	}
-
-    float valInRadians() {
-        return (convertToRadians<float>((val()))) ;
+    float inRadians() {
+        return (convertToRadians<float>(((float) * this))) ;
     }
 
 
@@ -314,20 +281,7 @@ public:
 		}
 	}
 
-	virtual bool operator==(Position & rhs) const {
-		if ((this->x == rhs.x) && (this->y == rhs.y)) {
-			return true ;
-		}
-		else {
-			return false ;
-		}
-	}
-
 	virtual bool operator!=(const Position & rhs) const {
-		return !(this->operator==(rhs)) ;
-	}
-
-	virtual bool operator!=(Position & rhs) {
 		return !(this->operator==(rhs)) ;
 	}
 
@@ -540,8 +494,8 @@ public:
         const N prevX = x ;
         const N prevY = y ;
 
-        x = (prevX * cos(𝛳.valInRadians())) - (prevY * sin(𝛳.valInRadians())) ;
-        y = (prevX * sin(𝛳.valInRadians())) + (prevY * cos(𝛳.valInRadians())) ;
+        x = (prevX * cos(𝛳.inRadians())) - (prevY * sin(𝛳.inRadians())) ;
+        y = (prevX * sin(𝛳.inRadians())) + (prevY * cos(𝛳.inRadians())) ;
     }
 
 	static N calcDistance(const Position & here, const Position & there) {
@@ -663,519 +617,10 @@ public:
 
 
 
-
-/**
- * Similar to Position, but also holds copies of each of its previous states.
- */
-template<typename N>
-struct Pos2 : public Position<N> {
-
-protected:
-
-    /**
-     * A data storage type that holds a copy of an objects previous position, plus
-     * the difference in time between when the object existed at one position, and when it
-     * existed at the next
-     */
-    typedef std::pair<Position<N>, chrono::nanoseconds> PastPositionAndTimeDifferential ;
-
-	/**
-	 * A vector container storing all the previous positions of this object,
-	 * with the most recent positions at the end of the vector, and the initial position at
-	 * the front. See archive().
-	 */
-	deque<PastPositionAndTimeDifferential> * pastPositions ;
-
-    Timer timer ;
-
-	/**
-	 * Saves our current state
-	 */
-	void archive() {
-        //currently causing all kinds of bugs, commenting this out until time to fix
-		/*
-		if (timeFlow == TimeFlow::forward) { //only archive while moving forward in time
-            chrono::nanoseconds time = timer.checkTimeElapsed() ;
-			timer.reset() ; //reset the timer to zero
-
-			Position<N> archived(this->x, this->y) ; //archived will just hold this, without the pastPositions (no infinite recursion here!)
-
-			if (pastPositions->size() > 10000) { //once we go over a certain size, we'll delete the oldest to save space
-				pastPositions->pop_front() ;
-			}
-			pastPositions->push_back({archived, time}) ;
-		}
-        */
-	}
-
-public:
-
-	/**
-     * Creates a Pos2 with all coordinates initialized to 0
-     */
-	Pos2() : Position<N>(0, 0), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	Pos2(const Position<N> & pos) : Position<N>(pos), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	Pos2(const Position<N> & pos, const BoundsCheck<N> & check) : Position<N>(pos, check), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 with all coordinates initialized to 0
-     */
-	Pos2(const BoundsCheck<N> & check) : Position<N>(check), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-       timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 with all coordinates initialized to n
-     */
-	Pos2(N n) : Position<N>(n), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-       timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 with all coordinates initialized to n
-     */
-	Pos2(N n, const BoundsCheck<N> & check) : Position<N>(n, check), pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 all coordinates randomized, with bounds set by check
-     */
-    template<typename R>
-	Pos2(Randm<R> & rand) :
-		Position<N>(rand),
-		pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 all coordinates randomized, with bounds set by check
-     */
-    template<typename R>
-	Pos2(Randm<R> & rand, const BoundsCheck<N> & check) :
-		Position<N>(rand, check),
-		pastPositions(new deque<PastPositionAndTimeDifferential>)
-    {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Copy constructor for Pos2
-     */
-    Pos2(const Pos2 & other) : Position<N>(other)  {
-		if (other.pastPositions != nullptr) {
-			this->pastPositions = new deque<PastPositionAndTimeDifferential>(*other.pastPositions) ;
-		}
-        timer = Timer() ;
-        timer.startTimer() ;
-	}
-
-	/**
-     * Copy constructor for Pos2
-     */
-    Pos2(const Pos2 & other, const BoundsCheck<N> & check) : Position<N>(other, check)  {
-		if (other.pastPositions != nullptr) {
-			this->pastPositions = new deque<PastPositionAndTimeDifferential>(*other.pastPositions) ;
-		}
-        timer = Timer() ;
-        timer.startTimer() ;
-	}
-
-	/**
-     * Move constructor for Pos2
-     */
-    Pos2(Pos2 && other) : Position<N>(std::move(other)) {
-
-		{
-		/* Debug code */
-		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
-		/* End Debug code */
-		}
-
-		pastPositions = other.pastPositions ;
-        timer = std::move(other.timer) ;
-
-		other.pastPositions = nullptr ;
-	}
-
-	/**
-     * Move constructor for Position
-     */
-    Pos2(Pos2 && other, const BoundsCheck<N> & check) : Position<N>(std::move(other), check) {
-
-		{
-		/* Debug code */
-		DebugOutput << "Warning: Pos2 move constructor called. The argument's pastPositions are now null. \n" ;
-		/* End Debug code */
-		}
-
-		pastPositions = other.pastPositions ;
-        timer = std::move(other.timer) ;
-
-		other.pastPositions = nullptr ;
-	}
-
-	/**
-     * Creates a Pos2 with coordinates initialized to the
-     * given arguments
-     *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
-     */
-	Pos2(N x, N y) : Position<N>(x, y), pastPositions(new deque<PastPositionAndTimeDifferential>) {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Creates a Pos2 with coordinates initialized to the
-     * given arguments
-     *
-     * @param x The x coordinate
-     * @param y The y coordinate
-     * @param z The z coordinate
-     */
-	Pos2(N x, N y, const BoundsCheck<N> & check) : Position<N>(x, y, check), pastPositions(new deque<PastPositionAndTimeDifferential>) {
-        timer.startTimer() ;
-    }
-
-	/**
-     * Destructor for Position
-     */
-    virtual ~Pos2() {
-
-		{
-		/* Debug code */
-		DebugOutput << "Warning: Pos2 destructor called. This instance's pastPositions were deleted \n" ;
-		/* End Debug code */
-		}
-
-        timer.stopTimer() ;
-
-		if (pastPositions != nullptr) {
-			delete pastPositions ;
-		}
-	}
-
-	/**
-     * Assigment operator (copy).
-	 *
-     */
-    Pos2 & operator=(const Pos2 & rhs) {
-
-		{
-        /* Debug code */
-        DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause a performance hit. \n" ;
-        /* End Debug code */
-		}
-
-		if (pastPositions != nullptr) {
-			delete pastPositions ;
-		}
-
-		pastPositions = nullptr ;
-
-	    this->Position<N>::operator=(std::move(rhs)) ;
-
-        pastPositions = new deque<PastPositionAndTimeDifferential>() ;
-
-        timer = Timer() ;
-        timer.startTimer() ;
-
-		for (auto i = rhs.pastPositions->begin() ; i != rhs.pastPositions->end() ; i++) {
-			this->pastPositions->push_back(PastPositionAndTimeDifferential(*i)) ; //push_back()
-		}
-
-        return *this;
-    }
-
-	/**
-     * Assigment operator (move)
-     */
-    Pos2 & operator=(Pos2 && rhs) {
-
-		{
-		/* Debug code */
-		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
-		/* End Debug code */
-		}
-
-		this->Position<N>::operator=(std::move(rhs)) ;
-
-		this->pastPositions = rhs.pastPositions ;
-        timer = std::move(rhs.timer) ;
-
-		rhs.pastPositions = nullptr ;
-
-		return(*this) ;
-    }
-
-	/**
-     * Assigment operator (copy). Treats rhs as this Pos2 object's current position, and pushes back its previous state
-	 * onto pastPositions.
-     */
-    Pos2 & operator=(const Position<N> & rhs) {
-
-		{
-        /* Debug code */
-        DebugOutput << "Warning, assignment operator (copy) for Pos2 called. This may cause unexpected behavior. \n" ;
-        /* End Debug code */
-		}
-
-        setAll(rhs) ;
-
-        /* no need to make any changes to timer */
-
-        return *this;
-    }
-
-	/**
-     * Assigment operator (move)
-     */
-    Pos2 & operator=(Position<N> && rhs) {
-
-		{
-		/* Debug code */
-		DebugOutput << "Warning, assignment operator (move) for Pos2 called. This may cause unexpected behavior. \n" ;
-		/* End Debug code */
-		}
-
-		setAll(rhs) ;
-
-        /* no need to make any changes to timer */
-
-        return *this ;
-    }
-
-	bool operator==(const Pos2 & rhs) const {
-		return Position<N>::operator==(rhs) ;
-	}
-
-	bool operator==(Pos2 & rhs) const {
-		return Position<N>::operator==(rhs) ;
-	}
-
-	bool operator==(const Position<N> & rhs) const {
-		return Position<N>::operator==(rhs) ;
-	}
-
-	bool operator==(Position<N> & rhs) const {
-		return Position<N>::operator==(rhs) ;
-	}
-
-	bool operator!=(Pos2 & rhs) const {
-		return Position<N>::operator!=(rhs) ;
-	}
-
-	bool operator!=(const Pos2 & rhs) const {
-		return Position<N>::operator!=(rhs) ;
-	}
-
-	bool operator!=(Position<N> & rhs) const {
-		return Position<N>::operator!=(rhs) ;
-	}
-
-	bool operator!=(const Position<N> & rhs) const  {
-		return Position<N>::operator!=(rhs) ;
-	}
-
-	Pos2 operator+(const Pos2 & rhs) const  {
-		return Position<N>::operator+(rhs) ;
-	}
-
-	Position<N> operator+(const Position<N> & rhs) const override {
-		Pos2 pos2 = Position<N>::operator+(rhs) ;
-		return pos2 ;
-	}
-
-	Pos2 operator-(const Pos2 & rhs) const {
-		return Position<N>::operator-(rhs) ;
-	}
-
-	Position<N> operator-(const Position<N> & rhs) const override {
-		return Position<N>::operator-(rhs) ;
-	}
-
-
-	Position<N> operator*(const N n) const override {
-
-        Pos2 temp(this->x, this->y) ;
-
-		temp.x = temp.x * n ;
-		temp.y = temp.y * n ;
-
-		return temp ;
-	}
-
-    Position<N> operator/(const N n) const override {
-
-        Pos2 temp(this->x, this->y) ;
-
-		temp.x = temp.x / n ;
-		temp.y = temp.y / n ;
-
-		return temp ;
-	}
-
-	/**
-	 * @return The size of the past positions archive
-	 */
-	size_t archivedPositionsCount() {
-		return pastPositions->size() ;
-	}
-
-	/**
-	 * @return Pop the last added Position from the queue
-	 */
-	PastPositionAndTimeDifferential popLastArchivedPosition() {
-		size_t size = pastPositions->size() ; //debug var, delete this
-		PastPositionAndTimeDifferential pop = pastPositions->back() ;
-		pastPositions->pop_back() ;
-		return pop ;
-	}
-
-	const deque<PastPositionAndTimeDifferential> * getHistory() {
-		return pastPositions ;
-	}
-
-	void setAll(const N x, const N y) override {
-		archive() ;
-		this->Position<N>::setAll(x, y) ;
-	}
-
-	void setAll(const N x, const N y, const BoundsCheck<N> & check) override {
-		archive() ;
-		Position<N>::setAll(x, y, check) ;
-	}
-
-	void setAll(const Position<N> & other) override {
-		setAll(other.getX(), other.getY()) ;
-	}
-
-	void setAll(const Position<N> & other, const BoundsCheck<N> & check) override {
-		setAll(other.getX(), other.getY(), check) ;
-	}
-
-	void setAll(const N n) override { setAll(n, n) ; }
-
-	void setAll(const N n, const BoundsCheck<N> & check) override { setAll(n, n, check) ; }
-
-	void setAllZero() override { setAll(0) ; }
-
-
-	void setX(const N x) override { setAll(x, this->y) ; }
-
-	void setX(const N x, const BoundsCheck<N> & check) override { setX(x) ; this->checkBounds(check) ; }
-
-	void setY(const N y) override { setAll(this->x, y) ; }
-
-	void setY(const N y, const BoundsCheck<N> & check) override { setY(y) ; this->checkBounds(check) ; }
-
-
-	void x_plus_one() override { setX(this->x++) ; }
-
-	void x_plus_one(const BoundsCheck<N> & check) override { setX(this->x++) ; this->checkBounds(check) ; }
-
-	void x_minus_one() { setX(this->x--) ; }
-
-	void x_minus_one(const BoundsCheck<N> & check) override { setX(this->x--) ; this->checkBounds(check) ; }
-
-
-	void y_plus_one() override { setY(this->y++) ; }
-
-	void y_plus_one(const BoundsCheck<N> & check) override { setY(this->y++) ; this->checkBounds(check) ; }
-
-	void y_minus_one() override { setY(this->y--) ; }
-
-	void y_minus_one(const BoundsCheck<N> & check) override { setY(this->y--) ; this->checkBounds(check) ; }
-
-	void moveRight() { setAll((this->x+1), this->y) ; }
-	void moveLeft() { setAll((this->x-1), this->y) ; }
-	void moveUp() { setAll(this->x, (this->y+1)) ; }
-	void moveDown() { setAll(this->x, (this->y-1)) ; }
-
-	void moveUpRight() { setAll((this->x+1), (this->y+1)) ; }
-	void moveUpLeft() { setAll((this->x-1), (this->y+1)) ; }
-	void moveDownRight() { setAll((this->x+1), (this->y-1)) ; }
-	void moveDownLeft() { setAll((this->x-1), (this->y-1)) ; }
-
-	/**
-	 * Increments or decrements the x, y and z values according to
-	 * the arguments passed in. Use negative values to decrement. Passing
-	 * 0 for any argument will keep the x, y, or z value the same.
-	 *
-	 * @param delta_x The change in x value
-	 * @param delta_y The change in y value
-	 */
-	void modify(N delta_x, N delta_y) override {
-		auto tempX = this->x ;
-		auto tempY = this->y ;
-
-		tempX += delta_x ;
-		tempY += delta_y ;
-
-		setAll(tempX, tempY) ;
-	}
-
-	/**
-	 * Increments or decrements the x, y and z values according to
-	 * the arguments passed in. Use negative values to decrement. Passing
-	 * 0 for any argument will keep the x, y, or z value the same.
-	 *
-	 * @param delta_x The change in x value
-	 * @param delta_y The change in y value
-	 * @param delta_z The change in z value
-	 */
-	void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) override {
-		auto tempX = this->x ;
-		auto tempY = this->y ;
-
-		tempX += delta_x ;
-		tempY += delta_y ;
-
-		setAll(tempX, tempY, check) ;
-	}
-
-	void moveHere(N x, N y) override {
-		setAll(x, y) ;
-	}
-
-	void moveHere(N x, N y, const BoundsCheck<N> & check) override {
-		moveHere(x, y) ;
-		this->checkBounds(check) ;
-	}
-
-	void moveHere(const Position<N> & other) override {
-		setAll(other.getX(), other.getY()) ;
-	}
-
-	void moveHere(const Position<N> & other, const BoundsCheck<N> & check) override {
-		moveHere(other) ;
-		this->Position<N>::checkBounds(check) ;
-	}
-
-} ;
-
-
 /**
  * This class provides facilities for storing an object's current vector,
  * predicting its next Position, monitoring its speed, maintaining a record of its
- * last two Positions (for more detailed record keeping of past Positions, see Pos2),
+ * last two Positions (for more detailed record keeping of past Positions, see Position),
  * and more.
  *
  * Note: do not use with unsigned ints
@@ -1470,7 +915,7 @@ void Vectr<N>::setVectorAndOrientation(Angle 𝛳) {
 
 	this->currentRotation = 𝛳 ; //i.e. (currentRotation + abs𝛳) % 360
 
-	assert((currentRotation.val() == 𝛳.val())) ; /* debug code, remove */
+	assert((currentRotation == 𝛳)) ; /* debug code, remove */
 
 	/* we should still be normalized here */
 }

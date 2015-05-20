@@ -45,7 +45,7 @@ auto reverseTimeFlow = [] () -> void {
 } ;
 
 void MainController::setupCallbacks() {
-	KeyInputRegister * onKeypressReverseTime = new KeyInputRegister(reverseTimeFlow, {"1"}, KeypressEvaluationMethod::any) ;
+	KeyInputRegister * onKeypressReverseTime = new KeyInputRegister(reverseTimeFlow, {TIME_REVERSE_KEY}, KeypressEvaluationMethod::any) ;
 	InputController::registerForKeypress(onKeypressReverseTime) ;
 }
 
@@ -74,8 +74,9 @@ void MainController::init() {
 	InputController::init() ;
 	MainController::setupCallbacks() ;
 	WorldController::init() ;    //must be last, will init GameState as well
+	Weapon::init() ;
 	
-	Player::initDefaultPlayers() ;
+	Player::initDefaultPlayers() ; //players (i.e. of class Player) will set up callbacks from actual player (i.e. live human) input
 	
 	player0 = Player::defaultPlayer0 ;
 	player1 = Player::defaultPlayer1 ;
@@ -127,10 +128,10 @@ void MainController::main() {
 		if (mainGameLoopCount > worldLoopCount) {
 			unique_lock<mutex> locked(syncMutex) ;
 			
-			conditionalWait.wait(locked) ;
+			shared_conditional.wait(locked) ;
 		}
 
-		conditionalWait.notify_all() ;
+		shared_conditional.notify_all() ;
 	}
 
 	/* exit signaled GLOBAL_CONTINUE_FLAG. We're outta here! Handing off to MainController::exit() */

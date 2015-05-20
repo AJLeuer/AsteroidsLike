@@ -35,22 +35,6 @@ NPC::~NPC() {
 	//todo
 }
 
-
-NPC & NPC::operator=(const NPC & rhs) {
-	if (this != &rhs) {
-		this->Character::operator=(rhs) ;
-	}
-	return *this ;
-}
-
-NPC & NPC::operator=(NPC && rhs) {
-	if (this != &rhs) {
-		this->Character::operator=(std::move(rhs)) ;
-	}
-	return *this ;
-}
-
-
 void NPC::operator()() {
 	//todo
 }

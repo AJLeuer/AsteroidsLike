@@ -103,23 +103,7 @@ public:
 	 * Destructor for Character
 	 */
 	~Character() ;
-	
-	
-	/**
-	 * Assignment operator overload (copy)
-	 *
-	 * @param rhs The right hand side argument (which will be copied)
-	 */
-	virtual Character & operator=(const Character & rhs) ;
-	
-	/**
-	 * Assignment operator overload (move)
-	 *
-	 * @param rhs The right hand side argument (which will be moved)
-	 */
-	virtual Character & operator=(Character && rhs) ;
-	
-	
+
 	/**
 	 * Overloads operator() for Character. Possibly will be used to
 	 * call notify(). TBD.

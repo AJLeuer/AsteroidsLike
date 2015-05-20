@@ -309,7 +309,7 @@ public:
 	 * @note Only use for making a copy of this OutputData's position,
 	 * not for rendering operations
 	 */
-	const Pos2<POSUTYPE> * getPosition_raw() const { return position ; }
+	const Position<POSUTYPE> * getPosition_raw() const { return position ; }
 	
 	PositionType getPositionType() const { return positionType ; }
     

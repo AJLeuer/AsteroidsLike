@@ -52,17 +52,11 @@ using namespace std ;
 class WorldController {
 	
 protected:
+	
+	//static vector<GameObject*> * allGameObjects ;
 
-		
-	/* We might need these later. Or we might not */
-	//static vector<GameObject*> * secondaryGameObjects ;
-	//static vector<GameObject*> * obstacleObjects ;
- 
 	static thread mainThread ;
-	static thread checkDelThread ;
-	
-	
-	
+
 	friend class GameInterface ;
 	friend class GameObject ;
 	

@@ -26,11 +26,13 @@ public:
 	
 	BasicMutex() : mutex(), locked(false) {}
 	
-	bool isLocked() { return locked ; }
+	~BasicMutex() {}
 	
-	void lock();
+	bool isLocked() const { return locked ; }
 	
-    bool try_lock() _NOEXCEPT ;
+	void lock() ;
+	
+    bool try_lock() noexcept ;
 	
     void unlock() ;
 	

@@ -12,7 +12,9 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <stack>
 #include <thread>
+#include <functional>
 #include <cmath>
 
 #include <SDL2/SDL_surface.h>
@@ -39,8 +41,6 @@
 
 using namespace::std ;
 
-typedef std::pair<Position<float>, chrono::nanoseconds> PastPositionAndTimeDifferential ;
-
 /**
  * @brief The base class from which all other classes in the world
  *		  will inherit. This class will handle the assignment of a unique ID to each GameObject.
@@ -63,7 +63,22 @@ private:
 	 */
 	static vector<GameObject*> * allGameObjects ;
 	
-	bool markedForDeletion = false ;
+	
+	int ID ;
+	
+	bool wasMoved = false ;
+	
+	GraphicsData<float, int> * graphicsData ;
+	
+	bool onMap = false ;
+	
+	BasicMutex mtx ;
+
+	/**
+	 * Stores closures, each of which will undo an earlier action taken by this game object. Undo functions for the most recent actions
+	 * are pushed to the top of the stack, while the undo functions for the earliest actions are at the bottom.
+	 */
+	stack<function<void()>> * previousActionUndoFunctions = new stack<function<void()>>() ;
 	
 	/**
 	 * @brief Handles thread starting duties. Should always be called by the function that calls
@@ -87,16 +102,6 @@ private:
 	
 protected:
 	
-	int ID ;
-    
-    GraphicsData<float, int> * graphicsData ;
-	
-    bool onMap = false ;
-    
-	//Vectr<float> vectr ;
-	
-	const GameObject * ally = nullptr ;
-    
     void update() ;
 	
 	/**
@@ -107,12 +112,12 @@ protected:
 	
 	static Randm<int> goRand ;
 	
-	static void checkForMarkedDeletions() ;
-	
 	/**
 	 * Erases the GameObject pointer matching the given ID from the allGameObjects container.
 	 */
-	static void eraseByID(unsigned ID) ;
+	static void eraseByID(int ID) ;
+	
+	static void eraseByReference(GameObject & reference) ;
     
     friend class Weapon ;
 	
@@ -124,17 +129,14 @@ public:
 	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
 	 * GameState::getGameObjects().
 	 */
-	static vector<GameObject*> * & getAllGameObjects() { return GameObject::allGameObjects ; }
+	static vector<GameObject*> * & accessAllGameObjects() { return GameObject::allGameObjects ; }
 	
 	
     /**
      * @return The current map of GameObjects 
      */
 	static const GameMap<GameObject> * getMap() { return GameObject::map ; }
-    
-    static void allDoDefaultBehaviors(const TimeFlow & tf) ;
-	
-	
+
 	/**
 	 * Creates a new GameObject
 	 */
@@ -177,22 +179,16 @@ public:
 	 * Destructor for GameObject
 	 */
 	virtual ~GameObject() ;
-		
-	/**
-	 * Assignment operator overload (copy) for GameObject. The object copied
-	 * to will have its own unique ID.
-	 *
-	 * @param rhs The right hand side argument (which will be copied)
-	 */
-	virtual GameObject & operator=(const GameObject & rhs) ;
 	
 	/**
-	 * Assignment operator overload (move) for GameObject. The object copied
-	 * to will have the same ID.
 	 *
-	 * @param rhs The right hand side argument (which will be moved)
 	 */
-	virtual GameObject & operator=(GameObject && rhs) ;
+	GameObject & operator=(const GameObject & rhs) = delete ;
+	
+	/**
+	 *
+	 */
+	GameObject & operator=(GameObject && rhs) = delete ;
 	
 	
 	/**
@@ -227,15 +223,21 @@ public:
 	 * @return whether this GameObject ID is equal to ID of other
 	 */
 	bool operator==(const GameObject & other) const ;
-    
-    void markForDeletion(bool mark = true) { markedForDeletion = mark ; }
-    
-    bool isMarkedForDeletion() { return markedForDeletion  ;  }
+	
+	/**
+	 * Undoes the most recent action performed by this game object
+	 */
+	void reversePreviousAction() ;
 	
 	/**
 	 * @return this ID
 	 */
 	unsigned getID() { return this->ID ; }
+	
+	/**
+	 * @return This GameObject's mutex
+	 */
+	BasicMutex & accessMutex() { return this->mtx ; }
 	
 	/**
 	 * Every sub-type of GameObject should implement this to perform some
@@ -292,8 +294,8 @@ public:
     void orientationDependentLeftRightMove() ;
     void orientationDependentRightLeftMove() ;
     
-    virtual void rotateClockwise() override { graphicsData->rotateClockwise() ; }
-    virtual void rotateCounterClockwise() override { graphicsData->rotateCounterClockwise() ; } ;
+	virtual void rotateClockwise() override ;
+	virtual void rotateCounterClockwise() override ;
 	
     virtual void moveRandomDirection() ;
 	
@@ -305,10 +307,6 @@ public:
 	 *
 	 */
     void move() ;
-	
-    size_t archivedPositionsCount() { Pos2<float> * pos = (Pos2<float> *)graphicsData->getRawMutablePosition() ; return pos->archivedPositionsCount() ; }
-    
-	PastPositionAndTimeDifferential getReverseMove() ;
 
 	/**
 	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
@@ -345,11 +343,7 @@ public:
 	virtual void aiBehaviors() ;
 	
 	virtual void attack(GameObject * enemy) ;
-	
-	virtual void findNearbyAlly(int searchDistanceX, int searchDistanceY) ;
-	
-	virtual void allyWith(const GameObject *) ;
-	
+
 	/**
 	 * @return This GameObject's Colors
 	 */
@@ -360,10 +354,9 @@ public:
 	 */
 	const Position<float> * getPosition() const { return this->graphicsData->getRawMutablePosition() ; }
 
-	/**
-	 * @return This GameObject's Position history (Pos2)
-	 */
-	const Pos2<float> * getPositionHistory() const { return (Pos2<float> *)graphicsData->getRawMutablePosition()  ; } //todo uncomment and fix
+	const Position<float> copyPosition() const { return graphicsData->getPosition() ; }
+	
+	const Angle * getOrientation() const { return graphicsData->getOrientation() ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
@@ -386,10 +379,6 @@ public:
 	 * @param imageFileName The filename and path of the sprite image
 	 */
 	void setImageFile(string imageFileName) ;
-	
-	//void setTexture(Texture * texture) { this->graphicsData.setTexture(texture) ; }
-	
-	//void setSize(int w, int h) { size.setWidth(w) ; size.setHeight(h) ; }
 	
 	/**
 	 * @return This GameObject's textureImageFile, i.e. the file path of its texture (usually in png format)

@@ -34,10 +34,10 @@ public:
 	
 	Debug(ostream * _out) : out(_out) {
 		
-	/* if DEBUG_MODE is not set, setting badbit prevents Debug from outputting anything */
-	#ifndef DEBUG_MODE
-	out->std::__1::ios_base::setstate(std::ios_base::badbit) ;
-	#endif
+		/* if DEBUG_MODE is not set, setting badbit prevents Debug from outputting anything */
+		#ifndef DEBUG_MODE
+		out->std::__1::ios_base::setstate(std::ios_base::badbit) ;
+		#endif
 	}
 	
 
@@ -45,20 +45,16 @@ public:
 	Debug & operator <<(const T & data) ;
 	
 	Debug & operator<<(std::ostream & (*ptr)(std::ostream&)) {
-		//#ifdef DEBUG_MODE
 		dbgMutex.lock() ;
 		(*out) << ptr;
 		dbgMutex.unlock() ;
 		return *this ;
-		//#endif
 	}
 	
 	Debug & operator<<(Debug & (*ptr)(Debug &)) {
-		//#ifdef DEBUG_MODE
 		dbgMutex1.lock() ;
 		return ptr(*this);
 		dbgMutex1.unlock() ;
-		//#endif
 	}
 	
 	ostream & get_ostream() { return *(this->out) ; }
@@ -74,12 +70,10 @@ public:
 
 template <typename T>
 Debug & Debug::operator<<(const T & data) {
-	//#ifdef DEBUG_MODE
 	dbgMutex2.lock() ;
 	*out << data ;
 	dbgMutex2.unlock() ;
 	return *this ;
-	//#endif
 }
 
 

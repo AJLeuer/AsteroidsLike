@@ -44,11 +44,12 @@ chrono::nanoseconds refreshTime = one_millisecond ;
 
 chrono::milliseconds defaultSleepTime = chrono::milliseconds(240) ;
 
-char   JUMP_KEY		  =         ' ' ;
-char * MOVE_UP_KEY    = (char *)"W" ;
-char * MOVE_DOWN_KEY  = (char *)"S" ;
-char * MOVE_LEFT_KEY  = (char *)"A" ;
-char * MOVE_RIGHT_KEY = (char *)"D" ;
+char   JUMP_KEY		  =            ' ' ; // i.e. spacebar
+char * MOVE_UP_KEY    =   (char *) "W" ;
+char * MOVE_DOWN_KEY  =   (char *) "S" ;
+char * MOVE_LEFT_KEY  =   (char *) "A" ;
+char * MOVE_RIGHT_KEY =   (char *) "D" ;
+char * TIME_REVERSE_KEY = (char *) "1" ;
 
 bool Configuration::isInit = false ;
 

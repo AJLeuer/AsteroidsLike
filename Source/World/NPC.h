@@ -74,22 +74,7 @@ public:
 	 * Destructor for NPC
 	 */
 	~NPC() ;
-	
-	
-	/**
-	 * Assignment operator overload (copy)
-	 *
-	 * @param rhs The right hand side argument (which will be copied)
-	 */
-	virtual NPC & operator=(const NPC & rhs) ;
-	
-	/**
-	 * Assignment operator overload (move)
-	 *
-	 * @param rhs The right hand side argument (which will be moved)
-	 */
-	virtual NPC & operator=(NPC && rhs) ;
-	
+
 	
 	/**
 	 * Overloads operator() for NPC. Possibly will be used to

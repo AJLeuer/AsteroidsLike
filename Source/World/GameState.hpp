@@ -103,7 +103,7 @@ public:
 	 * Note: some indices of the returned vector<GameObject*> may be null. Any class calling this method is
 	 * responsible for checking for null pointer.
 	 */
-	static const vector<GameObject*> * getGameObjects() ;
+	//static const vector<GameObject*> * getGameObjects() ;
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
@@ -134,7 +134,7 @@ extern unsigned mainGameLoopCount ;
 extern unsigned worldLoopCount ;
 
 extern std::mutex syncMutex ;
-extern condition_variable conditionalWait ;
+extern condition_variable shared_conditional ;
 
 
 /**

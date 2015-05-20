@@ -93,22 +93,7 @@ public:
 	 * Destructor for PlayerCharacter
 	 */
 	~PlayerCharacter() ;
-	
-	
-	/**
-	 * Assignment operator overload (copy)
-	 *
-	 * @param rhs The right hand side argument (which will be copied)
-	 */
-	PlayerCharacter & operator=(const PlayerCharacter & rhs) ;
-	
-	/**
-	 * Assignment operator overload (move)
-	 *
-	 * @param rhs The right hand side argument (which will be moved)
-	 */
-	PlayerCharacter & operator=(PlayerCharacter && rhs) ;
-	
+
 	
 	/**
 	 * Overloads operator() for PlayerCharacter. Possibly will be used to
