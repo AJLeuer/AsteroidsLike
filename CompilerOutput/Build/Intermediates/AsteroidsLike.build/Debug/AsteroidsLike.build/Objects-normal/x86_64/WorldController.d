@@ -20,7 +20,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/../Output/DisplayData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/DefaultConfig.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_render.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Velocity.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Timer.hpp \
@@ -73,6 +73,8 @@ dependencies: \
   /Library/Frameworks/SDL2.framework/Headers/SDL_version.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/GraphicsData.hpp \
   /Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/../Output/../Util/Rectangle.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Line.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Control/Input.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Enemy.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/NPC.h \

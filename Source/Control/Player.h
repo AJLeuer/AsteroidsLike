@@ -38,38 +38,49 @@ class Player /*: public GameInterface*/ {
 
 protected:
 	
-	static unsigned IDs ;
+	static long long IDs ;
 	
 	static AssetType defaultPCAssetType ; /* change if needed */
-	static float defaultSize ;
-	
-	unsigned ID ;
-	string name ;
-	PlayerCharacter playerCharacter ;
-	
+	static float defaultGeometrySize ;
 	
 	/* just for initializing playerCharacter */
+	static Vect<float> position_in_defaultStartingArea() ;
 	
-	static Position<float> position_in_defaultStartingArea() ;
+
+	unsigned long ID ;
+	string name ;
+	PlayerCharacter playerCharacter ;
+
 	
 	void setNames() ;
 	
 	void registerForCallbacks() ;
 	
-	
 
 public:
-	
-	/* Players with default settings, for convenience */
+
+	/**
+	 * Player with default settings, for convenience
+	 *
+	 * @seealso Player::defaultPlayer1
+	 */
 	static Player * defaultPlayer0 ;
+	
+	/**
+	 * Player with default settings, for convenience
+	 * 
+	 * @seealso Player::defaultPlayer0
+	 */
 	static Player * defaultPlayer1 ;
+	
+	static const unsigned long getNumberOfPlayers() ;
 	
 	static void initDefaultPlayers() ;
 	
 	Player() ;
 	
 	Player(const string & name, const string & playerCharacter_imageFilename,
-		   float playerCharacter_size, const Position<float> & playerCharacter_loc, const Angle playerCharacter_rotation,
+		   float playerCharacter_size, const Vect<float> & playerCharacter_loc, const Angle playerCharacter_rotation,
 		   const string & playerCharacter_name, Reaction playerCharacter_reaction, DoA playerCharacter_alive,
 		   CharacterState playerCharacter_state, unsigned playerCharacter_health, unsigned playerCharacter_damage,
 		   const AssetFile & projectileImageFile) ;
@@ -83,14 +94,12 @@ public:
 	 * @param foreground The color of the text
 	 * @param background The color of the background
 	 */
-	void displayVelocity(Position<float> pos, GameColor foreground, GameColor background) ;
+	void displayVelocity(Vect<float> pos, GameColor foreground, GameColor background) ;
 
 	/* implementing these just so we're not considered an abstract class */
 	void operator()() {}
 	
 	void update() ;
-
-	
 
 } ;
 

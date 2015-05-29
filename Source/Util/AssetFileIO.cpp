@@ -53,6 +53,7 @@ vector<AssetFile> * AssetFile::playerShipImageFilenames = new vector<AssetFile> 
 	{"Saucer_Red.png",  "/Assets/Ships/Saucer_Red.png",  AssetType::playerShip, Colors::red},
 	{"Ship0_Blue.png",  "/Assets/Ships/Ship0_Blue.png",  AssetType::playerShip, Colors::blue},
 	{"Ship0_Red.png",   "/Assets/Ships/Ship0_Red.png",	 AssetType::playerShip, Colors::red},
+	{"Ship1_Blue.png",  "/Assets/Ships/Ship1_Blue.png",  AssetType::playerShip, Colors::blue},
 	{"Ship1_Green.png", "/Assets/Ships/Ship1_Green.png", AssetType::playerShip, Colors::green},
 	{"Ship2_Blue.png",  "/Assets/Ships/Ship2_Blue.png",	 AssetType::playerShip, Colors::blue}
 

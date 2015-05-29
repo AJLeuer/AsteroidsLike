@@ -20,7 +20,8 @@
 #include <SDL2/SDL_main.h>
 
 #include "../Util/Util.hpp"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
+#include "../Util/Line.hpp"
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
 #include "../Util/Velocity.hpp"
@@ -37,13 +38,16 @@
 
 int main(int argc, char ** argv) {
 	
-	constexpr Angle angle { 90.0 } ;
+	constexpr InitializeFromCenterCoordinates initializeFromCenterCoordinates ;
+	
+	Rectangle<float, long> rectangle0 (Vect<float>(2, 2), Size<long>(8, 8), initializeFromCenterCoordinates) ;
+	Rectangle<float, long> rectangle1 (Vect<float>(4, 4), Size<long>(4, 4), initializeFromCenterCoordinates) ;
+	
+	bool collision = Rectangle<float, long>::detectCollision(rectangle0, rectangle1) ;
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
-    
-    int a = MAX_X_REFERENCE_VAL ;
-    
+
 	MainController::init() ;
 	MainController::main() ;
      

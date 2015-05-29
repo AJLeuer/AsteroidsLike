@@ -12,11 +12,11 @@
 #include <iostream>
 #include <sstream>
 
-#include "Position.hpp"
+#include "Vect.hpp"
 #include "../Control/Configuration.h"
 
 template<typename N>
-struct Size : public Position<N> {
+struct Size : public Vect<N> {
 
 private:
 
@@ -44,35 +44,35 @@ public:
 
 
 	Size() :
-		Position<N>(),
+		Vect<N>(),
 		sizeModifier(1.0) {}
 
 	Size(N w_, N h_, float modifier) :
-		Position<N>(w_, h_),
+		Vect<N>(w_, h_),
 		sizeModifier(modifier) {}
     
     Size(N w_, N h_) :
-        Position<N>(w_, h_),
+        Vect<N>(w_, h_),
         sizeModifier(1) {}
 
 	Size(const Size<N> & other) :
-		Position<N>(other),
+		Vect<N>(other),
 		sizeModifier(other.sizeModifier) {}
 
 	Size(Size<N> && other) :
-		Position<N>(std::move(other)),
+		Vect<N>(std::move(other)),
 		sizeModifier(other.sizeModifier) {}
 
 	~Size() {}
 
 	Size & operator=(const Size<N> & rhs) {
-		this->Position<N>::operator=(rhs) ;
+		this->Vect<N>::operator=(rhs) ;
 		sizeModifier = rhs.sizeModifier ;
 		return *this ;
 	}
 	
 	Size & operator=(Size<N> && rhs) {
-		this->Position<N>::operator=(std::move(rhs)) ;
+		this->Vect<N>::operator=(std::move(rhs)) ;
 		sizeModifier = rhs.sizeModifier ;
 		return *this ;
 	}
@@ -95,13 +95,13 @@ public:
 	N getHeight() const { return (this->y * sizeModifier)  ; }
     
     virtual void rotate(Angle 𝛳) {
-        this->Position<N>::rotate(𝛳) ;
+        this->Vect<N>::rotate(𝛳) ;
         this->x = setUnsigned(this->x) ;
         this->y = setUnsigned(this->y) ;
     }
     
     template<typename M>
-    bool overBounds(const BoundsCheck<M> & check, const Position<M> & pos, const Angle & a = Angle(0)) const {
+    bool overBounds(const BoundsCheck<M> & check, const Vect<M> & pos, const Angle & a = Angle(0)) const {
         
         //if x coord + width is less than x min... return true
         //if y coord - width is greater than y min... return true
@@ -111,10 +111,10 @@ public:
         
         adjustedSize.rotate(a) ;
         
-        Position<M> topLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
-        Position<M> topRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
-        Position<M> botLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
-        Position<M> botRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
+        Vect<M> topLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
+        Vect<M> topRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() - (adjustedSize.getHeight() / 2))) ;
+        Vect<M> botLeft((pos.getX() - (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
+        Vect<M> botRight((pos.getX() + (adjustedSize.getWidth() / 2)), (pos.getY() + (adjustedSize.getHeight() / 2))) ;
         
         
         if ((topLeft.getX() > check.max_X) || (topLeft.getY() > check.max_Y)) {

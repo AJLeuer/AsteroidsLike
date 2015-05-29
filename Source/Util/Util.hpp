@@ -20,7 +20,8 @@
 
 using namespace std ;
 
-constexpr auto pi = 3.141592653589793238462643383279502884197169399375105820974944L ; /* needs UTF-8 support */
+static constexpr long double 𝜋 = 3.14159265358979323846L ;
+static constexpr auto & pi = 𝜋 ; /* for convenience */
 
 /**
  * Used to avoid ambiguity when calling various constructors

@@ -25,7 +25,7 @@
 
 #include "../Util/Util.hpp"
 #include "../Util/Debug.h"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
 #include "../Util/BoundsCheck.hpp"
 #include "../Util/Timer.hpp"
 #include "../Util/BasicConcurrency.h"
@@ -60,7 +60,7 @@ private:
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
+	 * corresponds to the x and y coordinate of its Vect. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * map ;
     
@@ -107,7 +107,7 @@ public:
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
+	 * corresponds to the x and y coordinate of its Vect. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * getMap() ;
 	
@@ -146,14 +146,14 @@ extern condition_variable shared_conditional ;
  * @return The window origin as world coordinates
  */
 template<typename N>
-Position<N> getWindowOriginAsWorldCoord() {
+Vect<N> getWindowOriginAsWorldCoord() {
 	
 	/* center the game window frame (i.e. what is visible) inside the world */
 	
 	N leftX = (globalMaxX() - windowSizeX()) / 2 ;
 	N topY = (globalMaxY() - windowSizeY()) / 2 ;
 	
-	return Position<N>(leftX, topY) ;
+	return Vect<N>(leftX, topY) ;
 }
 
 

@@ -30,7 +30,7 @@
 #include "../Output/GraphicsData.hpp"
 
 #include "ForwardDecl.h"
-#include "Position.hpp"
+#include "Vect.hpp"
 #include "BoundsCheck.hpp"
 #include "GameMap.hpp"
 #include "GameState.hpp"
@@ -106,7 +106,7 @@ protected:
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its Position. Is synced with WorldController's map.
+	 * corresponds to the x and y coordinate of its Vect. Is synced with WorldController's map.
 	 */
 	static GameMap<GameObject> * map ;
 	
@@ -162,9 +162,9 @@ public:
 	 * one character) as its icon
 	 *
 	 * @param imageFile The file to be used as the Texture for this GameObject
-     * @param pos This GameObject's Position<float>
+     * @param pos This GameObject's Vect<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -261,27 +261,27 @@ public:
     
     void placeOnMap() ;
     
-    void moveOnMap(const Position<float> * toNewLoc) ;
+    void moveOnMap(const Vect<float> * toNewLoc) ;
     
     void eraseFromMap() ;
 	
 	/**
-	 * Moves this GameObject to the Position<float> moveTo. All other movement
+	 * Moves this GameObject to the Vect<float> moveTo. All other movement
 	 * functions should call this.
 	 *
-	 * @param to The Position<float> where this GameObject is to move
+	 * @param to The Vect<float> where this GameObject is to move
 	 */
-	void moveTo(Position<float> * to) ;
+	void moveTo(Vect<float> * to) ;
 	
 	/**
-	 * Moves this GameObject to the Position<float> moveTo. All other movement
+	 * Moves this GameObject to the Vect<float> moveTo. All other movement
 	 * functions should call this.
 	 *
-	 * @param to The Position<float> where this GameObject is to move
+	 * @param to The Vect<float> where this GameObject is to move
 	 */
-	void moveTo(Position<float> to) ;
+	void moveTo(Vect<float> to) ;
 
-	void moveTo(float x, float y, float z) { moveTo(Position<float>(x, y)) ; }
+	//void moveTo(float x, float y, float z) { moveTo(Vect<float>(x, y)) ; }
 
     void moveX(float x) ;
     void moveY(float y) ;
@@ -302,29 +302,29 @@ public:
 	void jump() ;
     
     /**
-	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
-	 * Vectr of its last move
+	 * Moves this GameObject by changing its Vect<float> x and y coordinates according to the
+	 * VectorAndVelocity of its last move
 	 *
 	 */
     void move() ;
 
 	/**
-	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the
-	 * Vectr of its last move
+	 * Moves this GameObject by changing its Vect<float> x and y coordinates according to the
+	 * VectorAndVelocity of its last move
 	 *
 	 * @note If graphicsData.getBoundsCheck() == nullptr, move() will skip bounds checking
 	 */
 	void move(float distanceModifier) ;
 	
 	/**
-	 * Moves this GameObject by changing its Position<float> x and y coordinates according to the given
-	 * Vectr
+	 * Moves this GameObject by changing its Vect<float> x and y coordinates according to the given
+	 * VectorAndVelocity
 	 *
 	 * @note If bc = nullptr, move() will skip bounds checking
 	 *
 	 * @param newDirection The new vector specifying the direction of travel
 	 */
-	virtual void move(Vectr<float> & direction, float distanceModifier = defaultMoveDistance<float>) ;
+	virtual void move(VectorAndVelocity<float> & direction, float distanceModifier = defaultMoveDistance<float>) ;
     
     void rotateDiff(const Angle & orientation) { graphicsData->setVectorAndOrientation(orientation) ; }
 	
@@ -350,28 +350,28 @@ public:
 	Colors getColor() const { return graphicsData->getAssetFile()->color ; }
 	
 	/**
-	 * @return This GameObject's Position<float>
+	 * @return This GameObject's Vect<float>
 	 */
-	const Position<float> * getPosition() const { return this->graphicsData->getRawMutablePosition() ; }
+	const Vect<float> * getPosition() const { return this->graphicsData->getRawMutablePosition() ; }
 
-	const Position<float> copyPosition() const { return graphicsData->getPosition() ; }
+	const Vect<float> copyPosition() const { return graphicsData->getPosition() ; }
 	
 	const Angle * getOrientation() const { return graphicsData->getOrientation() ; }
 	
 	/**
 	 * @return This GameObject's vector in 3-D space
 	 */
-	const Vectr<float> * getVector() { return graphicsData->getVector() ; }
+	const VectorAndVelocity<float> * getVector() { return graphicsData->getVector() ; }
     
     /**
      * @note Use only when no other options are available
      */
-    Position<float> * getRawMutablePosition() { return this->graphicsData->getRawMutablePosition() ; }
+    Vect<float> * getRawMutablePosition() { return this->graphicsData->getRawMutablePosition() ; }
 	
 	/**
 	 * @note Use only when no other options are available
 	 */
-	Vectr<float> * getRawMutableVector() { return graphicsData->getRawMutableVector() ; }
+	VectorAndVelocity<float> * getRawMutableVector() { return graphicsData->getRawMutableVector() ; }
 	
 	/**
 	 * Sets this GameObject's sprite to the specified file

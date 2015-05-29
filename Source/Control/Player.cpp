@@ -10,50 +10,56 @@
 
 using namespace std ;
 
-unsigned Player::IDs = 0 ;
 
+/* Initialized to -1, but each player will increment it before copying its
+ * value as their own id, so the first player will still have id 0
+ */
+long long Player::IDs = -1 ;
 
 AssetType Player::defaultPCAssetType = AssetType::playerShip ; /* change if needed */
-float Player::defaultSize = 1.00 ;
+float Player::defaultGeometrySize = 0.50f ;
 
 Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
-Position<float> Player::position_in_defaultStartingArea() {
-	Position<float> ret = Position<float>((globalMaxX() / 2) + Randm<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
+const unsigned long Player::getNumberOfPlayers() {
+	return Player::IDs + 1 ;
+}
+
+Vect<float> Player::position_in_defaultStartingArea() {
+	Vect<float> ret = Vect<float>((globalMaxX() / 2) + Randm<float>::defaultRandom(-300, 300), (globalMaxY() - (globalMaxY() * 0.2))) ;
 	return ret ;
 }
 
+
 void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Green.png", defaultSize, position_in_defaultStartingArea(), 0.0, "Green",
+	defaultPlayer0 = new Player("Player 0", "Ship1_Blue.png", defaultGeometrySize, position_in_defaultStartingArea(), 0.0, "Blue",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	defaultPlayer1 = new Player("Player 1", "Ship0_Red.png", defaultSize, position_in_defaultStartingArea(), 0.0, "Red",
+	defaultPlayer1 = new Player("Player 1", "Ship1_Green.png", defaultGeometrySize, position_in_defaultStartingArea(), 0.0, "Green",
                                 Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(1)) ;
 }
 
 Player::Player() :
-	ID(IDs),
+	ID(IDs++),
 	name(""),
 	playerCharacter()
 {
-	IDs++ ;
 	setNames() ;
 	registerForCallbacks() ;
 }
 
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
-	float playerCharacter_size, const Position<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
+	float playerCharacter_size, const Vect<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
 	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage, const AssetFile & projectileImageFile) :
 
-	ID(IDs),
+	ID(IDs++),
 	name(name),
 	playerCharacter(playerCharacter_imageFilename, playerCharacter_size,
-		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive,playerCharacter_state,
+		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
 		playerCharacter_health, playerCharacter_damage, SafeBoolean::t, true, projectileImageFile)
 {
-	IDs++ ;
 	setNames() ;
 	registerForCallbacks() ;
 }
@@ -85,7 +91,7 @@ void Player::registerForCallbacks() {
     KeyInputRegister * onKeyJump ;
     EventRegister * onKeyFire ;
 	
-	if (playerCharacter.getColor() == Colors::green) {
+	if (getNumberOfPlayers() == 1) {
         
 		onKeyMoveUp = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{MOVE_UP_KEY}, {SDLK_UP}, KeypressEvaluationMethod::any) ;
@@ -108,7 +114,7 @@ void Player::registerForCallbacks() {
 		onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
 
 	}
-	else if (playerCharacter.getColor() == Colors::red) {
+	else if (getNumberOfPlayers() == 2) {
 		
 		onKeyMoveUp = new KeyInputRegister(&playerCharacter, (&GameInterface::moveUp),
 															{SDLK_KP_8}, KeypressEvaluationMethod::exactlyOne) ;
@@ -131,6 +137,10 @@ void Player::registerForCallbacks() {
         onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEWHEEL) ;
 		
 	}
+	else if (getNumberOfPlayers() > 2) {
+		cerr << "The maximum supported number of players is two." << endl ;
+		throw exception() ;
+	}
 	
 	InputController::registerForKeypress(onKeyJump) ;
 	InputController::registerForKeypress(onKeyMoveUp) ;
@@ -142,7 +152,7 @@ void Player::registerForCallbacks() {
 	InputController::registerForEvent(onKeyFire) ;
 }
 
-void Player::displayVelocity(Position<float> pos, GameColor foreground, GameColor background) {
+void Player::displayVelocity(Vect<float> pos, GameColor foreground, GameColor background) {
 	
 	stringstream stream0 ;
 	

@@ -23,7 +23,7 @@ Randm<int> GameObject::goRand(Randm<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Position<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
+    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Vect<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
 {
 	IDs++ ;
     
@@ -91,9 +91,9 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Position<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) :
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(imageFile, new Position<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, visible, monitorVelocity, boundsChecking)) /* can't be properly initialized yet */
+	graphicsData(new GraphicsData<float, int>(imageFile, new Vect<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, visible, monitorVelocity, boundsChecking)) /* can't be properly initialized yet */
 {
 	IDs++ ;
     
@@ -110,7 +110,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Po
 
 GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(rand, new Position<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
+    graphicsData(new GraphicsData<float, int>(rand, new Vect<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
 {
 	IDs++ ;
 	
@@ -236,7 +236,7 @@ void GameObject::textDescription(ostream * writeTo) const {
     
 	ss << "GameObject ID#: " << this->ID << endl ;
 
-    ss << "Current Position: " << getPosition()->toString() << endl ;
+    ss << "Current Vect: " << getPosition()->toString() << endl ;
 
 	*writeTo << ss.rdbuf() ;
 }
@@ -246,7 +246,7 @@ void GameObject::placeOnMap() {
     onMap = true ;
 }
 
-void GameObject::moveOnMap(const Position<float> * toNewLoc) {
+void GameObject::moveOnMap(const Vect<float> * toNewLoc) {
     if ((onMap == true) && (toNewLoc->overBounds(map->mapBounds<float>()) == false)) {
         map->map_move(getPosition(), toNewLoc, this, onMap) ;
         onMap = true ;
@@ -271,7 +271,7 @@ void GameObject::move() {
     move(distanceModifier) ;
 }
 
-void GameObject::move(Vectr<float> & direction, float distanceModifier) {
+void GameObject::move(VectorAndVelocity<float> & direction, float distanceModifier) {
     
     direction.normalize() ;
     
@@ -285,19 +285,19 @@ void GameObject::move(Vectr<float> & direction, float distanceModifier) {
 void GameObject::move(float distanceModifier) {
     graphicsData->getRawMutableVector()->normalize() ;
     /* Automatically find our next move based on our current vector */
-    Position<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(distanceModifier) ;
+    Vect<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(distanceModifier) ;
     moveTo(next) ;
 }
 
 
-void GameObject::moveTo(Position<float> to) {
+void GameObject::moveTo(Vect<float> to) {
     moveTo(&to) ;
 }
 
-void GameObject::moveTo(Position<float> * to) {
+void GameObject::moveTo(Vect<float> * to) {
 	
 	/* copy current position for undoing later */
-	const Position<float> oldPosition = * this->getPosition() ;
+	const Vect<float> oldPosition = * this->getPosition() ;
     
     /* If this object is bounds checked, do bounds checking */
     const BoundsCheck<float> * bc = graphicsData->getBoundsCheck() ;
@@ -332,22 +332,22 @@ void GameObject::moveTo(Position<float> * to) {
 }
 
 void GameObject::moveUp() {
-	Vectr<float> up(UP, SafeBoolean::f) ;
+	VectorAndVelocity<float> up(UP, SafeBoolean::f) ;
     move(up) ;
 }
 
  void GameObject::moveDown() {
-    Vectr<float> down(DOWN, SafeBoolean::f) ;
+    VectorAndVelocity<float> down(DOWN, SafeBoolean::f) ;
     move(down) ;
 }
 
  void GameObject::moveRight() {
-     Vectr<float> right(RIGHT, SafeBoolean::f) ;
+     VectorAndVelocity<float> right(RIGHT, SafeBoolean::f) ;
      move(right) ;
 }
 
  void GameObject::moveLeft() {
-     Vectr<float> left(LEFT, SafeBoolean::f) ;
+     VectorAndVelocity<float> left(LEFT, SafeBoolean::f) ;
      move(left) ;
 }
 
@@ -410,14 +410,14 @@ void GameObject::moveRandomDirection() {
 	
 	float y = randVectorIniter.nextValue() ;
 	
-	Vectr<float> newVector(x, y, 0, SafeBoolean::f) ;
+	VectorAndVelocity<float> newVector(x, y, 0, SafeBoolean::f) ;
 	
 	move(newVector) ;
 }
 
 void GameObject::jump() {
 	graphicsData->getRawMutableVector()->normalize() ;
-	Position<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(15.0) ;
+	Vect<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(15.0) ;
     timedTurnInvisible(std::chrono::nanoseconds(64000000)) ;
 	moveTo(std::move(next)) ;
 }
@@ -428,7 +428,7 @@ void GameObject::wander() {
 	
 	auto dist = graphicsData->getVector()->getLastMoveDistance() ;
 	
-	Position<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(defaultMoveDistance<float>) ;
+	Vect<float> next = graphicsData->getRawMutableVector()->calculateNextPosition(defaultMoveDistance<float>) ;
 	
 	if (next.overXBounds(&BoundsCheck<float>::defaultCheck)) {
 		next = graphicsData->getRawMutableVector()->calculateReverseXPosition(1.0, BoundsCheck<float>::defaultCheck) ;

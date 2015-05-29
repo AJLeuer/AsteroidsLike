@@ -6,17 +6,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Source/World/Weapon.cpp"
-            timestampString = "453827897.138048"
+            filePath = "Source/Output/GraphicsData.hpp"
+            timestampString = "454600799.960245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "Weapon::trackFiredProjectiles()"
-            landmarkType = "5">
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "checkForCollisions()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GraphicsData&lt;float, int&gt;::checkForCollisions()"
+                  moduleName = "AsteroidsLike"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Output/GraphicsData.hpp"
+                  timestampString = "454600804.505167"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "424"
+                  endingLineNumber = "424"
+                  offsetFromSymbolStart = "1019">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GraphicsData&lt;float, int&gt;::completeInitialization()"
+                  moduleName = "AsteroidsLike"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/GraphicsData.hpp"
+                  timestampString = "454600804.505336"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "502"
+                  endingLineNumber = "502"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GraphicsData&lt;float, int&gt;::setTexture(SDL_Texture*)"
+                  moduleName = "AsteroidsLike"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/../Output/GraphicsData.hpp"
+                  timestampString = "454600804.505478"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "568"
+                  endingLineNumber = "568"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

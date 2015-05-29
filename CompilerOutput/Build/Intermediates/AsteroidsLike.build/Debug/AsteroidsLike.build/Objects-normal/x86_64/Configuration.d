@@ -18,7 +18,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/DisplayData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/DefaultConfig.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_render.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Debug.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Velocity.hpp \

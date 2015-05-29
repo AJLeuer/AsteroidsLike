@@ -25,7 +25,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
 
 #include "GraphicsData.hpp"
 #include "TextOutput.hpp"

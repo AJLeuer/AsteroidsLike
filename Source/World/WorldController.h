@@ -20,7 +20,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
 #include "../Util/Random.hpp"
 #include "../Util/Timer.hpp"
 
@@ -74,7 +74,7 @@ public:
 	
 	/**
 	 * Holds pointers to GameObjects like gameObjects, but is 2D and the placement of each GameObject in map
-	 * corresponds to the x and y coordinate of its Position. Is synced with GameObjects's map.
+	 * corresponds to the x and y coordinate of its Vect. Is synced with GameObjects's map.
 	 */
 	static const GameMap<GameObject> * map ;
 	

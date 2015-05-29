@@ -89,12 +89,12 @@ public:
 	 * Creates a TextOutput object which will automatically output the string text to the screen, at the chosen position position, at the
 	 * next output update. TextOutput assumes that all pointers given to it remain valid for calling refresh()
 	 */
-	TextOutput(const string & text, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
+	TextOutput(const string & text, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
 
 	
 	void updateText(const string & newText) ;
 	
-	void updatePosition(const Position<POSUTYPE> & pos) ;
+	void updatePosition(const Vect<POSUTYPE> & pos) ;
 	
 	void updateOrientation(const Angle angle) ;
 	
@@ -117,7 +117,7 @@ public:
 	 * 
 	 * @param updatingText The text to draw
 	 */
-	static void displayContinuousText(const string * updatingText, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
+	static void displayContinuousText(const string * updatingText, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
 	
 	/**
 	 * @brief Draws a continuously updating text representation of the string returned
@@ -126,7 +126,7 @@ public:
 	 *
 	 * @param stringUpdatingFunction A function that returns the text to draw
 	 */
-	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
+	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
 	
 	
 } ;
@@ -181,8 +181,8 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::exit() {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) :
-    GraphicsData<POSUTYPE, SIZEUTYPE>(new Position<POSUTYPE>(pos), orientation, 1.0, PositionType::screenPosition),
+TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) :
+    GraphicsData<POSUTYPE, SIZEUTYPE>(new Vect<POSUTYPE>(pos), orientation, 1.0, PositionType::screenPosition),
 	text(text), foreground(foreground), background(background)
 {
 	
@@ -302,7 +302,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateText(const string & newText) {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Position<POSUTYPE> & pos) {
+void TextOutput<POSUTYPE, SIZEUTYPE>::updatePosition(const Vect<POSUTYPE> & pos) {
 	if (*this->position != pos) {
 		
 		this->position->setAll(pos) ;
@@ -335,7 +335,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateBackgroundColor(GameColor color) {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updatingText, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
+void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updatingText, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
 	
 	TextOutput * textoutput = new TextOutput(*updatingText, pos, orientation, foreground, background) ;
 	
@@ -355,7 +355,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updat
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Position<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
+void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
 	
 	TextOutput * textoutput = new TextOutput(stringUpdatingFunction(), pos, orientation, foreground, background) ;
 	

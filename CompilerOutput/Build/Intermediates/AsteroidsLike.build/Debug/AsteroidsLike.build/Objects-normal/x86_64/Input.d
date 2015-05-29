@@ -51,7 +51,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/../Control/Configuration.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/DisplayData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/DefaultConfig.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/Velocity.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/Timer.hpp \

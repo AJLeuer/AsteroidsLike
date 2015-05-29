@@ -13,7 +13,7 @@ dependencies: \
   /Library/Frameworks/SDL2.framework/Headers/SDL_pixels.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_rwops.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Util2.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Debug.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../Control/Configuration.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_video.h \
@@ -64,6 +64,8 @@ dependencies: \
   /Library/Frameworks/SDL2.framework/Headers/SDL_version.h \
   /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h \
   /Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Rectangle.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Line.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/AssetFileIO.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/CharacterData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \

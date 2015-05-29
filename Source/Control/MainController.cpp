@@ -111,6 +111,7 @@ void MainController::main() {
 		auto startTime = GameState::mainGameClock->checkTimeElapsed() ;
 		
 		GraphicalOutput::update() ;
+		GraphicsData<float, int>::checkForCollisions() ;
 		InputController::update() ;
 		
 		if (GLOBAL_CONTINUE_FLAG == false) { /* we check here because setting false will have been done by callback during InputController::update() */

@@ -26,7 +26,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Random.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameState.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Debug.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Velocity.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Timer.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/BasicConcurrency.h \

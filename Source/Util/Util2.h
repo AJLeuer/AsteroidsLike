@@ -16,7 +16,7 @@
 #include <cmath>
 
 #include "Util.hpp"
-#include "Position.hpp"
+#include "Vect.hpp"
 #include "Size.hpp"
 
 #include "../World/GameState.hpp"
@@ -26,24 +26,24 @@
 /* Creating a second header for utility functions since we ran into some trouble 
    with includes */
 template<typename M, typename N>
-Size<N> & operator*(M m, Size<N> & rhs) {
+Size<N> & operator * (M m, Size<N> & rhs) {
 	rhs.setW((m * rhs.getW())) ;
 	rhs.setH((m * rhs.getH())) ;
 	return rhs ;
 }
 
 template<typename M, typename N>
-Position<N> * convert(const Position<M> * converted) {
-    return new Position<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
+Vect<N> * convert(const Vect<M> * converted) {
+    return new Vect<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
 }
 
 /**
  * This function translates between coordinate systems.
  */
 template<typename N>
-Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
+Vect<N> translateToWindowCoords(const Vect<N> & worldCoords) {
 	
-	Position<N> origin = getWindowOriginAsWorldCoord<N>() ;
+	Vect<N> origin = getWindowOriginAsWorldCoord<N>() ;
 	
 	auto windowCoords = translateCoords(worldCoords, {0, 0}, origin) ;
 	
@@ -51,7 +51,7 @@ Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
 }
 
 /**
- * Translates the Position coords from a source coordinate system to coordinates
+ * Translates the Vect coords from a source coordinate system to coordinates
  * in the destination coordinate system. To work properly, this function an additonal
  * pair of coordinates: first coordinates from the source coordinate system, followed by
  * equivalent coordinates from the destination coordinate system. "Equivalent" implies that if these two
@@ -64,7 +64,7 @@ Position<N> translateToWindowCoords(const Position<N> & worldCoords) {
  * @param equivalentDestinationCoords Coordinates from the destination coordinate system that are equivalent to sourceCoords
  */
 template<typename N>
-Position<N> translateCoords(const Position<N> & coords, const Position<N> & sourceCoords, const Position<N> & equivalentDestinationCoords) {
+Vect<N> translateCoords(const Vect<N> & coords, const Vect<N> & sourceCoords, const Vect<N> & equivalentDestinationCoords) {
 	
 	/* using a position to store, not an actual position, but the difference between a position from the source coordinate system and
 	 a position from the destination coordinate system (i.e. a vector) */
@@ -83,7 +83,7 @@ Position<N> translateCoords(const Position<N> & coords, const Position<N> & sour
  * @param q The second point
  */
 template<typename N>
-N calcEuclidianDistance(const Position<N> & p, const Position<N> & q) {
+N calcEuclidianDistance(const Vect<N> & p, const Vect<N> & q) {
     auto sum = pow<N>((q.getX() - p.getX()), 2) + pow<N>((q.getY() - p.getY()), 2) ;
     auto sqRoot = sqrt(sum) ;
     return sqRoot ;

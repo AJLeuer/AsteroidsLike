@@ -23,7 +23,7 @@ dependencies: \
   /Library/Frameworks/SDL2.framework/Headers/SDL_render.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/BasicConcurrency.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/GameState.hpp \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/Random.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../Control/GlobalVar.h \

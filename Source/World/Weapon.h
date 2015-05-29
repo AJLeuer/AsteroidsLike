@@ -70,7 +70,7 @@ public:
     
 	//Weapon & operator=(Weapon && rhs) ;
 	
-	void fire(const Position<float> & startingPos, const Angle & orientation) ;
+	void fire(const Vect<float> & startingPos, const Angle & orientation) ;
 	
 };
 

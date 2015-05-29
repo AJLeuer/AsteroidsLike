@@ -43,11 +43,15 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
-PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
+PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
 								 const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
 								 unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
-    Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking),
-    weapon(projectileImageFile, getSize()->getModifier()) {}
+
+								Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking),
+    							weapon(projectileImageFile, getSize()->getModifier())
+{
+	
+}
 
 
 /**
@@ -58,7 +62,10 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  */
 PlayerCharacter::PlayerCharacter(Randm<int> rand, AssetType type) :
     Character(rand, type),
-    weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier()) {}
+    weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier())
+{
+	
+}
 
 
 /**
@@ -86,7 +93,7 @@ void PlayerCharacter::operator()(GameObject * other) {
     //todo
 }
 
-void PlayerCharacter::move(Vectr<float> & direction, float distanceModifier) {
+void PlayerCharacter::move(VectorAndVelocity<float> & direction, float distanceModifier) {
 	
 	direction.normalize() ;
 	
@@ -115,7 +122,7 @@ void PlayerCharacter::fire() {
 	auto gunX = copyPosition().getX() + (getSize()->getWidth() / 2) ;
 	auto gunY = copyPosition().getY() + (getSize()->getWidth() / 2) ;
 	
-	Position<float> gunPos { gunX, gunY} ;
+	Vect<float> gunPos { gunX, gunY} ;
 	
     weapon.fire(gunPos, * getOrientation()) ;
 }
@@ -157,7 +164,7 @@ void PlayerCharacter::textDescription(ostream * writeTo) const {
 }
 
 void PlayerCharacter::printPositition() {
-	Vectr<float> * vec = getRawMutableVector() ;
+	VectorAndVelocity<float> * vec = getRawMutableVector() ;
 	if (*vec->getCurrent() != vec->getLast()) {
 		stringstream ss ;
 		ss << this->name << "'s current world position is: " << getPosition() ;

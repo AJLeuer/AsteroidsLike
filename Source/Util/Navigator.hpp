@@ -12,7 +12,7 @@
 #include <iostream>
 
 #include "Util.hpp"
-#include "Position.hpp"
+#include "Vect.hpp"
 
 template<typename N>
 class Navigator {
@@ -21,24 +21,24 @@ public:
 	
 	Direction dir ;
 	
-	const Position<N> * start ;
-	Position<N> current ;
+	const Vect<N> * start ;
+	Vect<N> current ;
 	
 	long x_travelled() {
-		Position<N> temp( current - (*start) ) ;
+		Vect<N> temp( current - (*start) ) ;
 		long x_trav = setUnsigned(temp.getX()) ;
 		return x_trav ;
 	}
 	
 	long y_travelled() {
-		Position<N> temp = current - (*start) ;
+		Vect<N> temp = current - (*start) ;
 		long y_trav = setUnsigned(temp.getY()) ;
 		return y_trav ;
 	}
 	
 	Navigator(N) ;
 	
-	Navigator(Direction d, const Position<N> * s, Position<N> c) ;
+	Navigator(Direction d, const Vect<N> * s, Vect<N> c) ;
 	
 	Navigator(const Navigator & other) ;
 	
@@ -56,7 +56,7 @@ template<typename N>
 Navigator<N>::Navigator(N i) {}
 
 template<typename N>
-Navigator<N>::Navigator(Direction d, const Position<N> * s, Position<N> c) :
+Navigator<N>::Navigator(Direction d, const Vect<N> * s, Vect<N> c) :
 	dir(d), start(s), current(c) {}
 
 template<typename N>
@@ -81,7 +81,7 @@ Navigator<N> & Navigator<N>::operator=(Navigator<N> && rhs) {
 	if (this != &rhs) {
 		this->dir = rhs.dir ;
 		this->start = rhs.start ;
-		this->current = Position<N>(rhs.current) ;
+		this->current = Vect<N>(rhs.current) ;
 		rhs.start = nullptr ;
 	}
 	return *this ;

@@ -54,7 +54,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/../Control/DefaultConfig.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Debug.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Util2.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Velocity.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Timer.hpp \
@@ -63,5 +63,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Size.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/../World/GameState.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/ForwardDecl.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Rectangle.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/Line.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/AssetFileIO.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Output/../Util/../World/CharacterData.h

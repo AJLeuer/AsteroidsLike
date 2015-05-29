@@ -25,7 +25,7 @@ WorldController::WorldController() {}
 
 void WorldController::init() {
     
-	Position<float> * pos = new Position<float>(0, 0) ;
+	Vect<float> * pos = new Vect<float>(0, 0) ;
     
 	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition) ;
 
@@ -37,10 +37,10 @@ void WorldController::init() {
 	/* Init enemies */
 	/*
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Position<float>(globalMaxX() - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>())) ;
+              0.50, Vect<float>(globalMaxX() - 200, (startingYAreaHi + posModifier()), 0, defaultCheck<float>())) ;
 
 	new Enemy(AssetType::character, AssetFileIO::getRandomImageFilename(AssetType::character),
-              0.50, Position<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
+              0.50, Vect<float>(globalMaxX() - 200, (startingYAreaLo + posModifier()), 0, defaultCheck<float>())) ;
 	*/
 	/* Init obstacles */
 	
@@ -50,7 +50,7 @@ void WorldController::init() {
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Position<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
+					   Vect<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
 	}
 	
 	/* Init game state */

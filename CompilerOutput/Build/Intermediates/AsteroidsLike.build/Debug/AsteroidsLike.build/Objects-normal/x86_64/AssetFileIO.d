@@ -55,7 +55,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/CharacterData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/GameState.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/../Util/Debug.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/../World/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/Velocity.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/Timer.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Util/BasicConcurrency.h \

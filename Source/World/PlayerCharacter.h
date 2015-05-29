@@ -75,7 +75,7 @@ public:
 	 * @param health The Health of this PlayerCharacter
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
-	PlayerCharacter(const AssetFile & imageFile, float size, const Position<float> & loc,
+	PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
 					const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
 					unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
 	
@@ -115,7 +115,7 @@ public:
 	 * but overridden to ensure the player cannot move more than once
 	 * each time through the game loop
 	 */
-	void move(Vectr<float> & direction, float distanceModifier = defaultMoveDistance<float>) override ;
+	void move(VectorAndVelocity<float> & direction, float distanceModifier = defaultMoveDistance<float>) override ;
 	
 	/**
 	 * Overidden to ensure this has no functionality

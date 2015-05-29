@@ -29,8 +29,10 @@
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
 #include "../Util/Util2.h"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
 #include "../Util/Size.hpp"
+#include "../Util/Rectangle.hpp"
+#include "../Util/Rectangle.hpp"
 #include "../Util/AssetFileIO.h"
 
 #include "../Control/Configuration.h"
@@ -88,12 +90,12 @@ protected:
 	bool texture_was_updated ;
 	
 	/**
-	 * @brief A pointer to a Position object, which in most cases is owned by the class that owns
+	 * @brief A pointer to a Vect object, which in most cases is owned by the class that owns
 	 *        this GraphicsData object
 	 */
-    Position<POSUTYPE> * position ;
-    
-	Vectr<POSUTYPE> vectr = Vectr<POSUTYPE>(0.0, SafeBoolean::f) ;
+    Vect<POSUTYPE> * position ;
+	
+	VectorAndVelocity<POSUTYPE> vectr = VectorAndVelocity<POSUTYPE>(0.0, SafeBoolean::f) ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the GraphicsData object
@@ -104,7 +106,7 @@ protected:
 	/**
 	 * @brief A copy of position from the last time this GraphicsData was updated
 	 */
-	Position<POSUTYPE> position_lastRecordedValue ;
+	Vect<POSUTYPE> position_lastRecordedValue ;
 	
 	/**
 	 * @brief A copy of size from the last time this GraphicsData was updated
@@ -154,6 +156,8 @@ public:
 	 * @note Should only be called from the main thread
 	 */
 	static void updateAll() ;
+	
+	static void checkForCollisions() ;
     
     /*
     GraphicsData() :
@@ -167,7 +171,7 @@ public:
         allGraphicsData.push_back(this) ;
     } */
 	
-    GraphicsData(Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean   monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean   monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
         textureImageFile(),
         texture(nullptr),
         position(pos),
@@ -185,7 +189,7 @@ public:
         update() ;
 	}
 	
-    GraphicsData(const AssetFile & file, Position<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(const AssetFile & file, Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
@@ -203,7 +207,7 @@ public:
         update() ;
     }
     
-    GraphicsData(Randm<int> & randm, Position<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(Randm<int> & randm, Vect<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
@@ -289,27 +293,27 @@ public:
 	
     Texture * getTexture() const { return texture ; }
 	
-	void setPosition(Position<POSUTYPE> * pos) { this->pos = pos ; }
+	void setPosition(Vect<POSUTYPE> * pos) { this->pos = pos ; }
 	
-	const Position<POSUTYPE> getPosition() const ;
+	const Vect<POSUTYPE> getPosition() const ;
     
-    const Vectr<POSUTYPE> * getVector() const { return & vectr ; }
+    const VectorAndVelocity<POSUTYPE> * getVector() const { return & vectr ; }
     
     /**
      * @note Use only when no other options are available
      */
-    Position<POSUTYPE> * getRawMutablePosition() { return position ; }
+    Vect<POSUTYPE> * getRawMutablePosition() { return position ; }
 	
 	/**
 	 * @note Use only when no other options are available
 	 */
-	Vectr<POSUTYPE> * getRawMutableVector() { return & vectr ; }
+	VectorAndVelocity<POSUTYPE> * getRawMutableVector() { return & vectr ; }
 	
 	/**
 	 * @note Only use for making a copy of this OutputData's position,
 	 * not for rendering operations
 	 */
-	const Position<POSUTYPE> * getPosition_raw() const { return position ; }
+	const Vect<POSUTYPE> * getPosition_raw() const { return position ; }
 	
 	PositionType getPositionType() const { return positionType ; }
     
@@ -326,6 +330,8 @@ public:
 	const Size<SIZEUTYPE> getSize() const { return size ; }
     
     const Size<SIZEUTYPE> * getSizePtr() const { return & size ; }
+	
+	Rectangle<POSUTYPE, SIZEUTYPE> rectangle() const ;
 	
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
@@ -393,6 +399,34 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	}
 }
 
+template<typename POSUTYPE, typename SIZEUTYPE>
+void GraphicsData<POSUTYPE, SIZEUTYPE>::checkForCollisions() {
+	
+	auto graphicsData = allGraphicsData ; //copy, so we can make modify the container to speed up iteration
+
+	for (long i = (graphicsData.size() - 1) ; i >= 0 ; i--) {
+		
+		if ((graphicsData[i] == nullptr) || (graphicsData[i]->initFlag)) {
+			graphicsData.pop_back() ;
+			continue ;
+		}
+		
+		for (auto j = 0 ; j < (i - 1) ; j++) {
+			
+			if ((graphicsData[j] == nullptr) || (graphicsData[j]->initFlag)) {
+				continue ;
+			}
+			
+			bool collision = Rectangle<POSUTYPE, SIZEUTYPE>::detectCollision(graphicsData[i]->rectangle(), graphicsData[j]->rectangle()) ;
+			
+			if (collision) {
+				; //todo finish
+			}
+															   
+		}
+		graphicsData.pop_back() ;
+	}
+}
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(const GraphicsData<POSUTYPE, SIZEUTYPE> & other) {
@@ -407,7 +441,7 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 	size = other.size ;
     position = new auto(*other.position) ;
 	position_lastRecordedValue = other.position_lastRecordedValue ;
-	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Position object
+	vectr.copy(other.vectr, position) ; //we can assume the class owning this GraphicsOutput (the same one owning the Vect object
     positionType = other.positionType ; //pointed to by position, will have updated it's position to the copy argument's position's values,
 										//so we don't need to worry about that
     bc = new auto(*other.bc) ;
@@ -439,6 +473,17 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(
 	
 	return *this ;
 }
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+Rectangle<POSUTYPE, SIZEUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::rectangle() const {
+	
+	static constexpr InitializeFromCenterCoordinates initFromCenterCoords ;
+	
+	Rectangle<POSUTYPE, SIZEUTYPE> rectangle(* this->position, this->size, initFromCenterCoords) ;
+	
+	return rectangle ;
+}
+
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
@@ -525,7 +570,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::setTexture(Texture * texture) {
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-const Position<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const {
+const Vect<POSUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::getPosition() const {
 	if (this->positionType == PositionType::worldPosition) {
 		return translateToWindowCoords(*this->position) ;
 	}

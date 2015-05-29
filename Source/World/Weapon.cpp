@@ -59,7 +59,7 @@ void Projectile::doDefaultBehavior(bool initialCall) {
     /* do nothing */ ;
 }
 
-void Weapon::fire(const Position<float> & startingPos, const Angle & orientation) {
+void Weapon::fire(const Vect<float> & startingPos, const Angle & orientation) {
     
 	firedProjectiles.emplace_back(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, false) ;
 	

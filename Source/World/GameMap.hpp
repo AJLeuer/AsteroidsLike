@@ -18,7 +18,7 @@
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
-#include "../Util/Position.hpp"
+#include "../Util/Vect.hpp"
 #include "../Util/Navigator.hpp"
 #include "../Util/BasicConcurrency.h"
 
@@ -42,10 +42,10 @@ protected:
 	void findAllNearby_helper(vector<const T*> * store, Navigator<N> & nav, const N x_lim, const N y_lim) ;
 	
 	/**
-	 * Returns the first object at this Position<N>
+	 * Returns the first object at this Vect<N>
 	 */
 	template<typename N>
-	list<const T *> * at_pos_mutable(const Position<N> * where) ;
+	list<const T *> * at_pos_mutable(const Vect<N> * where) ;
 
 public:
 	bool searchSuccess = false ;
@@ -71,44 +71,44 @@ public:
     const BoundsCheck<N> mapBounds() { return BoundsCheck<N>(0, getXBound<N>(), 0, getYBound<N>()) ; }
 	
 	template<typename N>
-	void place(const Position<N> * where, const T * pointerToOriginalObject) ;
+	void place(const Vect<N> * where, const T * pointerToOriginalObject) ;
 	
 	/*
 	template<typename N>
-	void placeAtNearestFree(Position<N> * where, T * mapObj, BoundsCheck<N> check) ; */
+	void placeAtNearestFree(Vect<N> * where, T * mapObj, BoundsCheck<N> check) ; */
 	
 	template<typename N>
-	void erase(const Position<N> * currentLoc, const T * pointerToOriginalObject) ;
+	void erase(const Vect<N> * currentLoc, const T * pointerToOriginalObject) ;
 	
 	/**
-	 * Moves the object to a new Position<N> on the map, and erases
-	 * (calls erase()) on its old Position<N>.
+	 * Moves the object to a new Vect<N> on the map, and erases
+	 * (calls erase()) on its old Vect<N>.
      * 
      * @param alreadyOnMap Helps to prevent callers from accidentally map_moving an object that isn't already on the map. If
      * false, map_move() will simply redirect the call to place(). See place()
 	 */
 	template<typename N>
-	void map_move(const Position<N> * currentLoc, const Position<N> * toNewLoc, const T * pointerToOriginalObject, bool alreadyOnMap) ;
+	void map_move(const Vect<N> * currentLoc, const Vect<N> * toNewLoc, const T * pointerToOriginalObject, bool alreadyOnMap) ;
 	
 	/**
-	 * Returns the first object at this Position<N>
+	 * Returns the first object at this Vect<N>
 	 */
 	template<typename N>
-	const list<const T *> * at_pos(const Position<N> * where) ;
+	const list<const T *> * at_pos(const Vect<N> * where) ;
 	
 	template<typename N>
-	Position<N> currentLoc(const T * obj) ;
+	Vect<N> currentLoc(const T * obj) ;
 	
 	/**
 	 * Searches within the specified limits for an object of the specified type.
 	 * Returns a nullptr if none found
 	 * 
-	 * @param start The Position<N> of the object that wants to search for nearby objects
+	 * @param start The Vect<N> of the object that wants to search for nearby objects
 	 * @param x_lim The maximum distance to search longtitudinally
 	 * @param y_lim The maximum distance to search latitudinally
 	 */
 	template<typename N>
-	vector<const T*> * findNearby(const Position<N> * start, const N x_lim, const N y_lim) ;
+	vector<const T*> * findNearby(const Vect<N> * start, const N x_lim, const N y_lim) ;
 	
 } ;
 
@@ -151,11 +151,11 @@ GameMap<T>::~GameMap() {
 }
 
 /**
- * Places pointerToOriginalObject at Position where.
+ * Places pointerToOriginalObject at Vect where.
  */
 template<class T>
 template<typename N>
-void GameMap<T>::place(const Position<N> * where, const T * pointerToOriginalObject) {
+void GameMap<T>::place(const Vect<N> * where, const T * pointerToOriginalObject) {
 	
 	int x = where->getIntX() ;
 	int y = where->getIntY() ;
@@ -180,7 +180,7 @@ void GameMap<T>::place(const Position<N> * where, const T * pointerToOriginalObj
 /*
 template<class T>
 template<typename N>
-void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const BoundsCheck<N> check) {
+void GameMap<T>::placeAtNearestFree(Vect<N> * where, T * mapObj, const BoundsCheck<N> check) {
 	if (mapObj == nullptr) {
 		cerr << "place() and placeAtNearestFree() cannot be used to place nullptrs. Use erase and eraseAll() \n" ;
 		throw exception() ;
@@ -198,25 +198,25 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 		switch (swt) {
 			case 0:
 			{
-				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() + 1, where->getIntZ(), check) ;
+				Vect<N> * here = new Vect<N>(where->getIntX(), where->getIntY() + 1, where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, BoundsCheck<N>::defaultCheck) ;
 			}
 
 			case 1:
 			{
-				Position<N> * here = new Position<N>(where->getIntX(), where->getIntY() - 1, where->getIntZ(), check) ;
+				Vect<N> * here = new Vect<N>(where->getIntX(), where->getIntY() - 1, where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, BoundsCheck<N>::defaultCheck) ;
 			}
 				
 			case 2:
 			{
-				Position<N> * here = new Position<N>(where->getIntX() + 1, where->getIntY(), where->getIntZ(), check) ;
+				Vect<N> * here = new Vect<N>(where->getIntX() + 1, where->getIntY(), where->getIntZ(), check) ;
 				return placeAtNearestFree(here, mapObj, BoundsCheck<N>::defaultCheck) ;
 			}
 				
 			case 3:
 			{
-				Position<N> * here = new Position<N>(where->getIntX() - 1, where->getIntY(), where->getIntZ(), check);
+				Vect<N> * here = new Vect<N>(where->getIntX() - 1, where->getIntY(), where->getIntZ(), check);
 				return placeAtNearestFree(here, mapObj, BoundsCheck<N>::defaultCheck) ;
 			}
 			default:
@@ -235,7 +235,7 @@ void GameMap<T>::placeAtNearestFree(Position<N> * where, T * mapObj, const Bound
 
 template<class T>
 template<typename N>
-void GameMap<T>::map_move(const Position<N> * currentLoc, const Position<N> * toNewLoc, const T * pointerToOriginalObject, bool alreadyOnMap) {
+void GameMap<T>::map_move(const Vect<N> * currentLoc, const Vect<N> * toNewLoc, const T * pointerToOriginalObject, bool alreadyOnMap) {
     if (alreadyOnMap) {
         list<const T *> * temp = at_pos_mutable(currentLoc) ;
         erase(currentLoc, pointerToOriginalObject) ;
@@ -249,7 +249,7 @@ void GameMap<T>::map_move(const Position<N> * currentLoc, const Position<N> * to
 
 template<class T>
 template<typename N>
-list<const T *> * GameMap<T>::at_pos_mutable(const Position<N> * where) {
+list<const T *> * GameMap<T>::at_pos_mutable(const Vect<N> * where) {
 	unsigned x = where->getIntX() ;
 	unsigned y = where->getIntY() ;
 	return &(intern_map->at(x)->at(y)) ;
@@ -257,7 +257,7 @@ list<const T *> * GameMap<T>::at_pos_mutable(const Position<N> * where) {
 
 template<class T>
 template<typename N>
-const list<const T *> * GameMap<T>::at_pos(const Position<N> * where) {
+const list<const T *> * GameMap<T>::at_pos(const Vect<N> * where) {
 	unsigned x = where->getIntX() ;
 	unsigned y = where->getIntY() ;
 	return &(intern_map->at(x)->at(y)) ;
@@ -265,7 +265,7 @@ const list<const T *> * GameMap<T>::at_pos(const Position<N> * where) {
 
 template<class T>
 template<typename N>
-Position<N> GameMap<T>::currentLoc(const T * obj) {
+Vect<N> GameMap<T>::currentLoc(const T * obj) {
 	
 	for (auto i = 0 ; i < intern_map->size() ; i++) {
 		
@@ -276,18 +276,18 @@ Position<N> GameMap<T>::currentLoc(const T * obj) {
 			for (auto k = containingList->cbegin(); k < containingList->cend() ; k++) {
 					
 				if (**k == *obj) {
-					return Position<N>(i, j, 0) ;
+					return Vect<N>(i, j, 0) ;
 				}
 			}
 		}
 	}
-	cerr << "GameMap::currentLoc() throwing exception. No object found at that Position. \n" ;
+	cerr << "GameMap::currentLoc() throwing exception. No object found at that Vect. \n" ;
 	throw exception() ;
 }
 
 template<class T>
 template<typename N>
-void GameMap<T>::erase(const Position<N> * currentLoc, const T * pointerToOriginalObject) {
+void GameMap<T>::erase(const Vect<N> * currentLoc, const T * pointerToOriginalObject) {
 	
 	list<const T *> * containingList = at_pos_mutable(currentLoc) ;
 	
@@ -335,12 +335,12 @@ void GameMap<T>::erase(const Position<N> * currentLoc, const T * pointerToOrigin
 
 template<class T>
 template<typename N>
-vector<const T*> * GameMap<T>::findNearby(const Position<N> * start, N x_lim, N y_lim) {
+vector<const T*> * GameMap<T>::findNearby(const Vect<N> * start, N x_lim, N y_lim) {
 	
 	searchSuccess = false ;
 	vector<const T* > * store = new vector<const T*>() ;
-	const Position<N> * strt = start ;
-	Position<N> init = Position<N>(*start) ;
+	const Vect<N> * strt = start ;
+	Vect<N> init = Vect<N>(*start) ;
 	Navigator<N> nav(Direction::noDirection, strt, init) ;
 	findAllNearby_helper(store, nav, x_lim, y_lim) ;
 	return store ;
@@ -411,14 +411,14 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 			//((nav.y_travelled() < y_lim) && (nav.current.y < getYBound<int>())))
 			{
 				if (continue_n) {
-					Position<N> n_loc((nav.current)) ;
+					Vect<N> n_loc((nav.current)) ;
 					n_loc.y_plus_one() ;
 					Navigator<N> n_nav = Navigator<N>(Direction::north, nav.start, n_loc) ;
 					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_e) {
-					Position<N> e_loc((nav.current)) ;
+					Vect<N> e_loc((nav.current)) ;
 					e_loc.x_plus_one() ;
 					Navigator<N> e_nav = Navigator<N>(Direction::east, nav.start, e_loc) ;
 					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
@@ -444,14 +444,14 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 			   //((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
 			{
 				if (continue_s) {
-					Position<N> s_loc((nav.current)) ;
+					Vect<N> s_loc((nav.current)) ;
 					s_loc.y_minus_one() ;
 					Navigator<N> s_nav = Navigator<N>(Direction::south, nav.start, s_loc) ;
 					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_e) {
-					Position<N> e_loc((nav.current)) ;
+					Vect<N> e_loc((nav.current)) ;
 					e_loc.x_plus_one() ;
 					Navigator<N> e_nav = Navigator<N>(Direction::east, nav.start, e_loc) ;
 					findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
@@ -477,14 +477,14 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 				//((nav.y_travelled() < y_lim) && (nav.current.y > 0)))
 			{
 				if (continue_s) {
-					Position<N> s_loc((nav.current)) ;
+					Vect<N> s_loc((nav.current)) ;
 					s_loc.y_minus_one() ;
 					Navigator<N> s_nav = Navigator<N>(Direction::south, nav.start, s_loc) ;
 					findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_w) {
-					Position<N> w_loc((nav.current)) ;
+					Vect<N> w_loc((nav.current)) ;
 					w_loc.x_minus_one() ;
 					Navigator<N> w_nav = Navigator<N>(Direction::west, nav.start, w_loc) ;
 					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
@@ -511,14 +511,14 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 			   //((nav.y_travelled() < y_lim) && (nav.current.y < getYBound<int>())))
 			{
 				if (continue_n) {
-					Position<N> n_loc((nav.current)) ;
+					Vect<N> n_loc((nav.current)) ;
 					n_loc.y_plus_one() ;
 					Navigator<N> n_nav = Navigator<N>(Direction::north, nav.start, n_loc) ;
 					findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 				}
 				
 				if (continue_w) {
-					Position<N> w_loc((nav.current)) ;
+					Vect<N> w_loc((nav.current)) ;
 					w_loc.x_minus_one() ;
 					Navigator<N> w_nav = Navigator<N>(Direction::west, nav.start, w_loc) ;
 					findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
@@ -535,55 +535,55 @@ void GameMap<T>::findAllNearby_helper(vector<const T*> * store, Navigator<N> & n
 			
 		case noDirection : { //the base case
 			if ((nav.current.getIntY() < getYBound<int>())) {
-				Position<N> n_loc = Position<N>(*nav.start) ;
+				Vect<N> n_loc = Vect<N>(*nav.start) ;
 				n_loc.y_plus_one() ;
 				Navigator<N> n_nav(north, nav.start, n_loc) ;
 				findAllNearby_helper(store, n_nav, x_lim, y_lim) ;
 			}
 			
 			if ((nav.current.getIntY() > 0)) {
-				Position<N> s_loc = Position<N>(*nav.start) ;
+				Vect<N> s_loc = Vect<N>(*nav.start) ;
 				s_loc.y_minus_one() ;
 				Navigator<N> s_nav(south, nav.start, s_loc) ;
 				findAllNearby_helper(store, s_nav, x_lim, y_lim) ;
 			}
 			
 			if (nav.current.getIntX() < getXBound<int>()) {
-				Position<N> e_loc = Position<N>(*nav.start) ;
+				Vect<N> e_loc = Vect<N>(*nav.start) ;
 				e_loc.x_plus_one() ;
 				Navigator<N> e_nav(east, nav.start, e_loc) ;
 				findAllNearby_helper(store, e_nav, x_lim, y_lim) ;
 			}
 			
 			if ((nav.current.getIntX() > 0)) {
-				Position<N> w_loc = Position<N>(*nav.start) ;
+				Vect<N> w_loc = Vect<N>(*nav.start) ;
 				w_loc.x_minus_one() ;
 				Navigator<N> w_nav(west, nav.start, w_loc) ;
 				findAllNearby_helper(store, w_nav, x_lim, y_lim) ;
 			}
 			if ((nav.current.getIntX() < getXBound<int>()) && ((nav.current.getIntY() < getYBound<int>()))) {
-				Position<N> ne_loc = Position<N>(*nav.start) ;
+				Vect<N> ne_loc = Vect<N>(*nav.start) ;
 				ne_loc.x_plus_one() ;
 				ne_loc.y_plus_one() ;
 				Navigator<N> ne_nav(ne, nav.start, ne_loc) ;
 				findAllNearby_helper(store, ne_nav, x_lim, y_lim) ;
 			}
 			if ((nav.current.getIntX() < getXBound<int>()) && ((nav.current.getIntY() > 0))) {
-				Position<N> se_loc = Position<N>(*nav.start) ;
+				Vect<N> se_loc = Vect<N>(*nav.start) ;
 				se_loc.x_plus_one() ;
 				se_loc.y_minus_one() ;
 				Navigator<N> se_nav(se, nav.start, se_loc) ;
 				findAllNearby_helper(store, se_nav, x_lim, y_lim) ;
 			}
 			if ((nav.current.getIntX() > 0) && ((nav.current.getIntY() > 0))) {
-				Position<N> sw_loc = Position<N>(*nav.start) ;
+				Vect<N> sw_loc = Vect<N>(*nav.start) ;
 				sw_loc.x_minus_one() ;
 				sw_loc.y_minus_one() ;
 				Navigator<N> sw_nav(sw, nav.start, sw_loc) ;
 				findAllNearby_helper(store, sw_nav, x_lim, y_lim) ;
 			}
 			if ((nav.current.getIntX() > 0) && ((nav.current.getIntY() < getYBound<int>()))) {
-				Position<N> nw_loc = Position<N>(*nav.start) ;
+				Vect<N> nw_loc = Vect<N>(*nav.start) ;
 				nw_loc.x_minus_one() ;
 				nw_loc.y_plus_one() ;
 				Navigator<N> nw_nav(nw, nav.start, nw_loc) ;

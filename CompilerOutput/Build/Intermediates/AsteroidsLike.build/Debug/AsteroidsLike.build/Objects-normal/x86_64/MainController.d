@@ -56,7 +56,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/BasicConcurrency.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GraphicalOutput.h \
   /Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Position.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Vect.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/BoundsCheck.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Random.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../Control/GlobalVar.h \
@@ -65,6 +65,8 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Size.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameState.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/ForwardDecl.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Rectangle.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Line.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/AssetFileIO.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/CharacterData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \

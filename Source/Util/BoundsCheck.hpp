@@ -15,7 +15,7 @@
 
 
 /**
- * Helps with checking validity of Position objects
+ * Helps with checking validity of Vect objects
  * Used in Position's checkBounds()
  */
 template<typename N>
