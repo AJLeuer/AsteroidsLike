@@ -1,5 +1,5 @@
 //
-//  MainController.h
+//  MainControl.h
 //  World
 //
 //  Created by Adam James Leuer on 4/16/14.
@@ -26,7 +26,7 @@
 #include "../Output/TextOutput.hpp"
 
 #include "../World/GameState.hpp"
-#include "../World/WorldController.h"
+#include "../World/WorldControl.h"
 
 #include "../Control/Configuration.h"
 #include "../Control/Player.h"
@@ -36,7 +36,7 @@
 using namespace std ;
 
 
-class MainController {
+class MainControl {
 
 protected:
 	
@@ -49,7 +49,7 @@ protected:
 	/**
 	 * This function will call exit at some predetermined point, or when
 	 * some criterion is met (TBD - see implementation).
-	 * This is neccesary since InputController, which depends on SDL, needs to run on the main thread,
+	 * This is neccesary since InputControl, which depends on SDL, needs to run on the main thread,
 	 * and since each controller runs a while loop, it will not return until the bool* it checks changes.
 	 */
 	static void setupMainContrExit() ;
@@ -68,7 +68,7 @@ protected:
 public:
 	
 	/**
-	 * @brief Initializes the game before MainController::main() is called
+	 * @brief Initializes the game before MainControl::main() is called
 	 *
 	 * @note Should be called on the main thread
 	 */

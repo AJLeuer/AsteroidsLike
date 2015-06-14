@@ -1,4 +1,4 @@
-/Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/MainController.o
+/Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/MainControl.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/GameState.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/Debug.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/Util.o
@@ -17,7 +17,7 @@
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/main.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/NPC.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/Velocity.o
-/Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/WorldController.o
+/Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/WorldControl.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/Timer.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/GraphicsData.o
 /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/CompilerOutput/Build/Intermediates/AsteroidsLike.build/Debug/AsteroidsLike.build/Objects-normal/x86_64/GraphicalOutput.o

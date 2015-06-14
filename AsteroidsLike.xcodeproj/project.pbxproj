@@ -12,7 +12,7 @@
 		66C7928519CA1A89000C2338 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7923E19CA1A89000C2338 /* Configuration.cpp */; };
 		66C7928619CA1A89000C2338 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924219CA1A89000C2338 /* Input.cpp */; };
 		66C7928719CA1A89000C2338 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924419CA1A89000C2338 /* main.cpp */; };
-		66C7928819CA1A89000C2338 /* MainController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924519CA1A89000C2338 /* MainController.cpp */; };
+		66C7928819CA1A89000C2338 /* MainControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924519CA1A89000C2338 /* MainControl.cpp */; };
 		66C7928919CA1A89000C2338 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924719CA1A89000C2338 /* Player.cpp */; };
 		66C7928B19CA1A89000C2338 /* DisplayData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924D19CA1A89000C2338 /* DisplayData.cpp */; };
 		66C7928C19CA1A89000C2338 /* DisplayData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66C7924F19CA1A89000C2338 /* DisplayData.mm */; };
@@ -35,7 +35,7 @@
 		66C7929D19CA1A89000C2338 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7927D19CA1A89000C2338 /* NPC.cpp */; };
 		66C7929E19CA1A89000C2338 /* PlayerCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7927F19CA1A89000C2338 /* PlayerCharacter.cpp */; };
 		66C7929F19CA1A89000C2338 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928119CA1A89000C2338 /* Weapon.cpp */; };
-		66C792A019CA1A89000C2338 /* WorldController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928319CA1A89000C2338 /* WorldController.cpp */; };
+		66C792A019CA1A89000C2338 /* WorldControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928319CA1A89000C2338 /* WorldControl.cpp */; };
 		66C792A619CA21D4000C2338 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A519CA21D4000C2338 /* SDL2.framework */; };
 		66C792A819CA21D8000C2338 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A719CA21D8000C2338 /* SDL2_image.framework */; };
 		66C792AA19CA21DE000C2338 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A919CA21DE000C2338 /* SDL2_ttf.framework */; };
@@ -68,8 +68,8 @@
 		66C7924219CA1A89000C2338 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		66C7924319CA1A89000C2338 /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Input.hpp; sourceTree = "<group>"; };
 		66C7924419CA1A89000C2338 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		66C7924519CA1A89000C2338 /* MainController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainController.cpp; sourceTree = "<group>"; };
-		66C7924619CA1A89000C2338 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		66C7924519CA1A89000C2338 /* MainControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainControl.cpp; sourceTree = "<group>"; };
+		66C7924619CA1A89000C2338 /* MainControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainControl.h; sourceTree = "<group>"; };
 		66C7924719CA1A89000C2338 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Player.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66C7924819CA1A89000C2338 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		66C7924C19CA1A89000C2338 /* Decl_Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decl_Apple.h; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		66C7925219CA1A89000C2338 /* GraphicalOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicalOutput.h; sourceTree = "<group>"; };
 		66C7925319CA1A89000C2338 /* GraphicsData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsData.cpp; sourceTree = "<group>"; };
 		66C7925419CA1A89000C2338 /* GraphicsData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = GraphicsData.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		66C7925519CA1A89000C2338 /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextOutput.hpp; sourceTree = "<group>"; };
+		66C7925519CA1A89000C2338 /* TextOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = TextOutput.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66C7925719CA1A89000C2338 /* AssetFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = AssetFileIO.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		66C7925819CA1A89000C2338 /* AssetFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AssetFileIO.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66C7925919CA1A89000C2338 /* BasicConcurrency.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicConcurrency.cpp; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		66C7928019CA1A89000C2338 /* PlayerCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCharacter.h; sourceTree = "<group>"; };
 		66C7928119CA1A89000C2338 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
 		66C7928219CA1A89000C2338 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
-		66C7928319CA1A89000C2338 /* WorldController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = WorldController.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		66C7928419CA1A89000C2338 /* WorldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldController.h; sourceTree = "<group>"; };
+		66C7928319CA1A89000C2338 /* WorldControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = WorldControl.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		66C7928419CA1A89000C2338 /* WorldControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldControl.h; sourceTree = "<group>"; };
 		66C792A119CA218B000C2338 /* About */ = {isa = PBXFileReference; lastKnownFileType = folder; path = About; sourceTree = "<group>"; };
 		66C792A219CA218B000C2338 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		66C792A319CA218B000C2338 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
@@ -187,11 +187,11 @@
 				66C7923F19CA1A89000C2338 /* Configuration.h */,
 				66C7924119CA1A89000C2338 /* GlobalVar.h */,
 				66C7924319CA1A89000C2338 /* Input.hpp */,
-				66C7924619CA1A89000C2338 /* MainController.h */,
+				66C7924619CA1A89000C2338 /* MainControl.h */,
 				66C7924819CA1A89000C2338 /* Player.h */,
 				66C7923E19CA1A89000C2338 /* Configuration.cpp */,
 				66C7924219CA1A89000C2338 /* Input.cpp */,
-				66C7924519CA1A89000C2338 /* MainController.cpp */,
+				66C7924519CA1A89000C2338 /* MainControl.cpp */,
 				66C7924719CA1A89000C2338 /* Player.cpp */,
 				66C7924419CA1A89000C2338 /* main.cpp */,
 			);
@@ -264,7 +264,7 @@
 				66C7927E19CA1A89000C2338 /* NPC.h */,
 				66C7928019CA1A89000C2338 /* PlayerCharacter.h */,
 				66C7928219CA1A89000C2338 /* Weapon.h */,
-				66C7928419CA1A89000C2338 /* WorldController.h */,
+				66C7928419CA1A89000C2338 /* WorldControl.h */,
 				66C7926C19CA1A89000C2338 /* Ability.cpp */,
 				66C7926E19CA1A89000C2338 /* Character.cpp */,
 				66C7927119CA1A89000C2338 /* Enemy.cpp */,
@@ -274,7 +274,7 @@
 				66C7927D19CA1A89000C2338 /* NPC.cpp */,
 				66C7927F19CA1A89000C2338 /* PlayerCharacter.cpp */,
 				66C7928119CA1A89000C2338 /* Weapon.cpp */,
-				66C7928319CA1A89000C2338 /* WorldController.cpp */,
+				66C7928319CA1A89000C2338 /* WorldControl.cpp */,
 			);
 			name = World;
 			path = Source/World;
@@ -336,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C7928819CA1A89000C2338 /* MainController.cpp in Sources */,
+				66C7928819CA1A89000C2338 /* MainControl.cpp in Sources */,
 				66C7929C19CA1A89000C2338 /* GameState.cpp in Sources */,
 				66C7929119CA1A89000C2338 /* Debug.cpp in Sources */,
 				66C7929519CA1A89000C2338 /* Util.cpp in Sources */,
@@ -355,7 +355,7 @@
 				66C7928719CA1A89000C2338 /* main.cpp in Sources */,
 				66C7929D19CA1A89000C2338 /* NPC.cpp in Sources */,
 				66C7929619CA1A89000C2338 /* Velocity.cpp in Sources */,
-				66C792A019CA1A89000C2338 /* WorldController.cpp in Sources */,
+				66C792A019CA1A89000C2338 /* WorldControl.cpp in Sources */,
 				66C7929419CA1A89000C2338 /* Timer.cpp in Sources */,
 				66C7928E19CA1A89000C2338 /* GraphicsData.cpp in Sources */,
 				66C7928D19CA1A89000C2338 /* GraphicalOutput.cpp in Sources */,

@@ -187,9 +187,9 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Vect<POSU
 {
 	
 	/* we can't create any SDL_Textures here because we don't know that we're on the main thread. Instead
-		GraphicsData simply sets the initFlag */
+		GraphicsData simply sets the needsInit */
 	
-	/* initFlag = true */
+	/* needsInit = true */
 	
 	addAdditionalUpdateFlags() ;
 }
@@ -219,7 +219,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 	/* End Debug code */
 	}
 	
-	if (this->initFlag) { /* check if we actually need to init anything */
+	if (this->needsInit) { /* check if we actually need to init anything */
 		
 		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
@@ -242,7 +242,7 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		this->size = getSizeOfText(text) ;
 		
 		/* reset the update flag */
-		this->initFlag = false ;
+		this->needsInit = false ;
 		
 	}
 }

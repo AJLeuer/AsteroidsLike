@@ -76,8 +76,8 @@ private:
 	
 	//friend class TextOutput<float, int> ;
 	friend class GraphicalOutput ;
-	friend class WorldController ;
-	friend class MainController ;
+	friend class WorldControl ;
+	friend class MainControl ;
 	
 public:
 	
@@ -124,16 +124,16 @@ public:
 extern thread::id mainThreadID ;
 
 /**
- * The graphics and input loop, managed together by MainController 
+ * The graphics and input loop, managed together by MainControl 
  */
 extern unsigned mainGameLoopCount ;
 
 /**
- * Loop managed by WorldController
+ * Loop managed by WorldControl
  */
 extern unsigned worldLoopCount ;
 
-extern std::mutex syncMutex ;
+extern std::mutex mainThreadsSync ;
 extern condition_variable shared_conditional ;
 
 

@@ -58,8 +58,8 @@ private:
 	static bool map_is_init ;
 	
 	/**
-	 * Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
-	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same
+	 * Pointers to all extant GameObjects. WorldControl will actually inialize this during its init(), by simply syncing
+	 * allGameObjects to the same vector pointed by WorldControl::gameObjects. In practice the two should almost always be the same
 	 */
 	static vector<GameObject*> * allGameObjects ;
 	
@@ -97,7 +97,7 @@ private:
 	 */
 	void endThreading(bool join) ;
 	
-	friend class WorldController ;
+	friend class WorldControl ;
 	friend class GameState ;
 	
 protected:
@@ -124,8 +124,8 @@ protected:
 public:
 	
 	/**
-	 * @note Pointers to all extant GameObjects. WorldController will actually inialize this during its init(), by simply syncing
-	 * allGameObjects to the same vector pointed by WorldController::gameObjects. In practice the two should almost always be the same.
+	 * @note Pointers to all extant GameObjects. WorldControl will actually inialize this during its init(), by simply syncing
+	 * allGameObjects to the same vector pointed by WorldControl::gameObjects. In practice the two should almost always be the same.
 	 * Only classes that *absolutely* must have write access to allGameObjects should it access via this method. All others should call
 	 * GameState::getGameObjects().
 	 */
@@ -164,7 +164,7 @@ public:
 	 * @param imageFile The file to be used as the Texture for this GameObject
      * @param pos This GameObject's Vect<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, SafeBoolean boundsChecking, SafeBoolean collisionDetection) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as

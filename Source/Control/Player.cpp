@@ -142,14 +142,14 @@ void Player::registerForCallbacks() {
 		throw exception() ;
 	}
 	
-	InputController::registerForKeypress(onKeyJump) ;
-	InputController::registerForKeypress(onKeyMoveUp) ;
-	InputController::registerForKeypress(onKeyMoveDown) ;
-	InputController::registerForKeypress(onKeyMoveLeft) ;
-	InputController::registerForKeypress(onKeyMoveRight) ;
-	InputController::registerForKeypress(onKeyRotateCounterClockwise) ;
-	InputController::registerForKeypress(onKeyRotateClockwise) ;
-	InputController::registerForEvent(onKeyFire) ;
+	InputControl::registerForKeypress(onKeyJump) ;
+	InputControl::registerForKeypress(onKeyMoveUp) ;
+	InputControl::registerForKeypress(onKeyMoveDown) ;
+	InputControl::registerForKeypress(onKeyMoveLeft) ;
+	InputControl::registerForKeypress(onKeyMoveRight) ;
+	InputControl::registerForKeypress(onKeyRotateCounterClockwise) ;
+	InputControl::registerForKeypress(onKeyRotateClockwise) ;
+	InputControl::registerForEvent(onKeyFire) ;
 }
 
 void Player::displayVelocity(Vect<float> pos, GameColor foreground, GameColor background) {

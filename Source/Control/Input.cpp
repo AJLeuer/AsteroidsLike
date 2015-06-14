@@ -64,17 +64,17 @@ void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) 
 	}
 }
 
-vector<EventRegister *> * InputController::eventListenerRegistry = new vector<EventRegister *>() ;
-vector<KeyInputRegister *> * InputController::keyInputRegistry = new vector<KeyInputRegister *>() ;
+vector<EventRegister *> * InputControl::eventListenerRegistry = new vector<EventRegister *>() ;
+vector<KeyInputRegister *> * InputControl::keyInputRegistry = new vector<KeyInputRegister *>() ;
 
-Event * InputController::event = (Event *) malloc(sizeof(Event)) ;
+Event * InputControl::event = (Event *) malloc(sizeof(Event)) ;
 
-const unsigned char * InputController::keys ;
+const unsigned char * InputControl::keys ;
 
-int InputController::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter
+int InputControl::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKeyboardState requires non-null parameter
 
 
-void InputController::listenForEvents() {
+void InputControl::listenForEvents() {
 	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_FLAG == true)) {
 		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_FLAG == true)) ; i++) {
 			if (eventListenerRegistry->at(i) != nullptr) {
@@ -85,7 +85,7 @@ void InputController::listenForEvents() {
 }
 
 
-void InputController::listenForKeypress() {
+void InputControl::listenForKeypress() {
 	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_FLAG == true) && (i < keyInputRegistry->size())) ; i++) {
 		if (keyInputRegistry->at(i) != nullptr) {
 			SDL_PumpEvents() ;
@@ -95,7 +95,7 @@ void InputController::listenForKeypress() {
 }
 
 
-void InputController::init() {
+void InputControl::init() {
 	//keyInputRegistry is already initialized. add anything else here.
 	
 	/* SDL automatically inits events */
@@ -112,11 +112,11 @@ void InputController::init() {
 	keys = SDL_GetKeyboardState(&keyArraySize) ; //only need to call once, stores pointer that stays valid for program duration
 }
 
-void InputController::registerForEvent(EventRegister *reg) {
+void InputControl::registerForEvent(EventRegister *reg) {
 	eventListenerRegistry->push_back(reg) ;
 }
 
-void InputController::registerForKeypress(KeyInputRegister * reg) {
+void InputControl::registerForKeypress(KeyInputRegister * reg) {
 	keyInputRegistry->push_back(reg) ;
 }
 
@@ -126,7 +126,7 @@ void InputController::registerForKeypress(KeyInputRegister * reg) {
  *
  * @param registeredObject A pointer to the object whose KeyInputRegister(s) and EventRegistries should be deleted
  */
-void InputController::deregister(GameInterface * registeredObject) {
+void InputControl::deregister(GameInterface * registeredObject) {
 	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
 		if (keyInputRegistry->at(i)->memberToCallOn == registeredObject) {
 			delete keyInputRegistry->at(i) ;
@@ -141,13 +141,13 @@ void InputController::deregister(GameInterface * registeredObject) {
 	}
 }
 
-void InputController::update() {
+void InputControl::update() {
 	listenForKeypress() ;
 	listenForEvents() ;
 }
 
 
-void InputController::exit() {
+void InputControl::exit() {
 	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
 		if (keyInputRegistry->at(i) != nullptr) {
 			delete keyInputRegistry->at(i) ;

@@ -23,7 +23,7 @@ Randm<int> GameObject::goRand(Randm<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Vect<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, true, SafeBoolean::f, true))
+	graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Vect<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, SafeBoolean::t, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t))
 {
 	IDs++ ;
     
@@ -91,9 +91,11 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity, bool boundsChecking) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity,
+					   SafeBoolean boundsChecking, SafeBoolean collisionDetection) :
+
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(imageFile, new Vect<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, visible, monitorVelocity, boundsChecking)) /* can't be properly initialized yet */
+	graphicsData(new GraphicsData<float, int>(imageFile, new Vect<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, (SafeBoolean)visible, monitorVelocity, boundsChecking, collisionDetection)) /* can't be properly initialized yet */
 {
 	IDs++ ;
     
@@ -110,7 +112,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Ve
 
 GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-    graphicsData(new GraphicsData<float, int>(rand, new Vect<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, visible, SafeBoolean::f, true))
+	graphicsData(new GraphicsData<float, int>(rand, new Vect<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, (SafeBoolean)visible, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t))
 {
 	IDs++ ;
 	

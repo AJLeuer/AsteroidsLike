@@ -10,7 +10,7 @@
 #define SpriteFight_ForwardDecl_h
 
 /* forward declaring */
-class WorldController ;
+class WorldControl ;
 class GameObject ;
 class GameState ;
 

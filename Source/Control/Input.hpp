@@ -68,7 +68,7 @@ protected:
 	 */
 	void * arg = nullptr ; //null except in rare cases
 	
-	friend class InputController ;
+	friend class InputControl ;
 	
 	EventRegisterBase() {}
 	
@@ -123,7 +123,7 @@ protected:
 	 */
 	EventType eventType ;
 	
-	friend class InputController ;
+	friend class InputControl ;
 	
 	
 public:
@@ -205,7 +205,7 @@ protected:
 	
     virtual void handleKeyboardInput(const unsigned char * keyboardState) ;
 	
-	friend class InputController ;
+	friend class InputControl ;
 	
 public:
 	
@@ -370,7 +370,7 @@ class SwitchableKeyInputRegister : public KeyInputRegister, public std::list<Swi
 } ;
 
 
-class InputController {
+class InputControl {
 	
 protected:
 	
@@ -396,7 +396,7 @@ protected:
 	
 	static void listenForEvents() ;
 	
-	InputController() ;
+	InputControl() ;
 	
 public:
 	
@@ -414,7 +414,7 @@ public:
 
 /**
 template<class T>
-void InputController::registerFor(T * event_or_keypress) {
+void InputControl::registerFor(T * event_or_keypress) {
 	static_assert(((typeid(T) == typeid(EventRegister)) || (typeid(T) == typeid(KeyInputRegister))), "Class T must be one of either EventRegister or KeyInputRegister") ;
 	
 	if (typeid(T) == typeid(EventRegister)) {

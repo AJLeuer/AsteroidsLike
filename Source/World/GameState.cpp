@@ -94,7 +94,7 @@ thread::id mainThreadID ;
 unsigned mainGameLoopCount = 0 ;
 unsigned worldLoopCount = 0 ;
 
-mutex syncMutex ;
+mutex mainThreadsSync ;
 condition_variable shared_conditional ;
 
 TimeFlow timeFlow = initTimeFlow() ;

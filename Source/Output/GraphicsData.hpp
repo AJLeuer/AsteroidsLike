@@ -60,13 +60,21 @@ protected:
 	
     static vector<GraphicsData *> allGraphicsData ;
 	
-	bool initFlag = true ;
+	/**
+	 * True when the GraphicsData still needs to be initialized, else false
+	 */
+	bool needsInit = true ;
 	
 	bool visible = true ;
     
 	bool visibility_was_updated = false ;
     
     bool boundsChecking = true ;
+	
+	/**
+	 * True enables collision detection for this GraphicsData object, false skips it
+	 */
+	bool collisionDetection ;
     
     bool markedForDeletion = false ;
     
@@ -171,15 +179,17 @@ public:
         allGraphicsData.push_back(this) ;
     } */
 	
-    GraphicsData(Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean   monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+	GraphicsData(Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, SafeBoolean visible = SafeBoolean::t, SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+	
         textureImageFile(),
         texture(nullptr),
         position(pos),
         vectr(position, orientation, monitorVelocity),
         size(), /* can't be initialized yet */
 		positionType(type),
-		visible(visible),
-        boundsChecking(boundsChecking)
+		visible((bool)visible),
+        boundsChecking((bool)boundsChecking),
+		collisionDetection((bool)collisionDetection)
 	{
 		/* init flag is true */
 		size.setModifier(sizeModifier) ;
@@ -189,15 +199,17 @@ public:
         update() ;
 	}
 	
-    GraphicsData(const AssetFile & file, Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(const AssetFile & file, Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, SafeBoolean visible = SafeBoolean::t, SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+	
 		textureImageFile(file),
         texture(nullptr),
         position(pos),
         vectr(position, orientation, monitorVelocity),
         size(),
 		positionType(type),
-		visible(visible),
-        boundsChecking(boundsChecking)
+		visible((bool)visible),
+		boundsChecking((bool)boundsChecking),
+		collisionDetection((bool)collisionDetection)
     {
         /* init flag is true */
 		size.setModifier(sizeModifier) ;
@@ -207,15 +219,18 @@ public:
         update() ;
     }
     
-    GraphicsData(Randm<int> & randm, Vect<POSUTYPE> * pos, AssetType assetType, PositionType posType, bool visible = true, SafeBoolean monitorVelocity = SafeBoolean::f, bool boundsChecking = true) :
+    GraphicsData(Randm<int> & randm, Vect<POSUTYPE> * pos, AssetType assetType, PositionType posType, SafeBoolean visible = SafeBoolean::t,
+		SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+	
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
         position(pos),
         vectr(position, Angle(randm), monitorVelocity),
         size(),
 		positionType(posType),
-		visible(visible),
-        boundsChecking(boundsChecking)
+		visible((bool)visible),
+		boundsChecking((bool)boundsChecking),
+		collisionDetection((bool)collisionDetection)
     {
         /* init flag is true */
 		Randm<float> sizeInit(0.75, 1.5) ;
@@ -247,7 +262,7 @@ public:
     }
 	
     GraphicsData(GraphicsData && other) :
-		initFlag(other.initFlag),
+		needsInit(other.needsInit),
         textureImageFile(other.textureImageFile),
         texture(other.texture),
         vectr(std::move(other.vectr)),
@@ -300,7 +315,7 @@ public:
     const VectorAndVelocity<POSUTYPE> * getVector() const { return & vectr ; }
     
     /**
-     * @note Use only when no other options are available
+     * @note Use only when absolutely necessary
      */
     Vect<POSUTYPE> * getRawMutablePosition() { return position ; }
 	
@@ -336,13 +351,18 @@ public:
 	void setVisibility(bool visible) { this->visible = visible ; }
 	bool isVisible() const { return visible ; }
     
-    void setBoundsChecking(bool bc) { boundsChecking = bc ; }
+    void enableBoundsChecking() { boundsChecking = true ; }
+	void disableBoundsChecking() { boundsChecking = false ; }
     bool isBoundsChecked() const { return ((boundsChecking) && (bc != nullptr)) ; }
     
     bool overBounds() ;
     
     const BoundsCheck<float> * getBoundsCheck() const { return bc ; }
     void setBoundsCheck(BoundsCheck<float> * b) { bc = b ; }
+	
+	void enableCollisionDetection() { collisionDetection = true ; }
+	void disableCollisionDetection() { collisionDetection = false ; }
+	bool collisionDetectionIsEnabled() const { return collisionDetection ; }
 
 	void updateAndNormalizeVector() { vectr.updateAndNormalize() ; }
     
@@ -390,7 +410,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
             delete allGraphicsData.at(i) ;
             allGraphicsData.at(i) = nullptr ;
         }
-        else if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->initFlag)) {
+        else if ((allGraphicsData.at(i) != nullptr) && (allGraphicsData.at(i)->needsInit)) {
             allGraphicsData.at(i)->completeInitialization() ;
         }
         else if (allGraphicsData.at(i) != nullptr) {
@@ -399,30 +419,34 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	}
 }
 
+
 template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::checkForCollisions() {
 	
 	auto graphicsData = allGraphicsData ; //copy, so we can make modify the container to speed up iteration
-
+	
 	for (long i = (graphicsData.size() - 1) ; i >= 0 ; i--) {
 		
-		if ((graphicsData[i] == nullptr) || (graphicsData[i]->initFlag)) {
+		if ((graphicsData[i] == nullptr) || (graphicsData[i]->collisionDetection == false) || (graphicsData[i]->needsInit)) {
 			graphicsData.pop_back() ;
 			continue ;
 		}
 		
 		for (auto j = 0 ; j < (i - 1) ; j++) {
 			
-			if ((graphicsData[j] == nullptr) || (graphicsData[j]->initFlag)) {
+			if ((graphicsData[j] == nullptr) || (graphicsData[j]->collisionDetection == false) || (graphicsData[j]->needsInit)) {
 				continue ;
 			}
 			
-			bool collision = Rectangle<POSUTYPE, SIZEUTYPE>::detectCollision(graphicsData[i]->rectangle(), graphicsData[j]->rectangle()) ;
+			auto rectangle_i = graphicsData[i]->rectangle() ;
+			auto rectangle_j = graphicsData[j]->rectangle() ;
+			
+			bool collision = Rectangle<POSUTYPE, SIZEUTYPE>::detectCollision(rectangle_i, rectangle_j) ;
 			
 			if (collision) {
 				; //todo finish
 			}
-															   
+			
 		}
 		graphicsData.pop_back() ;
 	}
@@ -430,7 +454,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::checkForCollisions() {
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(const GraphicsData<POSUTYPE, SIZEUTYPE> & other) {
-	initFlag = other.initFlag ;
+	needsInit = other.needsInit ;
 	visible = other.visible ;
 	texture_was_updated = other.texture_was_updated ;
 	visibility_was_updated = other.visibility_was_updated ;
@@ -452,7 +476,7 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::copy(cons
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(GraphicsData<POSUTYPE, SIZEUTYPE> && other) {
-	initFlag = other.initFlag ;
+	needsInit = other.needsInit ;
 	visible = other.visible ;
 	texture_was_updated = other.texture_was_updated ;
 	visibility_was_updated = other.visibility_was_updated ;
@@ -499,7 +523,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 	/* End Debug code */
 	}
 	
-	if (initFlag) {
+	if (needsInit) {
 		
 		Texture * tex = nullptr ;
 		tex = AssetFileIO::getTextureFromFilename(GameState::getMainRenderer(), this->textureImageFile, textureImageFile.type) ;
@@ -524,8 +548,8 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		
 		size.setSize(tempW, tempH) ; //assign new size to this GameObject
 		
-		/* reset the initFlag */
-		initFlag = false ;
+		/* reset the needsInit */
+		needsInit = false ;
 	}
 }
 

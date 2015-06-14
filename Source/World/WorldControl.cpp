@@ -1,5 +1,5 @@
 //
-//  WorldController.cpp
+//  WorldControl.cpp
 //  World
 //
 //  Created by Adam James Leuer on 3/11/14.
@@ -7,29 +7,31 @@
 //
 
 
-#include "WorldController.h"
+#include "WorldControl.h"
 
 using namespace std ;
 
 
-//vector<GameObject*> * WorldController::allGameObjects = GameObject::allGameObjects ;
+//vector<GameObject*> * WorldControl::allGameObjects = GameObject::allGameObjects ;
 
 
-thread WorldController::mainThread ;
+thread WorldControl::mainThread ;
 
 
-const GameMap<GameObject> * WorldController::map = nullptr ;
+const GameMap<GameObject> * WorldControl::map = nullptr ;
 
-WorldController::WorldController() {}
+WorldControl::WorldControl() {}
 
 
-void WorldController::init() {
+void WorldControl::init() {
     
 	Vect<float> * pos = new Vect<float>(0, 0) ;
     
-	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition) ;
+	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition, SafeBoolean::t, SafeBoolean::f, SafeBoolean::f, SafeBoolean::f) ;
+	
+	backdrop->disableCollisionDetection() ;
 
-	WorldController::map = GameObject::getMap() ;
+	WorldControl::map = GameObject::getMap() ;
 
 	Randm<int> posModifier(-100, 100) ;
 
@@ -44,13 +46,13 @@ void WorldController::init() {
 	*/
 	/* Init obstacles */
 	
-	Randm<float>randomSizeModifier(0.25, 1.0) ;
+	Randm<float> randomSizeModifier(0.25, 1.0) ;
 	
-	Randm<int> randm(0, 100) ;
+	Randm<unsigned> randm(0, 100) ;
 	
 	for (auto i = 0 ; i < 10 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Vect<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, true) ;
+					   Vect<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t) ;
 	}
 	
 	/* Init game state */
@@ -58,15 +60,17 @@ void WorldController::init() {
     
 }
 
-void WorldController::begin_main() {
-	mainThread = thread(&WorldController::main) ;  //runWorldSimulation()
+void WorldControl::begin_main() {
+	
+	mainThread = thread(& WorldControl::main) ;  //runWorldSimulation()
+	
 }
 
-void WorldController::main() {
+void WorldControl::main() {
 	
-	auto * rt = &refreshTime ; //debug symbol
+	auto * rt = & refreshTime ; //debug symbol
     
-	bool * cont = &GLOBAL_CONTINUE_FLAG ; //debug variable - rm
+	bool * cont = & GLOBAL_CONTINUE_FLAG ; //debug variable - rm
 	
 	while (GLOBAL_CONTINUE_FLAG) {
 		
@@ -100,7 +104,7 @@ void WorldController::main() {
 		this_thread::sleep_for(sleepTime) ;
 		
 		if (worldLoopCount > mainGameLoopCount) {
-			unique_lock<mutex> locked(syncMutex) ;
+			unique_lock<mutex> locked(mainThreadsSync) ;
 			
 			shared_conditional.wait(locked) ;
 		}
@@ -109,7 +113,7 @@ void WorldController::main() {
 	}
 }
 
-void WorldController::main_forwardTime() {
+void WorldControl::main_forwardTime() {
 	/* Do stuff */
 	static unsigned calls = 0 ;
 	
@@ -141,7 +145,7 @@ void WorldController::main_forwardTime() {
 	calls++ ;
 }
 
-void WorldController::main_reverseTime() {
+void WorldControl::main_reverseTime() {
 	
 	for (auto i = 0 ; i < GameObject::accessAllGameObjects()->size() ; i++) {
 		
@@ -154,7 +158,7 @@ void WorldController::main_reverseTime() {
 }
 
 
-void WorldController::exit() {
+void WorldControl::exit() {
 	
 	GameState::mainMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
 

@@ -29,11 +29,11 @@
 #include "../World/GameState.hpp"
 #include "../World/GameObject.h"
 #include "../World/NPC.h"
-#include "../World/WorldController.h"
+#include "../World/WorldControl.h"
 
 #include "../Control/Configuration.h"
 #include "../Control/Input.hpp"
-#include "MainController.h"
+#include "MainControl.h"
 
 
 int main(int argc, char ** argv) {
@@ -48,10 +48,10 @@ int main(int argc, char ** argv) {
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;
 
-	MainController::init() ;
-	MainController::main() ;
+	MainControl::init() ;
+	MainControl::main() ;
      
-	//MainController calls its own exit()
+	//MainControl calls its own exit()
     
 	return 0 ;
 }

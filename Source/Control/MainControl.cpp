@@ -1,5 +1,5 @@
 //
-//  MainController.cpp
+//  MainControl.cpp
 //  World
 //
 //  Created by Adam James Leuer on 4/16/14.
@@ -8,31 +8,31 @@
 
 
 
-#include "MainController.h"
+#include "MainControl.h"
 
 using namespace std ;
 
 /* not safe to initialize this yet */
-Player * MainController::player0 = nullptr ;
-Player * MainController::player1 = nullptr ;
+Player * MainControl::player0 = nullptr ;
+Player * MainControl::player1 = nullptr ;
 
-const unsigned * MainController::loopCount = &mainGameLoopCount ; //Debug symbol, delete
+const unsigned * MainControl::loopCount = &mainGameLoopCount ; //Debug symbol, delete
 
-void MainController::begin_exit() {
+void MainControl::begin_exit() {
 	GLOBAL_CONTINUE_FLAG = false ;
 }
 
-void MainController::setupMainContrExit() {
+void MainControl::setupMainContrExit() {
 	
 	/* Signal handling */
-	signal(SIGQUIT, &MainController::exitmc) ;
-	signal(SIGABRT, &MainController::exitmc) ;
-	signal(SIGTERM, &MainController::exitmc) ;
+	signal(SIGQUIT, &MainControl::exitmc) ;
+	signal(SIGABRT, &MainControl::exitmc) ;
+	signal(SIGTERM, &MainControl::exitmc) ;
 	
-	/* Register for MainController::exit() to be called if a quit event is initiated (i.e. user clicks
+	/* Register for MainControl::exit() to be called if a quit event is initiated (i.e. user clicks
 	  window close button, presses ⌘Q, etc */
-	EventRegister * quitEvent = new EventRegister(&MainController::begin_exit, EventType::SDL_QUIT) ;
-	InputController::registerForEvent(quitEvent) ;
+	EventRegister * quitEvent = new EventRegister(&MainControl::begin_exit, EventType::SDL_QUIT) ;
+	InputControl::registerForEvent(quitEvent) ;
 }
 
 auto reverseTimeFlow = [] () -> void {
@@ -44,12 +44,12 @@ auto reverseTimeFlow = [] () -> void {
 	}
 } ;
 
-void MainController::setupCallbacks() {
+void MainControl::setupCallbacks() {
 	KeyInputRegister * onKeypressReverseTime = new KeyInputRegister(reverseTimeFlow, {TIME_REVERSE_KEY}, KeypressEvaluationMethod::any) ;
-	InputController::registerForKeypress(onKeypressReverseTime) ;
+	InputControl::registerForKeypress(onKeypressReverseTime) ;
 }
 
-void MainController::init() {
+void MainControl::init() {
 	
 	GameState::mainGameClock->startTimer() ;
 	GLOBAL_CONTINUE_FLAG = true ;
@@ -71,9 +71,9 @@ void MainController::init() {
 	
 	GraphicalOutput::init() ;
     TextOutput<float, int>::init() ;
-	InputController::init() ;
-	MainController::setupCallbacks() ;
-	WorldController::init() ;    //must be last, will init GameState as well
+	InputControl::init() ;
+	MainControl::setupCallbacks() ;
+	WorldControl::init() ;    //must be last, will init GameState as well
 	Weapon::init() ;
 	
 	Player::initDefaultPlayers() ; //players (i.e. of class Player) will set up callbacks from actual player (i.e. live human) input
@@ -87,15 +87,15 @@ void MainController::init() {
 	player1->displayVelocity( { static_cast<float>((globalMaxX() * 0.15)), static_cast<float>((globalMaxY() * 0.85))},
 							 {251, 0, 107, 0}, {0, 0, 0, 0}) ;
 	
-	//setup MainController to exit() later (typically with a callback assigned to a keypress)
+	//setup MainControl to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
 }
 
-void MainController::main() {
+void MainControl::main() {
     
-	/* Start main functions for all controller classes. WorldController manages the world on its own thread, and input and output
+	/* Start main functions for all controller classes. WorldControl manages the world on its own thread, and input and output
 	 switch off on the main thread */
-	WorldController::begin_main() ;
+	WorldControl::begin_main() ;
 	
 	GraphicalOutput::drawFPS() ;
 	
@@ -112,9 +112,9 @@ void MainController::main() {
 		
 		GraphicalOutput::update() ;
 		GraphicsData<float, int>::checkForCollisions() ;
-		InputController::update() ;
+		InputControl::update() ;
 		
-		if (GLOBAL_CONTINUE_FLAG == false) { /* we check here because setting false will have been done by callback during InputController::update() */
+		if (GLOBAL_CONTINUE_FLAG == false) { /* we check here because setting false will have been done by callback during InputControl::update() */
 			break ;
 		}
 		
@@ -127,7 +127,7 @@ void MainController::main() {
 		this_thread::sleep_for(sleepTime) ;
 		
 		if (mainGameLoopCount > worldLoopCount) {
-			unique_lock<mutex> locked(syncMutex) ;
+			unique_lock<mutex> locked(mainThreadsSync) ;
 			
 			shared_conditional.wait(locked) ;
 		}
@@ -135,18 +135,18 @@ void MainController::main() {
 		shared_conditional.notify_all() ;
 	}
 
-	/* exit signaled GLOBAL_CONTINUE_FLAG. We're outta here! Handing off to MainController::exit() */
+	/* exit signaled GLOBAL_CONTINUE_FLAG. We're outta here! Handing off to MainControl::exit() */
 }
 
-void MainController::exitmc(int sig) {
+void MainControl::exitmc(int sig) {
 	
     GLOBAL_CONTINUE_FLAG = false ;
     /* other signals to define false here? */
         
     TextOutput<float, int>::exit() ; /* quits() sdl_ttf */
     GraphicalOutput::exit() ;
-    WorldController::exit() ;
-    InputController::exit() ;
+    WorldControl::exit() ;
+    InputControl::exit() ;
 	
 		
     SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */

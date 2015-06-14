@@ -1,5 +1,5 @@
 //
-//  WorldController.h
+//  WorldControl.h
 //  World
 //
 //  Created by Adam James Leuer on 3/11/14.
@@ -49,7 +49,7 @@ using namespace std ;
  * clean up. It is essentially all static should be treated as a singleton object: don't try to create instances
  * of it. Rather call init() once at the beginning, and end the game program with exit().
  */
-class WorldController {
+class WorldControl {
 	
 protected:
 	
@@ -65,7 +65,7 @@ protected:
 	static void main_forwardTime() ;
 	static void main_reverseTime() ;
 	
-	WorldController() ;
+	WorldControl() ;
 	
 	/* can umcomment this later if we end up needing it */
 	//static void update() ;

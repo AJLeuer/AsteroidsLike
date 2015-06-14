@@ -85,7 +85,7 @@ public:
 		   CharacterState playerCharacter_state, unsigned playerCharacter_health, unsigned playerCharacter_damage,
 		   const AssetFile & projectileImageFile) ;
 	
-	~Player() { InputController::deregister(& playerCharacter) ; }
+	~Player() { InputControl::deregister(& playerCharacter) ; }
 	
 	/**
 	 * @brief Creates a text display of the Player's velocity onscreen.

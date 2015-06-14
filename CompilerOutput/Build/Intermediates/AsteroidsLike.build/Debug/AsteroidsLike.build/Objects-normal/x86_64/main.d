@@ -75,11 +75,11 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Control/Input.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/NPC.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Character.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/WorldController.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/WorldControl.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameEvent.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Ability.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Enemy.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/MainController.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/MainControl.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GraphicalOutput.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GameColor.h \

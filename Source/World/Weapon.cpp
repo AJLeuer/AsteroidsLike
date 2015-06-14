@@ -61,14 +61,14 @@ void Projectile::doDefaultBehavior(bool initialCall) {
 
 void Weapon::fire(const Vect<float> & startingPos, const Angle & orientation) {
     
-	firedProjectiles.emplace_back(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, false) ;
+	firedProjectiles.emplace_back(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, SafeBoolean::f, SafeBoolean::t) ;
 	
 	Projectile & projectile = firedProjectiles.back() ;
 	
 	/* rotate our vector by the given angle */
     projectile.getRawMutableVector()->rotateVector(orientation) ;
     
-    projectile.graphicsData->setBoundsChecking(false) ;
+    projectile.graphicsData->disableBoundsChecking() ;
 	
 	projectile.setVisibility(true) ;
 }
