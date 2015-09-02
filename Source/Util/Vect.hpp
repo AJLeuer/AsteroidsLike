@@ -346,7 +346,7 @@ public:
 	}
 	
 	static N dotProduct(const Vect v1, const Vect v2) {
-		N n = (v1.x * v2.x) + (v1.y + v2.y) ;
+		N n = (v1.x * v2.x) + (v1.y * v2.y) ;
 		return n ;
 	}
 	

@@ -71,9 +71,8 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GameColor.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Message.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/PlayerCharacter.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Character.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Pawn.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameObject.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameMap.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Util/Navigator.hpp \

@@ -21,10 +21,10 @@ public:
     
     Enemy() : NPC() {}
 	
-	Enemy(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation, string name, DoA alive,
-		  CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, Reaction reaction) :
+	Enemy(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation, string name,
+		  unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
 	
-		NPC(imageFile, size, loc, rotation, name, alive, state, health, damage, monitorVelocity, boundsChecking, reaction) {}
+		  NPC(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking) {}
     
     virtual void doDefaultBehavior(bool initialCall = false) override ;
     

@@ -74,5 +74,4 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/GameMap.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/../Util/Navigator.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/Message.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Output/../Util/../World/../Control/Input.hpp

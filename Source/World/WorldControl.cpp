@@ -15,7 +15,7 @@ using namespace std ;
 //vector<GameObject*> * WorldControl::allGameObjects = GameObject::allGameObjects ;
 
 
-thread WorldControl::mainThread ;
+thread WorldControl::worldEventThread ;
 
 
 const GameMap<GameObject> * WorldControl::map = nullptr ;
@@ -50,9 +50,10 @@ void WorldControl::init() {
 	
 	Randm<unsigned> randm(0, 100) ;
 	
-	for (auto i = 0 ; i < 10 ; i++) {
+	/* Create asteroids */
+	for (auto i = 0 ; i < 5 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Vect<float>(*Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t) ;
+					   Vect<float>(* Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t) ;
 	}
 	
 	/* Init game state */
@@ -62,7 +63,8 @@ void WorldControl::init() {
 
 void WorldControl::begin_main() {
 	
-	mainThread = thread(& WorldControl::main) ;  //runWorldSimulation()
+	worldEventThread = thread(& WorldControl::main) ;  //runWorldSimulation()
+	//no need to detach, joined later
 	
 }
 
@@ -161,8 +163,9 @@ void WorldControl::main_reverseTime() {
 void WorldControl::exit() {
 	
 	GameState::mainMutex.lock() ; //we don't want our Adapter thinking its safe to read our GameObjects any more
-
-	mainThread.join() ;
+	
+	shared_conditional.notify_all() ; //so no one is left waiting on shared_conditional
+	worldEventThread.join() ;
 	
 	for (auto i = 0 ; i < GameObject::accessAllGameObjects()->size() ; i++) {
         if (GameObject::accessAllGameObjects()->at(i) != nullptr) {
@@ -173,6 +176,7 @@ void WorldControl::exit() {
 	delete GameObject::accessAllGameObjects() ;
 	delete map ; 
     GameObject::accessAllGameObjects() = nullptr ;
+	
 	
 	GameState::mainMutex.unlock() ;
 }

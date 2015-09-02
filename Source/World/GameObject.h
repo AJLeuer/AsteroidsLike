@@ -45,7 +45,7 @@ using namespace::std ;
  * @brief The base class from which all other classes in the world
  *		  will inherit. This class will handle the assignment of a unique ID to each GameObject.
  *
- * @see Character
+ * @see Pawn
  */
 class GameObject : public GameInterface {
 	
@@ -102,7 +102,7 @@ private:
 	
 protected:
 	
-    void update() ;
+    void update() override ;
 	
 	/**
 	 * Holds pointers to GameObjects like allGameObjects, but is 2D and the placement of each GameObject in map
@@ -195,7 +195,7 @@ public:
 	 * Overloads operator() for GameObject. Possibly will be used to
 	 * call notify(). TBD.
 	 */
-	virtual void operator()() ;
+	virtual void operator()() override ;
 	
 	
 	/**
@@ -239,20 +239,6 @@ public:
 	 */
 	BasicMutex & accessMutex() { return this->mtx ; }
 	
-	/**
-	 * Every sub-type of GameObject should implement this to perform some
-	 * function of their choosing. Will typically be called by other classes with a 
-	 * reference to this GameObject.
-	 */
-	virtual void notify() ;
-	
-	/**
-	 * A GameObject or any other class can implement this function to pass messages to another.
-	 *
-	 * @param message The Message sent by this
-	 * @param recipient The object receiving the Message
-	 */
-	virtual void passMessage(Message * message, GameObject & recipient) ;
 	
 	/**
 	 * Writes a formatted text description of this GameObject into the desired output stream
@@ -286,20 +272,20 @@ public:
     void moveX(float x) ;
     void moveY(float y) ;
 	
-	virtual void moveUp() ;
-	virtual void moveDown() ;
-	virtual void moveRight();
-	virtual void moveLeft();
+	virtual void moveUp() override ;
+	virtual void moveDown() override ;
+	virtual void moveRight() override ;
+	virtual void moveLeft() override ;
     
-    void orientationDependentLeftRightMove() ;
-    void orientationDependentRightLeftMove() ;
+    void orientationDependentLeftRightMove() override ;
+    void orientationDependentRightLeftMove() override ;
     
 	virtual void rotateClockwise() override ;
 	virtual void rotateCounterClockwise() override ;
 	
     virtual void moveRandomDirection() ;
 	
-	void jump() ;
+	void jump() override ;
     
     /**
 	 * Moves this GameObject by changing its Vect<float> x and y coordinates according to the
@@ -423,7 +409,7 @@ public:
 	 * @note Provides no functionality. Implemented only to fullfill the requirements of GameInterface
 	 * interface. See PlayerCharacter::fire() for a functional implementation
 	 */
-	virtual void fire() ;
+	virtual void fire() override ;
 	
 	
 } ;

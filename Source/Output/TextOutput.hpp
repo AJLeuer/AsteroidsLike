@@ -50,7 +50,6 @@ protected:
 	
 	static const vector<GraphicsData<POSUTYPE, SIZEUTYPE> *> * viewOutputData ; /* debug variable, remove this */
 	
-	
 	string text ;
 	
 	bool text_was_updated = false ;
@@ -109,24 +108,6 @@ public:
 	const string * viewText() { return & text ; }
 	
 	void erase() { text = "" ;}
-	
-	/**
-	 * @brief Draws a continuously updating text representation of 
-	 *		  updatingText, overriding this->text. When using this function
-	 *		  there is no need to call updateText().
-	 * 
-	 * @param updatingText The text to draw
-	 */
-	static void displayContinuousText(const string * updatingText, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
-	
-	/**
-	 * @brief Draws a continuously updating text representation of the string returned
-	 *		  by stringUpdatingFunction, overriding this->text. When using this function
-	 *		  there is no need to call updateText(). Runs on its own thread.
-	 *
-	 * @param stringUpdatingFunction A function that returns the text to draw
-	 */
-	static void displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) ;
 	
 	
 } ;
@@ -190,6 +171,7 @@ TextOutput<POSUTYPE, SIZEUTYPE>::TextOutput(const string & text, const Vect<POSU
 		GraphicsData simply sets the needsInit */
 	
 	/* needsInit = true */
+	this->disableCollisionDetection() ;
 	
 	addAdditionalUpdateFlags() ;
 }
@@ -334,46 +316,112 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::updateBackgroundColor(GameColor color) {
 	}
 }
 
+
+
+
+
+
+
+
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(const string * updatingText, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
+class ContinuousTextOutput : public TextOutput<POSUTYPE, SIZEUTYPE> {
 	
-	TextOutput * textoutput = new TextOutput(*updatingText, pos, orientation, foreground, background) ;
+protected:
 	
-	auto continuousTextDisplay = [=] () -> void {
-		
-		while (GLOBAL_CONTINUE_FLAG) {
-			textoutput->updateText(*updatingText) ;
-			this_thread::sleep_for(chrono::milliseconds(24)) ;
+	
+	static vector <ContinuousTextOutput *> allContinuousTextOutput ;
+	
+	static bool isInit ;
+	
+	static void init() ;
+	
+	static void continuousTextDisplayUpdate() ;
+	
+	static void removeFromAllContinuousTextOutput(const ContinuousTextOutput * textOutput) ;
+	
+	
+
+	function<const string (void)> stringUpdatingFunction ;
+	
+public:
+	
+	ContinuousTextOutput(const function<const string (void)> & stringUpdatingFunction, const Vect<POSUTYPE> & pos,
+						 const Angle orientation, GameColor foreground, GameColor background) :
+	
+						TextOutput<POSUTYPE, SIZEUTYPE>(stringUpdatingFunction(), pos,
+			   				orientation, foreground, background),
+						stringUpdatingFunction(stringUpdatingFunction)
+	
+	{
+		//use the first call to a constructor to do initialization for the whole class
+		if (isInit == false) {
+			init() ;
+			//init() will set isInit to true also
 		}
-		
-		delete textoutput ;
-		
-	} ;
+	}
 	
-	thread thr(continuousTextDisplay) ;
-	thr.detach() ;
+	~ContinuousTextOutput() {
+		removeFromAllContinuousTextOutput(this) ;
+	}
+	
+
+	
+	void display() { allContinuousTextOutput.push_back(this) ; }
+	
+	void stopDisplaying() const { removeFromAllContinuousTextOutput(this) ; }
+	
+
+	
+} ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+vector <ContinuousTextOutput<POSUTYPE, SIZEUTYPE> *>  ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::allContinuousTextOutput = vector <ContinuousTextOutput<POSUTYPE, SIZEUTYPE> *>() ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+bool ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::isInit = false ;
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::init() {
+	
+	static thread threadedTextUpdate(& ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::continuousTextDisplayUpdate) ;
+	threadedTextUpdate.detach() ;
+	
+	isInit = true ;
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void TextOutput<POSUTYPE, SIZEUTYPE>::displayContinuousText(function<const string (void)> stringUpdatingFunction, const chrono::milliseconds & sleepTime, const Vect<POSUTYPE> & pos, const Angle orientation, GameColor foreground, GameColor background) {
+void ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::continuousTextDisplayUpdate() {
 	
-	TextOutput * textoutput = new TextOutput(stringUpdatingFunction(), pos, orientation, foreground, background) ;
-	
-	auto continuousTextDisplay = [=] () -> void {
+	while (GLOBAL_CONTINUE_FLAG) {
 		
-		while (GLOBAL_CONTINUE_FLAG) {
-			string s = stringUpdatingFunction() ;
-			textoutput->updateText(s) ;
-			this_thread::sleep_for(sleepTime) ;
+		for (auto i = 0 ; i < allContinuousTextOutput.size(); i++) {
+			auto currentTextOutput = allContinuousTextOutput[i] ;
+			currentTextOutput->updateText(currentTextOutput->stringUpdatingFunction()) ;
 		}
 		
-		delete textoutput ;
-		
-	} ;
-	
-	thread thr(continuousTextDisplay) ;
-	thr.detach() ;
+		this_thread::sleep_for(chrono::milliseconds(384)) ;
+	}
+
 }
+
+template<typename POSUTYPE, typename SIZEUTYPE>
+void ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::removeFromAllContinuousTextOutput(const ContinuousTextOutput<POSUTYPE, SIZEUTYPE> * textOutput) {
+	
+	for (auto i = ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::allContinuousTextOutput.begin() ; i != ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::allContinuousTextOutput.end() ; i++) {
+		
+		if (textOutput == * i) {
+			ContinuousTextOutput<POSUTYPE, SIZEUTYPE>::allContinuousTextOutput.erase(i) ;
+			break ;
+		}
+		
+	}
+}
+
+
+
+
+
+
 
 
 

@@ -62,27 +62,26 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/CharacterData.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameState.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/ForwardDecl.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/GameObject.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Util/Util2.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/Size.hpp \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Output/GraphicsData.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \
   /Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Size.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GraphicsData.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Util2.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/../Util/Rectangle.hpp \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GameColor.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/GameObject.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameMap.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Util/Navigator.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Message.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/../Control/Input.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/NPC.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Character.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Pawn.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/WorldControl.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/GameEvent.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Ability.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Enemy.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/MainControl.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GraphicalOutput.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/TextOutput.hpp \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Output/GameColor.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Control/Player.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/PlayerCharacter.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../Util/../World/Weapon.h

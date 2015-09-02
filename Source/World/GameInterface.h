@@ -11,7 +11,6 @@
 
 #include <iostream>
 
-#include "Message.h"
 #include "GameState.hpp"
 
 #include "../Control/Configuration.h"

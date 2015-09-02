@@ -12,9 +12,6 @@
 
 using namespace std ;
 
-/* not safe to initialize this yet */
-Player * MainControl::player0 = nullptr ;
-Player * MainControl::player1 = nullptr ;
 
 const unsigned * MainControl::loopCount = &mainGameLoopCount ; //Debug symbol, delete
 
@@ -24,10 +21,12 @@ void MainControl::begin_exit() {
 
 void MainControl::setupMainContrExit() {
 	
+	std::atexit(& MainControl::exitmc) ;
+	
 	/* Signal handling */
-	signal(SIGQUIT, &MainControl::exitmc) ;
-	signal(SIGABRT, &MainControl::exitmc) ;
-	signal(SIGTERM, &MainControl::exitmc) ;
+	signal(SIGQUIT, & MainControl::exitmc) ;
+	signal(SIGABRT, & MainControl::exitmc) ;
+	signal(SIGTERM, & MainControl::exitmc) ;
 	
 	/* Register for MainControl::exit() to be called if a quit event is initiated (i.e. user clicks
 	  window close button, presses ⌘Q, etc */
@@ -76,16 +75,21 @@ void MainControl::init() {
 	WorldControl::init() ;    //must be last, will init GameState as well
 	Weapon::init() ;
 	
-	Player::initDefaultPlayers() ; //players (i.e. of class Player) will set up callbacks from actual player (i.e. live human) input
+	//players (i.e. of class Player) will set up callbacks from actual player (i.e. live human) input
+	Player::defaultPlayer0 = new Player("Player 0", "Ship1_Blue.png", Player::defaultGeometrySize,
+		Player::position_in_defaultStartingArea(), 0.0, "Blue", 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
 	
-	player0 = Player::defaultPlayer0 ;
-	player1 = Player::defaultPlayer1 ;
-	
-	player0->displayVelocity( { static_cast<float>((globalMaxX() * 0.70)), static_cast<float>((globalMaxY() * 0.85))},
+	Player::defaultPlayer0->displayVelocity( { static_cast<float>((globalMaxX() * 0.70)), static_cast<float>((globalMaxY() * 0.85))},
 						     {142, 255, 8, 0}, {0, 0, 0, 0}) ;
 	
-	player1->displayVelocity( { static_cast<float>((globalMaxX() * 0.15)), static_cast<float>((globalMaxY() * 0.85))},
+	/*
+	Player::defaultPlayer1 = new Player("Player 1", "Ship1_Green.png", Player::defaultGeometrySize,
+		Player::position_in_defaultStartingArea(), 0.0, "Green", 500, 100, AssetFile::projectileImageFilenames->at(1)) ; 
+
+	Player::defaultPlayer1->displayVelocity( { static_cast<float>((globalMaxX() * 0.15)), static_cast<float>((globalMaxY() * 0.85))},
 							 {251, 0, 107, 0}, {0, 0, 0, 0}) ;
+	
+	 */
 	
 	//setup MainControl to exit() later (typically with a callback assigned to a keypress)
 	setupMainContrExit() ;
@@ -105,6 +109,7 @@ void MainControl::main() {
 		
 		auto * mloop = &mainGameLoopCount ; //debug var, delete this
 		auto * wloop = &worldLoopCount ; //debug var, delete
+		thread & worldEventThread = WorldControl::worldEventThread ; //debug var
 		
 		/* Will need to lock the mutex when shutting down */
 		
@@ -139,7 +144,7 @@ void MainControl::main() {
 }
 
 void MainControl::exitmc(int sig) {
-	
+	bool & CONTINUE_FLAG = GLOBAL_CONTINUE_FLAG	; //debug var
     GLOBAL_CONTINUE_FLAG = false ;
     /* other signals to define false here? */
         
@@ -150,6 +155,8 @@ void MainControl::exitmc(int sig) {
 	
 		
     SDL_Quit() ; /* Call this only making all calls to SDL_QuitSubSystem() */
+	
+	shared_conditional.notify_all() ; //so no one is left waiting on shared_conditional
 	
     GameState::mainGameClock->stopTimer() ;
 

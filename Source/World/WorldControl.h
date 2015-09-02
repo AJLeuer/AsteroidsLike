@@ -31,7 +31,7 @@
 #include "Ability.h"
 #include "GameObject.h"
 #include "Enemy.h"
-#include "Character.h"
+#include "Pawn.h"
 #include "NPC.h"
 
 #include "../Control/Configuration.h"
@@ -55,8 +55,9 @@ protected:
 	
 	//static vector<GameObject*> * allGameObjects ;
 
-	static thread mainThread ;
-
+	static thread worldEventThread ;
+	
+	friend class MainControl ;
 	friend class GameInterface ;
 	friend class GameObject ;
 	

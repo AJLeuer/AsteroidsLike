@@ -40,8 +40,6 @@ class MainControl {
 
 protected:
 	
-	static Player * player0 ;
-	static Player * player1 ;
 	static const unsigned * loopCount ; //Debug symbol, delete
 	
 	static void begin_exit() ;
@@ -64,6 +62,8 @@ protected:
 	 * @see init()
 	 */
 	static void exitmc(int sig) ;
+	
+	static void exitmc() { exitmc(0) ; }
 	
 public:
 	

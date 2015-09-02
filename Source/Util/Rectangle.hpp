@@ -165,7 +165,8 @@ bool Rectangle<PositionUnderlyingType, SizeUnderlyingType>::detectCollision(cons
 			currentLine = & secondRectLineSegments[i - secondRectLineSegments.size()] ;
 		}
 		
-		auto axis = currentLine->vectorize().first ;
+		auto line_as_vectors = currentLine->vectorize() ;
+		auto axis = line_as_vectors.first ;
 		axis.rotate(90.0) ;
 		
 		Vect<PositionUnderlyingType> firstRectMinimum {0, 0} ;

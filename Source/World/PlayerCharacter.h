@@ -13,7 +13,7 @@
 #include <sstream>
 
 #include "../Util/AssetFileIO.h"
-#include "Character.h"
+#include "Pawn.h"
 #include "Weapon.h"
 #include "../Control/Input.hpp"
 
@@ -21,7 +21,7 @@
  * A class which serves as the basic template for just about any person in the game world, whether player
  * or npc.
  */
-class PlayerCharacter : public Character  {
+class PlayerCharacter : public Pawn  {
     
 protected:
 	
@@ -76,8 +76,8 @@ public:
 	 * @param damage The Damage capability of this PlayerCharacter
 	 */
 	PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
-					const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
-					unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
+					const Angle rotation, string name, unsigned health, unsigned damage,
+					SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
 	
 	
 	/**
@@ -99,7 +99,7 @@ public:
 	 * Overloads operator() for PlayerCharacter. Possibly will be used to
 	 * call notify(). TBD.
 	 */
-	void operator()() ;
+	void operator()() override ;
 	
 	
 	/**
@@ -108,7 +108,7 @@ public:
 	 *
 	 * @param other A reference to another PlayerCharacter
 	 */
-	void operator()(GameObject * other) ;
+	void operator()(GameObject * other) override;
 	
 	/**
 	 * Similar in function to @GameObject::moveNewDirection(),
@@ -134,17 +134,17 @@ public:
 	 * Fires the PlayerCharacter's weapon
      *
 	 */
-	void fire() ;
+	void fire() override ;
     
     /**
 	 * Fires the PlayerCharacter's weapon
 	 *
 	 * @param atEnemy The enemy to attack
 	 */
-	void fire(const Character * atEnemy) ;
+	void fire(const Pawn * atEnemy) ;
 	
     
-    void jump() ;
+    void jump() override ;
 	
     /**
      * @brief Some PlayerCharacter functions cannot be called in realtime (i.e. not at the time the Player reqests them). There
@@ -157,7 +157,7 @@ public:
 	/**
 	 * Writes a formatted text description of this PlayerCharacter into the desired output stream
 	 */
-	void textDescription(ostream * writeTo) const ;
+	void textDescription(ostream * writeTo) const override ;
     
     void printPositition() ;
 	

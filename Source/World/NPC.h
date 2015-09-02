@@ -11,12 +11,12 @@
 
 #include <iostream>
 
-#include "Character.h"
+#include "Pawn.h"
 
 #include "../Control/Input.hpp"
 
 
-class NPC : public Character {
+class NPC : public Pawn {
 	
   
 protected:
@@ -58,7 +58,7 @@ public:
 	 * @param reaction The reaction of this NPC to the player
 	 */
 	NPC(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation,
-		string name, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, Reaction reaction) ;
+		string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) ;
 	
 	
 	/**
@@ -89,23 +89,7 @@ public:
 	 *
 	 * @param other A reference to another NPC
 	 */
-	void operator()(Character & other) ;
-	
-	
-	/**
-	 * Another class with a reference to this NPC can call this to have the NPC perform some
-	 * function, as yet undecided. TBI.
-	 */
-	void notify() ;
-	
-	
-	/**
-	 * A NPC can use this function to pass messages to another.
-	 *
-	 * @param message The Message sent by this
-	 * @param recipient The object receiving the Message
-	 */
-	void passMessage(Message * message, GameObject & recipient) ;
+	void operator()(Pawn & other) ;
 	
 	/**
 	 * Writes a formatted text description of this NPC into the desired output stream
@@ -118,12 +102,7 @@ public:
 	 * @param enemy The enemy to attack
 	 */
 	void attack(GameObject * enemy) ;
-	
-	
-	/**
-	 * Returns this NPC's reaction (attitude) toward the player
-	 */
-	Reaction getReaction() { return  this->reaction ; }
+
 	
 	
   

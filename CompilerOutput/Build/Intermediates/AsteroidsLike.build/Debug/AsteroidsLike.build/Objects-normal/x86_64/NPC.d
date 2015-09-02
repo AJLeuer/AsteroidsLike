@@ -1,7 +1,7 @@
 dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/NPC.cpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/NPC.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Character.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Pawn.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/AssetFileIO.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_render.h \
   /Library/Frameworks/SDL2.framework/Headers/SDL_stdinc.h \
@@ -73,5 +73,4 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameMap.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Navigator.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Message.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Control/Input.hpp

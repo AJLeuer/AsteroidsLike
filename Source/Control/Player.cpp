@@ -16,9 +16,6 @@ using namespace std ;
  */
 long long Player::IDs = -1 ;
 
-AssetType Player::defaultPCAssetType = AssetType::playerShip ; /* change if needed */
-float Player::defaultGeometrySize = 0.50f ;
-
 Player * Player::defaultPlayer0 = nullptr ;
 Player * Player::defaultPlayer1 = nullptr ;
 
@@ -32,16 +29,8 @@ Vect<float> Player::position_in_defaultStartingArea() {
 }
 
 
-void Player::initDefaultPlayers() {
-	defaultPlayer0 = new Player("Player 0", "Ship1_Blue.png", defaultGeometrySize, position_in_defaultStartingArea(), 0.0, "Blue",
-                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(0)) ;
-	
-	defaultPlayer1 = new Player("Player 1", "Ship1_Green.png", defaultGeometrySize, position_in_defaultStartingArea(), 0.0, "Green",
-                                Reaction::friendly, DoA::nodoa, CharacterState::idle, 500, 100, AssetFile::projectileImageFilenames->at(1)) ;
-}
-
 Player::Player() :
-	ID(IDs++),
+	ID(assignID()),
 	name(""),
 	playerCharacter()
 {
@@ -51,13 +40,12 @@ Player::Player() :
 
 Player::Player(const string & name, const string & playerCharacter_imageFilename,
 	float playerCharacter_size, const Vect<float> & playerCharacter_loc, const Angle playerCharacter_rotation, const string & playerCharacter_name,
-	Reaction playerCharacter_reaction, DoA playerCharacter_alive, CharacterState playerCharacter_state,
 	unsigned playerCharacter_health, unsigned playerCharacter_damage, const AssetFile & projectileImageFile) :
 
-	ID(IDs++),
+	ID(assignID()),
 	name(name),
 	playerCharacter(playerCharacter_imageFilename, playerCharacter_size,
-		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name, playerCharacter_reaction, playerCharacter_alive, playerCharacter_state,
+		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name,
 		playerCharacter_health, playerCharacter_damage, SafeBoolean::t, true, projectileImageFile)
 {
 	setNames() ;
@@ -73,7 +61,7 @@ void Player::setNames() {
 		name = "Player " + to_string(ID) ;
 	}
 	if (playerCharacter.getName() == "") {
-		playerCharacter.setName(name + "'s Character") ;
+		playerCharacter.setName(name + "'s Pawn") ;
 	}
 }
 
@@ -179,8 +167,12 @@ void Player::displayVelocity(Vect<float> pos, GameColor foreground, GameColor ba
 		return str ;
 
 	} ;
+
 	
-	TextOutput<float, int>::displayContinuousText(velocityTextDisplayUpdater, chrono::seconds(1), pos, 0.0, foreground, background) ;
+	ContinuousTextOutput<float, int> * displayVelocityContinuously =
+		new ContinuousTextOutput<float, int>(velocityTextDisplayUpdater, pos, 0.0, foreground, background) ;
+	
+	displayVelocityContinuously->display() ;
 }
 
 

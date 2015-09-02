@@ -15,10 +15,13 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <cstdint>
 
 #include <SDL2/SDL_rect.h>
 
 using namespace std ;
+
+typedef uint8_t byte ;
 
 static constexpr long double 𝜋 = 3.14159265358979323846L ;
 static constexpr auto & pi = 𝜋 ; /* for convenience */

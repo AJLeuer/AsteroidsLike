@@ -221,13 +221,6 @@ void GameObject::reversePreviousAction() {
 	}
 }
 
-void GameObject::notify() {
-	//todo
-}
-
-void GameObject::passMessage(Message * message, GameObject & recipient) {
-	//todo
-}
 
 void GameObject::update() {
 	//mainly used by inheriting classes, see their implementations

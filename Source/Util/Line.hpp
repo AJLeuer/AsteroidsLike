@@ -56,8 +56,8 @@ pair<Vect<N>, Vect<N>> Line<N>::vectorize() const {
 	auto x_diff_reverse = startPoint.getX() - endPoint.getX() ;
 	auto y_diff_reverse = startPoint.getY() - endPoint.getY() ;
 	
-	Vect<N> v1 {y_diff, x_diff_reverse} ;
-	Vect<N> v2 {y_diff_reverse, x_diff} ;
+	Vect<N> v1 {y_diff, x_diff} ;
+	Vect<N> v2 {y_diff_reverse, x_diff_reverse} ;
 	
 	v1.normalize() ;
 	v2.normalize() ;

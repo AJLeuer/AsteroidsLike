@@ -62,7 +62,7 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/BasicConcurrency.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/../Control/GlobalVar.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/ForwardDecl.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Character.h \
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Pawn.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameObject.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Util2.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Size.hpp \
@@ -73,6 +73,5 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameMap.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Util/Navigator.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Message.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/../Control/Input.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/World/Weapon.h

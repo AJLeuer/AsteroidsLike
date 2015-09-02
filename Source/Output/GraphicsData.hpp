@@ -13,6 +13,8 @@
 
 #include <iostream>
 #include <thread>
+#include <array>
+#include <tuple>
 #include <chrono>
 #include <initializer_list>
 #include <memory>
@@ -37,11 +39,14 @@
 
 #include "../Control/Configuration.h"
 
+typedef array<byte, 3> RGBColor ;
+
 enum class PositionType {
 	worldPosition,
 	screenPosition,
     null
 };
+
 
 extern vector<Texture *> texturesToDestroy ;
 
@@ -60,6 +65,8 @@ protected:
 	
     static vector<GraphicsData *> allGraphicsData ;
 	
+	static RGBColor getColor(Texture * texture) ;
+	
 	/**
 	 * True when the GraphicsData still needs to be initialized, else false
 	 */
@@ -68,6 +75,8 @@ protected:
 	bool visible = true ;
     
 	bool visibility_was_updated = false ;
+	
+	bool colorFlashingActive = false ;
     
     bool boundsChecking = true ;
 	
@@ -94,6 +103,20 @@ protected:
 	 * @note In most cases, the class owning this GraphicsData object should never need to deal with texture directly
 	 */
 	Texture * texture ;
+	
+	RGBColor initialColor ;
+	
+	/*
+	 * When color flashing is enabled (signalled by colorFlashingActive equaling true), this will contain the color
+	 * and duration of the flashing, as well as a timer to keep track of how long the texture has been flashing. When
+	 * the time elapsed as counted by the timer equals the specified duration to flash, the flashing will end
+	 */
+	struct ColorFlashingInfo {
+		bool colorFlashingApplied = false ;
+		RGBColor color ;
+		chrono::milliseconds duration = chrono::milliseconds(0) ;
+		Timer timer ;
+	} colorFlashingInfo;
     
 	bool texture_was_updated ;
 	
@@ -293,6 +316,10 @@ public:
 	GraphicsData & copy(const GraphicsData & other) ;
 	
 	GraphicsData & moveCopy(GraphicsData && other) ;
+	
+	void modifyColor(byte r, byte g, byte b) { SDL_SetTextureColorMod(this->texture, r, g, b) ; }
+	
+	void flashColor(byte r, byte g, byte b, const chrono::milliseconds & colorChangeDuration) ;
     
     bool isMarkedForDeletion() const { return markedForDeletion ; }
     
@@ -382,6 +409,14 @@ vector< GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
+RGBColor GraphicsData<POSUTYPE, SIZEUTYPE>::getColor(Texture * texture) {
+	byte r, g, b ;
+	SDL_GetTextureColorMod(texture, & r, & g, & b) ;
+	RGBColor color {r, g, b} ;
+	return color ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
 void GraphicsData<POSUTYPE, SIZEUTYPE>::updateAll() {
 	
 	{
@@ -432,7 +467,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::checkForCollisions() {
 			continue ;
 		}
 		
-		for (auto j = 0 ; j < (i - 1) ; j++) {
+		for (auto j = 0 ; j < i ; j++) {
 			
 			if ((graphicsData[j] == nullptr) || (graphicsData[j]->collisionDetection == false) || (graphicsData[j]->needsInit)) {
 				continue ;
@@ -444,7 +479,10 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::checkForCollisions() {
 			bool collision = Rectangle<POSUTYPE, SIZEUTYPE>::detectCollision(rectangle_i, rectangle_j) ;
 			
 			if (collision) {
-				; //todo finish
+				//temporary debug code
+				graphicsData[i]->flashColor(255, 0, 255, chrono::milliseconds(500)) ; //flash bright magenta when collision detected
+				graphicsData[j]->flashColor(255, 0, 255, chrono::milliseconds(500)) ;
+				//end debug code
 			}
 			
 		}
@@ -499,11 +537,22 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
+void GraphicsData<POSUTYPE, SIZEUTYPE>::flashColor(byte r, byte g, byte b, const chrono::milliseconds & colorChangeDuration) {
+	RGBColor rgb {r, g, b} ;
+	Timer t ;
+	t.startTimer() ;
+	colorFlashingInfo = {false, rgb, colorChangeDuration, std::move(t) } ;
+	this->colorFlashingActive = true ;
+}
+
+template<typename POSUTYPE, typename SIZEUTYPE>
 Rectangle<POSUTYPE, SIZEUTYPE> GraphicsData<POSUTYPE, SIZEUTYPE>::rectangle() const {
 	
 	static constexpr InitializeFromCenterCoordinates initFromCenterCoords ;
 	
 	Rectangle<POSUTYPE, SIZEUTYPE> rectangle(* this->position, this->size, initFromCenterCoords) ;
+	
+	rectangle.rotate(this->copyOrientation()) ;
 	
 	return rectangle ;
 }
@@ -537,6 +586,7 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		}
 		
 		this->texture = tex ;
+		this->initialColor = getColor(this->texture) ;
 		
 		/* texture must be initialized before we can set Size */
 		
@@ -564,6 +614,19 @@ void GraphicsData<POSUTYPE, SIZEUTYPE>::update() {
         position_lastRecordedValue = *position ;
         size_lastRecordedValue = size ;
     }
+	if (colorFlashingActive) {
+		if (colorFlashingInfo.timer.checkTimeElapsed() >= chrono::duration_cast<chrono::nanoseconds>(colorFlashingInfo.duration)) {
+			colorFlashingActive = false ;
+			colorFlashingInfo.timer.stopTimer() ;
+			colorFlashingInfo.duration = chrono::milliseconds(0) ;
+			this->modifyColor(initialColor[0], initialColor[1], initialColor[2]) ; //restore the original color
+		}
+		else if (colorFlashingInfo.colorFlashingApplied == false) { //there's still time left on the flashing timer, but the color change was not yet applied
+			this->modifyColor(colorFlashingInfo.color[0], colorFlashingInfo.color[1], colorFlashingInfo.color[2]) ;
+			colorFlashingInfo.colorFlashingApplied = true ;
+		}
+		//else there's still time left on the flashing timer, but the color change was already applied, so no need to do anything
+	}
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>

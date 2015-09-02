@@ -40,18 +40,12 @@ protected:
 	
 	static long long IDs ;
 	
-	static AssetType defaultPCAssetType ; /* change if needed */
-	static float defaultGeometrySize ;
-	
-	/* just for initializing playerCharacter */
-	static Vect<float> position_in_defaultStartingArea() ;
-	
+	inline static unsigned long assignID() { IDs++ ; return (unsigned long) IDs ; } // to ensure IDs is incremented *before* assignment
 
 	unsigned long ID ;
 	string name ;
 	PlayerCharacter playerCharacter ;
 
-	
 	void setNames() ;
 	
 	void registerForCallbacks() ;
@@ -74,15 +68,19 @@ public:
 	static Player * defaultPlayer1 ;
 	
 	static const unsigned long getNumberOfPlayers() ;
+
+	static constexpr float defaultGeometrySize = 0.50f ;
 	
-	static void initDefaultPlayers() ;
+	static constexpr AssetType defaultPCAssetType = AssetType::playerShip ; /* change if needed */
+	
+	/* just for initializing playerCharacter */
+	static Vect<float> position_in_defaultStartingArea() ;
 	
 	Player() ;
 	
 	Player(const string & name, const string & playerCharacter_imageFilename,
 		   float playerCharacter_size, const Vect<float> & playerCharacter_loc, const Angle playerCharacter_rotation,
-		   const string & playerCharacter_name, Reaction playerCharacter_reaction, DoA playerCharacter_alive,
-		   CharacterState playerCharacter_state, unsigned playerCharacter_health, unsigned playerCharacter_damage,
+		   const string & playerCharacter_name, unsigned playerCharacter_health, unsigned playerCharacter_damage,
 		   const AssetFile & projectileImageFile) ;
 	
 	~Player() { InputControl::deregister(& playerCharacter) ; }

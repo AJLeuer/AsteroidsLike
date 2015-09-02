@@ -26,6 +26,7 @@
 #include "../Util/AssetFileIO.h"
 #include "../Util/Velocity.hpp"
 
+#include "../Output/TextOutput.hpp"
 #include "../World/GameState.hpp"
 #include "../World/GameObject.h"
 #include "../World/NPC.h"
@@ -37,6 +38,10 @@
 
 
 int main(int argc, char ** argv) {
+	
+	auto s = []() -> string {
+		return "hello" ;
+	} ;
 	
 	constexpr InitializeFromCenterCoordinates initializeFromCenterCoordinates ;
 	

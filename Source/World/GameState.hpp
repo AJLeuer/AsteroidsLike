@@ -162,6 +162,6 @@ Vect<N> getWindowOriginAsWorldCoord() {
  * Used by loops throughout the program the signal whether to continue
  * or end execution
  */
-#define GLOBAL_CONTINUE_FLAG GameState::CONTINUE_FLAG
+static bool & GLOBAL_CONTINUE_FLAG = GameState::CONTINUE_FLAG ;
 
 #endif /* defined(__SpriteFight__GameState__) */

@@ -12,7 +12,7 @@
  * Constructs a default PlayerCharacter.
  */
 PlayerCharacter::PlayerCharacter() :
-    Character(),
+    Pawn(),
     weapon(AssetFile::projectileImageFilenames->at(2), getSize()->getModifier()){}
 
 
@@ -22,7 +22,7 @@ PlayerCharacter::PlayerCharacter() :
  * @param other The PlayerCharacter to be copied
  */
 PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
-    Character(other), weapon(other.weapon),
+    Pawn(other), weapon(other.weapon),
     moveFlag(other.moveFlag) {}
 
 /**
@@ -31,24 +31,22 @@ PlayerCharacter::PlayerCharacter(const PlayerCharacter & other) :
  * @param other The PlayerCharacter to be moved
  */
 PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
-    Character(other), weapon(std::move(other.weapon)),
+    Pawn(other), weapon(std::move(other.weapon)),
     moveFlag(other.moveFlag) {}
 
 /**
  * Constructs a PlayerCharacter based on the arguments given
  *
  * @param name The name of this PlayerCharacter
- * @param alive Whether this PlayerCharacter is dead or alive
- * @param state The CharacterState of this PlayerCharacter
  * @param health The Health of this PlayerCharacter
  * @param damage The Damage capability of this PlayerCharacter
  */
 PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
-								 const Angle rotation, string name, Reaction reaction, DoA alive, CharacterState state,
-								 unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
+								 const Angle rotation, string name, unsigned health, unsigned damage,
+								 SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
 
-								Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking),
-    							weapon(projectileImageFile, getSize()->getModifier())
+								 Pawn(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking),
+    							 weapon(projectileImageFile, getSize()->getModifier())
 {
 	
 }
@@ -61,7 +59,7 @@ PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const 
  * @param randSeed A seed to initialize the random number generator
  */
 PlayerCharacter::PlayerCharacter(Randm<int> rand, AssetType type) :
-    Character(rand, type),
+    Pawn(rand, type),
     weapon(AssetFile::projectileImageFilenames->at(2), this->getSize()->getModifier())
 {
 	
@@ -128,7 +126,7 @@ void PlayerCharacter::fire() {
 }
 
 
-void PlayerCharacter::fire(const Character * atEnemy) {}
+void PlayerCharacter::fire(const Pawn * atEnemy) {}
 
 void PlayerCharacter::jump() {
     GameObject::jump() ;
@@ -160,7 +158,7 @@ void PlayerCharacter::update() {
  * Writes a formatted text description of this PlayerCharacter into the desired output stream
  */
 void PlayerCharacter::textDescription(ostream * writeTo) const {
-	this->Character::textDescription(writeTo) ;
+	this->Pawn::textDescription(writeTo) ;
 }
 
 void PlayerCharacter::printPositition() {

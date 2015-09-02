@@ -121,7 +121,7 @@ void GraphicalOutput::update() {
 void GraphicalOutput::drawFPS() {
 	
 	static auto startTime = chrono::system_clock::now()  ;
-	static chrono::seconds elapsedTime = chrono::duration_cast<chrono::seconds>(chrono::system_clock::now() - startTime) ;// ;
+	static chrono::milliseconds elapsedTime = chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - startTime) ;// ;
 	
 	static unsigned framesLastCount = framesRendered ;
 	static unsigned framesCurrentCount = framesRendered ;
@@ -139,13 +139,16 @@ void GraphicalOutput::drawFPS() {
 		frames = framesCurrentCount - framesLastCount ;//get the frames rendered since the last time we ran
 		framesLastCount = framesCurrentCount ;
 		
-		elapsedTime = chrono::duration_cast<chrono::seconds>(chrono::system_clock::now() - startTime) ; //and the time elapsed
+		elapsedTime = chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now() - startTime) ; //and the time elapsed
 		startTime = chrono::system_clock::now() ;
 		
 		static float FPS = 0 ;
 		
+		float & fps = FPS ; //debug var
+		
 		if (frames > 0) {
 			FPS = (float)frames / (float)elapsedTime.count() ; //no divide by zero errors here!
+			FPS *= 1000 ; //to convert from milliseconds to seconds
 		}
 		//else don't update FPS, just display it's most recent value
 		
@@ -157,7 +160,11 @@ void GraphicalOutput::drawFPS() {
 		
 	} ;
 	
-	TextOutput<float, int>::displayContinuousText(updateFPS, chrono::seconds(1), {300, 15}, Angle(0), GameColor(55, 255, 0, 0), GameColor(50, 40, 43, 0)) ;
+	ContinuousTextOutput<float, int> * showFPS = new ContinuousTextOutput<float, int>(updateFPS, {300, 15}, Angle(0), GameColor(55, 255, 0, 0),
+																					GameColor(50, 40, 43, 0)) ;
+	
+	showFPS->display() ;
+
 }
 
 void GraphicalOutput::exit() {

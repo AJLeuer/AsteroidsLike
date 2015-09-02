@@ -10,24 +10,22 @@
 #include "NPC.h"
 
 NPC::NPC() :
-	Character() {}
+	Pawn() {}
 
 NPC::NPC(const NPC & other) :
-	Character(other) {}
+	Pawn(other) {}
 
 NPC::NPC(NPC && other) :
-	Character(std::move(other)) {}
+	Pawn(std::move(other)) {}
 
 NPC::NPC(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation,
-		 string name, DoA alive, CharacterState state, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking,
-		 Reaction reaction) :
+		 string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
 
-	Character(imageFile, size, loc, rotation, name, reaction, alive, state, health, damage, monitorVelocity, boundsChecking) {}
+	Pawn(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking) {}
 
 NPC::NPC(Randm<int> rand, AssetType type) :
-	Character(rand, type)
+	Pawn(rand, type)
 {
-	this->reaction = Reaction(rand() % 5) ;
 	//todo finish
 }
 
@@ -39,22 +37,13 @@ void NPC::operator()() {
 	//todo
 }
 
-void NPC::operator()(Character & other) {
+void NPC::operator()(Pawn & other) {
 	*(Debug::debugOutput) << "" << endl ;//todo
-}
-
-void NPC::notify() {
-	//todo
-}
-
-void NPC::passMessage(Message * message, GameObject & recipient) {
-	//todo
 }
 
 void NPC::textDescription(ostream * writeTo) const {
 	stringstream ss ;
-	this->Character::textDescription(&ss) ;
-	ss << "Reaction to player: " << this->reaction << endl ;
+	this->Pawn::textDescription(&ss) ;
 	*writeTo << ss.rdbuf() ;
 }
 

@@ -30,7 +30,10 @@ struct GameColor {
     
     GameColor(Byte r, Byte g, Byte b, Byte a) :
         red(r), green(g), blue(b), alpha(a)     {}
-    
+	
+	GameColor(Byte value) :
+		red(value), green(value), blue(value), alpha(value)     {}
+	
     GameColor(const GameColor & other) :
         red(other.red), green(other.green),
         blue(other.blue), alpha(other.alpha) {}

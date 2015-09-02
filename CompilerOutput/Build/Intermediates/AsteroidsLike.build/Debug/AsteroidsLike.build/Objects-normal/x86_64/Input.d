@@ -59,6 +59,4 @@ dependencies: \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/Random.hpp \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/../Util/../Control/GlobalVar.h \
   /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/ForwardDecl.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/GameInterface.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/Message.h \
-  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/CharacterData.h
+  /Volumes/OSXHDD/Users/Adam/Developer/SpriteFight/Source/Control/../World/GameInterface.h
