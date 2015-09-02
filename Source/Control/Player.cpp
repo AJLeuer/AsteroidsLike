@@ -45,8 +45,8 @@ Player::Player(const string & name, const string & playerCharacter_imageFilename
 	ID(assignID()),
 	name(name),
 	playerCharacter(playerCharacter_imageFilename, playerCharacter_size,
-		playerCharacter_loc, playerCharacter_rotation, playerCharacter_name,
-		playerCharacter_health, playerCharacter_damage, SafeBoolean::t, true, projectileImageFile)
+	playerCharacter_loc, playerCharacter_rotation, playerCharacter_name,
+	playerCharacter_health, playerCharacter_damage, SafeBoolean::t, true, projectileImageFile)
 {
 	setNames() ;
 	registerForCallbacks() ;
@@ -74,10 +74,10 @@ void Player::registerForCallbacks() {
 	KeyInputRegister * onKeyMoveDown ;
 	KeyInputRegister * onKeyMoveLeft ;
 	KeyInputRegister * onKeyMoveRight ;
-    KeyInputRegister * onKeyRotateCounterClockwise ;
-    KeyInputRegister * onKeyRotateClockwise ;
-    KeyInputRegister * onKeyJump ;
-    EventRegister * onKeyFire ;
+    	KeyInputRegister * onKeyRotateCounterClockwise ;
+    	KeyInputRegister * onKeyRotateClockwise ;
+    	KeyInputRegister * onKeyJump ;
+    	EventRegister * onKeyFire ;
 	
 	if (getNumberOfPlayers() == 1) {
         
@@ -90,13 +90,13 @@ void Player::registerForCallbacks() {
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::moveRight),
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
         
-        onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
+        	onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
                                          {"Q"}, KeypressEvaluationMethod::any) ;
         
-        onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
+        	onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
                                                     {"E"}, KeypressEvaluationMethod::any) ;
         
-        onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
+        	onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying value of SDL keycode for space */
 		
 		onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
@@ -113,16 +113,16 @@ void Player::registerForCallbacks() {
 		onKeyMoveRight = new KeyInputRegister(&playerCharacter, (&GameInterface::orientationDependentRightLeftMove),
 															   {SDLK_KP_6}, KeypressEvaluationMethod::exactlyOne) ;
         
-        onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
+        	onKeyRotateCounterClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateCounterClockwise),
                                                            {SDLK_KP_7}, KeypressEvaluationMethod::any) ;
         
-        onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
+        	onKeyRotateClockwise = new KeyInputRegister(&playerCharacter, (&GameInterface::rotateClockwise),
                                                     {SDLK_KP_9}, KeypressEvaluationMethod::any) ;
         
-        onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
+        	onKeyJump = new KeyInputRegister(&playerCharacter, (&GameInterface::jump),
                                                             {SDLK_KP_0}, KeypressEvaluationMethod::exactlyOne) ;
         
-        onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEWHEEL) ;
+        	onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEWHEEL) ;
 		
 	}
 	else if (getNumberOfPlayers() > 2) {
