@@ -30,7 +30,7 @@ public:
 	
 	bool isLocked() const { return locked ; }
 	
-	void lock() ;
+	void lock();
 	
     bool try_lock() noexcept ;
 	

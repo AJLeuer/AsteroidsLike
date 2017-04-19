@@ -51,6 +51,7 @@ struct Resolution ;
 #define four_milliseconds std::chrono::nanoseconds(4000000)
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
 													         etc., instead of nano. */
+#define thirtytwo_milliseconds std::chrono::nanoseconds(32000000)
 #define sixfour_milliseconds std::chrono::nanoseconds(64000000)
 #define twoforty_milliseconds std::chrono::nanoseconds(240000000)
 

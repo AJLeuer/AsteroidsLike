@@ -29,7 +29,7 @@ void WorldControl::init() {
     
 	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition, SafeBoolean::t, SafeBoolean::f, SafeBoolean::f, SafeBoolean::f) ;
 	
-	backdrop->disableCollisionDetection() ;
+	//backdrop->disableCollisionDetection() ;
 
 	WorldControl::map = GameObject::getMap() ;
 

@@ -38,11 +38,6 @@
 
 
 int main(int argc, char ** argv) {
-	
-	auto s = []() -> string {
-		return "hello" ;
-	} ;
-	
 	constexpr InitializeFromCenterCoordinates initializeFromCenterCoordinates ;
 	
 	Rectangle<float, long> rectangle0 (Vect<float>(2, 2), Size<long>(8, 8), initializeFromCenterCoordinates) ;

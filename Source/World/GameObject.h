@@ -26,12 +26,10 @@
 #include "../Util/Random.hpp"
 #include "../Util/Timer.hpp"
 #include "../Util/AssetFileIO.h"
+#include "../Util/Vect.hpp"
 
 #include "../Output/GraphicsData.hpp"
-
 #include "ForwardDecl.h"
-#include "Vect.hpp"
-#include "BoundsCheck.hpp"
 #include "GameMap.hpp"
 #include "GameState.hpp"
 #include "GameInterface.h"
@@ -158,9 +156,6 @@ public:
 	
 	
 	/**
-	 * Creates an object with the given UTF-8 symbol (preferably just
-	 * one character) as its icon
-	 *
 	 * @param imageFile The file to be used as the Texture for this GameObject
      * @param pos This GameObject's Vect<float>
 	 */

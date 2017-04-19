@@ -36,10 +36,10 @@
 		66C7929E19CA1A89000C2338 /* PlayerCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7927F19CA1A89000C2338 /* PlayerCharacter.cpp */; };
 		66C7929F19CA1A89000C2338 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928119CA1A89000C2338 /* Weapon.cpp */; };
 		66C792A019CA1A89000C2338 /* WorldControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928319CA1A89000C2338 /* WorldControl.cpp */; };
-		66C792A619CA21D4000C2338 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A519CA21D4000C2338 /* SDL2.framework */; };
-		66C792A819CA21D8000C2338 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A719CA21D8000C2338 /* SDL2_image.framework */; };
-		66C792AA19CA21DE000C2338 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792A919CA21DE000C2338 /* SDL2_ttf.framework */; };
 		66C792AC19CA2277000C2338 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792AB19CA2277000C2338 /* AppKit.framework */; };
+		66FDA27F1CA6EDA00063CC59 /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA27E1CA6EDA00063CC59 /* libSDL2_ttf-2.0.0.dylib */; };
+		66FDA2831CA6EDE00063CC59 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA2821CA6EDE00063CC59 /* libSDL2-2.0.0.dylib */; };
+		66FDA2851CA6EE130063CC59 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA2841CA6EE130063CC59 /* libSDL2_image-2.0.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,10 +130,10 @@
 		66C792A219CA218B000C2338 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		66C792A319CA218B000C2338 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
 		66C792A419CA218B000C2338 /* User Configuration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "User Configuration"; sourceTree = "<group>"; };
-		66C792A519CA21D4000C2338 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		66C792A719CA21D8000C2338 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
-		66C792A919CA21DE000C2338 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		66C792AB19CA2277000C2338 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		66FDA27E1CA6EDA00063CC59 /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2_ttf/2.0.13/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
+		66FDA2821CA6EDE00063CC59 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.4/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		66FDA2841CA6EE130063CC59 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2_image/2.0.1_1/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +141,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66FDA2851CA6EE130063CC59 /* libSDL2_image-2.0.0.dylib in Frameworks */,
+				66FDA2831CA6EDE00063CC59 /* libSDL2-2.0.0.dylib in Frameworks */,
+				66FDA27F1CA6EDA00063CC59 /* libSDL2_ttf-2.0.0.dylib in Frameworks */,
 				66C792AC19CA2277000C2338 /* AppKit.framework in Frameworks */,
-				66C792A619CA21D4000C2338 /* SDL2.framework in Frameworks */,
-				66C792A819CA21D8000C2338 /* SDL2_image.framework in Frameworks */,
-				66C792AA19CA21DE000C2338 /* SDL2_ttf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,10 +155,10 @@
 			isa = PBXGroup;
 			children = (
 				66B597001A831F430089F828 /* README.md */,
+				66FDA2821CA6EDE00063CC59 /* libSDL2-2.0.0.dylib */,
+				66FDA27E1CA6EDA00063CC59 /* libSDL2_ttf-2.0.0.dylib */,
+				66FDA2841CA6EE130063CC59 /* libSDL2_image-2.0.0.dylib */,
 				66C792AB19CA2277000C2338 /* AppKit.framework */,
-				66C792A919CA21DE000C2338 /* SDL2_ttf.framework */,
-				66C792A719CA21D8000C2338 /* SDL2_image.framework */,
-				66C792A519CA21D4000C2338 /* SDL2.framework */,
 				66C792A119CA218B000C2338 /* About */,
 				66C792A219CA218B000C2338 /* Assets */,
 				66C792A319CA218B000C2338 /* Frameworks */,
@@ -386,7 +386,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
-				CLANG_X86_VECTOR_INSTRUCTIONS = avx2;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -414,6 +414,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/sdl2/2.0.4/include,
+					/usr/local/Cellar/sdl2_ttf/2.0.13/include,
+					/usr/local/Cellar/sdl2_image/2.0.1_1/include,
 				);
 				LD_GENERATE_MAP_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -444,7 +447,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
-				CLANG_X86_VECTOR_INSTRUCTIONS = avx2;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -465,6 +468,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/sdl2/2.0.4/include,
+					/usr/local/Cellar/sdl2_ttf/2.0.13/include,
+					/usr/local/Cellar/sdl2_image/2.0.1_1/include,
 				);
 				LD_GENERATE_MAP_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -485,6 +491,12 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_ttf/2.0.13/lib,
+					/usr/local/Cellar/sdl2/2.0.4/lib,
+					/usr/local/Cellar/sdl2_image/2.0.1_1/lib,
+				);
 				PRODUCT_NAME = AsteroidsLike;
 			};
 			name = Debug;
@@ -499,6 +511,12 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_ttf/2.0.13/lib,
+					/usr/local/Cellar/sdl2/2.0.4/lib,
+					/usr/local/Cellar/sdl2_image/2.0.1_1/lib,
+				);
 				PRODUCT_NAME = AsteroidsLike;
 			};
 			name = Release;

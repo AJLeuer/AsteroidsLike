@@ -22,7 +22,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#include <SDL2_ttf/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "../Util/Size.hpp"
 #include "../Util/BasicConcurrency.h"
