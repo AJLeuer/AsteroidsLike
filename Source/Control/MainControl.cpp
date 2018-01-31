@@ -103,7 +103,7 @@ void MainControl::main() {
 	
 	GraphicalOutput::drawFPS() ;
 	
-	auto rt = refreshTime ; //debug symbol
+	auto & rt = refreshTime ; //debug symbol
 	
 	while (GLOBAL_CONTINUE_FLAG) {
 		

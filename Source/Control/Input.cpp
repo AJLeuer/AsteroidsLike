@@ -64,8 +64,8 @@ void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) 
 	}
 }
 
-vector<EventRegister *> * InputControl::eventListenerRegistry = new vector<EventRegister *>() ;
-vector<KeyInputRegister *> * InputControl::keyInputRegistry = new vector<KeyInputRegister *>() ;
+vector<EventRegister *> InputControl::eventListenerRegistry = vector<EventRegister *>() ;
+vector<KeyInputRegister *> InputControl::keyInputRegistry = vector<KeyInputRegister *>() ;
 
 Event * InputControl::event = (Event *) malloc(sizeof(Event)) ;
 
@@ -76,20 +76,20 @@ int InputControl::keyArraySize = 1 ; //initializing to 1 only because SDL_GetKey
 
 void InputControl::listenForEvents() {
 	while ((SDL_PollEvent(event)) && (GLOBAL_CONTINUE_FLAG == true)) {
-		for (auto i = 0 ; ((i < eventListenerRegistry->size()) && (GLOBAL_CONTINUE_FLAG == true)) ; i++) {
-			if (eventListenerRegistry->at(i) != nullptr) {
-				eventListenerRegistry->at(i)->handleEvent(event) ;
-			}
+        for (auto i = 0 ; ((i < eventListenerRegistry.size()) && (GLOBAL_CONTINUE_FLAG == true)) ; i++) {
+            if (eventListenerRegistry.at(i) != nullptr) {
+                eventListenerRegistry.at(i)->handleEvent(event) ;
+            }
 		}
 	}
 }
 
 
 void InputControl::listenForKeypress() {
-	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_FLAG == true) && (i < keyInputRegistry->size())) ; i++) {
-		if (keyInputRegistry->at(i) != nullptr) {
+	for	(unsigned i = 0 ; ((GLOBAL_CONTINUE_FLAG == true) && (i < keyInputRegistry.size())) ; i++) {
+		if (keyInputRegistry.at(i) != nullptr) {
 			SDL_PumpEvents() ;
-			keyInputRegistry->at(i)->handleKeyboardInput(keys) ;
+			keyInputRegistry.at(i)->handleKeyboardInput(keys) ;
 		}
 	}
 }
@@ -113,11 +113,11 @@ void InputControl::init() {
 }
 
 void InputControl::registerForEvent(EventRegister *reg) {
-	eventListenerRegistry->push_back(reg) ;
+	eventListenerRegistry.push_back(reg) ;
 }
 
 void InputControl::registerForKeypress(KeyInputRegister * reg) {
-	keyInputRegistry->push_back(reg) ;
+	keyInputRegistry.push_back(reg) ;
 }
 
 /*
@@ -127,16 +127,16 @@ void InputControl::registerForKeypress(KeyInputRegister * reg) {
  * @param registeredObject A pointer to the object whose KeyInputRegister(s) and EventRegistries should be deleted
  */
 void InputControl::deregister(GameInterface * registeredObject) {
-	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
-		if (keyInputRegistry->at(i)->memberToCallOn == registeredObject) {
-			delete keyInputRegistry->at(i) ;
-			keyInputRegistry->at(i) = nullptr ;
+	for (auto i = 0 ; i < keyInputRegistry.size() ; i++) {
+		if (keyInputRegistry.at(i)->memberToCallOn == registeredObject) {
+			delete keyInputRegistry.at(i) ;
+			keyInputRegistry.at(i) = nullptr ;
 		}
 	}
-	for (auto i = 0 ; i < eventListenerRegistry->size() ; i++) {
-		if (eventListenerRegistry->at(i)->memberToCallOn == registeredObject) {
-			delete eventListenerRegistry->at(i) ;
-			eventListenerRegistry->at(i) = nullptr ;
+	for (auto i = 0 ; i < eventListenerRegistry.size() ; i++) {
+		if (eventListenerRegistry.at(i)->memberToCallOn == registeredObject) {
+			delete eventListenerRegistry.at(i) ;
+			eventListenerRegistry.at(i) = nullptr ;
 		}
 	}
 }
@@ -148,12 +148,11 @@ void InputControl::update() {
 
 
 void InputControl::exit() {
-	for (auto i = 0 ; i < keyInputRegistry->size() ; i++) {
-		if (keyInputRegistry->at(i) != nullptr) {
-			delete keyInputRegistry->at(i) ;
+	for (auto i = 0 ; i < keyInputRegistry.size() ; i++) {
+		if (keyInputRegistry.at(i) != nullptr) {
+			delete keyInputRegistry.at(i) ;
 		}
 	}
-	delete keyInputRegistry ;
 	delete event ;
 	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER|SDL_INIT_JOYSTICK) ; /* call SDL_QuitSubSystem() for each subsystem we initialized */
 }

@@ -37,7 +37,7 @@ const string generateName(unsigned int length)  {
 	for (unsigned i = 0 ; i < length ; i++) {
 		s += basicAlphabet[(rnd.nextValue())] ;
 	}
-	return std::move(s) ;
+	return s;
 }
 
 

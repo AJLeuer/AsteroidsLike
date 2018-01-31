@@ -125,7 +125,7 @@ void Player::registerForCallbacks() {
         	onKeyFire = new EventRegister(&playerCharacter, &GameInterface::fire, SDL_MOUSEWHEEL) ;
 		
 	}
-	else if (getNumberOfPlayers() > 2) {
+	else /* if (getNumberOfPlayers() > 2) */ {
 		cerr << "The maximum supported number of players is two." << endl ;
 		throw exception() ;
 	}

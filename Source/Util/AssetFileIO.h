@@ -16,7 +16,7 @@
 #include <dirent.h>
 
 #include <SDL2/SDL_render.h>
-#include <SDL2/SDL_image.h>
+#include <SDL2_image/SDL_image.h>
 
 #include "../Util/Util.hpp"
 #include "../Util/BoundsCheck.hpp"

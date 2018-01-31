@@ -55,7 +55,7 @@ enum Direction {
 } ;
 
 /**
- * @brief A storage class for angular values. All underlying values are represented in degrees.
+ * @brief A storage class for angle values. All underlying values are represented in degrees.
  *
  * @note Since the standard library trigonometric functions (i.e. sin(), cos(), etc.) expect
  * argument values expressed in radians, values passed to those functions should first be converted.

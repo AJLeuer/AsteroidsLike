@@ -377,12 +377,12 @@ protected:
 	/**
 	 * Associates keys with callback functions.
 	 */
-	static vector<EventRegister *> * eventListenerRegistry ;
+	static vector<EventRegister *> eventListenerRegistry ;
 	
 	/**
 	 * Associates keys with callback functions.
 	 */
-	static vector<KeyInputRegister *> * keyInputRegistry ;
+	static vector<KeyInputRegister *> keyInputRegistry ;
 	
 	static Event * event ;
 	
