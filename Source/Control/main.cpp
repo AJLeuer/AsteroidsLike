@@ -38,12 +38,6 @@
 
 
 int main(int argc, char ** argv) {
-	constexpr InitializeFromCenterCoordinates initializeFromCenterCoordinates ;
-	
-	Rectangle<float, long> rectangle0 (Vect<float>(2, 2), Size<long>(8, 8), initializeFromCenterCoordinates) ;
-	Rectangle<float, long> rectangle1 (Vect<float>(4, 4), Size<long>(4, 4), initializeFromCenterCoordinates) ;
-	
-	bool collision = Rectangle<float, long>::detectCollision(rectangle0, rectangle1) ;
 	
 	GameState::currentDirectory = argv[0] ;
 	cout << "the current directory is: " << GameState::currentDirectory << endl ;

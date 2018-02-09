@@ -206,17 +206,17 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::completeInitialization() {
 		Surface * surface = TTF_RenderUTF8_Blended(gameFont, text.c_str(), foreground.convertToSDL_Color()) ;
 		
 		/* Debug code */
-		stringstream ss ;
-		ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+//        stringstream ss ;
+//        ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
+//        DebugOutput << ss.rdbuf() ;
 		/* End debug code */
 		
 		this->setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
 		
 		/* Debug code */
-		stringstream st ;
-		st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
-		DebugOutput << st.rdbuf() ;
+//        stringstream st ;
+//        st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
+//        DebugOutput << st.rdbuf() ;
 		/* End debug code */
 		
 		SDL_FreeSurface(surface) ;
@@ -251,16 +251,16 @@ void TextOutput<POSUTYPE, SIZEUTYPE>::update() {
 		
 		/* Debug code */
 		stringstream ss ;
-		ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+//        ss << "Checking for TTF or SDL errors after call to TTF_RenderUTF8_Shaded(): " << TTF_GetError() << '\n' ;
+//        DebugOutput << ss.rdbuf() ;
 		/* End debug code */
 		
 		this->setTexture(SDL_CreateTextureFromSurface(GameState::getMainRenderer(), surface)) ;
 		
 		/* Debug code */
-		stringstream st ;
-		st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
-		DebugOutput << st.rdbuf() ;
+//        stringstream st ;
+//        st << "Checking for SDL errors after call to SDL_CreateTextureFromSurface(): " << SDL_GetError() << '\n' ;
+//        DebugOutput << st.rdbuf() ;
 		/* End debug code */
 		
 		SDL_FreeSurface(surface) ;

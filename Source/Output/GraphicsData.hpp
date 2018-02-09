@@ -40,7 +40,7 @@
 
 #include "../Control/Configuration.h"
 
-typedef array<byte, 3> RGBColor ;
+typedef array<Util::byte, 3> RGBColor ;
 
 enum class PositionType {
 	worldPosition,
@@ -127,7 +127,7 @@ protected:
 	 */
     Vect<POSUTYPE> * position ;
 	
-	VectorAndVelocity<POSUTYPE> vectr = VectorAndVelocity<POSUTYPE>(0.0, SafeBoolean::f) ;
+	VectorAndVelocity<POSUTYPE> vectr = VectorAndVelocity<POSUTYPE>(0.0, Util::SafeBoolean::f) ;
 	
 	/**
 	 * @brief A Size object, which unlike position is not a pointer and is owned by the GraphicsData object
@@ -196,14 +196,14 @@ public:
         textureImageFile(),
         texture(nullptr), //impossible to init here
         position(nullptr),
-        vectr(position, Angle(0), SafeBoolean::f),
+        vectr(position, Angle(0), Util::SafeBoolean::f),
         size(), //can't be initialized yet
         positionType(PositionType::null)
     {
         allGraphicsData.push_back(this) ;
     } */
 	
-	GraphicsData(Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, SafeBoolean visible = SafeBoolean::t, SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+	GraphicsData(Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, Util::SafeBoolean visible = Util::SafeBoolean::t, Util::SafeBoolean monitorVelocity = Util::SafeBoolean::f, Util::SafeBoolean boundsChecking = Util::SafeBoolean::t, Util::SafeBoolean collisionDetection = Util::SafeBoolean::t) :
 	
         textureImageFile(),
         texture(nullptr),
@@ -223,7 +223,7 @@ public:
         update() ;
 	}
 	
-    GraphicsData(const AssetFile & file, Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, SafeBoolean visible = SafeBoolean::t, SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+    GraphicsData(const AssetFile & file, Vect<POSUTYPE> * pos, Angle orientation, const float sizeModifier, PositionType type, Util::SafeBoolean visible = Util::SafeBoolean::t, Util::SafeBoolean monitorVelocity = Util::SafeBoolean::f, Util::SafeBoolean boundsChecking = Util::SafeBoolean::t, Util::SafeBoolean collisionDetection = Util::SafeBoolean::t) :
 	
 		textureImageFile(file),
         texture(nullptr),
@@ -243,8 +243,8 @@ public:
         update() ;
     }
     
-    GraphicsData(Randm<int> & randm, Vect<POSUTYPE> * pos, AssetType assetType, PositionType posType, SafeBoolean visible = SafeBoolean::t,
-		SafeBoolean monitorVelocity = SafeBoolean::f, SafeBoolean boundsChecking = SafeBoolean::t, SafeBoolean collisionDetection = SafeBoolean::t) :
+    GraphicsData(Randm<int> & randm, Vect<POSUTYPE> * pos, AssetType assetType, PositionType posType, Util::SafeBoolean visible = Util::SafeBoolean::t,
+		Util::SafeBoolean monitorVelocity = Util::SafeBoolean::f, Util::SafeBoolean boundsChecking = Util::SafeBoolean::t, Util::SafeBoolean collisionDetection = Util::SafeBoolean::t) :
 	
         textureImageFile(AssetFile(randm, assetType)),
         texture(nullptr),
@@ -318,9 +318,9 @@ public:
 	
 	GraphicsData & moveCopy(GraphicsData && other) ;
 	
-	void modifyColor(byte r, byte g, byte b) { SDL_SetTextureColorMod(this->texture, r, g, b) ; }
+	void modifyColor(Util::byte r, Util::byte g, Util::byte b) { SDL_SetTextureColorMod(this->texture, r, g, b) ; }
 	
-	void flashColor(byte r, byte g, byte b, const chrono::milliseconds & colorChangeDuration) ;
+	void flashColor(Util::byte r, Util::byte g, Util::byte b, const chrono::milliseconds & colorChangeDuration) ;
     
     bool isMarkedForDeletion() const { return markedForDeletion ; }
     
@@ -411,7 +411,7 @@ vector< GraphicsData<POSUTYPE, SIZEUTYPE> *> * GraphicsData<POSUTYPE, SIZEUTYPE>
 
 template<typename POSUTYPE, typename SIZEUTYPE>
 RGBColor GraphicsData<POSUTYPE, SIZEUTYPE>::getColor(Texture * texture) {
-	byte r, g, b ;
+	Util::byte r, g, b ;
 	SDL_GetTextureColorMod(texture, & r, & g, & b) ;
 	RGBColor color {r, g, b} ;
 	return color ;
@@ -538,7 +538,7 @@ GraphicsData<POSUTYPE, SIZEUTYPE> & GraphicsData<POSUTYPE, SIZEUTYPE>::moveCopy(
 }
 
 template<typename POSUTYPE, typename SIZEUTYPE>
-void GraphicsData<POSUTYPE, SIZEUTYPE>::flashColor(byte r, byte g, byte b, const chrono::milliseconds & colorChangeDuration) {
+void GraphicsData<POSUTYPE, SIZEUTYPE>::flashColor(Util::byte r, Util::byte g, Util::byte b, const chrono::milliseconds & colorChangeDuration) {
 	RGBColor rgb {r, g, b} ;
 	Timer t ;
 	t.startTimer() ;

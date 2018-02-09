@@ -34,9 +34,9 @@ Pawn::Pawn(Pawn && other) :
 }
 
 
-Pawn::Pawn(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc, const Angle rotation, string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
+Pawn::Pawn(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc, const Angle rotation, string name, unsigned health, unsigned damage, Util::SafeBoolean monitorVelocity, bool boundsChecking) :
 
-	GameObject(imageFile, sizeModifier, loc, rotation, true, monitorVelocity, (SafeBoolean)boundsChecking, SafeBoolean::t),
+	GameObject(imageFile, sizeModifier, loc, rotation, true, monitorVelocity, (Util::SafeBoolean)boundsChecking, Util::SafeBoolean::t),
 	name(name), health(new Health(health)),
 	damage(new Damage(damage))
 {
@@ -47,7 +47,7 @@ Pawn::Pawn(Randm<int> rand, AssetType type) :
 	health(new Health(goRand.nextValue(0, 500))),
 	damage(new Damage(goRand.nextValue(0, 50)))
 {
-	name = generateName(goRand.nextValue(0, 11) + 5) ;
+    name = Util::generateName(goRand.nextValue(0, 11) + 5) ;
 }
 
 Pawn::~Pawn() {

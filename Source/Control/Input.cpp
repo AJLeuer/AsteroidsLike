@@ -56,7 +56,6 @@ bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, 
 	}
 }
 
-
 void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) {
 	auto scanCode = scanCodes.begin() ;
 	if (checkForPressedKeys(keyboardState, scanCode)) {
@@ -66,6 +65,17 @@ void KeyInputRegister::handleKeyboardInput(const unsigned char * keyboardState) 
 
 vector<EventRegister *> InputControl::eventListenerRegistry = vector<EventRegister *>() ;
 vector<KeyInputRegister *> InputControl::keyInputRegistry = vector<KeyInputRegister *>() ;
+
+void KeyPressEventRegister::handleEvent(const Event * currentEvent) {
+    if (currentEvent->type == this->EventRegister::eventType) {
+		
+		string currentEventKeySymbol = Util::convertToString(wstring{currentEvent->key.keysym.sym});
+		
+		if (Util::contains(this->KeyInputRegister::requestedKeyboardChars, currentEventKeySymbol)) {
+			callBack();
+        }
+    }
+}
 
 Event * InputControl::event = (Event *) malloc(sizeof(Event)) ;
 
@@ -79,6 +89,14 @@ void InputControl::listenForEvents() {
         for (auto i = 0 ; ((i < eventListenerRegistry.size()) && (GLOBAL_CONTINUE_FLAG == true)) ; i++) {
             if (eventListenerRegistry.at(i) != nullptr) {
                 eventListenerRegistry.at(i)->handleEvent(event) ;
+                
+                /* Begin debug code */
+                if (event->type == SDL_EventType::SDL_KEYDOWN) {
+                    stringstream ss;
+                    ss << "Keydown event detected, main game loop count is: " << mainGameLoopCount << '\n';
+                    DebugOutput << ss.rdbuf();
+                }
+                /* End debug code */
             }
 		}
 	}
@@ -112,7 +130,7 @@ void InputControl::init() {
 	keys = SDL_GetKeyboardState(&keyArraySize) ; //only need to call once, stores pointer that stays valid for program duration
 }
 
-void InputControl::registerForEvent(EventRegister *reg) {
+void InputControl::registerForEvent(EventRegister * reg) {
 	eventListenerRegistry.push_back(reg) ;
 }
 

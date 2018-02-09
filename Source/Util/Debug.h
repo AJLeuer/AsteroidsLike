@@ -69,9 +69,9 @@ public:
 } ;
 
 template <typename T>
-Debug & Debug::operator<<(const T & data) {
+Debug & Debug::operator << (const T & data) {
 	dbgMutex2.lock() ;
-	*out << data ;
+	* out << data ;
 	dbgMutex2.unlock() ;
 	return *this ;
 }

@@ -46,7 +46,7 @@ struct Resolution ;
 
 
 /* comment this out (or #undef) when not running in debug mode */
-//#define DEBUG_MODE
+#define DEBUG_MODE
 #define one_millisecond std::chrono::nanoseconds(1000000)
 #define four_milliseconds std::chrono::nanoseconds(4000000)
 #define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,

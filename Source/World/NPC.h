@@ -49,16 +49,9 @@ public:
 	
 	/**
 	 * Constructs an NPC based on the arguments given
-	 *
-	 * @param name The name of this NPC
-	 * @param alive Whether this NPC is dead or alive
-	 * @param state The CharacterState of this NPC
-	 * @param health The Health of this NPC
-	 * @param damage The Damage capability of this NPC
-	 * @param reaction The reaction of this NPC to the player
 	 */
 	NPC(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation,
-		string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) ;
+		string name, unsigned health, unsigned damage, Util::SafeBoolean monitorVelocity, bool boundsChecking) ;
 	
 	
 	/**

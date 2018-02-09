@@ -13,7 +13,7 @@
 using namespace std ;
 
 
-const unsigned * MainControl::loopCount = &mainGameLoopCount ; //Debug symbol, delete
+const unsigned * MainControl::loopCount = & mainGameLoopCount ;
 
 void MainControl::begin_exit() {
 	GLOBAL_CONTINUE_FLAG = false ;
@@ -34,7 +34,7 @@ void MainControl::setupMainContrExit() {
 	InputControl::registerForEvent(quitEvent) ;
 }
 
-auto reverseTimeFlow = [] () -> void {
+void reverseTimeFlow() {
 	if (timeFlow == TimeFlow::forward) {
 		timeFlow = TimeFlow::reverse ;
 	}
@@ -44,8 +44,8 @@ auto reverseTimeFlow = [] () -> void {
 } ;
 
 void MainControl::setupCallbacks() {
-	KeyInputRegister * onKeypressReverseTime = new KeyInputRegister(reverseTimeFlow, {TIME_REVERSE_KEY}, KeypressEvaluationMethod::any) ;
-	InputControl::registerForKeypress(onKeypressReverseTime) ;
+    KeyPressEventRegister * onKeypressReverseTime = new KeyPressEventRegister(reverseTimeFlow, KeyPressEventRegister::KeyPressEventType::KeyPressed, {"1"}, KeypressEvaluationMethod::exactlyOne) ;
+	InputControl::registerForEvent(onKeypressReverseTime) ;
 }
 
 void MainControl::init() {

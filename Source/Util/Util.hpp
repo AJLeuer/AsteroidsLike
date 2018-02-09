@@ -16,10 +16,14 @@
 #include <vector>
 #include <cmath>
 #include <cstdint>
+#include <cstddef>
+#include <codecvt>
 
 #include <SDL2/SDL_rect.h>
 
 using namespace std ;
+
+namespace Util {
 
 typedef uint8_t byte ;
 
@@ -182,6 +186,36 @@ T pythag(T a, T b) {
 inline float sinNeg(float n) {
 	return (-1 * (sin(n))) ;
 }
+    
+template <typename T, typename _Allocator, template<typename, typename> typename Container>
+bool contains(Container<T, _Allocator> & container, T object) {
+	if(container.size() == 0) {
+		return false;
+	}
+	
+    for (auto element : container) {
+        if (element == object) {
+            return true;
+        }
+    }
+	
+    return false;
+}
+	
+template <typename T, typename Container>
+bool contains(Container & container, T object) {
+	if(container.size() == 0) {
+		return false;
+	}
+	
+    auto result = std::find(container.begin(), container.end(), object);
+
+    if (result == (std::end(container))) {
+        return false;
+    }
+	
+    return true;
+}
 
 template<typename T>
 T findSmallest_helper(unsigned long currSmallest, vector<T> cont) {
@@ -258,7 +292,7 @@ I roundF(F value) {
         return value ;
     }
     else {
-        F temp = (value >= 0.0f) ? (floor(value + 0.5f)) : (ceil(value - 0.5f)) ;
+        F temp = (value >= 0.0f) ? (std::floor(value + 0.5f)) : (std::ceil(value - 0.5f)) ;
         I round = static_cast<I>(temp) ;
 
 		/* catch a weird problem where this was returning a negative value from a posititive input */
@@ -378,7 +412,27 @@ inline string operator +(const string & str, const char * rhs) {
 	ret += app ;
 	return ret ;
 }
+
+/**
+ * Code credit StackOverflow
+ *
+ * @see <a href="https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string">StackOverflow</a>
+ */
+static wstring convertToWideString(const string & str) {
+	std::wstring wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
+	return wstr;
+}
 	
+/**
+ * Code credit StackOverflow
+ *
+ * @see <a href="https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string">StackOverflow</a>
+ */
+static string convertToString(const wstring & wstr) {
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	std::string str = converter.to_bytes(wstr);
+	return str;
+}
 
 /**
  * Takes a container holding pointer values as an argument, and an 
@@ -412,7 +466,7 @@ extern char * basicAlphabet ;
 const string generateName(unsigned int length) ;
 
 
-
+}
 
 
 #endif

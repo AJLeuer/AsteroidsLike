@@ -59,10 +59,6 @@ protected:
 	
 	/**
 	 * Renders the given texture at the desired position and size.
-	 *
-	 * @param texture The Texture to render
-	 * @param size The desired size of the texture on the screen
-	 * @param pos The onscreen coordinates representing where this texture should be rendered
 	 */
 	template<typename M, typename N>
 	static void render(GraphicsData<M, N> * output) ;
@@ -83,7 +79,7 @@ public:
 template<typename M, typename N>
 void GraphicalOutput::render(GraphicsData<M, N> * output) {
 	
-	auto tempShape = convertToSDL_Rect(output->getPosition(), output->getSize()) ;
+    auto tempShape = Util::convertToSDL_Rect(output->getPosition(), output->getSize()) ;
 	
 	int sdlrend_error = 0 ;
 	

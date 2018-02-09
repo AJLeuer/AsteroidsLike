@@ -61,7 +61,7 @@ void Projectile::doDefaultBehavior(bool initialCall) {
 
 void Weapon::fire(const Vect<float> & startingPos, const Angle & orientation) {
     
-	firedProjectiles.emplace_back(textureFile, sizeModifier, startingPos, orientation, false, SafeBoolean::f, SafeBoolean::f, SafeBoolean::t) ;
+	firedProjectiles.emplace_back(textureFile, sizeModifier, startingPos, orientation, false, Util::SafeBoolean::f, Util::SafeBoolean::f, Util::SafeBoolean::t) ;
 	
 	Projectile & projectile = firedProjectiles.back() ;
 	

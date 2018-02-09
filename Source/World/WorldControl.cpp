@@ -27,7 +27,7 @@ void WorldControl::init() {
     
 	Vect<float> * pos = new Vect<float>(0, 0) ;
     
-	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition, SafeBoolean::t, SafeBoolean::f, SafeBoolean::f, SafeBoolean::f) ;
+	GraphicsData<float, int> * backdrop = new GraphicsData<float, int>(AssetFile::backgroundImageFilenames->at(0), pos, 0.0, 1.0, PositionType::screenPosition, Util::SafeBoolean::t, Util::SafeBoolean::f, Util::SafeBoolean::f, Util::SafeBoolean::f) ;
 	
 	//backdrop->disableCollisionDetection() ;
 
@@ -53,7 +53,7 @@ void WorldControl::init() {
 	/* Create asteroids */
 	for (auto i = 0 ; i < 5 ; i++) {
 		new GameObject(AssetFileIO::getRandomImageFile(AssetType::asteroid), 0.50,
-					   Vect<float>(* Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t) ;
+					   Vect<float>(* Randm<float>::randPositionSetter, BoundsCheck<float>::defaultCheck), Angle(0), true, Util::SafeBoolean::f, Util::SafeBoolean::t, Util::SafeBoolean::t) ;
 	}
 	
 	/* Init game state */
@@ -89,7 +89,7 @@ void WorldControl::main() {
 		/* Every once it a while it will be necessary to clean out the main game object container to
 		   remove the accumulated null pointers */
 		if ((worldLoopCount % 384) == 0) {
-			auto temporaryGameObjects = copyWithoutNullValues(GameObject::accessAllGameObjects(), new vector<GameObject*>) ;
+            auto temporaryGameObjects = Util::copyWithoutNullValues(GameObject::accessAllGameObjects(), new vector<GameObject*>) ;
 			delete ( GameObject::accessAllGameObjects() ) ;
 			GameObject::accessAllGameObjects() = temporaryGameObjects ;
 		}

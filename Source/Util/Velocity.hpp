@@ -75,7 +75,6 @@ public:
 	 * it will begin monitoring speed.
 	 * 
 	 * @param distance A pointer to the distance covered by the client class, which Velocity expects to change over time
-	 * @param mut A mutex shared with Velocity that should be locked when this velocity or distance is about to be deleted
 	 */
 	Velocity(const Distance * distance, bool * localContinueSignal) :
 		id(IDs),

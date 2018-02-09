@@ -43,7 +43,7 @@ PlayerCharacter::PlayerCharacter(PlayerCharacter && other) :
  */
 PlayerCharacter::PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
 								 const Angle rotation, string name, unsigned health, unsigned damage,
-								 SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
+								 Util::SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) :
 
 								 Pawn(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking),
     							 weapon(projectileImageFile, getSize()->getModifier())

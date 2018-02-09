@@ -283,9 +283,9 @@ Texture * AssetFileIO::getTextureFromFilename(Renderer * renderer, const AssetFi
 	
 	{
 		/* debug code */
-		stringstream ss ;
-		ss << "Checking for IMG or SDL errors after IMG_LoadTexture(): " << IMG_GetError() << '\n' ;
-		DebugOutput << ss.rdbuf() ;
+//        stringstream ss ;
+//        ss << "Checking for IMG or SDL errors after IMG_LoadTexture(): " << IMG_GetError() << '\n' ;
+//        DebugOutput << ss.rdbuf() ;
 		/* end debug code */
 	}
 	

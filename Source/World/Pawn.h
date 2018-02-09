@@ -71,15 +71,8 @@ public:
 	
 	/**
 	 * Constructs a Pawn based on the arguments given
-	 *
-	 * @param name The name of this Pawn
-	 * @param alive Whether this Pawn is dead or alive
-	 * @param state The CharacterState of this Pawn
-	 * @param health The Health of this Pawn
-	 * @param damage The Damage capability of this Pawn
 	 */
-	Pawn(const AssetFile & imageFile, float sizeModifier,
-			  const Vect<float> & loc, const Angle rotation, string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) ;
+    Pawn(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc, const Angle rotation, string name, unsigned health, unsigned damage, Util::SafeBoolean monitorVelocity, bool boundsChecking) ;
 	
 	
 	/**

@@ -34,7 +34,7 @@ Size<N> & operator * (M m, Size<N> & rhs) {
 
 template<typename M, typename N>
 Vect<N> * convert(const Vect<M> * converted) {
-    return new Vect<N>(roundF<M, N>(converted->getX()), roundF<M, N>(converted->getY()), roundF<M, N>(converted->getZ())) ;
+    return new Vect<N>(Util::roundF<M, N>(converted->getX()), Util::roundF<M, N>(converted->getY()), Util::roundF<M, N>(converted->getZ())) ;
 }
 
 /**

@@ -15,7 +15,7 @@ Randm<float> * Randm<float>::randPositionSetter = initRandPosSetter() ;
 
 
 Randm<float> * Randm<float>::initRandPosSetter() {
-	return new Randm<float>(0, findLargest<float>({static_cast<float>(globalMaxX()), static_cast<float>(globalMaxY())})) ;
+    return new Randm<float>(0, Util::findLargest<float>({static_cast<float>(globalMaxX()), static_cast<float>(globalMaxY())})) ;
 }
 
 
@@ -88,7 +88,7 @@ Randm<double> * Randm<double>::randPositionSetter = initRandPosSetter() ;
 
 
 Randm<double> * Randm<double>::initRandPosSetter() {
-	return new Randm<double>(0, findLargest<double>({static_cast<double>(globalMaxX()), static_cast<double>(globalMaxY())})) ;
+    return new Randm<double>(0, Util::findLargest<double>({static_cast<double>(globalMaxX()), static_cast<double>(globalMaxY())})) ;
 }
 
 

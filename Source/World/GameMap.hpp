@@ -308,9 +308,9 @@ void GameMap<T>::erase(const Vect<N> * currentLoc, const T * pointerToOriginalOb
 			i = containingList->erase(i) ;
             
             /* Debug code */
-            stringstream st ;
-            st << "GameMap erased pointer at the following position: " << *currentLoc << '\n' ;
-            DebugOutput << st.rdbuf() ;
+//            stringstream st ;
+//            st << "GameMap erased pointer at the following position: " << *currentLoc << '\n' ;
+//            DebugOutput << st.rdbuf() ;
             /* end debug code */
             
 			mapMembers-- ;

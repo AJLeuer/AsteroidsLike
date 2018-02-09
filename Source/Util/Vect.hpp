@@ -70,11 +70,11 @@ protected:
 public:
 
 	constexpr inline Angle(const float angle) : value(angle) {
-		value = Mod(value, 360.0f) ;
+        value = Util::Mod(value, 360.0f) ;
 	}
 
 	constexpr inline Angle(const Angle & other) : value(other.value) {
-		value = Mod(value, 360.0f) ;
+        value = Util::Mod(value, 360.0f) ;
 	}
 
     template<typename N>
@@ -88,13 +88,13 @@ public:
 
 	constexpr inline Angle & operator = (const Angle & rhs) {
 		if (this != &rhs) {
-			this->value = Mod(rhs.value, 360.0f) ;
+            this->value = Util::Mod(rhs.value, 360.0f) ;
 		}
 		return *this ;
 	}
 
 	constexpr inline Angle & operator = (const float & f) {
-		value = Mod(f, 360.0f) ;
+        value = Util::Mod(f, 360.0f) ;
 		return *this ;
 	}
 
@@ -109,15 +109,15 @@ public:
 	}
 
 	constexpr inline void operator += (const float otherAngle) {
-		this->value = Mod((value + otherAngle), 360.0f) ;
+        this->value = Util::Mod((value + otherAngle), 360.0f) ;
 	}
 
 	constexpr inline void operator -= (const float otherAngle) {
-		this->value = Mod((value - otherAngle), 360.0f) ;
+        this->value = Util::Mod((value - otherAngle), 360.0f) ;
 	}
 
     float inRadians() {
-        return (convertToRadians<float>(((float) * this))) ;
+        return (Util::convertToRadians<float>(((float) * this))) ;
     }
 
 
@@ -365,7 +365,7 @@ public:
 
 
 	virtual void normalize() {
-		auto distance = pythag<float>(x, y) ;
+        auto distance = Util::pythag<float>(x, y) ;
 		if (distance != 0) {
 			x = (x / distance) ;
 		}
@@ -451,12 +451,12 @@ public:
 	/**
 	 * @return x as an integer
 	 */
-	int getIntX() const { return roundF<N, int>(x) ; }
+    int getIntX() const { return Util::roundF<N, int>(x) ; }
 
 	/**
 	 * @return y as an integer
 	 */
-	int getIntY() const { return roundF<N, int>(y) ; }
+    int getIntY() const { return Util::roundF<N, int>(y) ; }
 
 	virtual void setX(const N x) { setAll(x, this->y) ; }
 
@@ -492,7 +492,6 @@ public:
 	 *
 	 * @param delta_x The change in x value
 	 * @param delta_y The change in y value
-	 * @param delta_z The change in z value
 	 */
 	virtual void modify(N delta_x, N delta_y) {
 		auto tempX = this->x ;
@@ -511,7 +510,6 @@ public:
 	 *
 	 * @param delta_x The change in x value
 	 * @param delta_y The change in y value
-	 * @param delta_z The change in z value
 	 */
 	virtual void modify(N delta_x, N delta_y, const BoundsCheck<N> & check) {
 		auto tempX = this->x ;
@@ -737,7 +735,7 @@ protected:
 	bool sharedVelBool = true ;
 
 	/* x, y, and z here (the one we inherited) will be used as deltas that we can add to current to calculate next */
-	VectorAndVelocity(const Vect<float> & overrideCurrData, const Vect<N> * current_, SafeBoolean tf) ;
+	VectorAndVelocity(const Vect<float> & overrideCurrData, const Vect<N> * current_, Util::SafeBoolean tf) ;
 
 	void update() ;
 
@@ -745,11 +743,11 @@ protected:
 public:
 
     VectorAndVelocity() ;
-    VectorAndVelocity(Angle rotation, SafeBoolean tf) ;
+    VectorAndVelocity(Angle rotation, Util::SafeBoolean tf) ;
 	VectorAndVelocity(Randm<N> randm) ;
-	VectorAndVelocity(float headingX, float headingY, Angle rotation, SafeBoolean tf) ;
-	VectorAndVelocity(float headingX, float headingY, Vect<N> * current_, Angle rotation, SafeBoolean tf) ;
-	VectorAndVelocity(const Vect<N> * current_, Angle rotation, SafeBoolean tf) ;
+    VectorAndVelocity(float headingX, float headingY, Angle rotation, Util::SafeBoolean tf) ;
+    VectorAndVelocity(float headingX, float headingY, Vect<N> * current_, Angle rotation, Util::SafeBoolean tf) ;
+    VectorAndVelocity(const Vect<N> * current_, Angle rotation, Util::SafeBoolean tf) ;
 	VectorAndVelocity(const VectorAndVelocity<N> & other) ;
 	VectorAndVelocity(VectorAndVelocity<N> && other) ;
 	~VectorAndVelocity() ;
@@ -823,14 +821,14 @@ VectorAndVelocity<N>::VectorAndVelocity() :
     currentRotation(0.0){}
 
 template<typename N>
-VectorAndVelocity<N>::VectorAndVelocity(Angle rotation, SafeBoolean tf) :
+VectorAndVelocity<N>::VectorAndVelocity(Angle rotation, Util::SafeBoolean tf) :
     Vect<float>(0, -1), /* default direction is up */
     current(nullptr),
     totalDistanceMoved(new N()),
     velocity(nullptr),
     currentRotation(rotation)
 {
-	if (tf == SafeBoolean::t) {
+    if (tf == Util::SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
 	else { // if (tf == SafeBoolean::f)
@@ -850,37 +848,37 @@ VectorAndVelocity<N>::VectorAndVelocity(Randm<N> randm) :
 }
 
 template<typename N>
-VectorAndVelocity<N>::VectorAndVelocity(float headingX, float headingY, Angle rotation, SafeBoolean tf) :
+VectorAndVelocity<N>::VectorAndVelocity(float headingX, float headingY, Angle rotation, Util::SafeBoolean tf) :
 	Vect<float>(headingX, headingY),
 	current(nullptr),
 	totalDistanceMoved(new N),
     currentRotation(rotation)
 {
-	if (tf == SafeBoolean::t) {
+	if (tf == Util::SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::f)
+	else { // if (tf == Util::SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-VectorAndVelocity<N>::VectorAndVelocity(float headingX, float headingY, Vect<N> * current_, Angle rotation, SafeBoolean tf) :
+VectorAndVelocity<N>::VectorAndVelocity(float headingX, float headingY, Vect<N> * current_, Angle rotation, Util::SafeBoolean tf) :
 	Vect<float>(headingX, headingY),
 	current(current_),
 	totalDistanceMoved(new N),
     currentRotation(rotation)
 {
-	if (tf == SafeBoolean::t) {
+    if (tf == Util::SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::f)
+	else { // if (tf == Util::SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
 
 template<typename N>
-VectorAndVelocity<N>::VectorAndVelocity(const Vect<N> * current_, Angle rotation, SafeBoolean tf) :
+VectorAndVelocity<N>::VectorAndVelocity(const Vect<N> * current_, Angle rotation, Util::SafeBoolean tf) :
 	Vect<float>(0, -1),
     last(*current_),
 	mostRecent(*current_),
@@ -888,10 +886,10 @@ VectorAndVelocity<N>::VectorAndVelocity(const Vect<N> * current_, Angle rotation
 	totalDistanceMoved(new N),
     currentRotation(rotation)
 {
-	if (tf == SafeBoolean::t) {
+    if (tf == Util::SafeBoolean::t) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::f)
+	else { // if (tf == Util::SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
@@ -910,7 +908,7 @@ VectorAndVelocity<N>::VectorAndVelocity(const VectorAndVelocity<N> & other) :
 	if (other.velocity != nullptr) {
 		velocity = new Velocity<N>(totalDistanceMoved, &sharedVelBool) ;
 	}
-	else { // if (tf == SafeBoolean::f)
+	else { // if (tf == Util::SafeBoolean::f)
 		velocity = nullptr ;
 	}
 }
@@ -1196,8 +1194,8 @@ extern Vect<T> transPosition(const Vect<T> & inSpriteFight) {
 	T tempX = inSpriteFight.getX() /*+ (worldXSize - GameObject::GLOBAL_max_X)*/ ;
 	T tempY = inSpriteFight.getY() /*+ (worldYSize - GameObject::GLOBAL_max_Y)*/ ;
 
-	unsigned tw = termWidth() ;
-	unsigned th = termHeight() ;
+    unsigned tw = Util::termWidth() ;
+    unsigned th = Util::termHeight() ;
 
 	T x = (tw * tempX)/worldXSize ;
 	T y = (th * tempY)/worldYSize ;
@@ -1249,7 +1247,7 @@ public:
         double x_quotient = (static_cast<double>(this->getX()) / static_cast<double>(rhs.getX())) ;
 		double y_quotient = (static_cast<double>(this->getY()) / static_cast<double>(rhs.getY())) ;
 
-		double avrg = average<double>(x_quotient, y_quotient) ;
+        double avrg = Util::average<double>(x_quotient, y_quotient) ;
 
 		return avrg ;
 	}

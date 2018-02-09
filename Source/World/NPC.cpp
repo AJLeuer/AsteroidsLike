@@ -19,7 +19,7 @@ NPC::NPC(NPC && other) :
 	Pawn(std::move(other)) {}
 
 NPC::NPC(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation,
-		 string name, unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
+		 string name, unsigned health, unsigned damage, Util::SafeBoolean monitorVelocity, bool boundsChecking) :
 
 	Pawn(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking) {}
 

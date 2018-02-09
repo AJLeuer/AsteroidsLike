@@ -22,7 +22,7 @@ public:
     Enemy() : NPC() {}
 	
 	Enemy(const AssetFile & imageFile, float size, const Vect<float> & loc, const Angle rotation, string name,
-		  unsigned health, unsigned damage, SafeBoolean monitorVelocity, bool boundsChecking) :
+		  unsigned health, unsigned damage, Util::SafeBoolean monitorVelocity, bool boundsChecking) :
 	
 		  NPC(imageFile, size, loc, rotation, name, health, damage, monitorVelocity, boundsChecking) {}
     

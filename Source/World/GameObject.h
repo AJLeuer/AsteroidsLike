@@ -47,7 +47,6 @@ using namespace::std ;
  */
 class GameObject : public GameInterface {
 	
-	
 private:
 	
 	
@@ -159,7 +158,7 @@ public:
 	 * @param imageFile The file to be used as the Texture for this GameObject
      * @param pos This GameObject's Vect<float>
 	 */
-	GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & pos, const Angle rotation, bool visible, SafeBoolean monitorVelocity, SafeBoolean boundsChecking, SafeBoolean collisionDetection) ;
+	GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & pos, const Angle rotation, bool visible, Util::SafeBoolean monitorVelocity, Util::SafeBoolean boundsChecking, Util::SafeBoolean collisionDetection) ;
     
     /**
 	 * Constructs a randomized GameObject. The client has to option to simply leave the argument randSeed as
@@ -303,7 +302,7 @@ public:
 	 *
 	 * @note If bc = nullptr, move() will skip bounds checking
 	 *
-	 * @param newDirection The new vector specifying the direction of travel
+	 * @param direction The new vector specifying the direction of travel
 	 */
 	virtual void move(VectorAndVelocity<float> & direction, float distanceModifier = defaultMoveDistance<float>) ;
     

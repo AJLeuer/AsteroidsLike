@@ -36,6 +36,12 @@
 		66C7929F19CA1A89000C2338 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928119CA1A89000C2338 /* Weapon.cpp */; };
 		66C792A019CA1A89000C2338 /* WorldControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66C7928319CA1A89000C2338 /* WorldControl.cpp */; };
 		66C792AC19CA2277000C2338 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C792AB19CA2277000C2338 /* AppKit.framework */; };
+		66DA727E202AE555000529ED /* AsteroidsLikeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA727D202AE555000529ED /* AsteroidsLikeTest.m */; };
+		66DA7283202AE572000529ED /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DA7265202ADF7C000529ED /* gtest.framework */; };
+		66DA7285202AE583000529ED /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DA7284202AE582000529ED /* XCTest.framework */; };
+		66DA7289202AEB3F000529ED /* ExampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DA7288202AEB3F000529ED /* ExampleTest.cpp */; };
+		66DA728A202AEC32000529ED /* GoogleTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66DA7275202AE51F000529ED /* GoogleTests.mm */; };
+		66DA7290202AEFA5000529ED /* UtilTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DA728E202AEFA5000529ED /* UtilTest.cpp */; };
 		66FDA27F1CA6EDA00063CC59 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA27E1CA6EDA00063CC59 /* SDL2_ttf.framework */; };
 		66FDA2831CA6EDE00063CC59 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA2821CA6EDE00063CC59 /* SDL2.framework */; };
 		66FDA2851CA6EE130063CC59 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FDA2841CA6EE130063CC59 /* SDL2_image.framework */; };
@@ -128,6 +134,14 @@
 		66C792A219CA218B000C2338 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		66C792A319CA218B000C2338 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
 		66C792AB19CA2277000C2338 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		66DA7265202ADF7C000529ED /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
+		66DA7275202AE51F000529ED /* GoogleTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GoogleTests.mm; sourceTree = "<group>"; };
+		66DA727B202AE555000529ED /* AsteroidsLikeTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsteroidsLikeTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DA727D202AE555000529ED /* AsteroidsLikeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsteroidsLikeTest.m; sourceTree = "<group>"; };
+		66DA7284202AE582000529ED /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		66DA7286202AEA34000529ED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66DA7288202AEB3F000529ED /* ExampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExampleTest.cpp; sourceTree = "<group>"; };
+		66DA728E202AEFA5000529ED /* UtilTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UtilTest.cpp; sourceTree = "<group>"; };
 		66FDA27E1CA6EDA00063CC59 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		66FDA2821CA6EDE00063CC59 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		66FDA2841CA6EE130063CC59 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -145,6 +159,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66DA7278202AE555000529ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DA7285202AE583000529ED /* XCTest.framework in Frameworks */,
+				66DA7283202AE572000529ED /* gtest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -156,6 +179,8 @@
 				66FDA27E1CA6EDA00063CC59 /* SDL2_ttf.framework */,
 				66FDA2841CA6EE130063CC59 /* SDL2_image.framework */,
 				66C792AB19CA2277000C2338 /* AppKit.framework */,
+				66DA7265202ADF7C000529ED /* gtest.framework */,
+				66DA7284202AE582000529ED /* XCTest.framework */,
 				66C792A119CA218B000C2338 /* About */,
 				66C792A219CA218B000C2338 /* Assets */,
 				66C792A319CA218B000C2338 /* Frameworks */,
@@ -163,6 +188,7 @@
 				66C7924919CA1A89000C2338 /* Output */,
 				66C7926B19CA1A89000C2338 /* World */,
 				66C7923D19CA1A89000C2338 /* Control */,
+				66DA7260202AD5B1000529ED /* Test */,
 				66B86E3C19CA194000FAA59D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				66B86E3B19CA194000FAA59D /* AsteroidsLike */,
+				66DA727B202AE555000529ED /* AsteroidsLikeTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +220,7 @@
 			name = Control;
 			path = Source/Control;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		66C7924919CA1A89000C2338 /* Output */ = {
 			isa = PBXGroup;
@@ -211,6 +239,7 @@
 			name = Output;
 			path = Source/Output;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		66C7925619CA1A89000C2338 /* Util */ = {
 			isa = PBXGroup;
@@ -241,6 +270,7 @@
 			name = Util;
 			path = Source/Util;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		66C7926B19CA1A89000C2338 /* World */ = {
 			isa = PBXGroup;
@@ -273,6 +303,37 @@
 			name = World;
 			path = Source/World;
 			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		66DA7260202AD5B1000529ED /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				66DA7288202AEB3F000529ED /* ExampleTest.cpp */,
+				66DA727D202AE555000529ED /* AsteroidsLikeTest.m */,
+				66DA728D202AEF89000529ED /* Util */,
+				66DA7274202AE4E1000529ED /* TestSetup */,
+			);
+			name = Test;
+			path = Source/Test;
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		66DA7274202AE4E1000529ED /* TestSetup */ = {
+			isa = PBXGroup;
+			children = (
+				66DA7286202AEA34000529ED /* Info.plist */,
+				66DA7275202AE51F000529ED /* GoogleTests.mm */,
+			);
+			path = TestSetup;
+			sourceTree = "<group>";
+		};
+		66DA728D202AEF89000529ED /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				66DA728E202AEFA5000529ED /* UtilTest.cpp */,
+			);
+			path = Util;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -294,17 +355,39 @@
 			productReference = 66B86E3B19CA194000FAA59D /* AsteroidsLike */;
 			productType = "com.apple.product-type.tool";
 		};
+		66DA727A202AE555000529ED /* AsteroidsLikeTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66DA7280202AE555000529ED /* Build configuration list for PBXNativeTarget "AsteroidsLikeTest" */;
+			buildPhases = (
+				66DA7277202AE555000529ED /* Sources */,
+				66DA7278202AE555000529ED /* Frameworks */,
+				66DA7279202AE555000529ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AsteroidsLikeTest;
+			productName = AsteroidsLikeTest;
+			productReference = 66DA727B202AE555000529ED /* AsteroidsLikeTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		66B86E3319CA194000FAA59D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Adam James Leuer";
 				TargetAttributes = {
 					66B86E3A19CA194000FAA59D = {
 						CreatedOnToolsVersion = 6.0;
+					};
+					66DA727A202AE555000529ED = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = DX363355U9;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -321,9 +404,20 @@
 			projectRoot = "";
 			targets = (
 				66B86E3A19CA194000FAA59D /* AsteroidsLike */,
+				66DA727A202AE555000529ED /* AsteroidsLikeTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66DA7279202AE555000529ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66B86E3719CA194000FAA59D /* Sources */ = {
@@ -360,6 +454,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66DA7277202AE555000529ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DA728A202AEC32000529ED /* GoogleTests.mm in Sources */,
+				66DA7289202AEB3F000529ED /* ExampleTest.cpp in Sources */,
+				66DA727E202AE555000529ED /* AsteroidsLikeTest.m in Sources */,
+				66DA7290202AEFA5000529ED /* UtilTest.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -377,6 +482,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -384,6 +490,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -391,7 +498,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
@@ -413,7 +520,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -422,16 +529,19 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/sdl2/2.0.4/include,
-					/usr/local/Cellar/sdl2_ttf/2.0.13/include,
-					/usr/local/Cellar/sdl2_image/2.0.1_1/include,
 				);
 				KEEP_PRIVATE_EXTERNS = YES;
 				LD_GENERATE_MAP_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"--system-header-prefix=SDL2/",
+					"--system-header-prefix=gtest/",
+				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
@@ -451,6 +561,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -458,6 +569,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -465,7 +577,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)";
 				COPY_PHASE_STRIP = NO;
@@ -480,7 +592,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -489,15 +601,18 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/local/Cellar/sdl2/2.0.4/include,
-					/usr/local/Cellar/sdl2_ttf/2.0.13/include,
-					/usr/local/Cellar/sdl2_image/2.0.1_1/include,
 				);
 				KEEP_PRIVATE_EXTERNS = YES;
 				LD_GENERATE_MAP_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"--system-header-prefix=SDL2/",
+					"--system-header-prefix=gtest/",
+				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
@@ -506,19 +621,16 @@
 		66B86E4319CA194000FAA59D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2_ttf/2.0.13/lib,
-					/usr/local/Cellar/sdl2/2.0.4/lib,
-					/usr/local/Cellar/sdl2_image/2.0.1_1/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = AsteroidsLike;
 			};
 			name = Debug;
@@ -526,20 +638,76 @@
 		66B86E4419CA194000FAA59D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_VERSION = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2_ttf/2.0.13/lib,
-					/usr/local/Cellar/sdl2/2.0.4/lib,
-					/usr/local/Cellar/sdl2_image/2.0.1_1/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = AsteroidsLike;
+			};
+			name = Release;
+		};
+		66DA7281202AE555000529ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DX363355U9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Source/Test/TestSetup/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = TW.AsteroidsLikeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		66DA7282202AE555000529ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DX363355U9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Source/Test/TestSetup/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = TW.AsteroidsLikeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -560,6 +728,15 @@
 			buildConfigurations = (
 				66B86E4319CA194000FAA59D /* Debug */,
 				66B86E4419CA194000FAA59D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		66DA7280202AE555000529ED /* Build configuration list for PBXNativeTarget "AsteroidsLikeTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DA7281202AE555000529ED /* Debug */,
+				66DA7282202AE555000529ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

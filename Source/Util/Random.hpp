@@ -206,7 +206,7 @@ Randm<N> * Randm<N>::randPositionSetter = initRandPosSetter() ;
  
 template<typename N>
 Randm<N> * Randm<N>::initRandPosSetter() {
-	return new Randm<N>(0, findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
+    return new Randm<N>(0, Util::findLargest<N>({static_cast<N>(globalMaxX()), static_cast<N>(globalMaxY())})) ;
 }
  
 
@@ -243,8 +243,8 @@ T chooseAtRand(T t1, T t2) {
  * SomeEnum. SomeEnum should ideally use integer values starting
  * at zero as the underlying value for its enumerations.
  *
- * @param SomeEnum An enumeration type
- * @param N Some integer or floating point type
+ * @tparam SomeEnum An enumeration type
+ * @tparam N Some integer or floating point type
  * @param maximum The numerical value of the maximum enum of type SomeEnum
  */
 template<typename SomeEnum, typename N>

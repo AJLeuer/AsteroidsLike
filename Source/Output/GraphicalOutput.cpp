@@ -60,9 +60,9 @@ void GraphicalOutput::init() {
 	
 	{
 	/* debug code */
-	stringstream ab ;
-	ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;
-	DebugOutput << ab.rdbuf() ;
+//    stringstream ab ;
+//    ab << "Checking for SDL errors after SDL_CreateWindow(): " << SDL_GetError() << '\n' ;
+//    DebugOutput << ab.rdbuf() ;
 	/* end debug code */
 	}
 
@@ -78,9 +78,9 @@ void GraphicalOutput::init() {
 
 	{
 	/* debug code */
-	stringstream ac ;
-	ac << "Checking for SDL errors after SDL_CreateRenderer(): " << SDL_GetError() << '\n' ;
-	DebugOutput << ac.rdbuf() ;
+//    stringstream ac ;
+//    ac << "Checking for SDL errors after SDL_CreateRenderer(): " << SDL_GetError() << '\n' ;
+//    DebugOutput << ac.rdbuf() ;
 	/* end debug code */
 	}
 	

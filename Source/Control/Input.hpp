@@ -22,6 +22,8 @@
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_video.h>
 
+#include "../Util/Util.hpp"
+
 #include "../World/GameState.hpp"
 #include "../World/GameInterface.h"
 
@@ -38,7 +40,8 @@ class EventRegisterBase {
 	
 protected:
 	
-	
+    friend int main(int argc, char ** argv);
+    
 	/**
 	 * See member_callBackFunction.
 	 */
@@ -105,16 +108,18 @@ protected:
 		member_callBackFunction(nullptr),
 		callBackFunction(cb) {}
 	
+	virtual ~EventRegisterBase() {}
+	
 public:
 	
-	void callBack() ;
+	virtual void callBack() ;
 	
 } ;
 
 /**
  * An implementation of EventRegisterBase with the ability to handle any type of SDL_Event.
  */
-class EventRegister : public EventRegisterBase {
+class EventRegister : virtual public EventRegisterBase {
 	
 protected:
 	/**
@@ -151,9 +156,9 @@ public:
 		EventRegisterBase(cb),
 		eventType(eventType) {}
 	
-	~EventRegister() {}
+	virtual ~EventRegister() {}
 	
-	void handleEvent(const Event * currentEvent) ;
+	virtual void handleEvent(const Event * currentEvent) ;
 	
 } ;
 
@@ -172,7 +177,7 @@ enum class KeypressEvaluationMethod {
 /**
  * An implementation of EventRegisterBase specialized for handling keyboard input.
  */
-class KeyInputRegister : public EventRegisterBase {
+class KeyInputRegister : virtual public EventRegisterBase {
 	
 protected:
 	
@@ -354,21 +359,26 @@ public:
 } ;
 
 
-/**
- * SwitchableKeyInputRegister is a variant of KeyInputRegister that can hold multiple callback functions
- * (and members to call those functions on), as well as several different keyboard keys at the same time.
- * This is in contrast to the single function pointer held in any KeyInputRegister. The real advantage of SwitchableKeyInputRegister
- * is its ability to choose different callbacks based on a descending order of priority that is set when the SwitchableKeyInputRegister
- * is created. A SwitchableKeyInputRegister is part of a linked-list of pointers to KeyInputRegisters or other SwitchableKeyInputRegisters, 
- * and each one is able to "shut off" subsequent members in its list from providing their callback functions. The list should be initialized
- * with the highest priority KeyInputRegisters at the front, with the fallback, lower priority ones following. Any KeyInputRegister or
- * SwitchableKeyInputRegister's callback function will only be called if callback function belonging to the KeyInputRegister prior to it
- * in the list was not.
- */
-class SwitchableKeyInputRegister : public KeyInputRegister, public std::list<SwitchableKeyInputRegister *> {
-	
-} ;
-
+class KeyPressEventRegister : public EventRegister, public KeyInputRegister {
+    
+public:
+    
+    enum class KeyPressEventType : uint16_t {
+        KeyPressed = SDL_KEYDOWN,
+        KeyReleased = SDL_KEYUP
+    };
+    
+    using KeyInputRegister::KeyInputRegister;
+    using EventRegister::EventRegister;
+    
+    KeyPressEventRegister(std::function<void(void)> functionReference, KeyPressEventType eventType, initializer_list<string> keyChar, KeypressEvaluationMethod m) :
+		EventRegisterBase(functionReference),
+        EventRegister(functionReference, EventType(eventType)),
+        KeyInputRegister(functionReference, keyChar, m)
+    {}
+    
+    virtual void handleEvent(const Event * currentEvent) override;
+};
 
 class InputControl {
 	

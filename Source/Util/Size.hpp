@@ -96,8 +96,8 @@ public:
     
     virtual void rotate(Angle 𝛳) {
         this->Vect<N>::rotate(𝛳) ;
-        this->x = setUnsigned(this->x) ;
-        this->y = setUnsigned(this->y) ;
+        this->x = Util::setUnsigned(this->x) ;
+        this->y = Util::setUnsigned(this->y) ;
     }
     
     template<typename M>

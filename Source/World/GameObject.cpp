@@ -23,7 +23,7 @@ Randm<int> GameObject::goRand(Randm<int>(0, INT_MAX));
 
 GameObject::GameObject() :
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Vect<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, SafeBoolean::t, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t))
+	graphicsData(new GraphicsData<float, int>(Randm<int>::defaultRandom, new Vect<float>(0.0, 0.0, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, Util::SafeBoolean::t, Util::SafeBoolean::f, Util::SafeBoolean::t, Util::SafeBoolean::t))
 {
 	IDs++ ;
     
@@ -91,11 +91,11 @@ GameObject::GameObject(GameObject && other) :
 }
 
 
-GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc_, const Angle rotation, bool visible, SafeBoolean monitorVelocity,
-					   SafeBoolean boundsChecking, SafeBoolean collisionDetection) :
+GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Vect<float> & loc_, const Angle rotation, bool visible, Util::SafeBoolean monitorVelocity,
+					   Util::SafeBoolean boundsChecking, Util::SafeBoolean collisionDetection) :
 
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(imageFile, new Vect<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, (SafeBoolean)visible, monitorVelocity, boundsChecking, collisionDetection)) /* can't be properly initialized yet */
+	graphicsData(new GraphicsData<float, int>(imageFile, new Vect<float>(loc_, BoundsCheck<float>::defaultCheck), rotation, sizeModifier, PositionType::worldPosition, (Util::SafeBoolean)visible, monitorVelocity, boundsChecking, collisionDetection)) /* can't be properly initialized yet */
 {
 	IDs++ ;
     
@@ -112,7 +112,7 @@ GameObject::GameObject(const AssetFile & imageFile, float sizeModifier, const Ve
 
 GameObject::GameObject(Randm<int> & rand, AssetType type, bool visible) :
 	ID(IDs),
-	graphicsData(new GraphicsData<float, int>(rand, new Vect<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, (SafeBoolean)visible, SafeBoolean::f, SafeBoolean::t, SafeBoolean::t))
+	graphicsData(new GraphicsData<float, int>(rand, new Vect<float>(rand, BoundsCheck<float>::defaultCheck), randomEnumeration<AssetType>(9), PositionType::worldPosition, (Util::SafeBoolean)visible, Util::SafeBoolean::f, Util::SafeBoolean::t, Util::SafeBoolean::t))
 {
 	IDs++ ;
 	
@@ -327,22 +327,22 @@ void GameObject::moveTo(Vect<float> * to) {
 }
 
 void GameObject::moveUp() {
-	VectorAndVelocity<float> up(UP, SafeBoolean::f) ;
+	VectorAndVelocity<float> up(UP, Util::SafeBoolean::f) ;
     move(up) ;
 }
 
  void GameObject::moveDown() {
-    VectorAndVelocity<float> down(DOWN, SafeBoolean::f) ;
+    VectorAndVelocity<float> down(DOWN, Util::SafeBoolean::f) ;
     move(down) ;
 }
 
  void GameObject::moveRight() {
-     VectorAndVelocity<float> right(RIGHT, SafeBoolean::f) ;
+     VectorAndVelocity<float> right(RIGHT, Util::SafeBoolean::f) ;
      move(right) ;
 }
 
  void GameObject::moveLeft() {
-     VectorAndVelocity<float> left(LEFT, SafeBoolean::f) ;
+     VectorAndVelocity<float> left(LEFT, Util::SafeBoolean::f) ;
      move(left) ;
 }
 
@@ -405,7 +405,7 @@ void GameObject::moveRandomDirection() {
 	
 	float y = randVectorIniter.nextValue() ;
 	
-	VectorAndVelocity<float> newVector(x, y, 0, SafeBoolean::f) ;
+	VectorAndVelocity<float> newVector(x, y, 0, Util::SafeBoolean::f) ;
 	
 	move(newVector) ;
 }

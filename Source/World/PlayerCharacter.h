@@ -68,16 +68,10 @@ public:
 	
 	/**
 	 * Constructs a PlayerCharacter based on the arguments given
-	 *
-	 * @param name The name of this PlayerCharacter
-	 * @param alive Whether this PlayerCharacter is dead or alive
-	 * @param state The CharacterState of this PlayerCharacter
-	 * @param health The Health of this PlayerCharacter
-	 * @param damage The Damage capability of this PlayerCharacter
 	 */
 	PlayerCharacter(const AssetFile & imageFile, float size, const Vect<float> & loc,
 					const Angle rotation, string name, unsigned health, unsigned damage,
-					SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
+					Util::SafeBoolean monitorVelocity, bool boundsChecking, const AssetFile & projectileImageFile) ;
 	
 	
 	/**
