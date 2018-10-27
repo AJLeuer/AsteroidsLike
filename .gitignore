@@ -13,3 +13,5 @@ Frameworks/SDL2_image.framework/
 Frameworks/SDL2_ttf.framework/
 
 Frameworks/SDL2.framework/
+
+*.xcuserstate
