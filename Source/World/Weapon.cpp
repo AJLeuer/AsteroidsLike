@@ -22,7 +22,7 @@ void Weapon::trackFiredProjectiles() {
 				
 				projectile->move(defaultMoveDistance<float> / 4) ;
 				
-				if (projectile->overBounds() == true) {
+				if (projectile->overBounds()) {
 					
 					projectile->setVisibility(false) ;
 					

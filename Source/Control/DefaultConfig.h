@@ -41,19 +41,7 @@ struct Resolution ;
  */
 #define CPP_VERSION __cplusplus
 
-#define CPP11 201103
 #define CPP14 201305
-
-
-/* comment this out (or #undef) when not running in debug mode */
-#define DEBUG_MODE
-#define one_millisecond std::chrono::nanoseconds(1000000)
-#define four_milliseconds std::chrono::nanoseconds(4000000)
-#define eight_milliseconds std::chrono::nanoseconds(8000000) /* Change if we decide to use microsecond precision,
-													         etc., instead of nano. */
-#define thirtytwo_milliseconds std::chrono::nanoseconds(32000000)
-#define sixfour_milliseconds std::chrono::nanoseconds(64000000)
-#define twoforty_milliseconds std::chrono::nanoseconds(240000000)
 
 extern bool debugToSTDOutput ;
 
@@ -132,9 +120,8 @@ extern int WINDOW_ARGS ;
 template<typename N>
 N defaultMoveDistance = 2;
 
-extern chrono::nanoseconds refreshTime ;
-
-extern chrono::milliseconds defaultSleepTime ;
+constexpr chrono::duration refreshTime = chrono::milliseconds(1);
+constexpr chrono::duration defaultSleepTime = chrono::milliseconds(240);
 
 /* todo replace at runtime with
  user-selected values */
