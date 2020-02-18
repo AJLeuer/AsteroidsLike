@@ -50,6 +50,8 @@ char * MOVE_DOWN_KEY  =   (char *) "S" ;
 char * MOVE_LEFT_KEY  =   (char *) "A" ;
 char * MOVE_RIGHT_KEY =   (char *) "D" ;
 char * TIME_REVERSE_KEY = (char *) "1" ;
+char * RotateClockwiseKey = (char *) "E";
+char * RotateCounterClockwiseKey = (char *) "Q";
 
 bool Configuration::isInit = false ;
 

@@ -21,6 +21,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifdef BuildingWithXcode
+
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 #import <gtest/gtest.h>
@@ -263,3 +265,5 @@ static void RunTest(id self, SEL _cmd) {
 }
 
 @end
+
+#endif

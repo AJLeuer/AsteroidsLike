@@ -27,8 +27,7 @@ namespace Util {
 
 typedef uint8_t byte ;
 
-static constexpr long double 𝜋 = 3.14159265358979323846L ;
-static constexpr auto & pi = 𝜋 ; /* for convenience */
+static constexpr long double 𝜋 = 3.14159265358979323846L;
 
 /**
  * Used to avoid ambiguity when calling various constructors
@@ -368,14 +367,14 @@ SDL_Rect convertToSDL_Rect(const vec3 position, const vec2 size) {
 template<typename Radians = double>
 double convertToDegrees(const Radians angle_rad) {
 	double angle_in_radians = static_cast<double>(angle_rad) ;
-	double angle_in_degrees = angle_in_radians * (180.0L / pi) ;
+	double angle_in_degrees = angle_in_radians * (180.0L / 𝜋) ;
 	return angle_in_degrees ;
 }
 
 template<typename Degrees = double>
 double convertToRadians(const Degrees angle_deg) {
 	double angle_in_degrees = static_cast<double>(angle_deg) ;
-	double angle_in_radians = angle_in_degrees / (180.0L / pi) ;
+	double angle_in_radians = angle_in_degrees / (180.0L / 𝜋) ;
 	return angle_in_radians ;
 }
 

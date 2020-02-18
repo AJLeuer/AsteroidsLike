@@ -6,6 +6,8 @@
 //  Copyright © 2018 Adam James Leuer. All rights reserved.
 //
 
+#ifdef BuildingWithXcode
+
 #import <XCTest/XCTest.h>
 
 @interface AsteroidsLikeTest : XCTestCase
@@ -41,3 +43,7 @@
 */
 
 @end
+
+#endif
+
+

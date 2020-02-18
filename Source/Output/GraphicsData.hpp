@@ -25,8 +25,8 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_rect.h>
 
-#include <SDL2_ttf/SDL_ttf.h>
-#include <SDL2_image/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
 
 #include "../Util/Random.hpp"
 #include "../Util/Debug.h"

@@ -1,13 +1,4 @@
-//
-//  WindowOutput.h
-//  World
-//
-//  Created by Adam James Leuer on 4/26/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
-#ifndef __SpriteFight__WindowOutput__
-#define __SpriteFight__WindowOutput__
+#pragma once
 
 #include <unistd.h>
 
@@ -21,8 +12,8 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_rect.h>
 
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_ttf/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "../Util/Debug.h"
 #include "../Util/Util.hpp"
@@ -99,5 +90,3 @@ void GraphicalOutput::render(GraphicsData<M, N> * output) {
 		throw exception() ;
 	}
 }
-
-#endif /* defined(__SpriteFight__WindowOutput__) */

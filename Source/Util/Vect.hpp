@@ -129,7 +129,7 @@ public:
  *
  * Note: Classes with a Vect data member will typically want to have a pointer,
  * instead of holding the Vect locally. This is because many objects in the World
- * may not actually have a physcical position in space, in which case they can just hold a
+ * may not actually have a physical position in space, in which case they can just hold a
  * null pointer.
  */
 template <typename N>
@@ -242,7 +242,7 @@ public:
     /**
      * Assigment operator (copy).
      */
-    virtual Vect & operator=(const Vect & rhs) {
+    virtual Vect & operator = (const Vect & rhs) {
 
 		this->x = rhs.x ;
 		this->y = rhs.y ;
@@ -388,7 +388,7 @@ public:
 	}
 
 	template<typename O, typename P>
-    friend const Vect<P> * operator+(const Vect<P> & lhs, const Vect<O> * rhs) {
+    friend const Vect<P> * operator + (const Vect<P> & lhs, const Vect<O> * rhs) {
 
 		P x = lhs.x + rhs->x ;
 		P y = lhs.y + rhs->y ;
@@ -397,7 +397,7 @@ public:
 	}
 
 	template<typename O, typename P>
-    friend const Vect<P> * operator-(const Vect<P> & lhs, const Vect<O> * rhs) {
+    friend const Vect<P> * operator - (const Vect<P> & lhs, const Vect<O> * rhs) {
 
 		P x = lhs.x - rhs->x ;
 		P y = lhs.y - rhs->y ;
@@ -405,12 +405,12 @@ public:
 		return new Vect<P>(x, y) ;
 	}
 
-	friend ostream & operator<<(std::ostream & os, const Vect<N> * pos) {
+	friend ostream & operator << (std::ostream & os, const Vect<N> * pos) {
 		os << "Vect: X = " << pos->x << ", Y = " << pos->y  << '\n' ;
 		return os ;
 	}
 
-	friend ostream & operator<<(std::ostream & os, const Vect<N> & pos) {
+	friend ostream & operator << (std::ostream & os, const Vect<N> & pos) {
 		os << "Vect: X = " << pos.x << ", Y = " << pos.y << '\n' ;
 		return os ;
 	}

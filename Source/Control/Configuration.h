@@ -1,15 +1,4 @@
-//
-//  Configuration.h
-//  World
-//
-//  Created by Adam James Leuer on 5/25/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
-#ifndef __SpriteFight__Configuration__
-#define __SpriteFight__Configuration__
-
-#include <SDL2/SDL_video.h>
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -54,9 +43,3 @@ public:
 	static double globalScalingValue() ;
 
 } ;
-
-
-
-
-
-#endif /* defined(__SpriteFight__Configuration__) */

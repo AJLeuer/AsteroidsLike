@@ -91,10 +91,10 @@ void Player::registerForCallbacks() {
 															   {MOVE_RIGHT_KEY}, {SDLK_RIGHT}, KeypressEvaluationMethod::any) ;
         
         onKeyRotateCounterClockwise = new KeyInputRegister(& playerCharacter, (& GameInterface::rotateCounterClockwise),
-                                         {"Q"}, KeypressEvaluationMethod::any) ;
+                                         {RotateCounterClockwiseKey}, KeypressEvaluationMethod::any) ;
         
         onKeyRotateClockwise = new KeyInputRegister(& playerCharacter, (& GameInterface::rotateClockwise),
-                                                    {"E"}, KeypressEvaluationMethod::any) ;
+                                                    {RotateClockwiseKey}, KeypressEvaluationMethod::any) ;
         
         onKeyJump = new KeyInputRegister(& playerCharacter, (& GameInterface::jump),
                                                             {JUMP_KEY}, KeypressEvaluationMethod::exactlyOne) ; /* ' ' i.e. underlying value of SDL keycode for space */

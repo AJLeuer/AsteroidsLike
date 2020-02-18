@@ -130,7 +130,7 @@ extern Resolution<unsigned> * currentResolutionBaseValue() ;
 extern int WINDOW_ARGS ;
 
 template<typename N>
-N defaultMoveDistance = 6 ;
+N defaultMoveDistance = 2;
 
 extern chrono::nanoseconds refreshTime ;
 
@@ -144,6 +144,8 @@ extern char * MOVE_DOWN_KEY ;
 extern char * MOVE_LEFT_KEY ;
 extern char * MOVE_RIGHT_KEY ;
 extern char * TIME_REVERSE_KEY ;
+extern char * RotateClockwiseKey;
+extern char * RotateCounterClockwiseKey;
 
 
 

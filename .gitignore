@@ -1,17 +1,16 @@
 .DS_Store
-
-/DerivedData
+*.xcuserstate
+.idea/
 
 SpriteFight.dSYM/
-
 *.dSYM 
-
 SpriteFight
 
 Frameworks/SDL2_image.framework/
-
 Frameworks/SDL2_ttf.framework/
-
 Frameworks/SDL2.framework/
 
-*.xcuserstate
+
+cmake-build-*
+DerivedData/
+CompilerOutput/

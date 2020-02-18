@@ -1,13 +1,3 @@
-//
-//  GraphicalOutput.cpp
-//  World
-//
-//  Created by Adam James Leuer on 4/26/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
-
-
 #include "GraphicalOutput.h"
 
 using namespace std ;
