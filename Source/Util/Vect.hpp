@@ -25,6 +25,7 @@
 
 #include <SDL2/SDL_rect.h>
 
+#include "Concepts.h"
 #include "Debug.h"
 #include "Util.hpp"
 #include "BoundsCheck.hpp"
@@ -119,8 +120,6 @@ public:
     float inRadians() {
         return (Util::convertToRadians<float>(((float) * this))) ;
     }
-
-
 } ;
 
 
@@ -132,7 +131,7 @@ public:
  * may not actually have a physical position in space, in which case they can just hold a
  * null pointer.
  */
-template <typename N>
+template <Integral N> requires Integral<N>
 struct Vect {
 
 protected:
@@ -387,23 +386,23 @@ public:
 		return result ;
 	}
 
-	template<typename O, typename P>
-    friend const Vect<P> * operator + (const Vect<P> & lhs, const Vect<O> * rhs) {
+//	template<typename O, typename P>
+//    friend const Vect<P> * operator + (const Vect<P> & lhs, const Vect<O> * rhs) {
+//
+//		P x = lhs.x + rhs->x ;
+//		P y = lhs.y + rhs->y ;
+//
+//		return new Vect<P>(x, y) ;
+//	}
 
-		P x = lhs.x + rhs->x ;
-		P y = lhs.y + rhs->y ;
-
-		return new Vect<P>(x, y) ;
-	}
-
-	template<typename O, typename P>
-    friend const Vect<P> * operator - (const Vect<P> & lhs, const Vect<O> * rhs) {
-
-		P x = lhs.x - rhs->x ;
-		P y = lhs.y - rhs->y ;
-
-		return new Vect<P>(x, y) ;
-	}
+//	template<typename O, typename P>
+//    friend const Vect<P> * operator - (const Vect<P> & lhs, const Vect<O> * rhs) {
+//
+//		P x = lhs.x - rhs->x ;
+//		P y = lhs.y - rhs->y ;
+//
+//		return new Vect<P>(x, y) ;
+//	}
 
 	friend ostream & operator << (std::ostream & os, const Vect<N> * pos) {
 		os << "Vect: X = " << pos->x << ", Y = " << pos->y  << '\n' ;
@@ -784,7 +783,6 @@ public:
 	void overrideCurrentOrientation(const Angle & newAngle) { currentRotation = newAngle; }
 
 	const Vect * getCurrent() const { return current ; }
-
 	const Vect getLast() const { return this->last ; }
 
 	void updateAndNormalize() ;
@@ -796,7 +794,6 @@ public:
 	Vect<N> calculateNextPosition(float modifier = 1.0) ;
 
 	Vect<N> calculateNextPositionChecked(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
-
 
 	Vect<N> calculateReverseNextPosition(float modifier = 1.0, const BoundsCheck<N> & = BoundsCheck<N>::defaultCheck) ;
 

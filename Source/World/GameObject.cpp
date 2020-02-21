@@ -1,12 +1,3 @@
-//
-//  GameObject.cpp
-//  World
-//
-//  Created by Adam James Leuer on 3/11/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
-
 #include "GameObject.h"
 
 /* starts at 1 (0 is a special case */
@@ -155,21 +146,11 @@ void GameObject::operator()(GameObject * sentObject) {
 }
 
 bool GameObject::operator==(GameObject & other) const {
-	if (this->ID == other.ID) {
-		return true ;
-	}
-	else {
-		return false ;
-	}
+	return this->ID == other.ID;
 }
 
 bool GameObject::operator == (const GameObject & other) const {
-	if (this->ID == other.ID) {
-		return true ;
-	}
-	else {
-		return false ;
-	}
+	return this->ID == other.ID;
 }
 
 void GameObject::eraseByID(int ID) {

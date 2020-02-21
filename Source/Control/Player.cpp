@@ -1,11 +1,3 @@
-//
-//  Player.cpp
-//  World
-//
-//  Created by Adam James Leuer on 5/31/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
 #include "Player.h"
 
 using namespace std ;
@@ -66,18 +58,14 @@ void Player::setNames() {
 }
 
 void Player::registerForCallbacks() {
-	
-	//todo make more generic
-	
-	
-    KeyInputRegister * onKeyMoveUp ;
-	KeyInputRegister * onKeyMoveDown ;
-	KeyInputRegister * onKeyMoveLeft ;
-	KeyInputRegister * onKeyMoveRight ;
-    KeyInputRegister * onKeyRotateCounterClockwise ;
-    KeyInputRegister * onKeyRotateClockwise ;
-    KeyInputRegister * onKeyJump ;
-    EventRegister * onActionFire ;
+    KeyInputRegister * onKeyMoveUp = nullptr;
+	KeyInputRegister * onKeyMoveDown = nullptr;
+	KeyInputRegister * onKeyMoveLeft = nullptr;
+	KeyInputRegister * onKeyMoveRight = nullptr;
+    KeyInputRegister * onKeyRotateCounterClockwise = nullptr;
+    KeyInputRegister * onKeyRotateClockwise = nullptr;
+    KeyInputRegister * onKeyJump = nullptr;
+    EventRegister    * onActionFire = nullptr;
 	
 	if (getNumberOfPlayers() == 1) {
         
@@ -102,11 +90,11 @@ void Player::registerForCallbacks() {
 		onActionFire = new EventRegister(& playerCharacter, &GameInterface::fire, SDL_MOUSEBUTTONDOWN) ;
 
 	}
-	else /* if (getNumberOfPlayers() > 2) */ {
+	else if (getNumberOfPlayers() > 2) {
 		cerr << "The maximum supported number of players is 1." << endl ;
 		throw exception() ;
 	}
-	
+
 	InputControl::registerForKeypress(onKeyJump) ;
     InputControl::registerForKeypress(onKeyMoveUp) ;
 	InputControl::registerForKeypress(onKeyMoveDown) ;
@@ -118,36 +106,30 @@ void Player::registerForCallbacks() {
 }
 
 void Player::displayVelocity(Vect<float> pos, GameColor foreground, GameColor background) {
-	
-	stringstream stream0 ;
-	
+
 	auto lastVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
-	
-	stream0 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
-	
-	string str(stream0.str()) ;
-	
-	
-	auto velocityTextDisplayUpdater = [=] () mutable -> const string {
+
+	string velocityReadout;
+
+	std::function<string()> velocityTextDisplayUpdater = [=] () mutable -> string {
 		
-		stringstream stream1 ;
+		stringstream stream ;
 		
 		auto currentVelocity = playerCharacter.getVector()->getVelocity()->getValue() ;
-		
 
-		stream1 << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
-			
-		str = stream1.str() ;
+		stream << "Player " << this->ID << "'s " << *playerCharacter.getVector()->getVelocity() ;
+
+		velocityReadout = stream.str() ;
 			
 		lastVelocity = currentVelocity ;
 			
-		return str ;
+		return velocityReadout ;
 
 	} ;
 
 	
-	ContinuousTextOutput<float, int> * displayVelocityContinuously =
-		new ContinuousTextOutput<float, int>(velocityTextDisplayUpdater, pos, 0.0, foreground, background) ;
+	auto * displayVelocityContinuously =
+		new ContinuousTextOutput<float, int>(velocityTextDisplayUpdater, pos, 0.0, foreground, background);
 	
 	displayVelocityContinuously->display() ;
 }

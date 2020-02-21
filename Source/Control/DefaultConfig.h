@@ -118,9 +118,9 @@ extern Resolution<unsigned> * currentResolutionBaseValue() ;
 extern int WINDOW_ARGS ;
 
 template<typename N>
-N defaultMoveDistance = 2;
+N defaultMoveDistance = 6;
 
-constexpr chrono::duration refreshTime = chrono::milliseconds(1);
+constexpr chrono::duration refreshTime = chrono::milliseconds(16);
 constexpr chrono::duration defaultSleepTime = chrono::milliseconds(240);
 
 /* todo replace at runtime with

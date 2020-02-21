@@ -1,8 +1,14 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
+
+set(CMAKE_CXX_FLAGS "-I /Users/adam/Developer/llvm-project/build2/include/c++/v1 -I /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include" CACHE STRING "Flags used by the CXX compiler during all build types." FORCE)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-set(CMAKE_CXX_STANDARD 20)
+
 
 project(AsteroidsLike)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_EXE_LINKER_FLAGS "-L /Users/adam/Developer/llvm-project/build2/lib -l c++" CACHE STRING "Flags used by the linker during all build types." FORCE)
+
 set(EXECUTABLE_NAME "AsteroidsLike")
 set(TEST_EXECUTABLE_NAME "AsteroidsLikeTest")
 
@@ -92,7 +98,7 @@ add_executable(${EXECUTABLE_NAME}
         Source/World/Weapon.h
         Source/World/WorldControl.cpp
         Source/World/WorldControl.h
-)
+        Source/Util/Concepts.h)
 
 add_executable(${TEST_EXECUTABLE_NAME} Source/Test/Util/UtilTest.cpp Source/Test/ExampleTest.cpp)
 

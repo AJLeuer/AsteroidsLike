@@ -1,11 +1,3 @@
-//
-//  Input.cpp
-//  World
-//
-//  Created by Adam James Leuer on 5/31/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
 #include <iostream>
 
 #include "Input.hpp"
@@ -27,32 +19,35 @@ void EventRegister::handleEvent(const Event * currentEvent) {
 	}
 }
 
-bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, vector<ScanCode>::iterator scanCode) {
-	if (*scanCode == scanCodes.back()) {
-		if (keyboardState[*scanCode]) {
-			return true ;
-		}
-		else {
-			return false ;
-		}
+bool KeyInputRegister::checkForPressedKeys(const unsigned char * keyboardState, vector<ScanCode>::iterator scanCode)
+{
+	if (*scanCode == scanCodes.back())
+	{
+		return keyboardState[* scanCode] != 0;
 	}
-	else {
+	else
+	{
 		auto current = scanCode ;
 		auto next = scanCode + 1 ;
-		if (requestedKeyEvalMethod == KeypressEvaluationMethod::exactlyOne) {
-			stringstream ss ;
-			ss << "Error: KeyInputRegistry with KeypressEvaluationMethod::exactlyOne has more than one keypress registered" << '\n' ;
-			ss << "Set a breakpoint in checkForPressedKeys() to debug" << '\n' ;
-			DebugOutput << ss.rdbuf() ;
-			return false ;
+		switch (requestedKeyEvalMethod)
+		{
+			case KeypressEvaluationMethod::exactlyOne:
+			{
+				stringstream ss;
+				ss << "Error: KeyInputRegistry with KeypressEvaluationMethod::exactlyOne has more than one keypress registered" << '\n';
+				ss << "Set a breakpoint in checkForPressedKeys() to debug" << '\n';
+				DebugOutput << ss.rdbuf();
+				return false;
+			}
+			case KeypressEvaluationMethod::all:
+			{
+				return ((keyboardState[* current]) && (checkForPressedKeys(keyboardState, next)));
+			}
+			case KeypressEvaluationMethod::any:
+			{
+				return ((keyboardState[* current]) || (checkForPressedKeys(keyboardState, next)));
+			}
 		}
-		else if (requestedKeyEvalMethod == KeypressEvaluationMethod::all) {
-			return ((keyboardState[*current]) && (checkForPressedKeys(keyboardState, next))) ;
-		}
-		else { // if (requestedKeyEvalMethod == KeypressEvaluationMethod::any)
-			return ((keyboardState[*current]) || (checkForPressedKeys(keyboardState, next))) ;
-		}
-		
 	}
 }
 
@@ -69,9 +64,9 @@ vector<KeyInputRegister *> InputControl::keyInputRegistry = vector<KeyInputRegis
 void KeyPressEventRegister::handleEvent(const Event * currentEvent) {
     if (currentEvent->type == this->EventRegister::eventType) {
 		
-		string currentEventKeySymbol = Util::convertToString(wstring{currentEvent->key.keysym.sym});
+		optional<string> currentEventKeySymbol = Util::convertToString(wstring{currentEvent->key.keysym.sym});
 		
-		if (Util::contains(this->KeyInputRegister::requestedKeyboardChars, currentEventKeySymbol)) {
+		if ((currentEventKeySymbol.has_value()) && (Util::contains(this->KeyInputRegister::requestedKeyboardChars, currentEventKeySymbol))) {
 			callBack();
         }
     }

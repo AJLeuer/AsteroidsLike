@@ -1,16 +1,8 @@
-//
-//  Input.h
-//  World
-//
-//  Created by Adam James Leuer on 4/24/14.
-//  Copyright (c) 2014 Adam James Leuer. All rights reserved.
-//
-
-#ifndef __SpriteFight__Input__
-#define __SpriteFight__Input__
+#pragma once
 
 #include <iostream>
 #include <thread>
+#include <utility>
 #include <vector>
 #include <functional>
 #include <initializer_list>
@@ -73,7 +65,7 @@ protected:
 	
 	friend class InputControl ;
 	
-	EventRegisterBase() {}
+	EventRegisterBase() = default;
 	
 	/**
 	 * Copy constructor
@@ -103,12 +95,12 @@ protected:
 		arg(arg0),
 		callBackFunction(nullptr) {}
 	
-	EventRegisterBase(function<void (void)> cb) :
+	explicit EventRegisterBase(function<void (void)> cb) :
 		memberToCallOn(nullptr),
 		member_callBackFunction(nullptr),
-		callBackFunction(cb) {}
+		callBackFunction(std::move(cb)) {}
 	
-	virtual ~EventRegisterBase() {}
+	virtual ~EventRegisterBase() = default;
 	
 public:
 	
@@ -153,10 +145,10 @@ public:
 		eventType(eventType) {}
 	
 	EventRegister(function<void (void)> cb, EventType eventType) :
-		EventRegisterBase(cb),
+		EventRegisterBase(std::move(cb)),
 		eventType(eventType) {}
 	
-	virtual ~EventRegister() {}
+	virtual ~EventRegister() = default;
 	
 	virtual void handleEvent(const Event * currentEvent) ;
 	
@@ -165,7 +157,7 @@ public:
 /**
  * Whether a KeyInputRegister should evaluate all requested key presses inclusively, or exclusively.
  * In other words, if the client wishes to call a given function when, say, either "G", or SDL_SCANCODE_KP_PLUS, or
- * "T" are pressed, but not neccessarily all of them, they should use KeypressEvaluationMethod::any. If they want a certain
+ * "T" are pressed, but not necessarily all of them, they should use KeypressEvaluationMethod::any. If they want a certain
  * function called when *all* of those keys are used at once, they should use EvaluationMethod::all.
  */
 enum class KeypressEvaluationMethod {
@@ -178,7 +170,7 @@ enum class KeypressEvaluationMethod {
  * An implementation of EventRegisterBase specialized for handling keyboard input.
  */
 class KeyInputRegister : virtual public EventRegisterBase {
-	
+
 protected:
 	
 	vector<ScanCode> scanCodes ;
@@ -371,13 +363,13 @@ public:
     using KeyInputRegister::KeyInputRegister;
     using EventRegister::EventRegister;
     
-    KeyPressEventRegister(std::function<void(void)> functionReference, KeyPressEventType eventType, initializer_list<string> keyChar, KeypressEvaluationMethod m) :
+    KeyPressEventRegister(const std::function<void(void)>& functionReference, KeyPressEventType eventType, initializer_list<string> keyChar, KeypressEvaluationMethod m) :
 		EventRegisterBase(functionReference),
         EventRegister(functionReference, EventType(eventType)),
         KeyInputRegister(functionReference, keyChar, m)
     {}
     
-    virtual void handleEvent(const Event * currentEvent) override;
+    void handleEvent(const Event * currentEvent) override;
 };
 
 class InputControl {
@@ -435,4 +427,3 @@ void InputControl::registerFor(T * event_or_keypress) {
 	}
 } */
 
-#endif /* defined(__SpriteFight__Input__) */

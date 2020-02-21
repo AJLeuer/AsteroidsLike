@@ -72,7 +72,7 @@ private:
 	static bool dataIsInit ;
 	static bool graphicsAreInit ;
 	
-	GameState() ;
+	GameState() = delete;
 	
 	//friend class TextOutput<float, int> ;
 	friend class GraphicalOutput ;

@@ -18,6 +18,7 @@
 #include <cstdint>
 #include <cstddef>
 #include <codecvt>
+#include <optional>
 
 #include <SDL2/SDL_rect.h>
 
@@ -417,9 +418,16 @@ inline string operator +(const string & str, const char * rhs) {
  *
  * @see <a href="https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string">StackOverflow</a>
  */
-static wstring convertToWideString(const string & str) {
-	std::wstring wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
-	return wstr;
+static optional<wstring> convertToWideString(const string & str) {
+	try
+	{
+		std::wstring wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(str);
+		return wstr;
+	}
+	catch (std::exception & exception)
+	{
+		return std::nullopt;
+	}
 }
 	
 /**
@@ -427,10 +435,17 @@ static wstring convertToWideString(const string & str) {
  *
  * @see <a href="https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string">StackOverflow</a>
  */
-static string convertToString(const wstring & wstr) {
-	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
-	std::string str = converter.to_bytes(wstr);
-	return str;
+static optional<string> convertToString(const wstring & wideString) {
+	try
+	{
+		std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+		std::string str = converter.to_bytes(wideString);
+		return str;
+	}
+	catch (std::exception & exception)
+	{
+		return std::nullopt;
+	}
 }
 
 /**
